@@ -1,23 +1,49 @@
-//go:generate go run ../SDK/runable/resourceType/resource_types_generator.go  --output resource_types.go --index-map ../steampipe/table_index_map.go && gofmt -w -s resource_types.go  && goimports -w resource_types.go
+//go:generate go run ../inventory-data/resource_types_generator.go --provider azure --output resource_types.go --index-map ../pkg/steampipe/table_index_map.go && gofmt -w -s resource_types.go  && goimports -w resource_types.go
 
 package provider
 
 import (
 	"context"
-	"errors"
 	"fmt"
+	"github.com/opengovern/og-util/pkg/integration"
+	"go.uber.org/zap"
+	"os"
 	"sort"
 	"strings"
-	"go.uber.org/zap"
+
+	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
+
+	"github.com/Azure/azure-sdk-for-go/profiles/latest/resourcegraph/mgmt/resourcegraph"
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure/auth"
+	hamiltonAuthAutoRest "github.com/manicminer/hamilton-autorest/auth"
+	hamiltonAuth "github.com/manicminer/hamilton/auth"
+	"github.com/opengovern/og-azure-describer-new/provider/describer"
 	"github.com/opengovern/og-util/pkg/describe/enums"
-	"github.com/opengovern/og-util/pkg/source"
 )
-// any types are used to load your provider configuration.
-type ResourceDescriber func(context.Context, any, string, []string, string, enums.DescribeTriggerType, *describer.StreamSender) (*Resources, error)
-type SingleResourceDescriber func(context.Context, any, string, []string, string, map[string]string, enums.DescribeTriggerType) (*Resources, error)
+
+const AzureAuthLocation = "AZURE_AUTH_LOCATION"
+
+type AuthType string
+
+const (
+	AuthEnv  AuthType = "ENV"
+	AuthFile AuthType = "FILE"
+	AuthCLI  AuthType = "CLI"
+)
+
+type ResourceDescriber interface {
+	DescribeResources(context.Context, *azidentity.ClientSecretCredential, hamiltonAuth.Authorizer, []string, string, enums.DescribeTriggerType, *describer.StreamSender) ([]describer.Resource, error)
+}
+
+type ResourceDescribeFunc func(context.Context, *azidentity.ClientSecretCredential, hamiltonAuth.Authorizer, []string, string, enums.DescribeTriggerType, *describer.StreamSender) ([]describer.Resource, error)
+
+func (fn ResourceDescribeFunc) DescribeResources(c context.Context, a *azidentity.ClientSecretCredential, ah hamiltonAuth.Authorizer, s []string, t string, triggerType enums.DescribeTriggerType, stream *describer.StreamSender) ([]describer.Resource, error) {
+	return fn(c, a, ah, s, t, triggerType, stream)
+}
 
 type ResourceType struct {
-	Connector source.Type
+	IntegrationType integration.Type
 
 	ResourceName  string
 	ResourceLabel string
@@ -26,7 +52,7 @@ type ResourceType struct {
 	Tags map[string][]string
 
 	ListDescriber ResourceDescriber
-	GetDescriber  SingleResourceDescriber
+	GetDescriber  ResourceDescriber // TODO: Change the type?
 
 	TerraformName        []string
 	TerraformServiceName string
@@ -36,8 +62,8 @@ type ResourceType struct {
 	Summarize     bool
 }
 
-func (r ResourceType) GetConnector() source.Type {
-	return r.Connector
+func (r ResourceType) GetConnector() integration.Type {
+	return r.IntegrationType
 }
 
 func (r ResourceType) GetResourceName() string {
@@ -122,6 +148,7 @@ func GetResourceType(resourceType string) (*ResourceType, error) {
 			return &v, nil
 		}
 	}
+
 	return nil, fmt.Errorf("resource type %s not found", resourceType)
 }
 
@@ -129,21 +156,146 @@ func GetResourceTypesMap() map[string]ResourceType {
 	return resourceTypes
 }
 
-type Resources struct {
-	Resources map[string][]describer.Resource
-	Errors    map[string]string
-	ErrorCode string
+type ResourceDescriptionMetadata struct {
+	ResourceType     string
+	SubscriptionIds  []string
+	CloudEnvironment string
 }
 
+type Resources struct {
+	Resources []describer.Resource
+	Metadata  ResourceDescriptionMetadata
+}
 
-func describe(ctx context.Context, logger *zap.Logger, cfg any, account string, regions []string, resourceType string, triggerType enums.DescribeTriggerType, stream *describer.StreamSender) (*Resources, error) {
+func GetResources(
+	ctx context.Context,
+	logger *zap.Logger,
+	resourceType string,
+	triggerType enums.DescribeTriggerType,
+	subscriptions []string,
+	cfg AccountConfig,
+	azureAuth string,
+	azureAuthLoc string,
+	stream *describer.StreamSender,
+) (*Resources, error) {
+	// Create and authorize a ResourceGraph client
+	var authorizer autorest.Authorizer
+	var err error
+	switch v := AuthType(strings.ToUpper(azureAuth)); v {
+	case AuthEnv:
+		authorizer, err = NewAuthorizerFromConfig(cfg)
+	case AuthFile:
+		setEnvIfNotEmpty(AzureAuthLocation, azureAuthLoc)
+		authorizer, err = auth.NewAuthorizerFromFile(resourcegraph.DefaultBaseURI)
+	case AuthCLI:
+		authorizer, err = auth.NewAuthorizerFromCLI()
+	default:
+		err = fmt.Errorf("invalid auth type: %s", v)
+	}
+
+	if err != nil {
+		return nil, err
+	}
+
+	hamiltonAuthorizer, err := hamiltonAuthAutoRest.NewAuthorizerWrapper(authorizer)
+	if err != nil {
+		return nil, err
+	}
+
+	env, err := auth.GetSettingsFromEnvironment()
+	if err != nil {
+		return nil, err
+	}
+
+	cred, err := azidentity.NewClientSecretCredential(cfg.TenantID, cfg.ClientID, cfg.ClientSecret, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resources, err := describe(ctx, logger, cred, hamiltonAuthorizer, resourceType, subscriptions, cfg.TenantID, triggerType, stream)
+	if err != nil {
+		return nil, err
+	}
+
+	for i, resource := range resources {
+		resources[i].Type = resourceType
+		if parts := strings.Split(resources[i].ID, "/"); len(parts) > 4 {
+			resources[i].ResourceGroup = strings.Split(resources[i].ID, "/")[4]
+		}
+		resources[i].Description = describer.JSONAllFieldsMarshaller{
+			Value: resource.Description,
+		}
+	}
+
+	output := &Resources{
+		Resources: resources,
+		Metadata: ResourceDescriptionMetadata{
+			ResourceType:     resourceType,
+			SubscriptionIds:  subscriptions,
+			CloudEnvironment: env.Environment.Name,
+		},
+	}
+
+	return output, err
+}
+
+func setEnvIfNotEmpty(env, s string) {
+	if s != "" {
+		err := os.Setenv(env, s)
+		if err != nil {
+			panic(err)
+		}
+	}
+}
+
+func describe(ctx context.Context, logger *zap.Logger, cred *azidentity.ClientSecretCredential, hamiltonAuth hamiltonAuth.Authorizer, resourceType string, subscriptions []string, tenantId string, triggerType enums.DescribeTriggerType, stream *describer.StreamSender) ([]describer.Resource, error) {
 	resourceTypeObject, ok := resourceTypes[resourceType]
 	if !ok {
 		return nil, fmt.Errorf("unsupported resource type: %s", resourceType)
 	}
+
+	listDescriber := resourceTypeObject.ListDescriber
+	if listDescriber == nil {
+		listDescriber = describer.GenericResourceGraph{Table: "Resources", Type: resourceType}
+	}
 	ctx = describer.WithLogger(ctx, logger)
 
-	return resourceTypeObject.ListDescriber(ctx, cfg, account, regions, resourceType, triggerType, stream)
+	return listDescriber.DescribeResources(ctx, cred, hamiltonAuth, subscriptions, tenantId, triggerType, stream)
+}
+
+func DescribeBySubscription(describe func(context.Context, *azidentity.ClientSecretCredential, string, *describer.StreamSender) ([]describer.Resource, error)) ResourceDescriber {
+	return ResourceDescribeFunc(func(ctx context.Context, client *azidentity.ClientSecretCredential, hamiltonAuth hamiltonAuth.Authorizer, subscriptions []string, tenantId string, triggerType enums.DescribeTriggerType, stream *describer.StreamSender) ([]describer.Resource, error) {
+		ctx = describer.WithTriggerType(ctx, triggerType)
+		values := []describer.Resource{}
+		for _, subscription := range subscriptions {
+			result, err := describe(ctx, client, subscription, stream)
+			if err != nil {
+				return nil, err
+			}
+
+			for _, resource := range result {
+				resource.SubscriptionID = subscription
+			}
+			values = append(values, result...)
+		}
+
+		return values, nil
+	})
+}
+
+func DescribeADByTenantID(describe func(context.Context, *azidentity.ClientSecretCredential, string, *describer.StreamSender) ([]describer.Resource, error)) ResourceDescriber {
+	return ResourceDescribeFunc(func(ctx context.Context, cred *azidentity.ClientSecretCredential, hamiltonAuth hamiltonAuth.Authorizer, subscription []string, tenantId string, triggerType enums.DescribeTriggerType, stream *describer.StreamSender) ([]describer.Resource, error) {
+		ctx = describer.WithTriggerType(ctx, triggerType)
+		var values []describer.Resource
+		result, err := describe(ctx, cred, tenantId, stream)
+		if err != nil {
+			return nil, err
+		}
+
+		values = append(values, result...)
+
+		return values, nil
+	})
 }
 
 func GetResourceTypeByTerraform(terraformType string) string {
@@ -157,8 +309,11 @@ func GetResourceTypeByTerraform(terraformType string) string {
 	return ""
 }
 
-
-// ResourceTypes is a map of all the resource types supported by the provider.
-// TODO: Add your resource types here.
-// When you add a new resource type, you should also add a new entry in the resourceTypes map.
-// Write a function to describe the resource type and add it to the resourceTypes map.
+func GetUnsupportedCostQuotaIds() []string {
+	return []string{
+		"DreamSpark_2015-02-01",
+		"AzureForStudents_2018-01-01",
+		"Sponsored_2016-01-01",
+		"Default_2014-09-01",
+	}
+}
