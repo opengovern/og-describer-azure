@@ -1,21 +1,11 @@
 .PHONY: build
 
-lambda-build:
-	CC=/usr/bin/musl-gcc GOPRIVATE="github.com/opengovern" GOOS=linux GOARCH=amd64 go build -v -ldflags "-linkmode external -extldflags '-static' -s -w" -tags musl,lambda.norpc -o ./build/og-azure-describer ./lambda/main.go
-
-functions-build:
-	CC=/usr/bin/musl-gcc GOPRIVATE="github.com/opengovern" GOOS=linux GOARCH=amd64 go build -v -ldflags "-linkmode external -extldflags '-static' -s -w" -tags musl -o ./azfunction/og-azure-describer ./azfunction/main.go
-
 local-build:
-	CC=/usr/bin/musl-gcc GOPRIVATE="github.com/opengovern" GOOS=linux GOARCH=amd64 go build -v -ldflags "-linkmode external -extldflags '-static' -s -w" -tags musl -o ./local/og-azure-describer ./local/main/main.go
+	CC=/usr/bin/musl-gcc GOPRIVATE="github.com/opengovern" GOOS=linux GOARCH=amd64 go build -v -ldflags "-linkmode external -extldflags '-static' -s -w" -tags musl -o ./local/og-azure-describer-new main.go
 
 docker:
-	docker build -t 435670955331.dkr.ecr.us-east-2.amazonaws.com/og-azure-describer:latest .
-	docker push 435670955331.dkr.ecr.us-east-2.amazonaws.com/og-azure-describer:latest
-
-aws-update:
-	aws lambda update-function-code --function-name og-azure-describer --image-uri 435670955331.dkr.ecr.us-east-2.amazonaws.com/og-azure-describer:latest --region us-east-2
-
+	docker build -t 435670955331.dkr.ecr.us-east-2.amazonaws.com/og-azure-describer-new:latest .
+	docker push 435670955331.dkr.ecr.us-east-2.amazonaws.com/og-azure-describer-new:latest
 
 build-cli:
 	export CGO_ENABLED=0
