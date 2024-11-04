@@ -193,7 +193,7 @@ func SecurityCenterSubscriptionPricing(ctx context.Context, cred *azidentity.Cli
 	client := clientFactory.NewPricingsClient()
 
 	var values []Resource
-	list, err := client.List(ctx, nil)
+	list, err := client.List(ctx, "", nil)
 	if err != nil {
 		return nil, err
 	}
