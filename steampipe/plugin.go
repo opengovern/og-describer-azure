@@ -73,9 +73,9 @@ func ExtractTagsAndNames(logger *zap.Logger, plg, adPlg *plugin.Plugin, resource
 
 	switch steampipe.ExtractPlugin(resourceType) {
 	case steampipe.SteampipePluginAzure:
-		return steampipe.ExtractTagsAndNames(plg, logger, pluginTableName, resourceType, source, AzureDescriptionMap)
+		return steampipe.ExtractTagsAndNames(plg, logger, pluginTableName, resourceType, source, DescriptionMap)
 	case steampipe.SteampipePluginAzureAD:
-		return steampipe.ExtractTagsAndNames(adPlg, logger, pluginTableName, resourceType, source, AzureDescriptionMap)
+		return steampipe.ExtractTagsAndNames(adPlg, logger, pluginTableName, resourceType, source, DescriptionMap)
 	default:
 		return nil, "", fmt.Errorf("invalid provider for resource type: %s", resourceType)
 	}
