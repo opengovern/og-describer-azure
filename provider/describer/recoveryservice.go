@@ -9,7 +9,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/opengovern/og-azure-describer/azure/model"
+	"github.com/opengovern/og-azure-describer-new/provider/model"
 )
 
 func RecoveryServicesVault(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {

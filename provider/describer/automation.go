@@ -6,7 +6,7 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/automation/armautomation"
 	"strings"
 
-	"github.com/opengovern/og-azure-describer/azure/model"
+	"github.com/opengovern/og-azure-describer-new/provider/model"
 )
 
 func AutomationAccounts(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {

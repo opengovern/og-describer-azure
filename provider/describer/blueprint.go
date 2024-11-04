@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/blueprint/armblueprint"
-	"github.com/opengovern/og-azure-describer/azure/model"
+	"github.com/opengovern/og-azure-describer-new/provider/model"
 	"strings"
 )
 

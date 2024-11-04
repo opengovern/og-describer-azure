@@ -1,7 +1,7 @@
 package provider
 
 import (
-	"github.com/opengovern/og-azure-describer/azure/describer"
+	"github.com/opengovern/og-azure-describer-new/provider/describer"
 	"github.com/opengovern/og-util/pkg/integration"
 )
 
