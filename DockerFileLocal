@@ -3,6 +3,6 @@ RUN apk --no-cache add ca-certificates
 
 FROM scratch
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY ./local/og-azure-describer ./
-ENTRYPOINT [ "./og-azure-describer" ]
-CMD [ "./og-azure-describer" ]
+COPY ./local/og-azure-describer-new ./
+ENTRYPOINT [ "./og-azure-describer-new" ]
+CMD [ "./og-azure-describer-new" ]
