@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/go-errors/errors"
 	model "github.com/opengovern/og-describer-azure/pkg/SDK/models"
+	"github.com/opengovern/og-describer-azure/provider"
 	"github.com/opengovern/og-describer-azure/provider/configs"
 	"github.com/opengovern/og-describer-azure/steampipe"
 	describe2 "github.com/opengovern/og-util/pkg/describe"
@@ -89,7 +90,7 @@ func doDescribe(
 	logger.Info("Connect to steampipe plugin")
 	plg := steampipe.Plugin()
 	logger.Info("Account Config From Map")
-	creds, err := configs.AccountConfigFromMap(config)
+	creds, err := provider.AccountConfigFromMap(config)
 	if err != nil {
 		return nil, fmt.Errorf(" account credentials: %w", err)
 	}
@@ -107,11 +108,11 @@ func doDescribe(
 			return fmt.Errorf("failed to trim json: %w", err)
 		}
 
-		metadata, err := configs.GetResourceMetadata(job, resource)
+		metadata, err := provider.GetResourceMetadata(job, resource)
 		if err != nil {
 			return fmt.Errorf("failed to get resource metadata")
 		}
-		err = configs.AdjustResource(job, &resource)
+		err = provider.AdjustResource(job, &resource)
 		if err != nil {
 			return fmt.Errorf("failed to get resource metadata")
 		}
@@ -161,7 +162,7 @@ func doDescribe(
 	}
 	clientStream := (*model.StreamSender)(&f)
 
-	additionalParameters, err := configs.GetAdditionalParameters(job)
+	additionalParameters, err := provider.GetAdditionalParameters(job)
 	if err != nil {
 		return nil, err
 	}
