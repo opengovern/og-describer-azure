@@ -1,4 +1,4 @@
-package provider
+package configs
 
 import (
 	"encoding/json"
@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-type AccountConfig struct {
+type AccountCredentials struct {
 	TenantID        string `json:"azure_tenant_id"`
 	ClientID        string `json:"azure_client_id"`
 	ClientSecret    string `json:"azure_client_password"`
@@ -19,16 +19,16 @@ type AccountConfig struct {
 	Password        string `json:"password"`
 }
 
-func AccountConfigFromMap(m map[string]any) (AccountConfig, error) {
+func AccountConfigFromMap(m map[string]any) (AccountCredentials, error) {
 	mj, err := json.Marshal(m)
 	if err != nil {
-		return AccountConfig{}, err
+		return AccountCredentials{}, err
 	}
 
-	var c AccountConfig
+	var c AccountCredentials
 	err = json.Unmarshal(mj, &c)
 	if err != nil {
-		return AccountConfig{}, err
+		return AccountCredentials{}, err
 	}
 
 	return c, nil
