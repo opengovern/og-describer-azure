@@ -29,11 +29,11 @@ func GetResourceMetadata(job describe.DescribeJob, resource model.Resource) (map
 	azureMetadata := azuremodel.Metadata{
 		ID:               resource.ID,
 		Name:             resource.Name,
-		SubscriptionID:   job.AccountID,
+		SubscriptionID:   job.ProviderID,
 		Location:         resource.Location,
 		CloudEnvironment: "AzurePublicCloud",
 		ResourceType:     strings.ToLower(job.ResourceType),
-		SourceID:         job.SourceID,
+		IntegrationID:    job.IntegrationID,
 	}
 	azureMetadataBytes, err := json.Marshal(azureMetadata)
 	if err != nil {
@@ -60,7 +60,7 @@ func fixAzureLocation(l string) string {
 
 func GetAdditionalParameters(job describe.DescribeJob) (map[string]string, error) {
 	additionalParameters := make(map[string]string)
-	additionalParameters["subscriptionId"] = job.AccountID
+	additionalParameters["subscriptionId"] = job.ProviderID
 
 	return additionalParameters, nil
 }

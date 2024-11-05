@@ -227,14 +227,6 @@ func tableAzureDataProtectionBackupJob(_ context.Context) *plugin.Table {
 				Type:        proto.ColumnType_JSON,
 				Transform:   transform.FromField("Description.DataProtectionJob.ID").Transform(idToAkas),
 			},
-
-			// Azure standard columns
-			// { no location field for backupJobResource
-			// 	Name:        "region",
-			// 	Description: ColumnDescriptionRegion,
-			// 	Type:        proto.ColumnType_STRING,
-			// 	Transform:   transform.FromField("Location").Transform(toLower),
-			// },
 			{
 				Name:        "resource_group",
 				Description: ColumnDescriptionResourceGroup,
