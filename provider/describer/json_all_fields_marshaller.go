@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"reflect"
 	"strings"
 )
