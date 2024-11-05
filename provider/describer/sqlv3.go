@@ -6,7 +6,7 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/mysql/armmysqlflexibleservers"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/sql/armsql"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/sqlvirtualmachine/armsqlvirtualmachine"
-	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
+	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"

@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/go-errors/errors"
-	model "github.com/opengovern/og-describer-azure/pkg/SDK/models"
+	model "github.com/opengovern/og-describer-azure/pkg/sdk/models"
 	"github.com/opengovern/og-describer-azure/provider"
 	"github.com/opengovern/og-describer-azure/provider/configs"
 	"github.com/opengovern/og-describer-azure/steampipe"

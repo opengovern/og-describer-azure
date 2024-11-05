@@ -3,7 +3,7 @@ package provider
 import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
-	model "github.com/opengovern/og-describer-azure/pkg/SDK/models"
+	model "github.com/opengovern/og-describer-azure/pkg/sdk/models"
 	"github.com/opengovern/og-describer-azure/provider/configs"
 
 	"github.com/opengovern/og-describer-azure/provider/describer"

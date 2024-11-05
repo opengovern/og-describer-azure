@@ -6,7 +6,7 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/keyvault/azcertificates"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/keyvault/armkeyvault"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
-	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
+	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
 	"strings"
 
 	"github.com/opengovern/og-util/pkg/concurrency"

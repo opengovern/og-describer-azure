@@ -3,7 +3,7 @@ package azure
 import (
 	"context"
 	secret "github.com/Azure/azure-sdk-for-go/services/keyvault/v7.1/keyvault"
-	opengovernance "github.com/opengovern/og-describer-azure/pkg/SDK/generated"
+	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/generated"
 	"strings"
 
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"

@@ -3,7 +3,7 @@ package describer
 import (
 	"context"
 	"fmt"
-	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
+	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"

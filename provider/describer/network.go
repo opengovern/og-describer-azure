@@ -10,7 +10,7 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/privatedns/armprivatedns"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armresources"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/trafficmanager/armtrafficmanager"
-	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
+	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"

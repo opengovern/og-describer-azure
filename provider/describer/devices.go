@@ -7,7 +7,7 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/iothub/armiothub"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armresources"
-	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
+	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"

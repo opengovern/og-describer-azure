@@ -3,7 +3,7 @@ package provider
 import (
 	"encoding/json"
 	"fmt"
-	model "github.com/opengovern/og-describer-azure/pkg/SDK/models"
+	model "github.com/opengovern/og-describer-azure/pkg/sdk/models"
 	"github.com/opengovern/og-describer-azure/provider/configs"
 	azuremodel "github.com/opengovern/og-describer-azure/provider/model"
 	"github.com/opengovern/og-util/pkg/describe"

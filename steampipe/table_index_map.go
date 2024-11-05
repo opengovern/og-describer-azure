@@ -1,7 +1,7 @@
 package steampipe
 
 import (
-	"github.com/opengovern/og-describer-azure/pkg/SDK/generated"
+	"github.com/opengovern/og-describer-azure/pkg/sdk/generated"
 )
 
 var Map = map[string]string{

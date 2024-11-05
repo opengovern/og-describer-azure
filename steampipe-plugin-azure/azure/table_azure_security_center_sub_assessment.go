@@ -3,7 +3,7 @@ package azure
 import (
 	"context"
 	"encoding/json"
-	opengovernance "github.com/opengovern/og-describer-azure/pkg/SDK/generated"
+	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/generated"
 	"regexp"
 	"strings"
 
