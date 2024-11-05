@@ -12,7 +12,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/opengovern/og-azure-describer-new/provider/model"
+	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
 func RoleAssignment(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {

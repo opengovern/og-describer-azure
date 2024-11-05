@@ -8,7 +8,6 @@ import (
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 
 	"github.com/Azure/go-autorest/autorest/date"
-	"github.com/opengovern/og-azure-describer-new/SDK/generated"
 )
 
 //// TABLE DEFINITION

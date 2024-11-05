@@ -6,9 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/opengovern/og-describer-azure/provider/configs"
 	"github.com/opengovern/og-util/pkg/es"
-	"github.com/opengovern/og-util/pkg/integration"
-
 	"github.com/opengovern/og-util/proto/src/golang"
 	"go.uber.org/zap"
 	"golang.org/x/oauth2"
@@ -31,7 +30,6 @@ const (
 	BufferEmptyRate time.Duration = 5 * time.Second
 )
 
-// Chaneg any types to your provider Resource definition. That type should have
 type ResourceSender struct {
 	authToken                 string
 	logger                    *zap.Logger
@@ -112,9 +110,8 @@ func (s *ResourceSender) ResourceHandler() {
 				s.doneChannel <- struct{}{}
 				return
 			}
-			// Add resource ID to the list
-			// Example
-			// s.resourceIDs = append(s.resourceIDs, resource.UniqueId)
+
+			s.resourceIDs = append(s.resourceIDs, resource.ID)
 			s.sendBuffer = append(s.sendBuffer, resource)
 
 			if len(s.sendBuffer) > MaxBufferSize {
@@ -174,7 +171,7 @@ func (s *ResourceSender) flushBuffer(force bool) {
 		lookupResource := es.LookupResource{
 			ResourceID:      resource.ID,
 			Name:            resource.Name,
-			IntegrationType: integration.Type("AZURE_SUBSCRIPTION"),
+			IntegrationType: configs.IntegrationName,
 			ResourceType:    strings.ToLower(resource.ResourceType),
 			ResourceGroup:   resource.ResourceGroup,
 			Location:        resource.Location,

@@ -7,7 +7,7 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/streamanalytics/armstreamanalytics"
 	"strings"
 
-	"github.com/opengovern/og-azure-describer-new/provider/model"
+	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
 func StreamAnalyticsJob(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {

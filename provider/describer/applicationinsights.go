@@ -3,7 +3,7 @@ package describer
 import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/applicationinsights/armapplicationinsights"
-	"github.com/opengovern/og-azure-describer-new/provider/model"
+	"github.com/opengovern/og-describer-azure/provider/model"
 	"golang.org/x/net/context"
 	"strings"
 )

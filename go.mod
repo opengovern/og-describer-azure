@@ -1,4 +1,4 @@
-module github.com/opengovern/og-azure-describer-new
+module github.com/opengovern/og-describer-azure
 
 go 1.22.0
 

@@ -11,7 +11,7 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/guestconfiguration/armguestconfiguration"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/network/armnetwork"
 
-	"github.com/opengovern/og-azure-describer-new/provider/model"
+	"github.com/opengovern/og-describer-azure/provider/model"
 	"github.com/turbot/go-kit/types"
 )
 

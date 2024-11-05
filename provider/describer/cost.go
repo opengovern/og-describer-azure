@@ -12,7 +12,7 @@ import (
 
 	"github.com/opengovern/og-util/pkg/describe/enums"
 
-	"github.com/opengovern/og-azure-describer-new/provider/model"
+	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
 const serviceNameDimension = "ServiceName"

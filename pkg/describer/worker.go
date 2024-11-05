@@ -4,29 +4,22 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/opengovern/og-azure-describer-new/provider"
-	azuremodel "github.com/opengovern/og-azure-describer-new/provider/model"
-	"github.com/opengovern/og-util/pkg/es"
-	"github.com/opengovern/og-util/pkg/integration"
-	"strings"
-
 	"github.com/go-errors/errors"
-	"github.com/opengovern/og-azure-describer-new/provider/describer"
-	"github.com/opengovern/og-azure-describer-new/steampipe"
-	"github.com/opengovern/og-util/pkg/describe"
-	"github.com/opengovern/og-util/pkg/source"
+	model "github.com/opengovern/og-describer-azure/pkg/SDK/models"
+	"github.com/opengovern/og-describer-azure/provider"
+	"github.com/opengovern/og-describer-azure/provider/configs"
+	"github.com/opengovern/og-describer-azure/steampipe"
+	describe2 "github.com/opengovern/og-util/pkg/describe"
+	"github.com/opengovern/og-util/pkg/es"
 	"github.com/opengovern/og-util/pkg/vault"
 	"go.uber.org/zap"
+	"strings"
 )
 
 type Error struct {
 	ErrCode string
 
 	error
-}
-
-func fixAzureLocation(l string) string {
-	return strings.ToLower(strings.ReplaceAll(l, " ", ""))
 }
 
 func trimEmptyMaps(input map[string]any) {
@@ -56,7 +49,7 @@ func trimJsonFromEmptyObjects(input []byte) ([]byte, error) {
 func Do(ctx context.Context,
 	vlt vault.VaultSourceConfig,
 	logger *zap.Logger,
-	job describe.DescribeJob,
+	job describe2.DescribeJob,
 	grpcEndpoint string,
 	describeDeliverToken string,
 	ingestionPipelineEndpoint string,
@@ -83,25 +76,26 @@ func Do(ctx context.Context,
 func doDescribe(
 	ctx context.Context,
 	logger *zap.Logger,
-	job describe.DescribeJob,
+	job describe2.DescribeJob,
 	config map[string]any,
 	grpcEndpoint, ingestionPipelineEndpoint string,
 	describeToken string,
 	useOpenSearch bool) ([]string, error) {
+	logger.Info("Making New Resource Sender")
 	rs, err := NewResourceSender(grpcEndpoint, ingestionPipelineEndpoint, describeToken, job.JobID, useOpenSearch, logger)
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect to resource sender: %w", err)
 	}
 
+	logger.Info("Connect to steampipe plugin")
 	plg := steampipe.Plugin()
-	plgAD := steampipe.ADPlugin()
+	logger.Info("Account Config From Map")
 	creds, err := provider.AccountConfigFromMap(config)
 	if err != nil {
-		return nil, fmt.Errorf("azure subscription credentials: %w", err)
+		return nil, fmt.Errorf(" account credentials: %w", err)
 	}
-	subscriptionId := job.AccountID
 
-	f := func(resource describer.Resource) error {
+	f := func(resource model.Resource) error {
 		if resource.Description == nil {
 			return nil
 		}
@@ -113,27 +107,14 @@ func doDescribe(
 		if err != nil {
 			return fmt.Errorf("failed to trim json: %w", err)
 		}
-		resource.Location = fixAzureLocation(resource.Location)
-		resource.SubscriptionID = subscriptionId
-		resource.Type = strings.ToLower(job.ResourceType)
-		azureMetadata := azuremodel.Metadata{
-			ID:               resource.ID,
-			Name:             resource.Name,
-			SubscriptionID:   job.AccountID,
-			Location:         resource.Location,
-			CloudEnvironment: "AzurePublicCloud",
-			ResourceType:     strings.ToLower(job.ResourceType),
-			SourceID:         job.SourceID,
-		}
-		azureMetadataBytes, err := json.Marshal(azureMetadata)
-		if err != nil {
-			return fmt.Errorf("marshal metadata: %v", err.Error())
-		}
 
-		metadata := make(map[string]string)
-		err = json.Unmarshal(azureMetadataBytes, &metadata)
+		metadata, err := provider.GetResourceMetadata(job, resource)
 		if err != nil {
-			return fmt.Errorf("unmarshal metadata: %v", err.Error())
+			return fmt.Errorf("failed to get resource metadata")
+		}
+		err = provider.AdjustResource(job, &resource)
+		if err != nil {
+			return fmt.Errorf("failed to get resource metadata")
 		}
 
 		desc := resource.Description
@@ -142,27 +123,9 @@ func doDescribe(
 			return fmt.Errorf("unmarshal description: %v", err.Error())
 		}
 
-		kafkaResource := Resource{
-			ID:              resource.UniqueID(),
-			Name:            resource.Name,
-			ResourceGroup:   resource.ResourceGroup,
-			Location:        resource.Location,
-			IntegrationType: source.CloudAzure,
-			ResourceType:    strings.ToLower(job.ResourceType),
-			ResourceJobID:   job.JobID,
-			SourceID:        job.SourceID,
-			CreatedAt:       job.DescribedAt,
-			Description:     desc,
-			Metadata:        metadata,
-		}
-
-		tags, name, err := steampipe.ExtractTagsAndNames(logger, plg, plgAD, job.ResourceType, kafkaResource)
+		tags, _, err := steampipe.ExtractTagsAndNames(logger, plg, job.ResourceType, resource)
 		if err != nil {
-			logger.Error("failed to build tags for service", zap.Error(err), zap.String("resourceType", job.ResourceType), zap.Any("resource", kafkaResource))
-			return fmt.Errorf("failed to build tags for servicem resource type: %v, resource: %v, err: %v", job.ResourceType, kafkaResource, err)
-		}
-		if len(name) > 0 {
-			kafkaResource.Metadata["name"] = name
+			logger.Error("failed to build tags for service", zap.Error(err), zap.String("resourceType", job.ResourceType), zap.Any("resource", resource))
 		}
 
 		var description any
@@ -184,7 +147,7 @@ func doDescribe(
 		rs.Send(&es.Resource{
 			ID:              resource.UniqueID(),
 			Description:     description,
-			IntegrationType: integration.Type("AZURE_SUBSCRIPTION"),
+			IntegrationType: configs.IntegrationName,
 			ResourceType:    strings.ToLower(job.ResourceType),
 			ResourceJobID:   uint(uint32(job.JobID)),
 			SourceID:        job.SourceID,
@@ -197,17 +160,19 @@ func doDescribe(
 		})
 		return nil
 	}
-	clientStream := (*describer.StreamSender)(&f)
+	clientStream := (*model.StreamSender)(&f)
 
-	_, err = provider.GetResources(
+	additionalParameters, err := provider.GetAdditionalParameters(job)
+	if err != nil {
+		return nil, err
+	}
+	err = GetResources(
 		ctx,
 		logger,
 		job.ResourceType,
 		job.TriggerType,
-		[]string{subscriptionId},
 		creds,
-		string(provider.AuthEnv),
-		"",
+		additionalParameters,
 		clientStream,
 	)
 	if err != nil {

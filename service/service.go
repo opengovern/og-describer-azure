@@ -1,7 +1,7 @@
 package local
 
 import (
-	"github.com/opengovern/og-azure-describer-new/SDK"
+	"github.com/opengovern/og-describer-azure/pkg/SDK"
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
 )

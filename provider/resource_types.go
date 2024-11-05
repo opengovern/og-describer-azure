@@ -1,16 +1,15 @@
 package provider
 
 import (
-	"github.com/opengovern/og-azure-describer-new/provider/describer"
-	"github.com/opengovern/og-util/pkg/integration"
+	model "github.com/opengovern/og-describer-azure/pkg/SDK/models"
+	"github.com/opengovern/og-describer-azure/provider/configs"
+	"github.com/opengovern/og-describer-azure/provider/describer"
 )
 
-var IntegrationName = integration.Type("AZURE_SUBSCRIPTION")
-
-var resourceTypes = map[string]ResourceType{
+var ResourceTypes = map[string]model.ResourceType{
 
 	"Microsoft.App/containerApps": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.App/containerApps",
 		ResourceLabel:   "Container Apps",
 		Tags: map[string][]string{
@@ -27,7 +26,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Blueprint/blueprints": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Blueprint/blueprints",
 		ResourceLabel:   "Blueprint",
 		Tags: map[string][]string{
@@ -43,7 +42,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Cdn/profiles": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Cdn/profiles",
 		ResourceLabel:   "CDN Profiles",
 		Tags: map[string][]string{
@@ -60,7 +59,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Compute/cloudServices": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/cloudServices",
 		ResourceLabel:   "Cloud Services",
 		Tags: map[string][]string{
@@ -77,7 +76,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.ContainerInstance/containerGroups": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ContainerInstance/containerGroups",
 		ResourceLabel:   "Container instances",
 		Tags: map[string][]string{
@@ -94,7 +93,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DataMigration/services": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataMigration/services",
 		ResourceLabel:   "Database Migration Service instance",
 		Tags: map[string][]string{
@@ -111,7 +110,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DataProtection/backupVaults": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataProtection/backupVaults",
 		ResourceLabel:   "",
 		Tags: map[string][]string{
@@ -127,7 +126,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DataProtection/backupJobs": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataProtection/backupJobs",
 		ResourceLabel:   "Data Protection Backup Jobs",
 		Tags: map[string][]string{
@@ -143,7 +142,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DataProtection/backupVaults/backupPolicies": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataProtection/backupVaults/backupPolicies",
 		ResourceLabel:   "",
 		Tags: map[string][]string{
@@ -159,7 +158,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Logic/integrationAccounts": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Logic/integrationAccounts",
 		ResourceLabel:   "Logic Integration Accounts",
 		Tags: map[string][]string{
@@ -176,7 +175,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/bastionHosts": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/bastionHosts",
 		ResourceLabel:   "Bastion Hosts",
 		Tags: map[string][]string{
@@ -193,7 +192,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/connections": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/connections",
 		ResourceLabel:   "Microsoft Connections",
 		Tags: map[string][]string{
@@ -210,7 +209,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/firewallPolicies": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/firewallPolicies",
 		ResourceLabel:   "",
 		Tags: map[string][]string{
@@ -226,7 +225,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/localNetworkGateways": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/localNetworkGateways",
 		ResourceLabel:   "Local Network Gateways",
 		Tags: map[string][]string{
@@ -243,7 +242,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/privateLinkServices": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/privateLinkServices",
 		ResourceLabel:   "Private Link Service",
 		Tags: map[string][]string{
@@ -259,7 +258,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/publicIPPrefixes": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/publicIPPrefixes",
 		ResourceLabel:   "Public IP Prefixes",
 		Tags: map[string][]string{
@@ -276,7 +275,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/virtualHubs": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/virtualHubs",
 		ResourceLabel:   "Virtual Hubs",
 		Tags: map[string][]string{
@@ -293,7 +292,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/virtualWans": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/virtualWans",
 		ResourceLabel:   "Virtual WANs",
 		Tags: map[string][]string{
@@ -310,7 +309,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/vpnGateways": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/vpnGateways",
 		ResourceLabel:   "VPN Gateways",
 		Tags: map[string][]string{
@@ -327,7 +326,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/vpnGateways/vpnConnections": {
-		IntegrationType:      IntegrationName,
+		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.Network/vpnGateways/vpnConnections",
 		ResourceLabel:        "VPN Connections",
 		Tags:                 map[string][]string{},
@@ -341,7 +340,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/vpnSites": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/vpnSites",
 		ResourceLabel:   "VPN Sites",
 		Tags: map[string][]string{
@@ -357,7 +356,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.OperationalInsights/workspaces": {
-		IntegrationType:      IntegrationName,
+		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.OperationalInsights/workspaces",
 		ResourceLabel:        "Operational Insights Workspaces",
 		Tags:                 map[string][]string{},
@@ -371,7 +370,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.StreamAnalytics/cluster": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.StreamAnalytics/cluster",
 		ResourceLabel:   "Stream Analytics Cluster",
 		Tags: map[string][]string{
@@ -387,7 +386,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.TimeSeriesInsights/environments": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.TimeSeriesInsights/environments",
 		ResourceLabel:   "Time Series Insights Environments",
 		Tags: map[string][]string{
@@ -403,7 +402,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.VirtualMachineImages/imageTemplates": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.VirtualMachineImages/imageTemplates",
 		ResourceLabel:   "Image Templates",
 		Tags: map[string][]string{
@@ -420,7 +419,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Compute/virtualMachineScaleSets/virtualMachines": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/virtualMachineScaleSets/virtualMachines",
 		ResourceLabel:   "Scale Set VMs",
 		Tags: map[string][]string{
@@ -436,7 +435,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Automation/automationAccounts": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Automation/automationAccounts",
 		ResourceLabel:   "Automation Accounts",
 		Tags: map[string][]string{
@@ -453,7 +452,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Automation/automationAccounts/variables": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Automation/automationAccounts/variables",
 		ResourceLabel:   "Automation Variables",
 		Tags: map[string][]string{
@@ -470,7 +469,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/dnsZones": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/dnsZones",
 		ResourceLabel:   "DNS Zones",
 		Tags: map[string][]string{
@@ -487,7 +486,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/privateDnsZones": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/privateDnsZones",
 		ResourceLabel:   "Private DNS Zone(s)",
 		Tags: map[string][]string{
@@ -504,7 +503,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/privateEndpoints": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/privateEndpoints",
 		ResourceLabel:   "Private End Point",
 		Tags: map[string][]string{
@@ -521,7 +520,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/networkWatchers": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/networkWatchers",
 		ResourceLabel:   "",
 		Tags: map[string][]string{
@@ -537,7 +536,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Resources/subscriptions/resourceGroups": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Resources/subscriptions/resourceGroups",
 		ResourceLabel:   "Resource Groups",
 		Tags: map[string][]string{
@@ -553,7 +552,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Web/staticSites": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Web/staticSites",
 		ResourceLabel:   "Static Web Apps",
 		Tags: map[string][]string{
@@ -570,7 +569,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Web/sites/slots": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Web/sites/slots",
 		ResourceLabel:   "Static Web App Slots",
 		Tags: map[string][]string{
@@ -587,7 +586,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/serviceprincipals": {
-		IntegrationType:      IntegrationName,
+		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.Entra/serviceprincipals",
 		ResourceLabel:        "Service Principals",
 		Tags:                 map[string][]string{},
@@ -601,7 +600,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.CognitiveServices/accounts": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.CognitiveServices/accounts",
 		ResourceLabel:   "Cognitive Service Accounts",
 		Tags: map[string][]string{
@@ -618,7 +617,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Sql/managedInstances": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/managedInstances",
 		ResourceLabel:   "SQL managed instances",
 		Tags: map[string][]string{
@@ -635,7 +634,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Sql/virtualclusters": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/virtualclusters",
 		ResourceLabel:   "SQL Virtual Clusters",
 		Tags: map[string][]string{
@@ -652,7 +651,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Sql/managedInstances/databases": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/managedInstances/databases",
 		ResourceLabel:   "Managed Instance Databases",
 		Tags: map[string][]string{
@@ -669,7 +668,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Sql/servers/databases": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/servers/databases",
 		ResourceLabel:   "Logical SQL server databases",
 		Tags: map[string][]string{
@@ -686,7 +685,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Storage/storageAccounts/largeFileSharesState": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/largeFileSharesState",
 		ResourceLabel:   "File Share",
 		Tags: map[string][]string{
@@ -703,7 +702,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DBforPostgreSQL/servers": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforPostgreSQL/servers",
 		ResourceLabel:   "Azure Database for PostgreSQL servers",
 		Tags: map[string][]string{
@@ -720,7 +719,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DBforPostgreSQL/flexibleservers": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforPostgreSQL/flexibleservers",
 		ResourceLabel:   "Azure Database for PostgreSQL flexible servers",
 		Tags: map[string][]string{
@@ -737,7 +736,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.AnalysisServices/servers": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.AnalysisServices/servers",
 		ResourceLabel:   "Analysis Services Server",
 		Tags: map[string][]string{
@@ -754,7 +753,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Security/pricings": {
-		IntegrationType:      IntegrationName,
+		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.Security/pricings",
 		ResourceLabel:        "Security Center Subscription Pricing",
 		Tags:                 map[string][]string{},
@@ -768,7 +767,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Insights/guestDiagnosticSettings": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Insights/guestDiagnosticSettings",
 		ResourceLabel:   "Diagnostic Settings",
 		Tags: map[string][]string{
@@ -784,7 +783,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Insights/autoscaleSettings": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Insights/autoscaleSettings",
 		ResourceLabel:   "Autoscale Settings",
 		Tags: map[string][]string{
@@ -800,7 +799,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/groups": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/groups",
 		ResourceLabel:   "Azure AD Groups",
 		Tags: map[string][]string{
@@ -816,7 +815,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/groupMemberships": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/groupMemberships",
 		ResourceLabel:   "Azure AD Groups",
 		Tags: map[string][]string{
@@ -832,7 +831,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/devices": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/devices",
 		ResourceLabel:   "Azure AD Devices",
 		Tags: map[string][]string{
@@ -848,7 +847,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/signInReports": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/signInReports",
 		ResourceLabel:   "Azure AD Sign-in reports",
 		Tags: map[string][]string{
@@ -864,7 +863,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/applications": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/applications",
 		ResourceLabel:   "Azure AD Applications",
 		Tags: map[string][]string{
@@ -880,7 +879,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/appRegistrations": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/appRegistrations",
 		ResourceLabel:   "Azure AD App Registration",
 		Tags: map[string][]string{
@@ -896,7 +895,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/enterpriseApplication": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/enterpriseApplication",
 		ResourceLabel:   "Azure AD Enterprise Application",
 		Tags: map[string][]string{
@@ -912,7 +911,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/managedIdentity": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/managedIdentity",
 		ResourceLabel:   "Azure AD Managed Identity",
 		Tags: map[string][]string{
@@ -928,7 +927,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/microsoftApplication": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/microsoftApplication",
 		ResourceLabel:   "Azure AD Microsoft Application",
 		Tags: map[string][]string{
@@ -944,7 +943,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/domains": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/domains",
 		ResourceLabel:   "Azure AD Domains",
 		Tags: map[string][]string{
@@ -960,7 +959,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/tenant": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/tenant",
 		ResourceLabel:   "Azure AD Tenant",
 		Tags: map[string][]string{
@@ -976,7 +975,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/identityproviders": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/identityproviders",
 		ResourceLabel:   "Azure AD Identity Providers",
 		Tags: map[string][]string{
@@ -992,7 +991,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/securitydefaultspolicy": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/securitydefaultspolicy",
 		ResourceLabel:   "Azure AD Security Defaults Policy",
 		Tags: map[string][]string{
@@ -1008,7 +1007,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/authorizationpolicy": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/authorizationpolicy",
 		ResourceLabel:   "Azure AD Authorization Policy",
 		Tags: map[string][]string{
@@ -1024,7 +1023,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/conditionalaccesspolicy": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/conditionalaccesspolicy",
 		ResourceLabel:   "Azure AD Conditional Access Policy",
 		Tags: map[string][]string{
@@ -1040,7 +1039,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/adminconsentrequestpolicy": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/adminconsentrequestpolicy",
 		ResourceLabel:   "Azure AD Admin Consent Request Policy",
 		Tags: map[string][]string{
@@ -1056,7 +1055,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/userregistrationdetails": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/userregistrationdetails",
 		ResourceLabel:   "Azure AD User registration details",
 		Tags: map[string][]string{
@@ -1072,7 +1071,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Web/hostingEnvironments": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Web/hostingEnvironments",
 		ResourceLabel:   "App Service Environments",
 		Tags: map[string][]string{
@@ -1089,7 +1088,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Cache/redis": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Cache/redis",
 		ResourceLabel:   "Azure Cache for Redis instance",
 		Tags: map[string][]string{
@@ -1106,7 +1105,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.ContainerRegistry/registries": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ContainerRegistry/registries",
 		ResourceLabel:   "Container Registry",
 		Tags: map[string][]string{
@@ -1123,7 +1122,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DataFactory/factories/pipelines": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataFactory/factories/pipelines",
 		ResourceLabel:   "Data Factory Pipeline",
 		Tags: map[string][]string{
@@ -1139,7 +1138,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/expressRouteCircuits": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/expressRouteCircuits",
 		ResourceLabel:   "Express Route Circuits",
 		Tags: map[string][]string{
@@ -1156,7 +1155,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Management/managementgroups": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Management/managementgroups",
 		ResourceLabel:   "Management Groups",
 		Tags: map[string][]string{
@@ -1172,7 +1171,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"microsoft.SqlVirtualMachine/SqlVirtualMachines": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "microsoft.SqlVirtualMachine/SqlVirtualMachines",
 		ResourceLabel:   "SQL Virtual Machines",
 		Tags: map[string][]string{
@@ -1189,7 +1188,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.SqlVirtualMachine/SqlVirtualMachineGroups": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.SqlVirtualMachine/SqlVirtualMachineGroups",
 		ResourceLabel:   "SQL Virtual Machine Groups",
 		Tags: map[string][]string{
@@ -1206,7 +1205,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Storage/storageAccounts/tableServices": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/tableServices",
 		ResourceLabel:   "Storage Account Table Service",
 		Tags: map[string][]string{
@@ -1223,7 +1222,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Synapse/workspaces": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Synapse/workspaces",
 		ResourceLabel:   "Synapse Workspace",
 		Tags: map[string][]string{
@@ -1240,7 +1239,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Synapse/workspaces/bigdatapools": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Synapse/workspaces/bigdatapools",
 		ResourceLabel:   "Synapse Workspace Big Data Pools",
 		Tags: map[string][]string{
@@ -1257,7 +1256,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Synapse/workspaces/sqlpools": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Synapse/workspaces/sqlpools",
 		ResourceLabel:   "Synapse Workspace SQL Pools",
 		Tags: map[string][]string{
@@ -1274,7 +1273,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.StreamAnalytics/streamingJobs": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.StreamAnalytics/streamingJobs",
 		ResourceLabel:   "Stream Analytics Job",
 		Tags: map[string][]string{
@@ -1290,7 +1289,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.CostManagement/CostBySubscription": {
-		IntegrationType:      IntegrationName,
+		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.CostManagement/CostBySubscription",
 		ResourceLabel:        "Cost Management Cost By Subscription",
 		Tags:                 map[string][]string{},
@@ -1305,7 +1304,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.ContainerService/managedClusters": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ContainerService/managedClusters",
 		ResourceLabel:   "Managed Cluster",
 		Tags: map[string][]string{
@@ -1322,7 +1321,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.ContainerService/serviceVersions": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ContainerService/serviceVersions",
 		ResourceLabel:   "Kubernetes Service Version",
 		Tags: map[string][]string{
@@ -1338,7 +1337,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DataFactory/factories": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataFactory/factories",
 		ResourceLabel:   "Azure Data Factory",
 		Tags: map[string][]string{
@@ -1355,7 +1354,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Sql/servers": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/servers",
 		ResourceLabel:   "SQL Servers",
 		Tags: map[string][]string{
@@ -1372,7 +1371,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Sql/servers/jobagents": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/servers/jobagents",
 		ResourceLabel:   "Logical Job Agents",
 		Tags: map[string][]string{
@@ -1389,7 +1388,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Security/autoProvisioningSettings": {
-		IntegrationType:      IntegrationName,
+		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.Security/autoProvisioningSettings",
 		ResourceLabel:        "Auto Provisioning Settings",
 		Tags:                 map[string][]string{},
@@ -1403,7 +1402,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Insights/logProfiles": {
-		IntegrationType:      IntegrationName,
+		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.Insights/logProfiles",
 		ResourceLabel:        "",
 		Tags:                 map[string][]string{},
@@ -1417,7 +1416,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DataBoxEdge/dataBoxEdgeDevices": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataBoxEdge/dataBoxEdgeDevices",
 		ResourceLabel:   "Data Box Edge Devices",
 		Tags: map[string][]string{
@@ -1434,7 +1433,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/loadBalancers": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers",
 		ResourceLabel:   "Load Balancers",
 		Tags: map[string][]string{
@@ -1451,7 +1450,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/azureFirewalls": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/azureFirewalls",
 		ResourceLabel:   "Azure Firewalls",
 		Tags: map[string][]string{
@@ -1468,7 +1467,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Management/locks": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Management/locks",
 		ResourceLabel:   "Management Locks",
 		Tags: map[string][]string{
@@ -1484,7 +1483,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Compute/virtualMachineScaleSets/networkInterfaces": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/virtualMachineScaleSets/networkInterfaces",
 		ResourceLabel:   "VM Scale Set Network Interfaces",
 		Tags: map[string][]string{
@@ -1500,7 +1499,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/frontDoors": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/frontDoors",
 		ResourceLabel:   "Frontdoors",
 		Tags: map[string][]string{
@@ -1517,7 +1516,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Authorization/policyAssignments": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Authorization/policyAssignments",
 		ResourceLabel:   "Policy Assignments",
 		Tags: map[string][]string{
@@ -1534,7 +1533,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Authorization/userEffectiveAccess": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Authorization/userEffectiveAccess",
 		ResourceLabel:   "User Effective Access",
 		Tags: map[string][]string{
@@ -1551,7 +1550,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Search/searchServices": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Search/searchServices",
 		ResourceLabel:   "Search Services",
 		Tags: map[string][]string{
@@ -1568,7 +1567,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Security/settings": {
-		IntegrationType:      IntegrationName,
+		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.Security/settings",
 		ResourceLabel:        "Security Center Setting",
 		Tags:                 map[string][]string{},
@@ -1582,7 +1581,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.RecoveryServices/vaults": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.RecoveryServices/vaults",
 		ResourceLabel:   "Recovery Services Vault",
 		Tags: map[string][]string{
@@ -1598,7 +1597,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.RecoveryServices/vaults/backupJobs": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.RecoveryServices/vaults/backupJobs",
 		ResourceLabel:   "Recovery Services Backup Jobs",
 		Tags: map[string][]string{
@@ -1614,7 +1613,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.RecoveryServices/vaults/backupPolicies": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.RecoveryServices/vaults/backupPolicies",
 		ResourceLabel:   "Recovery Services Backup Policies",
 		Tags: map[string][]string{
@@ -1630,7 +1629,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.RecoveryServices/vaults/backupItems": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.RecoveryServices/vaults/backupItems",
 		ResourceLabel:   "Recovery Services Backup Items",
 		Tags: map[string][]string{
@@ -1646,7 +1645,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Compute/diskEncryptionSets": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/diskEncryptionSets",
 		ResourceLabel:   "Disk Encryption Sets",
 		Tags: map[string][]string{
@@ -1663,7 +1662,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DocumentDB/databaseAccounts/sqlDatabases": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
 		ResourceLabel:   "Cosmos DB SQL Databases",
 		Tags: map[string][]string{
@@ -1680,7 +1679,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.EventGrid/topics": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.EventGrid/topics",
 		ResourceLabel:   "EventGrid Topics",
 		Tags: map[string][]string{
@@ -1697,7 +1696,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.EventHub/namespaces": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.EventHub/namespaces",
 		ResourceLabel:   "Event Hub Namespaces",
 		Tags: map[string][]string{
@@ -1714,7 +1713,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.EventHub/namespaces/eventHubs": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.EventHub/namespaces/eventHubs",
 		ResourceLabel:   "Event Hubs",
 		Tags: map[string][]string{
@@ -1731,7 +1730,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.MachineLearningServices/workspaces": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.MachineLearningServices/workspaces",
 		ResourceLabel:   "Machine Learning Workspace",
 		Tags: map[string][]string{
@@ -1748,7 +1747,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Dashboard/grafana": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Dashboard/grafana",
 		ResourceLabel:   "Azure Managed Grafana",
 		Tags: map[string][]string{
@@ -1765,7 +1764,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DesktopVirtualization/workspaces": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DesktopVirtualization/workspaces",
 		ResourceLabel:   "Virtual desktop workspace",
 		Tags: map[string][]string{
@@ -1782,7 +1781,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/trafficManagerProfiles": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/trafficManagerProfiles",
 		ResourceLabel:   "Traffic Manager profile",
 		Tags: map[string][]string{
@@ -1799,7 +1798,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/dnsResolvers": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/dnsResolvers",
 		ResourceLabel:   "DNS private resolver",
 		Tags: map[string][]string{
@@ -1816,7 +1815,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.CostManagement/CostByResourceType": {
-		IntegrationType:      IntegrationName,
+		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.CostManagement/CostByResourceType",
 		ResourceLabel:        "Cost Management Cost By Resource Type",
 		Tags:                 map[string][]string{},
@@ -1831,7 +1830,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/networkInterfaces": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/networkInterfaces",
 		ResourceLabel:   "Network interfances",
 		Tags: map[string][]string{
@@ -1848,7 +1847,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/publicIPAddresses": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/publicIPAddresses",
 		ResourceLabel:   "Public IP Addresses",
 		Tags: map[string][]string{
@@ -1865,7 +1864,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.HealthcareApis/services": {
-		IntegrationType:      IntegrationName,
+		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.HealthcareApis/services",
 		ResourceLabel:        "Healthcare Services",
 		Tags:                 map[string][]string{},
@@ -1879,7 +1878,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.ServiceBus/namespaces": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ServiceBus/namespaces",
 		ResourceLabel:   "Service Bus Namepsaces",
 		Tags: map[string][]string{
@@ -1896,7 +1895,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Web/sites": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Web/sites",
 		ResourceLabel:   "App Services",
 		Tags: map[string][]string{
@@ -1913,7 +1912,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Compute/availabilitySets": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/availabilitySets",
 		ResourceLabel:   "Availability Sets",
 		Tags: map[string][]string{
@@ -1930,7 +1929,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/virtualNetworks": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/virtualNetworks",
 		ResourceLabel:   "Virtual networks",
 		Tags: map[string][]string{
@@ -1947,7 +1946,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Security/securityContacts": {
-		IntegrationType:      IntegrationName,
+		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.Security/securityContacts",
 		ResourceLabel:        "Security Center Contacts",
 		Tags:                 map[string][]string{},
@@ -1961,7 +1960,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.EventGrid/domains": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.EventGrid/domains",
 		ResourceLabel:   "EventGrid Domains",
 		Tags: map[string][]string{
@@ -1978,7 +1977,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.KeyVault/deletedVaults": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/deletedVaults",
 		ResourceLabel:   "Key Vault Deleted Vaults",
 		Tags: map[string][]string{
@@ -1995,7 +1994,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Storage/storageAccounts/tableServices/tables": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/tableServices/tables",
 		ResourceLabel:   "Storage Tables",
 		Tags: map[string][]string{
@@ -2012,7 +2011,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/users": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/users",
 		ResourceLabel:   "Azure AD Users",
 		Tags: map[string][]string{
@@ -2028,7 +2027,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/directoryroles": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/directoryroles",
 		ResourceLabel:   "Azure AD Directory Roles",
 		Tags: map[string][]string{
@@ -2044,7 +2043,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/directorysettings": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/directorysettings",
 		ResourceLabel:   "Azure AD Directory Settings",
 		Tags: map[string][]string{
@@ -2060,7 +2059,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Entra/directoryauditreport": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Entra/directoryauditreport",
 		ResourceLabel:   "Azure AD Directory Audit Report",
 		Tags: map[string][]string{
@@ -2076,7 +2075,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Compute/snapshots": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/snapshots",
 		ResourceLabel:   "Snapshot",
 		Tags: map[string][]string{
@@ -2093,7 +2092,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Kusto/clusters": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Kusto/clusters",
 		ResourceLabel:   "Azure Data Explorer cluster",
 		Tags: map[string][]string{
@@ -2110,7 +2109,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.StorageSync/storageSyncServices": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.StorageSync/storageSyncServices",
 		ResourceLabel:   "Storage Sync Service",
 		Tags: map[string][]string{
@@ -2127,7 +2126,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Security/locations/jitNetworkAccessPolicies": {
-		IntegrationType:      IntegrationName,
+		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.Security/locations/jitNetworkAccessPolicies",
 		ResourceLabel:        "Security Center JIT Network Access Policy",
 		Tags:                 map[string][]string{},
@@ -2141,7 +2140,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/virtualNetworks/subnets": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/virtualNetworks/subnets",
 		ResourceLabel:   "Subnets",
 		Tags: map[string][]string{
@@ -2158,7 +2157,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/loadBalancers/backendAddressPools": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers/backendAddressPools",
 		ResourceLabel:   "Load Balancer Backend Pools",
 		Tags: map[string][]string{
@@ -2175,7 +2174,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/loadBalancers/loadBalancingRules": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers/loadBalancingRules",
 		ResourceLabel:   "Load Balancer Rules",
 		Tags: map[string][]string{
@@ -2191,7 +2190,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DataLakeStore/accounts": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataLakeStore/accounts",
 		ResourceLabel:   "Data Lake Store account",
 		Tags: map[string][]string{
@@ -2208,7 +2207,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.StorageCache/caches": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.StorageCache/caches",
 		ResourceLabel:   "HPC Cache",
 		Tags: map[string][]string{
@@ -2225,7 +2224,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Batch/batchAccounts": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Batch/batchAccounts",
 		ResourceLabel:   "Batch Accounts",
 		Tags: map[string][]string{
@@ -2242,7 +2241,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/networkSecurityGroups": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/networkSecurityGroups",
 		ResourceLabel:   "Network Security Groups",
 		Tags: map[string][]string{
@@ -2259,7 +2258,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Authorization/roleDefinitions": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Authorization/roleDefinitions",
 		ResourceLabel:   "Role Definitions",
 		Tags: map[string][]string{
@@ -2276,7 +2275,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/applicationSecurityGroups": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/applicationSecurityGroups",
 		ResourceLabel:   "Application Security Groups",
 		Tags: map[string][]string{
@@ -2293,7 +2292,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Authorization/roleAssignment": {
-		IntegrationType:      IntegrationName,
+		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.Authorization/roleAssignment",
 		ResourceLabel:        "",
 		Tags:                 map[string][]string{},
@@ -2307,7 +2306,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DocumentDB/databaseAccounts/mongodbDatabases": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases",
 		ResourceLabel:   "Cosmos DB Mongo Databases",
 		Tags: map[string][]string{
@@ -2324,7 +2323,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
 		ResourceLabel:   "Cosmos DB Mongo Collections",
 		Tags: map[string][]string{
@@ -2341,7 +2340,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/networkWatchers/flowLogs": {
-		IntegrationType:      IntegrationName,
+		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.Network/networkWatchers/flowLogs",
 		ResourceLabel:        "",
 		Tags:                 map[string][]string{},
@@ -2355,7 +2354,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"microsoft.Sql/servers/elasticpools": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "microsoft.Sql/servers/elasticpools",
 		ResourceLabel:   "Logical Elastic Pools",
 		Tags: map[string][]string{
@@ -2372,7 +2371,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Compute/disks": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/disks",
 		ResourceLabel:   "Disks",
 		Tags: map[string][]string{
@@ -2388,7 +2387,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Devices/ProvisioningServices": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Devices/ProvisioningServices",
 		ResourceLabel:   "IoT Hub Device Provisioning Service (DPS)",
 		Tags: map[string][]string{
@@ -2405,7 +2404,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.HDInsight/clusters": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.HDInsight/clusters",
 		ResourceLabel:   "HD Insight Clusters",
 		Tags: map[string][]string{
@@ -2422,7 +2421,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.ServiceFabric/clusters": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ServiceFabric/clusters",
 		ResourceLabel:   "Service Fabric Clusters",
 		Tags: map[string][]string{
@@ -2439,7 +2438,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.SignalRService/signalR": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.SignalRService/signalR",
 		ResourceLabel:   "SignalR Service Instance",
 		Tags: map[string][]string{
@@ -2456,7 +2455,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Storage/storageAccounts/blob": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/blob",
 		ResourceLabel:   "Storage Blobs",
 		Tags: map[string][]string{
@@ -2473,7 +2472,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Storage/storageaccounts/blobservices/containers": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageaccounts/blobservices/containers",
 		ResourceLabel:   "Storage Account Containers",
 		Tags: map[string][]string{
@@ -2490,7 +2489,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Storage/storageAccounts/blobServices": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/blobServices",
 		ResourceLabel:   "Storage Blob Services",
 		Tags: map[string][]string{
@@ -2507,7 +2506,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Storage/storageAccounts/queueServices": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/queueServices",
 		ResourceLabel:   "Storage Queues",
 		Tags: map[string][]string{
@@ -2524,7 +2523,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.ApiManagement/service": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ApiManagement/service",
 		ResourceLabel:   "API management service",
 		Tags: map[string][]string{
@@ -2541,7 +2540,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.ApiManagement/backend": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ApiManagement/backend",
 		ResourceLabel:   "API management backend",
 		Tags: map[string][]string{
@@ -2558,7 +2557,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Compute/virtualMachineScaleSets": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/virtualMachineScaleSets",
 		ResourceLabel:   "VM Scale Set",
 		Tags: map[string][]string{
@@ -2575,7 +2574,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DataFactory/factories/datasets": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataFactory/factories/datasets",
 		ResourceLabel:   "Data Factory Datasets",
 		Tags: map[string][]string{
@@ -2592,7 +2591,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Compute/diskAccesses": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/diskAccesses",
 		ResourceLabel:   "Disk Access",
 		Tags: map[string][]string{
@@ -2609,7 +2608,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DBforMySQL/servers": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforMySQL/servers",
 		ResourceLabel:   "Azure Database for MySQL servers",
 		Tags: map[string][]string{
@@ -2626,7 +2625,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DBforMySQL/flexibleservers": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforMySQL/flexibleservers",
 		ResourceLabel:   "Azure Database for MySQL flexible servers",
 		Tags: map[string][]string{
@@ -2643,7 +2642,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Cache/redisenterprise": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Cache/redisenterprise",
 		ResourceLabel:   "Azure Cache Redis Enterprise",
 		Tags: map[string][]string{
@@ -2660,7 +2659,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DataLakeAnalytics/accounts": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataLakeAnalytics/accounts",
 		ResourceLabel:   "Data Lake Analytics account",
 		Tags: map[string][]string{
@@ -2677,7 +2676,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Insights/activityLogAlerts": {
-		IntegrationType:      IntegrationName,
+		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.Insights/activityLogAlerts",
 		ResourceLabel:        "Insights Activity Log Alerts",
 		Tags:                 map[string][]string{},
@@ -2691,7 +2690,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/loadBalancers/outboundRules": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers/outboundRules",
 		ResourceLabel:   "Load Balancer Outbound Rules",
 		Tags: map[string][]string{
@@ -2708,7 +2707,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.HybridCompute/machines": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.HybridCompute/machines",
 		ResourceLabel:   "Hybrid Compute Machine",
 		Tags: map[string][]string{
@@ -2724,7 +2723,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/loadBalancers/inboundNatRules": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers/inboundNatRules",
 		ResourceLabel:   "Load Balancer Inbound NAT Roles",
 		Tags: map[string][]string{
@@ -2741,7 +2740,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/routeTables": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/routeTables",
 		ResourceLabel:   "Route Tables",
 		Tags: map[string][]string{
@@ -2758,7 +2757,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DocumentDB/databaseAccounts": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/databaseAccounts",
 		ResourceLabel:   "Database Account",
 		Tags: map[string][]string{
@@ -2775,7 +2774,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DocumentDB/restorableDatabaseAccounts": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/restorableDatabaseAccounts",
 		ResourceLabel:   "Restorable Database Account",
 		Tags: map[string][]string{
@@ -2792,7 +2791,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/applicationGateways": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/applicationGateways",
 		ResourceLabel:   "Application Gateways",
 		Tags: map[string][]string{
@@ -2809,7 +2808,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Security/automations": {
-		IntegrationType:      IntegrationName,
+		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.Security/automations",
 		ResourceLabel:        "",
 		Tags:                 map[string][]string{},
@@ -2823,7 +2822,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Kubernetes/connectedClusters": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Kubernetes/connectedClusters",
 		ResourceLabel:   "Externally Hosted Kubernetes Clusters",
 		Tags: map[string][]string{
@@ -2840,7 +2839,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.KeyVault/vaults/keys": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/vaults/keys",
 		ResourceLabel:   "Key Vault Keys",
 		Tags: map[string][]string{
@@ -2857,7 +2856,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.KeyVault/vaults/certificates": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/vaults/certificates",
 		ResourceLabel:   "Key Vault Certificates",
 		Tags: map[string][]string{
@@ -2874,7 +2873,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.KeyVault/vaults/keys/Versions": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/vaults/keys/Versions",
 		ResourceLabel:   "Key Vault Keys Versions",
 		Tags: map[string][]string{
@@ -2891,7 +2890,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DBforMariaDB/servers": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforMariaDB/servers",
 		ResourceLabel:   "MariaDB server",
 		Tags: map[string][]string{
@@ -2908,7 +2907,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DBforMariaDB/servers/databases": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforMariaDB/servers/databases",
 		ResourceLabel:   "MariaDB Database",
 		Tags: map[string][]string{
@@ -2925,7 +2924,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Web/plan": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Web/plan",
 		ResourceLabel:   "App Service Plan",
 		Tags: map[string][]string{
@@ -2941,7 +2940,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/virtualNetworkGateways": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/virtualNetworkGateways",
 		ResourceLabel:   "Virtual Network Gateways",
 		Tags: map[string][]string{
@@ -2958,7 +2957,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Devices/iotHubs": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Devices/iotHubs",
 		ResourceLabel:   "IoT hub",
 		Tags: map[string][]string{
@@ -2975,7 +2974,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Logic/workflows": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Logic/workflows",
 		ResourceLabel:   "Logic Workflows",
 		Tags: map[string][]string{
@@ -2991,7 +2990,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Sql/flexibleServers": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/flexibleServers",
 		ResourceLabel:   "SQL Flexible Servers",
 		Tags: map[string][]string{
@@ -3008,7 +3007,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Resources/subscriptions": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Resources/subscriptions",
 		ResourceLabel:   "Subscriptions",
 		Tags: map[string][]string{
@@ -3024,7 +3023,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Compute/images": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/images",
 		ResourceLabel:   "VM Images",
 		Tags: map[string][]string{
@@ -3041,7 +3040,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Compute/virtualMachines": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/virtualMachines",
 		ResourceLabel:   "VM",
 		Tags: map[string][]string{
@@ -3058,7 +3057,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/natGateways": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/natGateways",
 		ResourceLabel:   "NAT Gateways",
 		Tags: map[string][]string{
@@ -3075,7 +3074,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/loadBalancers/probes": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers/probes",
 		ResourceLabel:   "Load Balancer Probes",
 		Tags: map[string][]string{
@@ -3092,7 +3091,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.KeyVault/vaults": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/vaults",
 		ResourceLabel:   "Key Vaults",
 		Tags: map[string][]string{
@@ -3109,7 +3108,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.KeyVault/managedHsms": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/managedHsms",
 		ResourceLabel:   "Key Vault HSMs",
 		Tags: map[string][]string{
@@ -3126,7 +3125,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.KeyVault/vaults/secrets": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/vaults/secrets",
 		ResourceLabel:   "Key Vault Secrets",
 		Tags: map[string][]string{
@@ -3143,7 +3142,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.AppConfiguration/configurationStores": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.AppConfiguration/configurationStores",
 		ResourceLabel:   "Configuration Stores",
 		Tags: map[string][]string{
@@ -3160,7 +3159,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Storage/storageAccounts": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts",
 		ResourceLabel:   "Storage Accounts",
 		Tags: map[string][]string{
@@ -3177,7 +3176,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.AppPlatform/Spring": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.AppPlatform/Spring",
 		ResourceLabel:   "Spring App",
 		Tags: map[string][]string{
@@ -3194,7 +3193,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Compute/galleries": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/galleries",
 		ResourceLabel:   "Galleries",
 		Tags: map[string][]string{
@@ -3211,7 +3210,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Compute/hostGroups": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/hostGroups",
 		ResourceLabel:   "Host Groups",
 		Tags: map[string][]string{
@@ -3228,7 +3227,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Compute/hostGroups/hosts": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/hostGroups/hosts",
 		ResourceLabel:   "Dedicated Hosts",
 		Tags: map[string][]string{
@@ -3245,7 +3244,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Compute/restorePointCollections": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/restorePointCollections",
 		ResourceLabel:   "Restoration Point Collections",
 		Tags: map[string][]string{
@@ -3261,7 +3260,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Compute/sshPublicKeys": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/sshPublicKeys",
 		ResourceLabel:   "SSH Key",
 		Tags: map[string][]string{
@@ -3278,7 +3277,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Cdn/profiles/endpoints": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Cdn/profiles/endpoints",
 		ResourceLabel:   "CDN Endpoints",
 		Tags: map[string][]string{
@@ -3295,7 +3294,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.BotService/botServices": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.BotService/botServices",
 		ResourceLabel:   "Bot Services",
 		Tags: map[string][]string{
@@ -3312,7 +3311,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DocumentDB/cassandraClusters": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/cassandraClusters",
 		ResourceLabel:   "Cassandra Cluster",
 		Tags: map[string][]string{
@@ -3329,7 +3328,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Network/ddosProtectionPlans": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/ddosProtectionPlans",
 		ResourceLabel:   "DDos Protection Plan",
 		Tags: map[string][]string{
@@ -3346,7 +3345,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"microsoft.Sql/instancePools": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "microsoft.Sql/instancePools",
 		ResourceLabel:   "SQL Instance Pools",
 		Tags: map[string][]string{
@@ -3363,7 +3362,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"microsoft.NetApp/netAppAccounts": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "microsoft.NetApp/netAppAccounts",
 		ResourceLabel:   "NetApp Files Accounts",
 		Tags: map[string][]string{
@@ -3380,7 +3379,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.NetApp/netAppAccounts/capacityPools": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.NetApp/netAppAccounts/capacityPools",
 		ResourceLabel:   "NetApp Capacity Pools",
 		Tags: map[string][]string{
@@ -3397,7 +3396,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.DesktopVirtualization/hostpools": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DesktopVirtualization/hostpools",
 		ResourceLabel:   "Azure Virtual Desktop Host Pools",
 		Tags: map[string][]string{
@@ -3414,7 +3413,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Devtestlab/labs": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Devtestlab/labs",
 		ResourceLabel:   "DevTest Labs",
 		Tags: map[string][]string{
@@ -3431,7 +3430,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Purview/Accounts": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Purview/Accounts",
 		ResourceLabel:   "Purview accounts",
 		Tags: map[string][]string{
@@ -3448,7 +3447,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.PowerBIDedicated/capacities": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.PowerBIDedicated/capacities",
 		ResourceLabel:   "Power BI Embedded",
 		Tags: map[string][]string{
@@ -3465,7 +3464,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Insights/components": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Insights/components",
 		ResourceLabel:   "Application Insights Components",
 		Tags: map[string][]string{
@@ -3482,7 +3481,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Lighthouse/definition": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Lighthouse/definition",
 		ResourceLabel:   "LightHouse Definitions",
 		Tags: map[string][]string{
@@ -3499,7 +3498,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Lighthouse/assignment": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Lighthouse/assignment",
 		ResourceLabel:   "LightHouse Assignments",
 		Tags: map[string][]string{
@@ -3516,7 +3515,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Maintenance/maintenanceConfigurations": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Maintenance/maintenanceConfigurations",
 		ResourceLabel:   "Maintenance Configurations",
 		Tags: map[string][]string{
@@ -3533,7 +3532,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Monitor/logProfiles": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Monitor/logProfiles",
 		ResourceLabel:   "Monitor Log Profiles",
 		Tags: map[string][]string{
@@ -3550,7 +3549,7 @@ var resourceTypes = map[string]ResourceType{
 	},
 
 	"Microsoft.Resources/subscriptions/resources": {
-		IntegrationType: IntegrationName,
+		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Resources/subscriptions/resources",
 		ResourceLabel:   "Resources",
 		Tags: map[string][]string{

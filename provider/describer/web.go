@@ -3,21 +3,22 @@ package describer
 import (
 	"context"
 	"fmt"
+	"github.com/opengovern/og-describer-azure/provider/model"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	appservice "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appservice/armappservice"
 
-	"github.com/opengovern/og-azure-describer-new/provider/model"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 )
 
-func AppServiceEnvironment(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func AppServiceEnvironment(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := appservice.NewEnvironmentsClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -38,10 +39,10 @@ func AppServiceEnvironment(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func GetAppServiceEnvironment(ctx context.Context, v *appservice.EnvironmentResource) *Resource {
+func GetAppServiceEnvironment(ctx context.Context, v *appservice.EnvironmentResource) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -56,7 +57,7 @@ func GetAppServiceEnvironment(ctx context.Context, v *appservice.EnvironmentReso
 	return &resource
 }
 
-func AppServiceFunctionApp(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func AppServiceFunctionApp(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := appservice.NewWebAppsClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -67,7 +68,7 @@ func AppServiceFunctionApp(ctx context.Context, cred *azidentity.ClientSecretCre
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -91,7 +92,7 @@ func AppServiceFunctionApp(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, err
 }
 
-func GetAppServiceFunctionApp(ctx context.Context, webClient *appservice.WebAppsClient, v *appservice.Site) (*Resource, error) {
+func GetAppServiceFunctionApp(ctx context.Context, webClient *appservice.WebAppsClient, v *appservice.Site) (*models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	configuration, err := webClient.GetConfiguration(ctx, *v.Properties.ResourceGroup, *v.Name, nil)
@@ -102,7 +103,7 @@ func GetAppServiceFunctionApp(ctx context.Context, webClient *appservice.WebApps
 	if err != nil {
 		//return nil, err
 	}
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -118,7 +119,7 @@ func GetAppServiceFunctionApp(ctx context.Context, webClient *appservice.WebApps
 	return &resource, nil
 }
 
-func AppServiceWebApp(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func AppServiceWebApp(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := appservice.NewWebAppsClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -128,7 +129,7 @@ func AppServiceWebApp(ctx context.Context, cred *azidentity.ClientSecretCredenti
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -155,7 +156,7 @@ func AppServiceWebApp(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, err
 }
 
-func GetAppServiceWebApp(ctx context.Context, webClient *appservice.WebAppsClient, v *appservice.Site) (*Resource, error) {
+func GetAppServiceWebApp(ctx context.Context, webClient *appservice.WebAppsClient, v *appservice.Site) (*models.Resource, error) {
 	var err error
 
 	resourceGroup := strings.Split(*v.ID, "/")[4]
@@ -203,7 +204,7 @@ func GetAppServiceWebApp(ctx context.Context, webClient *appservice.WebAppsClien
 		}
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: location,
@@ -223,14 +224,14 @@ func GetAppServiceWebApp(ctx context.Context, webClient *appservice.WebAppsClien
 	return &resource, nil
 }
 
-func AppServiceWebAppSlot(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func AppServiceWebAppSlot(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := appservice.NewWebAppsClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -255,9 +256,9 @@ func AppServiceWebAppSlot(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, err
 }
 
-func ListAppServiceWebAppSlots(ctx context.Context, webClient *appservice.WebAppsClient, v *appservice.Site) ([]Resource, error) {
+func ListAppServiceWebAppSlots(ctx context.Context, webClient *appservice.WebAppsClient, v *appservice.Site) ([]models.Resource, error) {
 	pager := webClient.NewListSlotsPager(*v.Properties.ResourceGroup, *v.Name, nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -271,10 +272,10 @@ func ListAppServiceWebAppSlots(ctx context.Context, webClient *appservice.WebApp
 	return values, nil
 }
 
-func GetAppServiceWebAppSlot(ctx context.Context, app *appservice.Site, v *appservice.Site) *Resource {
+func GetAppServiceWebAppSlot(ctx context.Context, app *appservice.Site, v *appservice.Site) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -290,13 +291,13 @@ func GetAppServiceWebAppSlot(ctx context.Context, app *appservice.Site, v *appse
 	return &resource
 }
 
-func AppServicePlan(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func AppServicePlan(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := appservice.NewPlansClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -320,7 +321,7 @@ func AppServicePlan(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func GetAppServicePlan(ctx context.Context, client *appservice.PlansClient, v *appservice.Plan) (*Resource, error) {
+func GetAppServicePlan(ctx context.Context, client *appservice.PlansClient, v *appservice.Plan) (*models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	location := ""
@@ -339,7 +340,7 @@ func GetAppServicePlan(ctx context.Context, client *appservice.PlansClient, v *a
 		webApps = append(webApps, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: location,
@@ -355,14 +356,14 @@ func GetAppServicePlan(ctx context.Context, client *appservice.PlansClient, v *a
 	return &resource, nil
 }
 
-func AppContainerApps(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func AppContainerApps(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := appservice.NewContainerAppsClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -382,10 +383,10 @@ func AppContainerApps(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func GetAppContainerApps(ctx context.Context, server *appservice.ContainerApp) *Resource {
+func GetAppContainerApps(ctx context.Context, server *appservice.ContainerApp) *models.Resource {
 	resourceGroupName := strings.Split(string(*server.ID), "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *server.ID,
 		Name:     *server.Name,
 		Location: *server.Location,
@@ -400,14 +401,14 @@ func GetAppContainerApps(ctx context.Context, server *appservice.ContainerApp) *
 	return &resource
 }
 
-func WebServerFarms(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func WebServerFarms(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := appservice.NewPlansClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 
 	pager := client.NewListByResourceGroupPager(fmt.Sprintf("/subscriptions/%s", subscription), nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -427,10 +428,10 @@ func WebServerFarms(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func GetWebServerFarm(ctx context.Context, v *appservice.Plan) *Resource {
+func GetWebServerFarm(ctx context.Context, v *appservice.Plan) *models.Resource {
 	resourceGroupName := strings.Split(string(*v.ID), "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

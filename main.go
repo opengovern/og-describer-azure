@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/opengovern/og-azure-describer-new/service"
+	"github.com/opengovern/og-describer-azure/service"
 	"os"
 	"os/signal"
 	"syscall"

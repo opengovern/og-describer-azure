@@ -4,13 +4,13 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"github.com/opengovern/og-azure-describer-new/provider/configs"
+	"github.com/opengovern/og-describer-azure/pkg/describer"
+	"github.com/opengovern/og-describer-azure/provider/configs"
 	"os"
 	"runtime"
 	"time"
 
 	"github.com/nats-io/nats.go/jetstream"
-	"github.com/opengovern/og-azure-describer-new/describer"
 
 	"github.com/opengovern/og-util/pkg/describe"
 	esSinkClient "github.com/opengovern/og-util/pkg/es/ingest/client"
@@ -47,7 +47,7 @@ func NewWorker(
 	if ManualTriggers == "true" {
 		topic = configs.JobQueueTopicManuals
 	}
-	if err := jq.Stream(ctx, configs.StreamName, "describe job runner queue", []string{topic}, 200000); err != nil {
+	if err := jq.Stream(ctx, configs.StreamName, " describe job runner queue", []string{topic}, 200000); err != nil {
 		logger.Error("failed to create stream", zap.Error(err))
 		return nil, err
 	}

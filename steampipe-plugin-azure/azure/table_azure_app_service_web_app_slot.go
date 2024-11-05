@@ -4,8 +4,6 @@ import (
 	"context"
 	"strings"
 
-	"github.com/opengovern/og-azure-describer-new/SDK/generated"
-
 	"github.com/Azure/azure-sdk-for-go/services/web/mgmt/2020-06-01/web"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"

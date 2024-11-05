@@ -3,7 +3,7 @@ package azuread
 import (
 	"context"
 	"encoding/json"
-	"github.com/opengovern/og-azure-describer-new/provider/describer"
+	"github.com/opengovern/og-describer-azure/provider/describer"
 
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"

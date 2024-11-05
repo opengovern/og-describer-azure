@@ -6,8 +6,6 @@ import (
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 	"strings"
-
-	"github.com/opengovern/og-azure-describer-new/SDK/generated"
 )
 
 //// TABLE DEFINITION
