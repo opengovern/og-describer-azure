@@ -2,6 +2,7 @@ package describer
 
 import (
 	"context"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
@@ -11,7 +12,7 @@ import (
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func PostgresqlServer(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func PostgresqlServer(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armpostgresql.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -24,7 +25,7 @@ func PostgresqlServer(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	alertPolicyClient := clientFactory.NewServerSecurityAlertPoliciesClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -47,7 +48,7 @@ func PostgresqlServer(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func GetPostgresqlServer(ctx context.Context, firewallClient *armpostgresql.FirewallRulesClient, keysClient *armpostgresql.ServerKeysClient, confClient *armpostgresql.ConfigurationsClient, adminClient *armpostgresql.ServerAdministratorsClient, alertPolicyClient *armpostgresql.ServerSecurityAlertPoliciesClient, server *armpostgresql.Server) (*Resource, error) {
+func GetPostgresqlServer(ctx context.Context, firewallClient *armpostgresql.FirewallRulesClient, keysClient *armpostgresql.ServerKeysClient, confClient *armpostgresql.ConfigurationsClient, adminClient *armpostgresql.ServerAdministratorsClient, alertPolicyClient *armpostgresql.ServerSecurityAlertPoliciesClient, server *armpostgresql.Server) (*models.Resource, error) {
 	resourceGroupName := strings.Split(string(*server.ID), "/")[4]
 
 	pager := adminClient.NewListPager(resourceGroupName, *server.Name, nil)
@@ -100,7 +101,7 @@ func GetPostgresqlServer(ctx context.Context, firewallClient *armpostgresql.Fire
 		serverSecurityAlertPolicies = append(serverSecurityAlertPolicies, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *server.ID,
 		Name:     *server.Name,
 		Location: *server.Location,
@@ -120,7 +121,7 @@ func GetPostgresqlServer(ctx context.Context, firewallClient *armpostgresql.Fire
 	return &resource, nil
 }
 
-func PostgresqlFlexibleservers(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func PostgresqlFlexibleservers(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 
 	client, err := armpostgresqlflexibleservers.NewServersClient(subscription, cred, nil)
 	if err != nil {
@@ -130,7 +131,7 @@ func PostgresqlFlexibleservers(ctx context.Context, cred *azidentity.ClientSecre
 	configurationsClient, err := armpostgresqlflexibleservers.NewConfigurationsClient(subscription, cred, nil)
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -153,7 +154,7 @@ func PostgresqlFlexibleservers(ctx context.Context, cred *azidentity.ClientSecre
 	return values, nil
 }
 
-func GetPostgresqlFlexibleserver(ctx context.Context, configurationsClient *armpostgresqlflexibleservers.ConfigurationsClient, server *armpostgresqlflexibleservers.Server) *Resource {
+func GetPostgresqlFlexibleserver(ctx context.Context, configurationsClient *armpostgresqlflexibleservers.ConfigurationsClient, server *armpostgresqlflexibleservers.Server) *models.Resource {
 	resourceGroupName := strings.Split(string(*server.ID), "/")[4]
 
 	pager := configurationsClient.NewListByServerPager(resourceGroupName, *server.Name, nil)
@@ -166,7 +167,7 @@ func GetPostgresqlFlexibleserver(ctx context.Context, configurationsClient *armp
 		serverConfigurations = append(serverConfigurations, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *server.ID,
 		Name:     *server.Name,
 		Location: *server.Location,

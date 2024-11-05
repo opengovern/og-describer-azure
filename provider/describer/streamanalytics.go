@@ -5,12 +5,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/streamanalytics/armstreamanalytics"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func StreamAnalyticsJob(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func StreamAnalyticsJob(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armstreamanalytics.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -23,7 +24,7 @@ func StreamAnalyticsJob(ctx context.Context, cred *azidentity.ClientSecretCreden
 	}
 	diagnosticClient := monitorClientFactory.NewDiagnosticSettingsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := streamingJobsClient.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -47,7 +48,7 @@ func StreamAnalyticsJob(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func GetStreamAnalyticsJob(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, streamingJob *armstreamanalytics.StreamingJob) (*Resource, error) {
+func GetStreamAnalyticsJob(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, streamingJob *armstreamanalytics.StreamingJob) (*models.Resource, error) {
 	resourceGroup := strings.Split(*streamingJob.ID, "/")[4]
 
 	pager := diagnosticClient.NewListPager(*streamingJob.ID, nil)
@@ -60,7 +61,7 @@ func GetStreamAnalyticsJob(ctx context.Context, diagnosticClient *armmonitor.Dia
 		streamanalyticsListOp = append(streamanalyticsListOp, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *streamingJob.ID,
 		Name:     *streamingJob.Name,
 		Location: *streamingJob.Location,
@@ -75,14 +76,14 @@ func GetStreamAnalyticsJob(ctx context.Context, diagnosticClient *armmonitor.Dia
 	return &resource, nil
 }
 
-func StreamAnalyticsCluster(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func StreamAnalyticsCluster(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armstreamanalytics.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	streamingJobsClient := clientFactory.NewClustersClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := streamingJobsClient.NewListBySubscriptionPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -103,10 +104,10 @@ func StreamAnalyticsCluster(ctx context.Context, cred *azidentity.ClientSecretCr
 	return values, nil
 }
 
-func GetStreamAnalyticsCluster(ctx context.Context, streamingJob *armstreamanalytics.Cluster) *Resource {
+func GetStreamAnalyticsCluster(ctx context.Context, streamingJob *armstreamanalytics.Cluster) *models.Resource {
 	resourceGroup := strings.Split(*streamingJob.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *streamingJob.ID,
 		Name:     *streamingJob.Name,
 		Location: *streamingJob.Location,

@@ -4,19 +4,20 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/subscription/armsubscription"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func Location(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func Location(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsubscription.NewClientFactory(cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	client := clientFactory.NewSubscriptionsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListLocationsPager(subscription, nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -37,10 +38,10 @@ func Location(ctx context.Context, cred *azidentity.ClientSecretCredential, subs
 	return values, nil
 }
 
-func GetLocation(ctx context.Context, location *armsubscription.Location) *Resource {
+func GetLocation(ctx context.Context, location *armsubscription.Location) *models.Resource {
 	resourceGroup := strings.Split(*location.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *location.ID,
 		Name:     *location.Name,
 		Location: "global",

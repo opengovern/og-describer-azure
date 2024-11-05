@@ -5,12 +5,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/batch/armbatch"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func BatchAccount(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func BatchAccount(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armbatch.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -24,7 +25,7 @@ func BatchAccount(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	diagnosticClient := monitorClientFactory.NewDiagnosticSettingsClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -50,7 +51,7 @@ func BatchAccount(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	return values, nil
 }
 
-func getBatchAccount(ctx context.Context, account *armbatch.Account, diagnosticClient *armmonitor.DiagnosticSettingsClient) (*Resource, error) {
+func getBatchAccount(ctx context.Context, account *armbatch.Account, diagnosticClient *armmonitor.DiagnosticSettingsClient) (*models.Resource, error) {
 	id := *account.ID
 	var batchListOp []armmonitor.DiagnosticSettingsResource
 	pager := diagnosticClient.NewListPager(id, nil)
@@ -66,7 +67,7 @@ func getBatchAccount(ctx context.Context, account *armbatch.Account, diagnosticC
 	splitID := strings.Split(*account.ID, "/")
 
 	resourceGroup := splitID[4]
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *account.ID,
 		Name:     *account.Name,
 		Location: *account.Location,

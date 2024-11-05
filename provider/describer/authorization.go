@@ -9,19 +9,20 @@ import (
 	"github.com/aws/aws-sdk-go-v2/aws"
 	msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
 	"github.com/microsoftgraph/msgraph-sdk-go/groups"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"regexp"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func RoleAssignment(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func RoleAssignment(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := armauthorization.NewRoleAssignmentsClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	pager := client.NewListForSubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -41,8 +42,8 @@ func RoleAssignment(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func getRoleAssignment(ctx context.Context, v *armauthorization.RoleAssignment) *Resource {
-	return &Resource{
+func getRoleAssignment(ctx context.Context, v *armauthorization.RoleAssignment) *models.Resource {
+	return &models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
@@ -54,14 +55,14 @@ func getRoleAssignment(ctx context.Context, v *armauthorization.RoleAssignment) 
 	}
 }
 
-func RoleDefinition(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func RoleDefinition(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := armauthorization.NewRoleDefinitionsClient(cred, nil)
 	if err != nil {
 		return nil, err
 	}
 
 	pager := client.NewListPager("/subscriptions/"+subscription, nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -81,8 +82,8 @@ func RoleDefinition(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func getRoleDefinition(ctx context.Context, v *armauthorization.RoleDefinition) *Resource {
-	return &Resource{
+func getRoleDefinition(ctx context.Context, v *armauthorization.RoleDefinition) *models.Resource {
+	return &models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
@@ -94,14 +95,14 @@ func getRoleDefinition(ctx context.Context, v *armauthorization.RoleDefinition) 
 	}
 }
 
-func PolicyDefinition(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func PolicyDefinition(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armpolicy.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	client := clientFactory.NewDefinitionsClient()
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -121,14 +122,14 @@ func PolicyDefinition(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getPolicyDefinition(ctx context.Context, subscription string, definition *armpolicy.Definition) *Resource {
+func getPolicyDefinition(ctx context.Context, subscription string, definition *armpolicy.Definition) *models.Resource {
 	akas := []string{"azure:///subscriptions/" + subscription + *definition.ID, "azure:///subscriptions/" + subscription + strings.ToLower(*definition.ID)}
 	turbotData := map[string]interface{}{
 		"SubscriptionId": subscription,
 		"Akas":           akas,
 	}
 
-	return &Resource{
+	return &models.Resource{
 		ID:       *definition.ID,
 		Name:     *definition.Name,
 		Location: "global",
@@ -141,7 +142,7 @@ func getPolicyDefinition(ctx context.Context, subscription string, definition *a
 	}
 }
 
-func UserEffectiveAccess(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func UserEffectiveAccess(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := armauthorization.NewRoleAssignmentsClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -152,7 +153,7 @@ func UserEffectiveAccess(ctx context.Context, cred *azidentity.ClientSecretCrede
 	if err != nil {
 		return nil, fmt.Errorf("failed to create client: %v", err)
 	}
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -170,7 +171,7 @@ func UserEffectiveAccess(ctx context.Context, cred *azidentity.ClientSecretCrede
 				}
 				for _, m := range members.GetValue() {
 					id := fmt.Sprintf("%s|%s", *m.GetId(), *roleAssignment.ID)
-					resource := Resource{
+					resource := models.Resource{
 						ID:       id,
 						Name:     *roleAssignment.Name,
 						Location: "global",
@@ -204,7 +205,7 @@ func UserEffectiveAccess(ctx context.Context, cred *azidentity.ClientSecretCrede
 					}
 					return nil, err
 				}
-				resource := Resource{
+				resource := models.Resource{
 					ID:       id,
 					Name:     *roleAssignment.Name,
 					Location: "global",
@@ -237,7 +238,7 @@ func UserEffectiveAccess(ctx context.Context, cred *azidentity.ClientSecretCrede
 					}
 					return nil, err
 				}
-				resource := Resource{
+				resource := models.Resource{
 					ID:       id,
 					Name:     *roleAssignment.Name,
 					Location: "global",

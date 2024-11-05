@@ -2,6 +2,7 @@ package describer
 
 import (
 	"context"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
@@ -9,7 +10,7 @@ import (
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func MaintenanceConfiguration(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func MaintenanceConfiguration(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 
 	clientFactory, err := armmaintenance.NewClientFactory(subscription, cred, nil)
 	if err != nil {
@@ -19,7 +20,7 @@ func MaintenanceConfiguration(ctx context.Context, cred *azidentity.ClientSecret
 	configurationsClient := clientFactory.NewConfigurationsClient()
 
 	pager := configurationsClient.NewListPager(nil)
-	var resources []Resource
+	var resources []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -44,10 +45,10 @@ func MaintenanceConfiguration(ctx context.Context, cred *azidentity.ClientSecret
 
 }
 
-func getMaintenanceConfiguration(ctx context.Context, configuration *armmaintenance.Configuration) (*Resource, error) {
+func getMaintenanceConfiguration(ctx context.Context, configuration *armmaintenance.Configuration) (*models.Resource, error) {
 	resourceGroup := strings.Split(*configuration.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:   *configuration.ID,
 		Name: *configuration.Name,
 		Description: JSONAllFieldsMarshaller{

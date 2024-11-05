@@ -4,12 +4,13 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/datamigration/armdatamigration"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func DataMigrationServices(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func DataMigrationServices(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armdatamigration.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -17,7 +18,7 @@ func DataMigrationServices(ctx context.Context, cred *azidentity.ClientSecretCre
 	client := clientFactory.NewServicesClient()
 	pager := client.NewListPager(nil)
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -37,10 +38,10 @@ func DataMigrationServices(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func getDataMigrationService(ctx context.Context, v *armdatamigration.Service) *Resource {
+func getDataMigrationService(ctx context.Context, v *armdatamigration.Service) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

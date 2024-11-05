@@ -6,13 +6,14 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/recoveryservices/armrecoveryservices"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/recoveryservices/armrecoveryservicesbackup/v3"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"reflect"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func RecoveryServicesVault(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func RecoveryServicesVault(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armrecoveryservices.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -25,7 +26,7 @@ func RecoveryServicesVault(ctx context.Context, cred *azidentity.ClientSecretCre
 	}
 	diagnosticClient := monitorClientFactory.NewDiagnosticSettingsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListBySubscriptionIDPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -49,7 +50,7 @@ func RecoveryServicesVault(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func GetRecoveryServicesVault(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, vault *armrecoveryservices.Vault) (*Resource, error) {
+func GetRecoveryServicesVault(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, vault *armrecoveryservices.Vault) (*models.Resource, error) {
 	resourceGroup := strings.Split(*vault.ID, "/")[4]
 
 	var diagnostic []*armmonitor.DiagnosticSettingsResource
@@ -62,7 +63,7 @@ func GetRecoveryServicesVault(ctx context.Context, diagnosticClient *armmonitor.
 		diagnostic = append(diagnostic, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *vault.ID,
 		Name:     *vault.Name,
 		Location: *vault.Location,
@@ -77,7 +78,7 @@ func GetRecoveryServicesVault(ctx context.Context, diagnosticClient *armmonitor.
 	return &resource, nil
 }
 
-func RecoveryServicesBackupJobs(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func RecoveryServicesBackupJobs(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	vaultClientFactory, err := armrecoveryservices.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -90,7 +91,7 @@ func RecoveryServicesBackupJobs(ctx context.Context, cred *azidentity.ClientSecr
 	}
 	client := clientFactory.NewBackupJobsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := vaultClient.NewListBySubscriptionIDPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -120,9 +121,9 @@ func RecoveryServicesBackupJobs(ctx context.Context, cred *azidentity.ClientSecr
 	return values, nil
 }
 
-func ListRecoveryServicesVaultBackupJobs(ctx context.Context, client *armrecoveryservicesbackup.BackupJobsClient, vaultName, resourceGroup string) ([]Resource, error) {
+func ListRecoveryServicesVaultBackupJobs(ctx context.Context, client *armrecoveryservicesbackup.BackupJobsClient, vaultName, resourceGroup string) ([]models.Resource, error) {
 	pager := client.NewListPager(vaultName, resourceGroup, nil)
-	var resources []Resource
+	var resources []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -139,12 +140,12 @@ func ListRecoveryServicesVaultBackupJobs(ctx context.Context, client *armrecover
 	return resources, nil
 }
 
-func GetRecoveryServicesBackupJob(resourceGroup, vaultName string, job *armrecoveryservicesbackup.JobResource) (*Resource, error) {
+func GetRecoveryServicesBackupJob(resourceGroup, vaultName string, job *armrecoveryservicesbackup.JobResource) (*models.Resource, error) {
 	properties, err := backupJobProperties(job)
 	if err != nil {
 		return nil, err
 	}
-	resource := Resource{
+	resource := models.Resource{
 		Description: JSONAllFieldsMarshaller{
 			Value: model.RecoveryServicesBackupJobDescription{
 				Job: struct {
@@ -214,7 +215,7 @@ func backupJobProperties(data *armrecoveryservicesbackup.JobResource) (map[strin
 	return output, nil
 }
 
-func RecoveryServicesBackupPolicies(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func RecoveryServicesBackupPolicies(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	vaultClientFactory, err := armrecoveryservices.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -227,7 +228,7 @@ func RecoveryServicesBackupPolicies(ctx context.Context, cred *azidentity.Client
 	}
 	client := clientFactory.NewBackupPoliciesClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := vaultClient.NewListBySubscriptionIDPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -257,9 +258,9 @@ func RecoveryServicesBackupPolicies(ctx context.Context, cred *azidentity.Client
 	return values, nil
 }
 
-func ListRecoveryServicesVaultBackupPolicies(ctx context.Context, client *armrecoveryservicesbackup.BackupPoliciesClient, vaultName, resourceGroup string) ([]Resource, error) {
+func ListRecoveryServicesVaultBackupPolicies(ctx context.Context, client *armrecoveryservicesbackup.BackupPoliciesClient, vaultName, resourceGroup string) ([]models.Resource, error) {
 	pager := client.NewListPager(vaultName, resourceGroup, nil)
-	var resources []Resource
+	var resources []models.Resource
 
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -277,8 +278,8 @@ func ListRecoveryServicesVaultBackupPolicies(ctx context.Context, client *armrec
 	return resources, nil
 }
 
-func GetRecoveryServicesBackupPolicy(policy *armrecoveryservicesbackup.ProtectionPolicyResource, vaultName, resourceGroup string) Resource {
-	return Resource{
+func GetRecoveryServicesBackupPolicy(policy *armrecoveryservicesbackup.ProtectionPolicyResource, vaultName, resourceGroup string) models.Resource {
+	return models.Resource{
 		Description: JSONAllFieldsMarshaller{
 			Value: model.RecoveryServicesBackupPolicyDescription{
 				ResourceGroup: resourceGroup,
@@ -304,7 +305,7 @@ func GetRecoveryServicesBackupPolicy(policy *armrecoveryservicesbackup.Protectio
 	}
 }
 
-func RecoveryServicesBackupItem(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func RecoveryServicesBackupItem(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	vaultClientFactory, err := armrecoveryservices.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -317,7 +318,7 @@ func RecoveryServicesBackupItem(ctx context.Context, cred *azidentity.ClientSecr
 	}
 	client := clientFactory.NewBackupProtectedItemsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := vaultClient.NewListBySubscriptionIDPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -347,9 +348,9 @@ func RecoveryServicesBackupItem(ctx context.Context, cred *azidentity.ClientSecr
 	return values, nil
 }
 
-func ListRecoveryServicesVaultBackupItems(ctx context.Context, client *armrecoveryservicesbackup.BackupProtectedItemsClient, vaultName, resourceGroup string) ([]Resource, error) {
+func ListRecoveryServicesVaultBackupItems(ctx context.Context, client *armrecoveryservicesbackup.BackupProtectedItemsClient, vaultName, resourceGroup string) ([]models.Resource, error) {
 	pager := client.NewListPager(vaultName, resourceGroup, nil)
-	var resources []Resource
+	var resources []models.Resource
 
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -364,8 +365,8 @@ func ListRecoveryServicesVaultBackupItems(ctx context.Context, client *armrecove
 	return resources, nil
 }
 
-func GetRecoveryServicesBackupItem(item *armrecoveryservicesbackup.ProtectedItemResource, vaultName, resourceGroup string) Resource {
-	return Resource{
+func GetRecoveryServicesBackupItem(item *armrecoveryservicesbackup.ProtectedItemResource, vaultName, resourceGroup string) models.Resource {
+	return models.Resource{
 		Description: JSONAllFieldsMarshaller{
 			Value: model.RecoveryServicesBackupItemDescription{
 				ResourceGroup: resourceGroup,

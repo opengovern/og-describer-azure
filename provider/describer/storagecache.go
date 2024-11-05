@@ -4,18 +4,19 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/storagecache/armstoragecache/v2"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func HpcCache(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func HpcCache(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := armstoragecache.NewCachesClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	if pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -36,10 +37,10 @@ func HpcCache(ctx context.Context, cred *azidentity.ClientSecretCredential, subs
 	return values, err
 }
 
-func GetHpcCache(ctx context.Context, v *armstoragecache.Cache) *Resource {
+func GetHpcCache(ctx context.Context, v *armstoragecache.Cache) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

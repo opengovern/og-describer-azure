@@ -5,12 +5,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/cognitiveservices/armcognitiveservices"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func CognitiveAccount(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func CognitiveAccount(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcognitiveservices.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -25,7 +26,7 @@ func CognitiveAccount(ctx context.Context, cred *azidentity.ClientSecretCredenti
 
 	pager := client.NewListPager(nil)
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -48,7 +49,7 @@ func CognitiveAccount(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getCognitiveAccount(ctx context.Context, diagnosticsClient *armmonitor.DiagnosticSettingsClient, account *armcognitiveservices.Account) (*Resource, error) {
+func getCognitiveAccount(ctx context.Context, diagnosticsClient *armmonitor.DiagnosticSettingsClient, account *armcognitiveservices.Account) (*models.Resource, error) {
 	resourceGroupName := strings.Split(string(*account.ID), "/")[4]
 
 	var diagnosticSettings []*armmonitor.DiagnosticSettingsResource
@@ -60,7 +61,7 @@ func getCognitiveAccount(ctx context.Context, diagnosticsClient *armmonitor.Diag
 		}
 		diagnosticSettings = append(diagnosticSettings, page.Value...)
 	}
-	return &Resource{
+	return &models.Resource{
 		ID: *account.ID,
 		Description: JSONAllFieldsMarshaller{Value: model.CognitiveAccountDescription{
 			Account:                     *account,

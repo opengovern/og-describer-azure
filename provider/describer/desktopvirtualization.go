@@ -4,18 +4,19 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/desktopvirtualization/armdesktopvirtualization"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func DesktopVirtualizationWorkspaces(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func DesktopVirtualizationWorkspaces(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := armdesktopvirtualization.NewWorkspacesClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	pager := client.NewListBySubscriptionPager(&armdesktopvirtualization.WorkspacesClientListBySubscriptionOptions{})
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -23,7 +24,7 @@ func DesktopVirtualizationWorkspaces(ctx context.Context, cred *azidentity.Clien
 		}
 		for _, v := range page.Value {
 			resourceGroupName := strings.Split(string(*v.ID), "/")[4]
-			resource := &Resource{
+			resource := &models.Resource{
 				ID:       *v.ID,
 				Name:     *v.Name,
 				Location: *v.Location,
@@ -46,13 +47,13 @@ func DesktopVirtualizationWorkspaces(ctx context.Context, cred *azidentity.Clien
 	return values, nil
 }
 
-func DesktopVirtualizationHostPool(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func DesktopVirtualizationHostPool(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := armdesktopvirtualization.NewHostPoolsClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -72,9 +73,9 @@ func DesktopVirtualizationHostPool(ctx context.Context, cred *azidentity.ClientS
 	return values, nil
 }
 
-func getDesktopVirtualizationHostPool(ctx context.Context, v *armdesktopvirtualization.HostPool) *Resource {
+func getDesktopVirtualizationHostPool(ctx context.Context, v *armdesktopvirtualization.HostPool) *models.Resource {
 	resourceGroupName := strings.Split(string(*v.ID), "/")[4]
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

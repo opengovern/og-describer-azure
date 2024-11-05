@@ -4,12 +4,13 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/devtestlabs/armdevtestlabs"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func DevTestLabLab(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func DevTestLabLab(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armdevtestlabs.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -17,7 +18,7 @@ func DevTestLabLab(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	client := clientFactory.NewLabsClient()
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -37,9 +38,9 @@ func DevTestLabLab(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	return values, nil
 }
 
-func getDevTestLabLab(ctx context.Context, v *armdevtestlabs.Lab) *Resource {
+func getDevTestLabLab(ctx context.Context, v *armdevtestlabs.Lab) *models.Resource {
 	resourceGroupName := strings.Split(string(*v.ID), "/")[4]
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

@@ -5,12 +5,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/signalr/armsignalr"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func SignalrService(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func SignalrService(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsignalr.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -23,7 +24,7 @@ func SignalrService(ctx context.Context, cred *azidentity.ClientSecretCredential
 	}
 	diagnosticClient := monitorClientFactory.NewDiagnosticSettingsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListBySubscriptionPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -47,7 +48,7 @@ func SignalrService(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func GetSignalrService(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, service *armsignalr.ResourceInfo) (*Resource, error) {
+func GetSignalrService(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, service *armsignalr.ResourceInfo) (*models.Resource, error) {
 	resourceGroup := strings.Split(*service.ID, "/")[4]
 
 	var signalrListOp []*armmonitor.DiagnosticSettingsResource
@@ -60,7 +61,7 @@ func GetSignalrService(ctx context.Context, diagnosticClient *armmonitor.Diagnos
 		signalrListOp = append(signalrListOp, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *service.ID,
 		Name:     *service.Name,
 		Location: *service.Location,

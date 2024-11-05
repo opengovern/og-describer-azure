@@ -7,6 +7,7 @@ import (
 	"github.com/Azure/azure-sdk-for-go/services/synapse/mgmt/2021-03-01/synapse"
 	"github.com/gdexlab/go-render/render"
 	"github.com/gofrs/uuid"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"reflect"
 	"testing"
 	"time"

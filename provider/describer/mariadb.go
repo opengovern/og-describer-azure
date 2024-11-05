@@ -4,12 +4,13 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/mariadb/armmariadb"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func MariadbServer(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func MariadbServer(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armmariadb.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -17,7 +18,7 @@ func MariadbServer(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	client := clientFactory.NewServersClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -37,10 +38,10 @@ func MariadbServer(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	return values, nil
 }
 
-func getMariadbServer(ctx context.Context, server *armmariadb.Server) *Resource {
+func getMariadbServer(ctx context.Context, server *armmariadb.Server) *models.Resource {
 	resourceGroup := strings.Split(*server.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *server.ID,
 		Name:     *server.Name,
 		Location: *server.Location,
@@ -55,7 +56,7 @@ func getMariadbServer(ctx context.Context, server *armmariadb.Server) *Resource 
 	return &resource
 }
 
-func MariadbDatabases(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func MariadbDatabases(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armmariadb.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -64,7 +65,7 @@ func MariadbDatabases(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	databaseClient := clientFactory.NewDatabasesClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -89,11 +90,11 @@ func MariadbDatabases(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func listMariadbServerDatabases(ctx context.Context, databaseClient *armmariadb.DatabasesClient, server *armmariadb.Server) ([]Resource, error) {
+func listMariadbServerDatabases(ctx context.Context, databaseClient *armmariadb.DatabasesClient, server *armmariadb.Server) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*server.ID, "/")[4]
 
 	pager := databaseClient.NewListByServerPager(resourceGroup, *server.Name, nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -107,10 +108,10 @@ func listMariadbServerDatabases(ctx context.Context, databaseClient *armmariadb.
 	return values, nil
 }
 
-func getMariadbDatabase(ctx context.Context, server *armmariadb.Server, r *armmariadb.Database) *Resource {
+func getMariadbDatabase(ctx context.Context, server *armmariadb.Server, r *armmariadb.Database) *models.Resource {
 	resourceGroup := strings.Split(*server.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *r.ID,
 		Name:     *r.Name,
 		Location: *server.Location,

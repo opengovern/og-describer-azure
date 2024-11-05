@@ -5,12 +5,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/synapse/armsynapse"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func SynapseWorkspace(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func SynapseWorkspace(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsynapse.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -24,7 +25,7 @@ func SynapseWorkspace(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	}
 	diagnosticClient := monitorClientFactory.NewDiagnosticSettingsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -48,7 +49,7 @@ func SynapseWorkspace(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func GetSynapseWorkspace(ctx context.Context, synapseClient *armsynapse.WorkspaceManagedSQLServerVulnerabilityAssessmentsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient, config *armsynapse.Workspace) (*Resource, error) {
+func GetSynapseWorkspace(ctx context.Context, synapseClient *armsynapse.WorkspaceManagedSQLServerVulnerabilityAssessmentsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient, config *armsynapse.Workspace) (*models.Resource, error) {
 	resourceGroup := strings.Split(*config.ID, "/")[4]
 
 	ignoreAssesment := false
@@ -81,7 +82,7 @@ func GetSynapseWorkspace(ctx context.Context, synapseClient *armsynapse.Workspac
 		synapseListOp = append(synapseListOp, page2.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *config.ID,
 		Name:     *config.Name,
 		Location: *config.Location,
@@ -97,7 +98,7 @@ func GetSynapseWorkspace(ctx context.Context, synapseClient *armsynapse.Workspac
 	return &resource, nil
 }
 
-func SynapseWorkspaceBigdataPools(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func SynapseWorkspaceBigdataPools(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsynapse.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -105,7 +106,7 @@ func SynapseWorkspaceBigdataPools(ctx context.Context, cred *azidentity.ClientSe
 	bigDataPoolsClient := clientFactory.NewBigDataPoolsClient()
 	client := clientFactory.NewWorkspacesClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -123,10 +124,10 @@ func SynapseWorkspaceBigdataPools(ctx context.Context, cred *azidentity.ClientSe
 	return values, err
 }
 
-func ListSynapseWorkspaceBigdataPools(ctx context.Context, bigDataPoolsClient *armsynapse.BigDataPoolsClient, v *armsynapse.Workspace) ([]Resource, error) {
+func ListSynapseWorkspaceBigdataPools(ctx context.Context, bigDataPoolsClient *armsynapse.BigDataPoolsClient, v *armsynapse.Workspace) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
-	var values []Resource
+	var values []models.Resource
 	pager := bigDataPoolsClient.NewListByWorkspacePager(resourceGroup, *v.Name, nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -141,8 +142,8 @@ func ListSynapseWorkspaceBigdataPools(ctx context.Context, bigDataPoolsClient *a
 	return values, nil
 }
 
-func GetSynapseWorkspaceBigdataPools(ctx context.Context, resourceGroup string, bp *armsynapse.BigDataPoolResourceInfo, v *armsynapse.Workspace) *Resource {
-	resource := Resource{
+func GetSynapseWorkspaceBigdataPools(ctx context.Context, resourceGroup string, bp *armsynapse.BigDataPoolResourceInfo, v *armsynapse.Workspace) *models.Resource {
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -157,7 +158,7 @@ func GetSynapseWorkspaceBigdataPools(ctx context.Context, resourceGroup string, 
 	return &resource
 }
 
-func SynapseWorkspaceSqlpools(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func SynapseWorkspaceSqlpools(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsynapse.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -165,7 +166,7 @@ func SynapseWorkspaceSqlpools(ctx context.Context, cred *azidentity.ClientSecret
 	client := clientFactory.NewWorkspacesClient()
 	bpClient := clientFactory.NewSQLPoolsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -191,10 +192,10 @@ func SynapseWorkspaceSqlpools(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func ListSynapseWorkspaceSqlpools(ctx context.Context, bpClient *armsynapse.SQLPoolsClient, v *armsynapse.Workspace) ([]Resource, error) {
+func ListSynapseWorkspaceSqlpools(ctx context.Context, bpClient *armsynapse.SQLPoolsClient, v *armsynapse.Workspace) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
-	var values []Resource
+	var values []models.Resource
 	pager := bpClient.NewListByWorkspacePager(resourceGroup, *v.Name, nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -212,10 +213,10 @@ func ListSynapseWorkspaceSqlpools(ctx context.Context, bpClient *armsynapse.SQLP
 	return values, nil
 }
 
-func GetSynapseWorkspaceSqlpools(ctx context.Context, v *armsynapse.Workspace, bp *armsynapse.SQLPool) *Resource {
+func GetSynapseWorkspaceSqlpools(ctx context.Context, v *armsynapse.Workspace, bp *armsynapse.SQLPool) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

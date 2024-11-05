@@ -2,6 +2,7 @@ package describer
 
 import (
 	"context"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
@@ -11,7 +12,7 @@ import (
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func MysqlServer(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func MysqlServer(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armmysql.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -23,7 +24,7 @@ func MysqlServer(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	vnetRulesClient := clientFactory.NewVirtualNetworkRulesClient()
 
 	pager := serversClient.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -46,7 +47,7 @@ func MysqlServer(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func getMysqlServer(ctx context.Context, keysClient *armmysql.ServerKeysClient, configClient *armmysql.ConfigurationsClient, securityAlertPolicyClient *armmysql.ServerSecurityAlertPoliciesClient, vnetRulesClient *armmysql.VirtualNetworkRulesClient, server *armmysql.Server) (*Resource, error) {
+func getMysqlServer(ctx context.Context, keysClient *armmysql.ServerKeysClient, configClient *armmysql.ConfigurationsClient, securityAlertPolicyClient *armmysql.ServerSecurityAlertPoliciesClient, vnetRulesClient *armmysql.VirtualNetworkRulesClient, server *armmysql.Server) (*models.Resource, error) {
 	resourceGroup := strings.Split(string(*server.ID), "/")[4]
 	serverName := *server.Name
 
@@ -90,7 +91,7 @@ func getMysqlServer(ctx context.Context, keysClient *armmysql.ServerKeysClient, 
 		vnetRules = append(vnetRules, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *server.ID,
 		Name:     *server.Name,
 		Location: *server.Location,
@@ -108,7 +109,7 @@ func getMysqlServer(ctx context.Context, keysClient *armmysql.ServerKeysClient, 
 	return &resource, nil
 }
 
-func MysqlFlexibleservers(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func MysqlFlexibleservers(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armmysqlflexibleservers.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -116,7 +117,7 @@ func MysqlFlexibleservers(ctx context.Context, cred *azidentity.ClientSecretCred
 	client := clientFactory.NewServersClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -136,10 +137,10 @@ func MysqlFlexibleservers(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func getMysqlFlexibleservers(ctx context.Context, server *armmysqlflexibleservers.Server) *Resource {
+func getMysqlFlexibleservers(ctx context.Context, server *armmysqlflexibleservers.Server) *models.Resource {
 	resourceGroup := strings.Split(string(*server.ID), "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *server.ID,
 		Name:     *server.Name,
 		Location: *server.Location,

@@ -4,12 +4,13 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/keyvault/armkeyvault"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func KeyVaultSecret(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func KeyVaultSecret(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armkeyvault.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -23,7 +24,7 @@ func KeyVaultSecret(ctx context.Context, cred *azidentity.ClientSecretCredential
 		Top: &maxResults,
 	}
 	pager := vaultsClient.NewListPager(&options)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -79,7 +80,7 @@ func KeyVaultSecret(ctx context.Context, cred *azidentity.ClientSecretCredential
 							return nil, err
 						}
 
-						resource := Resource{
+						resource := models.Resource{
 							ID:       *sc.ID,
 							Name:     *sc.ID,
 							Location: "global",

@@ -3,6 +3,7 @@ package describer
 import (
 	"context"
 	"fmt"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"path/filepath"
 	"strings"
 
@@ -15,7 +16,7 @@ import (
 	"github.com/turbot/go-kit/types"
 )
 
-func ComputeDisk(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeDisk(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -23,7 +24,7 @@ func ComputeDisk(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	client := clientFactory.NewDisksClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -43,10 +44,10 @@ func ComputeDisk(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func getComputeDisk(ctx context.Context, v *armcompute.Disk) *Resource {
+func getComputeDisk(ctx context.Context, v *armcompute.Disk) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
-	return &Resource{
+	return &models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -59,7 +60,7 @@ func getComputeDisk(ctx context.Context, v *armcompute.Disk) *Resource {
 	}
 }
 
-func ComputeDiskAccess(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeDiskAccess(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -67,7 +68,7 @@ func ComputeDiskAccess(ctx context.Context, cred *azidentity.ClientSecretCredent
 	client := clientFactory.NewDiskAccessesClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -87,10 +88,10 @@ func ComputeDiskAccess(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func getComputeDiskAccess(ctx context.Context, v *armcompute.DiskAccess) *Resource {
+func getComputeDiskAccess(ctx context.Context, v *armcompute.DiskAccess) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
-	return &Resource{
+	return &models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -103,7 +104,7 @@ func getComputeDiskAccess(ctx context.Context, v *armcompute.DiskAccess) *Resour
 	}
 }
 
-func ComputeVirtualMachineScaleSet(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeVirtualMachineScaleSet(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -112,7 +113,7 @@ func ComputeVirtualMachineScaleSet(ctx context.Context, cred *azidentity.ClientS
 	clientExtension := clientFactory.NewVirtualMachineScaleSetExtensionsClient()
 
 	pager := client.NewListAllPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -135,7 +136,7 @@ func ComputeVirtualMachineScaleSet(ctx context.Context, cred *azidentity.ClientS
 	return values, nil
 }
 
-func getComputeVirtualMachineScaleSet(ctx context.Context, clientExtension *armcompute.VirtualMachineScaleSetExtensionsClient, v *armcompute.VirtualMachineScaleSet) (*Resource, error) {
+func getComputeVirtualMachineScaleSet(ctx context.Context, clientExtension *armcompute.VirtualMachineScaleSetExtensionsClient, v *armcompute.VirtualMachineScaleSet) (*models.Resource, error) {
 	resourceGroupName := strings.Split(*v.ID, "/")[4]
 
 	var op []armcompute.VirtualMachineScaleSetExtension
@@ -150,7 +151,7 @@ func getComputeVirtualMachineScaleSet(ctx context.Context, clientExtension *armc
 		}
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -165,7 +166,7 @@ func getComputeVirtualMachineScaleSet(ctx context.Context, clientExtension *armc
 	return &resource, nil
 }
 
-func ComputeVirtualMachineScaleSetNetworkInterface(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeVirtualMachineScaleSetNetworkInterface(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -178,7 +179,7 @@ func ComputeVirtualMachineScaleSetNetworkInterface(ctx context.Context, cred *az
 	}
 
 	pager := client.NewListAllPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -213,9 +214,9 @@ func ComputeVirtualMachineScaleSetNetworkInterface(ctx context.Context, cred *az
 	return values, nil
 }
 
-func getComputeVirtualMachineScaleSetNetworkInterface(ctx context.Context, vm *armcompute.VirtualMachineScaleSet, v *armnetwork.Interface) *Resource {
+func getComputeVirtualMachineScaleSetNetworkInterface(ctx context.Context, vm *armcompute.VirtualMachineScaleSet, v *armnetwork.Interface) *models.Resource {
 	resourceGroupName := strings.Split(*v.ID, "/")[4]
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -230,7 +231,7 @@ func getComputeVirtualMachineScaleSetNetworkInterface(ctx context.Context, vm *a
 	return &resource
 }
 
-func ComputeVirtualMachineScaleSetVm(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeVirtualMachineScaleSetVm(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -239,7 +240,7 @@ func ComputeVirtualMachineScaleSetVm(ctx context.Context, cred *azidentity.Clien
 	scaleSetVMsClient := clientFactory.NewVirtualMachineScaleSetVMsClient()
 
 	pager := scaleSetsClient.NewListAllPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -269,12 +270,12 @@ func ComputeVirtualMachineScaleSetVm(ctx context.Context, cred *azidentity.Clien
 	return values, nil
 }
 
-func getComputeVirtualMachineScaleSetVm(ctx context.Context, vm *armcompute.VirtualMachineScaleSet, v *armcompute.VirtualMachineScaleSetVM) *Resource {
+func getComputeVirtualMachineScaleSetVm(ctx context.Context, vm *armcompute.VirtualMachineScaleSet, v *armcompute.VirtualMachineScaleSetVM) *models.Resource {
 	resourceGroupName := strings.Split(*v.ID, "/")[4]
 
 	powerState := getStatusFromCode(v.Properties.InstanceView.Statuses, "PowerState")
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -301,7 +302,7 @@ func getStatusFromCode(statuses []*armcompute.InstanceViewStatus, codeType strin
 	return ""
 }
 
-func ComputeVirtualMachine(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeVirtualMachine(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -329,7 +330,7 @@ func ComputeVirtualMachine(ctx context.Context, cred *azidentity.ClientSecretCre
 	guestConfigurationClient := guestConfigurationClientFactory.NewAssignmentsClient()
 
 	pager := vmClient.NewListAllPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -352,7 +353,7 @@ func ComputeVirtualMachine(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func getComputeVirtualMachine(ctx context.Context, vmClient *armcompute.VirtualMachinesClient, vmExtensionsClient *armcompute.VirtualMachineExtensionsClient, networkInterfaceClient *armnetwork.InterfacesClient, networkPublicIPClient *armnetwork.PublicIPAddressesClient, ipConfigClient *armnetwork.InterfaceIPConfigurationsClient, guestConfigurationClient *armguestconfiguration.AssignmentsClient, virtualMachine *armcompute.VirtualMachine) (*Resource, error) {
+func getComputeVirtualMachine(ctx context.Context, vmClient *armcompute.VirtualMachinesClient, vmExtensionsClient *armcompute.VirtualMachineExtensionsClient, networkInterfaceClient *armnetwork.InterfacesClient, networkPublicIPClient *armnetwork.PublicIPAddressesClient, ipConfigClient *armnetwork.InterfaceIPConfigurationsClient, guestConfigurationClient *armguestconfiguration.AssignmentsClient, virtualMachine *armcompute.VirtualMachine) (*models.Resource, error) {
 	resourceGroupName := strings.Split(*virtualMachine.ID, "/")[4]
 	computeInstanceViewOp, err := vmClient.InstanceView(ctx, resourceGroupName, *virtualMachine.Name, nil)
 
@@ -437,7 +438,7 @@ func getComputeVirtualMachine(ctx context.Context, vmClient *armcompute.VirtualM
 		extensionsSettings[*ex.ID] = ex.Properties.Settings.(map[string]interface{})
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *virtualMachine.ID,
 		Name:     *virtualMachine.Name,
 		Location: *virtualMachine.Location,
@@ -457,7 +458,7 @@ func getComputeVirtualMachine(ctx context.Context, vmClient *armcompute.VirtualM
 	return &resource, nil
 }
 
-func ComputeSnapshots(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeSnapshots(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -465,7 +466,7 @@ func ComputeSnapshots(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	client := clientFactory.NewSnapshotsClient()
 	pager := client.NewListPager(nil)
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -485,10 +486,10 @@ func ComputeSnapshots(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getComputeSnapshot(ctx context.Context, snapshot *armcompute.Snapshot) *Resource {
+func getComputeSnapshot(ctx context.Context, snapshot *armcompute.Snapshot) *models.Resource {
 	resourceGroupName := strings.Split(*snapshot.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *snapshot.ID,
 		Name:     *snapshot.Name,
 		Location: *snapshot.Location,
@@ -502,7 +503,7 @@ func getComputeSnapshot(ctx context.Context, snapshot *armcompute.Snapshot) *Res
 	return &resource
 }
 
-func ComputeAvailabilitySet(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeAvailabilitySet(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -510,7 +511,7 @@ func ComputeAvailabilitySet(ctx context.Context, cred *azidentity.ClientSecretCr
 	client := clientFactory.NewAvailabilitySetsClient()
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -530,10 +531,10 @@ func ComputeAvailabilitySet(ctx context.Context, cred *azidentity.ClientSecretCr
 	return values, nil
 }
 
-func getComputeAvailabilitySet(ctx context.Context, availabilitySet *armcompute.AvailabilitySet) *Resource {
+func getComputeAvailabilitySet(ctx context.Context, availabilitySet *armcompute.AvailabilitySet) *models.Resource {
 	resourceGroupName := strings.Split(*availabilitySet.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *availabilitySet.ID,
 		Name:     *availabilitySet.Name,
 		Location: *availabilitySet.Location,
@@ -547,7 +548,7 @@ func getComputeAvailabilitySet(ctx context.Context, availabilitySet *armcompute.
 	return &resource
 }
 
-func ComputeDiskEncryptionSet(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeDiskEncryptionSet(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -555,7 +556,7 @@ func ComputeDiskEncryptionSet(ctx context.Context, cred *azidentity.ClientSecret
 	client := clientFactory.NewDiskEncryptionSetsClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -575,10 +576,10 @@ func ComputeDiskEncryptionSet(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func getComputeDiskEncryptionSet(ctx context.Context, diskEncryptionSet *armcompute.DiskEncryptionSet) *Resource {
+func getComputeDiskEncryptionSet(ctx context.Context, diskEncryptionSet *armcompute.DiskEncryptionSet) *models.Resource {
 	resourceGroupName := strings.Split(*diskEncryptionSet.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *diskEncryptionSet.ID,
 		Name:     *diskEncryptionSet.Name,
 		Location: *diskEncryptionSet.Location,
@@ -592,7 +593,7 @@ func getComputeDiskEncryptionSet(ctx context.Context, diskEncryptionSet *armcomp
 	return &resource
 }
 
-func ComputeGallery(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeGallery(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -600,7 +601,7 @@ func ComputeGallery(ctx context.Context, cred *azidentity.ClientSecretCredential
 	client := clientFactory.NewGalleriesClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -620,10 +621,10 @@ func ComputeGallery(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func getComputeGallery(ctx context.Context, gallery *armcompute.Gallery) *Resource {
+func getComputeGallery(ctx context.Context, gallery *armcompute.Gallery) *models.Resource {
 	resourceGroupName := strings.Split(*gallery.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *gallery.ID,
 		Name:     *gallery.Name,
 		Location: *gallery.Location,
@@ -637,7 +638,7 @@ func getComputeGallery(ctx context.Context, gallery *armcompute.Gallery) *Resour
 	return &resource
 }
 
-func ComputeImage(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeImage(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -645,7 +646,7 @@ func ComputeImage(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	client := clientFactory.NewImagesClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -665,9 +666,9 @@ func ComputeImage(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	return values, nil
 }
 
-func getComputeImage(ctx context.Context, v *armcompute.Image) *Resource {
+func getComputeImage(ctx context.Context, v *armcompute.Image) *models.Resource {
 	resourceGroup := strings.ToLower(strings.Split(*v.ID, "/")[4])
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -681,7 +682,7 @@ func getComputeImage(ctx context.Context, v *armcompute.Image) *Resource {
 	return &resource
 }
 
-func ComputeHostGroup(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeHostGroup(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -689,7 +690,7 @@ func ComputeHostGroup(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	client := clientFactory.NewDedicatedHostGroupsClient()
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -709,9 +710,9 @@ func ComputeHostGroup(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getComputeHostGroup(ctx context.Context, v *armcompute.DedicatedHostGroup) *Resource {
+func getComputeHostGroup(ctx context.Context, v *armcompute.DedicatedHostGroup) *models.Resource {
 	resourceGroup := strings.ToLower(strings.Split(*v.ID, "/")[4])
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -725,7 +726,7 @@ func getComputeHostGroup(ctx context.Context, v *armcompute.DedicatedHostGroup) 
 	return &resource
 }
 
-func ComputeHost(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeHost(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -734,7 +735,7 @@ func ComputeHost(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	hostClient := clientFactory.NewDedicatedHostsClient()
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -759,18 +760,18 @@ func ComputeHost(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func getComputeHostsByGroup(ctx context.Context, hostClient *armcompute.DedicatedHostsClient, v *armcompute.DedicatedHostGroup) ([]Resource, error) {
+func getComputeHostsByGroup(ctx context.Context, hostClient *armcompute.DedicatedHostsClient, v *armcompute.DedicatedHostGroup) ([]models.Resource, error) {
 	resourceGroup := strings.ToLower(strings.Split(*v.ID, "/")[4])
 
 	pager := hostClient.NewListByHostGroupPager(resourceGroup, *v.Name, nil)
-	var resources []Resource
+	var resources []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
 			return nil, err
 		}
 		for _, host := range page.Value {
-			resource := Resource{
+			resource := models.Resource{
 				ID:       *v.ID,
 				Name:     *v.Name,
 				Location: *v.Location,
@@ -787,7 +788,7 @@ func getComputeHostsByGroup(ctx context.Context, hostClient *armcompute.Dedicate
 	return resources, nil
 }
 
-func ComputeRestorePointCollection(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeRestorePointCollection(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -795,7 +796,7 @@ func ComputeRestorePointCollection(ctx context.Context, cred *azidentity.ClientS
 	client := clientFactory.NewRestorePointCollectionsClient()
 
 	pager := client.NewListAllPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -815,9 +816,9 @@ func ComputeRestorePointCollection(ctx context.Context, cred *azidentity.ClientS
 	return values, nil
 }
 
-func getComputeResourcePointCollection(ctx context.Context, v *armcompute.RestorePointCollection) *Resource {
+func getComputeResourcePointCollection(ctx context.Context, v *armcompute.RestorePointCollection) *models.Resource {
 	resourceGroup := strings.ToLower(strings.Split(*v.ID, "/")[4])
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -831,7 +832,7 @@ func getComputeResourcePointCollection(ctx context.Context, v *armcompute.Restor
 	return &resource
 }
 
-func ComputeSSHPublicKey(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeSSHPublicKey(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -839,7 +840,7 @@ func ComputeSSHPublicKey(ctx context.Context, cred *azidentity.ClientSecretCrede
 	client := clientFactory.NewSSHPublicKeysClient()
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -859,9 +860,9 @@ func ComputeSSHPublicKey(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func getComputeSSHPublicKey(ctx context.Context, v *armcompute.SSHPublicKeyResource) *Resource {
+func getComputeSSHPublicKey(ctx context.Context, v *armcompute.SSHPublicKeyResource) *models.Resource {
 	resourceGroup := strings.ToLower(strings.Split(*v.ID, "/")[4])
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -875,7 +876,7 @@ func getComputeSSHPublicKey(ctx context.Context, v *armcompute.SSHPublicKeyResou
 	return &resource
 }
 
-func ComputeDiskReadOps(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeDiskReadOps(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -887,7 +888,7 @@ func ComputeDiskReadOps(ctx context.Context, cred *azidentity.ClientSecretCreden
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -915,14 +916,14 @@ func ComputeDiskReadOps(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func getComputeDiskReadOps(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, disk *armcompute.Disk) ([]Resource, error) {
+func getComputeDiskReadOps(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, disk *armcompute.Disk) ([]models.Resource, error) {
 	metrics, err := listAzureMonitorMetricStatistics(ctx, cred, subscription, "FIVE_MINUTES", "Microsoft.Compute/disks", "Composite Disk Read Operations/sec", *disk.ID)
 	if err != nil {
 		return nil, err
 	}
-	var values []Resource
+	var values []models.Resource
 	for _, metric := range metrics {
-		resource := Resource{
+		resource := models.Resource{
 			ID:       fmt.Sprintf("%s_readops", *disk.ID),
 			Name:     fmt.Sprintf("%s readops", *disk.Name),
 			Location: *disk.Location,
@@ -937,7 +938,7 @@ func getComputeDiskReadOps(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func ComputeDiskReadOpsDaily(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeDiskReadOpsDaily(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -949,7 +950,7 @@ func ComputeDiskReadOpsDaily(ctx context.Context, cred *azidentity.ClientSecretC
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -977,14 +978,14 @@ func ComputeDiskReadOpsDaily(ctx context.Context, cred *azidentity.ClientSecretC
 	return values, nil
 }
 
-func getComputeDiskReadOpsDaily(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, disk *armcompute.Disk) ([]Resource, error) {
+func getComputeDiskReadOpsDaily(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, disk *armcompute.Disk) ([]models.Resource, error) {
 	metrics, err := listAzureMonitorMetricStatistics(ctx, cred, subscription, "DAILY", "Microsoft.Compute/disks", "Composite Disk Read Operations/sec", *disk.ID)
 	if err != nil {
 		return nil, err
 	}
-	var values []Resource
+	var values []models.Resource
 	for _, metric := range metrics {
-		resource := Resource{
+		resource := models.Resource{
 			ID:       fmt.Sprintf("%s_readops_daily", *disk.ID),
 			Name:     fmt.Sprintf("%s readops-daily", *disk.Name),
 			Location: *disk.Location,
@@ -998,7 +999,7 @@ func getComputeDiskReadOpsDaily(ctx context.Context, cred *azidentity.ClientSecr
 	}
 	return values, nil
 }
-func ComputeDiskReadOpsHourly(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeDiskReadOpsHourly(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -1010,7 +1011,7 @@ func ComputeDiskReadOpsHourly(ctx context.Context, cred *azidentity.ClientSecret
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -1038,14 +1039,14 @@ func ComputeDiskReadOpsHourly(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func getComputeDiskReadOpsHourly(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, disk *armcompute.Disk) ([]Resource, error) {
+func getComputeDiskReadOpsHourly(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, disk *armcompute.Disk) ([]models.Resource, error) {
 	metrics, err := listAzureMonitorMetricStatistics(ctx, cred, subscription, "HOURLY", "Microsoft.Compute/disks", "Composite Disk Read Operations/sec", *disk.ID)
 	if err != nil {
 		return nil, err
 	}
-	var values []Resource
+	var values []models.Resource
 	for _, metric := range metrics {
-		resource := Resource{
+		resource := models.Resource{
 			ID:       fmt.Sprintf("%s_readops_hourly", *disk.ID),
 			Name:     fmt.Sprintf("%s readops-hourly", *disk.Name),
 			Location: *disk.Location,
@@ -1060,7 +1061,7 @@ func getComputeDiskReadOpsHourly(ctx context.Context, cred *azidentity.ClientSec
 	return values, nil
 }
 
-func ComputeDiskWriteOps(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeDiskWriteOps(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -1072,7 +1073,7 @@ func ComputeDiskWriteOps(ctx context.Context, cred *azidentity.ClientSecretCrede
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -1100,14 +1101,14 @@ func ComputeDiskWriteOps(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func getComputeDiskWriteOps(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, disk *armcompute.Disk) ([]Resource, error) {
+func getComputeDiskWriteOps(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, disk *armcompute.Disk) ([]models.Resource, error) {
 	metrics, err := listAzureMonitorMetricStatistics(ctx, cred, subscription, "FIVE_MINUTES", "Microsoft.Compute/disks", "Composite Disk Write Operations/sec", *disk.ID)
 	if err != nil {
 		return nil, err
 	}
-	var values []Resource
+	var values []models.Resource
 	for _, metric := range metrics {
-		resource := Resource{
+		resource := models.Resource{
 			ID:       fmt.Sprintf("%s_writeops", *disk.ID),
 			Name:     fmt.Sprintf("%s writeops", *disk.Name),
 			Location: *disk.Location,
@@ -1122,7 +1123,7 @@ func getComputeDiskWriteOps(ctx context.Context, cred *azidentity.ClientSecretCr
 	return values, nil
 }
 
-func ComputeDiskWriteOpsDaily(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeDiskWriteOpsDaily(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -1134,7 +1135,7 @@ func ComputeDiskWriteOpsDaily(ctx context.Context, cred *azidentity.ClientSecret
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -1162,14 +1163,14 @@ func ComputeDiskWriteOpsDaily(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func getComputeDiskWriteOpsDaily(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, disk *armcompute.Disk) ([]Resource, error) {
+func getComputeDiskWriteOpsDaily(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, disk *armcompute.Disk) ([]models.Resource, error) {
 	metrics, err := listAzureMonitorMetricStatistics(ctx, cred, subscription, "DAILY", "Microsoft.Compute/disks", "Composite Disk Write Operations/sec", *disk.ID)
 	if err != nil {
 		return nil, err
 	}
-	var values []Resource
+	var values []models.Resource
 	for _, metric := range metrics {
-		resource := Resource{
+		resource := models.Resource{
 			ID:       fmt.Sprintf("%s_writeops_daily", *disk.ID),
 			Name:     fmt.Sprintf("%s writeops-daily", *disk.Name),
 			Location: *disk.Location,
@@ -1183,7 +1184,7 @@ func getComputeDiskWriteOpsDaily(ctx context.Context, cred *azidentity.ClientSec
 	}
 	return values, nil
 }
-func ComputeDiskWriteOpsHourly(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeDiskWriteOpsHourly(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -1195,7 +1196,7 @@ func ComputeDiskWriteOpsHourly(ctx context.Context, cred *azidentity.ClientSecre
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -1223,14 +1224,14 @@ func ComputeDiskWriteOpsHourly(ctx context.Context, cred *azidentity.ClientSecre
 	return values, nil
 }
 
-func getComputeDiskWriteOpsHourly(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, disk *armcompute.Disk) ([]Resource, error) {
+func getComputeDiskWriteOpsHourly(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, disk *armcompute.Disk) ([]models.Resource, error) {
 	metrics, err := listAzureMonitorMetricStatistics(ctx, cred, subscription, "HOURLY", "Microsoft.Compute/disks", "Composite Disk Write Operations/sec", *disk.ID)
 	if err != nil {
 		return nil, err
 	}
-	var values []Resource
+	var values []models.Resource
 	for _, metric := range metrics {
-		resource := Resource{
+		resource := models.Resource{
 			ID:       fmt.Sprintf("%s_writeops_hourly", *disk.ID),
 			Name:     fmt.Sprintf("%s writeops-hourly", *disk.Name),
 			Location: *disk.Location,
@@ -1245,7 +1246,7 @@ func getComputeDiskWriteOpsHourly(ctx context.Context, cred *azidentity.ClientSe
 	return values, nil
 }
 
-func ComputeResourceSKU(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeResourceSKU(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -1253,7 +1254,7 @@ func ComputeResourceSKU(ctx context.Context, cred *azidentity.ClientSecretCreden
 	client := clientFactory.NewResourceSKUsClient()
 	pager := client.NewListPager(nil)
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -1273,8 +1274,8 @@ func ComputeResourceSKU(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func getComputeResourceSKU(ctx context.Context, subscription string, resourceSku *armcompute.ResourceSKU) *Resource {
-	resource := Resource{
+func getComputeResourceSKU(ctx context.Context, subscription string, resourceSku *armcompute.ResourceSKU) *models.Resource {
+	resource := models.Resource{
 		Description: JSONAllFieldsMarshaller{
 			Value: model.ComputeResourceSKUDescription{
 				ResourceSKU: *resourceSku,
@@ -1293,7 +1294,7 @@ func getComputeResourceSKU(ctx context.Context, subscription string, resourceSku
 	return &resource
 }
 
-func ComputeVirtualMachineCpuUtilization(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeVirtualMachineCpuUtilization(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -1305,7 +1306,7 @@ func ComputeVirtualMachineCpuUtilization(ctx context.Context, cred *azidentity.C
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -1333,14 +1334,14 @@ func ComputeVirtualMachineCpuUtilization(ctx context.Context, cred *azidentity.C
 	return values, nil
 }
 
-func getComputeVirtualMachineCpuUtilization(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, virtualMachine *armcompute.VirtualMachine) ([]Resource, error) {
+func getComputeVirtualMachineCpuUtilization(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, virtualMachine *armcompute.VirtualMachine) ([]models.Resource, error) {
 	metrics, err := listAzureMonitorMetricStatistics(ctx, cred, subscription, "FIVE_MINUTES", "Microsoft.Compute/virtualMachines", "Percentage CPU", *virtualMachine.ID)
 	if err != nil {
 		return nil, err
 	}
-	var values []Resource
+	var values []models.Resource
 	for _, metric := range metrics {
-		resource := Resource{
+		resource := models.Resource{
 			ID:       fmt.Sprintf("%s_cpu_utilization", *virtualMachine.ID),
 			Name:     fmt.Sprintf("%s cpu-utilization", *virtualMachine.Name),
 			Location: *virtualMachine.Location,
@@ -1355,7 +1356,7 @@ func getComputeVirtualMachineCpuUtilization(ctx context.Context, cred *azidentit
 	return values, nil
 }
 
-func ComputeVirtualMachineCpuUtilizationDaily(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeVirtualMachineCpuUtilizationDaily(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -1367,7 +1368,7 @@ func ComputeVirtualMachineCpuUtilizationDaily(ctx context.Context, cred *azident
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -1395,14 +1396,14 @@ func ComputeVirtualMachineCpuUtilizationDaily(ctx context.Context, cred *azident
 	return values, nil
 }
 
-func getComputeVirtualMachineCpuUtilizationDaily(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, virtualMachine *armcompute.VirtualMachine) ([]Resource, error) {
+func getComputeVirtualMachineCpuUtilizationDaily(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, virtualMachine *armcompute.VirtualMachine) ([]models.Resource, error) {
 	metrics, err := listAzureMonitorMetricStatistics(ctx, cred, subscription, "DAILY", "Microsoft.Compute/virtualMachines", "Percentage CPU", *virtualMachine.ID)
 	if err != nil {
 		return nil, err
 	}
-	var values []Resource
+	var values []models.Resource
 	for _, metric := range metrics {
-		resource := Resource{
+		resource := models.Resource{
 			ID:       fmt.Sprintf("%s_cpu_utilization_daily", *virtualMachine.ID),
 			Name:     fmt.Sprintf("%s cpu-utilization-daily", *virtualMachine.Name),
 			Location: *virtualMachine.Location,
@@ -1417,7 +1418,7 @@ func getComputeVirtualMachineCpuUtilizationDaily(ctx context.Context, cred *azid
 	return values, nil
 }
 
-func ComputeVirtualMachineCpuUtilizationHourly(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeVirtualMachineCpuUtilizationHourly(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -1429,7 +1430,7 @@ func ComputeVirtualMachineCpuUtilizationHourly(ctx context.Context, cred *aziden
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -1457,14 +1458,14 @@ func ComputeVirtualMachineCpuUtilizationHourly(ctx context.Context, cred *aziden
 	return values, nil
 }
 
-func getComputeVirtualMachineCpuUtilizationHourly(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, virtualMachine *armcompute.VirtualMachine) ([]Resource, error) {
+func getComputeVirtualMachineCpuUtilizationHourly(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, virtualMachine *armcompute.VirtualMachine) ([]models.Resource, error) {
 	metrics, err := listAzureMonitorMetricStatistics(ctx, cred, subscription, "HOURLY", "Microsoft.Compute/virtualMachines", "Percentage CPU", *virtualMachine.ID)
 	if err != nil {
 		return nil, err
 	}
-	var values []Resource
+	var values []models.Resource
 	for _, metric := range metrics {
-		resource := Resource{
+		resource := models.Resource{
 			ID:       fmt.Sprintf("%s_cpu_utilization_hourly", *virtualMachine.ID),
 			Name:     fmt.Sprintf("%s cpu-utilization-hourly", *virtualMachine.Name),
 			Location: *virtualMachine.Location,
@@ -1479,7 +1480,7 @@ func getComputeVirtualMachineCpuUtilizationHourly(ctx context.Context, cred *azi
 	return values, nil
 }
 
-func ComputeCloudServices(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ComputeCloudServices(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -1487,7 +1488,7 @@ func ComputeCloudServices(ctx context.Context, cred *azidentity.ClientSecretCred
 	client := clientFactory.NewCloudServicesClient()
 
 	pager := client.NewListAllPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -1507,8 +1508,8 @@ func ComputeCloudServices(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func getComputeCloudServices(ctx context.Context, v *armcompute.CloudService) *Resource {
-	resource := Resource{
+func getComputeCloudServices(ctx context.Context, v *armcompute.CloudService) *models.Resource {
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

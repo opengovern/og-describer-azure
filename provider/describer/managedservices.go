@@ -3,6 +3,7 @@ package describer
 import (
 	"context"
 	"fmt"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
@@ -10,7 +11,7 @@ import (
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func LighthouseDefinition(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func LighthouseDefinition(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armmanagedservices.NewClientFactory(cred, nil)
 	if err != nil {
 		return nil, err
@@ -20,7 +21,7 @@ func LighthouseDefinition(ctx context.Context, cred *azidentity.ClientSecretCred
 	scope := fmt.Sprintf("subscriptions/%s", subscription)
 	pager := client.NewListPager(scope, nil)
 
-	var resources []Resource
+	var resources []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -41,10 +42,10 @@ func LighthouseDefinition(ctx context.Context, cred *azidentity.ClientSecretCred
 
 }
 
-func getLighthouseDefinition(_ context.Context, lighthouseDefinition *armmanagedservices.RegistrationDefinition, scope string) *Resource {
+func getLighthouseDefinition(_ context.Context, lighthouseDefinition *armmanagedservices.RegistrationDefinition, scope string) *models.Resource {
 	resourceGroup := strings.Split(*lighthouseDefinition.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:   *lighthouseDefinition.ID,
 		Name: *lighthouseDefinition.Name,
 		Type: *lighthouseDefinition.Type,
@@ -59,7 +60,7 @@ func getLighthouseDefinition(_ context.Context, lighthouseDefinition *armmanaged
 	return &resource
 }
 
-func LighthouseAssignments(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func LighthouseAssignments(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armmanagedservices.NewClientFactory(cred, nil)
 	if err != nil {
 		return nil, err
@@ -69,7 +70,7 @@ func LighthouseAssignments(ctx context.Context, cred *azidentity.ClientSecretCre
 	scope := fmt.Sprintf("subscriptions/%s", subscription)
 	pager := client.NewListPager(scope, nil)
 
-	var resources []Resource
+	var resources []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -90,11 +91,11 @@ func LighthouseAssignments(ctx context.Context, cred *azidentity.ClientSecretCre
 
 }
 
-func getLighthouseAssignment(_ context.Context, lighthouseAssignment *armmanagedservices.RegistrationAssignment, scope string) *Resource {
+func getLighthouseAssignment(_ context.Context, lighthouseAssignment *armmanagedservices.RegistrationAssignment, scope string) *models.Resource {
 
 	resourceGroup := strings.Split(*lighthouseAssignment.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:   *lighthouseAssignment.ID,
 		Name: *lighthouseAssignment.Name,
 		Type: *lighthouseAssignment.Type,

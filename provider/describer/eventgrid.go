@@ -5,12 +5,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/eventgrid/armeventgrid/v2"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func EventGridDomainTopic(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func EventGridDomainTopic(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	rgs, err := listResourceGroups(ctx, cred, subscription)
 	if err != nil {
 		return nil, err
@@ -22,7 +23,7 @@ func EventGridDomainTopic(ctx context.Context, cred *azidentity.ClientSecretCred
 	}
 	client := clientFactory.NewDomainTopicsClient()
 
-	var values []Resource
+	var values []models.Resource
 	for _, rg := range rgs {
 		domains, err := eventGridDomain(ctx, cred, subscription, *rg.Name)
 		if err != nil {
@@ -53,8 +54,8 @@ func EventGridDomainTopic(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func getEventGridDomainTopic(ctx context.Context, v *armeventgrid.DomainTopic) *Resource {
-	return &Resource{
+func getEventGridDomainTopic(ctx context.Context, v *armeventgrid.DomainTopic) *models.Resource {
+	return &models.Resource{
 		ID:          *v.ID,
 		Name:        *v.Name,
 		Location:    "global",
@@ -81,7 +82,7 @@ func eventGridDomain(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	return values, nil
 }
 
-func EventGridDomain(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func EventGridDomain(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armeventgrid.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -95,7 +96,7 @@ func EventGridDomain(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	diagnosticClient := monitorClientFactory.NewDiagnosticSettingsClient()
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -118,7 +119,7 @@ func EventGridDomain(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	return values, nil
 }
 
-func getEventGridDomain(ctx context.Context, domain *armeventgrid.Domain, client *armmonitor.DiagnosticSettingsClient) (*Resource, error) {
+func getEventGridDomain(ctx context.Context, domain *armeventgrid.Domain, client *armmonitor.DiagnosticSettingsClient) (*models.Resource, error) {
 	resourceGroup := strings.Split(*domain.ID, "/")[4]
 
 	id := *domain.ID
@@ -132,7 +133,7 @@ func getEventGridDomain(ctx context.Context, domain *armeventgrid.Domain, client
 		eventgridListOp = append(eventgridListOp, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *domain.ID,
 		Name:     *domain.Name,
 		Location: *domain.Location,
@@ -147,7 +148,7 @@ func getEventGridDomain(ctx context.Context, domain *armeventgrid.Domain, client
 	return &resource, nil
 }
 
-func EventGridTopic(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func EventGridTopic(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armeventgrid.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -161,7 +162,7 @@ func EventGridTopic(ctx context.Context, cred *azidentity.ClientSecretCredential
 	diagnosticClient := monitorClientFactory.NewDiagnosticSettingsClient()
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -184,7 +185,7 @@ func EventGridTopic(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func getEventGridTopic(ctx context.Context, v *armeventgrid.Topic, client *armmonitor.DiagnosticSettingsClient) (*Resource, error) {
+func getEventGridTopic(ctx context.Context, v *armeventgrid.Topic, client *armmonitor.DiagnosticSettingsClient) (*models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	id := *v.ID
@@ -198,7 +199,7 @@ func getEventGridTopic(ctx context.Context, v *armeventgrid.Topic, client *armmo
 		eventgridListOp = append(eventgridListOp, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

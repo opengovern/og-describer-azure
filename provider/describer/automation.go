@@ -4,12 +4,13 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/automation/armautomation"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func AutomationAccounts(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func AutomationAccounts(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armautomation.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -18,7 +19,7 @@ func AutomationAccounts(ctx context.Context, cred *azidentity.ClientSecretCreden
 	client := clientFactory.NewAccountClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		result, err := pager.NextPage(ctx)
 		if err != nil {
@@ -39,10 +40,10 @@ func AutomationAccounts(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func getAutomationAccount(ctx context.Context, account *armautomation.Account) *Resource {
+func getAutomationAccount(ctx context.Context, account *armautomation.Account) *models.Resource {
 	resourceGroup := strings.Split(*account.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *account.ID,
 		Name:     *account.Name,
 		Location: *account.Location,
@@ -56,7 +57,7 @@ func getAutomationAccount(ctx context.Context, account *armautomation.Account) *
 	return &resource
 }
 
-func AutomationVariables(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func AutomationVariables(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armautomation.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -66,7 +67,7 @@ func AutomationVariables(ctx context.Context, cred *azidentity.ClientSecretCrede
 	variablesClient := clientFactory.NewVariableClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		result, err := pager.NextPage(ctx)
 		if err != nil {
@@ -92,10 +93,10 @@ func AutomationVariables(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func ListAutomationAccountVariables(ctx context.Context, variablesClient *armautomation.VariableClient, account *armautomation.Account) ([]Resource, error) {
+func ListAutomationAccountVariables(ctx context.Context, variablesClient *armautomation.VariableClient, account *armautomation.Account) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*account.ID, "/")[4]
 	pager := variablesClient.NewListByAutomationAccountPager(resourceGroup, *account.Name, nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -109,10 +110,10 @@ func ListAutomationAccountVariables(ctx context.Context, variablesClient *armaut
 	return values, nil
 }
 
-func GetAutomationVariable(ctx context.Context, account *armautomation.Account, v *armautomation.Variable) *Resource {
+func GetAutomationVariable(ctx context.Context, account *armautomation.Account, v *armautomation.Variable) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:   *v.ID,
 		Name: *v.Name,
 		Description: JSONAllFieldsMarshaller{

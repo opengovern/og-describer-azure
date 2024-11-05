@@ -5,12 +5,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/eventhub/armeventhub"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func EventhubNamespace(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func EventhubNamespace(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	monitorClientFactory, err := armmonitor.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -25,7 +26,7 @@ func EventhubNamespace(ctx context.Context, cred *azidentity.ClientSecretCredent
 	eventhubClient := clientFactory.NewPrivateEndpointConnectionsClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -49,7 +50,7 @@ func EventhubNamespace(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func getEventHubNamespace(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, client *armeventhub.NamespacesClient, eventhubClient *armeventhub.PrivateEndpointConnectionsClient, namespace *armeventhub.EHNamespace) (*Resource, error) {
+func getEventHubNamespace(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, client *armeventhub.NamespacesClient, eventhubClient *armeventhub.PrivateEndpointConnectionsClient, namespace *armeventhub.EHNamespace) (*models.Resource, error) {
 	resourceGroupName := strings.Split(string(*namespace.ID), "/")[4]
 	var insightsListOp []*armmonitor.DiagnosticSettingsResource
 	pager := diagnosticClient.NewListPager(*namespace.ID, nil)
@@ -79,7 +80,7 @@ func getEventHubNamespace(ctx context.Context, diagnosticClient *armmonitor.Diag
 		eventhubListOp = append(eventhubListOp, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *namespace.ID,
 		Name:     *namespace.Name,
 		Location: *namespace.Location,
@@ -96,7 +97,7 @@ func getEventHubNamespace(ctx context.Context, diagnosticClient *armmonitor.Diag
 	return &resource, nil
 }
 
-func EventhubNamespaceEventhub(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func EventhubNamespaceEventhub(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armeventhub.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -105,7 +106,7 @@ func EventhubNamespaceEventhub(ctx context.Context, cred *azidentity.ClientSecre
 	eventhubClient := clientFactory.NewEventHubsClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -136,9 +137,9 @@ func EventhubNamespaceEventhub(ctx context.Context, cred *azidentity.ClientSecre
 	return values, nil
 }
 
-func getEventhubNamespaceEventhub(ctx context.Context, namespace *armeventhub.EHNamespace, eh *armeventhub.Eventhub) *Resource {
+func getEventhubNamespaceEventhub(ctx context.Context, namespace *armeventhub.EHNamespace, eh *armeventhub.Eventhub) *models.Resource {
 	resourceGroupName := strings.Split(string(*namespace.ID), "/")[4]
-	return &Resource{
+	return &models.Resource{
 		ID:       *namespace.ID,
 		Name:     *namespace.Name,
 		Location: *namespace.Location,

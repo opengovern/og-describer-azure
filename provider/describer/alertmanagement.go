@@ -2,6 +2,7 @@ package describer
 
 import (
 	"context"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
@@ -9,7 +10,7 @@ import (
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func AlertManagement(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func AlertManagement(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 
 	clientFactory, err := armalertsmanagement.NewClientFactory(subscription, cred, nil)
 	if err != nil {
@@ -19,7 +20,7 @@ func AlertManagement(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	client := clientFactory.NewAlertsClient()
 	pager := client.NewGetAllPager(nil)
 
-	var resources []Resource
+	var resources []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -39,10 +40,10 @@ func AlertManagement(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	return resources, nil
 }
 
-func getAlertManagement(_ context.Context, alert *armalertsmanagement.Alert) *Resource {
+func getAlertManagement(_ context.Context, alert *armalertsmanagement.Alert) *models.Resource {
 
 	resourceGroup := strings.Split(*alert.ID, "/")[4]
-	return &Resource{
+	return &models.Resource{
 		ID:   *alert.ID,
 		Name: *alert.Name,
 		Description: JSONAllFieldsMarshaller{

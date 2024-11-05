@@ -2,6 +2,7 @@ package describer
 
 import (
 	"context"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/sql/armsql"
@@ -11,7 +12,7 @@ import (
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func MssqlManagedInstance(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func MssqlManagedInstance(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsql.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -21,7 +22,7 @@ func MssqlManagedInstance(ctx context.Context, cred *azidentity.ClientSecretCred
 	managedServerClient := clientFactory.NewManagedServerSecurityAlertPoliciesClient()
 	managedInstanceEncClient := clientFactory.NewManagedInstanceEncryptionProtectorsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -45,7 +46,7 @@ func MssqlManagedInstance(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func GetMssqlManagedInstance(ctx context.Context, managedInstanceClient *armsql.ManagedInstanceVulnerabilityAssessmentsClient, managedServerClient *armsql.ManagedServerSecurityAlertPoliciesClient, managedInstanceEncClient *armsql.ManagedInstanceEncryptionProtectorsClient, managedInstance *armsql.ManagedInstance) (*Resource, error) {
+func GetMssqlManagedInstance(ctx context.Context, managedInstanceClient *armsql.ManagedInstanceVulnerabilityAssessmentsClient, managedServerClient *armsql.ManagedServerSecurityAlertPoliciesClient, managedInstanceEncClient *armsql.ManagedInstanceEncryptionProtectorsClient, managedInstance *armsql.ManagedInstance) (*models.Resource, error) {
 	resourceGroup := strings.Split(string(*managedInstance.ID), "/")[4]
 	managedInstanceName := *managedInstance.Name
 
@@ -79,7 +80,7 @@ func GetMssqlManagedInstance(ctx context.Context, managedInstanceClient *armsql.
 		veop = append(veop, page3.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *managedInstance.ID,
 		Name:     *managedInstance.Name,
 		Location: *managedInstance.Location,
@@ -97,7 +98,7 @@ func GetMssqlManagedInstance(ctx context.Context, managedInstanceClient *armsql.
 	return &resource, nil
 }
 
-func MssqlManagedInstanceDatabases(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func MssqlManagedInstanceDatabases(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsql.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -106,7 +107,7 @@ func MssqlManagedInstanceDatabases(ctx context.Context, cred *azidentity.ClientS
 	dbClient := clientFactory.NewManagedDatabasesClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -131,10 +132,10 @@ func MssqlManagedInstanceDatabases(ctx context.Context, cred *azidentity.ClientS
 	return values, nil
 }
 
-func ListManagedInstanceDatabases(ctx context.Context, dbClient *armsql.ManagedDatabasesClient, managedInstance *armsql.ManagedInstance) ([]Resource, error) {
+func ListManagedInstanceDatabases(ctx context.Context, dbClient *armsql.ManagedDatabasesClient, managedInstance *armsql.ManagedInstance) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*managedInstance.ID, "/")[4]
 
-	var values []Resource
+	var values []models.Resource
 	pager := dbClient.NewListByInstancePager(resourceGroup, *managedInstance.Name, nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -149,10 +150,10 @@ func ListManagedInstanceDatabases(ctx context.Context, dbClient *armsql.ManagedD
 	return values, nil
 }
 
-func GetManagedInstanceDatabases(ctx context.Context, managedInstance *armsql.ManagedInstance, db *armsql.ManagedDatabase) *Resource {
+func GetManagedInstanceDatabases(ctx context.Context, managedInstance *armsql.ManagedInstance, db *armsql.ManagedDatabase) *models.Resource {
 	resourceGroup := strings.Split(string(*managedInstance.ID), "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *db.ID,
 		Name:     *db.Name,
 		Location: *db.Location,
@@ -167,7 +168,7 @@ func GetManagedInstanceDatabases(ctx context.Context, managedInstance *armsql.Ma
 	return &resource
 }
 
-func SqlDatabase(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func SqlDatabase(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsql.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -184,7 +185,7 @@ func SqlDatabase(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	auditingPolicyClient := clientFactory.NewDatabaseBlobAuditingPoliciesClient()
 
 	pager := parentClient.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -209,10 +210,10 @@ func SqlDatabase(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func ListServerSqlDatabases(ctx context.Context, recoverableClient *armsql.RecoverableDatabasesClient, advisorsClient *armsql.DatabaseAdvisorsClient, databaseVulnerabilityScanClient *armsql.DatabaseVulnerabilityAssessmentScansClient, databaseVulnerabilityClient *armsql.DatabaseVulnerabilityAssessmentsClient, transparentDataClient *armsql.TransparentDataEncryptionsClient, longTermClient *armsql.LongTermRetentionPoliciesClient, databasesClientClient *armsql.DatabasesClient, auditingPoliciesClient *armsql.DatabaseBlobAuditingPoliciesClient, client *armsql.DatabasesClient, server *armsql.Server) ([]Resource, error) {
+func ListServerSqlDatabases(ctx context.Context, recoverableClient *armsql.RecoverableDatabasesClient, advisorsClient *armsql.DatabaseAdvisorsClient, databaseVulnerabilityScanClient *armsql.DatabaseVulnerabilityAssessmentScansClient, databaseVulnerabilityClient *armsql.DatabaseVulnerabilityAssessmentsClient, transparentDataClient *armsql.TransparentDataEncryptionsClient, longTermClient *armsql.LongTermRetentionPoliciesClient, databasesClientClient *armsql.DatabasesClient, auditingPoliciesClient *armsql.DatabaseBlobAuditingPoliciesClient, client *armsql.DatabasesClient, server *armsql.Server) ([]models.Resource, error) {
 	resourceGroupName := strings.Split(string(*server.ID), "/")[4]
 	pager := client.NewListByServerPager(resourceGroupName, *server.Name, nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -229,7 +230,7 @@ func ListServerSqlDatabases(ctx context.Context, recoverableClient *armsql.Recov
 	return values, nil
 }
 
-func GetSqlDatabase(ctx context.Context, recoverableClient *armsql.RecoverableDatabasesClient, advisorsClient *armsql.DatabaseAdvisorsClient, databaseVulnerabilityScanClient *armsql.DatabaseVulnerabilityAssessmentScansClient, databaseVulnerabilityClient *armsql.DatabaseVulnerabilityAssessmentsClient, transparentDataClient *armsql.TransparentDataEncryptionsClient, longTermClient *armsql.LongTermRetentionPoliciesClient, databasesClientClient *armsql.DatabasesClient, auditingPoliciesClient *armsql.DatabaseBlobAuditingPoliciesClient, server *armsql.Server, database *armsql.Database) (*Resource, error) {
+func GetSqlDatabase(ctx context.Context, recoverableClient *armsql.RecoverableDatabasesClient, advisorsClient *armsql.DatabaseAdvisorsClient, databaseVulnerabilityScanClient *armsql.DatabaseVulnerabilityAssessmentScansClient, databaseVulnerabilityClient *armsql.DatabaseVulnerabilityAssessmentsClient, transparentDataClient *armsql.TransparentDataEncryptionsClient, longTermClient *armsql.LongTermRetentionPoliciesClient, databasesClientClient *armsql.DatabasesClient, auditingPoliciesClient *armsql.DatabaseBlobAuditingPoliciesClient, server *armsql.Server, database *armsql.Database) (*models.Resource, error) {
 	serverName := strings.Split(*database.ID, "/")[8]
 	databaseName := *database.Name
 	resourceGroupName := strings.Split(string(*database.ID), "/")[4]
@@ -302,7 +303,7 @@ func GetSqlDatabase(ctx context.Context, recoverableClient *armsql.RecoverableDa
 		return nil, err
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *server.ID,
 		Name:     *server.Name,
 		Location: *server.Location,
@@ -322,7 +323,7 @@ func GetSqlDatabase(ctx context.Context, recoverableClient *armsql.RecoverableDa
 	return &resource, nil
 }
 
-func SqlInstancePool(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func SqlInstancePool(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsql.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -330,7 +331,7 @@ func SqlInstancePool(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	parentClient := clientFactory.NewInstancePoolsClient()
 
 	pager := parentClient.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -347,9 +348,9 @@ func SqlInstancePool(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	return values, nil
 }
 
-func GetSqlInstancePool(ctx context.Context, clientFactory *armsql.ClientFactory, v *armsql.InstancePool) (*Resource, error) {
+func GetSqlInstancePool(ctx context.Context, clientFactory *armsql.ClientFactory, v *armsql.InstancePool) (*models.Resource, error) {
 	resourceGroupName := strings.Split(string(*v.ID), "/")[4]
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

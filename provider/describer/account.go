@@ -6,12 +6,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/datalake-analytics/armdatalakeanalytics"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/datalake-store/armdatalakestore"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func DataLakeAnalyticsAccount(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func DataLakeAnalyticsAccount(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armdatalakeanalytics.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -28,7 +29,7 @@ func DataLakeAnalyticsAccount(ctx context.Context, cred *azidentity.ClientSecret
 		return nil, err
 	}
 	accountsPages := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for accountsPages.More() {
 		page, err := accountsPages.NextPage(ctx)
 		if err != nil {
@@ -54,7 +55,7 @@ func DataLakeAnalyticsAccount(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func getDataLakeAnalyticsAccount(ctx context.Context, account *armdatalakeanalytics.AccountBasic, client *armdatalakeanalytics.AccountsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient) (*Resource, error) {
+func getDataLakeAnalyticsAccount(ctx context.Context, account *armdatalakeanalytics.AccountBasic, client *armdatalakeanalytics.AccountsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient) (*models.Resource, error) {
 	splitID := strings.Split(*account.ID, "/")
 	name := *account.Name
 	resourceGroup := splitID[4]
@@ -78,7 +79,7 @@ func getDataLakeAnalyticsAccount(ctx context.Context, account *armdatalakeanalyt
 		}
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *account.ID,
 		Name:     *account.Name,
 		Location: *account.Location,
@@ -93,7 +94,7 @@ func getDataLakeAnalyticsAccount(ctx context.Context, account *armdatalakeanalyt
 	return &resource, nil
 }
 
-func DataLakeStore(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func DataLakeStore(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armdatalakestore.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -107,7 +108,7 @@ func DataLakeStore(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	diagnosticClient := monitorClientFactory.NewDiagnosticSettingsClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -133,7 +134,7 @@ func DataLakeStore(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	return values, nil
 }
 
-func getDataLakeStore(ctx context.Context, account *armdatalakestore.AccountBasic, diagnosticClient *armmonitor.DiagnosticSettingsClient, client *armdatalakestore.AccountsClient) (*Resource, error) {
+func getDataLakeStore(ctx context.Context, account *armdatalakestore.AccountBasic, diagnosticClient *armmonitor.DiagnosticSettingsClient, client *armdatalakestore.AccountsClient) (*models.Resource, error) {
 	splitId := strings.Split(*account.ID, "/")
 	name := *account.Name
 	resourceGroup := splitId[4]
@@ -157,7 +158,7 @@ func getDataLakeStore(ctx context.Context, account *armdatalakestore.AccountBasi
 			accountListOp = append(accountListOp, *accountOp)
 		}
 	}
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *account.ID,
 		Name:     name,
 		Location: "",

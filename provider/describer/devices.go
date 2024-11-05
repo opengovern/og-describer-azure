@@ -7,12 +7,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/iothub/armiothub"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armresources"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func DevicesProvisioningServicesCertificates(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func DevicesProvisioningServicesCertificates(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := armdeviceprovisioningservices.NewDpsCertificateClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -22,7 +23,7 @@ func DevicesProvisioningServicesCertificates(ctx context.Context, cred *azidenti
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	for _, rg := range rgs {
 		dpss, err := devicesProvisioningServices(ctx, cred, subscription, *rg.Name)
 		if err != nil {
@@ -48,7 +49,7 @@ func DevicesProvisioningServicesCertificates(ctx context.Context, cred *azidenti
 	return values, nil
 }
 
-func getDevicesProvisioningServicesCertificates(ctx context.Context, client *armdeviceprovisioningservices.DpsCertificateClient, rg armresources.ResourceGroup, dps armdeviceprovisioningservices.ProvisioningServiceDescription) ([]Resource, error) {
+func getDevicesProvisioningServicesCertificates(ctx context.Context, client *armdeviceprovisioningservices.DpsCertificateClient, rg armresources.ResourceGroup, dps armdeviceprovisioningservices.ProvisioningServiceDescription) ([]models.Resource, error) {
 	it, err := client.List(ctx, *rg.Name, *dps.Name, nil)
 	if err != nil {
 		return nil, err
@@ -57,9 +58,9 @@ func getDevicesProvisioningServicesCertificates(ctx context.Context, client *arm
 	if it.Value == nil {
 		return nil, err
 	}
-	var values []Resource
+	var values []models.Resource
 	for _, v := range it.Value {
-		resource := Resource{
+		resource := models.Resource{
 			ID:          *v.ID,
 			Name:        *v.Name,
 			Location:    "global",
@@ -92,7 +93,7 @@ func devicesProvisioningServices(ctx context.Context, cred *azidentity.ClientSec
 	return values, nil
 }
 
-func IOTHub(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func IOTHub(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	monitorClientFactory, err := armmonitor.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -105,7 +106,7 @@ func IOTHub(ctx context.Context, cred *azidentity.ClientSecretCredential, subscr
 	}
 
 	pager := iotHubClient.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -128,7 +129,7 @@ func IOTHub(ctx context.Context, cred *azidentity.ClientSecretCredential, subscr
 	return values, nil
 }
 
-func getIOTHub(ctx context.Context, client *armmonitor.DiagnosticSettingsClient, iotHubDescription *armiothub.Description) (*Resource, error) {
+func getIOTHub(ctx context.Context, client *armmonitor.DiagnosticSettingsClient, iotHubDescription *armiothub.Description) (*models.Resource, error) {
 	resourceGroup := strings.Split(*iotHubDescription.ID, "/")[4]
 
 	id := *iotHubDescription.ID
@@ -145,7 +146,7 @@ func getIOTHub(ctx context.Context, client *armmonitor.DiagnosticSettingsClient,
 		}
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *iotHubDescription.ID,
 		Name:     *iotHubDescription.Name,
 		Location: *iotHubDescription.Location,
@@ -161,7 +162,7 @@ func getIOTHub(ctx context.Context, client *armmonitor.DiagnosticSettingsClient,
 	return &resource, nil
 }
 
-func IOTHubDps(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func IOTHubDps(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	monitorClientFactory, err := armmonitor.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -175,7 +176,7 @@ func IOTHubDps(ctx context.Context, cred *azidentity.ClientSecretCredential, sub
 	client := clientFactory.NewIotDpsResourceClient()
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -198,7 +199,7 @@ func IOTHubDps(ctx context.Context, cred *azidentity.ClientSecretCredential, sub
 	return values, nil
 }
 
-func getIOTHubDps(ctx context.Context, client *armmonitor.DiagnosticSettingsClient, v *armdeviceprovisioningservices.ProvisioningServiceDescription) (*Resource, error) {
+func getIOTHubDps(ctx context.Context, client *armmonitor.DiagnosticSettingsClient, v *armdeviceprovisioningservices.ProvisioningServiceDescription) (*models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	id := *v.ID
@@ -215,7 +216,7 @@ func getIOTHubDps(ctx context.Context, client *armmonitor.DiagnosticSettingsClie
 		}
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

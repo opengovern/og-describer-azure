@@ -5,12 +5,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/frontdoor/armfrontdoor"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func FrontDoor(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func FrontDoor(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armfrontdoor.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -24,7 +25,7 @@ func FrontDoor(ctx context.Context, cred *azidentity.ClientSecretCredential, sub
 	diagnosticClient := monitorClientFactory.NewDiagnosticSettingsClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -47,7 +48,7 @@ func FrontDoor(ctx context.Context, cred *azidentity.ClientSecretCredential, sub
 	return values, nil
 }
 
-func getFrontDoor(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, door *armfrontdoor.FrontDoor) (*Resource, error) {
+func getFrontDoor(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, door *armfrontdoor.FrontDoor) (*models.Resource, error) {
 	resourceGroup := strings.Split(*door.ID, "/")[4]
 
 	pager := diagnosticClient.NewListPager(*door.ID, nil)
@@ -60,7 +61,7 @@ func getFrontDoor(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSe
 		frontDoorListOp = append(frontDoorListOp, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *door.ID,
 		Name:     *door.Name,
 		Location: *door.Location,

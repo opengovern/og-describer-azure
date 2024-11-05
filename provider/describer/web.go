@@ -3,13 +3,12 @@ package describer
 import (
 	"context"
 	"fmt"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"github.com/opengovern/og-describer-azure/provider/model"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	appservice "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appservice/armappservice"
-
-	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 )
 
 func AppServiceEnvironment(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {

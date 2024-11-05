@@ -5,17 +5,18 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armresources"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/subscription/armsubscription"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func Tenant(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func Tenant(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsubscription.NewClientFactory(cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	client := clientFactory.NewTenantsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -36,10 +37,10 @@ func Tenant(ctx context.Context, cred *azidentity.ClientSecretCredential, subscr
 	return values, nil
 }
 
-func GetTenand(ctx context.Context, v *armsubscription.TenantIDDescription) *Resource {
+func GetTenand(ctx context.Context, v *armsubscription.TenantIDDescription) *models.Resource {
 	name := ""
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     name,
 		Location: "global",
@@ -53,7 +54,7 @@ func GetTenand(ctx context.Context, v *armsubscription.TenantIDDescription) *Res
 	return &resource
 }
 
-func Subscription(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func Subscription(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsubscription.NewClientFactory(cred, nil)
 	if err != nil {
 		return nil, err
@@ -95,8 +96,8 @@ func Subscription(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 		}
 	}
 
-	var values []Resource
-	resource := Resource{
+	var values []models.Resource
+	resource := models.Resource{
 		ID:       *op.ID,
 		Name:     *op.DisplayName,
 		Location: "global",

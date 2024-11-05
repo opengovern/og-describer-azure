@@ -6,6 +6,7 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/keyvault/azcertificates"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/keyvault/armkeyvault"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-util/pkg/concurrency"
@@ -13,7 +14,7 @@ import (
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func KeyVaultKey(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func KeyVaultKey(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armkeyvault.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -29,7 +30,7 @@ func KeyVaultKey(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 
 	wpe := concurrency.NewWorkPool(4)
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -66,7 +67,7 @@ func KeyVaultKey(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 							return nil, nil
 						}
 
-						return Resource{
+						return models.Resource{
 							ID:       *vCopy.ID,
 							Name:     *vCopy.Name,
 							Location: *vCopy.Location,
@@ -82,7 +83,7 @@ func KeyVaultKey(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 				}
 
 				results := wp.Run()
-				var vvv []Resource
+				var vvv []models.Resource
 				for _, r := range results {
 					if r.Error != nil {
 						return nil, err
@@ -90,7 +91,7 @@ func KeyVaultKey(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 					if r.Value == nil {
 						continue
 					}
-					vvv = append(vvv, r.Value.(Resource))
+					vvv = append(vvv, r.Value.(models.Resource))
 				}
 				return vvv, nil
 			})
@@ -105,7 +106,7 @@ func KeyVaultKey(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 		if result.Value == nil {
 			continue
 		}
-		values = append(values, result.Value.([]Resource)...)
+		values = append(values, result.Value.([]models.Resource)...)
 	}
 
 	if stream != nil {
@@ -119,7 +120,7 @@ func KeyVaultKey(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func getKeyVaultKey(ctx context.Context, keysClient *armkeyvault.KeysClient, vCopy *armkeyvault.Key, resourceGroupCopy string, vaultCopy *armkeyvault.Resource) (*Resource, error) {
+func getKeyVaultKey(ctx context.Context, keysClient *armkeyvault.KeysClient, vCopy *armkeyvault.Key, resourceGroupCopy string, vaultCopy *armkeyvault.Resource) (*models.Resource, error) {
 	op, err := keysClient.Get(ctx, resourceGroupCopy, *vaultCopy.Name, *vCopy.Name, nil)
 	if err != nil {
 		return nil, err
@@ -131,7 +132,7 @@ func getKeyVaultKey(ctx context.Context, keysClient *armkeyvault.KeysClient, vCo
 		return nil, nil
 	}
 
-	return &Resource{
+	return &models.Resource{
 		ID:       *vCopy.ID,
 		Name:     *vCopy.Name,
 		Location: *vCopy.Location,
@@ -145,7 +146,7 @@ func getKeyVaultKey(ctx context.Context, keysClient *armkeyvault.KeysClient, vCo
 	}, nil
 }
 
-func KeyVault(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func KeyVault(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armkeyvault.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -162,7 +163,7 @@ func KeyVault(ctx context.Context, cred *azidentity.ClientSecretCredential, subs
 	options := &armkeyvault.VaultsClientListOptions{
 		Top: &maxResults,
 	}
-	var values []Resource
+	var values []models.Resource
 	pager := vaultsClient.NewListPager(options)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -186,7 +187,7 @@ func KeyVault(ctx context.Context, cred *azidentity.ClientSecretCredential, subs
 	return values, nil
 }
 
-func getKeyVault(ctx context.Context, vault *armkeyvault.Resource, vaultsClient *armkeyvault.VaultsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient) (*Resource, error) {
+func getKeyVault(ctx context.Context, vault *armkeyvault.Resource, vaultsClient *armkeyvault.VaultsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient) (*models.Resource, error) {
 	name := *vault.Name
 	resourceGroup := strings.Split(*vault.ID, "/")[4]
 
@@ -208,7 +209,7 @@ func getKeyVault(ctx context.Context, vault *armkeyvault.Resource, vaultsClient 
 		insightsListOp = append(insightsListOp, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *vault.ID,
 		Name:     *vault.Name,
 		Location: *vault.Location,
@@ -224,14 +225,14 @@ func getKeyVault(ctx context.Context, vault *armkeyvault.Resource, vaultsClient 
 	return &resource, nil
 }
 
-func DeletedVault(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func DeletedVault(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armkeyvault.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	vaultsClient := clientFactory.NewVaultsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := vaultsClient.NewListDeletedPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -252,10 +253,10 @@ func DeletedVault(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	return values, nil
 }
 
-func getDeletedVault(ctx context.Context, vault *armkeyvault.DeletedVault) *Resource {
+func getDeletedVault(ctx context.Context, vault *armkeyvault.DeletedVault) *models.Resource {
 	resourceGroup := strings.Split(*vault.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *vault.ID,
 		Name:     *vault.Name,
 		Location: *vault.Properties.Location,
@@ -269,7 +270,7 @@ func getDeletedVault(ctx context.Context, vault *armkeyvault.DeletedVault) *Reso
 	return &resource
 }
 
-func KeyVaultManagedHardwareSecurityModule(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func KeyVaultManagedHardwareSecurityModule(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	monitorClientFactory, err := armmonitor.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -289,7 +290,7 @@ func KeyVaultManagedHardwareSecurityModule(ctx context.Context, cred *azidentity
 	}
 	pager := client.NewListBySubscriptionPager(options)
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -312,7 +313,7 @@ func KeyVaultManagedHardwareSecurityModule(ctx context.Context, cred *azidentity
 	return values, nil
 }
 
-func getKeyVaultManagedHardwareSecurityModule(ctx context.Context, client *armmonitor.DiagnosticSettingsClient, vault *armkeyvault.ManagedHsm) (*Resource, error) {
+func getKeyVaultManagedHardwareSecurityModule(ctx context.Context, client *armmonitor.DiagnosticSettingsClient, vault *armkeyvault.ManagedHsm) (*models.Resource, error) {
 	resourceGroup := strings.Split(*vault.ID, "/")[4]
 
 	var keyvaultListOp []*armmonitor.DiagnosticSettingsResource
@@ -325,7 +326,7 @@ func getKeyVaultManagedHardwareSecurityModule(ctx context.Context, client *armmo
 		keyvaultListOp = append(keyvaultListOp, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *vault.ID,
 		Name:     *vault.Name,
 		Location: *vault.Location,
@@ -340,7 +341,7 @@ func getKeyVaultManagedHardwareSecurityModule(ctx context.Context, client *armmo
 	return &resource, nil
 }
 
-func KeyVaultKeyVersion(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func KeyVaultKeyVersion(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armkeyvault.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -356,7 +357,7 @@ func KeyVaultKeyVersion(ctx context.Context, cred *azidentity.ClientSecretCreden
 
 	wpe := concurrency.NewWorkPool(4)
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -391,7 +392,7 @@ func KeyVaultKeyVersion(ctx context.Context, cred *azidentity.ClientSecretCreden
 				}
 
 				results := wp.Run()
-				var vvv []Resource
+				var vvv []models.Resource
 				for _, r := range results {
 					if r.Error != nil {
 						return nil, err
@@ -399,7 +400,7 @@ func KeyVaultKeyVersion(ctx context.Context, cred *azidentity.ClientSecretCreden
 					if r.Value == nil {
 						continue
 					}
-					vvv = append(vvv, r.Value.(Resource))
+					vvv = append(vvv, r.Value.(models.Resource))
 				}
 				return vvv, nil
 			})
@@ -414,7 +415,7 @@ func KeyVaultKeyVersion(ctx context.Context, cred *azidentity.ClientSecretCreden
 		if result.Value == nil {
 			continue
 		}
-		values = append(values, result.Value.([]Resource)...)
+		values = append(values, result.Value.([]models.Resource)...)
 	}
 
 	if stream != nil {
@@ -428,13 +429,13 @@ func KeyVaultKeyVersion(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func ListKeyVaultKeyVersion(ctx context.Context, keysClient *armkeyvault.KeysClient, vCopy *armkeyvault.Key, resourceGroupCopy string, vaultCopy *armkeyvault.Resource) ([]Resource, error) {
+func ListKeyVaultKeyVersion(ctx context.Context, keysClient *armkeyvault.KeysClient, vCopy *armkeyvault.Key, resourceGroupCopy string, vaultCopy *armkeyvault.Resource) ([]models.Resource, error) {
 	op, err := keysClient.Get(ctx, resourceGroupCopy, *vaultCopy.Name, *vCopy.Name, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	pager := keysClient.NewListVersionsPager(resourceGroupCopy, *vaultCopy.Name, *vCopy.Name, nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -455,8 +456,8 @@ func ListKeyVaultKeyVersion(ctx context.Context, keysClient *armkeyvault.KeysCli
 	return values, nil
 }
 
-func GetKeyVaultKeyVersion(ctx context.Context, resourceGroup string, vault *armkeyvault.Resource, key *armkeyvault.Key, version *armkeyvault.Key) *Resource {
-	resource := Resource{
+func GetKeyVaultKeyVersion(ctx context.Context, resourceGroup string, vault *armkeyvault.Resource, key *armkeyvault.Key, version *armkeyvault.Key) *models.Resource {
+	resource := models.Resource{
 		ID:       *version.ID,
 		Name:     *version.Name,
 		Location: *version.Location,
@@ -472,7 +473,7 @@ func GetKeyVaultKeyVersion(ctx context.Context, resourceGroup string, vault *arm
 	return &resource
 }
 
-func KeyVaultCertificate(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func KeyVaultCertificate(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armkeyvault.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -483,7 +484,7 @@ func KeyVaultCertificate(ctx context.Context, cred *azidentity.ClientSecretCrede
 	options := &armkeyvault.VaultsClientListOptions{
 		Top: &maxResults,
 	}
-	var values []Resource
+	var values []models.Resource
 	pager := vaultsClient.NewListPager(options)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -509,7 +510,7 @@ func KeyVaultCertificate(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func getKeyVaultCertificates(ctx context.Context, cred *azidentity.ClientSecretCredential, vault *armkeyvault.Resource, vaultsClient *armkeyvault.VaultsClient) ([]Resource, error) {
+func getKeyVaultCertificates(ctx context.Context, cred *azidentity.ClientSecretCredential, vault *armkeyvault.Resource, vaultsClient *armkeyvault.VaultsClient) ([]models.Resource, error) {
 	name := *vault.Name
 	resourceGroup := strings.Split(*vault.ID, "/")[4]
 
@@ -522,7 +523,7 @@ func getKeyVaultCertificates(ctx context.Context, cred *azidentity.ClientSecretC
 	if err != nil {
 		return nil, err
 	}
-	var resources []Resource
+	var resources []models.Resource
 	pager2 := client.NewListCertificatesPager(nil)
 	for pager2.More() {
 		page, err := pager2.NextPage(ctx)
@@ -534,7 +535,7 @@ func getKeyVaultCertificates(ctx context.Context, cred *azidentity.ClientSecretC
 			if err != nil {
 				return nil, err
 			}
-			resource := Resource{
+			resource := models.Resource{
 				ID:       *vault.ID,
 				Name:     *vault.Name,
 				Location: *vault.Location,

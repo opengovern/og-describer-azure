@@ -5,12 +5,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/healthcareapis/armhealthcareapis"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func HealthcareService(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func HealthcareService(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armhealthcareapis.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -25,7 +26,7 @@ func HealthcareService(ctx context.Context, cred *azidentity.ClientSecretCredent
 	diagnosticClient := monitorClientFactory.NewDiagnosticSettingsClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -48,7 +49,7 @@ func HealthcareService(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func getHealthcareService(ctx context.Context, privateEndpointClient *armhealthcareapis.PrivateEndpointConnectionsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient, v *armhealthcareapis.ServicesDescription) (*Resource, error) {
+func getHealthcareService(ctx context.Context, privateEndpointClient *armhealthcareapis.PrivateEndpointConnectionsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient, v *armhealthcareapis.ServicesDescription) (*models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	var opValue []*armmonitor.DiagnosticSettingsResource
@@ -83,7 +84,7 @@ func getHealthcareService(ctx context.Context, privateEndpointClient *armhealthc
 		return nil, nil
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

@@ -5,11 +5,12 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/search/armsearch"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"github.com/opengovern/og-describer-azure/provider/model"
 	"strings"
 )
 
-func SearchService(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func SearchService(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsearch.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -22,7 +23,7 @@ func SearchService(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	}
 	diagnosticClient := monitorClientFactory.NewDiagnosticSettingsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListBySubscriptionPager(nil, nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -46,7 +47,7 @@ func SearchService(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	return values, nil
 }
 
-func GetSearchService(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, v *armsearch.Service) (*Resource, error) {
+func GetSearchService(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, v *armsearch.Service) (*models.Resource, error) {
 	id := v.ID
 
 	var searchListOp []*armmonitor.DiagnosticSettingsResource
@@ -60,7 +61,7 @@ func GetSearchService(ctx context.Context, diagnosticClient *armmonitor.Diagnost
 	}
 
 	resourceGroupName := strings.Split(string(*v.ID), "/")[4]
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

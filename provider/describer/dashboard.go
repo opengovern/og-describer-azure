@@ -4,11 +4,12 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/dashboard/armdashboard"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"github.com/opengovern/og-describer-azure/provider/model"
 	"strings"
 )
 
-func DashboardGrafana(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func DashboardGrafana(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armdashboard.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -16,7 +17,7 @@ func DashboardGrafana(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	client := clientFactory.NewGrafanaClient()
 
 	pager := client.NewListPager(&armdashboard.GrafanaClientListOptions{})
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -36,10 +37,10 @@ func DashboardGrafana(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getDashboardGrafana(ctx context.Context, v *armdashboard.ManagedGrafana) *Resource {
+func getDashboardGrafana(ctx context.Context, v *armdashboard.ManagedGrafana) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

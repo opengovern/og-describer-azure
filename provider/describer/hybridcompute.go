@@ -4,12 +4,13 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/hybridcompute/armhybridcompute"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func HybridComputeMachine(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func HybridComputeMachine(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armhybridcompute.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -18,7 +19,7 @@ func HybridComputeMachine(ctx context.Context, cred *azidentity.ClientSecretCred
 	extentionClient := clientFactory.NewMachineExtensionsClient()
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -41,7 +42,7 @@ func HybridComputeMachine(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func getHybridComputeMachine(ctx context.Context, extentionClient *armhybridcompute.MachineExtensionsClient, machine *armhybridcompute.Machine) (*Resource, error) {
+func getHybridComputeMachine(ctx context.Context, extentionClient *armhybridcompute.MachineExtensionsClient, machine *armhybridcompute.Machine) (*models.Resource, error) {
 	resourceGroup := strings.Split(*machine.ID, "/")[4]
 
 	var hybridComputeListResult []*armhybridcompute.MachineExtension
@@ -54,7 +55,7 @@ func getHybridComputeMachine(ctx context.Context, extentionClient *armhybridcomp
 		hybridComputeListResult = append(hybridComputeListResult, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *machine.ID,
 		Name:     *machine.Name,
 		Location: *machine.Location,

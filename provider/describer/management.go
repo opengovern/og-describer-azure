@@ -5,12 +5,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/managementgroups/armmanagementgroups"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armlocks"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func ManagementGroup(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ManagementGroup(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armmanagementgroups.NewClientFactory(cred, nil)
 	if err != nil {
 		return nil, err
@@ -18,7 +19,7 @@ func ManagementGroup(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	client := clientFactory.NewClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -41,13 +42,13 @@ func ManagementGroup(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	return values, nil
 }
 
-func getManagementGroup(ctx context.Context, client *armmanagementgroups.Client, group *armmanagementgroups.ManagementGroupInfo) (*Resource, error) {
+func getManagementGroup(ctx context.Context, client *armmanagementgroups.Client, group *armmanagementgroups.ManagementGroupInfo) (*models.Resource, error) {
 	info, err := client.Get(ctx, *group.Name, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	resource := &Resource{
+	resource := &models.Resource{
 		ID:   *info.ID,
 		Name: *info.Name,
 		Description: JSONAllFieldsMarshaller{
@@ -59,7 +60,7 @@ func getManagementGroup(ctx context.Context, client *armmanagementgroups.Client,
 	return resource, nil
 }
 
-func ManagementLock(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ManagementLock(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armlocks.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -67,7 +68,7 @@ func ManagementLock(ctx context.Context, cred *azidentity.ClientSecretCredential
 	client := clientFactory.NewManagementLocksClient()
 
 	pager := client.NewListAtSubscriptionLevelPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		pagem, err := pager.NextPage(ctx)
 		if err != nil {
@@ -87,9 +88,9 @@ func ManagementLock(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func getManagementLock(ctx context.Context, lockObject *armlocks.ManagementLockObject) *Resource {
+func getManagementLock(ctx context.Context, lockObject *armlocks.ManagementLockObject) *models.Resource {
 	resourceGroup := strings.Split(*lockObject.ID, "/")[4]
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *lockObject.ID,
 		Name:     *lockObject.Name,
 		Location: "global",

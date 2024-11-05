@@ -4,12 +4,13 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/databricks/armdatabricks"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func DatabricksWorkspaces(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func DatabricksWorkspaces(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armdatabricks.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -17,7 +18,7 @@ func DatabricksWorkspaces(ctx context.Context, cred *azidentity.ClientSecretCred
 	client := clientFactory.NewWorkspacesClient()
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -37,10 +38,10 @@ func DatabricksWorkspaces(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func getDatabricksWorkspace(ctx context.Context, v *armdatabricks.Workspace) *Resource {
+func getDatabricksWorkspace(ctx context.Context, v *armdatabricks.Workspace) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

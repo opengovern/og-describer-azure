@@ -3,12 +3,13 @@ package describer
 import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/applicationinsights/armapplicationinsights"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"github.com/opengovern/og-describer-azure/provider/model"
 	"golang.org/x/net/context"
 	"strings"
 )
 
-func ApplicationInsights(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ApplicationInsights(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armapplicationinsights.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -16,7 +17,7 @@ func ApplicationInsights(ctx context.Context, cred *azidentity.ClientSecretCrede
 	client := clientFactory.NewComponentsClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -36,10 +37,10 @@ func ApplicationInsights(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func GetApplicationInsights(ctx context.Context, component *armapplicationinsights.Component) *Resource {
+func GetApplicationInsights(ctx context.Context, component *armapplicationinsights.Component) *models.Resource {
 	resourceGroup := strings.Split(*component.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *component.ID,
 		Name:     *component.Name,
 		Location: *component.Location,

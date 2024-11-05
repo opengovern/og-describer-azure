@@ -4,12 +4,13 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/kusto/armkusto"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func KustoCluster(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func KustoCluster(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armkusto.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -17,7 +18,7 @@ func KustoCluster(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	client := clientFactory.NewClustersClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -37,10 +38,10 @@ func KustoCluster(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	return values, nil
 }
 
-func getKustoCluster(ctx context.Context, kusto *armkusto.Cluster) *Resource {
+func getKustoCluster(ctx context.Context, kusto *armkusto.Cluster) *models.Resource {
 	resourceGroup := strings.Split(*kusto.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *kusto.ID,
 		Name:     *kusto.Name,
 		Location: *kusto.Location,

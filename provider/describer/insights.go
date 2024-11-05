@@ -4,12 +4,13 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"github.com/opengovern/og-describer-azure/provider/model"
 	"strings"
 	"time"
 )
 
-func DiagnosticSetting(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func DiagnosticSetting(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	monitorClientFactory, err := armmonitor.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -18,7 +19,7 @@ func DiagnosticSetting(ctx context.Context, cred *azidentity.ClientSecretCredent
 	resourceURI := "/subscriptions/" + subscription
 	pager := client.NewListPager(resourceURI, nil)
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -38,7 +39,7 @@ func DiagnosticSetting(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func getDiagnosticSetting(ctx context.Context, diagnosticSetting *armmonitor.DiagnosticSettingsResource) *Resource {
+func getDiagnosticSetting(ctx context.Context, diagnosticSetting *armmonitor.DiagnosticSettingsResource) *models.Resource {
 	var resourceGroup string
 	if diagnosticSetting.Properties.StorageAccountID != nil {
 		resourceGroup = strings.Split(*diagnosticSetting.Properties.StorageAccountID, "/")[4]
@@ -47,7 +48,7 @@ func getDiagnosticSetting(ctx context.Context, diagnosticSetting *armmonitor.Dia
 	} else {
 		resourceGroup = strings.Split(*diagnosticSetting.Properties.WorkspaceID, "/")[4]
 	}
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *diagnosticSetting.ID,
 		Name:     *diagnosticSetting.Name,
 		Location: "global",
@@ -61,7 +62,7 @@ func getDiagnosticSetting(ctx context.Context, diagnosticSetting *armmonitor.Dia
 	return &resource
 }
 
-func LogAlert(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func LogAlert(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	monitorClientFactory, err := armmonitor.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -70,7 +71,7 @@ func LogAlert(ctx context.Context, cred *azidentity.ClientSecretCredential, subs
 
 	pager := client.NewListBySubscriptionIDPager(nil)
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -90,10 +91,10 @@ func LogAlert(ctx context.Context, cred *azidentity.ClientSecretCredential, subs
 	return values, nil
 }
 
-func getLogAlert(ctx context.Context, logAlert *armmonitor.ActivityLogAlertResource) *Resource {
+func getLogAlert(ctx context.Context, logAlert *armmonitor.ActivityLogAlertResource) *models.Resource {
 	resourceGroup := strings.Split(*logAlert.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *logAlert.ID,
 		Name:     *logAlert.Name,
 		Location: *logAlert.Location,
@@ -108,7 +109,7 @@ func getLogAlert(ctx context.Context, logAlert *armmonitor.ActivityLogAlertResou
 	return &resource
 }
 
-func LogProfile(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func LogProfile(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	monitorClientFactory, err := armmonitor.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -116,7 +117,7 @@ func LogProfile(ctx context.Context, cred *azidentity.ClientSecretCredential, su
 	client := monitorClientFactory.NewLogProfilesClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -136,13 +137,13 @@ func LogProfile(ctx context.Context, cred *azidentity.ClientSecretCredential, su
 	return values, nil
 }
 
-func getLogProfile(ctx context.Context, logProfile *armmonitor.LogProfileResource) *Resource {
+func getLogProfile(ctx context.Context, logProfile *armmonitor.LogProfileResource) *models.Resource {
 	resourceGroup := strings.Split(*logProfile.ID, "/")[4]
 	location := "global"
 	if logProfile.Location != nil {
 		location = *logProfile.Location
 	}
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *logProfile.ID,
 		Name:     *logProfile.Name,
 		Location: location,
@@ -235,7 +236,7 @@ func listAzureMonitorMetricStatistics(ctx context.Context, cred *azidentity.Clie
 	return values, nil
 }
 
-func AutoscaleSetting(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func AutoscaleSetting(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	monitorClientFactory, err := armmonitor.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -243,7 +244,7 @@ func AutoscaleSetting(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	client := monitorClientFactory.NewAutoscaleSettingsClient()
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -263,9 +264,9 @@ func AutoscaleSetting(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getAutoscaleSetting(v *armmonitor.AutoscaleSettingResource) Resource {
+func getAutoscaleSetting(v *armmonitor.AutoscaleSettingResource) models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
-	return Resource{
+	return models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

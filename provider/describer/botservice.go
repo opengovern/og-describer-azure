@@ -4,12 +4,13 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/botservice/armbotservice"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func BotServiceBot(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func BotServiceBot(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armbotservice.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -18,7 +19,7 @@ func BotServiceBot(ctx context.Context, cred *azidentity.ClientSecretCredential,
 
 	pager := client.NewListPager(nil)
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -38,9 +39,9 @@ func BotServiceBot(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	return values, nil
 }
 
-func getBotServiceBot(ctx context.Context, bot *armbotservice.Bot) *Resource {
+func getBotServiceBot(ctx context.Context, bot *armbotservice.Bot) *models.Resource {
 	resourceGroupName := strings.Split(string(*bot.ID), "/")[4]
-	return &Resource{
+	return &models.Resource{
 		ID: *bot.ID,
 		Description: JSONAllFieldsMarshaller{Value: model.BotServiceBotDescription{
 			Bot:           *bot,

@@ -2,6 +2,7 @@ package describer
 
 import (
 	"context"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
@@ -10,7 +11,7 @@ import (
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func ContainerRegistry(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ContainerRegistry(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcontainerregistry.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -19,7 +20,7 @@ func ContainerRegistry(ctx context.Context, cred *azidentity.ClientSecretCredent
 	webhookClient := clientFactory.NewWebhooksClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -42,7 +43,7 @@ func ContainerRegistry(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func getContainerRegistry(ctx context.Context, client *armcontainerregistry.RegistriesClient, webhookClient *armcontainerregistry.WebhooksClient, registry *armcontainerregistry.Registry) (*Resource, error) {
+func getContainerRegistry(ctx context.Context, client *armcontainerregistry.RegistriesClient, webhookClient *armcontainerregistry.WebhooksClient, registry *armcontainerregistry.Registry) (*models.Resource, error) {
 	resourceGroup := strings.Split(*registry.ID, "/")[4]
 	var containerRegistryListCredentialsOp *armcontainerregistry.RegistryListCredentialsResult
 	containerRegistryListCredentialsOpTemp, err := client.ListCredentials(ctx, resourceGroup, *registry.Name, nil)
@@ -67,7 +68,7 @@ func getContainerRegistry(ctx context.Context, client *armcontainerregistry.Regi
 		webhooks = append(webhooks, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *registry.ID,
 		Name:     *registry.Name,
 		Location: *registry.Location,

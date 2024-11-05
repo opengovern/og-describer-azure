@@ -4,19 +4,20 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/cdn/armcdn"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func CdnProfiles(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func CdnProfiles(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcdn.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	client := clientFactory.NewProfilesClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -37,10 +38,10 @@ func CdnProfiles(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func getCdnProfiles(ctx context.Context, v *armcdn.Profile) *Resource {
+func getCdnProfiles(ctx context.Context, v *armcdn.Profile) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -54,7 +55,7 @@ func getCdnProfiles(ctx context.Context, v *armcdn.Profile) *Resource {
 	return &resource
 }
 
-func CdnEndpoint(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func CdnEndpoint(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armcdn.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -63,7 +64,7 @@ func CdnEndpoint(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	client := clientFactory.NewProfilesClient()
 	endpointsClient := clientFactory.NewEndpointsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -89,12 +90,12 @@ func CdnEndpoint(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func getCdnProfilesEndpoints(ctx context.Context, endpointsClient *armcdn.EndpointsClient, v *armcdn.Profile) ([]Resource, error) {
+func getCdnProfilesEndpoints(ctx context.Context, endpointsClient *armcdn.EndpointsClient, v *armcdn.Profile) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	pager := endpointsClient.NewListByProfilePager(resourceGroup, *v.Name, nil)
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -108,8 +109,8 @@ func getCdnProfilesEndpoints(ctx context.Context, endpointsClient *armcdn.Endpoi
 	return values, nil
 }
 
-func getCdnEndpoint(ctx context.Context, v *armcdn.Profile, endpoint *armcdn.Endpoint, resourceGroup string) *Resource {
-	return &Resource{
+func getCdnEndpoint(ctx context.Context, v *armcdn.Profile, endpoint *armcdn.Endpoint, resourceGroup string) *models.Resource {
+	return &models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

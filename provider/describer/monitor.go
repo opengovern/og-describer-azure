@@ -2,6 +2,7 @@ package describer
 
 import (
 	"context"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
@@ -9,7 +10,7 @@ import (
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func MonitorLogProfiles(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func MonitorLogProfiles(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armmonitor.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -18,7 +19,7 @@ func MonitorLogProfiles(ctx context.Context, cred *azidentity.ClientSecretCreden
 	logProfileClient := clientFactory.NewLogProfilesClient()
 
 	pager := logProfileClient.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -41,11 +42,11 @@ func MonitorLogProfiles(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func getMonitorLogProfile(ctx context.Context, logProfile *armmonitor.LogProfileResource) (*Resource, error) {
+func getMonitorLogProfile(ctx context.Context, logProfile *armmonitor.LogProfileResource) (*models.Resource, error) {
 
 	resourceGroup := strings.Split(*logProfile.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *logProfile.ID,
 		Name:     *logProfile.Name,
 		Location: *logProfile.Location,

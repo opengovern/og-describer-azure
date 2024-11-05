@@ -3,6 +3,7 @@ package describer
 import (
 	"context"
 	"fmt"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
@@ -21,7 +22,7 @@ import (
 	"github.com/tombuildsstuff/giovanni/storage/2019-12-12/blob/accounts"
 )
 
-func StorageContainer(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func StorageContainer(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armstorage.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -30,7 +31,7 @@ func StorageContainer(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	storageClient := clientFactory.NewAccountsClient()
 
 	wpe := concurrency.NewWorkPool(4)
-	var values []Resource
+	var values []models.Resource
 	pager := storageClient.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -57,7 +58,7 @@ func StorageContainer(ctx context.Context, cred *azidentity.ClientSecretCredenti
 		if r.Value == nil {
 			continue
 		}
-		values = append(values, r.Value.([]Resource)...)
+		values = append(values, r.Value.([]models.Resource)...)
 	}
 
 	if stream != nil {
@@ -72,9 +73,9 @@ func StorageContainer(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func ListAccountStorageContainers(ctx context.Context, client *armstorage.BlobContainersClient, account *armstorage.Account) ([]Resource, error) {
+func ListAccountStorageContainers(ctx context.Context, client *armstorage.BlobContainersClient, account *armstorage.Account) ([]models.Resource, error) {
 	resourceGroup := &strings.Split(string(*account.ID), "/")[4]
-	var resources []Resource
+	var resources []models.Resource
 	pager := client.NewListPager(*resourceGroup, *account.Name, nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -92,7 +93,7 @@ func ListAccountStorageContainers(ctx context.Context, client *armstorage.BlobCo
 	return resources, nil
 }
 
-func GetAccountStorageContainter(ctx context.Context, client *armstorage.BlobContainersClient, v *armstorage.ListContainerItem, acc *armstorage.Account) (*Resource, error) {
+func GetAccountStorageContainter(ctx context.Context, client *armstorage.BlobContainersClient, v *armstorage.ListContainerItem, acc *armstorage.Account) (*models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 	accountName := strings.Split(*v.ID, "/")[8]
 
@@ -101,7 +102,7 @@ func GetAccountStorageContainter(ctx context.Context, client *armstorage.BlobCon
 		return nil, err
 	}
 
-	return &Resource{
+	return &models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
@@ -116,7 +117,7 @@ func GetAccountStorageContainter(ctx context.Context, client *armstorage.BlobCon
 	}, nil
 }
 
-func StorageAccount(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func StorageAccount(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 
 	clientFactory, err := armstorage.NewClientFactory(subscription, cred, nil)
 	if err != nil {
@@ -140,7 +141,7 @@ func StorageAccount(ctx context.Context, cred *azidentity.ClientSecretCredential
 	storageClient := clientFactory.NewAccountsClient()
 
 	pager := storageClient.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -163,7 +164,7 @@ func StorageAccount(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func GetStorageAccount(ctx context.Context, storageClient *armstorage.AccountsClient, encryptionScopesStorageClient *armstorage.EncryptionScopesClient, diagnosticClient *armmonitor.DiagnosticSettingsClient, fileServicesStorageClient *armstorage.FileServicesClient, blobServicesStorageClient *armstorage.BlobServicesClient, managementPoliciesStorageClient *armstorage.ManagementPoliciesClient, account *armstorage.Account) (*Resource, error) {
+func GetStorageAccount(ctx context.Context, storageClient *armstorage.AccountsClient, encryptionScopesStorageClient *armstorage.EncryptionScopesClient, diagnosticClient *armmonitor.DiagnosticSettingsClient, fileServicesStorageClient *armstorage.FileServicesClient, blobServicesStorageClient *armstorage.BlobServicesClient, managementPoliciesStorageClient *armstorage.ManagementPoliciesClient, account *armstorage.Account) (*models.Resource, error) {
 	resourceGroup := &strings.Split(*account.ID, "/")[4]
 
 	var managementPolicy *armstorage.ManagementPolicy
@@ -327,7 +328,7 @@ func GetStorageAccount(ctx context.Context, storageClient *armstorage.AccountsCl
 		}
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *account.ID,
 		Name:     *account.Name,
 		Location: *account.Location,
@@ -350,7 +351,7 @@ func GetStorageAccount(ctx context.Context, storageClient *armstorage.AccountsCl
 	return &resource, nil
 }
 
-func StorageBlob(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func StorageBlob(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armstorage.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -359,7 +360,7 @@ func StorageBlob(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	containerClient := clientFactory.NewBlobContainersClient()
 
 	pager := accountClient.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -384,7 +385,7 @@ func StorageBlob(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func ListAccountStorageBlobs(ctx context.Context, containerClient *armstorage.BlobContainersClient, accountClient *armstorage.AccountsClient, storageAccount *armstorage.Account) ([]Resource, error) {
+func ListAccountStorageBlobs(ctx context.Context, containerClient *armstorage.BlobContainersClient, accountClient *armstorage.AccountsClient, storageAccount *armstorage.Account) ([]models.Resource, error) {
 	if storageAccount == nil || storageAccount.ID == nil {
 		return nil, nil
 	}
@@ -413,7 +414,7 @@ func ListAccountStorageBlobs(ctx context.Context, containerClient *armstorage.Bl
 	}
 
 	pager := containerClient.NewListPager(resourceGroup, storageAccountName, nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -534,7 +535,7 @@ func ListAccountStorageBlobs(ctx context.Context, containerClient *armstorage.Bl
 						desc.Blob.Properties.RehydratePriority = azblobOld.RehydratePriorityType(*blob.Properties.RehydratePriority)
 					}
 
-					resource := Resource{
+					resource := models.Resource{
 						ID:       *blob.Name,
 						Name:     *blob.Name,
 						Location: *storageAccount.Location,
@@ -550,7 +551,7 @@ func ListAccountStorageBlobs(ctx context.Context, containerClient *armstorage.Bl
 	return values, nil
 }
 
-func StorageBlobService(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func StorageBlobService(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armstorage.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -564,7 +565,7 @@ func StorageBlobService(ctx context.Context, cred *azidentity.ClientSecretCreden
 	}
 
 	pager := accountClient.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -603,8 +604,8 @@ func StorageBlobService(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func GetStorageBlobService(ctx context.Context, account *armstorage.Account, resourceGroup armresources.ResourceGroup, blobService *armstorage.BlobServiceProperties) *Resource {
-	resource := Resource{
+func GetStorageBlobService(ctx context.Context, account *armstorage.Account, resourceGroup armresources.ResourceGroup, blobService *armstorage.BlobServiceProperties) *models.Resource {
+	resource := models.Resource{
 		ID:       *blobService.ID,
 		Name:     *blobService.Name,
 		Location: *account.Location,
@@ -620,7 +621,7 @@ func GetStorageBlobService(ctx context.Context, account *armstorage.Account, res
 	return &resource
 }
 
-func StorageQueue(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func StorageQueue(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armstorage.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -634,7 +635,7 @@ func StorageQueue(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	}
 
 	pager := accountClient.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -661,8 +662,8 @@ func StorageQueue(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	return values, nil
 }
 
-func ListAccountStorageQueue(ctx context.Context, storageClient *armstorage.QueueClient, account *armstorage.Account, resourceGroup armresources.ResourceGroup) ([]Resource, error) {
-	var values []Resource
+func ListAccountStorageQueue(ctx context.Context, storageClient *armstorage.QueueClient, account *armstorage.Account, resourceGroup armresources.ResourceGroup) ([]models.Resource, error) {
+	var values []models.Resource
 	pager := storageClient.NewListPager(*resourceGroup.Name, *account.Name, nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -689,8 +690,8 @@ func ListAccountStorageQueue(ctx context.Context, storageClient *armstorage.Queu
 	return values, nil
 }
 
-func GetStorageQueue(ctx context.Context, account *armstorage.Account, resourceGroup armresources.ResourceGroup, queue *armstorage.ListQueue) *Resource {
-	resource := Resource{
+func GetStorageQueue(ctx context.Context, account *armstorage.Account, resourceGroup armresources.ResourceGroup, queue *armstorage.ListQueue) *models.Resource {
+	resource := models.Resource{
 		ID:       *queue.ID,
 		Name:     *queue.Name,
 		Location: *account.Location,
@@ -706,7 +707,7 @@ func GetStorageQueue(ctx context.Context, account *armstorage.Account, resourceG
 	return &resource
 }
 
-func StorageFileShare(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func StorageFileShare(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armstorage.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -720,7 +721,7 @@ func StorageFileShare(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	}
 
 	pager := accountClient.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -747,9 +748,9 @@ func StorageFileShare(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func ListAccountStorageFileShares(ctx context.Context, storageClient *armstorage.FileSharesClient, account *armstorage.Account, resourceGroup armresources.ResourceGroup) ([]Resource, error) {
+func ListAccountStorageFileShares(ctx context.Context, storageClient *armstorage.FileSharesClient, account *armstorage.Account, resourceGroup armresources.ResourceGroup) ([]models.Resource, error) {
 	pager := storageClient.NewListPager(*resourceGroup.Name, *account.Name, nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -768,8 +769,8 @@ func ListAccountStorageFileShares(ctx context.Context, storageClient *armstorage
 	return values, nil
 }
 
-func GetStorageFileShares(ctx context.Context, account *armstorage.Account, resourceGroup armresources.ResourceGroup, fileShareItem *armstorage.FileShareItem) *Resource {
-	resource := Resource{
+func GetStorageFileShares(ctx context.Context, account *armstorage.Account, resourceGroup armresources.ResourceGroup, fileShareItem *armstorage.FileShareItem) *models.Resource {
+	resource := models.Resource{
 		ID:       *fileShareItem.ID,
 		Name:     *fileShareItem.Name,
 		Location: *account.Location,
@@ -785,7 +786,7 @@ func GetStorageFileShares(ctx context.Context, account *armstorage.Account, reso
 	return &resource
 }
 
-func StorageTable(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func StorageTable(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armstorage.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -798,7 +799,7 @@ func StorageTable(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	pager := accountClient.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -829,9 +830,9 @@ func StorageTable(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	return values, nil
 }
 
-func ListAccountStorageTables(ctx context.Context, storageClient *armstorage.TableClient, account *armstorage.Account, resourceGroup armresources.ResourceGroup) ([]Resource, error) {
+func ListAccountStorageTables(ctx context.Context, storageClient *armstorage.TableClient, account *armstorage.Account, resourceGroup armresources.ResourceGroup) ([]models.Resource, error) {
 	pager := storageClient.NewListPager(*resourceGroup.Name, *account.Name, nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -856,8 +857,8 @@ func ListAccountStorageTables(ctx context.Context, storageClient *armstorage.Tab
 	return values, nil
 }
 
-func GetStorageTable(ctx context.Context, account *armstorage.Account, resourceGroup armresources.ResourceGroup, table *armstorage.Table) *Resource {
-	resource := Resource{
+func GetStorageTable(ctx context.Context, account *armstorage.Account, resourceGroup armresources.ResourceGroup, table *armstorage.Table) *models.Resource {
+	resource := models.Resource{
 		ID:       *table.ID,
 		Name:     *table.Name,
 		Location: *account.Location,
@@ -873,7 +874,7 @@ func GetStorageTable(ctx context.Context, account *armstorage.Account, resourceG
 	return &resource
 }
 
-func StorageTableService(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func StorageTableService(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armstorage.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -886,7 +887,7 @@ func StorageTableService(ctx context.Context, cred *azidentity.ClientSecretCrede
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	pager := accountClient.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -920,7 +921,7 @@ func StorageTableService(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func ListAccountStorageTableService(ctx context.Context, storageClient *armstorage.TableServicesClient, account *armstorage.Account, resourceGroup armresources.ResourceGroup) ([]Resource, error) {
+func ListAccountStorageTableService(ctx context.Context, storageClient *armstorage.TableServicesClient, account *armstorage.Account, resourceGroup armresources.ResourceGroup) ([]models.Resource, error) {
 	tableServices, err := storageClient.List(ctx, *resourceGroup.Name, *account.Name, nil)
 	if err != nil {
 		if strings.Contains(err.Error(), "ParentResourceNotFound") ||
@@ -929,7 +930,7 @@ func ListAccountStorageTableService(ctx context.Context, storageClient *armstora
 		}
 		return nil, err
 	}
-	var values []Resource
+	var values []models.Resource
 	for _, tableService := range tableServices.Value {
 		resource := GetAccountStorageTableService(ctx, resourceGroup, account, tableService)
 		values = append(values, *resource)
@@ -937,8 +938,8 @@ func ListAccountStorageTableService(ctx context.Context, storageClient *armstora
 	return values, nil
 }
 
-func GetAccountStorageTableService(ctx context.Context, resourceGroup armresources.ResourceGroup, account *armstorage.Account, tableService *armstorage.TableServiceProperties) *Resource {
-	resource := Resource{
+func GetAccountStorageTableService(ctx context.Context, resourceGroup armresources.ResourceGroup, account *armstorage.Account, tableService *armstorage.TableServiceProperties) *models.Resource {
+	resource := models.Resource{
 		ID:       *tableService.ID,
 		Name:     *tableService.Name,
 		Location: *account.Location,

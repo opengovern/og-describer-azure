@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resourcegraph/armresourcegraph"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"net/http"
 	"strconv"
 	"strings"
@@ -23,7 +24,7 @@ type GenericResourceGraph struct {
 	Type  string
 }
 
-func (d GenericResourceGraph) DescribeResources(ctx context.Context, cred *azidentity.ClientSecretCredential, _ hamiltonAuth.Authorizer, tempSubscriptions []string, tenantId string, triggerType enums.DescribeTriggerType, stream *StreamSender) ([]Resource, error) {
+func (d GenericResourceGraph) DescribeResources(ctx context.Context, cred *azidentity.ClientSecretCredential, _ hamiltonAuth.Authorizer, tempSubscriptions []string, tenantId string, triggerType enums.DescribeTriggerType, stream *models.StreamSender) ([]models.Resource, error) {
 	ctx = WithTriggerType(ctx, triggerType)
 	query := fmt.Sprintf("%s | where type == \"%s\"", d.Table, strings.ToLower(d.Type))
 
@@ -32,7 +33,7 @@ func (d GenericResourceGraph) DescribeResources(ctx context.Context, cred *azide
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 
 	var subscriptions []*string
 	for _, subscription := range tempSubscriptions {
@@ -83,7 +84,7 @@ func (d GenericResourceGraph) DescribeResources(ctx context.Context, cred *azide
 						loc = vStr
 					}
 				}
-				resource := Resource{
+				resource := models.Resource{
 					ID:          m["id"].(string),
 					Location:    loc,
 					Description: v,

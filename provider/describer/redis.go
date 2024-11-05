@@ -5,19 +5,20 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/redis/armredis/v2"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/redisenterprise/armredisenterprise"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func RedisCache(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func RedisCache(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armredis.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	client := clientFactory.NewClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListBySubscriptionPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -38,9 +39,9 @@ func RedisCache(ctx context.Context, cred *azidentity.ClientSecretCredential, su
 	return values, nil
 }
 
-func GetRedisCache(ctx context.Context, v *armredis.ResourceInfo) *Resource {
+func GetRedisCache(ctx context.Context, v *armredis.ResourceInfo) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -54,14 +55,14 @@ func GetRedisCache(ctx context.Context, v *armredis.ResourceInfo) *Resource {
 	return &resource
 }
 
-func CacheRedisEnterprise(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func CacheRedisEnterprise(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armredisenterprise.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	client := clientFactory.NewClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -82,9 +83,9 @@ func CacheRedisEnterprise(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func GetCacheRedisEnterprise(ctx context.Context, v *armredisenterprise.Cluster) *Resource {
+func GetCacheRedisEnterprise(ctx context.Context, v *armredisenterprise.Cluster) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

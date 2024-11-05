@@ -5,12 +5,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/logic/armlogic"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func LogicAppWorkflow(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func LogicAppWorkflow(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armlogic.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -24,7 +25,7 @@ func LogicAppWorkflow(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	diagnosticClient := monitorClientFactory.NewDiagnosticSettingsClient()
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -47,7 +48,7 @@ func LogicAppWorkflow(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getLogicAppWorkflow(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, workflow *armlogic.Workflow) (*Resource, error) {
+func getLogicAppWorkflow(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, workflow *armlogic.Workflow) (*models.Resource, error) {
 	resourceGroup := strings.Split(*workflow.ID, "/")[4]
 
 	var logicListOp []*armmonitor.DiagnosticSettingsResource
@@ -60,7 +61,7 @@ func getLogicAppWorkflow(ctx context.Context, diagnosticClient *armmonitor.Diagn
 		logicListOp = append(logicListOp, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *workflow.ID,
 		Name:     *workflow.Name,
 		Location: *workflow.Location,
@@ -75,7 +76,7 @@ func getLogicAppWorkflow(ctx context.Context, diagnosticClient *armmonitor.Diagn
 	return &resource, nil
 }
 
-func LogicIntegrationAccounts(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func LogicIntegrationAccounts(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armlogic.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -83,7 +84,7 @@ func LogicIntegrationAccounts(ctx context.Context, cred *azidentity.ClientSecret
 	client := clientFactory.NewIntegrationAccountsClient()
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -103,10 +104,10 @@ func LogicIntegrationAccounts(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func getLogicIntegrationAccounts(ctx context.Context, account *armlogic.IntegrationAccount) *Resource {
+func getLogicIntegrationAccounts(ctx context.Context, account *armlogic.IntegrationAccount) *models.Resource {
 	resourceGroup := strings.Split(*account.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *account.ID,
 		Name:     *account.Name,
 		Location: *account.Location,

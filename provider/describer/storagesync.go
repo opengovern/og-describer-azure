@@ -4,12 +4,13 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/storagesync/armstoragesync"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func StorageSync(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func StorageSync(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armstoragesync.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -17,7 +18,7 @@ func StorageSync(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	client := clientFactory.NewServicesClient()
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -37,10 +38,10 @@ func StorageSync(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func GetStorageSync(ctx context.Context, storage *armstoragesync.Service) *Resource {
+func GetStorageSync(ctx context.Context, storage *armstoragesync.Service) *models.Resource {
 	resourceGroup := strings.Split(*storage.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *storage.ID,
 		Name:     *storage.Name,
 		Location: *storage.Location,

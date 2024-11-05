@@ -2,6 +2,7 @@ package describer
 
 import (
 	"context"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
@@ -11,7 +12,7 @@ import (
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func APIManagement(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func APIManagement(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armapimanagement.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -25,7 +26,7 @@ func APIManagement(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	diagnosticClient := monitorClientFactory.NewDiagnosticSettingsClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -48,7 +49,7 @@ func APIManagement(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	return values, nil
 }
 
-func getAPIMangement(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, apiManagement *armapimanagement.ServiceResource) (*Resource, error) {
+func getAPIMangement(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, apiManagement *armapimanagement.ServiceResource) (*models.Resource, error) {
 	resourceGroup := strings.Split(*apiManagement.ID, "/")[4]
 	accountListOpTemp := diagnosticClient.NewListPager(*apiManagement.ID, nil)
 	var op []armmonitor.DiagnosticSettingsResource
@@ -61,7 +62,7 @@ func getAPIMangement(ctx context.Context, diagnosticClient *armmonitor.Diagnosti
 			op = append(op, *accountOp)
 		}
 	}
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *apiManagement.ID,
 		Name:     *apiManagement.Name,
 		Location: *apiManagement.Location,
@@ -76,7 +77,7 @@ func getAPIMangement(ctx context.Context, diagnosticClient *armmonitor.Diagnosti
 	return &resource, nil
 }
 
-func APIManagementBackend(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func APIManagementBackend(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 
 	clientFactory, err := armapimanagement.NewClientFactory(subscription, cred, nil)
 	if err != nil {
@@ -87,7 +88,7 @@ func APIManagementBackend(ctx context.Context, cred *azidentity.ClientSecretCred
 	backendClient := clientFactory.NewBackendClient()
 
 	pager := client.NewListPager(nil)
-	var resources []Resource
+	var resources []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -113,12 +114,12 @@ func APIManagementBackend(ctx context.Context, cred *azidentity.ClientSecretCred
 
 }
 
-func listAPIMangementBackends(ctx context.Context, backendClient *armapimanagement.BackendClient, apiManagementService *armapimanagement.ServiceResource) ([]Resource, error) {
+func listAPIMangementBackends(ctx context.Context, backendClient *armapimanagement.BackendClient, apiManagementService *armapimanagement.ServiceResource) ([]models.Resource, error) {
 
 	resourceGroup := strings.Split(*apiManagementService.ID, "/")[4]
 	pager := backendClient.NewListByServicePager(resourceGroup, *apiManagementService.Name, nil)
 
-	var resources []Resource
+	var resources []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -133,11 +134,11 @@ func listAPIMangementBackends(ctx context.Context, backendClient *armapimanageme
 
 }
 
-func GetAPIManagementBackend(ctx context.Context, service *armapimanagement.ServiceResource, backend *armapimanagement.BackendContract) *Resource {
+func GetAPIManagementBackend(ctx context.Context, service *armapimanagement.ServiceResource, backend *armapimanagement.BackendContract) *models.Resource {
 
 	resourceGroup := strings.Split(*backend.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:   *backend.ID,
 		Name: *backend.Name,
 		Description: JSONAllFieldsMarshaller{

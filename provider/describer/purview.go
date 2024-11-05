@@ -4,12 +4,13 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/purview/armpurview"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func PurviewAccount(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func PurviewAccount(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armpurview.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -17,7 +18,7 @@ func PurviewAccount(ctx context.Context, cred *azidentity.ClientSecretCredential
 	client := clientFactory.NewAccountsClient()
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -37,9 +38,9 @@ func PurviewAccount(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func GetPurviewAccount(ctx context.Context, v *armpurview.Account) *Resource {
+func GetPurviewAccount(ctx context.Context, v *armpurview.Account) *models.Resource {
 	resourceGroupName := strings.Split(string(*v.ID), "/")[4]
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

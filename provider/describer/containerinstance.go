@@ -4,19 +4,20 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/containerinstance/armcontainerinstance"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func ContainerInstanceContainerGroups(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ContainerInstanceContainerGroups(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := armcontainerinstance.NewContainerGroupsClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -36,10 +37,10 @@ func ContainerInstanceContainerGroups(ctx context.Context, cred *azidentity.Clie
 	return values, nil
 }
 
-func getContainerInstanceContainerGrou(ctx context.Context, v *armcontainerinstance.ContainerGroup) *Resource {
+func getContainerInstanceContainerGrou(ctx context.Context, v *armcontainerinstance.ContainerGroup) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,

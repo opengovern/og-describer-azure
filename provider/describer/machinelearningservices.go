@@ -5,12 +5,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/machinelearning/armmachinelearning"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func MachineLearningWorkspace(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func MachineLearningWorkspace(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := armmachinelearning.NewWorkspacesClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -23,7 +24,7 @@ func MachineLearningWorkspace(ctx context.Context, cred *azidentity.ClientSecret
 	diagnosticClient := monitorClientFactory.NewDiagnosticSettingsClient()
 
 	pager := client.NewListBySubscriptionPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -46,7 +47,7 @@ func MachineLearningWorkspace(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func getMachineLearningWorkspace(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, workspace *armmachinelearning.Workspace) (*Resource, error) {
+func getMachineLearningWorkspace(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, workspace *armmachinelearning.Workspace) (*models.Resource, error) {
 	resourceGroup := strings.Split(*workspace.ID, "/")[4]
 
 	var machineLearningServicesListOp []*armmonitor.DiagnosticSettingsResource
@@ -59,7 +60,7 @@ func getMachineLearningWorkspace(ctx context.Context, diagnosticClient *armmonit
 		machineLearningServicesListOp = append(machineLearningServicesListOp, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *workspace.ID,
 		Name:     *workspace.Name,
 		Location: *workspace.Location,

@@ -5,12 +5,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/hdinsight/armhdinsight"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func HdInsightCluster(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func HdInsightCluster(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armhdinsight.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -24,7 +25,7 @@ func HdInsightCluster(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	diagnosticClient := monitorClientFactory.NewDiagnosticSettingsClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -47,7 +48,7 @@ func HdInsightCluster(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getHdInsightCluster(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, cluster *armhdinsight.Cluster) (*Resource, error) {
+func getHdInsightCluster(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, cluster *armhdinsight.Cluster) (*models.Resource, error) {
 	resourceGroup := strings.Split(*cluster.ID, "/")[4]
 
 	var hdinsightListOp []*armmonitor.DiagnosticSettingsResource
@@ -60,7 +61,7 @@ func getHdInsightCluster(ctx context.Context, diagnosticClient *armmonitor.Diagn
 		hdinsightListOp = append(hdinsightListOp, page.Value...)
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *cluster.ID,
 		Name:     *cluster.Name,
 		Location: *cluster.Location,

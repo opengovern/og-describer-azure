@@ -5,12 +5,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/hybridkubernetes/armhybridkubernetes"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/kubernetesconfiguration/armkubernetesconfiguration"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func HybridKubernetesConnectedCluster(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func HybridKubernetesConnectedCluster(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armhybridkubernetes.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -25,7 +26,7 @@ func HybridKubernetesConnectedCluster(ctx context.Context, cred *azidentity.Clie
 
 	pager := client.NewListBySubscriptionPager(nil)
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -48,7 +49,7 @@ func HybridKubernetesConnectedCluster(ctx context.Context, cred *azidentity.Clie
 	return values, nil
 }
 
-func getHybridKubernetesConnectedCluster(ctx context.Context, extClient *armkubernetesconfiguration.ExtensionsClient, connectedCluster *armhybridkubernetes.ConnectedCluster) (*Resource, error) {
+func getHybridKubernetesConnectedCluster(ctx context.Context, extClient *armkubernetesconfiguration.ExtensionsClient, connectedCluster *armhybridkubernetes.ConnectedCluster) (*models.Resource, error) {
 	resourceGroup := strings.Split(*connectedCluster.ID, "/")[4]
 
 	pager := extClient.NewListPager(resourceGroup, "Microsoft.Kubernetes", "connectedClusters", *connectedCluster.Name, nil)
@@ -60,7 +61,7 @@ func getHybridKubernetesConnectedCluster(ctx context.Context, extClient *armkube
 		}
 		extensions = append(extensions, page.Value...)
 	}
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *connectedCluster.ID,
 		Name:     *connectedCluster.Name,
 		Location: *connectedCluster.Location,

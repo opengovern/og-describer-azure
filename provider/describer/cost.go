@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strconv"
 	"time"
 
@@ -95,7 +96,7 @@ func cost(ctx context.Context, cred *azidentity.ClientSecretCredential, subscrip
 	return result, costs.Location, nil
 }
 
-func DailyCostByResourceType(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func DailyCostByResourceType(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	triggerType := GetTriggerTypeFromContext(ctx)
 	from := time.Now().AddDate(0, 0, -7)
 	if time.Now().Day() == 6 {
@@ -141,7 +142,7 @@ func DailyCostByResourceType(ctx context.Context, cred *azidentity.ClientSecretC
 	if locationPtr != nil {
 		location = *locationPtr
 	}
-	var values []Resource
+	var values []models.Resource
 	for _, row := range costResult {
 		usageDateStr := strconv.FormatInt(int64(row.UsageDate), 10)
 		year, month, day := usageDateStr[:4], usageDateStr[4:6], usageDateStr[6:]
@@ -150,7 +151,7 @@ func DailyCostByResourceType(ctx context.Context, cred *azidentity.ClientSecretC
 			return nil, err
 		}
 
-		resource := Resource{
+		resource := models.Resource{
 			ID:       fmt.Sprintf("resource-cost-%s/%s-%d", subscription, *row.ServiceName, row.UsageDate),
 			Location: location,
 			Description: JSONAllFieldsMarshaller{
@@ -172,7 +173,7 @@ func DailyCostByResourceType(ctx context.Context, cred *azidentity.ClientSecretC
 	return values, nil
 }
 
-func DailyCostBySubscription(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func DailyCostBySubscription(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	triggerType := GetTriggerTypeFromContext(ctx)
 	from := time.Now().AddDate(0, 0, -7)
 	if triggerType == enums.DescribeTriggerTypeInitialDiscovery {
@@ -188,9 +189,9 @@ func DailyCostBySubscription(ctx context.Context, cred *azidentity.ClientSecretC
 	if locationPtr != nil {
 		location = *locationPtr
 	}
-	var values []Resource
+	var values []models.Resource
 	for _, row := range costResult {
-		resource := Resource{
+		resource := models.Resource{
 			ID:       fmt.Sprintf("resource-cost-%s/%d", subscription, row.UsageDate),
 			Location: location,
 			Description: JSONAllFieldsMarshaller{

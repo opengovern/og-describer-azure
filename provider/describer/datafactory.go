@@ -4,12 +4,13 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/datafactory/armdatafactory/v2"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func DataFactory(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func DataFactory(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := armdatafactory.NewFactoriesClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -19,7 +20,7 @@ func DataFactory(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 		return nil, err
 	}
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -42,7 +43,7 @@ func DataFactory(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func getDataFactory(ctx context.Context, connClient *armdatafactory.PrivateEndPointConnectionsClient, factory *armdatafactory.Factory) (*Resource, error) {
+func getDataFactory(ctx context.Context, connClient *armdatafactory.PrivateEndPointConnectionsClient, factory *armdatafactory.Factory) (*models.Resource, error) {
 	resourceGroup := strings.Split(*factory.ID, "/")[4]
 
 	pager := connClient.NewListByFactoryPager(resourceGroup, *factory.Name, nil)
@@ -57,7 +58,7 @@ func getDataFactory(ctx context.Context, connClient *armdatafactory.PrivateEndPo
 		}
 	}
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *factory.ID,
 		Name:     *factory.Name,
 		Location: *factory.Location,
@@ -72,7 +73,7 @@ func getDataFactory(ctx context.Context, connClient *armdatafactory.PrivateEndPo
 	return &resource, nil
 }
 
-func DataFactoryDataset(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func DataFactoryDataset(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := armdatafactory.NewFactoriesClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -83,7 +84,7 @@ func DataFactoryDataset(ctx context.Context, cred *azidentity.ClientSecretCreden
 	}
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -108,20 +109,20 @@ func DataFactoryDataset(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func getDataFactoryDataset(ctx context.Context, client *armdatafactory.DatasetsClient, factory *armdatafactory.Factory) ([]Resource, error) {
+func getDataFactoryDataset(ctx context.Context, client *armdatafactory.DatasetsClient, factory *armdatafactory.Factory) ([]models.Resource, error) {
 	factoryName := *factory.Name
 	factoryResourceGroup := strings.Split(*factory.ID, "/")[4]
 
 	pager := client.NewListByFactoryPager(factoryResourceGroup, factoryName, nil)
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
 			return nil, err
 		}
 		for _, dataset := range page.Value {
-			resource := Resource{
+			resource := models.Resource{
 				ID:       *dataset.ID,
 				Name:     *dataset.Name,
 				Location: *factory.Location,
@@ -140,7 +141,7 @@ func getDataFactoryDataset(ctx context.Context, client *armdatafactory.DatasetsC
 	return values, nil
 }
 
-func DataFactoryPipeline(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func DataFactoryPipeline(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := armdatafactory.NewFactoriesClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -151,7 +152,7 @@ func DataFactoryPipeline(ctx context.Context, cred *azidentity.ClientSecretCrede
 	}
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -176,20 +177,20 @@ func DataFactoryPipeline(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func getDataFactoryPipeline(ctx context.Context, client *armdatafactory.PipelinesClient, factory *armdatafactory.Factory) ([]Resource, error) {
+func getDataFactoryPipeline(ctx context.Context, client *armdatafactory.PipelinesClient, factory *armdatafactory.Factory) ([]models.Resource, error) {
 	factoryName := *factory.Name
 	factoryResourceGroup := strings.Split(*factory.ID, "/")[4]
 
 	pager := client.NewListByFactoryPager(factoryResourceGroup, factoryName, nil)
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
 			return nil, err
 		}
 		for _, pipeline := range page.Value {
-			resource := Resource{
+			resource := models.Resource{
 				ID:       *pipeline.ID,
 				Name:     *pipeline.Name,
 				Location: *factory.Location,

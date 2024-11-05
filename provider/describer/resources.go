@@ -2,6 +2,7 @@ package describer
 
 import (
 	"context"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
@@ -30,14 +31,14 @@ func listResourceGroups(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func ResourceProvider(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ResourceProvider(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armresources.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	client := clientFactory.NewProvidersClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -58,8 +59,8 @@ func ResourceProvider(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func GetResourceProvider(ctx context.Context, provider *armresources.Provider) *Resource {
-	resource := Resource{
+func GetResourceProvider(ctx context.Context, provider *armresources.Provider) *models.Resource {
+	resource := models.Resource{
 		ID:       *provider.ID,
 		Location: "global",
 		Description: JSONAllFieldsMarshaller{
@@ -72,14 +73,14 @@ func GetResourceProvider(ctx context.Context, provider *armresources.Provider) *
 	return &resource
 }
 
-func ResourceGroup(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func ResourceGroup(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armresources.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	client := clientFactory.NewResourceGroupsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -100,8 +101,8 @@ func ResourceGroup(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	return values, nil
 }
 
-func GetResourceGroup(ctx context.Context, group *armresources.ResourceGroup) *Resource {
-	resource := Resource{
+func GetResourceGroup(ctx context.Context, group *armresources.ResourceGroup) *models.Resource {
+	resource := models.Resource{
 		ID:       *group.ID,
 		Name:     *group.Name,
 		Location: *group.Location,
@@ -115,7 +116,7 @@ func GetResourceGroup(ctx context.Context, group *armresources.ResourceGroup) *R
 	return &resource
 }
 
-func Resources(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func Resources(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 
 	clientFactory, err := armresources.NewClientFactory(subscription, cred, nil)
 	if err != nil {
@@ -123,7 +124,7 @@ func Resources(ctx context.Context, cred *azidentity.ClientSecretCredential, sub
 	}
 	client := clientFactory.NewClient()
 
-	var resources []Resource
+	var resources []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -145,11 +146,11 @@ func Resources(ctx context.Context, cred *azidentity.ClientSecretCredential, sub
 
 }
 
-func GetResource(ctx context.Context, genericResource *armresources.GenericResourceExpanded) *Resource {
+func GetResource(ctx context.Context, genericResource *armresources.GenericResourceExpanded) *models.Resource {
 
 	resourceGroupName := strings.Split(string(*genericResource.ID), "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *genericResource.ID,
 		Name:     *genericResource.Name,
 		Location: *genericResource.Location,

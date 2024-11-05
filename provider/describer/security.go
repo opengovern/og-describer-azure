@@ -4,19 +4,20 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/security/armsecurity"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func SecurityCenterAutoProvisioning(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func SecurityCenterAutoProvisioning(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsecurity.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	client := clientFactory.NewAutoProvisioningSettingsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -37,8 +38,8 @@ func SecurityCenterAutoProvisioning(ctx context.Context, cred *azidentity.Client
 	return values, nil
 }
 
-func GetSecurityCenterAutoProvisioning(ctx context.Context, v *armsecurity.AutoProvisioningSetting) *Resource {
-	resource := Resource{
+func GetSecurityCenterAutoProvisioning(ctx context.Context, v *armsecurity.AutoProvisioningSetting) *models.Resource {
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
@@ -52,14 +53,14 @@ func GetSecurityCenterAutoProvisioning(ctx context.Context, v *armsecurity.AutoP
 	return &resource
 }
 
-func SecurityCenterContact(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func SecurityCenterContact(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsecurity.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	client := clientFactory.NewContactsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -80,8 +81,8 @@ func SecurityCenterContact(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func GetSecurityCenterContact(ctx context.Context, v *armsecurity.Contact) *Resource {
-	resource := Resource{
+func GetSecurityCenterContact(ctx context.Context, v *armsecurity.Contact) *models.Resource {
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
@@ -94,14 +95,14 @@ func GetSecurityCenterContact(ctx context.Context, v *armsecurity.Contact) *Reso
 	return &resource
 }
 
-func SecurityCenterJitNetworkAccessPolicy(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func SecurityCenterJitNetworkAccessPolicy(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsecurity.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	client := clientFactory.NewJitNetworkAccessPoliciesClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -122,8 +123,8 @@ func SecurityCenterJitNetworkAccessPolicy(ctx context.Context, cred *azidentity.
 	return values, nil
 }
 
-func GetSecurityCenterJitNetworkAccessPolicy(ctx context.Context, v *armsecurity.JitNetworkAccessPolicy) *Resource {
-	resource := Resource{
+func GetSecurityCenterJitNetworkAccessPolicy(ctx context.Context, v *armsecurity.JitNetworkAccessPolicy) *models.Resource {
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -136,14 +137,14 @@ func GetSecurityCenterJitNetworkAccessPolicy(ctx context.Context, v *armsecurity
 	return &resource
 }
 
-func SecurityCenterSetting(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func SecurityCenterSetting(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsecurity.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	client := clientFactory.NewSettingsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -164,14 +165,14 @@ func SecurityCenterSetting(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func GetSecurityCenterSetting(ctx context.Context, v armsecurity.SettingClassification) *Resource {
+func GetSecurityCenterSetting(ctx context.Context, v armsecurity.SettingClassification) *models.Resource {
 	var settingStatus bool
 	if *v.GetSetting().Kind == armsecurity.SettingKindDataExportSettings {
 		settingStatus = true
 	} else {
 		settingStatus = false
 	}
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.GetSetting().ID,
 		Name:     *v.GetSetting().Name,
 		Location: "global",
@@ -185,14 +186,14 @@ func GetSecurityCenterSetting(ctx context.Context, v armsecurity.SettingClassifi
 	return &resource
 }
 
-func SecurityCenterSubscriptionPricing(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func SecurityCenterSubscriptionPricing(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsecurity.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	client := clientFactory.NewPricingsClient()
 
-	var values []Resource
+	var values []models.Resource
 	list, err := client.List(ctx, "", nil)
 	if err != nil {
 		return nil, err
@@ -210,8 +211,8 @@ func SecurityCenterSubscriptionPricing(ctx context.Context, cred *azidentity.Cli
 	return values, nil
 }
 
-func GetSecurityCenterSubscriptionPricing(ctx context.Context, v *armsecurity.Pricing) *Resource {
-	resource := Resource{
+func GetSecurityCenterSubscriptionPricing(ctx context.Context, v *armsecurity.Pricing) *models.Resource {
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
@@ -224,14 +225,14 @@ func GetSecurityCenterSubscriptionPricing(ctx context.Context, v *armsecurity.Pr
 	return &resource
 }
 
-func SecurityCenterAutomation(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func SecurityCenterAutomation(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsecurity.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	client := clientFactory.NewAutomationsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -252,9 +253,9 @@ func SecurityCenterAutomation(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func GetSecurityCenterAutomation(ctx context.Context, v *armsecurity.Automation) *Resource {
+func GetSecurityCenterAutomation(ctx context.Context, v *armsecurity.Automation) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -268,14 +269,14 @@ func GetSecurityCenterAutomation(ctx context.Context, v *armsecurity.Automation)
 	return &resource
 }
 
-func SecurityCenterSubAssessment(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func SecurityCenterSubAssessment(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armsecurity.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 	client := clientFactory.NewSubAssessmentsClient()
 
-	var values []Resource
+	var values []models.Resource
 	pager := client.NewListAllPager("subscriptions/"+subscription, nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -296,10 +297,10 @@ func SecurityCenterSubAssessment(ctx context.Context, cred *azidentity.ClientSec
 	return values, nil
 }
 
-func GetSecurityCenterSubAssessment(ctx context.Context, v *armsecurity.SubAssessment) *Resource {
+func GetSecurityCenterSubAssessment(ctx context.Context, v *armsecurity.SubAssessment) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Location: "global",
 		Name:     *v.Name,

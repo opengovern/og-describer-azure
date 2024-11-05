@@ -5,11 +5,12 @@ import (
 	"fmt"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/blueprint/armblueprint"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"github.com/opengovern/og-describer-azure/provider/model"
 	"strings"
 )
 
-func BlueprintArtifact(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func BlueprintArtifact(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armblueprint.NewClientFactory(cred, nil)
 	if err != nil {
 		return nil, err
@@ -19,7 +20,7 @@ func BlueprintArtifact(ctx context.Context, cred *azidentity.ClientSecretCredent
 	client := clientFactory.NewBlueprintsClient()
 
 	pager := client.NewListPager(fmt.Sprintf("/subscriptions/%s", subscription), nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -53,14 +54,14 @@ func BlueprintArtifact(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func getBluePrintArtifact(ctx context.Context, v armblueprint.ArtifactClassification) *Resource {
-	return &Resource{
+func getBluePrintArtifact(ctx context.Context, v armblueprint.ArtifactClassification) *models.Resource {
+	return &models.Resource{
 		ID:          *v.GetArtifact().ID,
 		Description: JSONAllFieldsMarshaller{Value: v.GetArtifact()},
 	}
 }
 
-func BlueprintBlueprint(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func BlueprintBlueprint(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armblueprint.NewClientFactory(cred, nil)
 	if err != nil {
 		return nil, err
@@ -68,7 +69,7 @@ func BlueprintBlueprint(ctx context.Context, cred *azidentity.ClientSecretCreden
 	client := clientFactory.NewBlueprintsClient()
 	pager := client.NewListPager(fmt.Sprintf("/subscriptions/%s", subscription), nil)
 
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -89,9 +90,9 @@ func BlueprintBlueprint(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func getBlueprintBlueprint(ctx context.Context, blueprint *armblueprint.Blueprint) *Resource {
+func getBlueprintBlueprint(ctx context.Context, blueprint *armblueprint.Blueprint) *models.Resource {
 	resourceGroupName := strings.Split(*blueprint.ID, "/")[4]
-	return &Resource{
+	return &models.Resource{
 		ID: *blueprint.ID,
 		Description: JSONAllFieldsMarshaller{Value: model.BlueprintDescription{
 			Blueprint:     *blueprint,

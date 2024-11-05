@@ -5,19 +5,20 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/containerservice/armcontainerservice/v4"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armsubscriptions"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func KubernetesCluster(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func KubernetesCluster(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	client, err := armcontainerservice.NewManagedClustersClient(subscription, cred, nil)
 	if err != nil {
 		return nil, err
 	}
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -37,10 +38,10 @@ func KubernetesCluster(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func getKubernatesCluster(ctx context.Context, v *armcontainerservice.ManagedCluster) *Resource {
+func getKubernatesCluster(ctx context.Context, v *armcontainerservice.ManagedCluster) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
@@ -54,7 +55,7 @@ func getKubernatesCluster(ctx context.Context, v *armcontainerservice.ManagedClu
 	return &resource
 }
 
-func KubernetesServiceVersion(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func KubernetesServiceVersion(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	subClient, err := armsubscriptions.NewClient(cred, nil)
 	if err != nil {
 		return nil, err
@@ -65,7 +66,7 @@ func KubernetesServiceVersion(ctx context.Context, cred *azidentity.ClientSecret
 		return nil, err
 	}
 
-	var values []Resource
+	var values []models.Resource
 	pager := subClient.NewListLocationsPager(subscription, nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -83,12 +84,12 @@ func KubernetesServiceVersion(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func listLocationKubernatesServices(ctx context.Context, client *armcontainerservice.ManagedClustersClient, location *armsubscriptions.Location) ([]Resource, error) {
+func listLocationKubernatesServices(ctx context.Context, client *armcontainerservice.ManagedClustersClient, location *armsubscriptions.Location) ([]models.Resource, error) {
 	kubernetesVersions, err := client.ListKubernetesVersions(ctx, *location.ID, nil)
 	if err != nil {
 		return nil, err
 	}
-	var values []Resource
+	var values []models.Resource
 	for _, v := range kubernetesVersions.Values {
 		resource := getKubernatesService(ctx, location, v)
 		values = append(values, *resource)
@@ -96,8 +97,8 @@ func listLocationKubernatesServices(ctx context.Context, client *armcontainerser
 	return values, nil
 }
 
-func getKubernatesService(ctx context.Context, location *armsubscriptions.Location, v *armcontainerservice.KubernetesVersion) *Resource {
-	resource := Resource{
+func getKubernatesService(ctx context.Context, location *armsubscriptions.Location, v *armcontainerservice.KubernetesVersion) *models.Resource {
+	resource := models.Resource{
 		ID:       *v.Version,
 		Name:     *v.Version,
 		Type:     *v.Version,

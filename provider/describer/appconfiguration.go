@@ -5,12 +5,13 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func AppConfiguration(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
+func AppConfiguration(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armappconfiguration.NewClientFactory(subscription, cred, nil)
 	if err != nil {
 		return nil, err
@@ -24,7 +25,7 @@ func AppConfiguration(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	diagnosticClient := monitorClientFactory.NewDiagnosticSettingsClient()
 
 	pager := client.NewListPager(nil)
-	var values []Resource
+	var values []models.Resource
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
 		if err != nil {
@@ -47,7 +48,7 @@ func AppConfiguration(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getAppConfiguration(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, config *armappconfiguration.ConfigurationStore) (*Resource, error) {
+func getAppConfiguration(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, config *armappconfiguration.ConfigurationStore) (*models.Resource, error) {
 	resourceGroup := strings.Split(*config.ID, "/")[4]
 
 	var op []armmonitor.DiagnosticSettingsResource
@@ -61,7 +62,7 @@ func getAppConfiguration(ctx context.Context, diagnosticClient *armmonitor.Diagn
 			op = append(op, *config)
 		}
 	}
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *config.ID,
 		Name:     *config.Name,
 		Location: *config.Location,

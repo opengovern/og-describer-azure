@@ -4,13 +4,14 @@ import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/springappdiscovery/armspringappdiscovery"
+	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"strings"
 
 	"github.com/opengovern/og-describer-azure/provider/model"
 )
 
-func SpringCloudService(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *StreamSender) ([]Resource, error) {
-	var values []Resource
+func SpringCloudService(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
+	var values []models.Resource
 
 	clientFactory, err := armspringappdiscovery.NewClientFactory(subscription, cred, nil)
 	if err != nil {
@@ -56,7 +57,7 @@ func SpringCloudService(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func getSpringCloudService(ctx context.Context, service *armspringappdiscovery.SpringbootappsModel, site *armspringappdiscovery.SpringbootsitesModel) (*Resource, error) {
+func getSpringCloudService(ctx context.Context, service *armspringappdiscovery.SpringbootappsModel, site *armspringappdiscovery.SpringbootsitesModel) (*models.Resource, error) {
 	if service.Name == nil {
 		return nil, nil
 	}
@@ -64,7 +65,7 @@ func getSpringCloudService(ctx context.Context, service *armspringappdiscovery.S
 
 	resourceGroup := splitID[4]
 
-	resource := Resource{
+	resource := models.Resource{
 		ID:       *service.ID,
 		Name:     *service.Name,
 		Location: *site.Location,
