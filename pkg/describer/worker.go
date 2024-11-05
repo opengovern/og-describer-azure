@@ -150,7 +150,6 @@ func doDescribe(
 			PlatformID:          uuid.New().String(),
 			ResourceID:          resource.UniqueID(),
 			ResourceName:        resource.Name,
-			Location:            resource.Location,
 			Description:         description,
 			IntegrationType:     configs.IntegrationName,
 			ResourceType:        strings.ToLower(job.ResourceType),
