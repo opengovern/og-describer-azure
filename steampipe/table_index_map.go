@@ -4,7 +4,7 @@ import (
 	"github.com/opengovern/og-describer-azure/pkg/SDK/generated"
 )
 
-var azureMap = map[string]string{
+var Map = map[string]string{
 	"Microsoft.App/containerApps":                                        "azure_app_containerapps",
 	"Microsoft.App/managedEnvironments":                                  "azure_app_managedenvironments",
 	"Microsoft.Blueprint/blueprints":                                     "azure_blueprint_blueprints",
@@ -241,7 +241,7 @@ var azureMap = map[string]string{
 	"Microsoft.Resources/subscriptions/resources":                        "azure_resource",
 }
 
-var AzureDescriptionMap = map[string]interface{}{
+var DescriptionMap = map[string]interface{}{
 	"Microsoft.App/containerApps":                                        opengovernance.ContainerApp{},
 	"Microsoft.App/managedEnvironments":                                  opengovernance.AppManagedEnvironment{},
 	"Microsoft.Blueprint/blueprints":                                     opengovernance.Blueprint{},
@@ -478,7 +478,7 @@ var AzureDescriptionMap = map[string]interface{}{
 	"Microsoft.Resources/subscriptions/resources":                        opengovernance.GenericResource{},
 }
 
-var AzureReverseMap = map[string]string{
+var ReverseMap = map[string]string{
 	"azure_app_containerapps":                                     "Microsoft.App/containerApps",
 	"azure_app_managedenvironments":                               "Microsoft.App/managedEnvironments",
 	"azure_blueprint_blueprints":                                  "Microsoft.Blueprint/blueprints",
