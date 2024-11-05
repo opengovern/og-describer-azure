@@ -114,7 +114,7 @@ require (
 	github.com/microsoftgraph/msgraph-sdk-go v1.51.0
 	github.com/microsoftgraph/msgraph-sdk-go-core v1.2.1
 	github.com/nats-io/nats.go v1.36.0
-	github.com/opengovern/og-util v1.0.6-0.20241103104655-33e8cb710353
+	github.com/opengovern/og-util v1.0.6-0.20241105163426-0bff13a6e9b7
 	github.com/spf13/cobra v1.7.0
 	github.com/tombuildsstuff/giovanni v0.18.0
 	github.com/turbot/steampipe-plugin-sdk/v5 v5.10.1
