@@ -22,13 +22,13 @@ import (
 	"github.com/microsoftgraph/msgraph-sdk-go/reports"
 	"github.com/microsoftgraph/msgraph-sdk-go/serviceprincipals"
 	users2 "github.com/microsoftgraph/msgraph-sdk-go/users"
-	"github.com/opengovern/og-describer-azure/pkg/SDK/models"
+	models2 "github.com/opengovern/og-describer-azure/pkg/SDK/models"
 	"github.com/opengovern/og-describer-azure/provider/model"
 	"strings"
 	"time"
 )
 
-func AdUsers(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdUsers(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
@@ -48,7 +48,7 @@ func AdUsers(ctx context.Context, cred *azidentity.ClientSecretCredential, tenan
 		return nil, fmt.Errorf("failed to get users: %v", err)
 	}
 
-	var values []models.Resource
+	var values []models2.Resource
 	var itemErr error
 	pageIterator, err := msgraphcore.NewPageIterator[models.Userable](result, client.GetAdapter(), models.CreateUserCollectionResponseFromDiscriminatorValue)
 	if err != nil {
@@ -98,11 +98,10 @@ func AdUsers(ctx context.Context, cred *azidentity.ClientSecretCredential, tenan
 			})
 		}
 
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       id,
 			Name:     name,
 			Location: "global",
-			TenantID: tenantId,
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdUsersDescription{
 					TenantID:                        tenantId,
@@ -145,7 +144,7 @@ func AdUsers(ctx context.Context, cred *azidentity.ClientSecretCredential, tenan
 	return values, nil
 }
 
-func AdGroup(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdGroup(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
@@ -161,7 +160,7 @@ func AdGroup(ctx context.Context, cred *azidentity.ClientSecretCredential, tenan
 		return nil, fmt.Errorf("failed to get groups: %v", err)
 	}
 
-	var values []models.Resource
+	var values []models2.Resource
 	var itemErr error
 	pageIterator, err := msgraphcore.NewPageIterator[models.Groupable](result, client.GetAdapter(), models.CreateGroupCollectionResponseFromDiscriminatorValue)
 	if err != nil {
@@ -217,11 +216,11 @@ func AdGroup(ctx context.Context, cred *azidentity.ClientSecretCredential, tenan
 			})
 		}
 
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       *group.GetId(),
 			Name:     *group.GetDisplayName(),
 			Location: "global",
-			TenantID: tenantId,
+
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdGroupDescription{
 					TenantID:                      tenantId,
@@ -278,14 +277,14 @@ func AdGroup(ctx context.Context, cred *azidentity.ClientSecretCredential, tenan
 	return values, nil
 }
 
-func AdServicePrinciple(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdServicePrinciple(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create client: %v", err)
 	}
 
-	var values []models.Resource
+	var values []models2.Resource
 	var itemErr error
 
 	resultApps, err := client.ServicePrincipals().Get(ctx, &serviceprincipals.ServicePrincipalsRequestBuilderGetRequestConfiguration{
@@ -480,11 +479,11 @@ func AdServicePrinciple(ctx context.Context, cred *azidentity.ClientSecretCreden
 			})
 		}
 
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       *servicePrincipal.GetId(),
 			Name:     *servicePrincipal.GetDisplayName(),
 			Location: "global",
-			TenantID: tenantId,
+
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdServicePrincipalDescription{
 					TenantID:                  tenantId,
@@ -537,14 +536,14 @@ func AdServicePrinciple(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func AdApplication(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdApplication(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create client: %v", err)
 	}
 
-	var values []models.Resource
+	var values []models2.Resource
 	var itemErr error
 	result, err := client.Applications().Get(ctx, &applications.ApplicationsRequestBuilderGetRequestConfiguration{
 		QueryParameters: &applications.ApplicationsRequestBuilderGetQueryParameters{
@@ -694,11 +693,11 @@ func AdApplication(ctx context.Context, cred *azidentity.ClientSecretCredential,
 			})
 		}
 
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       *app.GetId(),
 			Name:     *app.GetDisplayName(),
 			Location: "global",
-			TenantID: tenantId,
+
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdApplicationDescription{
 					TenantID:                  tenantId,
@@ -814,7 +813,7 @@ func AdApplication(ctx context.Context, cred *azidentity.ClientSecretCredential,
 
 //
 
-func AdSignInReport(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdSignInReport(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
@@ -830,7 +829,7 @@ func AdSignInReport(ctx context.Context, cred *azidentity.ClientSecretCredential
 		return nil, fmt.Errorf("failed to get sign in report: %v", err)
 	}
 
-	var values []models.Resource
+	var values []models2.Resource
 	var itemErr error
 
 	pageIterator, err := msgraphcore.NewPageIterator[models.SignInable](result, client.GetAdapter(), models.CreateSignInCollectionResponseFromDiscriminatorValue)
@@ -944,11 +943,11 @@ func AdSignInReport(ctx context.Context, cred *azidentity.ClientSecretCredential
 			})
 		}
 
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       *report.GetId(),
 			Name:     *report.GetId(),
 			Location: "global",
-			TenantID: tenantId,
+
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdSignInReportDescription{
 					TenantID:                         tenantId,
@@ -999,14 +998,14 @@ func AdSignInReport(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func AdDevice(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdDevice(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create client: %v", err)
 	}
 
-	var values []models.Resource
+	var values []models2.Resource
 	var itemErr error
 	result, err := client.Devices().Get(ctx, &devices.DevicesRequestBuilderGetRequestConfiguration{
 		QueryParameters: &devices.DevicesRequestBuilderGetQueryParameters{
@@ -1024,11 +1023,11 @@ func AdDevice(ctx context.Context, cred *azidentity.ClientSecretCredential, tena
 		if device == nil {
 			return true
 		}
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       *device.GetId(),
 			Name:     *device.GetDisplayName(),
 			Location: "global",
-			TenantID: tenantId,
+
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdDeviceDescription{
 					TenantID:                      tenantId,
@@ -1069,7 +1068,7 @@ func AdDevice(ctx context.Context, cred *azidentity.ClientSecretCredential, tena
 	return values, nil
 }
 
-func AdDirectoryRole(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdDirectoryRole(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
@@ -1080,7 +1079,7 @@ func AdDirectoryRole(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	if err != nil {
 		return nil, fmt.Errorf("failed to get groups: %v", err)
 	}
-	var values []models.Resource
+	var values []models2.Resource
 	pageIterator, err := msgraphcore.NewPageIterator[*models.DirectoryRole](result, client.GetAdapter(), models.CreateDirectoryRoleCollectionResponseFromDiscriminatorValue)
 	if err != nil {
 		return nil, err
@@ -1094,11 +1093,11 @@ func AdDirectoryRole(ctx context.Context, cred *azidentity.ClientSecretCredentia
 			memberIds = append(memberIds, member.GetId())
 		}
 
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       *role.GetId(),
 			Name:     *role.GetDisplayName(),
 			Location: "global",
-			TenantID: tenantId,
+
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdDirectoryRoleDescription{
 					TenantID:       tenantId,
@@ -1131,7 +1130,7 @@ func AdDirectoryRole(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	return values, nil
 }
 
-func AdDirectorySetting(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdDirectorySetting(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
@@ -1147,7 +1146,7 @@ func AdDirectorySetting(ctx context.Context, cred *azidentity.ClientSecretCreden
 	if err != nil {
 		return nil, fmt.Errorf("failed to get groups: %v", err)
 	}
-	var values []models.Resource
+	var values []models2.Resource
 	pageIterator, err := msgraphcore.NewPageIterator[models.GroupSettingable](result, client.GetAdapter(), models.CreateGroupSettingCollectionResponseFromDiscriminatorValue)
 	if err != nil {
 		return nil, err
@@ -1158,11 +1157,11 @@ func AdDirectorySetting(ctx context.Context, cred *azidentity.ClientSecretCreden
 		}
 
 		for _, v := range setting.GetValues() {
-			resource := models.Resource{
+			resource := models2.Resource{
 				ID:       *setting.GetId(),
 				Name:     *setting.GetDisplayName(),
 				Location: "global",
-				TenantID: tenantId,
+
 				Description: JSONAllFieldsMarshaller{
 					Value: model.AdDirectorySettingDescription{
 						TenantID:    tenantId,
@@ -1196,7 +1195,7 @@ func AdDirectorySetting(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func AdDirectoryAuditReport(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdDirectoryAuditReport(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
@@ -1212,7 +1211,7 @@ func AdDirectoryAuditReport(ctx context.Context, cred *azidentity.ClientSecretCr
 	if err != nil {
 		return nil, fmt.Errorf("failed to get groups: %v", err)
 	}
-	var values []models.Resource
+	var values []models2.Resource
 	pageIterator, err := msgraphcore.NewPageIterator[models.DirectoryAuditable](result, client.GetAdapter(), models.CreateSignInCollectionResponseFromDiscriminatorValue)
 	if err != nil {
 		return nil, err
@@ -1333,10 +1332,10 @@ func AdDirectoryAuditReport(ctx context.Context, cred *azidentity.ClientSecretCr
 			id = *audit.GetId()
 		}
 
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       id,
 			Location: "global",
-			TenantID: tenantId,
+
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdDirectoryAuditReportDescription{
 					TenantID:            tenantId,
@@ -1375,7 +1374,7 @@ func AdDirectoryAuditReport(ctx context.Context, cred *azidentity.ClientSecretCr
 	return values, nil
 }
 
-func AdDomain(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdDomain(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
@@ -1391,7 +1390,7 @@ func AdDomain(ctx context.Context, cred *azidentity.ClientSecretCredential, tena
 	if err != nil {
 		return nil, fmt.Errorf("failed to get groups: %v", err)
 	}
-	var values []models.Resource
+	var values []models2.Resource
 	pageIterator, err := msgraphcore.NewPageIterator[models.Domainable](result, client.GetAdapter(), models.CreateDomainCollectionResponseFromDiscriminatorValue)
 	if err != nil {
 		return nil, err
@@ -1401,10 +1400,10 @@ func AdDomain(ctx context.Context, cred *azidentity.ClientSecretCredential, tena
 			return true
 		}
 
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       *domain.GetId(),
 			Location: "global",
-			TenantID: tenantId,
+
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdDomainDescription{
 					TenantID:           tenantId,
@@ -1440,7 +1439,7 @@ func AdDomain(ctx context.Context, cred *azidentity.ClientSecretCredential, tena
 	return values, nil
 }
 
-func AdIdentityProvider(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdIdentityProvider(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
@@ -1454,7 +1453,7 @@ func AdIdentityProvider(ctx context.Context, cred *azidentity.ClientSecretCreden
 	if err != nil {
 		return nil, fmt.Errorf("failed to get groups: %v", err)
 	}
-	var values []models.Resource
+	var values []models2.Resource
 	pageIterator, err := msgraphcore.NewPageIterator[*models.BuiltInIdentityProvider](result, client.GetAdapter(), models.CreateBuiltInIdentityProviderFromDiscriminatorValue)
 	if err != nil {
 		return nil, err
@@ -1466,11 +1465,11 @@ func AdIdentityProvider(ctx context.Context, cred *azidentity.ClientSecretCreden
 		clientID := ip.GetAdditionalData()["clientId"]
 		clientSecret := ip.GetAdditionalData()["clientSecret"]
 
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       *ip.GetId(),
 			Name:     *ip.GetDisplayName(),
 			Location: "global",
-			TenantID: tenantId,
+
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdIdentityProviderDescription{
 					TenantID:     tenantId,
@@ -1503,7 +1502,7 @@ func AdIdentityProvider(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func AdSecurityDefaultsPolicy(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdSecurityDefaultsPolicy(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
@@ -1514,16 +1513,16 @@ func AdSecurityDefaultsPolicy(ctx context.Context, cred *azidentity.ClientSecret
 	if err != nil {
 		return nil, fmt.Errorf("failed to get groups: %v", err)
 	}
-	var values []models.Resource
+	var values []models2.Resource
 	if result == nil {
 		return values, nil
 	}
 
-	resource := models.Resource{
+	resource := models2.Resource{
 		ID:       *result.GetId(),
 		Name:     *result.GetDisplayName(),
 		Location: "global",
-		TenantID: tenantId,
+
 		Description: JSONAllFieldsMarshaller{
 			Value: model.AdSecurityDefaultsPolicyDescription{
 				TenantID:    tenantId,
@@ -1545,7 +1544,7 @@ func AdSecurityDefaultsPolicy(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func AdAuthorizationPolicy(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdAuthorizationPolicy(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
@@ -1556,7 +1555,7 @@ func AdAuthorizationPolicy(ctx context.Context, cred *azidentity.ClientSecretCre
 	if err != nil {
 		return nil, fmt.Errorf("failed to get groups: %v", err)
 	}
-	var values []models.Resource
+	var values []models2.Resource
 	if result == nil {
 		return values, nil
 	}
@@ -1579,11 +1578,11 @@ func AdAuthorizationPolicy(ctx context.Context, cred *azidentity.ClientSecretCre
 		PermissionGrantPoliciesAssigned:          result.GetDefaultUserRolePermissions().GetPermissionGrantPoliciesAssigned(),
 	}
 
-	resource := models.Resource{
+	resource := models2.Resource{
 		ID:       *result.GetId(),
 		Name:     *result.GetDisplayName(),
 		Location: "global",
-		TenantID: tenantId,
+
 		Description: JSONAllFieldsMarshaller{
 			Value: model.AdAuthorizationPolicyDescription{
 				TenantID:                               tenantId,
@@ -1611,7 +1610,7 @@ func AdAuthorizationPolicy(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func AdConditionalAccessPolicy(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdConditionalAccessPolicy(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
@@ -1623,7 +1622,7 @@ func AdConditionalAccessPolicy(ctx context.Context, cred *azidentity.ClientSecre
 	if err != nil {
 		return nil, fmt.Errorf("failed to get groups: %v", err)
 	}
-	var values []models.Resource
+	var values []models2.Resource
 	if result == nil {
 		return values, nil
 	}
@@ -1821,11 +1820,11 @@ func AdConditionalAccessPolicy(ctx context.Context, cred *azidentity.ClientSecre
 			}
 		}
 
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       *p.GetId(),
 			Name:     *p.GetDisplayName(),
 			Location: "global",
-			TenantID: tenantId,
+
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdConditionalAccessPolicyDescription{
 					TenantID:                        tenantId,
@@ -1879,7 +1878,7 @@ func AdConditionalAccessPolicy(ctx context.Context, cred *azidentity.ClientSecre
 	return values, nil
 }
 
-func AdAdminConsentRequestPolicy(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdAdminConsentRequestPolicy(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
@@ -1890,7 +1889,7 @@ func AdAdminConsentRequestPolicy(ctx context.Context, cred *azidentity.ClientSec
 	if err != nil {
 		return nil, fmt.Errorf("failed to get groups: %v", err)
 	}
-	var values []models.Resource
+	var values []models2.Resource
 	if result == nil {
 		return values, nil
 	}
@@ -1915,10 +1914,10 @@ func AdAdminConsentRequestPolicy(ctx context.Context, cred *azidentity.ClientSec
 		})
 	}
 
-	resource := models.Resource{
+	resource := models2.Resource{
 		ID:       *result.GetId(),
 		Location: "global",
-		TenantID: tenantId,
+
 		Description: JSONAllFieldsMarshaller{
 			Value: model.AdAdminConsentRequestPolicyDescription{
 				TenantID:              tenantId,
@@ -1943,7 +1942,7 @@ func AdAdminConsentRequestPolicy(ctx context.Context, cred *azidentity.ClientSec
 	return values, nil
 }
 
-func AdUserRegistrationDetails(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdUserRegistrationDetails(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
@@ -1955,7 +1954,7 @@ func AdUserRegistrationDetails(ctx context.Context, cred *azidentity.ClientSecre
 		return nil, fmt.Errorf("failed to get users: %v", err)
 	}
 
-	var values []models.Resource
+	var values []models2.Resource
 	var itemErr error
 	pageIterator, err := msgraphcore.NewPageIterator[*models.UserRegistrationDetails](result, client.GetAdapter(), models.CreateUserCollectionResponseFromDiscriminatorValue)
 	if err != nil {
@@ -1965,10 +1964,10 @@ func AdUserRegistrationDetails(ctx context.Context, cred *azidentity.ClientSecre
 		if user == nil {
 			return true
 		}
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       *user.GetId(),
 			Location: "global",
-			TenantID: tenantId,
+
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdUserRegistrationDetailsDescription{
 					TenantID:                             tenantId,
@@ -2010,7 +2009,7 @@ func AdUserRegistrationDetails(ctx context.Context, cred *azidentity.ClientSecre
 	return values, nil
 }
 
-func AdGroupMembership(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdGroupMembership(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
@@ -2026,7 +2025,7 @@ func AdGroupMembership(ctx context.Context, cred *azidentity.ClientSecretCredent
 		return nil, fmt.Errorf("failed to get groups: %v", err)
 	}
 
-	var values []models.Resource
+	var values []models2.Resource
 	var itemErr error
 	pageIterator, err := msgraphcore.NewPageIterator[models.Groupable](result, client.GetAdapter(), models.CreateGroupCollectionResponseFromDiscriminatorValue)
 	if err != nil {
@@ -2052,11 +2051,11 @@ func AdGroupMembership(ctx context.Context, cred *azidentity.ClientSecretCredent
 		}
 
 		for _, member := range members.GetValue() {
-			resource := models.Resource{
+			resource := models2.Resource{
 				ID:       *member.GetId(),
 				Name:     *member.GetDisplayName(),
 				Location: "global",
-				TenantID: tenantId,
+
 				Description: JSONAllFieldsMarshaller{
 					Value: model.AdGroupMembershipDescription{
 						TenantID:           tenantId,
@@ -2093,14 +2092,14 @@ func AdGroupMembership(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func AdAppRegistration(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdAppRegistration(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create client: %v", err)
 	}
 
-	var values []models.Resource
+	var values []models2.Resource
 	var itemErr error
 	result, err := client.Applications().Get(ctx, &applications.ApplicationsRequestBuilderGetRequestConfiguration{
 		QueryParameters: &applications.ApplicationsRequestBuilderGetQueryParameters{
@@ -2250,11 +2249,11 @@ func AdAppRegistration(ctx context.Context, cred *azidentity.ClientSecretCredent
 			})
 		}
 
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       *app.GetId(),
 			Name:     *app.GetDisplayName(),
 			Location: "global",
-			TenantID: tenantId,
+
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdAppRegistrationDescription{
 					TenantID:                  tenantId,
@@ -2368,14 +2367,14 @@ func AdAppRegistration(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func AdEnterpriseApplication(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdEnterpriseApplication(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create client: %v", err)
 	}
 
-	var values []models.Resource
+	var values []models2.Resource
 	var itemErr error
 
 	resultApps, err := client.ServicePrincipals().Get(ctx, &serviceprincipals.ServicePrincipalsRequestBuilderGetRequestConfiguration{
@@ -2566,11 +2565,11 @@ func AdEnterpriseApplication(ctx context.Context, cred *azidentity.ClientSecretC
 			})
 		}
 
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       *servicePrincipal.GetId(),
 			Name:     *servicePrincipal.GetDisplayName(),
 			Location: "global",
-			TenantID: tenantId,
+
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdEnterpriseApplicationDescription{
 					TenantID:                  tenantId,
@@ -2623,14 +2622,14 @@ func AdEnterpriseApplication(ctx context.Context, cred *azidentity.ClientSecretC
 	return values, nil
 }
 
-func AdManagedIdentity(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdManagedIdentity(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create client: %v", err)
 	}
 
-	var values []models.Resource
+	var values []models2.Resource
 	var itemErr error
 
 	resultApps, err := client.ServicePrincipals().Get(ctx, &serviceprincipals.ServicePrincipalsRequestBuilderGetRequestConfiguration{
@@ -2829,11 +2828,11 @@ func AdManagedIdentity(ctx context.Context, cred *azidentity.ClientSecretCredent
 			}
 		}
 
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       *servicePrincipal.GetId(),
 			Name:     *servicePrincipal.GetDisplayName(),
 			Location: "global",
-			TenantID: tenantId,
+
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdManagedIdentityDescription{
 					TenantID:                  tenantId,
@@ -2887,14 +2886,14 @@ func AdManagedIdentity(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func AdMicrosoftApplication(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdMicrosoftApplication(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create client: %v", err)
 	}
 
-	var values []models.Resource
+	var values []models2.Resource
 	var itemErr error
 	headers := abstractions.NewRequestHeaders()
 	headers.Add("ConsistencyLevel", "eventual")
@@ -3088,11 +3087,11 @@ func AdMicrosoftApplication(ctx context.Context, cred *azidentity.ClientSecretCr
 			})
 		}
 
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       *servicePrincipal.GetId(),
 			Name:     *servicePrincipal.GetDisplayName(),
 			Location: "global",
-			TenantID: tenantId,
+
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdMicrosoftApplicationDescription{
 					TenantID:                  tenantId,
@@ -3145,7 +3144,7 @@ func AdMicrosoftApplication(ctx context.Context, cred *azidentity.ClientSecretCr
 	return values, nil
 }
 
-func AdTenant(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models.StreamSender) ([]models.Resource, error) {
+func AdTenant(ctx context.Context, cred *azidentity.ClientSecretCredential, tenantId string, stream *models2.StreamSender) ([]models2.Resource, error) {
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
 	if err != nil {
@@ -3161,7 +3160,7 @@ func AdTenant(ctx context.Context, cred *azidentity.ClientSecretCredential, tena
 	if err != nil {
 		return nil, fmt.Errorf("failed to get groups: %v", err)
 	}
-	var values []models.Resource
+	var values []models2.Resource
 	pageIterator, err := msgraphcore.NewPageIterator[*models.Organization](result, client.GetAdapter(), models.CreateDomainCollectionResponseFromDiscriminatorValue)
 	if err != nil {
 		return nil, err
@@ -3194,10 +3193,10 @@ func AdTenant(ctx context.Context, cred *azidentity.ClientSecretCredential, tena
 			})
 		}
 
-		resource := models.Resource{
+		resource := models2.Resource{
 			ID:       *org.GetId(),
 			Location: "global",
-			TenantID: tenantId,
+
 			Description: JSONAllFieldsMarshaller{
 				Value: model.AdTenantDescription{
 					TenantID:              org.GetId(),
