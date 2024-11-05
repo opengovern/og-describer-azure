@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/go-errors/errors"
+	"github.com/google/uuid"
 	model "github.com/opengovern/og-describer-azure/pkg/sdk/models"
 	"github.com/opengovern/og-describer-azure/provider"
 	"github.com/opengovern/og-describer-azure/provider/configs"
@@ -13,6 +14,7 @@ import (
 	"github.com/opengovern/og-util/pkg/es"
 	"github.com/opengovern/og-util/pkg/vault"
 	"go.uber.org/zap"
+	"strconv"
 	"strings"
 )
 
@@ -145,18 +147,18 @@ func doDescribe(
 		}
 
 		rs.Send(&es.Resource{
-			ID:              resource.UniqueID(),
-			Description:     description,
-			IntegrationType: configs.IntegrationName,
-			ResourceType:    strings.ToLower(job.ResourceType),
-			ResourceJobID:   uint(uint32(job.JobID)),
-			SourceID:        job.SourceID,
-			Metadata:        metadata,
-			Name:            resource.Name,
-			ResourceGroup:   resource.ResourceGroup,
-			Location:        resource.Location,
-			CreatedAt:       job.DescribedAt,
-			CanonicalTags:   newTags,
+			PlatformID:          uuid.New().String(),
+			ResourceID:          resource.UniqueID(),
+			ResourceName:        resource.Name,
+			Location:            resource.Location,
+			Description:         description,
+			IntegrationType:     configs.IntegrationName,
+			ResourceType:        strings.ToLower(job.ResourceType),
+			IntegrationID:       job.SourceID,
+			IntegrationMetadata: metadata,
+			CanonicalTags:       newTags,
+			DescribedAt:         job.DescribedAt,
+			DescribedBy:         strconv.FormatUint(uint64(job.JobID), 10),
 		})
 		return nil
 	}

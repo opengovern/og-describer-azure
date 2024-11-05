@@ -27,7 +27,7 @@ func tableAzureUserEffectiveAccess(_ context.Context) *plugin.Table {
 				Name:        "id",
 				Description: "Contains ID to identify a role assignment uniquely.",
 				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("ID")},
+				Transform:   transform.FromField("ResourceID")},
 			{
 				Name:        "principal_id",
 				Description: "User ID",

@@ -161,7 +161,7 @@ func tableAzureSynapseWorkspace(_ context.Context) *plugin.Table {
 				Name:        "akas",
 				Description: ColumnDescriptionAkas,
 				Type:        proto.ColumnType_JSON,
-				Transform:   transform.FromField("ID").Transform(idToAkas),
+				Transform:   transform.FromField("ResourceID").Transform(idToAkas),
 			},
 
 			// Azure standard columns

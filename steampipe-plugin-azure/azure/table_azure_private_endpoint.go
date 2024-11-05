@@ -142,7 +142,7 @@ func tableAzurePrivateEndpoint(_ context.Context) *plugin.Table {
 				Name:        "region",
 				Description: "The Azure region where the resource is located.",
 				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Location").Transform(toLower),
+				Transform:   transform.FromField("Description.PrivateEndpoint.Location").Transform(toLower),
 			},
 			{
 				Name:        "resource_group",

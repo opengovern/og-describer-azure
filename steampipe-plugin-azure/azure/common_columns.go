@@ -60,13 +60,13 @@ func commonKaytuColumns() []*plugin.Column {
 			Name:        "og_resource_id",
 			Type:        proto.ColumnType_STRING,
 			Description: "The unique ID of the resource in opengovernance.",
-			Transform:   transform.FromField("ID"),
+			Transform:   transform.FromField("ResourceID"),
 		},
 		{
 			Name:        "kaytu_metadata",
 			Type:        proto.ColumnType_STRING,
 			Description: ColumnDescriptionMetadata,
-			Transform:   transform.FromField("Metadata").Transform(marshalJSON),
+			Transform:   transform.FromField("IntegrationMetadata").Transform(marshalJSON),
 		},
 		{
 			Name:        "kaytu_description",

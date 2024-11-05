@@ -25,7 +25,7 @@ func tableAzureCostManagementCostBySubscription(_ context.Context) *plugin.Table
 				Name:        "id",
 				Description: "The id of the costbysubscription.",
 				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("ID")},
+				Transform:   transform.FromField("ResourceID")},
 			{
 				Name:        "name",
 				Description: "The name of the costbysubscription.",

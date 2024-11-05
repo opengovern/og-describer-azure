@@ -27,7 +27,7 @@ func tableAzurePolicyDefinition(_ context.Context) *plugin.Table {
 				Name:        "id",
 				Type:        proto.ColumnType_STRING,
 				Description: "The ID of the policy definition.",
-				Transform:   transform.FromField("ID"),
+				Transform:   transform.FromField("ResourceID"),
 			},
 			{
 				Name:        "name",

@@ -149,7 +149,7 @@ func tableAzureDBforPostgreSQLFlexibleServers(_ context.Context) *plugin.Table {
 // 				Name:        "title",
 // 				Description: ColumnDescriptionTitle,
 // 				Type:        proto.ColumnType_STRING,
-// 				Transform:   transform.FromField("Name"),
+// 				Transform:   transform.FromField("ResourceName"),
 // 			},
 // 			{
 // 				Name:        "tags",
@@ -160,7 +160,7 @@ func tableAzureDBforPostgreSQLFlexibleServers(_ context.Context) *plugin.Table {
 // 				Name:        "akas",
 // 				Description: ColumnDescriptionAkas,
 // 				Type:        proto.ColumnType_JSON,
-// 				Transform:   transform.FromField("ID").Transform(idToAkas),
+// 				Transform:   transform.FromField("ResourceID").Transform(idToAkas),
 // 			},
 
 // 			// Azure standard columns
@@ -174,7 +174,7 @@ func tableAzureDBforPostgreSQLFlexibleServers(_ context.Context) *plugin.Table {
 // 				Name:        "resource_group",
 // 				Description: ColumnDescriptionResourceGroup,
 // 				Type:        proto.ColumnType_STRING,
-// 				Transform:   transform.FromField("ID").Transform(extractResourceGroupFromID),
+// 				Transform:   transform.FromField("ResourceID").Transform(extractResourceGroupFromID),
 // 			},
 // 		}),
 // 	}
