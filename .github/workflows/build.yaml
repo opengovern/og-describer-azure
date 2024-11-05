@@ -48,15 +48,8 @@ jobs:
       - name: Build Azure Plugin App
         working-directory: ./steampipe-plugin-azure
         run: make build
-      - name: Build AzureAD Plugin App
-        working-directory: ./steampipe-plugin-azuread
-        run: make build
       - name: Pack Azure Plugin Build
         working-directory: ./steampipe-plugin-azure
-        run: |
-          tar -cvf build.tar build
-      - name: Pack AzureAD Plugin Build
-        working-directory: ./steampipe-plugin-azuread
         run: |
           tar -cvf build.tar build
       - name: Upload Azure Plugin Artifact
@@ -64,12 +57,6 @@ jobs:
         with:
           name: steampipe-plugin-azure
           path: ./steampipe-plugin-azure/build.tar
-          retention-days: 1
-      - name: Upload AzureAD Plugin Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: steampipe-plugin-azuread
-          path: ./steampipe-plugin-azuread/build.tar
           retention-days: 1
       - name: Build Local Describer App
         working-directory: .
@@ -123,38 +110,6 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository_owner }}/steampipe-plugin-azure-new:${{ needs.build.outputs.latest_tag }}
           file: steampipe-plugin-azure/docker/Dockerfile
-          context: .
-  deploy-azuread-plugin:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
-    environment: main
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Download AzureAD Plugin Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: steampipe-plugin-azuread
-          path: .
-      - name: Unpack AzureAD Plugin Artifact
-        run: |
-          tar -xvf build.tar
-      - name: Log in to Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GHCR_PAT }}
-      - name: Build and Push Docker Image for AzureAD Plugin
-        uses: docker/build-push-action@v4
-        with:
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/steampipe-plugin-azuread-new:${{ needs.build.outputs.latest_tag }}
-          file: steampipe-plugin-azuread/docker/Dockerfile
           context: .
   deploy-local-describer:
     needs:

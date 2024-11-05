@@ -4,6 +4,7 @@ package main
 
 import (
 	"fmt"
+	opengovernance "github.com/opengovern/og-describer-azure/pkg/SDK/generated"
 	"os"
 	"strings"
 	"text/template"
@@ -18,6 +19,7 @@ const azureTableServiceTemplate = `
 package azure
 
 import (
+	opengovernance "github.com/opengovern/og-describer-azure/pkg/SDK/generated"
 	"context"
 	"fmt"
 	"github.com/opengovern/og-azure-describer/pkg/kaytu-es-sdk"

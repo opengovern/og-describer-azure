@@ -3,6 +3,7 @@ package azure
 import (
 	"context"
 	"fmt"
+	opengovernance "github.com/opengovern/og-describer-azure/pkg/SDK/generated"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 	"strings"

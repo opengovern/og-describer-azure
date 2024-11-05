@@ -2,6 +2,7 @@ package azure
 
 import (
 	"context"
+	opengovernance "github.com/opengovern/og-describer-azure/pkg/SDK/generated"
 	"strconv"
 	"strings"
 

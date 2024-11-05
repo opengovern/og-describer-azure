@@ -3,6 +3,7 @@ package azure
 import (
 	"context"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/compute/armcompute/v4"
+	opengovernance "github.com/opengovern/og-describer-azure/pkg/SDK/generated"
 	"strings"
 
 	"github.com/turbot/go-kit/types"
