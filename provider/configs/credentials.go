@@ -1,11 +1,11 @@
 package configs
 
-type AccountCredentials struct {
-	TenantID        string `json:"azure_tenant_id"`
-	ClientID        string `json:"azure_client_id"`
-	ClientSecret    string `json:"azure_client_password"`
-	CertificatePath string `json:"certificatePath"`
-	CertificatePass string `json:"certificatePass"`
+type IntegrationCredentials struct {
+	TenantID        string `json:"tenant_id"`
+	ClientID        string `json:"client_id"`
+	ClientSecret    string `json:"client_secret"`
+	CertificatePath string `json:"certificate_path"`
+	CertificatePass string `json:"certificate_pass"`
 	Username        string `json:"username"`
 	Password        string `json:"password"`
 }

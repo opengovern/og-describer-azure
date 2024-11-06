@@ -11,7 +11,7 @@ import (
 )
 
 func DescribeBySubscription(describe func(context.Context, *azidentity.ClientSecretCredential, string, *model.StreamSender) ([]model.Resource, error)) model.ResourceDescriber {
-	return func(ctx context.Context, cfg configs.AccountCredentials, triggerType enums.DescribeTriggerType, additionalData map[string]string, stream *model.StreamSender) ([]model.Resource, error) {
+	return func(ctx context.Context, cfg configs.IntegrationCredentials, triggerType enums.DescribeTriggerType, additionalData map[string]string, stream *model.StreamSender) ([]model.Resource, error) {
 		ctx = describer.WithTriggerType(ctx, triggerType)
 		cred, err := azidentity.NewClientSecretCredential(cfg.TenantID, cfg.ClientID, cfg.ClientSecret, nil)
 		if err != nil {
@@ -36,7 +36,7 @@ func DescribeBySubscription(describe func(context.Context, *azidentity.ClientSec
 }
 
 func DescribeADByTenantID(describe func(context.Context, *azidentity.ClientSecretCredential, string, *model.StreamSender) ([]model.Resource, error)) model.ResourceDescriber {
-	return func(ctx context.Context, cfg configs.AccountCredentials, triggerType enums.DescribeTriggerType, additionalData map[string]string, stream *model.StreamSender) ([]model.Resource, error) {
+	return func(ctx context.Context, cfg configs.IntegrationCredentials, triggerType enums.DescribeTriggerType, additionalData map[string]string, stream *model.StreamSender) ([]model.Resource, error) {
 		ctx = describer.WithTriggerType(ctx, triggerType)
 		cred, err := azidentity.NewClientSecretCredential(cfg.TenantID, cfg.ClientID, cfg.ClientSecret, nil)
 		if err != nil {

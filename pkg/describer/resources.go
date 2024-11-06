@@ -49,7 +49,7 @@ func GetResources(
 	logger *zap.Logger,
 	resourceType string,
 	triggerType enums.DescribeTriggerType,
-	cfg configs.AccountCredentials,
+	cfg configs.IntegrationCredentials,
 	additionalData map[string]string,
 	stream *model.StreamSender,
 ) error {
@@ -60,7 +60,7 @@ func GetResources(
 	return nil
 }
 
-func describe(ctx context.Context, logger *zap.Logger, accountCfg configs.AccountCredentials, resourceType string, triggerType enums.DescribeTriggerType, additionalData map[string]string, stream *model.StreamSender) ([]model.Resource, error) {
+func describe(ctx context.Context, logger *zap.Logger, accountCfg configs.IntegrationCredentials, resourceType string, triggerType enums.DescribeTriggerType, additionalData map[string]string, stream *model.StreamSender) ([]model.Resource, error) {
 	resourceTypeObject, ok := provider.ResourceTypes[resourceType]
 	if !ok {
 		return nil, fmt.Errorf("unsupported resource type: %s", resourceType)
