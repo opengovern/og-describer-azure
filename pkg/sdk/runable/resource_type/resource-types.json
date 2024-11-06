@@ -1,0 +1,3274 @@
+[
+  {
+    "ResourceName": "Microsoft.App/containerApps",
+
+    "Tags": {
+      "category": [
+        "Container"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Container%20App.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.AppContainerApps)",
+    "GetDescriber": "",    "Model": "ContainerApp"
+  },
+  {
+    "ResourceName": "Microsoft.App/managedEnvironments",
+
+    "Tags": {
+      "category": [
+        "Container"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Container%20App%20Environment.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.AppManagedEnvironment)",
+    "GetDescriber": "",    "Model": "AppManagedEnvironment"
+  },
+  {
+    "ResourceName": "Microsoft.Blueprint/blueprints",
+
+    "Tags": {
+        "logo_uri": [
+            "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Blueprint.svg"
+        ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.BlueprintBlueprint)",
+    "GetDescriber": "",
+    "Model": "Blueprint"
+  },
+  {
+    "ResourceName": "Microsoft.Cdn/profiles",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/CDN%20Profile.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.CdnProfiles)",
+    "GetDescriber": "",    "Model": "CDNProfile"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/cloudServices",
+
+    "Tags": {
+      "category": [
+        "Compute"
+      ],
+        "logo_uri": [
+            "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Cloud%20Service.svg"
+        ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeCloudServices)",
+    "GetDescriber": "",
+    "Model": "ComputeCloudService"
+  },
+  {
+    "ResourceName": "Microsoft.ContainerInstance/containerGroups",
+
+    "Tags": {
+      "category": [
+        "Container"
+      ],
+        "logo_uri": [
+            "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Container%20Instance.svg"
+        ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ContainerInstanceContainerGroups)",
+    "GetDescriber": "",    "Model": "ContainerInstanceContainerGroup"
+  },
+  {
+    "ResourceName": "Microsoft.DataMigration/services",
+
+    "Tags": {
+      "category": [
+        "Migration"
+      ],
+      "logo_uri": [
+          "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Database%20Migration%20Service.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DataMigrationServices)",
+    "GetDescriber": "",    "Model": "DataMigrationService"
+  },
+  {
+    "ResourceName": "Microsoft.DataProtection/backupVaults",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Backup%20vault.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DataProtectionBackupVaults)",
+    "GetDescriber": "",
+    "Model": "DataProtectionBackupVaults"
+  },
+  {
+    "ResourceName": "Microsoft.DataProtection/backupJobs",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DataProtectionBackupJobs)",
+    "GetDescriber": "",
+    "Model": "DataProtectionJob"
+  },
+  {
+    "ResourceName": "Microsoft.DataProtection/backupVaults/backupPolicies",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Backup%20vault.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DataProtectionBackupVaultsBackupPolicies)",
+    "GetDescriber": "",
+    "Model": "DataProtectionBackupVaultsBackupPolicies"
+  },
+  {
+    "ResourceName": "Microsoft.Logic/integrationAccounts",
+
+    "Tags": {
+      "category": [
+        "Integration"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Integration%20Account.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.LogicIntegrationAccounts)",
+    "GetDescriber": "",    "Model": "LogicIntegrationAccounts"
+  },
+  {
+    "ResourceName": "Microsoft.Network/bastionHosts",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Bastion.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.NetworkBastionHosts)",
+    "GetDescriber": "",    "Model": "BastionHosts"
+  },
+  {
+    "ResourceName": "Microsoft.Network/connections",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Hybrid%20Connection.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.NetworkConnections)",
+    "GetDescriber": "",
+    "Model": "Connection"
+  },
+  {
+    "ResourceName": "Microsoft.Network/firewallPolicies",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Firewall%20Policy.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.FirewallPolicy)",
+    "GetDescriber": "",
+    "Model": "FirewallPolicy"
+  },
+  {
+    "ResourceName": "Microsoft.Network/localNetworkGateways",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Local%20Network%20Gateway.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.LocalNetworkGateway)",
+    "GetDescriber": "",    "Model": "LocalNetworkGateway"
+  },
+  {
+    "ResourceName": "Microsoft.Network/privateLinkServices",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Private%20link%20Service.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.PrivateLinkService)",
+    "GetDescriber": "",
+    "Model": "PrivateLinkService"
+  },
+  {
+    "ResourceName": "Microsoft.Network/publicIPPrefixes",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Public%20IP%20Prefix.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.PublicIPPrefix)",
+    "GetDescriber": "",    "Model": "PublicIPPrefix"
+  },
+  {
+    "ResourceName": "Microsoft.Network/virtualHubs",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Virtual%20Hub.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.NetworkVirtualHubs)",
+    "GetDescriber": "",    "Model": "VirtualHubs"
+  },
+  {
+    "ResourceName": "Microsoft.Network/virtualWans",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20WAN.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.NetworkVirtualWans)",
+    "GetDescriber": "",    "Model": "VirtualWans"
+  },
+  {
+    "ResourceName": "Microsoft.Network/vpnGateways",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Network%20Gateway.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.VpnGateway)",
+    "GetDescriber": "",    "Model": "VpnGateway"
+  },
+  {
+    "ResourceName": "Microsoft.Network/vpnGateways/vpnConnections",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.NetworkVpnGatewaysVpnConnections)",
+    "GetDescriber": "",    "Model": "VpnGatewayVpnConnection"
+  },
+  {
+    "ResourceName": "Microsoft.Network/vpnSites",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.NetworkVpnGatewaysVpnSites)",
+    "GetDescriber": "",    "Model": "VpnSite"
+  },
+  {
+    "ResourceName": "Microsoft.OperationalInsights/workspaces",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.OperationalInsightsWorkspaces)",
+    "GetDescriber": "",
+    "Model": "OperationalInsightsWorkspaces"
+  },
+  {
+    "ResourceName": "Microsoft.StreamAnalytics/cluster",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Stream%20Analytics%20Cluster.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.StreamAnalyticsCluster)",
+    "GetDescriber": "",
+    "Model": "StreamAnalyticsCluster"
+  },
+  {
+    "ResourceName": "Microsoft.TimeSeriesInsights/environments",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Time%20Series%20Insights%20Environment.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.TimeSeriesInsightsEnvironments)",
+    "GetDescriber": "",
+    "Model": "TimeSeriesInsightsEnvironments"
+  },
+  {
+    "ResourceName": "Microsoft.VirtualMachineImages/imageTemplates",
+
+    "Tags": {
+      "category": [
+        "Compute"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Image%20Template.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.VirtualMachineImagesImageTemplates)",
+    "GetDescriber": "",
+    "Model": "VirtualMachineImagesImageTemplates"
+  },
+  {
+    "ResourceName": "Microsoft.Web/serverFarms",
+
+    "Tags": {
+      "category": [
+        "Container"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Server%20Farm.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.WebServerFarms)",
+    "GetDescriber": "",    "Model": "WebServerFarms"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/virtualMachineScaleSets/virtualMachines",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Scale%20Set.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeVirtualMachineScaleSetVm)",
+    "GetDescriber": "",
+    "Model": "ComputeVirtualMachineScaleSetVm"
+  },
+  {
+    "ResourceName": "Microsoft.Automation/automationAccounts",
+
+    "Tags": {
+      "category": [
+        "Management \u0026 Governance"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Automation%20Account.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.AutomationAccounts)",
+    "GetDescriber": "",    "Model": "AutomationAccounts"
+  },
+  {
+    "ResourceName": "Microsoft.Automation/automationAccounts/variables",
+
+    "Tags": {
+      "category": [
+        "Management \u0026 Governance"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Automation%20Variable.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.AutomationVariables)",
+    "GetDescriber": "",
+    "TerraformName": [
+      "azurerm_automation_variable_string",
+      "azurerm_automation_variable_int",
+      "azurerm_automation_variable_datetime",
+      "azurerm_automation_variable_bool"
+    ],
+
+    "Model": "AutomationVariables"
+  },
+  {
+    "ResourceName": "Microsoft.Network/dnsZones",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DNS%20Zone%20(Public).svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DNSZones)",
+    "GetDescriber": "",    "Model": "DNSZones"
+  },
+  {
+    "ResourceName": "Microsoft.Databricks/workspaces",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Databricks.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DatabricksWorkspaces)",
+    "GetDescriber": "",    "Model": "DatabricksWorkspace"
+  },
+  {
+    "ResourceName": "Microsoft.Network/privateDnsZones",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DNS%20Zone%20(Private).svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.PrivateDnsZones)",
+    "GetDescriber": "",    "Model": "PrivateDNSZones"
+  },
+  {
+    "ResourceName": "Microsoft.Network/privateEndpoints",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Private%20Endpoint.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.PrivateEndpoints)",
+    "GetDescriber": "",    "Model": "PrivateEndpoint"
+  },
+  {
+    "ResourceName": "Microsoft.Network/networkWatchers",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Network%20Watcher.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.NetworkWatcher)",
+    "GetDescriber": "",    "Model": "NetworkWatcher"
+  },
+  {
+    "ResourceName": "Microsoft.Resources/subscriptions/resourceGroups",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Resource%20Group.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ResourceGroup)",
+    "GetDescriber": "",    "Model": "ResourceGroup"
+  },
+  {
+    "ResourceName": "Microsoft.Web/staticSites",
+
+    "Tags": {
+      "category": [
+        "PaaS"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Static%20Web%20App.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.AppServiceWebApp)",
+    "GetDescriber": "",    "Model": "AppServiceWebApp"
+  },
+  {
+    "ResourceName": "Microsoft.Web/sites/slots",
+
+    "Tags": {
+      "category": [
+        "PaaS"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Static%20Web%20App.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.AppServiceWebAppSlot)",
+    "GetDescriber": "",    "Model": "AppServiceWebAppSlot"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/serviceprincipals",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdServicePrinciple)",
+    "GetDescriber": "",
+    "Model": "AdServicePrincipal"
+  },
+  {
+    "ResourceName": "Microsoft.CognitiveServices/accounts",
+
+    "Tags": {
+      "category": [
+        "AI + ML"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Cognitive%20Services.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.CognitiveAccount)",
+    "GetDescriber": "",    "Model": "CognitiveAccount"
+  },
+  {
+    "ResourceName": "Microsoft.Sql/managedInstances",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Managed%20Instance.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.MssqlManagedInstance)",
+    "GetDescriber": "",
+    "TerraformName": [
+      "azurerm_mssql_managed_instance",
+      "azurerm_sql_managed_instance"
+    ],
+
+    "Model": "MssqlManagedInstance"
+  },
+  {
+    "ResourceName": "Microsoft.Sql/virtualclusters",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Database.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.SqlVirtualClusters)",
+    "GetDescriber": "",
+    "Model": "SqlVirtualClusters"
+  },
+  {
+    "ResourceName": "Microsoft.Sql/managedInstances/databases",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Managed%20Instance.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.MssqlManagedInstanceDatabases)",
+    "GetDescriber": "",    "Model": "MssqlManagedInstanceDatabases"
+  },
+  {
+    "ResourceName": "Microsoft.Sql/servers/databases",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Database.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.SqlDatabase)",
+    "GetDescriber": "",
+    "TerraformName": [
+      "azurerm_mssql_database",
+      "azurerm_sql_database"
+    ],
+
+    "Model": "SqlDatabase"
+  },
+  {
+    "ResourceName": "Microsoft.Storage/storageAccounts/largeFileSharesState",
+
+    "Tags": {
+      "category": [
+        "Storage"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/File%20Share.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.StorageFileShare)",
+    "GetDescriber": "",
+    "TerraformName": [
+      "azurerm_storage_share_file",
+      "azure_storage_share"
+    ],
+
+    "Model": "StorageFileShare"
+  },
+  {
+    "ResourceName": "Microsoft.DBforPostgreSQL/servers",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20PostgreSQL.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.PostgresqlServer)",
+    "GetDescriber": "",    "Model": "PostgresqlServer"
+  },
+  {
+    "ResourceName": "Microsoft.DBforPostgreSQL/flexibleservers",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20PostgreSQL.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.PostgresqlFlexibleservers)",
+    "GetDescriber": "",    "Model": "PostgresqlFlexibleServer"
+  },
+  {
+    "ResourceName": "Microsoft.AnalysisServices/servers",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Analysis%20Service.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.AnalysisService)",
+    "GetDescriber": "",    "Model": "AnalysisServiceServer"
+  },
+  {
+    "ResourceName": "Microsoft.Security/pricings",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.SecurityCenterSubscriptionPricing)",
+    "GetDescriber": "",    "Model": "SecurityCenterSubscriptionPricing"
+  },
+  {
+    "ResourceName": "Microsoft.Insights/guestDiagnosticSettings",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Diagnostics%20Setting.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DiagnosticSetting)",
+    "GetDescriber": "",
+    "Model": "DiagnosticSetting"
+  },
+  {
+    "ResourceName": "Microsoft.Insights/autoscaleSettings",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.AutoscaleSetting)",
+    "GetDescriber": "",
+    "Model": "AutoscaleSetting"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/groups",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdGroup)",
+    "GetDescriber": "",
+    "Model": "AdGroup"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/groupMemberships",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdGroupMembership)",
+    "GetDescriber": "",
+    "Model": "AdGroupMembership"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/devices",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdDevice)",
+    "GetDescriber": "",
+    "Model": "AdDevice"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/signInReports",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdSignInReport)",
+    "GetDescriber": "",
+    "Model": "AdSignInReport"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/applications",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdApplication)",
+    "GetDescriber": "",
+    "Model": "AdApplication"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/appRegistrations",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdAppRegistration)",
+    "GetDescriber": "",
+    "Model": "AdAppRegistration"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/enterpriseApplication",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdEnterpriseApplication)",
+    "GetDescriber": "",
+    "Model": "AdEnterpriseApplication"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/managedIdentity",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdManagedIdentity)",
+    "GetDescriber": "",
+    "Model": "AdManagedIdentity"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/microsoftApplication",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdMicrosoftApplication)",
+    "GetDescriber": "",
+    "Model": "AdMicrosoftApplication"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/domains",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdDomain)",
+    "GetDescriber": "",
+    "Model": "AdDomain"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/tenant",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdTenant)",
+    "GetDescriber": "",
+    "Model": "AdTenant"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/identityproviders",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdIdentityProvider)",
+    "GetDescriber": "",
+    "Model": "AdIdentityProvider"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/securitydefaultspolicy",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdSecurityDefaultsPolicy)",
+    "GetDescriber": "",
+    "Model": "AdSecurityDefaultsPolicy"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/authorizationpolicy",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdAuthorizationPolicy)",
+    "GetDescriber": "",
+    "Model": "AdAuthorizationPolicy"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/conditionalaccesspolicy",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdConditionalAccessPolicy)",
+    "GetDescriber": "",
+    "Model": "AdConditionalAccessPolicy"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/adminconsentrequestpolicy",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdAdminConsentRequestPolicy)",
+    "GetDescriber": "",
+    "Model": "AdAdminConsentRequestPolicy"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/userregistrationdetails",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdUserRegistrationDetails)",
+    "GetDescriber": "",
+    "Model": "AdUserRegistrationDetails"
+  },
+  {
+    "ResourceName": "Microsoft.Web/hostingEnvironments",
+
+    "Tags": {
+      "category": [
+        "PaaS"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Service%20Environment.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.AppServiceEnvironment)",
+    "GetDescriber": "",    "Model": "AppServiceEnvironment"
+  },
+  {
+    "ResourceName": "Microsoft.Cache/redis",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cache%20for%20Redis.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.RedisCache)",
+    "GetDescriber": "",    "Model": "RedisCache"
+  },
+  {
+    "ResourceName": "Microsoft.ContainerRegistry/registries",
+
+    "Tags": {
+      "category": [
+        "Container"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Container%20Registry.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ContainerRegistry)",
+    "GetDescriber": "",    "Model": "ContainerRegistry"
+  },
+  {
+    "ResourceName": "Microsoft.DataFactory/factories/pipelines",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Factory.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DataFactoryPipeline)",
+    "GetDescriber": "",    "Model": "DataFactoryPipeline"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/resourceSku",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeResourceSKU)",
+    "GetDescriber": "",
+    "Model": "ComputeResourceSKU"
+  },
+  {
+    "ResourceName": "Microsoft.Network/expressRouteCircuits",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/ExpressRoute%20Circuit.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ExpressRouteCircuit)",
+    "GetDescriber": "",    "Model": "ExpressRouteCircuit"
+  },
+  {
+    "ResourceName": "Microsoft.Management/managementgroups",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Management%20Group.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ManagementGroup)",
+    "GetDescriber": "",    "Model": "ManagementGroup"
+  },
+  {
+    "ResourceName": "microsoft.SqlVirtualMachine/SqlVirtualMachines",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.SqlServerVirtualMachine)",
+    "GetDescriber": "",    "Model": "SqlServerVirtualMachine"
+  },
+  {
+    "ResourceName": "Microsoft.SqlVirtualMachine/SqlVirtualMachineGroups",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.SqlServerVirtualMachineGroups)",
+    "GetDescriber": "",
+    "Model": "SqlServerVirtualMachineGroup"
+  },
+  {
+    "ResourceName": "Microsoft.Storage/storageAccounts/tableServices",
+
+    "Tags": {
+      "category": [
+        "Storage"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Table.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.StorageTableService)",
+    "GetDescriber": "",
+    "Model": "StorageTableService"
+  },
+  {
+    "ResourceName": "Microsoft.Synapse/workspaces",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Synapse%20Analytics.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.SynapseWorkspace)",
+    "GetDescriber": "",    "Model": "SynapseWorkspace"
+  },
+  {
+    "ResourceName": "Microsoft.Synapse/workspaces/bigdatapools",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Synapse%20Analytics.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.SynapseWorkspaceBigdataPools)",
+    "GetDescriber": "",
+    "Model": "SynapseWorkspaceBigdatapools"
+  },
+  {
+    "ResourceName": "Microsoft.Synapse/workspaces/sqlpools",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Synapse%20Analytics.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.SynapseWorkspaceSqlpools)",
+    "GetDescriber": "",    "Model": "SynapseWorkspaceSqlpools"
+  },
+  {
+    "ResourceName": "Microsoft.StreamAnalytics/streamingJobs",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Stream%20Analytics%20job.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.StreamAnalyticsJob)",
+    "GetDescriber": "",    "Model": "StreamAnalyticsJob"
+  },
+  {
+    "ResourceName": "Microsoft.CostManagement/CostBySubscription",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.DailyCostBySubscription)",
+    "GetDescriber": "",
+    "Model": "CostManagementCostBySubscription"
+  },
+  {
+    "ResourceName": "Microsoft.ContainerService/managedClusters",
+
+    "Tags": {
+      "category": [
+        "Container"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/AKS%20Hybrid%20Cluster.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.KubernetesCluster)",
+    "GetDescriber": "",    "Model": "KubernetesCluster"
+  },
+  {
+    "ResourceName": "Microsoft.ContainerService/serviceVersions",
+
+    "Tags": {
+      "category": [
+        "Container"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.KubernetesServiceVersion)",
+    "GetDescriber": "",
+    "Model": "KubernetesServiceVersion"
+  },
+  {
+    "ResourceName": "Microsoft.DataFactory/factories",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Factory.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DataFactory)",
+    "GetDescriber": "",    "Model": "DataFactory"
+  },
+  {
+    "ResourceName": "Microsoft.Sql/servers",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.SqlServer)",
+    "GetDescriber": "",    "Model": "SqlServer"
+  },
+  {
+    "ResourceName": "Microsoft.Sql/servers/jobagents",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Elastic%20Job%20Agent.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.SqlServerJobAgents)",
+    "GetDescriber": "",    "Model": "SqlServerJobAgent"
+  },
+  {
+    "ResourceName": "Microsoft.Security/autoProvisioningSettings",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.SecurityCenterAutoProvisioning)",
+    "GetDescriber": "",    "Model": "SecurityCenterAutoProvisioning"
+  },
+  {
+    "ResourceName": "Microsoft.Insights/logProfiles",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.LogProfile)",
+    "GetDescriber": "",
+    "Model": "LogProfile"
+  },
+  {
+    "ResourceName": "Microsoft.DataBoxEdge/dataBoxEdgeDevices",
+
+    "Tags": {
+      "category": [
+        "IoT \u0026 Devices"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Box%20Edge.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DataboxEdgeDevice)",
+    "GetDescriber": "",    "Model": "DataboxEdgeDevice"
+  },
+  {
+    "ResourceName": "Microsoft.Network/loadBalancers",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.LoadBalancer)",
+    "GetDescriber": "",    "Model": "LoadBalancer"
+  },
+  {
+    "ResourceName": "Microsoft.Network/azureFirewalls",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Firewall.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.NetworkAzureFirewall)",
+    "GetDescriber": "",    "Model": "NetworkAzureFirewall"
+  },
+  {
+    "ResourceName": "Microsoft.Management/locks",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Resource%20Lock.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ManagementLock)",
+    "GetDescriber": "",
+    "Model": "ManagementLock"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/virtualMachineScaleSets/networkInterfaces",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Network%20Interface.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeVirtualMachineScaleSetNetworkInterface)",
+    "GetDescriber": "",
+    "Model": "ComputeVirtualMachineScaleSetNetworkInterface"
+  },
+  {
+    "ResourceName": "Microsoft.Network/frontDoors",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Front%20Door.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.FrontDoor)",
+    "GetDescriber": "",    "Model": "Frontdoor"
+  },
+  {
+    "ResourceName": "Microsoft.Authorization/policyAssignments",
+
+    "Tags": {
+      "category": [
+        "Identify \u0026 Access"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Policy%20Assignment.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.PolicyAssignment)",
+    "GetDescriber": "",    "Model": "PolicyAssignment"
+  },
+  {
+    "ResourceName": "Microsoft.Authorization/userEffectiveAccess",
+
+    "Tags": {
+      "category": [
+        "Identify \u0026 Access"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Policy%20Assignment.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.UserEffectiveAccess)",
+    "GetDescriber": "",    "Model": "UserEffectiveAccess"
+  },
+  {
+    "ResourceName": "Microsoft.Search/searchServices",
+
+    "Tags": {
+      "category": [
+        "AI + ML"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Search%20Service.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.SearchService)",
+    "GetDescriber": "",    "Model": "SearchService"
+  },
+  {
+    "ResourceName": "Microsoft.Security/settings",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.SecurityCenterSetting)",
+    "GetDescriber": "",    "Model": "SecurityCenterSetting"
+  },
+  {
+    "ResourceName": "Microsoft.RecoveryServices/vaults",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Recovery%20Services%20Vault.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.RecoveryServicesVault)",
+    "GetDescriber": "",    "Model": "RecoveryServicesVault"
+  },
+  {
+    "ResourceName": "Microsoft.RecoveryServices/vaults/backupJobs",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.RecoveryServicesBackupJobs)",
+    "GetDescriber": "",    "Model": "RecoveryServicesBackupJob"
+  },
+  {
+    "ResourceName": "Microsoft.RecoveryServices/vaults/backupPolicies",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.RecoveryServicesBackupPolicies)",
+    "GetDescriber": "",    "Model": "RecoveryServicesBackupPolicy"
+  },
+  {
+    "ResourceName": "Microsoft.RecoveryServices/vaults/backupItems",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.RecoveryServicesBackupItem)",
+    "GetDescriber": "",    "Model": "RecoveryServicesBackupItem"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/diskEncryptionSets",
+
+    "Tags": {
+      "category": [
+        "Compute"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Disk%20Encryption%20Set.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeDiskEncryptionSet)",
+    "GetDescriber": "",    "Model": "ComputeDiskEncryptionSet"
+  },
+  {
+    "ResourceName": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DocumentDBSQLDatabase)",
+    "GetDescriber": "",    "Model": "CosmosdbSqlDatabase"
+  },
+  {
+    "ResourceName": "Microsoft.EventGrid/topics",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Event%20Grid%20Topic.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.EventGridTopic)",
+    "GetDescriber": "",    "Model": "EventGridTopic"
+  },
+  {
+    "ResourceName": "Microsoft.EventHub/namespaces",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Event%20Hub.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.EventhubNamespace)",
+    "GetDescriber": "",    "Model": "EventhubNamespace"
+  },
+  {
+    "ResourceName": "Microsoft.EventHub/namespaces/eventHubs",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Event%20Hub.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.EventhubNamespaceEventhub)",
+    "GetDescriber": "",    "Model": "EventhubNamespaceEventhub"
+  },
+  {
+    "ResourceName": "Microsoft.MachineLearningServices/workspaces",
+
+    "Tags": {
+      "category": [
+        "AI + ML"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Machine%20Learning%20Studio%20Workspace%20(classic).svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.MachineLearningWorkspace)",
+    "GetDescriber": "",    "Model": "MachineLearningWorkspace"
+  },
+  {
+    "ResourceName": "Microsoft.Dashboard/grafana",
+
+    "Tags": {
+      "category": [
+        "Managed Services"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Managed%20Grafana.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DashboardGrafana)",
+    "GetDescriber": "",
+    "Model": "DashboardGrafana"
+  },
+  {
+    "ResourceName": "Microsoft.DesktopVirtualization/workspaces",
+
+    "Tags": {
+      "category": [
+        "End User"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Windows%20Virtual%20Desktop.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DesktopVirtualizationWorkspaces)",
+    "GetDescriber": "",
+    "Model": "DesktopVirtualizationWorkspace"
+  },
+  {
+    "ResourceName": "Microsoft.Network/trafficManagerProfiles",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Traffic%20Manager%20profile.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.TrafficManagerProfile)",
+    "GetDescriber": "",
+    "Model": "TrafficManagerProfile"
+  },
+  {
+    "ResourceName": "Microsoft.Network/dnsResolvers",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DNS%20Private%20Resolver.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DNSResolvers)",
+    "GetDescriber": "",
+    "Model": "DNSResolver"
+  },
+  {
+    "ResourceName": "Microsoft.CostManagement/CostByResourceType",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.DailyCostByResourceType)",
+    "GetDescriber": "",
+    "Model": "CostManagementCostByResourceType"
+  },
+  {
+    "ResourceName": "Microsoft.Network/networkInterfaces",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Network%20Interface.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.NetworkInterface)",
+    "GetDescriber": "",    "Model": "NetworkInterface"
+  },
+  {
+    "ResourceName": "Microsoft.Network/publicIPAddresses",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Public%20IP%20Address.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.PublicIPAddress)",
+    "GetDescriber": "",    "Model": "PublicIPAddress"
+  },
+  {
+    "ResourceName": "Microsoft.HealthcareApis/services",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.HealthcareService)",
+    "GetDescriber": "",    "Model": "HealthcareService"
+  },
+  {
+    "ResourceName": "Microsoft.ServiceBus/namespaces",
+
+    "Tags": {
+      "category": [
+        "Intergration"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Service%20Bus.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ServicebusNamespace)",
+    "GetDescriber": "",    "Model": "ServicebusNamespace"
+  },
+  {
+    "ResourceName": "Microsoft.Web/sites",
+
+    "Tags": {
+      "category": [
+        "PaaS"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Service.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.AppServiceFunctionApp)",
+    "GetDescriber": "",
+    "TerraformName": [
+      "azurerm_app_service",
+      "azurerm_function_app"
+    ],
+
+    "Model": "AppServiceFunctionApp"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/availabilitySets",
+
+    "Tags": {
+      "category": [
+        "Compute"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Availability%20Set.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeAvailabilitySet)",
+    "GetDescriber": "",    "Model": "ComputeAvailabilitySet"
+  },
+  {
+    "ResourceName": "Microsoft.Network/virtualNetworks",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Network.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.VirtualNetwork)",
+    "GetDescriber": "",    "Model": "VirtualNetwork"
+  },
+  {
+    "ResourceName": "Microsoft.Security/securityContacts",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.SecurityCenterContact)",
+    "GetDescriber": "",    "Model": "SecurityCenterContact"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/diskswriteops",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeDiskWriteOps)",
+    "GetDescriber": "",
+    "Model": "ComputeDiskWriteOps"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/diskswriteopshourly",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeDiskWriteOpsHourly)",
+    "GetDescriber": "",
+    "Model": "ComputeDiskWriteOpsHourly"
+  },
+  {
+    "ResourceName": "Microsoft.EventGrid/domains",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Event%20Grid%20Domain.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.EventGridDomain)",
+    "GetDescriber": "",    "Model": "EventGridDomain"
+  },
+  {
+    "ResourceName": "Microsoft.KeyVault/deletedVaults",
+
+    "Tags": {
+      "category": [
+        "Security"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DeletedVault)",
+    "GetDescriber": "",
+    "Model": "KeyVaultDeletedVault"
+  },
+  {
+    "ResourceName": "Microsoft.Storage/storageAccounts/tableServices/tables",
+
+    "Tags": {
+      "category": [
+        "Storage"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Table.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.StorageTable)",
+    "GetDescriber": "",    "Model": "StorageTable"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/users",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20User.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdUsers)",
+    "GetDescriber": "",
+    "Model": "AdUsers"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/directoryroles",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdDirectoryRole)",
+    "GetDescriber": "",
+    "Model": "AdDirectoryRole"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/directorysettings",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdDirectorySetting)",
+    "GetDescriber": "",
+    "Model": "AdDirectorySetting"
+  },
+  {
+    "ResourceName": "Microsoft.Entra/directoryauditreport",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeADByTenantID(describer.AdDirectoryAuditReport)",
+    "GetDescriber": "",
+    "Model": "AdDirectoryAuditReport"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/snapshots",
+
+    "Tags": {
+      "category": [
+        "Storage"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Managed%20Disk%20Snapshot.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeSnapshots)",
+    "GetDescriber": "",    "Model": "ComputeSnapshots"
+  },
+  {
+    "ResourceName": "Microsoft.Kusto/clusters",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_Grouped/Data/Azure%20Data%20Explorer%20Cluster.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.KustoCluster)",
+    "GetDescriber": "",    "Model": "KustoCluster"
+  },
+  {
+    "ResourceName": "Microsoft.StorageSync/storageSyncServices",
+
+    "Tags": {
+      "category": [
+        "Storage"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Sync%20Service.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.StorageSync)",
+    "GetDescriber": "",    "Model": "StorageSync"
+  },
+  {
+    "ResourceName": "Microsoft.Security/locations/jitNetworkAccessPolicies",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.SecurityCenterJitNetworkAccessPolicy)",
+    "GetDescriber": "",
+    "Model": "SecurityCenterJitNetworkAccessPolicy"
+  },
+  {
+    "ResourceName": "Microsoft.Network/virtualNetworks/subnets",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Subnet.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.Subnet)",
+    "GetDescriber": "",    "Model": "Subnet"
+  },
+  {
+    "ResourceName": "Microsoft.Network/loadBalancers/backendAddressPools",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Backend%20pool.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.LoadBalancerBackendAddressPool)",
+    "GetDescriber": "",    "Model": "LoadBalancerBackendAddressPool"
+  },
+  {
+    "ResourceName": "Microsoft.Network/loadBalancers/loadBalancingRules",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.LoadBalancerRule)",
+    "GetDescriber": "",    "Model": "LoadBalancerRule"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/virtualMachineCpuUtilizationDaily",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeVirtualMachineCpuUtilizationDaily)",
+    "GetDescriber": "",
+    "Model": "ComputeVirtualMachineCpuUtilizationDaily"
+  },
+  {
+    "ResourceName": "Microsoft.DataLakeStore/accounts",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Lake.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DataLakeStore)",
+    "GetDescriber": "",
+    "Model": "DataLakeStore"
+  },
+  {
+    "ResourceName": "Microsoft.StorageCache/caches",
+
+    "Tags": {
+      "category": [
+        "Storage"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_Grouped/Data/HPC%20Cache.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.HpcCache)",
+    "GetDescriber": "",    "Model": "HpcCache"
+  },
+  {
+    "ResourceName": "Microsoft.Batch/batchAccounts",
+
+    "Tags": {
+      "category": [
+        "Compute"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Batch%20Account.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.BatchAccount)",
+    "GetDescriber": "",    "Model": "BatchAccount"
+  },
+  {
+    "ResourceName": "Microsoft.Network/networkSecurityGroups",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Network%20Security%20Group.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.NetworkSecurityGroup)",
+    "GetDescriber": "",    "Model": "NetworkSecurityGroup"
+  },
+  {
+    "ResourceName": "Microsoft.Authorization/roleDefinitions",
+
+    "Tags": {
+      "category": [
+        "Identify \u0026 Access"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Role%20(Custom).svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.RoleDefinition)",
+    "GetDescriber": "",    "Model": "RoleDefinition"
+  },
+  {
+    "ResourceName": "Microsoft.Network/applicationSecurityGroups",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Security%20Group.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.NetworkApplicationSecurityGroups)",
+    "GetDescriber": "",    "Model": "NetworkApplicationSecurityGroups"
+  },
+  {
+    "ResourceName": "Microsoft.Authorization/roleAssignment",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.RoleAssignment)",
+    "GetDescriber": "",
+    "Model": "RoleAssignment"
+  },
+  {
+    "ResourceName": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DocumentDBMongoDatabase)",
+    "GetDescriber": "",    "Model": "CosmosdbMongoDatabase"
+  },
+  {
+    "ResourceName": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DocumentDBMongoCollection)",
+    "GetDescriber": "",    "Model": "CosmosdbMongoCollection"
+  },
+  {
+    "ResourceName": "Microsoft.Network/networkWatchers/flowLogs",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.NetworkWatcherFlowLog)",
+    "GetDescriber": "",    "Model": "NetworkWatcherFlowLog"
+  },
+  {
+    "ResourceName": "microsoft.Sql/servers/elasticpools",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Elastic%20Pool.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.SqlServerElasticPool)",
+    "GetDescriber": "",    "Model": "SqlServerElasticPool"
+  },
+  {
+    "ResourceName": "Microsoft.Security/subAssessments",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.SecurityCenterSubAssessment)",
+    "GetDescriber": "",
+    "Model": "SecurityCenterSubAssessment"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/disks",
+
+    "Tags": {
+      "category": [
+        "Storage"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeDisk)",
+    "GetDescriber": "",    "Model": "ComputeDisk"
+  },
+  {
+    "ResourceName": "Microsoft.Devices/ProvisioningServices",
+
+    "Tags": {
+      "category": [
+        "IoT \u0026 Devices"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/IoT%20Hub.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.IOTHubDps)",
+    "GetDescriber": "",    "Model": "IOTHubDps"
+  },
+  {
+    "ResourceName": "Microsoft.HDInsight/clusters",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/HDInsight%20Cluster.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.HdInsightCluster)",
+    "GetDescriber": "",
+    "TerraformName": [
+      "azurerm_hdinsight_hadoop_cluster",
+      "azurerm_hdinsight_hbase_cluster",
+      "azurerm_hdinsight_interactive_query_cluster",
+      "azurerm_hdinsight_kafka_cluster",
+      "azurerm_hdinsight_spark_cluster"
+    ],
+
+    "Model": "HdinsightCluster"
+  },
+  {
+    "ResourceName": "Microsoft.ServiceFabric/clusters",
+
+    "Tags": {
+      "category": [
+        "PaaS"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Service%20Fabric%20Managed%20Cluster.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ServiceFabricCluster)",
+    "GetDescriber": "",    "Model": "ServiceFabricCluster"
+  },
+  {
+    "ResourceName": "Microsoft.SignalRService/signalR",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SignalR.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.SignalrService)",
+    "GetDescriber": "",    "Model": "SignalrService"
+  },
+  {
+    "ResourceName": "Microsoft.Storage/storageAccounts/blob",
+
+    "Tags": {
+      "category": [
+        "Storage"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Blob.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.StorageBlob)",
+    "GetDescriber": "",    "Model": "StorageBlob"
+  },
+  {
+    "ResourceName": "Microsoft.Storage/storageaccounts/blobservices/containers",
+
+    "Tags": {
+      "category": [
+        "Storage"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Container.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.StorageContainer)",
+    "GetDescriber": "",    "Model": "StorageContainer"
+  },
+  {
+    "ResourceName": "Microsoft.Storage/storageAccounts/blobServices",
+
+    "Tags": {
+      "category": [
+        "Storage"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Blob.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.StorageBlobService)",
+    "GetDescriber": "",
+    "Model": "StorageBlobService"
+  },
+  {
+    "ResourceName": "Microsoft.Storage/storageAccounts/queueServices",
+
+    "Tags": {
+      "category": [
+        "Storage"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Queue.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.StorageQueue)",
+    "GetDescriber": "",
+    "TerraformName": [
+      "azurerm_storage_queue",
+      "azure_storage_queue"
+    ],
+
+    "Model": "StorageQueue"
+  },
+  {
+    "ResourceName": "Microsoft.ApiManagement/service",
+
+    "Tags": {
+      "category": [
+        "PaaS"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/API%20Management%20Service.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.APIManagement)",
+    "GetDescriber": "",    "Model": "APIManagement"
+  },
+  {
+    "ResourceName": "Microsoft.ApiManagement/backend",
+
+    "Tags": {
+      "category": [
+        "PaaS"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/API%20Management%20Service.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.APIManagementBackend)",
+    "GetDescriber": "",    "Model": "APIManagementBackend"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/disksreadops",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeDiskReadOps)",
+    "GetDescriber": "",
+    "Model": "ComputeDiskReadOps"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/virtualMachineScaleSets",
+
+    "Tags": {
+      "category": [
+        "Compute"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Scale%20Set.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeVirtualMachineScaleSet)",
+    "GetDescriber": "",
+    "TerraformName": [
+      "azurerm_virtual_machine_scale_set",
+      "azurerm_orchestrated_virtual_machine_scale_set",
+      "azurerm_linux_virtual_machine_scale_set",
+      "azurerm_windows_virtual_machine_scale_set"
+    ],
+
+    "Model": "ComputeVirtualMachineScaleSet"
+  },
+  {
+    "ResourceName": "Microsoft.DataFactory/factories/datasets",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Factory.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DataFactoryDataset)",
+    "GetDescriber": "",
+    "TerraformName": [
+      "azurerm_data_factory_dataset_azure_blob",
+      "azurerm_data_factory_dataset_binary",
+      "azurerm_data_factory_dataset_cosmosdb_sqlapi",
+      "azurerm_data_factory_dataset_delimited_text",
+      "azurerm_data_factory_dataset_http",
+      "azurerm_data_factory_dataset_json",
+      "azurerm_data_factory_dataset_mysql",
+      "azurerm_data_factory_dataset_parquet",
+      "azurerm_data_factory_dataset_postgresql",
+      "azurerm_data_factory_dataset_snowflake",
+      "azurerm_data_factory_dataset_sql_server_table",
+      "azurerm_data_factory_custom_dataset"
+    ],
+
+    "Model": "DataFactoryDataset"
+  },
+  {
+    "ResourceName": "Microsoft.Authorization/policyDefinitions",
+
+    "Tags": {
+      "category": [
+        "Identify \u0026 Access"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Policy%20Definition.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.PolicyDefinition)",
+    "GetDescriber": "",    "Model": "PolicyDefinition"
+  },
+  {
+    "ResourceName": "Microsoft.Resources/subscriptions/locations",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.Location)",
+    "GetDescriber": "",
+    "Model": "Location"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/diskAccesses",
+
+    "Tags": {
+      "category": [
+        "Compute"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Disk%20Access.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeDiskAccess)",
+    "GetDescriber": "",    "Model": "ComputeDiskAccess"
+  },
+  {
+    "ResourceName": "Microsoft.DBforMySQL/servers",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20MySQL.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.MysqlServer)",
+    "GetDescriber": "",    "Model": "MysqlServer"
+  },
+  {
+    "ResourceName": "Microsoft.DBforMySQL/flexibleservers",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Wordpress%20and%20MySQL%20Flexible%20server.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.MysqlFlexibleservers)",
+    "GetDescriber": "",    "Model": "MysqlFlexibleserver"
+  },
+  {
+    "ResourceName": "Microsoft.Cache/redisenterprise",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cache%20for%20Redis.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.CacheRedisEnterprise)",
+    "GetDescriber": "",    "Model": "RedisEnterpriseCache"
+  },
+  {
+    "ResourceName": "Microsoft.DataLakeAnalytics/accounts",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Lake%20Analytics.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DataLakeAnalyticsAccount)",
+    "GetDescriber": "",
+    "Model": "DataLakeAnalyticsAccount"
+  },
+  {
+    "ResourceName": "Microsoft.Insights/activityLogAlerts",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.LogAlert)",
+    "GetDescriber": "",
+    "Model": "LogAlert"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/virtualMachineCpuUtilizationHourly",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeVirtualMachineCpuUtilizationHourly)",
+    "GetDescriber": "",
+    "Model": "ComputeVirtualMachineCpuUtilizationHourly"
+  },
+  {
+    "ResourceName": "Microsoft.Network/loadBalancers/outboundRules",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Backend%20Outbound%20Rule.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.LoadBalancerOutboundRule)",
+    "GetDescriber": "",    "Model": "LoadBalancerOutboundRule"
+  },
+  {
+    "ResourceName": "Microsoft.HybridCompute/machines",
+
+    "Tags": {
+      "category": [
+        "Compute"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.HybridComputeMachine)",
+    "GetDescriber": "",    "Model": "HybridComputeMachine"
+  },
+  {
+    "ResourceName": "Microsoft.Network/loadBalancers/inboundNatRules",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Inbound%20NAT%20Rule.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.LoadBalancerNatRule)",
+    "GetDescriber": "",    "Model": "LoadBalancerNatRule"
+  },
+  {
+    "ResourceName": "Microsoft.Resources/providers",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.ResourceProvider)",
+    "GetDescriber": "",
+    "Model": "ResourceProvider"
+  },
+  {
+    "ResourceName": "Microsoft.Network/routeTables",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Route%20Table.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.RouteTables)",
+    "GetDescriber": "",    "Model": "RouteTables"
+  },
+  {
+    "ResourceName": "Microsoft.DocumentDB/databaseAccounts",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.CosmosdbAccount)",
+    "GetDescriber": "",    "Model": "CosmosdbAccount"
+  },
+  {
+    "ResourceName": "Microsoft.DocumentDB/restorableDatabaseAccounts",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.CosmosdbRestorableDatabaseAccount)",
+    "GetDescriber": "",    "Model": "CosmosdbRestorableDatabaseAccount"
+  },
+  {
+    "ResourceName": "Microsoft.Network/applicationGateways",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Gateway.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ApplicationGateway)",
+    "GetDescriber": "",    "Model": "ApplicationGateway"
+  },
+  {
+    "ResourceName": "Microsoft.Security/automations",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.SecurityCenterAutomation)",
+    "GetDescriber": "",    "Model": "SecurityCenterAutomation"
+  },
+  {
+    "ResourceName": "Microsoft.Kubernetes/connectedClusters",
+
+    "Tags": {
+      "category": [
+        "Container"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Kubernetes%20Cluster%20(Operator%20Nexus).svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.HybridKubernetesConnectedCluster)",
+    "GetDescriber": "",    "Model": "HybridKubernetesConnectedCluster"
+  },
+  {
+    "ResourceName": "Microsoft.KeyVault/vaults/keys",
+
+    "Tags": {
+      "category": [
+        "Security"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.KeyVaultKey)",
+    "GetDescriber": "",    "Model": "KeyVaultKey"
+  },
+  {
+    "ResourceName": "Microsoft.KeyVault/vaults/certificates",
+
+    "Tags": {
+      "category": [
+        "Security"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.KeyVaultCertificate)",
+    "GetDescriber": "",    "Model": "KeyVaultCertificate"
+  },
+  {
+    "ResourceName": "Microsoft.KeyVault/vaults/keys/Versions",
+
+    "Tags": {
+      "category": [
+        "Security"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.KeyVaultKey)",
+    "GetDescriber": "",    "Model": "KeyVaultKeyVersion"
+  },
+  {
+    "ResourceName": "Microsoft.DBforMariaDB/servers",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20MariaDB.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.MariadbServer)",
+    "GetDescriber": "",    "Model": "MariadbServer"
+  },
+  {
+    "ResourceName": "Microsoft.DBforMariaDB/servers/databases",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20MariaDB.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.MariadbDatabases)",
+    "GetDescriber": "",    "Model": "MariadbDatabase"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/disksreadopsdaily",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeDiskReadOpsDaily)",
+    "GetDescriber": "",
+    "Model": "ComputeDiskReadOpsDaily"
+  },
+  {
+    "ResourceName": "Microsoft.Web/plan",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Service%20plan.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.AppServicePlan)",
+    "GetDescriber": "",
+    "TerraformName": [
+      "azurerm_app_service_plan",
+      "azurerm_service_plan"
+    ],
+
+    "Model": "AppServicePlan"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/disksreadopshourly",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeDiskReadOpsHourly)",
+    "GetDescriber": "",
+    "Model": "ComputeDiskReadOpsHourly"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/diskswriteopsdaily",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeDiskWriteOpsDaily)",
+    "GetDescriber": "",
+    "Model": "ComputeDiskWriteOpsDaily"
+  },
+  {
+    "ResourceName": "Microsoft.Resources/tenants",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.Tenant)",
+    "GetDescriber": "",
+    "Model": "Tenant"
+  },
+  {
+    "ResourceName": "Microsoft.Network/virtualNetworkGateways",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Network%20Gateway.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.VirtualNetworkGateway)",
+    "GetDescriber": "",    "Model": "VirtualNetworkGateway"
+  },
+  {
+    "ResourceName": "Microsoft.Devices/iotHubs",
+
+    "Tags": {
+      "category": [
+        "IoT \u0026 Devices"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/IoT%20Hub.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.IOTHub)",
+    "GetDescriber": "",    "Model": "IOTHub"
+  },
+  {
+    "ResourceName": "Microsoft.Logic/workflows",
+
+    "Tags": {
+      "category": [
+        "Integration"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.LogicAppWorkflow)",
+    "GetDescriber": "",    "Model": "LogicAppWorkflow"
+  },
+  {
+    "ResourceName": "Microsoft.Sql/flexibleServers",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.SqlServerFlexibleServer)",
+    "GetDescriber": "",
+    "Model": "SqlServerFlexibleServer"
+  },
+  {
+    "ResourceName": "Microsoft.Resources/links",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Resource%20Management%20Private%20Link.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ResourceLink)",
+    "GetDescriber": "",
+    "Model": "ResourceLink"
+  },
+  {
+    "ResourceName": "Microsoft.Resources/subscriptions",
+
+    "Tags": {
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Subscription.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.Subscription)",
+    "GetDescriber": "",    "Model": "Subscription"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/images",
+
+    "Tags": {
+      "category": [
+        "Compute"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Image.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeImage)",
+    "GetDescriber": "",    "Model": "ComputeImage"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/virtualMachines",
+
+    "Tags": {
+      "category": [
+        "Compute"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeVirtualMachine)",
+    "GetDescriber": "",
+    "TerraformName": [
+      "azurerm_linux_virtual_machine",
+      "azurerm_windows_virtual_machine"
+    ],
+
+    "Model": "ComputeVirtualMachine"
+  },
+  {
+    "ResourceName": "Microsoft.Network/natGateways",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/NAT%20Gateway.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.NatGateway)",
+    "GetDescriber": "",    "Model": "NatGateway"
+  },
+  {
+    "ResourceName": "Microsoft.Network/loadBalancers/probes",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Health%20Probe.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.LoadBalancerProbe)",
+    "GetDescriber": "",    "Model": "LoadBalancerProbe"
+  },
+  {
+    "ResourceName": "Microsoft.KeyVault/vaults",
+
+    "Tags": {
+      "category": [
+        "Security"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.KeyVault)",
+    "GetDescriber": "",    "Model": "KeyVault"
+  },
+  {
+    "ResourceName": "Microsoft.KeyVault/managedHsms",
+
+    "Tags": {
+      "category": [
+        "Security"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault%20HSM.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.KeyVaultManagedHardwareSecurityModule)",
+    "GetDescriber": "",    "Model": "KeyVaultManagedHardwareSecurityModule"
+  },
+  {
+    "ResourceName": "Microsoft.KeyVault/vaults/secrets",
+
+    "Tags": {
+      "category": [
+        "Security"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault%20Secret.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.KeyVaultSecret)",
+    "GetDescriber": "",    "Model": "KeyVaultSecret"
+  },
+  {
+    "ResourceName": "Microsoft.AppConfiguration/configurationStores",
+
+    "Tags": {
+      "category": [
+        "PaaS"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/App%20Configuration.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.AppConfiguration)",
+    "GetDescriber": "",    "Model": "AppConfiguration"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/virtualMachineCpuUtilization",
+
+    "Tags": null,
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeVirtualMachineCpuUtilization)",
+    "GetDescriber": "",
+    "Model": "ComputeVirtualMachineCpuUtilization"
+  },
+  {
+    "ResourceName": "Microsoft.Storage/storageAccounts",
+
+    "Tags": {
+      "category": [
+        "Storage"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.StorageAccount)",
+    "GetDescriber": "",    "Model": "StorageAccount"
+  },
+  {
+    "ResourceName": "Microsoft.AppPlatform/Spring",
+
+    "Tags": {
+      "category": [
+        "PaaS"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Spring%20Cloud.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.SpringCloudService)",
+    "GetDescriber": "",    "Model": "SpringCloudService"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/galleries",
+
+    "Tags": {
+      "category": [
+        "General"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Compute%20Gallery.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeGallery)",
+    "GetDescriber": "",    "Model": "ComputeImageGallery"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/hostGroups",
+
+    "Tags": {
+      "category": [
+        "Compute"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Host%20Group.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeHostGroup)",
+    "GetDescriber": "",    "Model": "ComputeHostGroup"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/hostGroups/hosts",
+
+    "Tags": {
+      "category": [
+        "Compute"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Host%20Group.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeHost)",
+    "GetDescriber": "",    "Model": "ComputeHostGroupHost"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/restorePointCollections",
+
+    "Tags": {
+      "category": [
+        "Backup"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeRestorePointCollection)",
+    "GetDescriber": "",
+    "Model": "ComputeRestorePointCollection"
+  },
+  {
+    "ResourceName": "Microsoft.Compute/sshPublicKeys",
+
+    "Tags": {
+      "category": [
+        "Management \u0026 Governance"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SSH%20key.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ComputeSSHPublicKey)",
+    "GetDescriber": "",    "Model": "ComputeSSHPublicKey"
+  },
+  {
+    "ResourceName": "Microsoft.Cdn/profiles/endpoints",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/CDN%20Profile.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.CdnEndpoint)",
+    "GetDescriber": "",    "Model": "CDNEndpoint"
+  },
+  {
+    "ResourceName": "Microsoft.BotService/botServices",
+
+    "Tags": {
+      "category": [
+        "AI + ML"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Bot%20Service.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.BotServiceBot)",
+    "GetDescriber": "",    "Model": "BotServiceBot"
+  },
+  {
+    "ResourceName": "Microsoft.DocumentDB/cassandraClusters",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Managed%20Instance%20for%20Apache%20Cassandra.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DocumentDBCassandraCluster)",
+    "GetDescriber": "",    "Model": "CosmosdbCassandraCluster"
+  },
+  {
+    "ResourceName": "Microsoft.Network/ddosProtectionPlans",
+
+    "Tags": {
+      "category": [
+        "Networking"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DDoS%20Protection%20Plan.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.NetworkDDoSProtectionPlan)",
+    "GetDescriber": "",    "Model": "NetworkDDoSProtectionPlan"
+  },
+  {
+    "ResourceName": "microsoft.Sql/instancePools",
+
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Instance%20Pool.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.SqlInstancePool)",
+    "GetDescriber": "",
+    "Model": "SqlInstancePool"
+  },
+  {
+    "ResourceName": "microsoft.NetApp/netAppAccounts",
+
+    "Tags": {
+      "category": [
+        "Storage"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20NetApp%20Files.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.NetAppAccount)",
+    "GetDescriber": "",    "Model": "NetAppAccount"
+  },
+  {
+    "ResourceName": "Microsoft.NetApp/netAppAccounts/capacityPools",
+
+    "Tags": {
+      "category": [
+        "Storage"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20NetApp%20Files.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.NetAppCapacityPool)",
+    "GetDescriber": "",    "Model": "NetAppCapacityPool"
+  },
+  {
+    "ResourceName": "Microsoft.DesktopVirtualization/hostpools",
+
+    "Tags": {
+      "category": [
+        "End User"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Windows%20Virtual%20Desktop.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DesktopVirtualizationHostPool)",
+    "GetDescriber": "",    "Model": "DesktopVirtualizationHostPool"
+  },
+  {
+    "ResourceName": "Microsoft.Devtestlab/labs",
+
+    "Tags": {
+      "category": [
+        "DevOps + Testing"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DevTest%20Lab.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.DevTestLabLab)",
+    "GetDescriber": "",    "Model": "DevTestLabLab"
+  },
+  {
+    "ResourceName": "Microsoft.Purview/Accounts",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Purview%20Account.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.PurviewAccount)",
+    "GetDescriber": "",    "Model": "PurviewAccount"
+  },
+  {
+    "ResourceName": "Microsoft.PowerBIDedicated/capacities",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Power%20BI%20Embedded.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.PowerBIDedicatedCapacity)",
+    "GetDescriber": "",    "Model": "PowerBIDedicatedCapacity"
+  },
+  {
+    "ResourceName": "Microsoft.Insights/components",
+
+    "Tags": {
+      "category": [
+        "Data and Analytics"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Insights.svg"
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.ApplicationInsights)",
+    "GetDescriber": "",    "Model": "ApplicationInsightsComponent"
+  },
+  {
+    "ResourceName": "Microsoft.Lighthouse/definition",
+
+    "Tags": {
+      "category": [
+      ],
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.LighthouseDefinition)",
+    "GetDescriber": "",    "Model": "LighthouseDefinition"
+  },
+  {
+    "ResourceName": "Microsoft.Lighthouse/assignment",
+
+    "Tags": {
+      "category": [
+      ],
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.LighthouseAssignments)",
+    "GetDescriber": "",    "Model": "LighthouseAssignment"
+  },
+  {
+    "ResourceName": "Microsoft.Maintenance/maintenanceConfigurations",
+
+    "Tags": {
+      "category": [
+      ],
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.MaintenanceConfiguration)",
+    "GetDescriber": "",    "Model": "MaintenanceConfiguration"
+  },
+  {
+    "ResourceName": "Microsoft.Monitor/logProfiles",
+
+    "Tags": {
+      "category": [
+      ],
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.MonitorLogProfiles)",
+    "GetDescriber": "",    "Model": "MonitorLogProfile"
+  },
+  {
+    "ResourceName": "Microsoft.Resources/subscriptions/resources",
+
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+
+    "ListDescriber": "DescribeBySubscription(describer.Resources)",
+    "GetDescriber": "",    "Model": "GenericResource"
+  }
+]

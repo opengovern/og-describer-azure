@@ -18,9 +18,6 @@ var ResourceTypes string
 type DiscoveryStatus string
 
 const (
-	DiscoveryStatus_COMPLETE = "COMPLETE"
-	DiscoveryStatus_FAST     = "FAST"
-	DiscoveryStatus_COST     = "COST"
 	DiscoveryStatus_DISABLED = "DISABLED"
 )
 
@@ -53,7 +50,7 @@ func main() {
 	upperProvider := configs.UpperProvider
 
 	if provider == "" {
-		fmt.Println("You should enter privder")
+		fmt.Println("You should enter provider")
 		os.Exit(1)
 
 	}
@@ -68,16 +65,9 @@ func main() {
 	"{{ .ResourceName }}": {
 		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "{{ .ResourceName }}",
-		ResourceLabel:        "{{ .ResourceLabel }}",
 		Tags:                 {{ .TagsString }},
-		ServiceName:          "{{ .ServiceName }}",
 		ListDescriber:        {{ .ListDescriber }},
 		GetDescriber:         {{ if .GetDescriber }}{{ .GetDescriber }}{{ else }}nil{{ end }},
-		TerraformName:        {{ .TerraformNameString }},
-		TerraformServiceName: "{{ .TerraformServiceName }}",
-		FastDiscovery:        {{ if eq .Discovery "FAST" }}true{{ else }}false{{ end }},{{ if eq .Discovery "COST" }}
-		CostDiscovery:		  true,{{ end }}
-		Summarize:            {{ if .IgnoreSummarize }}false{{ else }}true{{ end }},
 	},
 `))
 	if err != nil {
@@ -150,7 +140,7 @@ var ResourceTypes = map[string]model.ResourceType{
 package steampipe
 
 import (
-	"%[2]s/pkg/SDK/generated"
+	"%[2]s/pkg/sdk/es"
 )
 
 var %[1]sMap = map[string]string{

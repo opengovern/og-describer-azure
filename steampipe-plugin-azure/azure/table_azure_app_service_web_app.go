@@ -2,7 +2,7 @@ package azure
 
 import (
 	"context"
-	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/generated"
+	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
 
 	"github.com/turbot/go-kit/types"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"

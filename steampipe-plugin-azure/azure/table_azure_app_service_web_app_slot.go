@@ -2,7 +2,7 @@ package azure
 
 import (
 	"context"
-	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/generated"
+	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/services/web/mgmt/2020-06-01/web"

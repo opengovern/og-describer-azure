@@ -4,7 +4,7 @@ package main
 
 import (
 	"fmt"
-	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/generated"
+	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
 	"os"
 	"strings"
 	"text/template"
