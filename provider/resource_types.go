@@ -11,3556 +11,2428 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.App/containerApps": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.App/containerApps",
-		ResourceLabel:   "Container Apps",
 		Tags: map[string][]string{
 			"category": {"Container"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Container%20App.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.AppContainerApps),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_container_app"},
-		TerraformServiceName: "containerapps",
-		FastDiscovery:        false,
-		Summarize:            true,
+		ListDescriber: DescribeBySubscription(describer.AppContainerApps),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Blueprint/blueprints": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Blueprint/blueprints",
-		ResourceLabel:   "Blueprint",
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Blueprint.svg"},
 		},
-		ServiceName:          "Blueprint",
-		ListDescriber:        DescribeBySubscription(describer.BlueprintBlueprint),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+		ListDescriber: DescribeBySubscription(describer.BlueprintBlueprint),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Cdn/profiles": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Cdn/profiles",
-		ResourceLabel:   "CDN Profiles",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/CDN%20Profile.svg"},
 		},
-		ServiceName:          "Cdn",
-		ListDescriber:        DescribeBySubscription(describer.CdnProfiles),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_cdn_profile"},
-		TerraformServiceName: "cdn",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.CdnProfiles),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/cloudServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/cloudServices",
-		ResourceLabel:   "Cloud Services",
+
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Cloud%20Service.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ComputeCloudServices),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.ComputeCloudServices),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.ContainerInstance/containerGroups": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ContainerInstance/containerGroups",
-		ResourceLabel:   "Container instances",
+
 		Tags: map[string][]string{
 			"category": {"Container"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Container%20Instance.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ContainerInstanceContainerGroups),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_container_group"},
-		TerraformServiceName: "containers",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.ContainerInstanceContainerGroups),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DataMigration/services": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataMigration/services",
-		ResourceLabel:   "Database Migration Service instance",
+
 		Tags: map[string][]string{
 			"category": {"Migration"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Database%20Migration%20Service.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.DataMigrationServices),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_database_migration_service"},
-		TerraformServiceName: "databasemigration",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.DataMigrationServices),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DataProtection/backupVaults": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataProtection/backupVaults",
-		ResourceLabel:   "",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Backup%20vault.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.DataProtectionBackupVaults),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.DataProtectionBackupVaults),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DataProtection/backupJobs": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataProtection/backupJobs",
-		ResourceLabel:   "Data Protection Backup Jobs",
+
 		Tags: map[string][]string{
 			"logo_uri": {},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.DataProtectionBackupJobs),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.DataProtectionBackupJobs),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DataProtection/backupVaults/backupPolicies": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataProtection/backupVaults/backupPolicies",
-		ResourceLabel:   "",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Backup%20vault.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.DataProtectionBackupVaultsBackupPolicies),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.DataProtectionBackupVaultsBackupPolicies),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Logic/integrationAccounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Logic/integrationAccounts",
-		ResourceLabel:   "Logic Integration Accounts",
+
 		Tags: map[string][]string{
 			"category": {"Integration"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Integration%20Account.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.LogicIntegrationAccounts),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_logic_app_integration_account"},
-		TerraformServiceName: "logic",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.LogicIntegrationAccounts),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/bastionHosts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/bastionHosts",
-		ResourceLabel:   "Bastion Hosts",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Bastion.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.NetworkBastionHosts),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_bastion_host"},
-		TerraformServiceName: "network",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.NetworkBastionHosts),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/connections": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/connections",
-		ResourceLabel:   "Microsoft Connections",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Hybrid%20Connection.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.NetworkConnections),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.NetworkConnections),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/firewallPolicies": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/firewallPolicies",
-		ResourceLabel:   "",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Firewall%20Policy.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.FirewallPolicy),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.FirewallPolicy),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/localNetworkGateways": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/localNetworkGateways",
-		ResourceLabel:   "Local Network Gateways",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Local%20Network%20Gateway.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.LocalNetworkGateway),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_local_network_gateway"},
-		TerraformServiceName: "network",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.LocalNetworkGateway),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/privateLinkServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/privateLinkServices",
-		ResourceLabel:   "Private Link Service",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Private%20link%20Service.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.PrivateLinkService),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.PrivateLinkService),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/publicIPPrefixes": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/publicIPPrefixes",
-		ResourceLabel:   "Public IP Prefixes",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Public%20IP%20Prefix.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.PublicIPPrefix),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_public_ip_prefix"},
-		TerraformServiceName: "network",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.PublicIPPrefix),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/virtualHubs": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/virtualHubs",
-		ResourceLabel:   "Virtual Hubs",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Virtual%20Hub.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.NetworkVirtualHubs),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_virtual_hub"},
-		TerraformServiceName: "network",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.NetworkVirtualHubs),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/virtualWans": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/virtualWans",
-		ResourceLabel:   "Virtual WANs",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20WAN.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.NetworkVirtualWans),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_virtual_wan"},
-		TerraformServiceName: "network",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.NetworkVirtualWans),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/vpnGateways": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/vpnGateways",
-		ResourceLabel:   "VPN Gateways",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Network%20Gateway.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.VpnGateway),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_vpn_gateway"},
-		TerraformServiceName: "network",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.VpnGateway),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/vpnGateways/vpnConnections": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Network/vpnGateways/vpnConnections",
-		ResourceLabel:        "VPN Connections",
-		Tags:                 map[string][]string{},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.NetworkVpnGatewaysVpnConnections),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_vpn_gateway_connection"},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Network/vpnGateways/vpnConnections",
+
+		Tags: map[string][]string{},
+
+		ListDescriber: DescribeBySubscription(describer.NetworkVpnGatewaysVpnConnections),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/vpnSites": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/vpnSites",
-		ResourceLabel:   "VPN Sites",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.NetworkVpnGatewaysVpnSites),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_vpn_site"},
-		TerraformServiceName: "network",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.NetworkVpnGatewaysVpnSites),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.OperationalInsights/workspaces": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.OperationalInsights/workspaces",
-		ResourceLabel:        "Operational Insights Workspaces",
-		Tags:                 map[string][]string{},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.OperationalInsightsWorkspaces),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.OperationalInsights/workspaces",
+
+		Tags: map[string][]string{},
+
+		ListDescriber: DescribeBySubscription(describer.OperationalInsightsWorkspaces),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.StreamAnalytics/cluster": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.StreamAnalytics/cluster",
-		ResourceLabel:   "Stream Analytics Cluster",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Stream%20Analytics%20Cluster.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.StreamAnalyticsCluster),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.StreamAnalyticsCluster),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.TimeSeriesInsights/environments": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.TimeSeriesInsights/environments",
-		ResourceLabel:   "Time Series Insights Environments",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Time%20Series%20Insights%20Environment.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.TimeSeriesInsightsEnvironments),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.TimeSeriesInsightsEnvironments),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.VirtualMachineImages/imageTemplates": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.VirtualMachineImages/imageTemplates",
-		ResourceLabel:   "Image Templates",
+
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Image%20Template.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.VirtualMachineImagesImageTemplates),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.VirtualMachineImagesImageTemplates),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/virtualMachineScaleSets/virtualMachines": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/virtualMachineScaleSets/virtualMachines",
-		ResourceLabel:   "Scale Set VMs",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Scale%20Set.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ComputeVirtualMachineScaleSetVm),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.ComputeVirtualMachineScaleSetVm),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Automation/automationAccounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Automation/automationAccounts",
-		ResourceLabel:   "Automation Accounts",
+
 		Tags: map[string][]string{
 			"category": {"Management & Governance"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Automation%20Account.svg"},
 		},
-		ServiceName:          "Automation",
-		ListDescriber:        DescribeBySubscription(describer.AutomationAccounts),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_automation_account"},
-		TerraformServiceName: "automation",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.AutomationAccounts),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Automation/automationAccounts/variables": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Automation/automationAccounts/variables",
-		ResourceLabel:   "Automation Variables",
+
 		Tags: map[string][]string{
 			"category": {"Management & Governance"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Automation%20Variable.svg"},
 		},
-		ServiceName:          "Automation",
-		ListDescriber:        DescribeBySubscription(describer.AutomationVariables),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_automation_variable_string", "azurerm_automation_variable_int", "azurerm_automation_variable_datetime", "azurerm_automation_variable_bool"},
-		TerraformServiceName: "automation",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.AutomationVariables),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/dnsZones": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/dnsZones",
-		ResourceLabel:   "DNS Zones",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DNS%20Zone%20(Public).svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.DNSZones),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_dns_zone"},
-		TerraformServiceName: "dns",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.DNSZones),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/privateDnsZones": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/privateDnsZones",
-		ResourceLabel:   "Private DNS Zone(s)",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DNS%20Zone%20(Private).svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.PrivateDnsZones),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_private_dns_zone"},
-		TerraformServiceName: "privatedns",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.PrivateDnsZones),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/privateEndpoints": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/privateEndpoints",
-		ResourceLabel:   "Private End Point",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Private%20Endpoint.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.PrivateEndpoints),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_private_endpoint"},
-		TerraformServiceName: "network",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.PrivateEndpoints),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/networkWatchers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/networkWatchers",
-		ResourceLabel:   "",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Network%20Watcher.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.NetworkWatcher),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_network_watcher"},
-		TerraformServiceName: "network",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.NetworkWatcher),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Resources/subscriptions/resourceGroups": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Resources/subscriptions/resourceGroups",
-		ResourceLabel:   "Resource Groups",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Resource%20Group.svg"},
 		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeBySubscription(describer.ResourceGroup),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_resource_group"},
-		TerraformServiceName: "resource",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.ResourceGroup),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Web/staticSites": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Web/staticSites",
-		ResourceLabel:   "Static Web Apps",
+
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Static%20Web%20App.svg"},
 		},
-		ServiceName:          "Web",
-		ListDescriber:        DescribeBySubscription(describer.AppServiceWebApp),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_static_site"},
-		TerraformServiceName: "web",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.AppServiceWebApp),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Web/sites/slots": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Web/sites/slots",
-		ResourceLabel:   "Static Web App Slots",
+
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Static%20Web%20App.svg"},
 		},
-		ServiceName:          "Web",
-		ListDescriber:        DescribeBySubscription(describer.AppServiceWebAppSlot),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_static_site"},
-		TerraformServiceName: "web",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
 
-	"Microsoft.Entra/serviceprincipals": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Entra/serviceprincipals",
-		ResourceLabel:        "Service Principals",
-		Tags:                 map[string][]string{},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdServicePrinciple),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+		ListDescriber: DescribeBySubscription(describer.AppServiceWebAppSlot),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.CognitiveServices/accounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.CognitiveServices/accounts",
-		ResourceLabel:   "Cognitive Service Accounts",
+
 		Tags: map[string][]string{
 			"category": {"AI + ML"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Cognitive%20Services.svg"},
 		},
-		ServiceName:          "CognitiveServices",
-		ListDescriber:        DescribeBySubscription(describer.CognitiveAccount),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_cognitive_account"},
-		TerraformServiceName: "cognitive",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.CognitiveAccount),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Sql/managedInstances": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/managedInstances",
-		ResourceLabel:   "SQL managed instances",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Managed%20Instance.svg"},
 		},
-		ServiceName:          "Sql",
-		ListDescriber:        DescribeBySubscription(describer.MssqlManagedInstance),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_mssql_managed_instance", "azurerm_sql_managed_instance"},
-		TerraformServiceName: "mssql",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.MssqlManagedInstance),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Sql/virtualclusters": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/virtualclusters",
-		ResourceLabel:   "SQL Virtual Clusters",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Database.svg"},
 		},
-		ServiceName:          "Sql",
-		ListDescriber:        DescribeBySubscription(describer.SqlVirtualClusters),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.SqlVirtualClusters),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Sql/managedInstances/databases": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/managedInstances/databases",
-		ResourceLabel:   "Managed Instance Databases",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Managed%20Instance.svg"},
 		},
-		ServiceName:          "Sql",
-		ListDescriber:        DescribeBySubscription(describer.MssqlManagedInstanceDatabases),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_mssql_managed_database"},
-		TerraformServiceName: "mssql",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.MssqlManagedInstanceDatabases),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Sql/servers/databases": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/servers/databases",
-		ResourceLabel:   "Logical SQL server databases",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Database.svg"},
 		},
-		ServiceName:          "Sql",
-		ListDescriber:        DescribeBySubscription(describer.SqlDatabase),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_mssql_database", "azurerm_sql_database"},
-		TerraformServiceName: "mssql",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.SqlDatabase),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Storage/storageAccounts/largeFileSharesState": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/largeFileSharesState",
-		ResourceLabel:   "File Share",
+
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/File%20Share.svg"},
 		},
-		ServiceName:          "Storage",
-		ListDescriber:        DescribeBySubscription(describer.StorageFileShare),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_storage_share_file", "azure_storage_share"},
-		TerraformServiceName: "storage",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.StorageFileShare),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DBforPostgreSQL/servers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforPostgreSQL/servers",
-		ResourceLabel:   "Azure Database for PostgreSQL servers",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20PostgreSQL.svg"},
 		},
-		ServiceName:          "DBforPostgreSQL",
-		ListDescriber:        DescribeBySubscription(describer.PostgresqlServer),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_postgresql_server"},
-		TerraformServiceName: "postgres",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.PostgresqlServer),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DBforPostgreSQL/flexibleservers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforPostgreSQL/flexibleservers",
-		ResourceLabel:   "Azure Database for PostgreSQL flexible servers",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20PostgreSQL.svg"},
 		},
-		ServiceName:          "DBforPostgreSQL",
-		ListDescriber:        DescribeBySubscription(describer.PostgresqlFlexibleservers),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_postgresql_flexible_server"},
-		TerraformServiceName: "postgres",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.PostgresqlFlexibleservers),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.AnalysisServices/servers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.AnalysisServices/servers",
-		ResourceLabel:   "Analysis Services Server",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Analysis%20Service.svg"},
 		},
-		ServiceName:          "AnalysisServices",
-		ListDescriber:        DescribeBySubscription(describer.AnalysisService),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_analysis_services_server"},
-		TerraformServiceName: "analysisservices",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.AnalysisService),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Security/pricings": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Security/pricings",
-		ResourceLabel:        "Security Center Subscription Pricing",
-		Tags:                 map[string][]string{},
-		ServiceName:          "Security",
-		ListDescriber:        DescribeBySubscription(describer.SecurityCenterSubscriptionPricing),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_security_center_subscription_pricing"},
-		TerraformServiceName: "securitycenter",
-		FastDiscovery:        false,
-		Summarize:            false,
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Security/pricings",
+
+		Tags: map[string][]string{},
+
+		ListDescriber: DescribeBySubscription(describer.SecurityCenterSubscriptionPricing),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Insights/guestDiagnosticSettings": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Insights/guestDiagnosticSettings",
-		ResourceLabel:   "Diagnostic Settings",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Diagnostics%20Setting.svg"},
 		},
-		ServiceName:          "Insights",
-		ListDescriber:        DescribeBySubscription(describer.DiagnosticSetting),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.DiagnosticSetting),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Insights/autoscaleSettings": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Insights/autoscaleSettings",
-		ResourceLabel:   "Autoscale Settings",
+
 		Tags: map[string][]string{
 			"logo_uri": {},
 		},
-		ServiceName:          "Insights",
-		ListDescriber:        DescribeBySubscription(describer.AutoscaleSetting),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
 
-	"Microsoft.Entra/groups": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/groups",
-		ResourceLabel:   "Azure AD Groups",
-		Tags: map[string][]string{
-			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdGroup),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/groupMemberships": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/groupMemberships",
-		ResourceLabel:   "Azure AD Groups",
-		Tags: map[string][]string{
-			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdGroupMembership),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/devices": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/devices",
-		ResourceLabel:   "Azure AD Devices",
-		Tags: map[string][]string{
-			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdDevice),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/signInReports": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/signInReports",
-		ResourceLabel:   "Azure AD Sign-in reports",
-		Tags: map[string][]string{
-			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdSignInReport),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/applications": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/applications",
-		ResourceLabel:   "Azure AD Applications",
-		Tags: map[string][]string{
-			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdApplication),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/appRegistrations": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/appRegistrations",
-		ResourceLabel:   "Azure AD App Registration",
-		Tags: map[string][]string{
-			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdAppRegistration),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/enterpriseApplication": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/enterpriseApplication",
-		ResourceLabel:   "Azure AD Enterprise Application",
-		Tags: map[string][]string{
-			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdEnterpriseApplication),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/managedIdentity": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/managedIdentity",
-		ResourceLabel:   "Azure AD Managed Identity",
-		Tags: map[string][]string{
-			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdManagedIdentity),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/microsoftApplication": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/microsoftApplication",
-		ResourceLabel:   "Azure AD Microsoft Application",
-		Tags: map[string][]string{
-			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdMicrosoftApplication),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/domains": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/domains",
-		ResourceLabel:   "Azure AD Domains",
-		Tags: map[string][]string{
-			"logo_uri": {},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdDomain),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/tenant": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/tenant",
-		ResourceLabel:   "Azure AD Tenant",
-		Tags: map[string][]string{
-			"logo_uri": {},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdTenant),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/identityproviders": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/identityproviders",
-		ResourceLabel:   "Azure AD Identity Providers",
-		Tags: map[string][]string{
-			"logo_uri": {},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdIdentityProvider),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/securitydefaultspolicy": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/securitydefaultspolicy",
-		ResourceLabel:   "Azure AD Security Defaults Policy",
-		Tags: map[string][]string{
-			"logo_uri": {},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdSecurityDefaultsPolicy),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/authorizationpolicy": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/authorizationpolicy",
-		ResourceLabel:   "Azure AD Authorization Policy",
-		Tags: map[string][]string{
-			"logo_uri": {},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdAuthorizationPolicy),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/conditionalaccesspolicy": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/conditionalaccesspolicy",
-		ResourceLabel:   "Azure AD Conditional Access Policy",
-		Tags: map[string][]string{
-			"logo_uri": {},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdConditionalAccessPolicy),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/adminconsentrequestpolicy": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/adminconsentrequestpolicy",
-		ResourceLabel:   "Azure AD Admin Consent Request Policy",
-		Tags: map[string][]string{
-			"logo_uri": {},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdAdminConsentRequestPolicy),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/userregistrationdetails": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/userregistrationdetails",
-		ResourceLabel:   "Azure AD User registration details",
-		Tags: map[string][]string{
-			"logo_uri": {},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdUserRegistrationDetails),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+		ListDescriber: DescribeBySubscription(describer.AutoscaleSetting),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Web/hostingEnvironments": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Web/hostingEnvironments",
-		ResourceLabel:   "App Service Environments",
+
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Service%20Environment.svg"},
 		},
-		ServiceName:          "Web",
-		ListDescriber:        DescribeBySubscription(describer.AppServiceEnvironment),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_app_service_environment"},
-		TerraformServiceName: "web",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.AppServiceEnvironment),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Cache/redis": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Cache/redis",
-		ResourceLabel:   "Azure Cache for Redis instance",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cache%20for%20Redis.svg"},
 		},
-		ServiceName:          "Cache",
-		ListDescriber:        DescribeBySubscription(describer.RedisCache),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_redis_cache"},
-		TerraformServiceName: "redis",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.RedisCache),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.ContainerRegistry/registries": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ContainerRegistry/registries",
-		ResourceLabel:   "Container Registry",
+
 		Tags: map[string][]string{
 			"category": {"Container"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Container%20Registry.svg"},
 		},
-		ServiceName:          "ContainerRegistry",
-		ListDescriber:        DescribeBySubscription(describer.ContainerRegistry),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_container_registry"},
-		TerraformServiceName: "containers",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.ContainerRegistry),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DataFactory/factories/pipelines": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataFactory/factories/pipelines",
-		ResourceLabel:   "Data Factory Pipeline",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Factory.svg"},
 		},
-		ServiceName:          "DataFactory",
-		ListDescriber:        DescribeBySubscription(describer.DataFactoryPipeline),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_data_factory_pipeline"},
-		TerraformServiceName: "datafactory",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.DataFactoryPipeline),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/expressRouteCircuits": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/expressRouteCircuits",
-		ResourceLabel:   "Express Route Circuits",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/ExpressRoute%20Circuit.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.ExpressRouteCircuit),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_express_route_circuit"},
-		TerraformServiceName: "network",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.ExpressRouteCircuit),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Management/managementgroups": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Management/managementgroups",
-		ResourceLabel:   "Management Groups",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Management%20Group.svg"},
 		},
-		ServiceName:          "Management",
-		ListDescriber:        DescribeBySubscription(describer.ManagementGroup),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_management_group"},
-		TerraformServiceName: "managementgroup",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.ManagementGroup),
+		GetDescriber:  nil,
 	},
 
 	"microsoft.SqlVirtualMachine/SqlVirtualMachines": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "microsoft.SqlVirtualMachine/SqlVirtualMachines",
-		ResourceLabel:   "SQL Virtual Machines",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"},
 		},
-		ServiceName:          "Sql",
-		ListDescriber:        DescribeBySubscription(describer.SqlServerVirtualMachine),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_mssql_virtual_machine"},
-		TerraformServiceName: "mssql",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.SqlServerVirtualMachine),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.SqlVirtualMachine/SqlVirtualMachineGroups": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.SqlVirtualMachine/SqlVirtualMachineGroups",
-		ResourceLabel:   "SQL Virtual Machine Groups",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"},
 		},
-		ServiceName:          "Sql",
-		ListDescriber:        DescribeBySubscription(describer.SqlServerVirtualMachineGroups),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.SqlServerVirtualMachineGroups),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Storage/storageAccounts/tableServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/tableServices",
-		ResourceLabel:   "Storage Account Table Service",
+
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Table.svg"},
 		},
-		ServiceName:          "Storage",
-		ListDescriber:        DescribeBySubscription(describer.StorageTableService),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.StorageTableService),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Synapse/workspaces": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Synapse/workspaces",
-		ResourceLabel:   "Synapse Workspace",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Synapse%20Analytics.svg"},
 		},
-		ServiceName:          "Synapse",
-		ListDescriber:        DescribeBySubscription(describer.SynapseWorkspace),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_synapse_workspace"},
-		TerraformServiceName: "synapse",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.SynapseWorkspace),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Synapse/workspaces/bigdatapools": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Synapse/workspaces/bigdatapools",
-		ResourceLabel:   "Synapse Workspace Big Data Pools",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Synapse%20Analytics.svg"},
 		},
-		ServiceName:          "Synapse",
-		ListDescriber:        DescribeBySubscription(describer.SynapseWorkspaceBigdataPools),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.SynapseWorkspaceBigdataPools),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Synapse/workspaces/sqlpools": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Synapse/workspaces/sqlpools",
-		ResourceLabel:   "Synapse Workspace SQL Pools",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Synapse%20Analytics.svg"},
 		},
-		ServiceName:          "Synapse",
-		ListDescriber:        DescribeBySubscription(describer.SynapseWorkspaceSqlpools),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_synapse_sql_pool"},
-		TerraformServiceName: "",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.SynapseWorkspaceSqlpools),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.StreamAnalytics/streamingJobs": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.StreamAnalytics/streamingJobs",
-		ResourceLabel:   "Stream Analytics Job",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Stream%20Analytics%20job.svg"},
 		},
-		ServiceName:          "StreamAnalytics",
-		ListDescriber:        DescribeBySubscription(describer.StreamAnalyticsJob),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_stream_analytics_job"},
-		TerraformServiceName: "streamanalytics",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.StreamAnalyticsJob),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.CostManagement/CostBySubscription": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.CostManagement/CostBySubscription",
-		ResourceLabel:        "Cost Management Cost By Subscription",
-		Tags:                 map[string][]string{},
-		ServiceName:          "CostManagement",
-		ListDescriber:        DescribeBySubscription(describer.DailyCostBySubscription),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		CostDiscovery:        true,
-		Summarize:            false,
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.CostManagement/CostBySubscription",
+
+		Tags: map[string][]string{},
+
+		ListDescriber: DescribeBySubscription(describer.DailyCostBySubscription),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.ContainerService/managedClusters": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ContainerService/managedClusters",
-		ResourceLabel:   "Managed Cluster",
+
 		Tags: map[string][]string{
 			"category": {"Container"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/AKS%20Hybrid%20Cluster.svg"},
 		},
-		ServiceName:          "ContainerService",
-		ListDescriber:        DescribeBySubscription(describer.KubernetesCluster),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_kubernetes_cluster"},
-		TerraformServiceName: "containers",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.KubernetesCluster),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.ContainerService/serviceVersions": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ContainerService/serviceVersions",
-		ResourceLabel:   "Kubernetes Service Version",
+
 		Tags: map[string][]string{
 			"category": {"Container"},
 		},
-		ServiceName:          "ContainerService",
-		ListDescriber:        DescribeBySubscription(describer.KubernetesServiceVersion),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "containers",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.KubernetesServiceVersion),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DataFactory/factories": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataFactory/factories",
-		ResourceLabel:   "Azure Data Factory",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Factory.svg"},
 		},
-		ServiceName:          "DataFactory",
-		ListDescriber:        DescribeBySubscription(describer.DataFactory),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_data_factory"},
-		TerraformServiceName: "datafactory",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.DataFactory),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Sql/servers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/servers",
-		ResourceLabel:   "SQL Servers",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"},
 		},
-		ServiceName:          "Sql",
-		ListDescriber:        DescribeBySubscription(describer.SqlServer),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_mssql_server"},
-		TerraformServiceName: "mssql",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.SqlServer),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Sql/servers/jobagents": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/servers/jobagents",
-		ResourceLabel:   "Logical Job Agents",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Elastic%20Job%20Agent.svg"},
 		},
-		ServiceName:          "Sql",
-		ListDescriber:        DescribeBySubscription(describer.SqlServerJobAgents),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_mssql_job_agent"},
-		TerraformServiceName: "mssql",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.SqlServerJobAgents),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Security/autoProvisioningSettings": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Security/autoProvisioningSettings",
-		ResourceLabel:        "Auto Provisioning Settings",
-		Tags:                 map[string][]string{},
-		ServiceName:          "Security",
-		ListDescriber:        DescribeBySubscription(describer.SecurityCenterAutoProvisioning),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_security_center_auto_provisioning"},
-		TerraformServiceName: "securitycenter",
-		FastDiscovery:        false,
-		Summarize:            false,
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Security/autoProvisioningSettings",
+
+		Tags: map[string][]string{},
+
+		ListDescriber: DescribeBySubscription(describer.SecurityCenterAutoProvisioning),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Insights/logProfiles": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Insights/logProfiles",
-		ResourceLabel:        "",
-		Tags:                 map[string][]string{},
-		ServiceName:          "Insights",
-		ListDescriber:        DescribeBySubscription(describer.LogProfile),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Insights/logProfiles",
+
+		Tags: map[string][]string{},
+
+		ListDescriber: DescribeBySubscription(describer.LogProfile),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DataBoxEdge/dataBoxEdgeDevices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataBoxEdge/dataBoxEdgeDevices",
-		ResourceLabel:   "Data Box Edge Devices",
+
 		Tags: map[string][]string{
 			"category": {"IoT & Devices"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Box%20Edge.svg"},
 		},
-		ServiceName:          "DataBoxEdge",
-		ListDescriber:        DescribeBySubscription(describer.DataboxEdgeDevice),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_databox_edge_device"},
-		TerraformServiceName: "databoxedge",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.DataboxEdgeDevice),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/loadBalancers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers",
-		ResourceLabel:   "Load Balancers",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.LoadBalancer),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_lb"},
-		TerraformServiceName: "loadbalancer",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.LoadBalancer),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/azureFirewalls": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/azureFirewalls",
-		ResourceLabel:   "Azure Firewalls",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Firewall.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.NetworkAzureFirewall),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_firewall"},
-		TerraformServiceName: "firewall",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.NetworkAzureFirewall),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Management/locks": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Management/locks",
-		ResourceLabel:   "Management Locks",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Resource%20Lock.svg"},
 		},
-		ServiceName:          "Management",
-		ListDescriber:        DescribeBySubscription(describer.ManagementLock),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.ManagementLock),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/virtualMachineScaleSets/networkInterfaces": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/virtualMachineScaleSets/networkInterfaces",
-		ResourceLabel:   "VM Scale Set Network Interfaces",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Network%20Interface.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ComputeVirtualMachineScaleSetNetworkInterface),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.ComputeVirtualMachineScaleSetNetworkInterface),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/frontDoors": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/frontDoors",
-		ResourceLabel:   "Frontdoors",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Front%20Door.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.FrontDoor),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_frontdoor"},
-		TerraformServiceName: "",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.FrontDoor),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Authorization/policyAssignments": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Authorization/policyAssignments",
-		ResourceLabel:   "Policy Assignments",
+
 		Tags: map[string][]string{
 			"category": {"Identify & Access"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Policy%20Assignment.svg"},
 		},
-		ServiceName:          "Authorization",
-		ListDescriber:        DescribeBySubscription(describer.PolicyAssignment),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_resource_policy_assignment"},
-		TerraformServiceName: "policy",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.PolicyAssignment),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Authorization/userEffectiveAccess": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Authorization/userEffectiveAccess",
-		ResourceLabel:   "User Effective Access",
+
 		Tags: map[string][]string{
 			"category": {"Identify & Access"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Policy%20Assignment.svg"},
 		},
-		ServiceName:          "Authorization",
-		ListDescriber:        DescribeBySubscription(describer.UserEffectiveAccess),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "policy",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.UserEffectiveAccess),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Search/searchServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Search/searchServices",
-		ResourceLabel:   "Search Services",
+
 		Tags: map[string][]string{
 			"category": {"AI + ML"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Search%20Service.svg"},
 		},
-		ServiceName:          "Search",
-		ListDescriber:        DescribeBySubscription(describer.SearchService),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_search_service"},
-		TerraformServiceName: "search",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.SearchService),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Security/settings": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Security/settings",
-		ResourceLabel:        "Security Center Setting",
-		Tags:                 map[string][]string{},
-		ServiceName:          "Security",
-		ListDescriber:        DescribeBySubscription(describer.SecurityCenterSetting),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_security_center_setting"},
-		TerraformServiceName: "securitycenter",
-		FastDiscovery:        false,
-		Summarize:            false,
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Security/settings",
+
+		Tags: map[string][]string{},
+
+		ListDescriber: DescribeBySubscription(describer.SecurityCenterSetting),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.RecoveryServices/vaults": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.RecoveryServices/vaults",
-		ResourceLabel:   "Recovery Services Vault",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Recovery%20Services%20Vault.svg"},
 		},
-		ServiceName:          "RecoveryServices",
-		ListDescriber:        DescribeBySubscription(describer.RecoveryServicesVault),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_recovery_services_vault"},
-		TerraformServiceName: "recoveryservices",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.RecoveryServicesVault),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.RecoveryServices/vaults/backupJobs": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.RecoveryServices/vaults/backupJobs",
-		ResourceLabel:   "Recovery Services Backup Jobs",
+
 		Tags: map[string][]string{
 			"logo_uri": {},
 		},
-		ServiceName:          "RecoveryServices",
-		ListDescriber:        DescribeBySubscription(describer.RecoveryServicesBackupJobs),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "recoveryservices",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.RecoveryServicesBackupJobs),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.RecoveryServices/vaults/backupPolicies": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.RecoveryServices/vaults/backupPolicies",
-		ResourceLabel:   "Recovery Services Backup Policies",
+
 		Tags: map[string][]string{
 			"logo_uri": {},
 		},
-		ServiceName:          "RecoveryServices",
-		ListDescriber:        DescribeBySubscription(describer.RecoveryServicesBackupPolicies),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "recoveryservices",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.RecoveryServicesBackupPolicies),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.RecoveryServices/vaults/backupItems": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.RecoveryServices/vaults/backupItems",
-		ResourceLabel:   "Recovery Services Backup Items",
+
 		Tags: map[string][]string{
 			"logo_uri": {},
 		},
-		ServiceName:          "RecoveryServices",
-		ListDescriber:        DescribeBySubscription(describer.RecoveryServicesBackupItem),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "recoveryservices",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.RecoveryServicesBackupItem),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/diskEncryptionSets": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/diskEncryptionSets",
-		ResourceLabel:   "Disk Encryption Sets",
+
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Disk%20Encryption%20Set.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ComputeDiskEncryptionSet),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_disk_encryption_set"},
-		TerraformServiceName: "compute",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.ComputeDiskEncryptionSet),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DocumentDB/databaseAccounts/sqlDatabases": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
-		ResourceLabel:   "Cosmos DB SQL Databases",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"},
 		},
-		ServiceName:          "DocumentDB",
-		ListDescriber:        DescribeBySubscription(describer.DocumentDBSQLDatabase),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_cosmosdb_sql_database"},
-		TerraformServiceName: "cosmos",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.DocumentDBSQLDatabase),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.EventGrid/topics": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.EventGrid/topics",
-		ResourceLabel:   "EventGrid Topics",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Event%20Grid%20Topic.svg"},
 		},
-		ServiceName:          "EventGrid",
-		ListDescriber:        DescribeBySubscription(describer.EventGridTopic),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_eventgrid_topic"},
-		TerraformServiceName: "eventgrid",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.EventGridTopic),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.EventHub/namespaces": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.EventHub/namespaces",
-		ResourceLabel:   "Event Hub Namespaces",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Event%20Hub.svg"},
 		},
-		ServiceName:          "EventHub",
-		ListDescriber:        DescribeBySubscription(describer.EventhubNamespace),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_eventhub_namespace"},
-		TerraformServiceName: "eventhub",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.EventhubNamespace),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.EventHub/namespaces/eventHubs": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.EventHub/namespaces/eventHubs",
-		ResourceLabel:   "Event Hubs",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Event%20Hub.svg"},
 		},
-		ServiceName:          "EventHub",
-		ListDescriber:        DescribeBySubscription(describer.EventhubNamespaceEventhub),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_eventhub"},
-		TerraformServiceName: "eventhub",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.EventhubNamespaceEventhub),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.MachineLearningServices/workspaces": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.MachineLearningServices/workspaces",
-		ResourceLabel:   "Machine Learning Workspace",
+
 		Tags: map[string][]string{
 			"category": {"AI + ML"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Machine%20Learning%20Studio%20Workspace%20(classic).svg"},
 		},
-		ServiceName:          "MachineLearningServices",
-		ListDescriber:        DescribeBySubscription(describer.MachineLearningWorkspace),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_machine_learning_workspace"},
-		TerraformServiceName: "machinelearning",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.MachineLearningWorkspace),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Dashboard/grafana": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Dashboard/grafana",
-		ResourceLabel:   "Azure Managed Grafana",
+
 		Tags: map[string][]string{
 			"category": {"Managed Services"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Managed%20Grafana.svg"},
 		},
-		ServiceName:          "Dashboard",
-		ListDescriber:        DescribeBySubscription(describer.DashboardGrafana),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.DashboardGrafana),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DesktopVirtualization/workspaces": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DesktopVirtualization/workspaces",
-		ResourceLabel:   "Virtual desktop workspace",
+
 		Tags: map[string][]string{
 			"category": {"End User"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Windows%20Virtual%20Desktop.svg"},
 		},
-		ServiceName:          "DesktopVirtualization",
-		ListDescriber:        DescribeBySubscription(describer.DesktopVirtualizationWorkspaces),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.DesktopVirtualizationWorkspaces),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/trafficManagerProfiles": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/trafficManagerProfiles",
-		ResourceLabel:   "Traffic Manager profile",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Traffic%20Manager%20profile.svg"},
 		},
-		ServiceName:          "TrafficManager",
-		ListDescriber:        DescribeBySubscription(describer.TrafficManagerProfile),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.TrafficManagerProfile),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/dnsResolvers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/dnsResolvers",
-		ResourceLabel:   "DNS private resolver",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DNS%20Private%20Resolver.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.DNSResolvers),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.DNSResolvers),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.CostManagement/CostByResourceType": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.CostManagement/CostByResourceType",
-		ResourceLabel:        "Cost Management Cost By Resource Type",
-		Tags:                 map[string][]string{},
-		ServiceName:          "CostManagement",
-		ListDescriber:        DescribeBySubscription(describer.DailyCostByResourceType),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		CostDiscovery:        true,
-		Summarize:            false,
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.CostManagement/CostByResourceType",
+
+		Tags: map[string][]string{},
+
+		ListDescriber: DescribeBySubscription(describer.DailyCostByResourceType),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/networkInterfaces": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/networkInterfaces",
-		ResourceLabel:   "Network interfances",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Network%20Interface.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.NetworkInterface),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_network_interface"},
-		TerraformServiceName: "network",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.NetworkInterface),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/publicIPAddresses": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/publicIPAddresses",
-		ResourceLabel:   "Public IP Addresses",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Public%20IP%20Address.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.PublicIPAddress),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_public_ip"},
-		TerraformServiceName: "network",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.PublicIPAddress),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.HealthcareApis/services": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.HealthcareApis/services",
-		ResourceLabel:        "Healthcare Services",
-		Tags:                 map[string][]string{},
-		ServiceName:          "HealthcareApis",
-		ListDescriber:        DescribeBySubscription(describer.HealthcareService),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_healthcare_service"},
-		TerraformServiceName: "healthcare",
-		FastDiscovery:        false,
-		Summarize:            false,
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.HealthcareApis/services",
+
+		Tags: map[string][]string{},
+
+		ListDescriber: DescribeBySubscription(describer.HealthcareService),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.ServiceBus/namespaces": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ServiceBus/namespaces",
-		ResourceLabel:   "Service Bus Namepsaces",
+
 		Tags: map[string][]string{
 			"category": {"Intergration"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Service%20Bus.svg"},
 		},
-		ServiceName:          "ServiceBus",
-		ListDescriber:        DescribeBySubscription(describer.ServicebusNamespace),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_servicebus_namespace"},
-		TerraformServiceName: "servicebus",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.ServicebusNamespace),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Web/sites": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Web/sites",
-		ResourceLabel:   "App Services",
+
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Service.svg"},
 		},
-		ServiceName:          "Web",
-		ListDescriber:        DescribeBySubscription(describer.AppServiceFunctionApp),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_app_service", "azurerm_function_app"},
-		TerraformServiceName: "web",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.AppServiceFunctionApp),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/availabilitySets": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/availabilitySets",
-		ResourceLabel:   "Availability Sets",
+
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Availability%20Set.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ComputeAvailabilitySet),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_availability_set"},
-		TerraformServiceName: "compute",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.ComputeAvailabilitySet),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/virtualNetworks": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/virtualNetworks",
-		ResourceLabel:   "Virtual networks",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Network.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.VirtualNetwork),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_virtual_network"},
-		TerraformServiceName: "network",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.VirtualNetwork),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Security/securityContacts": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Security/securityContacts",
-		ResourceLabel:        "Security Center Contacts",
-		Tags:                 map[string][]string{},
-		ServiceName:          "Security",
-		ListDescriber:        DescribeBySubscription(describer.SecurityCenterContact),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_security_center_contact"},
-		TerraformServiceName: "securitycenter",
-		FastDiscovery:        false,
-		Summarize:            false,
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Security/securityContacts",
+
+		Tags: map[string][]string{},
+
+		ListDescriber: DescribeBySubscription(describer.SecurityCenterContact),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.EventGrid/domains": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.EventGrid/domains",
-		ResourceLabel:   "EventGrid Domains",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Event%20Grid%20Domain.svg"},
 		},
-		ServiceName:          "EventGrid",
-		ListDescriber:        DescribeBySubscription(describer.EventGridDomain),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_eventgrid_domain"},
-		TerraformServiceName: "eventgrid",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.EventGridDomain),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.KeyVault/deletedVaults": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/deletedVaults",
-		ResourceLabel:   "Key Vault Deleted Vaults",
+
 		Tags: map[string][]string{
 			"category": {"Security"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"},
 		},
-		ServiceName:          "KeyVault",
-		ListDescriber:        DescribeBySubscription(describer.DeletedVault),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.DeletedVault),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Storage/storageAccounts/tableServices/tables": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/tableServices/tables",
-		ResourceLabel:   "Storage Tables",
+
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Table.svg"},
 		},
-		ServiceName:          "Storage",
-		ListDescriber:        DescribeBySubscription(describer.StorageTable),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_storage_table"},
-		TerraformServiceName: "storage",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
 
-	"Microsoft.Entra/users": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/users",
-		ResourceLabel:   "Azure AD Users",
-		Tags: map[string][]string{
-			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20User.svg"},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdUsers),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/directoryroles": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/directoryroles",
-		ResourceLabel:   "Azure AD Directory Roles",
-		Tags: map[string][]string{
-			"logo_uri": {},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdDirectoryRole),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/directorysettings": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/directorysettings",
-		ResourceLabel:   "Azure AD Directory Settings",
-		Tags: map[string][]string{
-			"logo_uri": {},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdDirectorySetting),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
-	},
-
-	"Microsoft.Entra/directoryauditreport": {
-		IntegrationType: configs.IntegrationName,
-		ResourceName:    "Microsoft.Entra/directoryauditreport",
-		ResourceLabel:   "Azure AD Directory Audit Report",
-		Tags: map[string][]string{
-			"logo_uri": {},
-		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeADByTenantID(describer.AdDirectoryAuditReport),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+		ListDescriber: DescribeBySubscription(describer.StorageTable),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/snapshots": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/snapshots",
-		ResourceLabel:   "Snapshot",
+
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Managed%20Disk%20Snapshot.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ComputeSnapshots),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_snapshot"},
-		TerraformServiceName: "compute",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.ComputeSnapshots),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Kusto/clusters": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Kusto/clusters",
-		ResourceLabel:   "Azure Data Explorer cluster",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_Grouped/Data/Azure%20Data%20Explorer%20Cluster.svg"},
 		},
-		ServiceName:          "Kusto",
-		ListDescriber:        DescribeBySubscription(describer.KustoCluster),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_kusto_cluster"},
-		TerraformServiceName: "kusto",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.KustoCluster),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.StorageSync/storageSyncServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.StorageSync/storageSyncServices",
-		ResourceLabel:   "Storage Sync Service",
+
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Sync%20Service.svg"},
 		},
-		ServiceName:          "StorageSync",
-		ListDescriber:        DescribeBySubscription(describer.StorageSync),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_storage_sync"},
-		TerraformServiceName: "storage",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.StorageSync),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Security/locations/jitNetworkAccessPolicies": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Security/locations/jitNetworkAccessPolicies",
-		ResourceLabel:        "Security Center JIT Network Access Policy",
-		Tags:                 map[string][]string{},
-		ServiceName:          "Security",
-		ListDescriber:        DescribeBySubscription(describer.SecurityCenterJitNetworkAccessPolicy),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Security/locations/jitNetworkAccessPolicies",
+
+		Tags: map[string][]string{},
+
+		ListDescriber: DescribeBySubscription(describer.SecurityCenterJitNetworkAccessPolicy),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/virtualNetworks/subnets": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/virtualNetworks/subnets",
-		ResourceLabel:   "Subnets",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Subnet.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.Subnet),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_subnet"},
-		TerraformServiceName: "network",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.Subnet),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/loadBalancers/backendAddressPools": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers/backendAddressPools",
-		ResourceLabel:   "Load Balancer Backend Pools",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Backend%20pool.svg"},
 		},
-		ServiceName:          "LoadBalancer",
-		ListDescriber:        DescribeBySubscription(describer.LoadBalancerBackendAddressPool),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_lb_backend_address_pool"},
-		TerraformServiceName: "loadbalancer",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.LoadBalancerBackendAddressPool),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/loadBalancers/loadBalancingRules": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers/loadBalancingRules",
-		ResourceLabel:   "Load Balancer Rules",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 		},
-		ServiceName:          "LoadBalancer",
-		ListDescriber:        DescribeBySubscription(describer.LoadBalancerRule),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_lb_rule"},
-		TerraformServiceName: "loadbalancer",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.LoadBalancerRule),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DataLakeStore/accounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataLakeStore/accounts",
-		ResourceLabel:   "Data Lake Store account",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Lake.svg"},
 		},
-		ServiceName:          "DataLakeStore",
-		ListDescriber:        DescribeBySubscription(describer.DataLakeStore),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.DataLakeStore),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.StorageCache/caches": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.StorageCache/caches",
-		ResourceLabel:   "HPC Cache",
+
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_Grouped/Data/HPC%20Cache.svg"},
 		},
-		ServiceName:          "StorageCache",
-		ListDescriber:        DescribeBySubscription(describer.HpcCache),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_hpc_cache"},
-		TerraformServiceName: "hpccache",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.HpcCache),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Batch/batchAccounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Batch/batchAccounts",
-		ResourceLabel:   "Batch Accounts",
+
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Batch%20Account.svg"},
 		},
-		ServiceName:          "Batch",
-		ListDescriber:        DescribeBySubscription(describer.BatchAccount),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_batch_account"},
-		TerraformServiceName: "batch",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.BatchAccount),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/networkSecurityGroups": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/networkSecurityGroups",
-		ResourceLabel:   "Network Security Groups",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Network%20Security%20Group.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.NetworkSecurityGroup),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_network_security_group"},
-		TerraformServiceName: "network",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.NetworkSecurityGroup),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Authorization/roleDefinitions": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Authorization/roleDefinitions",
-		ResourceLabel:   "Role Definitions",
+
 		Tags: map[string][]string{
 			"category": {"Identify & Access"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Role%20(Custom).svg"},
 		},
-		ServiceName:          "Authorization",
-		ListDescriber:        DescribeBySubscription(describer.RoleDefinition),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_role_definition"},
-		TerraformServiceName: "authorization",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.RoleDefinition),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/applicationSecurityGroups": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/applicationSecurityGroups",
-		ResourceLabel:   "Application Security Groups",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Security%20Group.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.NetworkApplicationSecurityGroups),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_application_security_group"},
-		TerraformServiceName: "network",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.NetworkApplicationSecurityGroups),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Authorization/roleAssignment": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Authorization/roleAssignment",
-		ResourceLabel:        "",
-		Tags:                 map[string][]string{},
-		ServiceName:          "Authorization",
-		ListDescriber:        DescribeBySubscription(describer.RoleAssignment),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Authorization/roleAssignment",
+
+		Tags: map[string][]string{},
+
+		ListDescriber: DescribeBySubscription(describer.RoleAssignment),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DocumentDB/databaseAccounts/mongodbDatabases": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases",
-		ResourceLabel:   "Cosmos DB Mongo Databases",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"},
 		},
-		ServiceName:          "DocumentDB",
-		ListDescriber:        DescribeBySubscription(describer.DocumentDBMongoDatabase),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_cosmosdb_mongo_database"},
-		TerraformServiceName: "cosmos",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.DocumentDBMongoDatabase),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
-		ResourceLabel:   "Cosmos DB Mongo Collections",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"},
 		},
-		ServiceName:          "DocumentDB",
-		ListDescriber:        DescribeBySubscription(describer.DocumentDBMongoCollection),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_cosmosdb_mongo_collection"},
-		TerraformServiceName: "cosmos",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.DocumentDBMongoCollection),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/networkWatchers/flowLogs": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Network/networkWatchers/flowLogs",
-		ResourceLabel:        "",
-		Tags:                 map[string][]string{},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.NetworkWatcherFlowLog),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_network_watcher_flow_log"},
-		TerraformServiceName: "network",
-		FastDiscovery:        false,
-		Summarize:            false,
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Network/networkWatchers/flowLogs",
+
+		Tags: map[string][]string{},
+
+		ListDescriber: DescribeBySubscription(describer.NetworkWatcherFlowLog),
+		GetDescriber:  nil,
 	},
 
 	"microsoft.Sql/servers/elasticpools": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "microsoft.Sql/servers/elasticpools",
-		ResourceLabel:   "Logical Elastic Pools",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Elastic%20Pool.svg"},
 		},
-		ServiceName:          "Sql",
-		ListDescriber:        DescribeBySubscription(describer.SqlServerElasticPool),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_mssql_elasticpool"},
-		TerraformServiceName: "mssql",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.SqlServerElasticPool),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/disks": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/disks",
-		ResourceLabel:   "Disks",
+
 		Tags: map[string][]string{
 			"category": {"Storage"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ComputeDisk),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_managed_disk"},
-		TerraformServiceName: "compute",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.ComputeDisk),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Devices/ProvisioningServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Devices/ProvisioningServices",
-		ResourceLabel:   "IoT Hub Device Provisioning Service (DPS)",
+
 		Tags: map[string][]string{
 			"category": {"IoT & Devices"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/IoT%20Hub.svg"},
 		},
-		ServiceName:          "Devices",
-		ListDescriber:        DescribeBySubscription(describer.IOTHubDps),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_iothub_dps"},
-		TerraformServiceName: "iothub",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.IOTHubDps),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.HDInsight/clusters": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.HDInsight/clusters",
-		ResourceLabel:   "HD Insight Clusters",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/HDInsight%20Cluster.svg"},
 		},
-		ServiceName:          "HDInsight",
-		ListDescriber:        DescribeBySubscription(describer.HdInsightCluster),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_hdinsight_hadoop_cluster", "azurerm_hdinsight_hbase_cluster", "azurerm_hdinsight_interactive_query_cluster", "azurerm_hdinsight_kafka_cluster", "azurerm_hdinsight_spark_cluster"},
-		TerraformServiceName: "hdinsight",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.HdInsightCluster),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.ServiceFabric/clusters": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ServiceFabric/clusters",
-		ResourceLabel:   "Service Fabric Clusters",
+
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Service%20Fabric%20Managed%20Cluster.svg"},
 		},
-		ServiceName:          "ServiceFabric",
-		ListDescriber:        DescribeBySubscription(describer.ServiceFabricCluster),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_service_fabric_cluster"},
-		TerraformServiceName: "servicefabric",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.ServiceFabricCluster),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.SignalRService/signalR": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.SignalRService/signalR",
-		ResourceLabel:   "SignalR Service Instance",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SignalR.svg"},
 		},
-		ServiceName:          "SignalRService",
-		ListDescriber:        DescribeBySubscription(describer.SignalrService),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_signalr_service"},
-		TerraformServiceName: "signalr",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.SignalrService),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Storage/storageAccounts/blob": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/blob",
-		ResourceLabel:   "Storage Blobs",
+
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Blob.svg"},
 		},
-		ServiceName:          "Storage",
-		ListDescriber:        DescribeBySubscription(describer.StorageBlob),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_storage_blob"},
-		TerraformServiceName: "storage",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.StorageBlob),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Storage/storageaccounts/blobservices/containers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageaccounts/blobservices/containers",
-		ResourceLabel:   "Storage Account Containers",
+
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Container.svg"},
 		},
-		ServiceName:          "Storage",
-		ListDescriber:        DescribeBySubscription(describer.StorageContainer),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_storage_container"},
-		TerraformServiceName: "storage",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.StorageContainer),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Storage/storageAccounts/blobServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/blobServices",
-		ResourceLabel:   "Storage Blob Services",
+
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Blob.svg"},
 		},
-		ServiceName:          "Storage",
-		ListDescriber:        DescribeBySubscription(describer.StorageBlobService),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.StorageBlobService),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Storage/storageAccounts/queueServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/queueServices",
-		ResourceLabel:   "Storage Queues",
+
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Queue.svg"},
 		},
-		ServiceName:          "Storage",
-		ListDescriber:        DescribeBySubscription(describer.StorageQueue),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_storage_queue", "azure_storage_queue"},
-		TerraformServiceName: "storage",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.StorageQueue),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.ApiManagement/service": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ApiManagement/service",
-		ResourceLabel:   "API management service",
+
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/API%20Management%20Service.svg"},
 		},
-		ServiceName:          "ApiManagement",
-		ListDescriber:        DescribeBySubscription(describer.APIManagement),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_api_management"},
-		TerraformServiceName: "apimanagement",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.APIManagement),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.ApiManagement/backend": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ApiManagement/backend",
-		ResourceLabel:   "API management backend",
+
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/API%20Management%20Service.svg"},
 		},
-		ServiceName:          "ApiManagement",
-		ListDescriber:        DescribeBySubscription(describer.APIManagementBackend),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_api_management_backend"},
-		TerraformServiceName: "apimanagement",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.APIManagementBackend),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/virtualMachineScaleSets": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/virtualMachineScaleSets",
-		ResourceLabel:   "VM Scale Set",
+
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Scale%20Set.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ComputeVirtualMachineScaleSet),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_virtual_machine_scale_set", "azurerm_orchestrated_virtual_machine_scale_set", "azurerm_linux_virtual_machine_scale_set", "azurerm_windows_virtual_machine_scale_set"},
-		TerraformServiceName: "compute",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.ComputeVirtualMachineScaleSet),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DataFactory/factories/datasets": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataFactory/factories/datasets",
-		ResourceLabel:   "Data Factory Datasets",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Factory.svg"},
 		},
-		ServiceName:          "DataFactory",
-		ListDescriber:        DescribeBySubscription(describer.DataFactoryDataset),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_data_factory_dataset_azure_blob", "azurerm_data_factory_dataset_binary", "azurerm_data_factory_dataset_cosmosdb_sqlapi", "azurerm_data_factory_dataset_delimited_text", "azurerm_data_factory_dataset_http", "azurerm_data_factory_dataset_json", "azurerm_data_factory_dataset_mysql", "azurerm_data_factory_dataset_parquet", "azurerm_data_factory_dataset_postgresql", "azurerm_data_factory_dataset_snowflake", "azurerm_data_factory_dataset_sql_server_table", "azurerm_data_factory_custom_dataset"},
-		TerraformServiceName: "datafactory",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.DataFactoryDataset),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/diskAccesses": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/diskAccesses",
-		ResourceLabel:   "Disk Access",
+
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Disk%20Access.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ComputeDiskAccess),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_disk_access"},
-		TerraformServiceName: "compute",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.ComputeDiskAccess),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DBforMySQL/servers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforMySQL/servers",
-		ResourceLabel:   "Azure Database for MySQL servers",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20MySQL.svg"},
 		},
-		ServiceName:          "DBforMySQL",
-		ListDescriber:        DescribeBySubscription(describer.MysqlServer),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_mysql_server"},
-		TerraformServiceName: "mysql",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.MysqlServer),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DBforMySQL/flexibleservers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforMySQL/flexibleservers",
-		ResourceLabel:   "Azure Database for MySQL flexible servers",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Wordpress%20and%20MySQL%20Flexible%20server.svg"},
 		},
-		ServiceName:          "DBforMySQL",
-		ListDescriber:        DescribeBySubscription(describer.MysqlFlexibleservers),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_mysql_flexible_server"},
-		TerraformServiceName: "mysql",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.MysqlFlexibleservers),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Cache/redisenterprise": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Cache/redisenterprise",
-		ResourceLabel:   "Azure Cache Redis Enterprise",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cache%20for%20Redis.svg"},
 		},
-		ServiceName:          "Cache",
-		ListDescriber:        DescribeBySubscription(describer.CacheRedisEnterprise),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_redis_enterprise_cluster"},
-		TerraformServiceName: "redisenterprise",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.CacheRedisEnterprise),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DataLakeAnalytics/accounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataLakeAnalytics/accounts",
-		ResourceLabel:   "Data Lake Analytics account",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Lake%20Analytics.svg"},
 		},
-		ServiceName:          "DataLakeAnalytics",
-		ListDescriber:        DescribeBySubscription(describer.DataLakeAnalyticsAccount),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.DataLakeAnalyticsAccount),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Insights/activityLogAlerts": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Insights/activityLogAlerts",
-		ResourceLabel:        "Insights Activity Log Alerts",
-		Tags:                 map[string][]string{},
-		ServiceName:          "Insights",
-		ListDescriber:        DescribeBySubscription(describer.LogAlert),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Insights/activityLogAlerts",
+
+		Tags: map[string][]string{},
+
+		ListDescriber: DescribeBySubscription(describer.LogAlert),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/loadBalancers/outboundRules": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers/outboundRules",
-		ResourceLabel:   "Load Balancer Outbound Rules",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Backend%20Outbound%20Rule.svg"},
 		},
-		ServiceName:          "LoadBalancer",
-		ListDescriber:        DescribeBySubscription(describer.LoadBalancerOutboundRule),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_lb_outbound_rule"},
-		TerraformServiceName: "loadbalancer",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.LoadBalancerOutboundRule),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.HybridCompute/machines": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.HybridCompute/machines",
-		ResourceLabel:   "Hybrid Compute Machine",
+
 		Tags: map[string][]string{
 			"category": {"Compute"},
 		},
-		ServiceName:          "HybridCompute",
-		ListDescriber:        DescribeBySubscription(describer.HybridComputeMachine),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_hybrid_compute_machine"},
-		TerraformServiceName: "hybridcompute",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.HybridComputeMachine),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/loadBalancers/inboundNatRules": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers/inboundNatRules",
-		ResourceLabel:   "Load Balancer Inbound NAT Roles",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Inbound%20NAT%20Rule.svg"},
 		},
-		ServiceName:          "LoadBalancer",
-		ListDescriber:        DescribeBySubscription(describer.LoadBalancerNatRule),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_lb_nat_rule"},
-		TerraformServiceName: "loadbalancer",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.LoadBalancerNatRule),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/routeTables": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/routeTables",
-		ResourceLabel:   "Route Tables",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Route%20Table.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.RouteTables),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_route_table"},
-		TerraformServiceName: "network",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.RouteTables),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DocumentDB/databaseAccounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/databaseAccounts",
-		ResourceLabel:   "Database Account",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"},
 		},
-		ServiceName:          "DocumentDB",
-		ListDescriber:        DescribeBySubscription(describer.CosmosdbAccount),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_cosmosdb_account"},
-		TerraformServiceName: "cosmos",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.CosmosdbAccount),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DocumentDB/restorableDatabaseAccounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/restorableDatabaseAccounts",
-		ResourceLabel:   "Restorable Database Account",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"},
 		},
-		ServiceName:          "DocumentDB",
-		ListDescriber:        DescribeBySubscription(describer.CosmosdbRestorableDatabaseAccount),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_cosmosdb_restorable_database_accounts"},
-		TerraformServiceName: "cosmos",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.CosmosdbRestorableDatabaseAccount),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/applicationGateways": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/applicationGateways",
-		ResourceLabel:   "Application Gateways",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Gateway.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.ApplicationGateway),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_application_gateway"},
-		TerraformServiceName: "network",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.ApplicationGateway),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Security/automations": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Security/automations",
-		ResourceLabel:        "",
-		Tags:                 map[string][]string{},
-		ServiceName:          "Security",
-		ListDescriber:        DescribeBySubscription(describer.SecurityCenterAutomation),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_security_center_automation"},
-		TerraformServiceName: "securitycenter",
-		FastDiscovery:        false,
-		Summarize:            false,
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Security/automations",
+
+		Tags: map[string][]string{},
+
+		ListDescriber: DescribeBySubscription(describer.SecurityCenterAutomation),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Kubernetes/connectedClusters": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Kubernetes/connectedClusters",
-		ResourceLabel:   "Externally Hosted Kubernetes Clusters",
+
 		Tags: map[string][]string{
 			"category": {"Container"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Kubernetes%20Cluster%20(Operator%20Nexus).svg"},
 		},
-		ServiceName:          "Kubernetes",
-		ListDescriber:        DescribeBySubscription(describer.HybridKubernetesConnectedCluster),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_arc_kubernetes_cluster"},
-		TerraformServiceName: "arckubernetes",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.HybridKubernetesConnectedCluster),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.KeyVault/vaults/keys": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/vaults/keys",
-		ResourceLabel:   "Key Vault Keys",
+
 		Tags: map[string][]string{
 			"category": {"Security"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"},
 		},
-		ServiceName:          "KeyVault",
-		ListDescriber:        DescribeBySubscription(describer.KeyVaultKey),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_key_vault_key"},
-		TerraformServiceName: "keyvault",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.KeyVaultKey),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.KeyVault/vaults/certificates": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/vaults/certificates",
-		ResourceLabel:   "Key Vault Certificates",
+
 		Tags: map[string][]string{
 			"category": {"Security"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"},
 		},
-		ServiceName:          "KeyVault",
-		ListDescriber:        DescribeBySubscription(describer.KeyVaultCertificate),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_key_vault_certificate"},
-		TerraformServiceName: "keyvault",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.KeyVaultCertificate),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.KeyVault/vaults/keys/Versions": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/vaults/keys/Versions",
-		ResourceLabel:   "Key Vault Keys Versions",
+
 		Tags: map[string][]string{
 			"category": {"Security"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"},
 		},
-		ServiceName:          "KeyVault",
-		ListDescriber:        DescribeBySubscription(describer.KeyVaultKey),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_key_vault_key"},
-		TerraformServiceName: "keyvault",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.KeyVaultKey),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DBforMariaDB/servers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforMariaDB/servers",
-		ResourceLabel:   "MariaDB server",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20MariaDB.svg"},
 		},
-		ServiceName:          "DBforMariaDB",
-		ListDescriber:        DescribeBySubscription(describer.MariadbServer),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_mariadb_server"},
-		TerraformServiceName: "mariadb",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.MariadbServer),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DBforMariaDB/servers/databases": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforMariaDB/servers/databases",
-		ResourceLabel:   "MariaDB Database",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20MariaDB.svg"},
 		},
-		ServiceName:          "DBforMariaDB",
-		ListDescriber:        DescribeBySubscription(describer.MariadbDatabases),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_mariadb_database"},
-		TerraformServiceName: "mariadb",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.MariadbDatabases),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Web/plan": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Web/plan",
-		ResourceLabel:   "App Service Plan",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Service%20plan.svg"},
 		},
-		ServiceName:          "Web",
-		ListDescriber:        DescribeBySubscription(describer.AppServicePlan),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_app_service_plan", "azurerm_service_plan"},
-		TerraformServiceName: "web",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.AppServicePlan),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/virtualNetworkGateways": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/virtualNetworkGateways",
-		ResourceLabel:   "Virtual Network Gateways",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Network%20Gateway.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.VirtualNetworkGateway),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_virtual_network_gateway"},
-		TerraformServiceName: "network",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.VirtualNetworkGateway),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Devices/iotHubs": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Devices/iotHubs",
-		ResourceLabel:   "IoT hub",
+
 		Tags: map[string][]string{
 			"category": {"IoT & Devices"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/IoT%20Hub.svg"},
 		},
-		ServiceName:          "Devices",
-		ListDescriber:        DescribeBySubscription(describer.IOTHub),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_iothub"},
-		TerraformServiceName: "iothub",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.IOTHub),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Logic/workflows": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Logic/workflows",
-		ResourceLabel:   "Logic Workflows",
+
 		Tags: map[string][]string{
 			"category": {"Integration"},
 		},
-		ServiceName:          "Logic",
-		ListDescriber:        DescribeBySubscription(describer.LogicAppWorkflow),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_logic_app_workflow"},
-		TerraformServiceName: "logic",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.LogicAppWorkflow),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Sql/flexibleServers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/flexibleServers",
-		ResourceLabel:   "SQL Flexible Servers",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"},
 		},
-		ServiceName:          "Sql",
-		ListDescriber:        DescribeBySubscription(describer.SqlServerFlexibleServer),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.SqlServerFlexibleServer),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Resources/subscriptions": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Resources/subscriptions",
-		ResourceLabel:   "Subscriptions",
+
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Subscription.svg"},
 		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeBySubscription(describer.Subscription),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_subscription"},
-		TerraformServiceName: "subscription",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.Subscription),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/images": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/images",
-		ResourceLabel:   "VM Images",
+
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Image.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ComputeImage),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_image"},
-		TerraformServiceName: "compute",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.ComputeImage),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/virtualMachines": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/virtualMachines",
-		ResourceLabel:   "VM",
+
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ComputeVirtualMachine),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_linux_virtual_machine", "azurerm_windows_virtual_machine"},
-		TerraformServiceName: "compute",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.ComputeVirtualMachine),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/natGateways": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/natGateways",
-		ResourceLabel:   "NAT Gateways",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/NAT%20Gateway.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.NatGateway),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_nat_gateway"},
-		TerraformServiceName: "network",
-		FastDiscovery:        true,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.NatGateway),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/loadBalancers/probes": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers/probes",
-		ResourceLabel:   "Load Balancer Probes",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Health%20Probe.svg"},
 		},
-		ServiceName:          "LoadBalancer",
-		ListDescriber:        DescribeBySubscription(describer.LoadBalancerProbe),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_lb_probe"},
-		TerraformServiceName: "loadbalancer",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.LoadBalancerProbe),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.KeyVault/vaults": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/vaults",
-		ResourceLabel:   "Key Vaults",
+
 		Tags: map[string][]string{
 			"category": {"Security"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"},
 		},
-		ServiceName:          "KeyVault",
-		ListDescriber:        DescribeBySubscription(describer.KeyVault),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_key_vault"},
-		TerraformServiceName: "keyvault",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.KeyVault),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.KeyVault/managedHsms": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/managedHsms",
-		ResourceLabel:   "Key Vault HSMs",
+
 		Tags: map[string][]string{
 			"category": {"Security"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault%20HSM.svg"},
 		},
-		ServiceName:          "KeyVault",
-		ListDescriber:        DescribeBySubscription(describer.KeyVaultManagedHardwareSecurityModule),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_key_vault_managed_hardware_security_module"},
-		TerraformServiceName: "keyvault",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.KeyVaultManagedHardwareSecurityModule),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.KeyVault/vaults/secrets": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/vaults/secrets",
-		ResourceLabel:   "Key Vault Secrets",
+
 		Tags: map[string][]string{
 			"category": {"Security"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault%20Secret.svg"},
 		},
-		ServiceName:          "KeyVault",
-		ListDescriber:        DescribeBySubscription(describer.KeyVaultSecret),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_key_vault_secret"},
-		TerraformServiceName: "keyvault",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.KeyVaultSecret),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.AppConfiguration/configurationStores": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.AppConfiguration/configurationStores",
-		ResourceLabel:   "Configuration Stores",
+
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/App%20Configuration.svg"},
 		},
-		ServiceName:          "AppConfiguration",
-		ListDescriber:        DescribeBySubscription(describer.AppConfiguration),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_app_configuration"},
-		TerraformServiceName: "appconfiguration",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.AppConfiguration),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Storage/storageAccounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts",
-		ResourceLabel:   "Storage Accounts",
+
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account.svg"},
 		},
-		ServiceName:          "Storage",
-		ListDescriber:        DescribeBySubscription(describer.StorageAccount),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_storage_account"},
-		TerraformServiceName: "storage",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.StorageAccount),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.AppPlatform/Spring": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.AppPlatform/Spring",
-		ResourceLabel:   "Spring App",
+
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Spring%20Cloud.svg"},
 		},
-		ServiceName:          "AppPlatform",
-		ListDescriber:        DescribeBySubscription(describer.SpringCloudService),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_spring_cloud_app"},
-		TerraformServiceName: "springcloud",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.SpringCloudService),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/galleries": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/galleries",
-		ResourceLabel:   "Galleries",
+
 		Tags: map[string][]string{
 			"category": {"General"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Compute%20Gallery.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ComputeGallery),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_shared_image_gallery"},
-		TerraformServiceName: "compute",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.ComputeGallery),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/hostGroups": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/hostGroups",
-		ResourceLabel:   "Host Groups",
+
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Host%20Group.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ComputeHostGroup),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_dedicated_host_group"},
-		TerraformServiceName: "compute",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.ComputeHostGroup),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/hostGroups/hosts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/hostGroups/hosts",
-		ResourceLabel:   "Dedicated Hosts",
+
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Host%20Group.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ComputeHost),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_dedicated_host"},
-		TerraformServiceName: "compute",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.ComputeHost),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/restorePointCollections": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/restorePointCollections",
-		ResourceLabel:   "Restoration Point Collections",
+
 		Tags: map[string][]string{
 			"category": {"Backup"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ComputeRestorePointCollection),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.ComputeRestorePointCollection),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/sshPublicKeys": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/sshPublicKeys",
-		ResourceLabel:   "SSH Key",
+
 		Tags: map[string][]string{
 			"category": {"Management & Governance"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SSH%20key.svg"},
 		},
-		ServiceName:          "Compute",
-		ListDescriber:        DescribeBySubscription(describer.ComputeSSHPublicKey),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_ssh_public_key"},
-		TerraformServiceName: "compute",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.ComputeSSHPublicKey),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Cdn/profiles/endpoints": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Cdn/profiles/endpoints",
-		ResourceLabel:   "CDN Endpoints",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/CDN%20Profile.svg"},
 		},
-		ServiceName:          "Cdn",
-		ListDescriber:        DescribeBySubscription(describer.CdnEndpoint),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_cdn_endpoint"},
-		TerraformServiceName: "cdn",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.CdnEndpoint),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.BotService/botServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.BotService/botServices",
-		ResourceLabel:   "Bot Services",
+
 		Tags: map[string][]string{
 			"category": {"AI + ML"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Bot%20Service.svg"},
 		},
-		ServiceName:          "BotService",
-		ListDescriber:        DescribeBySubscription(describer.BotServiceBot),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_bot_web_app"},
-		TerraformServiceName: "bot",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.BotServiceBot),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DocumentDB/cassandraClusters": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/cassandraClusters",
-		ResourceLabel:   "Cassandra Cluster",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Managed%20Instance%20for%20Apache%20Cassandra.svg"},
 		},
-		ServiceName:          "DocumentDB",
-		ListDescriber:        DescribeBySubscription(describer.DocumentDBCassandraCluster),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_cosmosdb_cassandra_cluster"},
-		TerraformServiceName: "cosmos",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.DocumentDBCassandraCluster),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/ddosProtectionPlans": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/ddosProtectionPlans",
-		ResourceLabel:   "DDos Protection Plan",
+
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DDoS%20Protection%20Plan.svg"},
 		},
-		ServiceName:          "Network",
-		ListDescriber:        DescribeBySubscription(describer.NetworkDDoSProtectionPlan),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_network_ddos_protection_plan"},
-		TerraformServiceName: "network",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.NetworkDDoSProtectionPlan),
+		GetDescriber:  nil,
 	},
 
 	"microsoft.Sql/instancePools": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "microsoft.Sql/instancePools",
-		ResourceLabel:   "SQL Instance Pools",
+
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Instance%20Pool.svg"},
 		},
-		ServiceName:          "Sql",
-		ListDescriber:        DescribeBySubscription(describer.SqlInstancePool),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.SqlInstancePool),
+		GetDescriber:  nil,
 	},
 
 	"microsoft.NetApp/netAppAccounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "microsoft.NetApp/netAppAccounts",
-		ResourceLabel:   "NetApp Files Accounts",
+
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20NetApp%20Files.svg"},
 		},
-		ServiceName:          "NetApp",
-		ListDescriber:        DescribeBySubscription(describer.NetAppAccount),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_netapp_account"},
-		TerraformServiceName: "netapp",
-		FastDiscovery:        false,
-		Summarize:            true,
+
+		ListDescriber: DescribeBySubscription(describer.NetAppAccount),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.NetApp/netAppAccounts/capacityPools": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.NetApp/netAppAccounts/capacityPools",
-		ResourceLabel:   "NetApp Capacity Pools",
+
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20NetApp%20Files.svg"},
 		},
-		ServiceName:          "NetApp",
-		ListDescriber:        DescribeBySubscription(describer.NetAppCapacityPool),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_netapp_pool"},
-		TerraformServiceName: "netapp",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.NetAppCapacityPool),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.DesktopVirtualization/hostpools": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DesktopVirtualization/hostpools",
-		ResourceLabel:   "Azure Virtual Desktop Host Pools",
+
 		Tags: map[string][]string{
 			"category": {"End User"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Windows%20Virtual%20Desktop.svg"},
 		},
-		ServiceName:          "DesktopVirtualization",
-		ListDescriber:        DescribeBySubscription(describer.DesktopVirtualizationHostPool),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_virtual_desktop_host_pool"},
-		TerraformServiceName: "desktopvirtualization",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.DesktopVirtualizationHostPool),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Devtestlab/labs": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Devtestlab/labs",
-		ResourceLabel:   "DevTest Labs",
+
 		Tags: map[string][]string{
 			"category": {"DevOps + Testing"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DevTest%20Lab.svg"},
 		},
-		ServiceName:          "DevTestLab",
-		ListDescriber:        DescribeBySubscription(describer.DevTestLabLab),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_dev_test_lab"},
-		TerraformServiceName: "devtestlabs",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.DevTestLabLab),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Purview/Accounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Purview/Accounts",
-		ResourceLabel:   "Purview accounts",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Purview%20Account.svg"},
 		},
-		ServiceName:          "Purview",
-		ListDescriber:        DescribeBySubscription(describer.PurviewAccount),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_purview_account"},
-		TerraformServiceName: "purview",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.PurviewAccount),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.PowerBIDedicated/capacities": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.PowerBIDedicated/capacities",
-		ResourceLabel:   "Power BI Embedded",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Power%20BI%20Embedded.svg"},
 		},
-		ServiceName:          "PowerBI",
-		ListDescriber:        DescribeBySubscription(describer.PowerBIDedicatedCapacity),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_powerbi_embedded"},
-		TerraformServiceName: "powerbi",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.PowerBIDedicatedCapacity),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Insights/components": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Insights/components",
-		ResourceLabel:   "Application Insights Components",
+
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Insights.svg"},
 		},
-		ServiceName:          "ApplicationInsights",
-		ListDescriber:        DescribeBySubscription(describer.ApplicationInsights),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_application_insights"},
-		TerraformServiceName: "applicationinsights",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.ApplicationInsights),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Lighthouse/definition": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Lighthouse/definition",
-		ResourceLabel:   "LightHouse Definitions",
+
 		Tags: map[string][]string{
 			"category": {},
 			"logo_uri": {},
 		},
-		ServiceName:          "Lighthouse",
-		ListDescriber:        DescribeBySubscription(describer.LighthouseDefinition),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_lighthouse_definition"},
-		TerraformServiceName: "lighthouse",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.LighthouseDefinition),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Lighthouse/assignment": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Lighthouse/assignment",
-		ResourceLabel:   "LightHouse Assignments",
+
 		Tags: map[string][]string{
 			"category": {},
 			"logo_uri": {},
 		},
-		ServiceName:          "Lighthouse",
-		ListDescriber:        DescribeBySubscription(describer.LighthouseAssignments),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_lighthouse_assignment"},
-		TerraformServiceName: "lighthouse",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.LighthouseAssignments),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Maintenance/maintenanceConfigurations": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Maintenance/maintenanceConfigurations",
-		ResourceLabel:   "Maintenance Configurations",
+
 		Tags: map[string][]string{
 			"category": {},
 			"logo_uri": {},
 		},
-		ServiceName:          "Maintenance",
-		ListDescriber:        DescribeBySubscription(describer.MaintenanceConfiguration),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_maintenance_configuration"},
-		TerraformServiceName: "maintenance",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.MaintenanceConfiguration),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Monitor/logProfiles": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Monitor/logProfiles",
-		ResourceLabel:   "Monitor Log Profiles",
+
 		Tags: map[string][]string{
 			"category": {},
 			"logo_uri": {},
 		},
-		ServiceName:          "Monitor",
-		ListDescriber:        DescribeBySubscription(describer.MonitorLogProfiles),
-		GetDescriber:         nil,
-		TerraformName:        []string{"azurerm_monitor_log_profile"},
-		TerraformServiceName: "monitor",
-		FastDiscovery:        false,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.MonitorLogProfiles),
+		GetDescriber:  nil,
 	},
 
 	"Microsoft.Resources/subscriptions/resources": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Resources/subscriptions/resources",
-		ResourceLabel:   "Resources",
+
 		Tags: map[string][]string{
 			"logo_uri": {},
 		},
-		ServiceName:          "Resources",
-		ListDescriber:        DescribeBySubscription(describer.Resources),
-		GetDescriber:         nil,
-		TerraformName:        []string{},
-		TerraformServiceName: "resource",
-		FastDiscovery:        true,
-		Summarize:            false,
+
+		ListDescriber: DescribeBySubscription(describer.Resources),
+		GetDescriber:  nil,
 	},
 }
