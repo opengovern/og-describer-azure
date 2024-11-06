@@ -12,22 +12,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.AppContainerApps)",
-    "GetDescriber": "",    "Model": "ContainerApp"
-  },
-  {
-    "ResourceName": "Microsoft.App/managedEnvironments",
-
-    "Tags": {
-      "category": [
-        "Container"
-      ],
-      "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Container%20App%20Environment.svg"
-      ]
-    },
-
-    "ListDescriber": "DescribeBySubscription(describer.AppManagedEnvironment)",
-    "GetDescriber": "",    "Model": "AppManagedEnvironment"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_app_containerapps",
+    "Model": "ContainerApp"
   },
   {
     "ResourceName": "Microsoft.Blueprint/blueprints",
@@ -40,6 +27,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.BlueprintBlueprint)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_blueprint_blueprints",
     "Model": "Blueprint"
   },
   {
@@ -55,7 +43,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.CdnProfiles)",
-    "GetDescriber": "",    "Model": "CDNProfile"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_cdn_profiles",
+    "Model": "CDNProfile"
   },
   {
     "ResourceName": "Microsoft.Compute/cloudServices",
@@ -71,6 +61,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeCloudServices)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_compute_cloudservices",
     "Model": "ComputeCloudService"
   },
   {
@@ -86,7 +77,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ContainerInstanceContainerGroups)",
-    "GetDescriber": "",    "Model": "ContainerInstanceContainerGroup"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_container_group",
+    "Model": "ContainerInstanceContainerGroup"
   },
   {
     "ResourceName": "Microsoft.DataMigration/services",
@@ -101,7 +94,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.DataMigrationServices)",
-    "GetDescriber": "",    "Model": "DataMigrationService"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_datamigration_services",
+    "Model": "DataMigrationService"
   },
   {
     "ResourceName": "Microsoft.DataProtection/backupVaults",
@@ -114,6 +109,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.DataProtectionBackupVaults)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_dataprotection_backupvaults",
     "Model": "DataProtectionBackupVaults"
   },
   {
@@ -126,6 +122,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.DataProtectionBackupJobs)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_data_protection_backup_job",
     "Model": "DataProtectionJob"
   },
   {
@@ -139,6 +136,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.DataProtectionBackupVaultsBackupPolicies)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_dataprotection_backuppolicies",
     "Model": "DataProtectionBackupVaultsBackupPolicies"
   },
   {
@@ -154,7 +152,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.LogicIntegrationAccounts)",
-    "GetDescriber": "",    "Model": "LogicIntegrationAccounts"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_logic_integrationaccounts",
+    "Model": "LogicIntegrationAccounts"
   },
   {
     "ResourceName": "Microsoft.Network/bastionHosts",
@@ -169,7 +169,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.NetworkBastionHosts)",
-    "GetDescriber": "",    "Model": "BastionHosts"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_bastion_host",
+    "Model": "BastionHosts"
   },
   {
     "ResourceName": "Microsoft.Network/connections",
@@ -185,6 +187,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.NetworkConnections)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_network_connections",
     "Model": "Connection"
   },
   {
@@ -198,6 +201,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.FirewallPolicy)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_firewall_policy",
     "Model": "FirewallPolicy"
   },
   {
@@ -213,7 +217,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.LocalNetworkGateway)",
-    "GetDescriber": "",    "Model": "LocalNetworkGateway"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_network_localnetworkgateways",
+    "Model": "LocalNetworkGateway"
   },
   {
     "ResourceName": "Microsoft.Network/privateLinkServices",
@@ -226,6 +232,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.PrivateLinkService)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_network_privatelinkservices",
     "Model": "PrivateLinkService"
   },
   {
@@ -241,7 +248,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.PublicIPPrefix)",
-    "GetDescriber": "",    "Model": "PublicIPPrefix"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_network_publicipprefixes",
+    "Model": "PublicIPPrefix"
   },
   {
     "ResourceName": "Microsoft.Network/virtualHubs",
@@ -256,7 +265,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.NetworkVirtualHubs)",
-    "GetDescriber": "",    "Model": "VirtualHubs"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_network_virtualhubs",
+    "Model": "VirtualHubs"
   },
   {
     "ResourceName": "Microsoft.Network/virtualWans",
@@ -271,7 +282,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.NetworkVirtualWans)",
-    "GetDescriber": "",    "Model": "VirtualWans"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_network_virtualwans",
+    "Model": "VirtualWans"
   },
   {
     "ResourceName": "Microsoft.Network/vpnGateways",
@@ -286,7 +299,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.VpnGateway)",
-    "GetDescriber": "",    "Model": "VpnGateway"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_network_vpngateways",
+    "Model": "VpnGateway"
   },
   {
     "ResourceName": "Microsoft.Network/vpnGateways/vpnConnections",
@@ -294,7 +309,9 @@
     "Tags": null,
 
     "ListDescriber": "DescribeBySubscription(describer.NetworkVpnGatewaysVpnConnections)",
-    "GetDescriber": "",    "Model": "VpnGatewayVpnConnection"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_network_vpnconnections",
+    "Model": "VpnGatewayVpnConnection"
   },
   {
     "ResourceName": "Microsoft.Network/vpnSites",
@@ -306,7 +323,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.NetworkVpnGatewaysVpnSites)",
-    "GetDescriber": "",    "Model": "VpnSite"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_network_vpnsites",
+    "Model": "VpnSite"
   },
   {
     "ResourceName": "Microsoft.OperationalInsights/workspaces",
@@ -315,6 +334,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.OperationalInsightsWorkspaces)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_operationalinsights_workspaces",
     "Model": "OperationalInsightsWorkspaces"
   },
   {
@@ -328,6 +348,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.StreamAnalyticsCluster)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_streamanalytics_cluster",
     "Model": "StreamAnalyticsCluster"
   },
   {
@@ -341,6 +362,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.TimeSeriesInsightsEnvironments)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_timeseriesinsights_environments",
     "Model": "TimeSeriesInsightsEnvironments"
   },
   {
@@ -357,6 +379,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.VirtualMachineImagesImageTemplates)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_virtualmachineimages_imagetemplates",
     "Model": "VirtualMachineImagesImageTemplates"
   },
   {
@@ -372,7 +395,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.WebServerFarms)",
-    "GetDescriber": "",    "Model": "WebServerFarms"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_web_serverfarms",
+    "Model": "WebServerFarms"
   },
   {
     "ResourceName": "Microsoft.Compute/virtualMachineScaleSets/virtualMachines",
@@ -385,6 +410,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeVirtualMachineScaleSetVm)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_compute_virtual_machine_scale_set_vm",
     "Model": "ComputeVirtualMachineScaleSetVm"
   },
   {
@@ -400,7 +426,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.AutomationAccounts)",
-    "GetDescriber": "",    "Model": "AutomationAccounts"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_automation_account",
+    "Model": "AutomationAccounts"
   },
   {
     "ResourceName": "Microsoft.Automation/automationAccounts/variables",
@@ -423,6 +451,7 @@
       "azurerm_automation_variable_bool"
     ],
 
+    "SteampipeTable": "azure_automation_variable",
     "Model": "AutomationVariables"
   },
   {
@@ -438,7 +467,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.DNSZones)",
-    "GetDescriber": "",    "Model": "DNSZones"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_dns_zone",
+    "Model": "DNSZones"
   },
   {
     "ResourceName": "Microsoft.Databricks/workspaces",
@@ -453,7 +484,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.DatabricksWorkspaces)",
-    "GetDescriber": "",    "Model": "DatabricksWorkspace"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_databricks_workspaces",
+    "Model": "DatabricksWorkspace"
   },
   {
     "ResourceName": "Microsoft.Network/privateDnsZones",
@@ -468,7 +501,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.PrivateDnsZones)",
-    "GetDescriber": "",    "Model": "PrivateDNSZones"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_private_dns_zone",
+    "Model": "PrivateDNSZones"
   },
   {
     "ResourceName": "Microsoft.Network/privateEndpoints",
@@ -483,7 +518,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.PrivateEndpoints)",
-    "GetDescriber": "",    "Model": "PrivateEndpoint"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_network_privateendpoints",
+    "Model": "PrivateEndpoint"
   },
   {
     "ResourceName": "Microsoft.Network/networkWatchers",
@@ -495,7 +532,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.NetworkWatcher)",
-    "GetDescriber": "",    "Model": "NetworkWatcher"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_network_watcher",
+    "Model": "NetworkWatcher"
   },
   {
     "ResourceName": "Microsoft.Resources/subscriptions/resourceGroups",
@@ -507,7 +546,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ResourceGroup)",
-    "GetDescriber": "",    "Model": "ResourceGroup"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_resource_group",
+    "Model": "ResourceGroup"
   },
   {
     "ResourceName": "Microsoft.Web/staticSites",
@@ -522,7 +563,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.AppServiceWebApp)",
-    "GetDescriber": "",    "Model": "AppServiceWebApp"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_app_service_web_app",
+    "Model": "AppServiceWebApp"
   },
   {
     "ResourceName": "Microsoft.Web/sites/slots",
@@ -537,17 +580,11 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.AppServiceWebAppSlot)",
-    "GetDescriber": "",    "Model": "AppServiceWebAppSlot"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/serviceprincipals",
-
-    "Tags": null,
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdServicePrinciple)",
     "GetDescriber": "",
-    "Model": "AdServicePrincipal"
+    "SteampipeTable": "azure_app_service_web_app_slot",
+    "Model": "AppServiceWebAppSlot"
   },
+
   {
     "ResourceName": "Microsoft.CognitiveServices/accounts",
 
@@ -561,7 +598,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.CognitiveAccount)",
-    "GetDescriber": "",    "Model": "CognitiveAccount"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_cognitive_account",
+    "Model": "CognitiveAccount"
   },
   {
     "ResourceName": "Microsoft.Sql/managedInstances",
@@ -582,6 +621,7 @@
       "azurerm_sql_managed_instance"
     ],
 
+    "SteampipeTable": "azure_mssql_managed_instance",
     "Model": "MssqlManagedInstance"
   },
   {
@@ -598,6 +638,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.SqlVirtualClusters)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_sql_virtualclusters",
     "Model": "SqlVirtualClusters"
   },
   {
@@ -613,7 +654,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.MssqlManagedInstanceDatabases)",
-    "GetDescriber": "",    "Model": "MssqlManagedInstanceDatabases"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_sql_managedinstancesdatabases",
+    "Model": "MssqlManagedInstanceDatabases"
   },
   {
     "ResourceName": "Microsoft.Sql/servers/databases",
@@ -634,6 +677,7 @@
       "azurerm_sql_database"
     ],
 
+    "SteampipeTable": "azure_sql_database",
     "Model": "SqlDatabase"
   },
   {
@@ -655,6 +699,7 @@
       "azure_storage_share"
     ],
 
+    "SteampipeTable": "azure_storage_share_file",
     "Model": "StorageFileShare"
   },
   {
@@ -670,7 +715,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.PostgresqlServer)",
-    "GetDescriber": "",    "Model": "PostgresqlServer"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_postgresql_server",
+    "Model": "PostgresqlServer"
   },
   {
     "ResourceName": "Microsoft.DBforPostgreSQL/flexibleservers",
@@ -685,7 +732,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.PostgresqlFlexibleservers)",
-    "GetDescriber": "",    "Model": "PostgresqlFlexibleServer"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_dbforpostgresql_flexibleservers",
+    "Model": "PostgresqlFlexibleServer"
   },
   {
     "ResourceName": "Microsoft.AnalysisServices/servers",
@@ -700,7 +749,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.AnalysisService)",
-    "GetDescriber": "",    "Model": "AnalysisServiceServer"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_analysisservices_servers",
+    "Model": "AnalysisServiceServer"
   },
   {
     "ResourceName": "Microsoft.Security/pricings",
@@ -708,7 +759,9 @@
     "Tags": null,
 
     "ListDescriber": "DescribeBySubscription(describer.SecurityCenterSubscriptionPricing)",
-    "GetDescriber": "",    "Model": "SecurityCenterSubscriptionPricing"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_security_center_subscription_pricing",
+    "Model": "SecurityCenterSubscriptionPricing"
   },
   {
     "ResourceName": "Microsoft.Insights/guestDiagnosticSettings",
@@ -721,6 +774,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.DiagnosticSetting)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_diagnostic_setting",
     "Model": "DiagnosticSetting"
   },
   {
@@ -733,220 +787,8 @@
 
     "ListDescriber": "DescribeBySubscription(describer.AutoscaleSetting)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_autoscale_setting",
     "Model": "AutoscaleSetting"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/groups",
-
-    "Tags": {
-      "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdGroup)",
-    "GetDescriber": "",
-    "Model": "AdGroup"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/groupMemberships",
-
-    "Tags": {
-      "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdGroupMembership)",
-    "GetDescriber": "",
-    "Model": "AdGroupMembership"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/devices",
-
-    "Tags": {
-      "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdDevice)",
-    "GetDescriber": "",
-    "Model": "AdDevice"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/signInReports",
-
-    "Tags": {
-      "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdSignInReport)",
-    "GetDescriber": "",
-    "Model": "AdSignInReport"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/applications",
-
-    "Tags": {
-      "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdApplication)",
-    "GetDescriber": "",
-    "Model": "AdApplication"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/appRegistrations",
-
-    "Tags": {
-      "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdAppRegistration)",
-    "GetDescriber": "",
-    "Model": "AdAppRegistration"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/enterpriseApplication",
-
-    "Tags": {
-      "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdEnterpriseApplication)",
-    "GetDescriber": "",
-    "Model": "AdEnterpriseApplication"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/managedIdentity",
-
-    "Tags": {
-      "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdManagedIdentity)",
-    "GetDescriber": "",
-    "Model": "AdManagedIdentity"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/microsoftApplication",
-
-    "Tags": {
-      "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20Group.svg"
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdMicrosoftApplication)",
-    "GetDescriber": "",
-    "Model": "AdMicrosoftApplication"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/domains",
-
-    "Tags": {
-      "logo_uri": [
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdDomain)",
-    "GetDescriber": "",
-    "Model": "AdDomain"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/tenant",
-
-    "Tags": {
-      "logo_uri": [
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdTenant)",
-    "GetDescriber": "",
-    "Model": "AdTenant"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/identityproviders",
-
-    "Tags": {
-      "logo_uri": [
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdIdentityProvider)",
-    "GetDescriber": "",
-    "Model": "AdIdentityProvider"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/securitydefaultspolicy",
-
-    "Tags": {
-      "logo_uri": [
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdSecurityDefaultsPolicy)",
-    "GetDescriber": "",
-    "Model": "AdSecurityDefaultsPolicy"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/authorizationpolicy",
-
-    "Tags": {
-      "logo_uri": [
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdAuthorizationPolicy)",
-    "GetDescriber": "",
-    "Model": "AdAuthorizationPolicy"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/conditionalaccesspolicy",
-
-    "Tags": {
-      "logo_uri": [
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdConditionalAccessPolicy)",
-    "GetDescriber": "",
-    "Model": "AdConditionalAccessPolicy"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/adminconsentrequestpolicy",
-
-    "Tags": {
-      "logo_uri": [
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdAdminConsentRequestPolicy)",
-    "GetDescriber": "",
-    "Model": "AdAdminConsentRequestPolicy"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/userregistrationdetails",
-
-    "Tags": {
-      "logo_uri": [
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdUserRegistrationDetails)",
-    "GetDescriber": "",
-    "Model": "AdUserRegistrationDetails"
   },
   {
     "ResourceName": "Microsoft.Web/hostingEnvironments",
@@ -961,7 +803,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.AppServiceEnvironment)",
-    "GetDescriber": "",    "Model": "AppServiceEnvironment"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_app_service_environment",
+    "Model": "AppServiceEnvironment"
   },
   {
     "ResourceName": "Microsoft.Cache/redis",
@@ -976,7 +820,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.RedisCache)",
-    "GetDescriber": "",    "Model": "RedisCache"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_redis_cache",
+    "Model": "RedisCache"
   },
   {
     "ResourceName": "Microsoft.ContainerRegistry/registries",
@@ -991,7 +837,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ContainerRegistry)",
-    "GetDescriber": "",    "Model": "ContainerRegistry"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_container_registry",
+    "Model": "ContainerRegistry"
   },
   {
     "ResourceName": "Microsoft.DataFactory/factories/pipelines",
@@ -1003,7 +851,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.DataFactoryPipeline)",
-    "GetDescriber": "",    "Model": "DataFactoryPipeline"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_data_factory_pipeline",
+    "Model": "DataFactoryPipeline"
   },
   {
     "ResourceName": "Microsoft.Compute/resourceSku",
@@ -1012,6 +862,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeResourceSKU)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_compute_resource_sku",
     "Model": "ComputeResourceSKU"
   },
   {
@@ -1027,7 +878,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ExpressRouteCircuit)",
-    "GetDescriber": "",    "Model": "ExpressRouteCircuit"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_express_route_circuit",
+    "Model": "ExpressRouteCircuit"
   },
   {
     "ResourceName": "Microsoft.Management/managementgroups",
@@ -1039,7 +892,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ManagementGroup)",
-    "GetDescriber": "",    "Model": "ManagementGroup"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_management_group",
+    "Model": "ManagementGroup"
   },
   {
     "ResourceName": "microsoft.SqlVirtualMachine/SqlVirtualMachines",
@@ -1054,7 +909,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.SqlServerVirtualMachine)",
-    "GetDescriber": "",    "Model": "SqlServerVirtualMachine"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_mssql_virtual_machine",
+    "Model": "SqlServerVirtualMachine"
   },
   {
     "ResourceName": "Microsoft.SqlVirtualMachine/SqlVirtualMachineGroups",
@@ -1070,6 +927,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.SqlServerVirtualMachineGroups)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_sql_virtualmachinegroups",
     "Model": "SqlServerVirtualMachineGroup"
   },
   {
@@ -1086,6 +944,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.StorageTableService)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_storage_table_service",
     "Model": "StorageTableService"
   },
   {
@@ -1101,7 +960,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.SynapseWorkspace)",
-    "GetDescriber": "",    "Model": "SynapseWorkspace"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_synapse_workspace",
+    "Model": "SynapseWorkspace"
   },
   {
     "ResourceName": "Microsoft.Synapse/workspaces/bigdatapools",
@@ -1117,6 +978,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.SynapseWorkspaceBigdataPools)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_synapse_workspacesbigdatapools",
     "Model": "SynapseWorkspaceBigdatapools"
   },
   {
@@ -1132,7 +994,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.SynapseWorkspaceSqlpools)",
-    "GetDescriber": "",    "Model": "SynapseWorkspaceSqlpools"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_synapse_workspacessqlpools",
+    "Model": "SynapseWorkspaceSqlpools"
   },
   {
     "ResourceName": "Microsoft.StreamAnalytics/streamingJobs",
@@ -1144,7 +1008,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.StreamAnalyticsJob)",
-    "GetDescriber": "",    "Model": "StreamAnalyticsJob"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_stream_analytics_job",
+    "Model": "StreamAnalyticsJob"
   },
   {
     "ResourceName": "Microsoft.CostManagement/CostBySubscription",
@@ -1153,6 +1019,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.DailyCostBySubscription)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_costmanagement_costbysubscription",
     "Model": "CostManagementCostBySubscription"
   },
   {
@@ -1168,7 +1035,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.KubernetesCluster)",
-    "GetDescriber": "",    "Model": "KubernetesCluster"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_kubernetes_cluster",
+    "Model": "KubernetesCluster"
   },
   {
     "ResourceName": "Microsoft.ContainerService/serviceVersions",
@@ -1181,6 +1050,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.KubernetesServiceVersion)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_kubernetes_service_version",
     "Model": "KubernetesServiceVersion"
   },
   {
@@ -1196,7 +1066,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.DataFactory)",
-    "GetDescriber": "",    "Model": "DataFactory"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_data_factory",
+    "Model": "DataFactory"
   },
   {
     "ResourceName": "Microsoft.Sql/servers",
@@ -1211,7 +1083,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.SqlServer)",
-    "GetDescriber": "",    "Model": "SqlServer"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_sql_server",
+    "Model": "SqlServer"
   },
   {
     "ResourceName": "Microsoft.Sql/servers/jobagents",
@@ -1226,7 +1100,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.SqlServerJobAgents)",
-    "GetDescriber": "",    "Model": "SqlServerJobAgent"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_sql_serversjobagents",
+    "Model": "SqlServerJobAgent"
   },
   {
     "ResourceName": "Microsoft.Security/autoProvisioningSettings",
@@ -1234,7 +1110,9 @@
     "Tags": null,
 
     "ListDescriber": "DescribeBySubscription(describer.SecurityCenterAutoProvisioning)",
-    "GetDescriber": "",    "Model": "SecurityCenterAutoProvisioning"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_security_center_auto_provisioning",
+    "Model": "SecurityCenterAutoProvisioning"
   },
   {
     "ResourceName": "Microsoft.Insights/logProfiles",
@@ -1243,6 +1121,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.LogProfile)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_log_profile",
     "Model": "LogProfile"
   },
   {
@@ -1258,7 +1137,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.DataboxEdgeDevice)",
-    "GetDescriber": "",    "Model": "DataboxEdgeDevice"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_databox_edge_device",
+    "Model": "DataboxEdgeDevice"
   },
   {
     "ResourceName": "Microsoft.Network/loadBalancers",
@@ -1273,7 +1154,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.LoadBalancer)",
-    "GetDescriber": "",    "Model": "LoadBalancer"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_lb",
+    "Model": "LoadBalancer"
   },
   {
     "ResourceName": "Microsoft.Network/azureFirewalls",
@@ -1288,7 +1171,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.NetworkAzureFirewall)",
-    "GetDescriber": "",    "Model": "NetworkAzureFirewall"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_firewall",
+    "Model": "NetworkAzureFirewall"
   },
   {
     "ResourceName": "Microsoft.Management/locks",
@@ -1301,6 +1186,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ManagementLock)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_management_lock",
     "Model": "ManagementLock"
   },
   {
@@ -1314,6 +1200,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeVirtualMachineScaleSetNetworkInterface)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_compute_virtual_machine_scale_set_network_interface",
     "Model": "ComputeVirtualMachineScaleSetNetworkInterface"
   },
   {
@@ -1329,7 +1216,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.FrontDoor)",
-    "GetDescriber": "",    "Model": "Frontdoor"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_frontdoor",
+    "Model": "Frontdoor"
   },
   {
     "ResourceName": "Microsoft.Authorization/policyAssignments",
@@ -1344,7 +1233,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.PolicyAssignment)",
-    "GetDescriber": "",    "Model": "PolicyAssignment"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_policy_assignment",
+    "Model": "PolicyAssignment"
   },
   {
     "ResourceName": "Microsoft.Authorization/userEffectiveAccess",
@@ -1359,7 +1250,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.UserEffectiveAccess)",
-    "GetDescriber": "",    "Model": "UserEffectiveAccess"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_user_effective_access",
+    "Model": "UserEffectiveAccess"
   },
   {
     "ResourceName": "Microsoft.Search/searchServices",
@@ -1374,7 +1267,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.SearchService)",
-    "GetDescriber": "",    "Model": "SearchService"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_search_service",
+    "Model": "SearchService"
   },
   {
     "ResourceName": "Microsoft.Security/settings",
@@ -1382,7 +1277,9 @@
     "Tags": null,
 
     "ListDescriber": "DescribeBySubscription(describer.SecurityCenterSetting)",
-    "GetDescriber": "",    "Model": "SecurityCenterSetting"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_security_center_setting",
+    "Model": "SecurityCenterSetting"
   },
   {
     "ResourceName": "Microsoft.RecoveryServices/vaults",
@@ -1394,7 +1291,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.RecoveryServicesVault)",
-    "GetDescriber": "",    "Model": "RecoveryServicesVault"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_recovery_services_vault",
+    "Model": "RecoveryServicesVault"
   },
   {
     "ResourceName": "Microsoft.RecoveryServices/vaults/backupJobs",
@@ -1405,7 +1304,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.RecoveryServicesBackupJobs)",
-    "GetDescriber": "",    "Model": "RecoveryServicesBackupJob"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_recovery_services_backup_job",
+    "Model": "RecoveryServicesBackupJob"
   },
   {
     "ResourceName": "Microsoft.RecoveryServices/vaults/backupPolicies",
@@ -1416,7 +1317,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.RecoveryServicesBackupPolicies)",
-    "GetDescriber": "",    "Model": "RecoveryServicesBackupPolicy"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_recovery_services_backup_policy",
+    "Model": "RecoveryServicesBackupPolicy"
   },
   {
     "ResourceName": "Microsoft.RecoveryServices/vaults/backupItems",
@@ -1427,7 +1330,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.RecoveryServicesBackupItem)",
-    "GetDescriber": "",    "Model": "RecoveryServicesBackupItem"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_recovery_services_backup_item",
+    "Model": "RecoveryServicesBackupItem"
   },
   {
     "ResourceName": "Microsoft.Compute/diskEncryptionSets",
@@ -1442,7 +1347,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeDiskEncryptionSet)",
-    "GetDescriber": "",    "Model": "ComputeDiskEncryptionSet"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_compute_disk_encryption_set",
+    "Model": "ComputeDiskEncryptionSet"
   },
   {
     "ResourceName": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
@@ -1457,7 +1364,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.DocumentDBSQLDatabase)",
-    "GetDescriber": "",    "Model": "CosmosdbSqlDatabase"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_cosmosdb_sql_database",
+    "Model": "CosmosdbSqlDatabase"
   },
   {
     "ResourceName": "Microsoft.EventGrid/topics",
@@ -1472,7 +1381,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.EventGridTopic)",
-    "GetDescriber": "",    "Model": "EventGridTopic"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_eventgrid_topic",
+    "Model": "EventGridTopic"
   },
   {
     "ResourceName": "Microsoft.EventHub/namespaces",
@@ -1487,7 +1398,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.EventhubNamespace)",
-    "GetDescriber": "",    "Model": "EventhubNamespace"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_eventhub_namespace",
+    "Model": "EventhubNamespace"
   },
   {
     "ResourceName": "Microsoft.EventHub/namespaces/eventHubs",
@@ -1502,7 +1415,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.EventhubNamespaceEventhub)",
-    "GetDescriber": "",    "Model": "EventhubNamespaceEventhub"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_eventhub_namespaceeventhubs",
+    "Model": "EventhubNamespaceEventhub"
   },
   {
     "ResourceName": "Microsoft.MachineLearningServices/workspaces",
@@ -1517,7 +1432,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.MachineLearningWorkspace)",
-    "GetDescriber": "",    "Model": "MachineLearningWorkspace"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_machine_learning_workspace",
+    "Model": "MachineLearningWorkspace"
   },
   {
     "ResourceName": "Microsoft.Dashboard/grafana",
@@ -1533,6 +1450,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.DashboardGrafana)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_dashboard_grafana",
     "Model": "DashboardGrafana"
   },
   {
@@ -1549,6 +1467,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.DesktopVirtualizationWorkspaces)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_desktopvirtualization_workspace",
     "Model": "DesktopVirtualizationWorkspace"
   },
   {
@@ -1565,6 +1484,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.TrafficManagerProfile)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_trafficmanager_profile",
     "Model": "TrafficManagerProfile"
   },
   {
@@ -1581,6 +1501,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.DNSResolvers)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_network_dnsresolver",
     "Model": "DNSResolver"
   },
   {
@@ -1590,6 +1511,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.DailyCostByResourceType)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_costmanagement_costbyresourcetype",
     "Model": "CostManagementCostByResourceType"
   },
   {
@@ -1605,7 +1527,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.NetworkInterface)",
-    "GetDescriber": "",    "Model": "NetworkInterface"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_network_interface",
+    "Model": "NetworkInterface"
   },
   {
     "ResourceName": "Microsoft.Network/publicIPAddresses",
@@ -1620,7 +1544,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.PublicIPAddress)",
-    "GetDescriber": "",    "Model": "PublicIPAddress"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_public_ip",
+    "Model": "PublicIPAddress"
   },
   {
     "ResourceName": "Microsoft.HealthcareApis/services",
@@ -1628,7 +1554,9 @@
     "Tags": null,
 
     "ListDescriber": "DescribeBySubscription(describer.HealthcareService)",
-    "GetDescriber": "",    "Model": "HealthcareService"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_healthcare_service",
+    "Model": "HealthcareService"
   },
   {
     "ResourceName": "Microsoft.ServiceBus/namespaces",
@@ -1643,7 +1571,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ServicebusNamespace)",
-    "GetDescriber": "",    "Model": "ServicebusNamespace"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_servicebus_namespace",
+    "Model": "ServicebusNamespace"
   },
   {
     "ResourceName": "Microsoft.Web/sites",
@@ -1664,6 +1594,7 @@
       "azurerm_function_app"
     ],
 
+    "SteampipeTable": "azure_app_service_function_app",
     "Model": "AppServiceFunctionApp"
   },
   {
@@ -1679,7 +1610,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeAvailabilitySet)",
-    "GetDescriber": "",    "Model": "ComputeAvailabilitySet"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_compute_availability_set",
+    "Model": "ComputeAvailabilitySet"
   },
   {
     "ResourceName": "Microsoft.Network/virtualNetworks",
@@ -1694,7 +1627,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.VirtualNetwork)",
-    "GetDescriber": "",    "Model": "VirtualNetwork"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_virtual_network",
+    "Model": "VirtualNetwork"
   },
   {
     "ResourceName": "Microsoft.Security/securityContacts",
@@ -1702,7 +1637,9 @@
     "Tags": null,
 
     "ListDescriber": "DescribeBySubscription(describer.SecurityCenterContact)",
-    "GetDescriber": "",    "Model": "SecurityCenterContact"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_security_center_contact",
+    "Model": "SecurityCenterContact"
   },
   {
     "ResourceName": "Microsoft.Compute/diskswriteops",
@@ -1711,6 +1648,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeDiskWriteOps)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_compute_disk_metric_write_ops",
     "Model": "ComputeDiskWriteOps"
   },
   {
@@ -1720,6 +1658,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeDiskWriteOpsHourly)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_compute_disk_metric_write_ops_hourly",
     "Model": "ComputeDiskWriteOpsHourly"
   },
   {
@@ -1735,7 +1674,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.EventGridDomain)",
-    "GetDescriber": "",    "Model": "EventGridDomain"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_eventgrid_domain",
+    "Model": "EventGridDomain"
   },
   {
     "ResourceName": "Microsoft.KeyVault/deletedVaults",
@@ -1751,6 +1692,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.DeletedVault)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_key_vault_deleted_vault",
     "Model": "KeyVaultDeletedVault"
   },
   {
@@ -1766,56 +1708,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.StorageTable)",
-    "GetDescriber": "",    "Model": "StorageTable"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/users",
-
-    "Tags": {
-      "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20AD%20User.svg"
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdUsers)",
     "GetDescriber": "",
-    "Model": "AdUsers"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/directoryroles",
-
-    "Tags": {
-      "logo_uri": [
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdDirectoryRole)",
-    "GetDescriber": "",
-    "Model": "AdDirectoryRole"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/directorysettings",
-
-    "Tags": {
-      "logo_uri": [
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdDirectorySetting)",
-    "GetDescriber": "",
-    "Model": "AdDirectorySetting"
-  },
-  {
-    "ResourceName": "Microsoft.Entra/directoryauditreport",
-
-    "Tags": {
-      "logo_uri": [
-      ]
-    },
-
-    "ListDescriber": "DescribeADByTenantID(describer.AdDirectoryAuditReport)",
-    "GetDescriber": "",
-    "Model": "AdDirectoryAuditReport"
+    "SteampipeTable": "azure_storage_table",
+    "Model": "StorageTable"
   },
   {
     "ResourceName": "Microsoft.Compute/snapshots",
@@ -1830,7 +1725,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeSnapshots)",
-    "GetDescriber": "",    "Model": "ComputeSnapshots"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_compute_snapshot",
+    "Model": "ComputeSnapshots"
   },
   {
     "ResourceName": "Microsoft.Kusto/clusters",
@@ -1845,7 +1742,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.KustoCluster)",
-    "GetDescriber": "",    "Model": "KustoCluster"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_kusto_cluster",
+    "Model": "KustoCluster"
   },
   {
     "ResourceName": "Microsoft.StorageSync/storageSyncServices",
@@ -1860,7 +1759,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.StorageSync)",
-    "GetDescriber": "",    "Model": "StorageSync"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_storage_sync",
+    "Model": "StorageSync"
   },
   {
     "ResourceName": "Microsoft.Security/locations/jitNetworkAccessPolicies",
@@ -1869,6 +1770,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.SecurityCenterJitNetworkAccessPolicy)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_security_center_jit_network_access_policy",
     "Model": "SecurityCenterJitNetworkAccessPolicy"
   },
   {
@@ -1884,7 +1786,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.Subnet)",
-    "GetDescriber": "",    "Model": "Subnet"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_subnet",
+    "Model": "Subnet"
   },
   {
     "ResourceName": "Microsoft.Network/loadBalancers/backendAddressPools",
@@ -1899,7 +1803,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.LoadBalancerBackendAddressPool)",
-    "GetDescriber": "",    "Model": "LoadBalancerBackendAddressPool"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_lb_backend_address_pool",
+    "Model": "LoadBalancerBackendAddressPool"
   },
   {
     "ResourceName": "Microsoft.Network/loadBalancers/loadBalancingRules",
@@ -1911,7 +1817,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.LoadBalancerRule)",
-    "GetDescriber": "",    "Model": "LoadBalancerRule"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_lb_rule",
+    "Model": "LoadBalancerRule"
   },
   {
     "ResourceName": "Microsoft.Compute/virtualMachineCpuUtilizationDaily",
@@ -1920,6 +1828,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeVirtualMachineCpuUtilizationDaily)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_compute_virtual_machine_metric_cpu_utilization_daily",
     "Model": "ComputeVirtualMachineCpuUtilizationDaily"
   },
   {
@@ -1936,6 +1845,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.DataLakeStore)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_data_lake_store",
     "Model": "DataLakeStore"
   },
   {
@@ -1951,7 +1861,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.HpcCache)",
-    "GetDescriber": "",    "Model": "HpcCache"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_hpc_cache",
+    "Model": "HpcCache"
   },
   {
     "ResourceName": "Microsoft.Batch/batchAccounts",
@@ -1966,7 +1878,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.BatchAccount)",
-    "GetDescriber": "",    "Model": "BatchAccount"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_batch_account",
+    "Model": "BatchAccount"
   },
   {
     "ResourceName": "Microsoft.Network/networkSecurityGroups",
@@ -1981,7 +1895,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.NetworkSecurityGroup)",
-    "GetDescriber": "",    "Model": "NetworkSecurityGroup"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_network_security_group",
+    "Model": "NetworkSecurityGroup"
   },
   {
     "ResourceName": "Microsoft.Authorization/roleDefinitions",
@@ -1996,7 +1912,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.RoleDefinition)",
-    "GetDescriber": "",    "Model": "RoleDefinition"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_role_definition",
+    "Model": "RoleDefinition"
   },
   {
     "ResourceName": "Microsoft.Network/applicationSecurityGroups",
@@ -2011,7 +1929,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.NetworkApplicationSecurityGroups)",
-    "GetDescriber": "",    "Model": "NetworkApplicationSecurityGroups"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_application_security_group",
+    "Model": "NetworkApplicationSecurityGroups"
   },
   {
     "ResourceName": "Microsoft.Authorization/roleAssignment",
@@ -2020,6 +1940,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.RoleAssignment)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_role_assignment",
     "Model": "RoleAssignment"
   },
   {
@@ -2035,7 +1956,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.DocumentDBMongoDatabase)",
-    "GetDescriber": "",    "Model": "CosmosdbMongoDatabase"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_cosmosdb_mongo_database",
+    "Model": "CosmosdbMongoDatabase"
   },
   {
     "ResourceName": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
@@ -2050,7 +1973,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.DocumentDBMongoCollection)",
-    "GetDescriber": "",    "Model": "CosmosdbMongoCollection"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_cosmosdb_mongo_collection",
+    "Model": "CosmosdbMongoCollection"
   },
   {
     "ResourceName": "Microsoft.Network/networkWatchers/flowLogs",
@@ -2058,7 +1983,9 @@
     "Tags": null,
 
     "ListDescriber": "DescribeBySubscription(describer.NetworkWatcherFlowLog)",
-    "GetDescriber": "",    "Model": "NetworkWatcherFlowLog"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_network_watcher_flow_log",
+    "Model": "NetworkWatcherFlowLog"
   },
   {
     "ResourceName": "microsoft.Sql/servers/elasticpools",
@@ -2073,7 +2000,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.SqlServerElasticPool)",
-    "GetDescriber": "",    "Model": "SqlServerElasticPool"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_mssql_elasticpool",
+    "Model": "SqlServerElasticPool"
   },
   {
     "ResourceName": "Microsoft.Security/subAssessments",
@@ -2082,6 +2011,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.SecurityCenterSubAssessment)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_security_center_sub_assessment",
     "Model": "SecurityCenterSubAssessment"
   },
   {
@@ -2094,7 +2024,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeDisk)",
-    "GetDescriber": "",    "Model": "ComputeDisk"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_compute_disk",
+    "Model": "ComputeDisk"
   },
   {
     "ResourceName": "Microsoft.Devices/ProvisioningServices",
@@ -2109,7 +2041,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.IOTHubDps)",
-    "GetDescriber": "",    "Model": "IOTHubDps"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_iothub_dps",
+    "Model": "IOTHubDps"
   },
   {
     "ResourceName": "Microsoft.HDInsight/clusters",
@@ -2133,6 +2067,7 @@
       "azurerm_hdinsight_spark_cluster"
     ],
 
+    "SteampipeTable": "azure_hdinsight_cluster",
     "Model": "HdinsightCluster"
   },
   {
@@ -2148,7 +2083,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ServiceFabricCluster)",
-    "GetDescriber": "",    "Model": "ServiceFabricCluster"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_service_fabric_cluster",
+    "Model": "ServiceFabricCluster"
   },
   {
     "ResourceName": "Microsoft.SignalRService/signalR",
@@ -2163,7 +2100,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.SignalrService)",
-    "GetDescriber": "",    "Model": "SignalrService"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_signalr_service",
+    "Model": "SignalrService"
   },
   {
     "ResourceName": "Microsoft.Storage/storageAccounts/blob",
@@ -2178,7 +2117,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.StorageBlob)",
-    "GetDescriber": "",    "Model": "StorageBlob"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_storage_blob",
+    "Model": "StorageBlob"
   },
   {
     "ResourceName": "Microsoft.Storage/storageaccounts/blobservices/containers",
@@ -2193,7 +2134,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.StorageContainer)",
-    "GetDescriber": "",    "Model": "StorageContainer"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_storage_container",
+    "Model": "StorageContainer"
   },
   {
     "ResourceName": "Microsoft.Storage/storageAccounts/blobServices",
@@ -2209,6 +2152,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.StorageBlobService)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_storage_blob_service",
     "Model": "StorageBlobService"
   },
   {
@@ -2230,6 +2174,7 @@
       "azure_storage_queue"
     ],
 
+    "SteampipeTable": "azure_storage_queue",
     "Model": "StorageQueue"
   },
   {
@@ -2245,7 +2190,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.APIManagement)",
-    "GetDescriber": "",    "Model": "APIManagement"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_api_management",
+    "Model": "APIManagement"
   },
   {
     "ResourceName": "Microsoft.ApiManagement/backend",
@@ -2260,7 +2207,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.APIManagementBackend)",
-    "GetDescriber": "",    "Model": "APIManagementBackend"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_api_management_backend",
+    "Model": "APIManagementBackend"
   },
   {
     "ResourceName": "Microsoft.Compute/disksreadops",
@@ -2269,6 +2218,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeDiskReadOps)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_compute_disk_metric_read_ops",
     "Model": "ComputeDiskReadOps"
   },
   {
@@ -2292,6 +2242,7 @@
       "azurerm_windows_virtual_machine_scale_set"
     ],
 
+    "SteampipeTable": "azure_compute_virtual_machine_scale_set",
     "Model": "ComputeVirtualMachineScaleSet"
   },
   {
@@ -2323,6 +2274,7 @@
       "azurerm_data_factory_custom_dataset"
     ],
 
+    "SteampipeTable": "azure_data_factory_dataset",
     "Model": "DataFactoryDataset"
   },
   {
@@ -2338,7 +2290,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.PolicyDefinition)",
-    "GetDescriber": "",    "Model": "PolicyDefinition"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_policy_definition",
+    "Model": "PolicyDefinition"
   },
   {
     "ResourceName": "Microsoft.Resources/subscriptions/locations",
@@ -2347,6 +2301,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.Location)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_location",
     "Model": "Location"
   },
   {
@@ -2362,7 +2317,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeDiskAccess)",
-    "GetDescriber": "",    "Model": "ComputeDiskAccess"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_compute_disk_access",
+    "Model": "ComputeDiskAccess"
   },
   {
     "ResourceName": "Microsoft.DBforMySQL/servers",
@@ -2377,7 +2334,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.MysqlServer)",
-    "GetDescriber": "",    "Model": "MysqlServer"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_mysql_server",
+    "Model": "MysqlServer"
   },
   {
     "ResourceName": "Microsoft.DBforMySQL/flexibleservers",
@@ -2392,7 +2351,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.MysqlFlexibleservers)",
-    "GetDescriber": "",    "Model": "MysqlFlexibleserver"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_dbformysql_flexibleservers",
+    "Model": "MysqlFlexibleserver"
   },
   {
     "ResourceName": "Microsoft.Cache/redisenterprise",
@@ -2407,7 +2368,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.CacheRedisEnterprise)",
-    "GetDescriber": "",    "Model": "RedisEnterpriseCache"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_cache_redisenterprise",
+    "Model": "RedisEnterpriseCache"
   },
   {
     "ResourceName": "Microsoft.DataLakeAnalytics/accounts",
@@ -2423,6 +2386,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.DataLakeAnalyticsAccount)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_data_lake_analytics_account",
     "Model": "DataLakeAnalyticsAccount"
   },
   {
@@ -2432,6 +2396,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.LogAlert)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_log_alert",
     "Model": "LogAlert"
   },
   {
@@ -2441,6 +2406,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeVirtualMachineCpuUtilizationHourly)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_compute_virtual_machine_metric_cpu_utilization_hourly",
     "Model": "ComputeVirtualMachineCpuUtilizationHourly"
   },
   {
@@ -2456,7 +2422,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.LoadBalancerOutboundRule)",
-    "GetDescriber": "",    "Model": "LoadBalancerOutboundRule"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_lb_outbound_rule",
+    "Model": "LoadBalancerOutboundRule"
   },
   {
     "ResourceName": "Microsoft.HybridCompute/machines",
@@ -2468,7 +2436,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.HybridComputeMachine)",
-    "GetDescriber": "",    "Model": "HybridComputeMachine"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_hybrid_compute_machine",
+    "Model": "HybridComputeMachine"
   },
   {
     "ResourceName": "Microsoft.Network/loadBalancers/inboundNatRules",
@@ -2483,7 +2453,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.LoadBalancerNatRule)",
-    "GetDescriber": "",    "Model": "LoadBalancerNatRule"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_lb_nat_rule",
+    "Model": "LoadBalancerNatRule"
   },
   {
     "ResourceName": "Microsoft.Resources/providers",
@@ -2492,6 +2464,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ResourceProvider)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_provider",
     "Model": "ResourceProvider"
   },
   {
@@ -2507,7 +2480,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.RouteTables)",
-    "GetDescriber": "",    "Model": "RouteTables"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_route_table",
+    "Model": "RouteTables"
   },
   {
     "ResourceName": "Microsoft.DocumentDB/databaseAccounts",
@@ -2522,7 +2497,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.CosmosdbAccount)",
-    "GetDescriber": "",    "Model": "CosmosdbAccount"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_cosmosdb_account",
+    "Model": "CosmosdbAccount"
   },
   {
     "ResourceName": "Microsoft.DocumentDB/restorableDatabaseAccounts",
@@ -2537,7 +2514,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.CosmosdbRestorableDatabaseAccount)",
-    "GetDescriber": "",    "Model": "CosmosdbRestorableDatabaseAccount"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_cosmosdb_restorable_database_account",
+    "Model": "CosmosdbRestorableDatabaseAccount"
   },
   {
     "ResourceName": "Microsoft.Network/applicationGateways",
@@ -2552,7 +2531,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ApplicationGateway)",
-    "GetDescriber": "",    "Model": "ApplicationGateway"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_application_gateway",
+    "Model": "ApplicationGateway"
   },
   {
     "ResourceName": "Microsoft.Security/automations",
@@ -2560,7 +2541,9 @@
     "Tags": null,
 
     "ListDescriber": "DescribeBySubscription(describer.SecurityCenterAutomation)",
-    "GetDescriber": "",    "Model": "SecurityCenterAutomation"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_security_center_automation",
+    "Model": "SecurityCenterAutomation"
   },
   {
     "ResourceName": "Microsoft.Kubernetes/connectedClusters",
@@ -2575,7 +2558,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.HybridKubernetesConnectedCluster)",
-    "GetDescriber": "",    "Model": "HybridKubernetesConnectedCluster"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_hybrid_kubernetes_connected_cluster",
+    "Model": "HybridKubernetesConnectedCluster"
   },
   {
     "ResourceName": "Microsoft.KeyVault/vaults/keys",
@@ -2590,7 +2575,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.KeyVaultKey)",
-    "GetDescriber": "",    "Model": "KeyVaultKey"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_key_vault_key",
+    "Model": "KeyVaultKey"
   },
   {
     "ResourceName": "Microsoft.KeyVault/vaults/certificates",
@@ -2605,7 +2592,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.KeyVaultCertificate)",
-    "GetDescriber": "",    "Model": "KeyVaultCertificate"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_key_vault_certificate",
+    "Model": "KeyVaultCertificate"
   },
   {
     "ResourceName": "Microsoft.KeyVault/vaults/keys/Versions",
@@ -2620,7 +2609,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.KeyVaultKey)",
-    "GetDescriber": "",    "Model": "KeyVaultKeyVersion"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_key_vault_key_version",
+    "Model": "KeyVaultKeyVersion"
   },
   {
     "ResourceName": "Microsoft.DBforMariaDB/servers",
@@ -2635,7 +2626,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.MariadbServer)",
-    "GetDescriber": "",    "Model": "MariadbServer"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_mariadb_server",
+    "Model": "MariadbServer"
   },
   {
     "ResourceName": "Microsoft.DBforMariaDB/servers/databases",
@@ -2650,7 +2643,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.MariadbDatabases)",
-    "GetDescriber": "",    "Model": "MariadbDatabase"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_mariadb_databases",
+    "Model": "MariadbDatabase"
   },
   {
     "ResourceName": "Microsoft.Compute/disksreadopsdaily",
@@ -2659,6 +2654,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeDiskReadOpsDaily)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_compute_disk_metric_read_ops_daily",
     "Model": "ComputeDiskReadOpsDaily"
   },
   {
@@ -2677,6 +2673,7 @@
       "azurerm_service_plan"
     ],
 
+    "SteampipeTable": "azure_app_service_plan",
     "Model": "AppServicePlan"
   },
   {
@@ -2686,6 +2683,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeDiskReadOpsHourly)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_compute_disk_metric_read_ops_hourly",
     "Model": "ComputeDiskReadOpsHourly"
   },
   {
@@ -2695,6 +2693,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeDiskWriteOpsDaily)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_compute_disk_metric_write_ops_daily",
     "Model": "ComputeDiskWriteOpsDaily"
   },
   {
@@ -2704,6 +2703,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.Tenant)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_tenant",
     "Model": "Tenant"
   },
   {
@@ -2719,7 +2719,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.VirtualNetworkGateway)",
-    "GetDescriber": "",    "Model": "VirtualNetworkGateway"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_virtual_network_gateway",
+    "Model": "VirtualNetworkGateway"
   },
   {
     "ResourceName": "Microsoft.Devices/iotHubs",
@@ -2734,7 +2736,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.IOTHub)",
-    "GetDescriber": "",    "Model": "IOTHub"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_iothub",
+    "Model": "IOTHub"
   },
   {
     "ResourceName": "Microsoft.Logic/workflows",
@@ -2746,7 +2750,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.LogicAppWorkflow)",
-    "GetDescriber": "",    "Model": "LogicAppWorkflow"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_logic_app_workflow",
+    "Model": "LogicAppWorkflow"
   },
   {
     "ResourceName": "Microsoft.Sql/flexibleServers",
@@ -2762,6 +2768,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.SqlServerFlexibleServer)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_mysql_flexible_server",
     "Model": "SqlServerFlexibleServer"
   },
   {
@@ -2775,6 +2782,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ResourceLink)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_resource_link",
     "Model": "ResourceLink"
   },
   {
@@ -2787,7 +2795,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.Subscription)",
-    "GetDescriber": "",    "Model": "Subscription"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_subscription",
+    "Model": "Subscription"
   },
   {
     "ResourceName": "Microsoft.Compute/images",
@@ -2802,7 +2812,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeImage)",
-    "GetDescriber": "",    "Model": "ComputeImage"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_compute_image",
+    "Model": "ComputeImage"
   },
   {
     "ResourceName": "Microsoft.Compute/virtualMachines",
@@ -2823,6 +2835,7 @@
       "azurerm_windows_virtual_machine"
     ],
 
+    "SteampipeTable": "azure_compute_virtual_machine",
     "Model": "ComputeVirtualMachine"
   },
   {
@@ -2838,7 +2851,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.NatGateway)",
-    "GetDescriber": "",    "Model": "NatGateway"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_nat_gateway",
+    "Model": "NatGateway"
   },
   {
     "ResourceName": "Microsoft.Network/loadBalancers/probes",
@@ -2853,7 +2868,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.LoadBalancerProbe)",
-    "GetDescriber": "",    "Model": "LoadBalancerProbe"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_lb_probe",
+    "Model": "LoadBalancerProbe"
   },
   {
     "ResourceName": "Microsoft.KeyVault/vaults",
@@ -2868,7 +2885,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.KeyVault)",
-    "GetDescriber": "",    "Model": "KeyVault"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_key_vault",
+    "Model": "KeyVault"
   },
   {
     "ResourceName": "Microsoft.KeyVault/managedHsms",
@@ -2883,7 +2902,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.KeyVaultManagedHardwareSecurityModule)",
-    "GetDescriber": "",    "Model": "KeyVaultManagedHardwareSecurityModule"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_key_vault_managed_hardware_security_module",
+    "Model": "KeyVaultManagedHardwareSecurityModule"
   },
   {
     "ResourceName": "Microsoft.KeyVault/vaults/secrets",
@@ -2898,7 +2919,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.KeyVaultSecret)",
-    "GetDescriber": "",    "Model": "KeyVaultSecret"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_key_vault_secret",
+    "Model": "KeyVaultSecret"
   },
   {
     "ResourceName": "Microsoft.AppConfiguration/configurationStores",
@@ -2913,7 +2936,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.AppConfiguration)",
-    "GetDescriber": "",    "Model": "AppConfiguration"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_app_configuration",
+    "Model": "AppConfiguration"
   },
   {
     "ResourceName": "Microsoft.Compute/virtualMachineCpuUtilization",
@@ -2922,6 +2947,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeVirtualMachineCpuUtilization)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_compute_virtual_machine_metric_cpu_utilization",
     "Model": "ComputeVirtualMachineCpuUtilization"
   },
   {
@@ -2937,7 +2963,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.StorageAccount)",
-    "GetDescriber": "",    "Model": "StorageAccount"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_storage_account",
+    "Model": "StorageAccount"
   },
   {
     "ResourceName": "Microsoft.AppPlatform/Spring",
@@ -2952,7 +2980,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.SpringCloudService)",
-    "GetDescriber": "",    "Model": "SpringCloudService"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_spring_cloud_service",
+    "Model": "SpringCloudService"
   },
   {
     "ResourceName": "Microsoft.Compute/galleries",
@@ -2967,7 +2997,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeGallery)",
-    "GetDescriber": "",    "Model": "ComputeImageGallery"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_compute_image_gallery",
+    "Model": "ComputeImageGallery"
   },
   {
     "ResourceName": "Microsoft.Compute/hostGroups",
@@ -2982,7 +3014,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeHostGroup)",
-    "GetDescriber": "",    "Model": "ComputeHostGroup"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_compute_host_group",
+    "Model": "ComputeHostGroup"
   },
   {
     "ResourceName": "Microsoft.Compute/hostGroups/hosts",
@@ -2997,7 +3031,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeHost)",
-    "GetDescriber": "",    "Model": "ComputeHostGroupHost"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_compute_host",
+    "Model": "ComputeHostGroupHost"
   },
   {
     "ResourceName": "Microsoft.Compute/restorePointCollections",
@@ -3010,6 +3046,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeRestorePointCollection)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_compute_restore_point_collection",
     "Model": "ComputeRestorePointCollection"
   },
   {
@@ -3025,7 +3062,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ComputeSSHPublicKey)",
-    "GetDescriber": "",    "Model": "ComputeSSHPublicKey"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_compute_ssh_key",
+    "Model": "ComputeSSHPublicKey"
   },
   {
     "ResourceName": "Microsoft.Cdn/profiles/endpoints",
@@ -3040,7 +3079,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.CdnEndpoint)",
-    "GetDescriber": "",    "Model": "CDNEndpoint"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_cdn_endpoint",
+    "Model": "CDNEndpoint"
   },
   {
     "ResourceName": "Microsoft.BotService/botServices",
@@ -3055,7 +3096,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.BotServiceBot)",
-    "GetDescriber": "",    "Model": "BotServiceBot"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_botservice_bot",
+    "Model": "BotServiceBot"
   },
   {
     "ResourceName": "Microsoft.DocumentDB/cassandraClusters",
@@ -3070,7 +3113,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.DocumentDBCassandraCluster)",
-    "GetDescriber": "",    "Model": "CosmosdbCassandraCluster"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_cosmosdb_cassandra_cluster",
+    "Model": "CosmosdbCassandraCluster"
   },
   {
     "ResourceName": "Microsoft.Network/ddosProtectionPlans",
@@ -3085,7 +3130,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.NetworkDDoSProtectionPlan)",
-    "GetDescriber": "",    "Model": "NetworkDDoSProtectionPlan"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_network_ddos_protection_plan",
+    "Model": "NetworkDDoSProtectionPlan"
   },
   {
     "ResourceName": "microsoft.Sql/instancePools",
@@ -3101,6 +3148,7 @@
 
     "ListDescriber": "DescribeBySubscription(describer.SqlInstancePool)",
     "GetDescriber": "",
+    "SteampipeTable": "azure_sql_instance_pool",
     "Model": "SqlInstancePool"
   },
   {
@@ -3116,7 +3164,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.NetAppAccount)",
-    "GetDescriber": "",    "Model": "NetAppAccount"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_netapp_account",
+    "Model": "NetAppAccount"
   },
   {
     "ResourceName": "Microsoft.NetApp/netAppAccounts/capacityPools",
@@ -3131,7 +3181,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.NetAppCapacityPool)",
-    "GetDescriber": "",    "Model": "NetAppCapacityPool"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_netapp_capacity_pool",
+    "Model": "NetAppCapacityPool"
   },
   {
     "ResourceName": "Microsoft.DesktopVirtualization/hostpools",
@@ -3146,7 +3198,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.DesktopVirtualizationHostPool)",
-    "GetDescriber": "",    "Model": "DesktopVirtualizationHostPool"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_desktop_virtualization_host_pool",
+    "Model": "DesktopVirtualizationHostPool"
   },
   {
     "ResourceName": "Microsoft.Devtestlab/labs",
@@ -3161,7 +3215,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.DevTestLabLab)",
-    "GetDescriber": "",    "Model": "DevTestLabLab"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_devtestlab_lab",
+    "Model": "DevTestLabLab"
   },
   {
     "ResourceName": "Microsoft.Purview/Accounts",
@@ -3176,7 +3232,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.PurviewAccount)",
-    "GetDescriber": "",    "Model": "PurviewAccount"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_purview_account",
+    "Model": "PurviewAccount"
   },
   {
     "ResourceName": "Microsoft.PowerBIDedicated/capacities",
@@ -3191,7 +3249,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.PowerBIDedicatedCapacity)",
-    "GetDescriber": "",    "Model": "PowerBIDedicatedCapacity"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_powerbidedicated_capacity",
+    "Model": "PowerBIDedicatedCapacity"
   },
   {
     "ResourceName": "Microsoft.Insights/components",
@@ -3206,7 +3266,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.ApplicationInsights)",
-    "GetDescriber": "",    "Model": "ApplicationInsightsComponent"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_application_insight",
+    "Model": "ApplicationInsightsComponent"
   },
   {
     "ResourceName": "Microsoft.Lighthouse/definition",
@@ -3219,7 +3281,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.LighthouseDefinition)",
-    "GetDescriber": "",    "Model": "LighthouseDefinition"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_lighthouse_definition",
+    "Model": "LighthouseDefinition"
   },
   {
     "ResourceName": "Microsoft.Lighthouse/assignment",
@@ -3232,7 +3296,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.LighthouseAssignments)",
-    "GetDescriber": "",    "Model": "LighthouseAssignment"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_lighthouse_assignment",
+    "Model": "LighthouseAssignment"
   },
   {
     "ResourceName": "Microsoft.Maintenance/maintenanceConfigurations",
@@ -3245,7 +3311,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.MaintenanceConfiguration)",
-    "GetDescriber": "",    "Model": "MaintenanceConfiguration"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_maintenance_configuration",
+    "Model": "MaintenanceConfiguration"
   },
   {
     "ResourceName": "Microsoft.Monitor/logProfiles",
@@ -3258,7 +3326,9 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.MonitorLogProfiles)",
-    "GetDescriber": "",    "Model": "MonitorLogProfile"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_monitor_log_profile",
+    "Model": "MonitorLogProfile"
   },
   {
     "ResourceName": "Microsoft.Resources/subscriptions/resources",
@@ -3269,6 +3339,8 @@
     },
 
     "ListDescriber": "DescribeBySubscription(describer.Resources)",
-    "GetDescriber": "",    "Model": "GenericResource"
+    "GetDescriber": "",
+    "SteampipeTable": "azure_resource",
+    "Model": "GenericResource"
   }
 ]

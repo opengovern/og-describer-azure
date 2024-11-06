@@ -32,12 +32,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Cdn/profiles": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Cdn/profiles",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/CDN%20Profile.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.CdnProfiles),
 		GetDescriber:  nil,
 	},
@@ -45,12 +43,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Compute/cloudServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/cloudServices",
-
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Cloud%20Service.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ComputeCloudServices),
 		GetDescriber:  nil,
 	},
@@ -58,12 +54,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.ContainerInstance/containerGroups": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ContainerInstance/containerGroups",
-
 		Tags: map[string][]string{
 			"category": {"Container"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Container%20Instance.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ContainerInstanceContainerGroups),
 		GetDescriber:  nil,
 	},
@@ -71,12 +65,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DataMigration/services": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataMigration/services",
-
 		Tags: map[string][]string{
 			"category": {"Migration"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Database%20Migration%20Service.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DataMigrationServices),
 		GetDescriber:  nil,
 	},
@@ -84,11 +76,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DataProtection/backupVaults": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataProtection/backupVaults",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Backup%20vault.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DataProtectionBackupVaults),
 		GetDescriber:  nil,
 	},
@@ -96,11 +86,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DataProtection/backupJobs": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataProtection/backupJobs",
-
 		Tags: map[string][]string{
 			"logo_uri": {},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DataProtectionBackupJobs),
 		GetDescriber:  nil,
 	},
@@ -108,11 +96,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DataProtection/backupVaults/backupPolicies": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataProtection/backupVaults/backupPolicies",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Backup%20vault.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DataProtectionBackupVaultsBackupPolicies),
 		GetDescriber:  nil,
 	},
@@ -120,12 +106,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Logic/integrationAccounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Logic/integrationAccounts",
-
 		Tags: map[string][]string{
 			"category": {"Integration"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Integration%20Account.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.LogicIntegrationAccounts),
 		GetDescriber:  nil,
 	},
@@ -133,12 +117,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/bastionHosts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/bastionHosts",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Bastion.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.NetworkBastionHosts),
 		GetDescriber:  nil,
 	},
@@ -146,12 +128,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/connections": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/connections",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Hybrid%20Connection.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.NetworkConnections),
 		GetDescriber:  nil,
 	},
@@ -159,11 +139,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/firewallPolicies": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/firewallPolicies",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Firewall%20Policy.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.FirewallPolicy),
 		GetDescriber:  nil,
 	},
@@ -171,12 +149,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/localNetworkGateways": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/localNetworkGateways",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Local%20Network%20Gateway.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.LocalNetworkGateway),
 		GetDescriber:  nil,
 	},
@@ -184,11 +160,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/privateLinkServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/privateLinkServices",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Private%20link%20Service.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.PrivateLinkService),
 		GetDescriber:  nil,
 	},
@@ -196,12 +170,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/publicIPPrefixes": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/publicIPPrefixes",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Public%20IP%20Prefix.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.PublicIPPrefix),
 		GetDescriber:  nil,
 	},
@@ -209,12 +181,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/virtualHubs": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/virtualHubs",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Virtual%20Hub.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.NetworkVirtualHubs),
 		GetDescriber:  nil,
 	},
@@ -222,12 +192,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/virtualWans": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/virtualWans",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20WAN.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.NetworkVirtualWans),
 		GetDescriber:  nil,
 	},
@@ -235,12 +203,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/vpnGateways": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/vpnGateways",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Network%20Gateway.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.VpnGateway),
 		GetDescriber:  nil,
 	},
@@ -248,21 +214,17 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/vpnGateways/vpnConnections": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/vpnGateways/vpnConnections",
-
-		Tags: map[string][]string{},
-
-		ListDescriber: DescribeBySubscription(describer.NetworkVpnGatewaysVpnConnections),
-		GetDescriber:  nil,
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.NetworkVpnGatewaysVpnConnections),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.Network/vpnSites": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/vpnSites",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.NetworkVpnGatewaysVpnSites),
 		GetDescriber:  nil,
 	},
@@ -270,21 +232,17 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.OperationalInsights/workspaces": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.OperationalInsights/workspaces",
-
-		Tags: map[string][]string{},
-
-		ListDescriber: DescribeBySubscription(describer.OperationalInsightsWorkspaces),
-		GetDescriber:  nil,
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.OperationalInsightsWorkspaces),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.StreamAnalytics/cluster": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.StreamAnalytics/cluster",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Stream%20Analytics%20Cluster.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.StreamAnalyticsCluster),
 		GetDescriber:  nil,
 	},
@@ -292,11 +250,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.TimeSeriesInsights/environments": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.TimeSeriesInsights/environments",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Time%20Series%20Insights%20Environment.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.TimeSeriesInsightsEnvironments),
 		GetDescriber:  nil,
 	},
@@ -304,24 +260,31 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.VirtualMachineImages/imageTemplates": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.VirtualMachineImages/imageTemplates",
-
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Image%20Template.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.VirtualMachineImagesImageTemplates),
+		GetDescriber:  nil,
+	},
+
+	"Microsoft.Web/serverFarms": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Web/serverFarms",
+		Tags: map[string][]string{
+			"category": {"Container"},
+			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Server%20Farm.svg"},
+		},
+		ListDescriber: DescribeBySubscription(describer.WebServerFarms),
 		GetDescriber:  nil,
 	},
 
 	"Microsoft.Compute/virtualMachineScaleSets/virtualMachines": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/virtualMachineScaleSets/virtualMachines",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Scale%20Set.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ComputeVirtualMachineScaleSetVm),
 		GetDescriber:  nil,
 	},
@@ -329,12 +292,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Automation/automationAccounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Automation/automationAccounts",
-
 		Tags: map[string][]string{
 			"category": {"Management & Governance"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Automation%20Account.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.AutomationAccounts),
 		GetDescriber:  nil,
 	},
@@ -342,12 +303,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Automation/automationAccounts/variables": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Automation/automationAccounts/variables",
-
 		Tags: map[string][]string{
 			"category": {"Management & Governance"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Automation%20Variable.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.AutomationVariables),
 		GetDescriber:  nil,
 	},
@@ -355,25 +314,32 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/dnsZones": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/dnsZones",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DNS%20Zone%20(Public).svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DNSZones),
+		GetDescriber:  nil,
+	},
+
+	"Microsoft.Databricks/workspaces": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Databricks/workspaces",
+		Tags: map[string][]string{
+			"category": {"Data and Analytics"},
+			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Databricks.svg"},
+		},
+		ListDescriber: DescribeBySubscription(describer.DatabricksWorkspaces),
 		GetDescriber:  nil,
 	},
 
 	"Microsoft.Network/privateDnsZones": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/privateDnsZones",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DNS%20Zone%20(Private).svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.PrivateDnsZones),
 		GetDescriber:  nil,
 	},
@@ -381,12 +347,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/privateEndpoints": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/privateEndpoints",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Private%20Endpoint.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.PrivateEndpoints),
 		GetDescriber:  nil,
 	},
@@ -394,11 +358,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/networkWatchers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/networkWatchers",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Network%20Watcher.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.NetworkWatcher),
 		GetDescriber:  nil,
 	},
@@ -406,11 +368,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Resources/subscriptions/resourceGroups": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Resources/subscriptions/resourceGroups",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Resource%20Group.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ResourceGroup),
 		GetDescriber:  nil,
 	},
@@ -418,12 +378,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Web/staticSites": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Web/staticSites",
-
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Static%20Web%20App.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.AppServiceWebApp),
 		GetDescriber:  nil,
 	},
@@ -431,12 +389,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Web/sites/slots": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Web/sites/slots",
-
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Static%20Web%20App.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.AppServiceWebAppSlot),
 		GetDescriber:  nil,
 	},
@@ -444,12 +400,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.CognitiveServices/accounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.CognitiveServices/accounts",
-
 		Tags: map[string][]string{
 			"category": {"AI + ML"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Cognitive%20Services.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.CognitiveAccount),
 		GetDescriber:  nil,
 	},
@@ -457,12 +411,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Sql/managedInstances": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/managedInstances",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Managed%20Instance.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.MssqlManagedInstance),
 		GetDescriber:  nil,
 	},
@@ -470,12 +422,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Sql/virtualclusters": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/virtualclusters",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Database.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.SqlVirtualClusters),
 		GetDescriber:  nil,
 	},
@@ -483,12 +433,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Sql/managedInstances/databases": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/managedInstances/databases",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Managed%20Instance.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.MssqlManagedInstanceDatabases),
 		GetDescriber:  nil,
 	},
@@ -496,12 +444,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Sql/servers/databases": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/servers/databases",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Database.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.SqlDatabase),
 		GetDescriber:  nil,
 	},
@@ -509,12 +455,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Storage/storageAccounts/largeFileSharesState": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/largeFileSharesState",
-
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/File%20Share.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.StorageFileShare),
 		GetDescriber:  nil,
 	},
@@ -522,12 +466,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DBforPostgreSQL/servers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforPostgreSQL/servers",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20PostgreSQL.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.PostgresqlServer),
 		GetDescriber:  nil,
 	},
@@ -535,12 +477,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DBforPostgreSQL/flexibleservers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforPostgreSQL/flexibleservers",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20PostgreSQL.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.PostgresqlFlexibleservers),
 		GetDescriber:  nil,
 	},
@@ -548,12 +488,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.AnalysisServices/servers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.AnalysisServices/servers",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Analysis%20Service.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.AnalysisService),
 		GetDescriber:  nil,
 	},
@@ -561,21 +499,17 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Security/pricings": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Security/pricings",
-
-		Tags: map[string][]string{},
-
-		ListDescriber: DescribeBySubscription(describer.SecurityCenterSubscriptionPricing),
-		GetDescriber:  nil,
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.SecurityCenterSubscriptionPricing),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.Insights/guestDiagnosticSettings": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Insights/guestDiagnosticSettings",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Diagnostics%20Setting.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DiagnosticSetting),
 		GetDescriber:  nil,
 	},
@@ -583,11 +517,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Insights/autoscaleSettings": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Insights/autoscaleSettings",
-
 		Tags: map[string][]string{
 			"logo_uri": {},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.AutoscaleSetting),
 		GetDescriber:  nil,
 	},
@@ -595,12 +527,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Web/hostingEnvironments": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Web/hostingEnvironments",
-
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Service%20Environment.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.AppServiceEnvironment),
 		GetDescriber:  nil,
 	},
@@ -608,12 +538,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Cache/redis": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Cache/redis",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cache%20for%20Redis.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.RedisCache),
 		GetDescriber:  nil,
 	},
@@ -621,12 +549,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.ContainerRegistry/registries": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ContainerRegistry/registries",
-
 		Tags: map[string][]string{
 			"category": {"Container"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Container%20Registry.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ContainerRegistry),
 		GetDescriber:  nil,
 	},
@@ -634,24 +560,28 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DataFactory/factories/pipelines": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataFactory/factories/pipelines",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Factory.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DataFactoryPipeline),
 		GetDescriber:  nil,
+	},
+
+	"Microsoft.Compute/resourceSku": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Compute/resourceSku",
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.ComputeResourceSKU),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.Network/expressRouteCircuits": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/expressRouteCircuits",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/ExpressRoute%20Circuit.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ExpressRouteCircuit),
 		GetDescriber:  nil,
 	},
@@ -659,11 +589,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Management/managementgroups": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Management/managementgroups",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Management%20Group.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ManagementGroup),
 		GetDescriber:  nil,
 	},
@@ -671,12 +599,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"microsoft.SqlVirtualMachine/SqlVirtualMachines": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "microsoft.SqlVirtualMachine/SqlVirtualMachines",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.SqlServerVirtualMachine),
 		GetDescriber:  nil,
 	},
@@ -684,12 +610,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.SqlVirtualMachine/SqlVirtualMachineGroups": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.SqlVirtualMachine/SqlVirtualMachineGroups",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.SqlServerVirtualMachineGroups),
 		GetDescriber:  nil,
 	},
@@ -697,12 +621,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Storage/storageAccounts/tableServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/tableServices",
-
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Table.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.StorageTableService),
 		GetDescriber:  nil,
 	},
@@ -710,12 +632,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Synapse/workspaces": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Synapse/workspaces",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Synapse%20Analytics.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.SynapseWorkspace),
 		GetDescriber:  nil,
 	},
@@ -723,12 +643,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Synapse/workspaces/bigdatapools": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Synapse/workspaces/bigdatapools",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Synapse%20Analytics.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.SynapseWorkspaceBigdataPools),
 		GetDescriber:  nil,
 	},
@@ -736,12 +654,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Synapse/workspaces/sqlpools": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Synapse/workspaces/sqlpools",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Synapse%20Analytics.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.SynapseWorkspaceSqlpools),
 		GetDescriber:  nil,
 	},
@@ -749,11 +665,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.StreamAnalytics/streamingJobs": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.StreamAnalytics/streamingJobs",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Stream%20Analytics%20job.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.StreamAnalyticsJob),
 		GetDescriber:  nil,
 	},
@@ -761,22 +675,18 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.CostManagement/CostBySubscription": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.CostManagement/CostBySubscription",
-
-		Tags: map[string][]string{},
-
-		ListDescriber: DescribeBySubscription(describer.DailyCostBySubscription),
-		GetDescriber:  nil,
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.DailyCostBySubscription),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.ContainerService/managedClusters": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ContainerService/managedClusters",
-
 		Tags: map[string][]string{
 			"category": {"Container"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/AKS%20Hybrid%20Cluster.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.KubernetesCluster),
 		GetDescriber:  nil,
 	},
@@ -784,11 +694,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.ContainerService/serviceVersions": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ContainerService/serviceVersions",
-
 		Tags: map[string][]string{
 			"category": {"Container"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.KubernetesServiceVersion),
 		GetDescriber:  nil,
 	},
@@ -796,12 +704,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DataFactory/factories": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataFactory/factories",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Factory.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DataFactory),
 		GetDescriber:  nil,
 	},
@@ -809,12 +715,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Sql/servers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/servers",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.SqlServer),
 		GetDescriber:  nil,
 	},
@@ -822,12 +726,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Sql/servers/jobagents": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/servers/jobagents",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Elastic%20Job%20Agent.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.SqlServerJobAgents),
 		GetDescriber:  nil,
 	},
@@ -835,32 +737,26 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Security/autoProvisioningSettings": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Security/autoProvisioningSettings",
-
-		Tags: map[string][]string{},
-
-		ListDescriber: DescribeBySubscription(describer.SecurityCenterAutoProvisioning),
-		GetDescriber:  nil,
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.SecurityCenterAutoProvisioning),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.Insights/logProfiles": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Insights/logProfiles",
-
-		Tags: map[string][]string{},
-
-		ListDescriber: DescribeBySubscription(describer.LogProfile),
-		GetDescriber:  nil,
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.LogProfile),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.DataBoxEdge/dataBoxEdgeDevices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataBoxEdge/dataBoxEdgeDevices",
-
 		Tags: map[string][]string{
 			"category": {"IoT & Devices"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Box%20Edge.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DataboxEdgeDevice),
 		GetDescriber:  nil,
 	},
@@ -868,12 +764,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/loadBalancers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.LoadBalancer),
 		GetDescriber:  nil,
 	},
@@ -881,12 +775,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/azureFirewalls": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/azureFirewalls",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Firewall.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.NetworkAzureFirewall),
 		GetDescriber:  nil,
 	},
@@ -894,11 +786,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Management/locks": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Management/locks",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Resource%20Lock.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ManagementLock),
 		GetDescriber:  nil,
 	},
@@ -906,11 +796,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Compute/virtualMachineScaleSets/networkInterfaces": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/virtualMachineScaleSets/networkInterfaces",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Network%20Interface.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ComputeVirtualMachineScaleSetNetworkInterface),
 		GetDescriber:  nil,
 	},
@@ -918,12 +806,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/frontDoors": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/frontDoors",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Front%20Door.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.FrontDoor),
 		GetDescriber:  nil,
 	},
@@ -931,12 +817,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Authorization/policyAssignments": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Authorization/policyAssignments",
-
 		Tags: map[string][]string{
 			"category": {"Identify & Access"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Policy%20Assignment.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.PolicyAssignment),
 		GetDescriber:  nil,
 	},
@@ -944,12 +828,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Authorization/userEffectiveAccess": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Authorization/userEffectiveAccess",
-
 		Tags: map[string][]string{
 			"category": {"Identify & Access"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Policy%20Assignment.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.UserEffectiveAccess),
 		GetDescriber:  nil,
 	},
@@ -957,12 +839,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Search/searchServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Search/searchServices",
-
 		Tags: map[string][]string{
 			"category": {"AI + ML"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Search%20Service.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.SearchService),
 		GetDescriber:  nil,
 	},
@@ -970,21 +850,17 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Security/settings": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Security/settings",
-
-		Tags: map[string][]string{},
-
-		ListDescriber: DescribeBySubscription(describer.SecurityCenterSetting),
-		GetDescriber:  nil,
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.SecurityCenterSetting),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.RecoveryServices/vaults": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.RecoveryServices/vaults",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Recovery%20Services%20Vault.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.RecoveryServicesVault),
 		GetDescriber:  nil,
 	},
@@ -992,11 +868,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.RecoveryServices/vaults/backupJobs": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.RecoveryServices/vaults/backupJobs",
-
 		Tags: map[string][]string{
 			"logo_uri": {},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.RecoveryServicesBackupJobs),
 		GetDescriber:  nil,
 	},
@@ -1004,11 +878,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.RecoveryServices/vaults/backupPolicies": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.RecoveryServices/vaults/backupPolicies",
-
 		Tags: map[string][]string{
 			"logo_uri": {},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.RecoveryServicesBackupPolicies),
 		GetDescriber:  nil,
 	},
@@ -1016,11 +888,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.RecoveryServices/vaults/backupItems": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.RecoveryServices/vaults/backupItems",
-
 		Tags: map[string][]string{
 			"logo_uri": {},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.RecoveryServicesBackupItem),
 		GetDescriber:  nil,
 	},
@@ -1028,12 +898,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Compute/diskEncryptionSets": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/diskEncryptionSets",
-
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Disk%20Encryption%20Set.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ComputeDiskEncryptionSet),
 		GetDescriber:  nil,
 	},
@@ -1041,12 +909,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DocumentDB/databaseAccounts/sqlDatabases": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DocumentDBSQLDatabase),
 		GetDescriber:  nil,
 	},
@@ -1054,12 +920,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.EventGrid/topics": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.EventGrid/topics",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Event%20Grid%20Topic.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.EventGridTopic),
 		GetDescriber:  nil,
 	},
@@ -1067,12 +931,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.EventHub/namespaces": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.EventHub/namespaces",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Event%20Hub.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.EventhubNamespace),
 		GetDescriber:  nil,
 	},
@@ -1080,12 +942,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.EventHub/namespaces/eventHubs": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.EventHub/namespaces/eventHubs",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Event%20Hub.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.EventhubNamespaceEventhub),
 		GetDescriber:  nil,
 	},
@@ -1093,12 +953,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.MachineLearningServices/workspaces": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.MachineLearningServices/workspaces",
-
 		Tags: map[string][]string{
 			"category": {"AI + ML"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Machine%20Learning%20Studio%20Workspace%20(classic).svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.MachineLearningWorkspace),
 		GetDescriber:  nil,
 	},
@@ -1106,12 +964,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Dashboard/grafana": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Dashboard/grafana",
-
 		Tags: map[string][]string{
 			"category": {"Managed Services"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Managed%20Grafana.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DashboardGrafana),
 		GetDescriber:  nil,
 	},
@@ -1119,12 +975,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DesktopVirtualization/workspaces": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DesktopVirtualization/workspaces",
-
 		Tags: map[string][]string{
 			"category": {"End User"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Windows%20Virtual%20Desktop.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DesktopVirtualizationWorkspaces),
 		GetDescriber:  nil,
 	},
@@ -1132,12 +986,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/trafficManagerProfiles": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/trafficManagerProfiles",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Traffic%20Manager%20profile.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.TrafficManagerProfile),
 		GetDescriber:  nil,
 	},
@@ -1145,12 +997,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/dnsResolvers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/dnsResolvers",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DNS%20Private%20Resolver.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DNSResolvers),
 		GetDescriber:  nil,
 	},
@@ -1158,22 +1008,18 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.CostManagement/CostByResourceType": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.CostManagement/CostByResourceType",
-
-		Tags: map[string][]string{},
-
-		ListDescriber: DescribeBySubscription(describer.DailyCostByResourceType),
-		GetDescriber:  nil,
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.DailyCostByResourceType),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.Network/networkInterfaces": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/networkInterfaces",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Network%20Interface.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.NetworkInterface),
 		GetDescriber:  nil,
 	},
@@ -1181,12 +1027,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/publicIPAddresses": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/publicIPAddresses",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Public%20IP%20Address.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.PublicIPAddress),
 		GetDescriber:  nil,
 	},
@@ -1194,22 +1038,18 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.HealthcareApis/services": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.HealthcareApis/services",
-
-		Tags: map[string][]string{},
-
-		ListDescriber: DescribeBySubscription(describer.HealthcareService),
-		GetDescriber:  nil,
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.HealthcareService),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.ServiceBus/namespaces": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ServiceBus/namespaces",
-
 		Tags: map[string][]string{
 			"category": {"Intergration"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Service%20Bus.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ServicebusNamespace),
 		GetDescriber:  nil,
 	},
@@ -1217,12 +1057,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Web/sites": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Web/sites",
-
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Service.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.AppServiceFunctionApp),
 		GetDescriber:  nil,
 	},
@@ -1230,12 +1068,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Compute/availabilitySets": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/availabilitySets",
-
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Availability%20Set.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ComputeAvailabilitySet),
 		GetDescriber:  nil,
 	},
@@ -1243,12 +1079,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/virtualNetworks": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/virtualNetworks",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Network.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.VirtualNetwork),
 		GetDescriber:  nil,
 	},
@@ -1256,22 +1090,34 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Security/securityContacts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Security/securityContacts",
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.SecurityCenterContact),
+		GetDescriber:    nil,
+	},
 
-		Tags: map[string][]string{},
+	"Microsoft.Compute/diskswriteops": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Compute/diskswriteops",
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.ComputeDiskWriteOps),
+		GetDescriber:    nil,
+	},
 
-		ListDescriber: DescribeBySubscription(describer.SecurityCenterContact),
-		GetDescriber:  nil,
+	"Microsoft.Compute/diskswriteopshourly": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Compute/diskswriteopshourly",
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.ComputeDiskWriteOpsHourly),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.EventGrid/domains": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.EventGrid/domains",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Event%20Grid%20Domain.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.EventGridDomain),
 		GetDescriber:  nil,
 	},
@@ -1279,12 +1125,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.KeyVault/deletedVaults": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/deletedVaults",
-
 		Tags: map[string][]string{
 			"category": {"Security"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DeletedVault),
 		GetDescriber:  nil,
 	},
@@ -1292,12 +1136,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Storage/storageAccounts/tableServices/tables": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/tableServices/tables",
-
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Table.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.StorageTable),
 		GetDescriber:  nil,
 	},
@@ -1305,12 +1147,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Compute/snapshots": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/snapshots",
-
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Managed%20Disk%20Snapshot.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ComputeSnapshots),
 		GetDescriber:  nil,
 	},
@@ -1318,12 +1158,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Kusto/clusters": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Kusto/clusters",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_Grouped/Data/Azure%20Data%20Explorer%20Cluster.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.KustoCluster),
 		GetDescriber:  nil,
 	},
@@ -1331,12 +1169,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.StorageSync/storageSyncServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.StorageSync/storageSyncServices",
-
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Sync%20Service.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.StorageSync),
 		GetDescriber:  nil,
 	},
@@ -1344,22 +1180,18 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Security/locations/jitNetworkAccessPolicies": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Security/locations/jitNetworkAccessPolicies",
-
-		Tags: map[string][]string{},
-
-		ListDescriber: DescribeBySubscription(describer.SecurityCenterJitNetworkAccessPolicy),
-		GetDescriber:  nil,
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.SecurityCenterJitNetworkAccessPolicy),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.Network/virtualNetworks/subnets": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/virtualNetworks/subnets",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Subnet.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.Subnet),
 		GetDescriber:  nil,
 	},
@@ -1367,12 +1199,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/loadBalancers/backendAddressPools": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers/backendAddressPools",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Backend%20pool.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.LoadBalancerBackendAddressPool),
 		GetDescriber:  nil,
 	},
@@ -1380,24 +1210,28 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/loadBalancers/loadBalancingRules": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers/loadBalancingRules",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.LoadBalancerRule),
 		GetDescriber:  nil,
+	},
+
+	"Microsoft.Compute/virtualMachineCpuUtilizationDaily": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Compute/virtualMachineCpuUtilizationDaily",
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.ComputeVirtualMachineCpuUtilizationDaily),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.DataLakeStore/accounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataLakeStore/accounts",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Lake.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DataLakeStore),
 		GetDescriber:  nil,
 	},
@@ -1405,12 +1239,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.StorageCache/caches": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.StorageCache/caches",
-
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_Grouped/Data/HPC%20Cache.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.HpcCache),
 		GetDescriber:  nil,
 	},
@@ -1418,12 +1250,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Batch/batchAccounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Batch/batchAccounts",
-
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Batch%20Account.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.BatchAccount),
 		GetDescriber:  nil,
 	},
@@ -1431,12 +1261,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/networkSecurityGroups": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/networkSecurityGroups",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Network%20Security%20Group.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.NetworkSecurityGroup),
 		GetDescriber:  nil,
 	},
@@ -1444,12 +1272,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Authorization/roleDefinitions": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Authorization/roleDefinitions",
-
 		Tags: map[string][]string{
 			"category": {"Identify & Access"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Role%20(Custom).svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.RoleDefinition),
 		GetDescriber:  nil,
 	},
@@ -1457,12 +1283,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/applicationSecurityGroups": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/applicationSecurityGroups",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Security%20Group.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.NetworkApplicationSecurityGroups),
 		GetDescriber:  nil,
 	},
@@ -1470,22 +1294,18 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Authorization/roleAssignment": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Authorization/roleAssignment",
-
-		Tags: map[string][]string{},
-
-		ListDescriber: DescribeBySubscription(describer.RoleAssignment),
-		GetDescriber:  nil,
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.RoleAssignment),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.DocumentDB/databaseAccounts/mongodbDatabases": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DocumentDBMongoDatabase),
 		GetDescriber:  nil,
 	},
@@ -1493,12 +1313,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DocumentDBMongoCollection),
 		GetDescriber:  nil,
 	},
@@ -1506,34 +1324,36 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/networkWatchers/flowLogs": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/networkWatchers/flowLogs",
-
-		Tags: map[string][]string{},
-
-		ListDescriber: DescribeBySubscription(describer.NetworkWatcherFlowLog),
-		GetDescriber:  nil,
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.NetworkWatcherFlowLog),
+		GetDescriber:    nil,
 	},
 
 	"microsoft.Sql/servers/elasticpools": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "microsoft.Sql/servers/elasticpools",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Elastic%20Pool.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.SqlServerElasticPool),
 		GetDescriber:  nil,
+	},
+
+	"Microsoft.Security/subAssessments": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Security/subAssessments",
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.SecurityCenterSubAssessment),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.Compute/disks": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/disks",
-
 		Tags: map[string][]string{
 			"category": {"Storage"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ComputeDisk),
 		GetDescriber:  nil,
 	},
@@ -1541,12 +1361,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Devices/ProvisioningServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Devices/ProvisioningServices",
-
 		Tags: map[string][]string{
 			"category": {"IoT & Devices"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/IoT%20Hub.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.IOTHubDps),
 		GetDescriber:  nil,
 	},
@@ -1554,12 +1372,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.HDInsight/clusters": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.HDInsight/clusters",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/HDInsight%20Cluster.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.HdInsightCluster),
 		GetDescriber:  nil,
 	},
@@ -1567,12 +1383,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.ServiceFabric/clusters": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ServiceFabric/clusters",
-
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Service%20Fabric%20Managed%20Cluster.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ServiceFabricCluster),
 		GetDescriber:  nil,
 	},
@@ -1580,12 +1394,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.SignalRService/signalR": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.SignalRService/signalR",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SignalR.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.SignalrService),
 		GetDescriber:  nil,
 	},
@@ -1593,12 +1405,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Storage/storageAccounts/blob": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/blob",
-
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Blob.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.StorageBlob),
 		GetDescriber:  nil,
 	},
@@ -1606,12 +1416,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Storage/storageaccounts/blobservices/containers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageaccounts/blobservices/containers",
-
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Container.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.StorageContainer),
 		GetDescriber:  nil,
 	},
@@ -1619,12 +1427,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Storage/storageAccounts/blobServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/blobServices",
-
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Blob.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.StorageBlobService),
 		GetDescriber:  nil,
 	},
@@ -1632,12 +1438,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Storage/storageAccounts/queueServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts/queueServices",
-
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Queue.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.StorageQueue),
 		GetDescriber:  nil,
 	},
@@ -1645,12 +1449,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.ApiManagement/service": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ApiManagement/service",
-
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/API%20Management%20Service.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.APIManagement),
 		GetDescriber:  nil,
 	},
@@ -1658,25 +1460,29 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.ApiManagement/backend": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.ApiManagement/backend",
-
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/API%20Management%20Service.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.APIManagementBackend),
 		GetDescriber:  nil,
+	},
+
+	"Microsoft.Compute/disksreadops": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Compute/disksreadops",
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.ComputeDiskReadOps),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.Compute/virtualMachineScaleSets": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/virtualMachineScaleSets",
-
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Scale%20Set.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ComputeVirtualMachineScaleSet),
 		GetDescriber:  nil,
 	},
@@ -1684,25 +1490,40 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DataFactory/factories/datasets": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataFactory/factories/datasets",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Factory.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DataFactoryDataset),
 		GetDescriber:  nil,
+	},
+
+	"Microsoft.Authorization/policyDefinitions": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Authorization/policyDefinitions",
+		Tags: map[string][]string{
+			"category": {"Identify & Access"},
+			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Policy%20Definition.svg"},
+		},
+		ListDescriber: DescribeBySubscription(describer.PolicyDefinition),
+		GetDescriber:  nil,
+	},
+
+	"Microsoft.Resources/subscriptions/locations": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Resources/subscriptions/locations",
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.Location),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.Compute/diskAccesses": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/diskAccesses",
-
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Disk%20Access.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ComputeDiskAccess),
 		GetDescriber:  nil,
 	},
@@ -1710,12 +1531,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DBforMySQL/servers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforMySQL/servers",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20MySQL.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.MysqlServer),
 		GetDescriber:  nil,
 	},
@@ -1723,12 +1542,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DBforMySQL/flexibleservers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforMySQL/flexibleservers",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Wordpress%20and%20MySQL%20Flexible%20server.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.MysqlFlexibleservers),
 		GetDescriber:  nil,
 	},
@@ -1736,12 +1553,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Cache/redisenterprise": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Cache/redisenterprise",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cache%20for%20Redis.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.CacheRedisEnterprise),
 		GetDescriber:  nil,
 	},
@@ -1749,12 +1564,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DataLakeAnalytics/accounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DataLakeAnalytics/accounts",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Lake%20Analytics.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DataLakeAnalyticsAccount),
 		GetDescriber:  nil,
 	},
@@ -1762,22 +1575,26 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Insights/activityLogAlerts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Insights/activityLogAlerts",
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.LogAlert),
+		GetDescriber:    nil,
+	},
 
-		Tags: map[string][]string{},
-
-		ListDescriber: DescribeBySubscription(describer.LogAlert),
-		GetDescriber:  nil,
+	"Microsoft.Compute/virtualMachineCpuUtilizationHourly": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Compute/virtualMachineCpuUtilizationHourly",
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.ComputeVirtualMachineCpuUtilizationHourly),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.Network/loadBalancers/outboundRules": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers/outboundRules",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Backend%20Outbound%20Rule.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.LoadBalancerOutboundRule),
 		GetDescriber:  nil,
 	},
@@ -1785,11 +1602,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.HybridCompute/machines": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.HybridCompute/machines",
-
 		Tags: map[string][]string{
 			"category": {"Compute"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.HybridComputeMachine),
 		GetDescriber:  nil,
 	},
@@ -1797,25 +1612,29 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/loadBalancers/inboundNatRules": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers/inboundNatRules",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Inbound%20NAT%20Rule.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.LoadBalancerNatRule),
 		GetDescriber:  nil,
+	},
+
+	"Microsoft.Resources/providers": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Resources/providers",
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.ResourceProvider),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.Network/routeTables": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/routeTables",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Route%20Table.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.RouteTables),
 		GetDescriber:  nil,
 	},
@@ -1823,12 +1642,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DocumentDB/databaseAccounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/databaseAccounts",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.CosmosdbAccount),
 		GetDescriber:  nil,
 	},
@@ -1836,12 +1653,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DocumentDB/restorableDatabaseAccounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/restorableDatabaseAccounts",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.CosmosdbRestorableDatabaseAccount),
 		GetDescriber:  nil,
 	},
@@ -1849,12 +1664,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/applicationGateways": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/applicationGateways",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Gateway.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ApplicationGateway),
 		GetDescriber:  nil,
 	},
@@ -1862,22 +1675,18 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Security/automations": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Security/automations",
-
-		Tags: map[string][]string{},
-
-		ListDescriber: DescribeBySubscription(describer.SecurityCenterAutomation),
-		GetDescriber:  nil,
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.SecurityCenterAutomation),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.Kubernetes/connectedClusters": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Kubernetes/connectedClusters",
-
 		Tags: map[string][]string{
 			"category": {"Container"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Kubernetes%20Cluster%20(Operator%20Nexus).svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.HybridKubernetesConnectedCluster),
 		GetDescriber:  nil,
 	},
@@ -1885,12 +1694,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.KeyVault/vaults/keys": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/vaults/keys",
-
 		Tags: map[string][]string{
 			"category": {"Security"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.KeyVaultKey),
 		GetDescriber:  nil,
 	},
@@ -1898,12 +1705,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.KeyVault/vaults/certificates": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/vaults/certificates",
-
 		Tags: map[string][]string{
 			"category": {"Security"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.KeyVaultCertificate),
 		GetDescriber:  nil,
 	},
@@ -1911,12 +1716,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.KeyVault/vaults/keys/Versions": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/vaults/keys/Versions",
-
 		Tags: map[string][]string{
 			"category": {"Security"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.KeyVaultKey),
 		GetDescriber:  nil,
 	},
@@ -1924,12 +1727,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DBforMariaDB/servers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforMariaDB/servers",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20MariaDB.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.MariadbServer),
 		GetDescriber:  nil,
 	},
@@ -1937,37 +1738,63 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DBforMariaDB/servers/databases": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DBforMariaDB/servers/databases",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20MariaDB.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.MariadbDatabases),
 		GetDescriber:  nil,
+	},
+
+	"Microsoft.Compute/disksreadopsdaily": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Compute/disksreadopsdaily",
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.ComputeDiskReadOpsDaily),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.Web/plan": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Web/plan",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Service%20plan.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.AppServicePlan),
 		GetDescriber:  nil,
+	},
+
+	"Microsoft.Compute/disksreadopshourly": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Compute/disksreadopshourly",
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.ComputeDiskReadOpsHourly),
+		GetDescriber:    nil,
+	},
+
+	"Microsoft.Compute/diskswriteopsdaily": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Compute/diskswriteopsdaily",
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.ComputeDiskWriteOpsDaily),
+		GetDescriber:    nil,
+	},
+
+	"Microsoft.Resources/tenants": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Resources/tenants",
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.Tenant),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.Network/virtualNetworkGateways": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/virtualNetworkGateways",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Network%20Gateway.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.VirtualNetworkGateway),
 		GetDescriber:  nil,
 	},
@@ -1975,12 +1802,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Devices/iotHubs": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Devices/iotHubs",
-
 		Tags: map[string][]string{
 			"category": {"IoT & Devices"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/IoT%20Hub.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.IOTHub),
 		GetDescriber:  nil,
 	},
@@ -1988,11 +1813,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Logic/workflows": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Logic/workflows",
-
 		Tags: map[string][]string{
 			"category": {"Integration"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.LogicAppWorkflow),
 		GetDescriber:  nil,
 	},
@@ -2000,24 +1823,30 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Sql/flexibleServers": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Sql/flexibleServers",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.SqlServerFlexibleServer),
+		GetDescriber:  nil,
+	},
+
+	"Microsoft.Resources/links": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Resources/links",
+		Tags: map[string][]string{
+			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Resource%20Management%20Private%20Link.svg"},
+		},
+		ListDescriber: DescribeBySubscription(describer.ResourceLink),
 		GetDescriber:  nil,
 	},
 
 	"Microsoft.Resources/subscriptions": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Resources/subscriptions",
-
 		Tags: map[string][]string{
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Subscription.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.Subscription),
 		GetDescriber:  nil,
 	},
@@ -2025,12 +1854,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Compute/images": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/images",
-
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Image.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ComputeImage),
 		GetDescriber:  nil,
 	},
@@ -2038,12 +1865,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Compute/virtualMachines": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/virtualMachines",
-
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ComputeVirtualMachine),
 		GetDescriber:  nil,
 	},
@@ -2051,12 +1876,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/natGateways": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/natGateways",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/NAT%20Gateway.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.NatGateway),
 		GetDescriber:  nil,
 	},
@@ -2064,12 +1887,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/loadBalancers/probes": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/loadBalancers/probes",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Health%20Probe.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.LoadBalancerProbe),
 		GetDescriber:  nil,
 	},
@@ -2077,12 +1898,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.KeyVault/vaults": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/vaults",
-
 		Tags: map[string][]string{
 			"category": {"Security"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.KeyVault),
 		GetDescriber:  nil,
 	},
@@ -2090,12 +1909,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.KeyVault/managedHsms": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/managedHsms",
-
 		Tags: map[string][]string{
 			"category": {"Security"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault%20HSM.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.KeyVaultManagedHardwareSecurityModule),
 		GetDescriber:  nil,
 	},
@@ -2103,12 +1920,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.KeyVault/vaults/secrets": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.KeyVault/vaults/secrets",
-
 		Tags: map[string][]string{
 			"category": {"Security"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault%20Secret.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.KeyVaultSecret),
 		GetDescriber:  nil,
 	},
@@ -2116,25 +1931,29 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.AppConfiguration/configurationStores": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.AppConfiguration/configurationStores",
-
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/App%20Configuration.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.AppConfiguration),
 		GetDescriber:  nil,
+	},
+
+	"Microsoft.Compute/virtualMachineCpuUtilization": {
+		IntegrationType: configs.IntegrationName,
+		ResourceName:    "Microsoft.Compute/virtualMachineCpuUtilization",
+		Tags:            map[string][]string{},
+		ListDescriber:   DescribeBySubscription(describer.ComputeVirtualMachineCpuUtilization),
+		GetDescriber:    nil,
 	},
 
 	"Microsoft.Storage/storageAccounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Storage/storageAccounts",
-
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.StorageAccount),
 		GetDescriber:  nil,
 	},
@@ -2142,12 +1961,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.AppPlatform/Spring": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.AppPlatform/Spring",
-
 		Tags: map[string][]string{
 			"category": {"PaaS"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Spring%20Cloud.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.SpringCloudService),
 		GetDescriber:  nil,
 	},
@@ -2155,12 +1972,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Compute/galleries": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/galleries",
-
 		Tags: map[string][]string{
 			"category": {"General"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Compute%20Gallery.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ComputeGallery),
 		GetDescriber:  nil,
 	},
@@ -2168,12 +1983,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Compute/hostGroups": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/hostGroups",
-
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Host%20Group.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ComputeHostGroup),
 		GetDescriber:  nil,
 	},
@@ -2181,12 +1994,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Compute/hostGroups/hosts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/hostGroups/hosts",
-
 		Tags: map[string][]string{
 			"category": {"Compute"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Host%20Group.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ComputeHost),
 		GetDescriber:  nil,
 	},
@@ -2194,11 +2005,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Compute/restorePointCollections": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/restorePointCollections",
-
 		Tags: map[string][]string{
 			"category": {"Backup"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ComputeRestorePointCollection),
 		GetDescriber:  nil,
 	},
@@ -2206,12 +2015,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Compute/sshPublicKeys": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Compute/sshPublicKeys",
-
 		Tags: map[string][]string{
 			"category": {"Management & Governance"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SSH%20key.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ComputeSSHPublicKey),
 		GetDescriber:  nil,
 	},
@@ -2219,12 +2026,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Cdn/profiles/endpoints": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Cdn/profiles/endpoints",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/CDN%20Profile.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.CdnEndpoint),
 		GetDescriber:  nil,
 	},
@@ -2232,12 +2037,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.BotService/botServices": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.BotService/botServices",
-
 		Tags: map[string][]string{
 			"category": {"AI + ML"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Bot%20Service.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.BotServiceBot),
 		GetDescriber:  nil,
 	},
@@ -2245,12 +2048,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DocumentDB/cassandraClusters": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DocumentDB/cassandraClusters",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Managed%20Instance%20for%20Apache%20Cassandra.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DocumentDBCassandraCluster),
 		GetDescriber:  nil,
 	},
@@ -2258,12 +2059,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Network/ddosProtectionPlans": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Network/ddosProtectionPlans",
-
 		Tags: map[string][]string{
 			"category": {"Networking"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DDoS%20Protection%20Plan.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.NetworkDDoSProtectionPlan),
 		GetDescriber:  nil,
 	},
@@ -2271,12 +2070,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"microsoft.Sql/instancePools": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "microsoft.Sql/instancePools",
-
 		Tags: map[string][]string{
 			"category": {"Database"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Instance%20Pool.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.SqlInstancePool),
 		GetDescriber:  nil,
 	},
@@ -2284,12 +2081,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"microsoft.NetApp/netAppAccounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "microsoft.NetApp/netAppAccounts",
-
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20NetApp%20Files.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.NetAppAccount),
 		GetDescriber:  nil,
 	},
@@ -2297,12 +2092,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.NetApp/netAppAccounts/capacityPools": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.NetApp/netAppAccounts/capacityPools",
-
 		Tags: map[string][]string{
 			"category": {"Storage"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20NetApp%20Files.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.NetAppCapacityPool),
 		GetDescriber:  nil,
 	},
@@ -2310,12 +2103,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.DesktopVirtualization/hostpools": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.DesktopVirtualization/hostpools",
-
 		Tags: map[string][]string{
 			"category": {"End User"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Windows%20Virtual%20Desktop.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DesktopVirtualizationHostPool),
 		GetDescriber:  nil,
 	},
@@ -2323,12 +2114,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Devtestlab/labs": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Devtestlab/labs",
-
 		Tags: map[string][]string{
 			"category": {"DevOps + Testing"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DevTest%20Lab.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.DevTestLabLab),
 		GetDescriber:  nil,
 	},
@@ -2336,12 +2125,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Purview/Accounts": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Purview/Accounts",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Purview%20Account.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.PurviewAccount),
 		GetDescriber:  nil,
 	},
@@ -2349,12 +2136,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.PowerBIDedicated/capacities": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.PowerBIDedicated/capacities",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Power%20BI%20Embedded.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.PowerBIDedicatedCapacity),
 		GetDescriber:  nil,
 	},
@@ -2362,12 +2147,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Insights/components": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Insights/components",
-
 		Tags: map[string][]string{
 			"category": {"Data and Analytics"},
 			"logo_uri": {"https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Insights.svg"},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.ApplicationInsights),
 		GetDescriber:  nil,
 	},
@@ -2375,12 +2158,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Lighthouse/definition": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Lighthouse/definition",
-
 		Tags: map[string][]string{
 			"category": {},
 			"logo_uri": {},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.LighthouseDefinition),
 		GetDescriber:  nil,
 	},
@@ -2388,12 +2169,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Lighthouse/assignment": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Lighthouse/assignment",
-
 		Tags: map[string][]string{
 			"category": {},
 			"logo_uri": {},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.LighthouseAssignments),
 		GetDescriber:  nil,
 	},
@@ -2401,12 +2180,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Maintenance/maintenanceConfigurations": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Maintenance/maintenanceConfigurations",
-
 		Tags: map[string][]string{
 			"category": {},
 			"logo_uri": {},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.MaintenanceConfiguration),
 		GetDescriber:  nil,
 	},
@@ -2414,12 +2191,10 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Monitor/logProfiles": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Monitor/logProfiles",
-
 		Tags: map[string][]string{
 			"category": {},
 			"logo_uri": {},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.MonitorLogProfiles),
 		GetDescriber:  nil,
 	},
@@ -2427,11 +2202,9 @@ var ResourceTypes = map[string]model.ResourceType{
 	"Microsoft.Resources/subscriptions/resources": {
 		IntegrationType: configs.IntegrationName,
 		ResourceName:    "Microsoft.Resources/subscriptions/resources",
-
 		Tags: map[string][]string{
 			"logo_uri": {},
 		},
-
 		ListDescriber: DescribeBySubscription(describer.Resources),
 		GetDescriber:  nil,
 	},
