@@ -1,7 +1,6 @@
 [
   {
     "ResourceName": "Microsoft.App/containerApps",
-
     "Tags": {
       "category": [
         "Container"
@@ -10,7 +9,6 @@
         "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Container%20App.svg"
       ]
     },
-
     "ListDescriber": "DescribeBySubscription(describer.AppContainerApps)",
     "GetDescriber": "",
     "SteampipeTable": "azure_app_containerapps",
