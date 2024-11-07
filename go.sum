@@ -213,6 +213,8 @@ github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/applicationinsights/armapp
 github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/applicationinsights/armapplicationinsights v1.2.0/go.mod h1:S7Ss6Rm0nlKDRHKrO9eL2Be5EnX29Z09CNPWgK7o4+I=
 github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appservice/armappservice v1.0.0 h1:kRX8I0dWAcpW6Vq0m90CgV+qw4O1vXodgwrhoPr1RWs=
 github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appservice/armappservice v1.0.0/go.mod h1:avvc5/7qR4taCvAhOM7KFXuEHhAU0Wek9YX7sh9H3EM=
+github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/authorization/armauthorization v1.0.0 h1:qtRcg5Y7jNJ4jEzPq4GpWLfTspHdNe2ZK6LjwGcjgmU=
+github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/authorization/armauthorization v1.0.0/go.mod h1:lPneRe3TwsoDRKY4O6YDLXHhEWrD+TIRa8XrV/3/fqw=
 github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/authorization/armauthorization/v2 v2.2.0 h1:Hp+EScFOu9HeCbeW8WU2yQPJd4gGwhMgKxWe+G6jNzw=
 github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/authorization/armauthorization/v2 v2.2.0/go.mod h1:/pz8dyNQe+Ey3yBp/XuYz7oqX8YDNWVpPB0hH3XWfbc=
 github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/automation/armautomation v0.9.0 h1:pzgp0VZDAnmgAkUPeedW1dTd7v3kSrwxFNabFAzB158=
@@ -532,6 +534,7 @@ github.com/cockroachdb/apd v1.1.0/go.mod h1:8Sl8LxpKi29FqWXR16WEFZRNSz3SoPzUzeMe
 github.com/coreos/go-systemd v0.0.0-20190321100706-95778dfbb74e/go.mod h1:F5haX7vjVVG0kc13fIWeqUViNPyEJxv/OmvnBo0Yme4=
 github.com/coreos/go-systemd v0.0.0-20190719114852-fd7a80b32e1f/go.mod h1:F5haX7vjVVG0kc13fIWeqUViNPyEJxv/OmvnBo0Yme4=
 github.com/cpuguy83/go-md2man/v2 v2.0.2/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
+github.com/cpuguy83/go-md2man/v2 v2.0.4/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/creack/pty v1.1.7/go.mod h1:lj5s0c3V2DBrqTV7llrYr5NG6My20zk30Fl46Y7DoTY=
 github.com/danwakefield/fnmatch v0.0.0-20160403171240-cbb64ac3d964 h1:y5HC9v93H5EPKqaS1UYVg1uYah5Xf51mBfIoWehClUQ=
 github.com/danwakefield/fnmatch v0.0.0-20160403171240-cbb64ac3d964/go.mod h1:Xd9hchkHSWYkEqJwUGisez3G1QY8Ryz0sdWrLPMGjLk=
@@ -998,6 +1001,8 @@ github.com/opengovern/og-util v1.0.6-0.20241105221143-8665d83abd91 h1:ZIzcv1mD09
 github.com/opengovern/og-util v1.0.6-0.20241105221143-8665d83abd91/go.mod h1:7l7fNhK6uewIwA0cs7QagJuhjt/E6hEAC01SR8Y0kKk=
 github.com/opengovern/og-util v1.0.6-0.20241105222646-0d15ca2bc5c5 h1:rfIElwBZ3EdvKX6gV/luUAdbrILVKyNpWP/VXHWb5ik=
 github.com/opengovern/og-util v1.0.6-0.20241105222646-0d15ca2bc5c5/go.mod h1:7l7fNhK6uewIwA0cs7QagJuhjt/E6hEAC01SR8Y0kKk=
+github.com/opengovern/opengovernance v0.434.30-feat-integrations-service.1 h1:s9UbN5g8/44vus6b507vnHUmL4gF7BTdTkmqHc/P8Ec=
+github.com/opengovern/opengovernance v0.434.30-feat-integrations-service.1/go.mod h1:TOmxA2GsntO8AncUBf/xQX+VRbTQz/NRqggXmBp3nDk=
 github.com/opensearch-project/opensearch-go/v2 v2.3.0 h1:nQIEMr+A92CkhHrZgUhcfsrZjibvB3APXf2a1VwCmMQ=
 github.com/opensearch-project/opensearch-go/v2 v2.3.0/go.mod h1:8LDr9FCgUTVoT+5ESjc2+iaZuldqE+23Iq0r1XeNue8=
 github.com/pganalyze/pg_query_go/v4 v4.2.3 h1:cNLqyiVMasV7YGWyYV+fkXyHp32gDfXVNCqoHztEGNk=
@@ -1058,6 +1063,7 @@ github.com/sirupsen/logrus v1.4.2/go.mod h1:tLMulIdttU9McNUspp0xgXVQah82FyeX6Mwd
 github.com/spaolacci/murmur3 v0.0.0-20180118202830-f09979ecbc72/go.mod h1:JwIasOWyU6f++ZhiEuf87xNszmSA2myDM2Kzu9HwQUA=
 github.com/spf13/cobra v1.7.0 h1:hyqWnYt1ZQShIddO5kBpj3vu05/++x6tJ6dg8EC572I=
 github.com/spf13/cobra v1.7.0/go.mod h1:uLxZILRyS/50WlhOIKD7W6V5bgeIt+4sICxh6uRMrb0=
+github.com/spf13/cobra v1.8.1/go.mod h1:wHxEcudfqmLYa8iTfL+OuZPbBZkmvliBWKIezN3kD9Y=
 github.com/spf13/pflag v1.0.5 h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA=
 github.com/spf13/pflag v1.0.5/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An2Bg=
 github.com/std-uritemplate/std-uritemplate/go v0.0.57 h1:GHGjptrsmazP4IVDlUprssiEf9ESVkbjx15xQXXzvq4=

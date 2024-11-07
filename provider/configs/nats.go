@@ -1,9 +1,11 @@
 package configs
 
+import "github.com/opengovern/opengovernance/services/integration/integration-type/azure_subscription/configs"
+
 const (
-	StreamName           = "og_azure_describer"
-	JobQueueTopic        = "og_azure_describer_job_queue"
-	ConsumerGroup        = "azure-describer"
-	JobQueueTopicManuals = "og_azure_describer_manuals_job_queue"
-	ConsumerGroupManuals = "azure-describer-manuals"
+	StreamName           = configs.ConsumerGroup
+	JobQueueTopic        = configs.JobQueueTopic
+	ConsumerGroup        = configs.ConsumerGroup
+	JobQueueTopicManuals = configs.JobQueueTopicManuals
+	ConsumerGroupManuals = configs.ConsumerGroupManuals
 )

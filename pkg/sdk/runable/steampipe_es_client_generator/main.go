@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/opengovern/og-describer-entraid/provider/configs"
+	"github.com/opengovern/og-describer-azure/provider/configs"
 	"go/ast"
 	"go/format"
 	"go/parser"
