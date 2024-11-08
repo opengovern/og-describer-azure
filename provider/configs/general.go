@@ -1,11 +1,11 @@
 package configs
 
 import (
-	"github.com/opengovern/opengovernance/services/integration/integration-type/azure_subscription/configs"
+	"github.com/opengovern/opengovernance/services/integration/integration-type/azure-subscription/configs"
 )
 
 const (
 	IntegrationTypeLower = "azure" // example: aws, azure
-	IntegrationName      = configs.IntegrationName
+	IntegrationName      = configs.IntegrationTypeAzureSubscription
 	OGPluginRepoURL      = "github.com/opengovern/og-describer-azure" // example: github.com/opengovern/og-describer-aws
 )
