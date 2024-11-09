@@ -112,7 +112,7 @@ require (
 	github.com/microsoftgraph/msgraph-sdk-go v1.51.0
 	github.com/nats-io/nats.go v1.36.0
 	github.com/opengovern/og-util v1.0.6-0.20241108102418-e20a35efc8ca
-	github.com/opengovern/opengovernance v0.434.55-feat-integrations-service.0
+	github.com/opengovern/opengovernance v0.434.58-feat-integrations-service.0
 	github.com/spf13/cobra v1.8.1
 	github.com/tombuildsstuff/giovanni v0.18.0
 	github.com/turbot/steampipe-plugin-sdk/v5 v5.10.1
