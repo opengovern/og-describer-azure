@@ -30,6 +30,55 @@ type APIManagement struct {
 	IntegrationID   string                         `json:"integration_id"`
 }
 
+func (r *APIManagement) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.APIManagementDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type APIManagementHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -311,6 +360,55 @@ type APIManagementBackend struct {
 	IntegrationID   string                                `json:"integration_id"`
 }
 
+func (r *APIManagementBackend) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.APIManagementBackendDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type APIManagementBackendHit struct {
 	ID      string               `json:"_id"`
 	Score   float64              `json:"_score"`
@@ -538,6 +636,55 @@ type AutomationAccounts struct {
 	ResourceType    string                              `json:"resource_type"`
 	IntegrationType string                              `json:"integration_type"`
 	IntegrationID   string                              `json:"integration_id"`
+}
+
+func (r *AutomationAccounts) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.AutomationAccountsDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type AutomationAccountsHit struct {
@@ -769,6 +916,55 @@ type AutomationVariables struct {
 	IntegrationID   string                               `json:"integration_id"`
 }
 
+func (r *AutomationVariables) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.AutomationVariablesDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type AutomationVariablesHit struct {
 	ID      string              `json:"_id"`
 	Score   float64             `json:"_score"`
@@ -990,6 +1186,55 @@ type AppConfiguration struct {
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
+}
+
+func (r *AppConfiguration) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.AppConfigurationDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type AppConfigurationHit struct {
@@ -1215,6 +1460,55 @@ type AppServiceEnvironment struct {
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
+}
+
+func (r *AppServiceEnvironment) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.AppServiceEnvironmentDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type AppServiceEnvironmentHit struct {
@@ -1449,6 +1743,55 @@ type AppServiceFunctionApp struct {
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
+}
+
+func (r *AppServiceFunctionApp) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.AppServiceFunctionAppDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type AppServiceFunctionAppHit struct {
@@ -1691,6 +2034,55 @@ type AppServiceWebApp struct {
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
+}
+
+func (r *AppServiceWebApp) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.AppServiceWebAppDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type AppServiceWebAppHit struct {
@@ -1937,6 +2329,55 @@ type AppServiceWebAppSlot struct {
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
+}
+
+func (r *AppServiceWebAppSlot) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.AppServiceWebAppSlotDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type AppServiceWebAppSlotHit struct {
@@ -2222,6 +2663,55 @@ type AppServicePlan struct {
 	IntegrationID   string                          `json:"integration_id"`
 }
 
+func (r *AppServicePlan) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.AppServicePlanDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type AppServicePlanHit struct {
 	ID      string         `json:"_id"`
 	Score   float64        `json:"_score"`
@@ -2466,6 +2956,55 @@ type ContainerApp struct {
 	IntegrationID   string                        `json:"integration_id"`
 }
 
+func (r *ContainerApp) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ContainerAppDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ContainerAppHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -2673,6 +3212,55 @@ type WebServerFarms struct {
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
+}
+
+func (r *WebServerFarms) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.WebServerFarmsDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type WebServerFarmsHit struct {
@@ -2884,6 +3472,55 @@ type Blueprint struct {
 	IntegrationID   string                     `json:"integration_id"`
 }
 
+func (r *Blueprint) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.BlueprintDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type BlueprintHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -3089,6 +3726,55 @@ type ComputeDisk struct {
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
+}
+
+func (r *ComputeDisk) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeDiskDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ComputeDiskHit struct {
@@ -3374,6 +4060,55 @@ type ComputeDiskReadOps struct {
 	IntegrationID   string                              `json:"integration_id"`
 }
 
+func (r *ComputeDiskReadOps) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeDiskReadOpsDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ComputeDiskReadOpsHit struct {
 	ID      string             `json:"_id"`
 	Score   float64            `json:"_score"`
@@ -3571,6 +4306,55 @@ type ComputeDiskReadOpsDaily struct {
 	ResourceType    string                                   `json:"resource_type"`
 	IntegrationType string                                   `json:"integration_type"`
 	IntegrationID   string                                   `json:"integration_id"`
+}
+
+func (r *ComputeDiskReadOpsDaily) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeDiskReadOpsDailyDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ComputeDiskReadOpsDailyHit struct {
@@ -3772,6 +4556,55 @@ type ComputeDiskReadOpsHourly struct {
 	IntegrationID   string                                    `json:"integration_id"`
 }
 
+func (r *ComputeDiskReadOpsHourly) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeDiskReadOpsHourlyDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ComputeDiskReadOpsHourlyHit struct {
 	ID      string                   `json:"_id"`
 	Score   float64                  `json:"_score"`
@@ -3969,6 +4802,55 @@ type ComputeDiskWriteOps struct {
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
+}
+
+func (r *ComputeDiskWriteOps) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeDiskWriteOpsDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ComputeDiskWriteOpsHit struct {
@@ -4170,6 +5052,55 @@ type ComputeDiskWriteOpsDaily struct {
 	IntegrationID   string                                    `json:"integration_id"`
 }
 
+func (r *ComputeDiskWriteOpsDaily) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeDiskWriteOpsDailyDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ComputeDiskWriteOpsDailyHit struct {
 	ID      string                   `json:"_id"`
 	Score   float64                  `json:"_score"`
@@ -4369,6 +5300,55 @@ type ComputeDiskWriteOpsHourly struct {
 	IntegrationID   string                                     `json:"integration_id"`
 }
 
+func (r *ComputeDiskWriteOpsHourly) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeDiskWriteOpsHourlyDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ComputeDiskWriteOpsHourlyHit struct {
 	ID      string                    `json:"_id"`
 	Score   float64                   `json:"_score"`
@@ -4566,6 +5546,55 @@ type ComputeDiskAccess struct {
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
+}
+
+func (r *ComputeDiskAccess) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeDiskAccessDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ComputeDiskAccessHit struct {
@@ -4781,6 +5810,55 @@ type ComputeVirtualMachineScaleSet struct {
 	ResourceType    string                                         `json:"resource_type"`
 	IntegrationType string                                         `json:"integration_type"`
 	IntegrationID   string                                         `json:"integration_id"`
+}
+
+func (r *ComputeVirtualMachineScaleSet) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeVirtualMachineScaleSetDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ComputeVirtualMachineScaleSetHit struct {
@@ -5042,6 +6120,55 @@ type ComputeVirtualMachineScaleSetNetworkInterface struct {
 	IntegrationID   string                                                         `json:"integration_id"`
 }
 
+func (r *ComputeVirtualMachineScaleSetNetworkInterface) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeVirtualMachineScaleSetNetworkInterfaceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ComputeVirtualMachineScaleSetNetworkInterfaceHit struct {
 	ID      string                                        `json:"_id"`
 	Score   float64                                       `json:"_score"`
@@ -5257,6 +6384,55 @@ type ComputeVirtualMachineScaleSetVm struct {
 	ResourceType    string                                           `json:"resource_type"`
 	IntegrationType string                                           `json:"integration_type"`
 	IntegrationID   string                                           `json:"integration_id"`
+}
+
+func (r *ComputeVirtualMachineScaleSetVm) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeVirtualMachineScaleSetVmDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ComputeVirtualMachineScaleSetVmHit struct {
@@ -5526,6 +6702,55 @@ type ComputeSnapshots struct {
 	IntegrationID   string                            `json:"integration_id"`
 }
 
+func (r *ComputeSnapshots) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeSnapshotsDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ComputeSnapshotsHit struct {
 	ID      string           `json:"_id"`
 	Score   float64          `json:"_score"`
@@ -5791,6 +7016,55 @@ type ComputeAvailabilitySet struct {
 	IntegrationID   string                                  `json:"integration_id"`
 }
 
+func (r *ComputeAvailabilitySet) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeAvailabilitySetDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ComputeAvailabilitySetHit struct {
 	ID      string                 `json:"_id"`
 	Score   float64                `json:"_score"`
@@ -6018,6 +7292,55 @@ type ComputeDiskEncryptionSet struct {
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
+}
+
+func (r *ComputeDiskEncryptionSet) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeDiskEncryptionSetDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ComputeDiskEncryptionSetHit struct {
@@ -6249,6 +7572,55 @@ type ComputeImageGallery struct {
 	IntegrationID   string                               `json:"integration_id"`
 }
 
+func (r *ComputeImageGallery) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeImageGalleryDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ComputeImageGalleryHit struct {
 	ID      string              `json:"_id"`
 	Score   float64             `json:"_score"`
@@ -6457,6 +7829,55 @@ type ComputeImage struct {
 	ResourceType    string                        `json:"resource_type"`
 	IntegrationType string                        `json:"integration_type"`
 	IntegrationID   string                        `json:"integration_id"`
+}
+
+func (r *ComputeImage) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeImageDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ComputeImageHit struct {
@@ -6700,6 +8121,55 @@ type ComputeHostGroup struct {
 	IntegrationID   string                            `json:"integration_id"`
 }
 
+func (r *ComputeHostGroup) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeHostGroupDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ComputeHostGroupHit struct {
 	ID      string           `json:"_id"`
 	Score   float64          `json:"_score"`
@@ -6907,6 +8377,55 @@ type ComputeHostGroupHost struct {
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
+}
+
+func (r *ComputeHostGroupHost) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeHostGroupHostDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ComputeHostGroupHostHit struct {
@@ -7118,6 +8637,55 @@ type ComputeRestorePointCollection struct {
 	IntegrationID   string                                         `json:"integration_id"`
 }
 
+func (r *ComputeRestorePointCollection) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeRestorePointCollectionDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ComputeRestorePointCollectionHit struct {
 	ID      string                        `json:"_id"`
 	Score   float64                       `json:"_score"`
@@ -7325,6 +8893,55 @@ type ComputeSSHPublicKey struct {
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
+}
+
+func (r *ComputeSSHPublicKey) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeSSHPublicKeyDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ComputeSSHPublicKeyHit struct {
@@ -7540,6 +9157,55 @@ type DataboxEdgeDevice struct {
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
+}
+
+func (r *DataboxEdgeDevice) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DataboxEdgeDeviceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type DataboxEdgeDeviceHit struct {
@@ -7791,6 +9457,55 @@ type HealthcareService struct {
 	IntegrationID   string                             `json:"integration_id"`
 }
 
+func (r *HealthcareService) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.HealthcareServiceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type HealthcareServiceHit struct {
 	ID      string            `json:"_id"`
 	Score   float64           `json:"_score"`
@@ -8036,6 +9751,55 @@ type HpcCache struct {
 	IntegrationID   string                    `json:"integration_id"`
 }
 
+func (r *HpcCache) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.HpcCacheDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type HpcCacheHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -8271,6 +10035,55 @@ type KeyVaultKey struct {
 	IntegrationID   string                       `json:"integration_id"`
 }
 
+func (r *KeyVaultKey) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.KeyVaultKeyDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type KeyVaultKeyHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -8501,6 +10314,55 @@ type KeyVaultKeyVersion struct {
 	ResourceType    string                              `json:"resource_type"`
 	IntegrationType string                              `json:"integration_type"`
 	IntegrationID   string                              `json:"integration_id"`
+}
+
+func (r *KeyVaultKeyVersion) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.KeyVaultKeyVersionDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type KeyVaultKeyVersionHit struct {
@@ -8738,6 +10600,55 @@ type KubernetesCluster struct {
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
+}
+
+func (r *KubernetesCluster) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.KubernetesClusterDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type KubernetesClusterHit struct {
@@ -9009,6 +10920,55 @@ type KubernetesServiceVersion struct {
 	IntegrationID   string                                    `json:"integration_id"`
 }
 
+func (r *KubernetesServiceVersion) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.KubernetesServiceVersionDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type KubernetesServiceVersionHit struct {
 	ID      string                   `json:"_id"`
 	Score   float64                  `json:"_score"`
@@ -9220,6 +11180,55 @@ type ContainerInstanceContainerGroup struct {
 	ResourceType    string                                           `json:"resource_type"`
 	IntegrationType string                                           `json:"integration_type"`
 	IntegrationID   string                                           `json:"integration_id"`
+}
+
+func (r *ContainerInstanceContainerGroup) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ContainerInstanceContainerGroupDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ContainerInstanceContainerGroupHit struct {
@@ -9465,6 +11474,55 @@ type CDNProfile struct {
 	IntegrationID   string                      `json:"integration_id"`
 }
 
+func (r *CDNProfile) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.CDNProfileDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type CDNProfileHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -9688,6 +11746,55 @@ type CDNEndpoint struct {
 	IntegrationID   string                       `json:"integration_id"`
 }
 
+func (r *CDNEndpoint) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.CDNEndpointDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type CDNEndpointHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -9895,6 +12002,55 @@ type NetworkInterface struct {
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
+}
+
+func (r *NetworkInterface) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.NetworkInterfaceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type NetworkInterfaceHit struct {
@@ -10160,6 +12316,55 @@ type NetworkWatcherFlowLog struct {
 	IntegrationID   string                                 `json:"integration_id"`
 }
 
+func (r *NetworkWatcherFlowLog) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.NetworkWatcherFlowLogDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type NetworkWatcherFlowLogHit struct {
 	ID      string                `json:"_id"`
 	Score   float64               `json:"_score"`
@@ -10397,6 +12602,55 @@ type RouteTables struct {
 	IntegrationID   string                       `json:"integration_id"`
 }
 
+func (r *RouteTables) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.RouteTablesDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type RouteTablesHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -10617,6 +12871,55 @@ type NetworkApplicationSecurityGroups struct {
 	IntegrationID   string                                            `json:"integration_id"`
 }
 
+func (r *NetworkApplicationSecurityGroups) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.NetworkApplicationSecurityGroupsDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type NetworkApplicationSecurityGroupsHit struct {
 	ID      string                           `json:"_id"`
 	Score   float64                          `json:"_score"`
@@ -10832,6 +13135,55 @@ type NetworkAzureFirewall struct {
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
+}
+
+func (r *NetworkAzureFirewall) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.NetworkAzureFirewallDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type NetworkAzureFirewallHit struct {
@@ -11079,6 +13431,55 @@ type ExpressRouteCircuit struct {
 	IntegrationID   string                               `json:"integration_id"`
 }
 
+func (r *ExpressRouteCircuit) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ExpressRouteCircuitDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ExpressRouteCircuitHit struct {
 	ID      string              `json:"_id"`
 	Score   float64             `json:"_score"`
@@ -11320,6 +13721,55 @@ type VirtualNetworkGateway struct {
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
+}
+
+func (r *VirtualNetworkGateway) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.VirtualNetworkGatewayDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type VirtualNetworkGatewayHit struct {
@@ -11575,6 +14025,55 @@ type FirewallPolicy struct {
 	IntegrationID   string                          `json:"integration_id"`
 }
 
+func (r *FirewallPolicy) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.FirewallPolicyDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type FirewallPolicyHit struct {
 	ID      string         `json:"_id"`
 	Score   float64        `json:"_score"`
@@ -11818,6 +14317,55 @@ type LocalNetworkGateway struct {
 	IntegrationID   string                               `json:"integration_id"`
 }
 
+func (r *LocalNetworkGateway) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.LocalNetworkGatewayDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type LocalNetworkGatewayHit struct {
 	ID      string              `json:"_id"`
 	Score   float64             `json:"_score"`
@@ -12026,6 +14574,55 @@ type NatGateway struct {
 	ResourceType    string                      `json:"resource_type"`
 	IntegrationType string                      `json:"integration_type"`
 	IntegrationID   string                      `json:"integration_id"`
+}
+
+func (r *NatGateway) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.NatGatewayDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type NatGatewayHit struct {
@@ -12247,6 +14844,55 @@ type PrivateLinkService struct {
 	IntegrationID   string                              `json:"integration_id"`
 }
 
+func (r *PrivateLinkService) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.PrivateLinkServiceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type PrivateLinkServiceHit struct {
 	ID      string             `json:"_id"`
 	Score   float64            `json:"_score"`
@@ -12455,6 +15101,55 @@ type VpnGateway struct {
 	ResourceType    string                      `json:"resource_type"`
 	IntegrationType string                      `json:"integration_type"`
 	IntegrationID   string                      `json:"integration_id"`
+}
+
+func (r *VpnGateway) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.VpnGatewayDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type VpnGatewayHit struct {
@@ -12667,6 +15362,55 @@ type VpnGatewayVpnConnection struct {
 	IntegrationID   string                                   `json:"integration_id"`
 }
 
+func (r *VpnGatewayVpnConnection) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.VpnGatewayVpnConnectionDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type VpnGatewayVpnConnectionHit struct {
 	ID      string                  `json:"_id"`
 	Score   float64                 `json:"_score"`
@@ -12876,6 +15620,55 @@ type VpnSite struct {
 	IntegrationID   string                   `json:"integration_id"`
 }
 
+func (r *VpnSite) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.VpnSiteDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type VpnSiteHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -13083,6 +15876,55 @@ type PublicIPAddress struct {
 	ResourceType    string                           `json:"resource_type"`
 	IntegrationType string                           `json:"integration_type"`
 	IntegrationID   string                           `json:"integration_id"`
+}
+
+func (r *PublicIPAddress) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.PublicIPAddressDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type PublicIPAddressHit struct {
@@ -13334,6 +16176,55 @@ type PublicIPPrefix struct {
 	IntegrationID   string                          `json:"integration_id"`
 }
 
+func (r *PublicIPPrefix) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.PublicIPPrefixDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type PublicIPPrefixHit struct {
 	ID      string         `json:"_id"`
 	Score   float64        `json:"_score"`
@@ -13541,6 +16432,55 @@ type DNSZones struct {
 	ResourceType    string                    `json:"resource_type"`
 	IntegrationType string                    `json:"integration_type"`
 	IntegrationID   string                    `json:"integration_id"`
+}
+
+func (r *DNSZones) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DNSZonesDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type DNSZonesHit struct {
@@ -13772,6 +16712,55 @@ type BastionHosts struct {
 	IntegrationID   string                        `json:"integration_id"`
 }
 
+func (r *BastionHosts) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.BastionHostsDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type BastionHostsHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -13995,6 +16984,55 @@ type Connection struct {
 	IntegrationID   string                      `json:"integration_id"`
 }
 
+func (r *Connection) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ConnectionDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ConnectionHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -14202,6 +17240,55 @@ type VirtualHubs struct {
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
+}
+
+func (r *VirtualHubs) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.VirtualHubsDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type VirtualHubsHit struct {
@@ -14413,6 +17500,55 @@ type VirtualWans struct {
 	IntegrationID   string                       `json:"integration_id"`
 }
 
+func (r *VirtualWans) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.VirtualWansDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type VirtualWansHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -14620,6 +17756,55 @@ type DNSResolver struct {
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
+}
+
+func (r *DNSResolver) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DNSResolverDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type DNSResolverHit struct {
@@ -14831,6 +18016,55 @@ type TrafficManagerProfile struct {
 	IntegrationID   string                                 `json:"integration_id"`
 }
 
+func (r *TrafficManagerProfile) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.TrafficManagerProfileDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type TrafficManagerProfileHit struct {
 	ID      string                `json:"_id"`
 	Score   float64               `json:"_score"`
@@ -15038,6 +18272,55 @@ type PrivateDNSZones struct {
 	ResourceType    string                           `json:"resource_type"`
 	IntegrationType string                           `json:"integration_type"`
 	IntegrationID   string                           `json:"integration_id"`
+}
+
+func (r *PrivateDNSZones) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.PrivateDNSZonesDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type PrivateDNSZonesHit struct {
@@ -15269,6 +18552,55 @@ type PrivateEndpoint struct {
 	IntegrationID   string                           `json:"integration_id"`
 }
 
+func (r *PrivateEndpoint) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.PrivateEndpointDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type PrivateEndpointHit struct {
 	ID      string          `json:"_id"`
 	Score   float64         `json:"_score"`
@@ -15478,6 +18810,55 @@ type NetworkDDoSProtectionPlan struct {
 	IntegrationID   string                                     `json:"integration_id"`
 }
 
+func (r *NetworkDDoSProtectionPlan) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.NetworkDDoSProtectionPlanDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type NetworkDDoSProtectionPlanHit struct {
 	ID      string                    `json:"_id"`
 	Score   float64                   `json:"_score"`
@@ -15685,6 +19066,55 @@ type PolicyAssignment struct {
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
+}
+
+func (r *PolicyAssignment) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.PolicyAssignmentDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type PolicyAssignmentHit struct {
@@ -15916,6 +19346,55 @@ type RedisCache struct {
 	ResourceType    string                      `json:"resource_type"`
 	IntegrationType string                      `json:"integration_type"`
 	IntegrationID   string                      `json:"integration_id"`
+}
+
+func (r *RedisCache) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.RedisCacheDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type RedisCacheHit struct {
@@ -16173,6 +19652,55 @@ type RedisEnterpriseCache struct {
 	IntegrationID   string                                `json:"integration_id"`
 }
 
+func (r *RedisEnterpriseCache) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.RedisEnterpriseCacheDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type RedisEnterpriseCacheHit struct {
 	ID      string               `json:"_id"`
 	Score   float64              `json:"_score"`
@@ -16380,6 +19908,55 @@ type ResourceLink struct {
 	ResourceType    string                        `json:"resource_type"`
 	IntegrationType string                        `json:"integration_type"`
 	IntegrationID   string                        `json:"integration_id"`
+}
+
+func (r *ResourceLink) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ResourceLinkDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ResourceLinkHit struct {
@@ -16597,6 +20174,55 @@ type RoleAssignment struct {
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
+}
+
+func (r *RoleAssignment) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.RoleAssignmentDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type RoleAssignmentHit struct {
@@ -16820,6 +20446,55 @@ type RoleDefinition struct {
 	IntegrationID   string                          `json:"integration_id"`
 }
 
+func (r *RoleDefinition) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.RoleDefinitionDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type RoleDefinitionHit struct {
 	ID      string         `json:"_id"`
 	Score   float64        `json:"_score"`
@@ -17035,6 +20710,55 @@ type PolicyDefinition struct {
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
+}
+
+func (r *PolicyDefinition) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.PolicyDefinitionDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type PolicyDefinitionHit struct {
@@ -17262,6 +20986,55 @@ type UserEffectiveAccess struct {
 	IntegrationID   string                               `json:"integration_id"`
 }
 
+func (r *UserEffectiveAccess) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.UserEffectiveAccessDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type UserEffectiveAccessHit struct {
 	ID      string              `json:"_id"`
 	Score   float64             `json:"_score"`
@@ -17481,6 +21254,55 @@ type SecurityCenterAutoProvisioning struct {
 	IntegrationID   string                                          `json:"integration_id"`
 }
 
+func (r *SecurityCenterAutoProvisioning) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SecurityCenterAutoProvisioningDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type SecurityCenterAutoProvisioningHit struct {
 	ID      string                         `json:"_id"`
 	Score   float64                        `json:"_score"`
@@ -17690,6 +21512,55 @@ type SecurityCenterContact struct {
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
+}
+
+func (r *SecurityCenterContact) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SecurityCenterContactDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type SecurityCenterContactHit struct {
@@ -17909,6 +21780,55 @@ type SecurityCenterJitNetworkAccessPolicy struct {
 	IntegrationID   string                                                `json:"integration_id"`
 }
 
+func (r *SecurityCenterJitNetworkAccessPolicy) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SecurityCenterJitNetworkAccessPolicyDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type SecurityCenterJitNetworkAccessPolicyHit struct {
 	ID      string                               `json:"_id"`
 	Score   float64                              `json:"_score"`
@@ -18124,6 +22044,55 @@ type SecurityCenterSetting struct {
 	IntegrationID   string                                 `json:"integration_id"`
 }
 
+func (r *SecurityCenterSetting) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SecurityCenterSettingDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type SecurityCenterSettingHit struct {
 	ID      string                `json:"_id"`
 	Score   float64               `json:"_score"`
@@ -18337,6 +22306,55 @@ type SecurityCenterSubscriptionPricing struct {
 	IntegrationID   string                                             `json:"integration_id"`
 }
 
+func (r *SecurityCenterSubscriptionPricing) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SecurityCenterSubscriptionPricingDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type SecurityCenterSubscriptionPricingHit struct {
 	ID      string                            `json:"_id"`
 	Score   float64                           `json:"_score"`
@@ -18548,6 +22566,55 @@ type SecurityCenterAutomation struct {
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
+}
+
+func (r *SecurityCenterAutomation) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SecurityCenterAutomationDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type SecurityCenterAutomationHit struct {
@@ -18777,6 +22844,55 @@ type SecurityCenterSubAssessment struct {
 	IntegrationID   string                                       `json:"integration_id"`
 }
 
+func (r *SecurityCenterSubAssessment) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SecurityCenterSubAssessmentDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type SecurityCenterSubAssessmentHit struct {
 	ID      string                      `json:"_id"`
 	Score   float64                     `json:"_score"`
@@ -18998,6 +23114,55 @@ type StorageContainer struct {
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
+}
+
+func (r *StorageContainer) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.StorageContainerDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type StorageContainerHit struct {
@@ -19239,6 +23404,55 @@ type StorageBlob struct {
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
+}
+
+func (r *StorageBlob) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.StorageBlobDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type StorageBlobHit struct {
@@ -19531,6 +23745,55 @@ type StorageBlobService struct {
 	IntegrationID   string                              `json:"integration_id"`
 }
 
+func (r *StorageBlobService) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.StorageBlobServiceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type StorageBlobServiceHit struct {
 	ID      string             `json:"_id"`
 	Score   float64            `json:"_score"`
@@ -19764,6 +24027,55 @@ type StorageQueue struct {
 	IntegrationID   string                        `json:"integration_id"`
 }
 
+func (r *StorageQueue) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.StorageQueueDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type StorageQueueHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -19977,6 +24289,55 @@ type StorageFileShare struct {
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
+}
+
+func (r *StorageFileShare) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.StorageFileShareDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type StorageFileShareHit struct {
@@ -20211,6 +24572,55 @@ type StorageTable struct {
 	IntegrationID   string                        `json:"integration_id"`
 }
 
+func (r *StorageTable) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.StorageTableDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type StorageTableHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -20421,6 +24831,55 @@ type StorageTableService struct {
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
+}
+
+func (r *StorageTableService) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.StorageTableServiceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type StorageTableServiceHit struct {
@@ -20635,6 +25094,55 @@ type Subnet struct {
 	ResourceType    string                  `json:"resource_type"`
 	IntegrationType string                  `json:"integration_type"`
 	IntegrationID   string                  `json:"integration_id"`
+}
+
+func (r *Subnet) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SubnetDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type SubnetHit struct {
@@ -20873,6 +25381,55 @@ type VirtualNetwork struct {
 	IntegrationID   string                          `json:"integration_id"`
 }
 
+func (r *VirtualNetwork) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.VirtualNetworkDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type VirtualNetworkHit struct {
 	ID      string         `json:"_id"`
 	Score   float64        `json:"_score"`
@@ -21102,6 +25659,55 @@ type Tenant struct {
 	IntegrationID   string                  `json:"integration_id"`
 }
 
+func (r *Tenant) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.TenantDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type TenantHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -21313,6 +25919,55 @@ type Subscription struct {
 	ResourceType    string                        `json:"resource_type"`
 	IntegrationType string                        `json:"integration_type"`
 	IntegrationID   string                        `json:"integration_id"`
+}
+
+func (r *Subscription) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SubscriptionDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type SubscriptionHit struct {
@@ -21532,6 +26187,55 @@ type ApplicationGateway struct {
 	ResourceType    string                              `json:"resource_type"`
 	IntegrationType string                              `json:"integration_type"`
 	IntegrationID   string                              `json:"integration_id"`
+}
+
+func (r *ApplicationGateway) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ApplicationGatewayDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ApplicationGatewayHit struct {
@@ -21781,6 +26485,55 @@ type BatchAccount struct {
 	IntegrationID   string                        `json:"integration_id"`
 }
 
+func (r *BatchAccount) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.BatchAccountDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type BatchAccountHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -22024,6 +26777,55 @@ type CognitiveAccount struct {
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
+}
+
+func (r *CognitiveAccount) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.CognitiveAccountDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type CognitiveAccountHit struct {
@@ -22289,6 +27091,55 @@ type ComputeVirtualMachine struct {
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
+}
+
+func (r *ComputeVirtualMachine) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeVirtualMachineDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ComputeVirtualMachineHit struct {
@@ -22600,6 +27451,55 @@ type ComputeResourceSKU struct {
 	IntegrationID   string                              `json:"integration_id"`
 }
 
+func (r *ComputeResourceSKU) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeResourceSKUDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ComputeResourceSKUHit struct {
 	ID      string             `json:"_id"`
 	Score   float64            `json:"_score"`
@@ -22827,6 +27727,55 @@ type ComputeVirtualMachineCpuUtilization struct {
 	IntegrationID   string                                               `json:"integration_id"`
 }
 
+func (r *ComputeVirtualMachineCpuUtilization) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeVirtualMachineCpuUtilizationDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ComputeVirtualMachineCpuUtilizationHit struct {
 	ID      string                              `json:"_id"`
 	Score   float64                             `json:"_score"`
@@ -23024,6 +27973,55 @@ type ComputeVirtualMachineCpuUtilizationDaily struct {
 	ResourceType    string                                                    `json:"resource_type"`
 	IntegrationType string                                                    `json:"integration_type"`
 	IntegrationID   string                                                    `json:"integration_id"`
+}
+
+func (r *ComputeVirtualMachineCpuUtilizationDaily) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeVirtualMachineCpuUtilizationDailyDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ComputeVirtualMachineCpuUtilizationDailyHit struct {
@@ -23225,6 +28223,55 @@ type ComputeVirtualMachineCpuUtilizationHourly struct {
 	IntegrationID   string                                                     `json:"integration_id"`
 }
 
+func (r *ComputeVirtualMachineCpuUtilizationHourly) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeVirtualMachineCpuUtilizationHourlyDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ComputeVirtualMachineCpuUtilizationHourlyHit struct {
 	ID      string                                    `json:"_id"`
 	Score   float64                                   `json:"_score"`
@@ -23422,6 +28469,55 @@ type ComputeCloudService struct {
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
+}
+
+func (r *ComputeCloudService) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ComputeCloudServiceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ComputeCloudServiceHit struct {
@@ -23631,6 +28727,55 @@ type ContainerRegistry struct {
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
+}
+
+func (r *ContainerRegistry) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ContainerRegistryDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ContainerRegistryHit struct {
@@ -23888,6 +29033,55 @@ type CosmosdbAccount struct {
 	ResourceType    string                           `json:"resource_type"`
 	IntegrationType string                           `json:"integration_type"`
 	IntegrationID   string                           `json:"integration_id"`
+}
+
+func (r *CosmosdbAccount) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.CosmosdbAccountDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type CosmosdbAccountHit struct {
@@ -24162,6 +29356,55 @@ type CosmosdbRestorableDatabaseAccount struct {
 	IntegrationID   string                                             `json:"integration_id"`
 }
 
+func (r *CosmosdbRestorableDatabaseAccount) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.CosmosdbRestorableDatabaseAccountDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type CosmosdbRestorableDatabaseAccountHit struct {
 	ID      string                            `json:"_id"`
 	Score   float64                           `json:"_score"`
@@ -24381,6 +29624,55 @@ type CosmosdbMongoDatabase struct {
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
+}
+
+func (r *CosmosdbMongoDatabase) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.CosmosdbMongoDatabaseDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type CosmosdbMongoDatabaseHit struct {
@@ -24607,6 +29899,55 @@ type CosmosdbMongoCollection struct {
 	ResourceType    string                                   `json:"resource_type"`
 	IntegrationType string                                   `json:"integration_type"`
 	IntegrationID   string                                   `json:"integration_id"`
+}
+
+func (r *CosmosdbMongoCollection) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.CosmosdbMongoCollectionDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type CosmosdbMongoCollectionHit struct {
@@ -24844,6 +30185,55 @@ type CosmosdbSqlDatabase struct {
 	IntegrationID   string                               `json:"integration_id"`
 }
 
+func (r *CosmosdbSqlDatabase) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.CosmosdbSqlDatabaseDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type CosmosdbSqlDatabaseHit struct {
 	ID      string              `json:"_id"`
 	Score   float64             `json:"_score"`
@@ -25072,6 +30462,55 @@ type CosmosdbCassandraCluster struct {
 	IntegrationID   string                                    `json:"integration_id"`
 }
 
+func (r *CosmosdbCassandraCluster) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.CosmosdbCassandraClusterDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type CosmosdbCassandraClusterHit struct {
 	ID      string                   `json:"_id"`
 	Score   float64                  `json:"_score"`
@@ -25279,6 +30718,55 @@ type DatabricksWorkspace struct {
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
+}
+
+func (r *DatabricksWorkspace) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DatabricksWorkspaceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type DatabricksWorkspaceHit struct {
@@ -25518,6 +31006,55 @@ type DataMigrationService struct {
 	IntegrationID   string                                `json:"integration_id"`
 }
 
+func (r *DataMigrationService) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DataMigrationServiceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type DataMigrationServiceHit struct {
 	ID      string               `json:"_id"`
 	Score   float64              `json:"_score"`
@@ -25725,6 +31262,55 @@ type DataProtectionBackupVaults struct {
 	ResourceType    string                                      `json:"resource_type"`
 	IntegrationType string                                      `json:"integration_type"`
 	IntegrationID   string                                      `json:"integration_id"`
+}
+
+func (r *DataProtectionBackupVaults) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DataProtectionBackupVaultsDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type DataProtectionBackupVaultsHit struct {
@@ -25950,6 +31536,55 @@ type DataProtectionBackupVaultsBackupPolicies struct {
 	IntegrationID   string                                                    `json:"integration_id"`
 }
 
+func (r *DataProtectionBackupVaultsBackupPolicies) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DataProtectionBackupVaultsBackupPoliciesDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type DataProtectionBackupVaultsBackupPoliciesHit struct {
 	ID      string                                   `json:"_id"`
 	Score   float64                                  `json:"_score"`
@@ -26155,6 +31790,55 @@ type DataProtectionJob struct {
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
+}
+
+func (r *DataProtectionJob) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DataProtectionJobDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type DataProtectionJobHit struct {
@@ -26424,6 +32108,55 @@ type DataFactory struct {
 	IntegrationID   string                       `json:"integration_id"`
 }
 
+func (r *DataFactory) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DataFactoryDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type DataFactoryHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -26657,6 +32390,55 @@ type DataFactoryDataset struct {
 	IntegrationID   string                              `json:"integration_id"`
 }
 
+func (r *DataFactoryDataset) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DataFactoryDatasetDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type DataFactoryDatasetHit struct {
 	ID      string             `json:"_id"`
 	Score   float64            `json:"_score"`
@@ -26872,6 +32654,55 @@ type DataFactoryPipeline struct {
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
+}
+
+func (r *DataFactoryPipeline) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DataFactoryPipelineDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type DataFactoryPipelineHit struct {
@@ -27105,6 +32936,55 @@ type DataLakeAnalyticsAccount struct {
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
+}
+
+func (r *DataLakeAnalyticsAccount) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DataLakeAnalyticsAccountDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type DataLakeAnalyticsAccountHit struct {
@@ -27362,6 +33242,55 @@ type DataLakeStore struct {
 	IntegrationID   string                         `json:"integration_id"`
 }
 
+func (r *DataLakeStore) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DataLakeStoreDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type DataLakeStoreHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -27611,6 +33540,55 @@ type DiagnosticSetting struct {
 	IntegrationID   string                             `json:"integration_id"`
 }
 
+func (r *DiagnosticSetting) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DiagnosticSettingDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type DiagnosticSettingHit struct {
 	ID      string            `json:"_id"`
 	Score   float64           `json:"_score"`
@@ -27838,6 +33816,55 @@ type AutoscaleSetting struct {
 	IntegrationID   string                            `json:"integration_id"`
 }
 
+func (r *AutoscaleSetting) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.AutoscaleSettingDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type AutoscaleSettingHit struct {
 	ID      string           `json:"_id"`
 	Score   float64          `json:"_score"`
@@ -28057,6 +34084,55 @@ type EventGridDomain struct {
 	ResourceType    string                           `json:"resource_type"`
 	IntegrationType string                           `json:"integration_type"`
 	IntegrationID   string                           `json:"integration_id"`
+}
+
+func (r *EventGridDomain) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.EventGridDomainDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type EventGridDomainHit struct {
@@ -28310,6 +34386,55 @@ type EventGridTopic struct {
 	IntegrationID   string                          `json:"integration_id"`
 }
 
+func (r *EventGridTopic) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.EventGridTopicDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type EventGridTopicHit struct {
 	ID      string         `json:"_id"`
 	Score   float64        `json:"_score"`
@@ -28557,6 +34682,55 @@ type EventhubNamespace struct {
 	IntegrationID   string                             `json:"integration_id"`
 }
 
+func (r *EventhubNamespace) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.EventhubNamespaceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type EventhubNamespaceHit struct {
 	ID      string            `json:"_id"`
 	Score   float64           `json:"_score"`
@@ -28802,6 +34976,55 @@ type EventhubNamespaceEventhub struct {
 	IntegrationID   string                                     `json:"integration_id"`
 }
 
+func (r *EventhubNamespaceEventhub) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.EventhubNamespaceEventhubDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type EventhubNamespaceEventhubHit struct {
 	ID      string                    `json:"_id"`
 	Score   float64                   `json:"_score"`
@@ -29009,6 +35232,55 @@ type Frontdoor struct {
 	ResourceType    string                     `json:"resource_type"`
 	IntegrationType string                     `json:"integration_type"`
 	IntegrationID   string                     `json:"integration_id"`
+}
+
+func (r *Frontdoor) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.FrontdoorDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type FrontdoorHit struct {
@@ -29248,6 +35520,55 @@ type HdinsightCluster struct {
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
+}
+
+func (r *HdinsightCluster) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.HdinsightClusterDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type HdinsightClusterHit struct {
@@ -29513,6 +35834,55 @@ type HybridComputeMachine struct {
 	IntegrationID   string                                `json:"integration_id"`
 }
 
+func (r *HybridComputeMachine) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.HybridComputeMachineDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type HybridComputeMachineHit struct {
 	ID      string               `json:"_id"`
 	Score   float64              `json:"_score"`
@@ -29764,6 +36134,55 @@ type IOTHub struct {
 	ResourceType    string                  `json:"resource_type"`
 	IntegrationType string                  `json:"integration_type"`
 	IntegrationID   string                  `json:"integration_id"`
+}
+
+func (r *IOTHub) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.IOTHubDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type IOTHubHit struct {
@@ -30023,6 +36442,55 @@ type IOTHubDps struct {
 	IntegrationID   string                     `json:"integration_id"`
 }
 
+func (r *IOTHubDps) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.IOTHubDpsDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type IOTHubDpsHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -30260,6 +36728,55 @@ type KeyVault struct {
 	ResourceType    string                    `json:"resource_type"`
 	IntegrationType string                    `json:"integration_type"`
 	IntegrationID   string                    `json:"integration_id"`
+}
+
+func (r *KeyVault) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.KeyVaultDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type KeyVaultHit struct {
@@ -30503,6 +37020,55 @@ type KeyVaultCertificate struct {
 	IntegrationID   string                               `json:"integration_id"`
 }
 
+func (r *KeyVaultCertificate) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.KeyVaultCertificateDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type KeyVaultCertificateHit struct {
 	ID      string              `json:"_id"`
 	Score   float64             `json:"_score"`
@@ -30723,6 +37289,55 @@ type KeyVaultDeletedVault struct {
 	IntegrationID   string                                `json:"integration_id"`
 }
 
+func (r *KeyVaultDeletedVault) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.KeyVaultDeletedVaultDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type KeyVaultDeletedVaultHit struct {
 	ID      string               `json:"_id"`
 	Score   float64              `json:"_score"`
@@ -30935,6 +37550,55 @@ type KeyVaultManagedHardwareSecurityModule struct {
 	ResourceType    string                                                 `json:"resource_type"`
 	IntegrationType string                                                 `json:"integration_type"`
 	IntegrationID   string                                                 `json:"integration_id"`
+}
+
+func (r *KeyVaultManagedHardwareSecurityModule) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.KeyVaultManagedHardwareSecurityModuleDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type KeyVaultManagedHardwareSecurityModuleHit struct {
@@ -31172,6 +37836,55 @@ type KeyVaultSecret struct {
 	IntegrationID   string                          `json:"integration_id"`
 }
 
+func (r *KeyVaultSecret) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.KeyVaultSecretDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type KeyVaultSecretHit struct {
 	ID      string         `json:"_id"`
 	Score   float64        `json:"_score"`
@@ -31391,6 +38104,55 @@ type KustoCluster struct {
 	ResourceType    string                        `json:"resource_type"`
 	IntegrationType string                        `json:"integration_type"`
 	IntegrationID   string                        `json:"integration_id"`
+}
+
+func (r *KustoCluster) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.KustoClusterDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type KustoClusterHit struct {
@@ -31648,6 +38410,55 @@ type LogAlert struct {
 	IntegrationID   string                    `json:"integration_id"`
 }
 
+func (r *LogAlert) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.LogAlertDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type LogAlertHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -31873,6 +38684,55 @@ type LogProfile struct {
 	IntegrationID   string                      `json:"integration_id"`
 }
 
+func (r *LogProfile) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.LogProfileDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type LogProfileHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -32096,6 +38956,55 @@ type LogicAppWorkflow struct {
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
+}
+
+func (r *LogicAppWorkflow) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.LogicAppWorkflowDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type LogicAppWorkflowHit struct {
@@ -32337,6 +39246,55 @@ type LogicIntegrationAccounts struct {
 	IntegrationID   string                                    `json:"integration_id"`
 }
 
+func (r *LogicIntegrationAccounts) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.LogicIntegrationAccountsDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type LogicIntegrationAccountsHit struct {
 	ID      string                   `json:"_id"`
 	Score   float64                  `json:"_score"`
@@ -32544,6 +39502,55 @@ type MachineLearningWorkspace struct {
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
+}
+
+func (r *MachineLearningWorkspace) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.MachineLearningWorkspaceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type MachineLearningWorkspaceHit struct {
@@ -32791,6 +39798,55 @@ type MariadbServer struct {
 	ResourceType    string                         `json:"resource_type"`
 	IntegrationType string                         `json:"integration_type"`
 	IntegrationID   string                         `json:"integration_id"`
+}
+
+func (r *MariadbServer) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.MariadbServerDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type MariadbServerHit struct {
@@ -33044,6 +40100,55 @@ type MariadbDatabase struct {
 	IntegrationID   string                           `json:"integration_id"`
 }
 
+func (r *MariadbDatabase) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.MariadbDatabaseDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type MariadbDatabaseHit struct {
 	ID      string          `json:"_id"`
 	Score   float64         `json:"_score"`
@@ -33251,6 +40356,55 @@ type MysqlServer struct {
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
+}
+
+func (r *MysqlServer) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.MysqlServerDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type MysqlServerHit struct {
@@ -33520,6 +40674,55 @@ type MysqlFlexibleserver struct {
 	IntegrationID   string                               `json:"integration_id"`
 }
 
+func (r *MysqlFlexibleserver) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.MysqlFlexibleserverDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type MysqlFlexibleserverHit struct {
 	ID      string              `json:"_id"`
 	Score   float64             `json:"_score"`
@@ -33727,6 +40930,55 @@ type NetworkSecurityGroup struct {
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
+}
+
+func (r *NetworkSecurityGroup) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.NetworkSecurityGroupDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type NetworkSecurityGroupHit struct {
@@ -33960,6 +41212,55 @@ type NetworkWatcher struct {
 	IntegrationID   string                          `json:"integration_id"`
 }
 
+func (r *NetworkWatcher) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.NetworkWatcherDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type NetworkWatcherHit struct {
 	ID      string         `json:"_id"`
 	Score   float64        `json:"_score"`
@@ -34175,6 +41476,55 @@ type SearchService struct {
 	ResourceType    string                         `json:"resource_type"`
 	IntegrationType string                         `json:"integration_type"`
 	IntegrationID   string                         `json:"integration_id"`
+}
+
+func (r *SearchService) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SearchServiceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type SearchServiceHit struct {
@@ -34413,6 +41763,55 @@ type ServiceFabricCluster struct {
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
+}
+
+func (r *ServiceFabricCluster) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ServiceFabricClusterDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ServiceFabricClusterHit struct {
@@ -34676,6 +42075,55 @@ type ServicebusNamespace struct {
 	IntegrationID   string                               `json:"integration_id"`
 }
 
+func (r *ServicebusNamespace) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ServicebusNamespaceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ServicebusNamespaceHit struct {
 	ID      string              `json:"_id"`
 	Score   float64             `json:"_score"`
@@ -34915,6 +42363,55 @@ type SignalrService struct {
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
+}
+
+func (r *SignalrService) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SignalrServiceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type SignalrServiceHit struct {
@@ -35158,6 +42655,55 @@ type SpringCloudService struct {
 	IntegrationID   string                              `json:"integration_id"`
 }
 
+func (r *SpringCloudService) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SpringCloudServiceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type SpringCloudServiceHit struct {
 	ID      string             `json:"_id"`
 	Score   float64            `json:"_score"`
@@ -35375,6 +42921,55 @@ type StreamAnalyticsJob struct {
 	ResourceType    string                              `json:"resource_type"`
 	IntegrationType string                              `json:"integration_type"`
 	IntegrationID   string                              `json:"integration_id"`
+}
+
+func (r *StreamAnalyticsJob) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.StreamAnalyticsJobDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type StreamAnalyticsJobHit struct {
@@ -35624,6 +43219,55 @@ type StreamAnalyticsCluster struct {
 	IntegrationID   string                                  `json:"integration_id"`
 }
 
+func (r *StreamAnalyticsCluster) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.StreamAnalyticsClusterDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type StreamAnalyticsClusterHit struct {
 	ID      string                 `json:"_id"`
 	Score   float64                `json:"_score"`
@@ -35833,6 +43477,55 @@ type VirtualMachineImagesImageTemplates struct {
 	IntegrationID   string                                              `json:"integration_id"`
 }
 
+func (r *VirtualMachineImagesImageTemplates) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.VirtualMachineImagesImageTemplatesDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type VirtualMachineImagesImageTemplatesHit struct {
 	ID      string                             `json:"_id"`
 	Score   float64                            `json:"_score"`
@@ -36040,6 +43733,55 @@ type OperationalInsightsWorkspaces struct {
 	ResourceType    string                                         `json:"resource_type"`
 	IntegrationType string                                         `json:"integration_type"`
 	IntegrationID   string                                         `json:"integration_id"`
+}
+
+func (r *OperationalInsightsWorkspaces) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.OperationalInsightsWorkspacesDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type OperationalInsightsWorkspacesHit struct {
@@ -36285,6 +44027,55 @@ type TimeSeriesInsightsEnvironments struct {
 	IntegrationID   string                                          `json:"integration_id"`
 }
 
+func (r *TimeSeriesInsightsEnvironments) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.TimeSeriesInsightsEnvironmentsDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type TimeSeriesInsightsEnvironmentsHit struct {
 	ID      string                         `json:"_id"`
 	Score   float64                        `json:"_score"`
@@ -36492,6 +44283,55 @@ type SynapseWorkspace struct {
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
+}
+
+func (r *SynapseWorkspace) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SynapseWorkspaceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type SynapseWorkspaceHit struct {
@@ -36743,6 +44583,55 @@ type SynapseWorkspaceBigdatapools struct {
 	IntegrationID   string                                        `json:"integration_id"`
 }
 
+func (r *SynapseWorkspaceBigdatapools) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SynapseWorkspaceBigdatapoolsDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type SynapseWorkspaceBigdatapoolsHit struct {
 	ID      string                       `json:"_id"`
 	Score   float64                      `json:"_score"`
@@ -36952,6 +44841,55 @@ type SynapseWorkspaceSqlpools struct {
 	IntegrationID   string                                    `json:"integration_id"`
 }
 
+func (r *SynapseWorkspaceSqlpools) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SynapseWorkspaceSqlpoolsDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type SynapseWorkspaceSqlpoolsHit struct {
 	ID      string                   `json:"_id"`
 	Score   float64                  `json:"_score"`
@@ -37159,6 +45097,55 @@ type Location struct {
 	ResourceType    string                    `json:"resource_type"`
 	IntegrationType string                    `json:"integration_type"`
 	IntegrationID   string                    `json:"integration_id"`
+}
+
+func (r *Location) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.LocationDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type LocationHit struct {
@@ -37375,6 +45362,55 @@ type AnalysisServiceServer struct {
 	IntegrationID   string                                 `json:"integration_id"`
 }
 
+func (r *AnalysisServiceServer) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.AnalysisServiceServerDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type AnalysisServiceServerHit struct {
 	ID      string                `json:"_id"`
 	Score   float64               `json:"_score"`
@@ -37583,6 +45619,55 @@ type PostgresqlServer struct {
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
+}
+
+func (r *PostgresqlServer) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.PostgresqlServerDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type PostgresqlServerHit struct {
@@ -37852,6 +45937,55 @@ type PostgresqlFlexibleServer struct {
 	IntegrationID   string                                    `json:"integration_id"`
 }
 
+func (r *PostgresqlFlexibleServer) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.PostgresqlFlexibleServerDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type PostgresqlFlexibleServerHit struct {
 	ID      string                   `json:"_id"`
 	Score   float64                  `json:"_score"`
@@ -38069,6 +46203,55 @@ type StorageSync struct {
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
+}
+
+func (r *StorageSync) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.StorageSyncDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type StorageSyncHit struct {
@@ -38294,6 +46477,55 @@ type MssqlManagedInstance struct {
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
+}
+
+func (r *MssqlManagedInstance) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.MssqlManagedInstanceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type MssqlManagedInstanceHit struct {
@@ -38557,6 +46789,55 @@ type MssqlManagedInstanceDatabases struct {
 	IntegrationID   string                                         `json:"integration_id"`
 }
 
+func (r *MssqlManagedInstanceDatabases) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.MssqlManagedInstanceDatabasesDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type MssqlManagedInstanceDatabasesHit struct {
 	ID      string                        `json:"_id"`
 	Score   float64                       `json:"_score"`
@@ -38764,6 +47045,55 @@ type SqlDatabase struct {
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
+}
+
+func (r *SqlDatabase) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SqlDatabaseDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type SqlDatabaseHit struct {
@@ -39037,6 +47367,55 @@ type SqlInstancePool struct {
 	IntegrationID   string                           `json:"integration_id"`
 }
 
+func (r *SqlInstancePool) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SqlInstancePoolDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type SqlInstancePoolHit struct {
 	ID      string          `json:"_id"`
 	Score   float64         `json:"_score"`
@@ -39244,6 +47623,55 @@ type SqlServer struct {
 	ResourceType    string                     `json:"resource_type"`
 	IntegrationType string                     `json:"integration_type"`
 	IntegrationID   string                     `json:"integration_id"`
+}
+
+func (r *SqlServer) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SqlServerDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type SqlServerHit struct {
@@ -39499,6 +47927,55 @@ type SqlServerJobAgent struct {
 	IntegrationID   string                             `json:"integration_id"`
 }
 
+func (r *SqlServerJobAgent) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SqlServerJobAgentDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type SqlServerJobAgentHit struct {
 	ID      string            `json:"_id"`
 	Score   float64           `json:"_score"`
@@ -39708,6 +48185,55 @@ type SqlVirtualClusters struct {
 	IntegrationID   string                              `json:"integration_id"`
 }
 
+func (r *SqlVirtualClusters) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SqlVirtualClustersDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type SqlVirtualClustersHit struct {
 	ID      string             `json:"_id"`
 	Score   float64            `json:"_score"`
@@ -39915,6 +48441,55 @@ type SqlServerElasticPool struct {
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
+}
+
+func (r *SqlServerElasticPool) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SqlServerElasticPoolDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type SqlServerElasticPoolHit struct {
@@ -40148,6 +48723,55 @@ type SqlServerVirtualMachine struct {
 	ResourceType    string                                   `json:"resource_type"`
 	IntegrationType string                                   `json:"integration_type"`
 	IntegrationID   string                                   `json:"integration_id"`
+}
+
+func (r *SqlServerVirtualMachine) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SqlServerVirtualMachineDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type SqlServerVirtualMachineHit struct {
@@ -40391,6 +49015,55 @@ type SqlServerVirtualMachineGroup struct {
 	IntegrationID   string                                        `json:"integration_id"`
 }
 
+func (r *SqlServerVirtualMachineGroup) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SqlServerVirtualMachineGroupDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type SqlServerVirtualMachineGroupHit struct {
 	ID      string                       `json:"_id"`
 	Score   float64                      `json:"_score"`
@@ -40598,6 +49271,55 @@ type SqlServerFlexibleServer struct {
 	ResourceType    string                                   `json:"resource_type"`
 	IntegrationType string                                   `json:"integration_type"`
 	IntegrationID   string                                   `json:"integration_id"`
+}
+
+func (r *SqlServerFlexibleServer) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.SqlServerFlexibleServerDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type SqlServerFlexibleServerHit struct {
@@ -40861,6 +49583,55 @@ type StorageAccount struct {
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
+}
+
+func (r *StorageAccount) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.StorageAccountDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type StorageAccountHit struct {
@@ -41191,6 +49962,55 @@ type RecoveryServicesVault struct {
 	IntegrationID   string                                 `json:"integration_id"`
 }
 
+func (r *RecoveryServicesVault) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.RecoveryServicesVaultDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type RecoveryServicesVaultHit struct {
 	ID      string                `json:"_id"`
 	Score   float64               `json:"_score"`
@@ -41422,6 +50242,55 @@ type RecoveryServicesBackupJob struct {
 	IntegrationID   string                                     `json:"integration_id"`
 }
 
+func (r *RecoveryServicesBackupJob) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.RecoveryServicesBackupJobDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type RecoveryServicesBackupJobHit struct {
 	ID      string                    `json:"_id"`
 	Score   float64                   `json:"_score"`
@@ -41641,6 +50510,55 @@ type RecoveryServicesBackupPolicy struct {
 	IntegrationID   string                                        `json:"integration_id"`
 }
 
+func (r *RecoveryServicesBackupPolicy) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.RecoveryServicesBackupPolicyDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type RecoveryServicesBackupPolicyHit struct {
 	ID      string                       `json:"_id"`
 	Score   float64                      `json:"_score"`
@@ -41854,6 +50772,55 @@ type RecoveryServicesBackupItem struct {
 	IntegrationID   string                                      `json:"integration_id"`
 }
 
+func (r *RecoveryServicesBackupItem) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.RecoveryServicesBackupItemDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type RecoveryServicesBackupItemHit struct {
 	ID      string                     `json:"_id"`
 	Score   float64                    `json:"_score"`
@@ -42065,6 +51032,55 @@ type HybridKubernetesConnectedCluster struct {
 	ResourceType    string                                            `json:"resource_type"`
 	IntegrationType string                                            `json:"integration_type"`
 	IntegrationID   string                                            `json:"integration_id"`
+}
+
+func (r *HybridKubernetesConnectedCluster) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.HybridKubernetesConnectedClusterDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type HybridKubernetesConnectedClusterHit struct {
@@ -42312,6 +51328,55 @@ type CostManagementCostByResourceType struct {
 	IntegrationID   string                                            `json:"integration_id"`
 }
 
+func (r *CostManagementCostByResourceType) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.CostManagementCostByResourceTypeDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type CostManagementCostByResourceTypeHit struct {
 	ID      string                           `json:"_id"`
 	Score   float64                          `json:"_score"`
@@ -42525,6 +51590,55 @@ type CostManagementCostBySubscription struct {
 	IntegrationID   string                                            `json:"integration_id"`
 }
 
+func (r *CostManagementCostBySubscription) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.CostManagementCostBySubscriptionDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type CostManagementCostBySubscriptionHit struct {
 	ID      string                           `json:"_id"`
 	Score   float64                          `json:"_score"`
@@ -42728,6 +51842,55 @@ type LoadBalancer struct {
 	ResourceType    string                        `json:"resource_type"`
 	IntegrationType string                        `json:"integration_type"`
 	IntegrationID   string                        `json:"integration_id"`
+}
+
+func (r *LoadBalancer) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.LoadBalancerDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type LoadBalancerHit struct {
@@ -42973,6 +52136,55 @@ type LoadBalancerBackendAddressPool struct {
 	IntegrationID   string                                          `json:"integration_id"`
 }
 
+func (r *LoadBalancerBackendAddressPool) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.LoadBalancerBackendAddressPoolDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type LoadBalancerBackendAddressPoolHit struct {
 	ID      string                         `json:"_id"`
 	Score   float64                        `json:"_score"`
@@ -43200,6 +52412,55 @@ type LoadBalancerNatRule struct {
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
+}
+
+func (r *LoadBalancerNatRule) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.LoadBalancerNatRuleDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type LoadBalancerNatRuleHit struct {
@@ -43435,6 +52696,55 @@ type LoadBalancerOutboundRule struct {
 	IntegrationID   string                                    `json:"integration_id"`
 }
 
+func (r *LoadBalancerOutboundRule) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.LoadBalancerOutboundRuleDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type LoadBalancerOutboundRuleHit struct {
 	ID      string                   `json:"_id"`
 	Score   float64                  `json:"_score"`
@@ -43664,6 +52974,55 @@ type LoadBalancerProbe struct {
 	IntegrationID   string                             `json:"integration_id"`
 }
 
+func (r *LoadBalancerProbe) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.LoadBalancerProbeDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type LoadBalancerProbeHit struct {
 	ID      string            `json:"_id"`
 	Score   float64           `json:"_score"`
@@ -43891,6 +53250,55 @@ type LoadBalancerRule struct {
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
+}
+
+func (r *LoadBalancerRule) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.LoadBalancerRuleDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type LoadBalancerRuleHit struct {
@@ -44134,6 +53542,55 @@ type ManagementGroup struct {
 	IntegrationID   string                           `json:"integration_id"`
 }
 
+func (r *ManagementGroup) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ManagementGroupDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ManagementGroupHit struct {
 	ID      string          `json:"_id"`
 	Score   float64         `json:"_score"`
@@ -44357,6 +53814,55 @@ type ManagementLock struct {
 	IntegrationID   string                          `json:"integration_id"`
 }
 
+func (r *ManagementLock) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ManagementLockDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ManagementLockHit struct {
 	ID      string         `json:"_id"`
 	Score   float64        `json:"_score"`
@@ -44573,6 +54079,55 @@ type ResourceProvider struct {
 	IntegrationID   string                            `json:"integration_id"`
 }
 
+func (r *ResourceProvider) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ResourceProviderDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type ResourceProviderHit struct {
 	ID      string           `json:"_id"`
 	Score   float64          `json:"_score"`
@@ -44782,6 +54337,55 @@ type ResourceGroup struct {
 	ResourceType    string                         `json:"resource_type"`
 	IntegrationType string                         `json:"integration_type"`
 	IntegrationID   string                         `json:"integration_id"`
+}
+
+func (r *ResourceGroup) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ResourceGroupDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ResourceGroupHit struct {
@@ -44997,6 +54601,55 @@ type GenericResource struct {
 	ResourceType    string                           `json:"resource_type"`
 	IntegrationType string                           `json:"integration_type"`
 	IntegrationID   string                           `json:"integration_id"`
+}
+
+func (r *GenericResource) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.GenericResourceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type GenericResourceHit struct {
@@ -45240,6 +54893,55 @@ type BotServiceBot struct {
 	IntegrationID   string                         `json:"integration_id"`
 }
 
+func (r *BotServiceBot) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.BotServiceBotDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type BotServiceBotHit struct {
 	ID      string        `json:"_id"`
 	Score   float64       `json:"_score"`
@@ -45447,6 +55149,55 @@ type NetAppAccount struct {
 	ResourceType    string                         `json:"resource_type"`
 	IntegrationType string                         `json:"integration_type"`
 	IntegrationID   string                         `json:"integration_id"`
+}
+
+func (r *NetAppAccount) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.NetAppAccountDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type NetAppAccountHit struct {
@@ -45658,6 +55409,55 @@ type NetAppCapacityPool struct {
 	IntegrationID   string                              `json:"integration_id"`
 }
 
+func (r *NetAppCapacityPool) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.NetAppCapacityPoolDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type NetAppCapacityPoolHit struct {
 	ID      string             `json:"_id"`
 	Score   float64            `json:"_score"`
@@ -45867,6 +55667,55 @@ type DashboardGrafana struct {
 	IntegrationID   string                            `json:"integration_id"`
 }
 
+func (r *DashboardGrafana) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DashboardGrafanaDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type DashboardGrafanaHit struct {
 	ID      string           `json:"_id"`
 	Score   float64          `json:"_score"`
@@ -46072,6 +55921,55 @@ type DesktopVirtualizationHostPool struct {
 	ResourceType    string                                         `json:"resource_type"`
 	IntegrationType string                                         `json:"integration_type"`
 	IntegrationID   string                                         `json:"integration_id"`
+}
+
+func (r *DesktopVirtualizationHostPool) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DesktopVirtualizationHostPoolDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type DesktopVirtualizationHostPoolHit struct {
@@ -46283,6 +56181,55 @@ type DesktopVirtualizationWorkspace struct {
 	IntegrationID   string                                          `json:"integration_id"`
 }
 
+func (r *DesktopVirtualizationWorkspace) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DesktopVirtualizationWorkspaceDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type DesktopVirtualizationWorkspaceHit struct {
 	ID      string                         `json:"_id"`
 	Score   float64                        `json:"_score"`
@@ -46490,6 +56437,55 @@ type DevTestLabLab struct {
 	ResourceType    string                         `json:"resource_type"`
 	IntegrationType string                         `json:"integration_type"`
 	IntegrationID   string                         `json:"integration_id"`
+}
+
+func (r *DevTestLabLab) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.DevTestLabLabDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type DevTestLabLabHit struct {
@@ -46701,6 +56697,55 @@ type PurviewAccount struct {
 	IntegrationID   string                          `json:"integration_id"`
 }
 
+func (r *PurviewAccount) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.PurviewAccountDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type PurviewAccountHit struct {
 	ID      string         `json:"_id"`
 	Score   float64        `json:"_score"`
@@ -46910,6 +56955,55 @@ type PowerBIDedicatedCapacity struct {
 	IntegrationID   string                                    `json:"integration_id"`
 }
 
+func (r *PowerBIDedicatedCapacity) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.PowerBIDedicatedCapacityDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type PowerBIDedicatedCapacityHit struct {
 	ID      string                   `json:"_id"`
 	Score   float64                  `json:"_score"`
@@ -47117,6 +57211,55 @@ type ApplicationInsightsComponent struct {
 	ResourceType    string                                        `json:"resource_type"`
 	IntegrationType string                                        `json:"integration_type"`
 	IntegrationID   string                                        `json:"integration_id"`
+}
+
+func (r *ApplicationInsightsComponent) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.ApplicationInsightsComponentDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type ApplicationInsightsComponentHit struct {
@@ -47376,6 +57519,55 @@ type LighthouseDefinition struct {
 	IntegrationID   string                                `json:"integration_id"`
 }
 
+func (r *LighthouseDefinition) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.LighthouseDefinitionDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type LighthouseDefinitionHit struct {
 	ID      string               `json:"_id"`
 	Score   float64              `json:"_score"`
@@ -47603,6 +57795,55 @@ type LighthouseAssignment struct {
 	IntegrationID   string                                `json:"integration_id"`
 }
 
+func (r *LighthouseAssignment) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.LighthouseAssignmentDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
+}
+
 type LighthouseAssignmentHit struct {
 	ID      string               `json:"_id"`
 	Score   float64              `json:"_score"`
@@ -47818,6 +58059,55 @@ type MaintenanceConfiguration struct {
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
+}
+
+func (r *MaintenanceConfiguration) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.MaintenanceConfigurationDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type MaintenanceConfigurationHit struct {
@@ -48051,6 +58341,55 @@ type MonitorLogProfile struct {
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
+}
+
+func (r *MonitorLogProfile) UnmarshalJSON(b []byte) error {
+	var rawMsg map[string]json.RawMessage
+	if err := json.Unmarshal(b, &rawMsg); err != nil {
+		return fmt.Errorf("unmarshalling type %T: %v", r, err)
+	}
+	for k, v := range rawMsg {
+		switch k {
+		case "description":
+			wrapper := azureDescriber.JSONAllFieldsMarshaller{
+				Value: r.Description,
+			}
+			if err := json.Unmarshal(v, &wrapper); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+			var ok bool
+			r.Description, ok = wrapper.Value.(azure.MonitorLogProfileDescription)
+			if !ok {
+				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
+			}
+		case "platform_id":
+			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_id":
+			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "resource_type":
+			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "described_by":
+			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_type":
+			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "integration_id":
+			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		default:
+		}
+	}
+	return nil
 }
 
 type MonitorLogProfileHit struct {
