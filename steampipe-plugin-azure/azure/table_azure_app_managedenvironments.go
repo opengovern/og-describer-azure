@@ -2,7 +2,6 @@ package azure
 
 import (
 	"context"
-	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
@@ -14,10 +13,10 @@ func tableAzureAppManagedEnvironments(_ context.Context) *plugin.Table {
 		Description: "Azure App ManagedEnvironments",
 		Get: &plugin.GetConfig{
 			KeyColumns: plugin.SingleColumn("id"), //TODO: change this to the primary key columns in model.go
-			Hydrate:    opengovernance.GetAppManagedEnvironment,
+			//Hydrate:    opengovernance.GetAppManagedEnvironment,
 		},
 		List: &plugin.ListConfig{
-			Hydrate: opengovernance.ListAppManagedEnvironment,
+			//Hydrate: opengovernance.ListAppManagedEnvironment,
 		},
 		Columns: azureKaytuColumns([]*plugin.Column{
 			{
