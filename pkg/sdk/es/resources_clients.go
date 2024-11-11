@@ -24,7 +24,7 @@ type APIManagement struct {
 	PlatformID      string                         `json:"platform_id"`
 	Description     azure.APIManagementDescription `json:"description"`
 	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     int                            `json:"described_by"`
+	DescribedBy     string                         `json:"described_by"`
 	ResourceType    string                         `json:"resource_type"`
 	IntegrationType string                         `json:"integration_type"`
 	IntegrationID   string                         `json:"integration_id"`
@@ -354,7 +354,7 @@ type APIManagementBackend struct {
 	PlatformID      string                                `json:"platform_id"`
 	Description     azure.APIManagementBackendDescription `json:"description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     int                                   `json:"described_by"`
+	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
@@ -632,7 +632,7 @@ type AutomationAccounts struct {
 	PlatformID      string                              `json:"platform_id"`
 	Description     azure.AutomationAccountsDescription `json:"description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     int                                 `json:"described_by"`
+	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
 	IntegrationType string                              `json:"integration_type"`
 	IntegrationID   string                              `json:"integration_id"`
@@ -910,7 +910,7 @@ type AutomationVariables struct {
 	PlatformID      string                               `json:"platform_id"`
 	Description     azure.AutomationVariablesDescription `json:"description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     int                                  `json:"described_by"`
+	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
@@ -1182,7 +1182,7 @@ type AppConfiguration struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.AppConfigurationDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -1456,7 +1456,7 @@ type AppServiceEnvironment struct {
 	PlatformID      string                                 `json:"platform_id"`
 	Description     azure.AppServiceEnvironmentDescription `json:"description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     int                                    `json:"described_by"`
+	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
@@ -1739,7 +1739,7 @@ type AppServiceFunctionApp struct {
 	PlatformID      string                                 `json:"platform_id"`
 	Description     azure.AppServiceFunctionAppDescription `json:"description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     int                                    `json:"described_by"`
+	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
@@ -2030,7 +2030,7 @@ type AppServiceWebApp struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.AppServiceWebAppDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -2325,7 +2325,7 @@ type AppServiceWebAppSlot struct {
 	PlatformID      string                                `json:"platform_id"`
 	Description     azure.AppServiceWebAppSlotDescription `json:"description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     int                                   `json:"described_by"`
+	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
@@ -2657,7 +2657,7 @@ type AppServicePlan struct {
 	PlatformID      string                          `json:"platform_id"`
 	Description     azure.AppServicePlanDescription `json:"description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     int                             `json:"described_by"`
+	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
@@ -2950,7 +2950,7 @@ type ContainerApp struct {
 	PlatformID      string                        `json:"platform_id"`
 	Description     azure.ContainerAppDescription `json:"description"`
 	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     int                           `json:"described_by"`
+	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
 	IntegrationType string                        `json:"integration_type"`
 	IntegrationID   string                        `json:"integration_id"`
@@ -3208,7 +3208,7 @@ type WebServerFarms struct {
 	PlatformID      string                          `json:"platform_id"`
 	Description     azure.WebServerFarmsDescription `json:"description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     int                             `json:"described_by"`
+	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
@@ -3466,7 +3466,7 @@ type Blueprint struct {
 	PlatformID      string                     `json:"platform_id"`
 	Description     azure.BlueprintDescription `json:"description"`
 	Metadata        azure.Metadata             `json:"metadata"`
-	DescribedBy     int                        `json:"described_by"`
+	DescribedBy     string                     `json:"described_by"`
 	ResourceType    string                     `json:"resource_type"`
 	IntegrationType string                     `json:"integration_type"`
 	IntegrationID   string                     `json:"integration_id"`
@@ -3722,7 +3722,7 @@ type ComputeDisk struct {
 	PlatformID      string                       `json:"platform_id"`
 	Description     azure.ComputeDiskDescription `json:"description"`
 	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     int                          `json:"described_by"`
+	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
@@ -4054,7 +4054,7 @@ type ComputeDiskReadOps struct {
 	PlatformID      string                              `json:"platform_id"`
 	Description     azure.ComputeDiskReadOpsDescription `json:"description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     int                                 `json:"described_by"`
+	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
 	IntegrationType string                              `json:"integration_type"`
 	IntegrationID   string                              `json:"integration_id"`
@@ -4302,7 +4302,7 @@ type ComputeDiskReadOpsDaily struct {
 	PlatformID      string                                   `json:"platform_id"`
 	Description     azure.ComputeDiskReadOpsDailyDescription `json:"description"`
 	Metadata        azure.Metadata                           `json:"metadata"`
-	DescribedBy     int                                      `json:"described_by"`
+	DescribedBy     string                                   `json:"described_by"`
 	ResourceType    string                                   `json:"resource_type"`
 	IntegrationType string                                   `json:"integration_type"`
 	IntegrationID   string                                   `json:"integration_id"`
@@ -4550,7 +4550,7 @@ type ComputeDiskReadOpsHourly struct {
 	PlatformID      string                                    `json:"platform_id"`
 	Description     azure.ComputeDiskReadOpsHourlyDescription `json:"description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     int                                       `json:"described_by"`
+	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
@@ -4798,7 +4798,7 @@ type ComputeDiskWriteOps struct {
 	PlatformID      string                               `json:"platform_id"`
 	Description     azure.ComputeDiskWriteOpsDescription `json:"description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     int                                  `json:"described_by"`
+	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
@@ -5046,7 +5046,7 @@ type ComputeDiskWriteOpsDaily struct {
 	PlatformID      string                                    `json:"platform_id"`
 	Description     azure.ComputeDiskWriteOpsDailyDescription `json:"description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     int                                       `json:"described_by"`
+	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
@@ -5294,7 +5294,7 @@ type ComputeDiskWriteOpsHourly struct {
 	PlatformID      string                                     `json:"platform_id"`
 	Description     azure.ComputeDiskWriteOpsHourlyDescription `json:"description"`
 	Metadata        azure.Metadata                             `json:"metadata"`
-	DescribedBy     int                                        `json:"described_by"`
+	DescribedBy     string                                     `json:"described_by"`
 	ResourceType    string                                     `json:"resource_type"`
 	IntegrationType string                                     `json:"integration_type"`
 	IntegrationID   string                                     `json:"integration_id"`
@@ -5542,7 +5542,7 @@ type ComputeDiskAccess struct {
 	PlatformID      string                             `json:"platform_id"`
 	Description     azure.ComputeDiskAccessDescription `json:"description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     int                                `json:"described_by"`
+	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
@@ -5806,7 +5806,7 @@ type ComputeVirtualMachineScaleSet struct {
 	PlatformID      string                                         `json:"platform_id"`
 	Description     azure.ComputeVirtualMachineScaleSetDescription `json:"description"`
 	Metadata        azure.Metadata                                 `json:"metadata"`
-	DescribedBy     int                                            `json:"described_by"`
+	DescribedBy     string                                         `json:"described_by"`
 	ResourceType    string                                         `json:"resource_type"`
 	IntegrationType string                                         `json:"integration_type"`
 	IntegrationID   string                                         `json:"integration_id"`
@@ -6114,7 +6114,7 @@ type ComputeVirtualMachineScaleSetNetworkInterface struct {
 	PlatformID      string                                                         `json:"platform_id"`
 	Description     azure.ComputeVirtualMachineScaleSetNetworkInterfaceDescription `json:"description"`
 	Metadata        azure.Metadata                                                 `json:"metadata"`
-	DescribedBy     int                                                            `json:"described_by"`
+	DescribedBy     string                                                         `json:"described_by"`
 	ResourceType    string                                                         `json:"resource_type"`
 	IntegrationType string                                                         `json:"integration_type"`
 	IntegrationID   string                                                         `json:"integration_id"`
@@ -6380,7 +6380,7 @@ type ComputeVirtualMachineScaleSetVm struct {
 	PlatformID      string                                           `json:"platform_id"`
 	Description     azure.ComputeVirtualMachineScaleSetVmDescription `json:"description"`
 	Metadata        azure.Metadata                                   `json:"metadata"`
-	DescribedBy     int                                              `json:"described_by"`
+	DescribedBy     string                                           `json:"described_by"`
 	ResourceType    string                                           `json:"resource_type"`
 	IntegrationType string                                           `json:"integration_type"`
 	IntegrationID   string                                           `json:"integration_id"`
@@ -6696,7 +6696,7 @@ type ComputeSnapshots struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.ComputeSnapshotsDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -7010,7 +7010,7 @@ type ComputeAvailabilitySet struct {
 	PlatformID      string                                  `json:"platform_id"`
 	Description     azure.ComputeAvailabilitySetDescription `json:"description"`
 	Metadata        azure.Metadata                          `json:"metadata"`
-	DescribedBy     int                                     `json:"described_by"`
+	DescribedBy     string                                  `json:"described_by"`
 	ResourceType    string                                  `json:"resource_type"`
 	IntegrationType string                                  `json:"integration_type"`
 	IntegrationID   string                                  `json:"integration_id"`
@@ -7288,7 +7288,7 @@ type ComputeDiskEncryptionSet struct {
 	PlatformID      string                                    `json:"platform_id"`
 	Description     azure.ComputeDiskEncryptionSetDescription `json:"description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     int                                       `json:"described_by"`
+	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
@@ -7566,7 +7566,7 @@ type ComputeImageGallery struct {
 	PlatformID      string                               `json:"platform_id"`
 	Description     azure.ComputeImageGalleryDescription `json:"description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     int                                  `json:"described_by"`
+	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
@@ -7825,7 +7825,7 @@ type ComputeImage struct {
 	PlatformID      string                        `json:"platform_id"`
 	Description     azure.ComputeImageDescription `json:"description"`
 	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     int                           `json:"described_by"`
+	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
 	IntegrationType string                        `json:"integration_type"`
 	IntegrationID   string                        `json:"integration_id"`
@@ -8115,7 +8115,7 @@ type ComputeHostGroup struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.ComputeHostGroupDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -8373,7 +8373,7 @@ type ComputeHostGroupHost struct {
 	PlatformID      string                                `json:"platform_id"`
 	Description     azure.ComputeHostGroupHostDescription `json:"description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     int                                   `json:"described_by"`
+	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
@@ -8631,7 +8631,7 @@ type ComputeRestorePointCollection struct {
 	PlatformID      string                                         `json:"platform_id"`
 	Description     azure.ComputeRestorePointCollectionDescription `json:"description"`
 	Metadata        azure.Metadata                                 `json:"metadata"`
-	DescribedBy     int                                            `json:"described_by"`
+	DescribedBy     string                                         `json:"described_by"`
 	ResourceType    string                                         `json:"resource_type"`
 	IntegrationType string                                         `json:"integration_type"`
 	IntegrationID   string                                         `json:"integration_id"`
@@ -8889,7 +8889,7 @@ type ComputeSSHPublicKey struct {
 	PlatformID      string                               `json:"platform_id"`
 	Description     azure.ComputeSSHPublicKeyDescription `json:"description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     int                                  `json:"described_by"`
+	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
@@ -9153,7 +9153,7 @@ type DataboxEdgeDevice struct {
 	PlatformID      string                             `json:"platform_id"`
 	Description     azure.DataboxEdgeDeviceDescription `json:"description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     int                                `json:"described_by"`
+	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
@@ -9451,7 +9451,7 @@ type HealthcareService struct {
 	PlatformID      string                             `json:"platform_id"`
 	Description     azure.HealthcareServiceDescription `json:"description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     int                                `json:"described_by"`
+	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
@@ -9745,7 +9745,7 @@ type HpcCache struct {
 	PlatformID      string                    `json:"platform_id"`
 	Description     azure.HpcCacheDescription `json:"description"`
 	Metadata        azure.Metadata            `json:"metadata"`
-	DescribedBy     int                       `json:"described_by"`
+	DescribedBy     string                    `json:"described_by"`
 	ResourceType    string                    `json:"resource_type"`
 	IntegrationType string                    `json:"integration_type"`
 	IntegrationID   string                    `json:"integration_id"`
@@ -10029,7 +10029,7 @@ type KeyVaultKey struct {
 	PlatformID      string                       `json:"platform_id"`
 	Description     azure.KeyVaultKeyDescription `json:"description"`
 	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     int                          `json:"described_by"`
+	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
@@ -10310,7 +10310,7 @@ type KeyVaultKeyVersion struct {
 	PlatformID      string                              `json:"platform_id"`
 	Description     azure.KeyVaultKeyVersionDescription `json:"description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     int                                 `json:"described_by"`
+	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
 	IntegrationType string                              `json:"integration_type"`
 	IntegrationID   string                              `json:"integration_id"`
@@ -10596,7 +10596,7 @@ type KubernetesCluster struct {
 	PlatformID      string                             `json:"platform_id"`
 	Description     azure.KubernetesClusterDescription `json:"description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     int                                `json:"described_by"`
+	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
@@ -10914,7 +10914,7 @@ type KubernetesServiceVersion struct {
 	PlatformID      string                                    `json:"platform_id"`
 	Description     azure.KubernetesServiceVersionDescription `json:"description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     int                                       `json:"described_by"`
+	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
@@ -11176,7 +11176,7 @@ type ContainerInstanceContainerGroup struct {
 	PlatformID      string                                           `json:"platform_id"`
 	Description     azure.ContainerInstanceContainerGroupDescription `json:"description"`
 	Metadata        azure.Metadata                                   `json:"metadata"`
-	DescribedBy     int                                              `json:"described_by"`
+	DescribedBy     string                                           `json:"described_by"`
 	ResourceType    string                                           `json:"resource_type"`
 	IntegrationType string                                           `json:"integration_type"`
 	IntegrationID   string                                           `json:"integration_id"`
@@ -11468,7 +11468,7 @@ type CDNProfile struct {
 	PlatformID      string                      `json:"platform_id"`
 	Description     azure.CDNProfileDescription `json:"description"`
 	Metadata        azure.Metadata              `json:"metadata"`
-	DescribedBy     int                         `json:"described_by"`
+	DescribedBy     string                      `json:"described_by"`
 	ResourceType    string                      `json:"resource_type"`
 	IntegrationType string                      `json:"integration_type"`
 	IntegrationID   string                      `json:"integration_id"`
@@ -11740,7 +11740,7 @@ type CDNEndpoint struct {
 	PlatformID      string                       `json:"platform_id"`
 	Description     azure.CDNEndpointDescription `json:"description"`
 	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     int                          `json:"described_by"`
+	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
@@ -11998,7 +11998,7 @@ type NetworkInterface struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.NetworkInterfaceDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -12310,7 +12310,7 @@ type NetworkWatcherFlowLog struct {
 	PlatformID      string                                 `json:"platform_id"`
 	Description     azure.NetworkWatcherFlowLogDescription `json:"description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     int                                    `json:"described_by"`
+	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
@@ -12596,7 +12596,7 @@ type RouteTables struct {
 	PlatformID      string                       `json:"platform_id"`
 	Description     azure.RouteTablesDescription `json:"description"`
 	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     int                          `json:"described_by"`
+	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
@@ -12865,7 +12865,7 @@ type NetworkApplicationSecurityGroups struct {
 	PlatformID      string                                            `json:"platform_id"`
 	Description     azure.NetworkApplicationSecurityGroupsDescription `json:"description"`
 	Metadata        azure.Metadata                                    `json:"metadata"`
-	DescribedBy     int                                               `json:"described_by"`
+	DescribedBy     string                                            `json:"described_by"`
 	ResourceType    string                                            `json:"resource_type"`
 	IntegrationType string                                            `json:"integration_type"`
 	IntegrationID   string                                            `json:"integration_id"`
@@ -13131,7 +13131,7 @@ type NetworkAzureFirewall struct {
 	PlatformID      string                                `json:"platform_id"`
 	Description     azure.NetworkAzureFirewallDescription `json:"description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     int                                   `json:"described_by"`
+	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
@@ -13425,7 +13425,7 @@ type ExpressRouteCircuit struct {
 	PlatformID      string                               `json:"platform_id"`
 	Description     azure.ExpressRouteCircuitDescription `json:"description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     int                                  `json:"described_by"`
+	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
@@ -13717,7 +13717,7 @@ type VirtualNetworkGateway struct {
 	PlatformID      string                                 `json:"platform_id"`
 	Description     azure.VirtualNetworkGatewayDescription `json:"description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     int                                    `json:"described_by"`
+	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
@@ -14019,7 +14019,7 @@ type FirewallPolicy struct {
 	PlatformID      string                          `json:"platform_id"`
 	Description     azure.FirewallPolicyDescription `json:"description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     int                             `json:"described_by"`
+	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
@@ -14311,7 +14311,7 @@ type LocalNetworkGateway struct {
 	PlatformID      string                               `json:"platform_id"`
 	Description     azure.LocalNetworkGatewayDescription `json:"description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     int                                  `json:"described_by"`
+	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
@@ -14570,7 +14570,7 @@ type NatGateway struct {
 	PlatformID      string                      `json:"platform_id"`
 	Description     azure.NatGatewayDescription `json:"description"`
 	Metadata        azure.Metadata              `json:"metadata"`
-	DescribedBy     int                         `json:"described_by"`
+	DescribedBy     string                      `json:"described_by"`
 	ResourceType    string                      `json:"resource_type"`
 	IntegrationType string                      `json:"integration_type"`
 	IntegrationID   string                      `json:"integration_id"`
@@ -14838,7 +14838,7 @@ type PrivateLinkService struct {
 	PlatformID      string                              `json:"platform_id"`
 	Description     azure.PrivateLinkServiceDescription `json:"description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     int                                 `json:"described_by"`
+	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
 	IntegrationType string                              `json:"integration_type"`
 	IntegrationID   string                              `json:"integration_id"`
@@ -15097,7 +15097,7 @@ type VpnGateway struct {
 	PlatformID      string                      `json:"platform_id"`
 	Description     azure.VpnGatewayDescription `json:"description"`
 	Metadata        azure.Metadata              `json:"metadata"`
-	DescribedBy     int                         `json:"described_by"`
+	DescribedBy     string                      `json:"described_by"`
 	ResourceType    string                      `json:"resource_type"`
 	IntegrationType string                      `json:"integration_type"`
 	IntegrationID   string                      `json:"integration_id"`
@@ -15356,7 +15356,7 @@ type VpnGatewayVpnConnection struct {
 	PlatformID      string                                   `json:"platform_id"`
 	Description     azure.VpnGatewayVpnConnectionDescription `json:"description"`
 	Metadata        azure.Metadata                           `json:"metadata"`
-	DescribedBy     int                                      `json:"described_by"`
+	DescribedBy     string                                   `json:"described_by"`
 	ResourceType    string                                   `json:"resource_type"`
 	IntegrationType string                                   `json:"integration_type"`
 	IntegrationID   string                                   `json:"integration_id"`
@@ -15614,7 +15614,7 @@ type VpnSite struct {
 	PlatformID      string                   `json:"platform_id"`
 	Description     azure.VpnSiteDescription `json:"description"`
 	Metadata        azure.Metadata           `json:"metadata"`
-	DescribedBy     int                      `json:"described_by"`
+	DescribedBy     string                   `json:"described_by"`
 	ResourceType    string                   `json:"resource_type"`
 	IntegrationType string                   `json:"integration_type"`
 	IntegrationID   string                   `json:"integration_id"`
@@ -15872,7 +15872,7 @@ type PublicIPAddress struct {
 	PlatformID      string                           `json:"platform_id"`
 	Description     azure.PublicIPAddressDescription `json:"description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     int                              `json:"described_by"`
+	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
 	IntegrationType string                           `json:"integration_type"`
 	IntegrationID   string                           `json:"integration_id"`
@@ -16170,7 +16170,7 @@ type PublicIPPrefix struct {
 	PlatformID      string                          `json:"platform_id"`
 	Description     azure.PublicIPPrefixDescription `json:"description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     int                             `json:"described_by"`
+	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
@@ -16428,7 +16428,7 @@ type DNSZones struct {
 	PlatformID      string                    `json:"platform_id"`
 	Description     azure.DNSZonesDescription `json:"description"`
 	Metadata        azure.Metadata            `json:"metadata"`
-	DescribedBy     int                       `json:"described_by"`
+	DescribedBy     string                    `json:"described_by"`
 	ResourceType    string                    `json:"resource_type"`
 	IntegrationType string                    `json:"integration_type"`
 	IntegrationID   string                    `json:"integration_id"`
@@ -16706,7 +16706,7 @@ type BastionHosts struct {
 	PlatformID      string                        `json:"platform_id"`
 	Description     azure.BastionHostsDescription `json:"description"`
 	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     int                           `json:"described_by"`
+	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
 	IntegrationType string                        `json:"integration_type"`
 	IntegrationID   string                        `json:"integration_id"`
@@ -16978,7 +16978,7 @@ type Connection struct {
 	PlatformID      string                      `json:"platform_id"`
 	Description     azure.ConnectionDescription `json:"description"`
 	Metadata        azure.Metadata              `json:"metadata"`
-	DescribedBy     int                         `json:"described_by"`
+	DescribedBy     string                      `json:"described_by"`
 	ResourceType    string                      `json:"resource_type"`
 	IntegrationType string                      `json:"integration_type"`
 	IntegrationID   string                      `json:"integration_id"`
@@ -17236,7 +17236,7 @@ type VirtualHubs struct {
 	PlatformID      string                       `json:"platform_id"`
 	Description     azure.VirtualHubsDescription `json:"description"`
 	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     int                          `json:"described_by"`
+	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
@@ -17494,7 +17494,7 @@ type VirtualWans struct {
 	PlatformID      string                       `json:"platform_id"`
 	Description     azure.VirtualWansDescription `json:"description"`
 	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     int                          `json:"described_by"`
+	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
@@ -17752,7 +17752,7 @@ type DNSResolver struct {
 	PlatformID      string                       `json:"platform_id"`
 	Description     azure.DNSResolverDescription `json:"description"`
 	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     int                          `json:"described_by"`
+	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
@@ -18010,7 +18010,7 @@ type TrafficManagerProfile struct {
 	PlatformID      string                                 `json:"platform_id"`
 	Description     azure.TrafficManagerProfileDescription `json:"description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     int                                    `json:"described_by"`
+	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
@@ -18268,7 +18268,7 @@ type PrivateDNSZones struct {
 	PlatformID      string                           `json:"platform_id"`
 	Description     azure.PrivateDNSZonesDescription `json:"description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     int                              `json:"described_by"`
+	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
 	IntegrationType string                           `json:"integration_type"`
 	IntegrationID   string                           `json:"integration_id"`
@@ -18546,7 +18546,7 @@ type PrivateEndpoint struct {
 	PlatformID      string                           `json:"platform_id"`
 	Description     azure.PrivateEndpointDescription `json:"description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     int                              `json:"described_by"`
+	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
 	IntegrationType string                           `json:"integration_type"`
 	IntegrationID   string                           `json:"integration_id"`
@@ -18804,7 +18804,7 @@ type NetworkDDoSProtectionPlan struct {
 	PlatformID      string                                     `json:"platform_id"`
 	Description     azure.NetworkDDoSProtectionPlanDescription `json:"description"`
 	Metadata        azure.Metadata                             `json:"metadata"`
-	DescribedBy     int                                        `json:"described_by"`
+	DescribedBy     string                                     `json:"described_by"`
 	ResourceType    string                                     `json:"resource_type"`
 	IntegrationType string                                     `json:"integration_type"`
 	IntegrationID   string                                     `json:"integration_id"`
@@ -19062,7 +19062,7 @@ type PolicyAssignment struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.PolicyAssignmentDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -19342,7 +19342,7 @@ type RedisCache struct {
 	PlatformID      string                      `json:"platform_id"`
 	Description     azure.RedisCacheDescription `json:"description"`
 	Metadata        azure.Metadata              `json:"metadata"`
-	DescribedBy     int                         `json:"described_by"`
+	DescribedBy     string                      `json:"described_by"`
 	ResourceType    string                      `json:"resource_type"`
 	IntegrationType string                      `json:"integration_type"`
 	IntegrationID   string                      `json:"integration_id"`
@@ -19646,7 +19646,7 @@ type RedisEnterpriseCache struct {
 	PlatformID      string                                `json:"platform_id"`
 	Description     azure.RedisEnterpriseCacheDescription `json:"description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     int                                   `json:"described_by"`
+	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
@@ -19904,7 +19904,7 @@ type ResourceLink struct {
 	PlatformID      string                        `json:"platform_id"`
 	Description     azure.ResourceLinkDescription `json:"description"`
 	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     int                           `json:"described_by"`
+	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
 	IntegrationType string                        `json:"integration_type"`
 	IntegrationID   string                        `json:"integration_id"`
@@ -20170,7 +20170,7 @@ type RoleAssignment struct {
 	PlatformID      string                          `json:"platform_id"`
 	Description     azure.RoleAssignmentDescription `json:"description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     int                             `json:"described_by"`
+	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
@@ -20440,7 +20440,7 @@ type RoleDefinition struct {
 	PlatformID      string                          `json:"platform_id"`
 	Description     azure.RoleDefinitionDescription `json:"description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     int                             `json:"described_by"`
+	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
@@ -20706,7 +20706,7 @@ type PolicyDefinition struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.PolicyDefinitionDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -20980,7 +20980,7 @@ type UserEffectiveAccess struct {
 	PlatformID      string                               `json:"platform_id"`
 	Description     azure.UserEffectiveAccessDescription `json:"description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     int                                  `json:"described_by"`
+	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
@@ -21248,7 +21248,7 @@ type SecurityCenterAutoProvisioning struct {
 	PlatformID      string                                          `json:"platform_id"`
 	Description     azure.SecurityCenterAutoProvisioningDescription `json:"description"`
 	Metadata        azure.Metadata                                  `json:"metadata"`
-	DescribedBy     int                                             `json:"described_by"`
+	DescribedBy     string                                          `json:"described_by"`
 	ResourceType    string                                          `json:"resource_type"`
 	IntegrationType string                                          `json:"integration_type"`
 	IntegrationID   string                                          `json:"integration_id"`
@@ -21508,7 +21508,7 @@ type SecurityCenterContact struct {
 	PlatformID      string                                 `json:"platform_id"`
 	Description     azure.SecurityCenterContactDescription `json:"description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     int                                    `json:"described_by"`
+	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
@@ -21774,7 +21774,7 @@ type SecurityCenterJitNetworkAccessPolicy struct {
 	PlatformID      string                                                `json:"platform_id"`
 	Description     azure.SecurityCenterJitNetworkAccessPolicyDescription `json:"description"`
 	Metadata        azure.Metadata                                        `json:"metadata"`
-	DescribedBy     int                                                   `json:"described_by"`
+	DescribedBy     string                                                `json:"described_by"`
 	ResourceType    string                                                `json:"resource_type"`
 	IntegrationType string                                                `json:"integration_type"`
 	IntegrationID   string                                                `json:"integration_id"`
@@ -22038,7 +22038,7 @@ type SecurityCenterSetting struct {
 	PlatformID      string                                 `json:"platform_id"`
 	Description     azure.SecurityCenterSettingDescription `json:"description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     int                                    `json:"described_by"`
+	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
@@ -22300,7 +22300,7 @@ type SecurityCenterSubscriptionPricing struct {
 	PlatformID      string                                             `json:"platform_id"`
 	Description     azure.SecurityCenterSubscriptionPricingDescription `json:"description"`
 	Metadata        azure.Metadata                                     `json:"metadata"`
-	DescribedBy     int                                                `json:"described_by"`
+	DescribedBy     string                                             `json:"described_by"`
 	ResourceType    string                                             `json:"resource_type"`
 	IntegrationType string                                             `json:"integration_type"`
 	IntegrationID   string                                             `json:"integration_id"`
@@ -22562,7 +22562,7 @@ type SecurityCenterAutomation struct {
 	PlatformID      string                                    `json:"platform_id"`
 	Description     azure.SecurityCenterAutomationDescription `json:"description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     int                                       `json:"described_by"`
+	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
@@ -22838,7 +22838,7 @@ type SecurityCenterSubAssessment struct {
 	PlatformID      string                                       `json:"platform_id"`
 	Description     azure.SecurityCenterSubAssessmentDescription `json:"description"`
 	Metadata        azure.Metadata                               `json:"metadata"`
-	DescribedBy     int                                          `json:"described_by"`
+	DescribedBy     string                                       `json:"described_by"`
 	ResourceType    string                                       `json:"resource_type"`
 	IntegrationType string                                       `json:"integration_type"`
 	IntegrationID   string                                       `json:"integration_id"`
@@ -23110,7 +23110,7 @@ type StorageContainer struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.StorageContainerDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -23400,7 +23400,7 @@ type StorageBlob struct {
 	PlatformID      string                       `json:"platform_id"`
 	Description     azure.StorageBlobDescription `json:"description"`
 	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     int                          `json:"described_by"`
+	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
@@ -23739,7 +23739,7 @@ type StorageBlobService struct {
 	PlatformID      string                              `json:"platform_id"`
 	Description     azure.StorageBlobServiceDescription `json:"description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     int                                 `json:"described_by"`
+	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
 	IntegrationType string                              `json:"integration_type"`
 	IntegrationID   string                              `json:"integration_id"`
@@ -24021,7 +24021,7 @@ type StorageQueue struct {
 	PlatformID      string                        `json:"platform_id"`
 	Description     azure.StorageQueueDescription `json:"description"`
 	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     int                           `json:"described_by"`
+	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
 	IntegrationType string                        `json:"integration_type"`
 	IntegrationID   string                        `json:"integration_id"`
@@ -24285,7 +24285,7 @@ type StorageFileShare struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.StorageFileShareDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -24566,7 +24566,7 @@ type StorageTable struct {
 	PlatformID      string                        `json:"platform_id"`
 	Description     azure.StorageTableDescription `json:"description"`
 	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     int                           `json:"described_by"`
+	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
 	IntegrationType string                        `json:"integration_type"`
 	IntegrationID   string                        `json:"integration_id"`
@@ -24827,7 +24827,7 @@ type StorageTableService struct {
 	PlatformID      string                               `json:"platform_id"`
 	Description     azure.StorageTableServiceDescription `json:"description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     int                                  `json:"described_by"`
+	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
@@ -25090,7 +25090,7 @@ type Subnet struct {
 	PlatformID      string                  `json:"platform_id"`
 	Description     azure.SubnetDescription `json:"description"`
 	Metadata        azure.Metadata          `json:"metadata"`
-	DescribedBy     int                     `json:"described_by"`
+	DescribedBy     string                  `json:"described_by"`
 	ResourceType    string                  `json:"resource_type"`
 	IntegrationType string                  `json:"integration_type"`
 	IntegrationID   string                  `json:"integration_id"`
@@ -25375,7 +25375,7 @@ type VirtualNetwork struct {
 	PlatformID      string                          `json:"platform_id"`
 	Description     azure.VirtualNetworkDescription `json:"description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     int                             `json:"described_by"`
+	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
@@ -25653,7 +25653,7 @@ type Tenant struct {
 	PlatformID      string                  `json:"platform_id"`
 	Description     azure.TenantDescription `json:"description"`
 	Metadata        azure.Metadata          `json:"metadata"`
-	DescribedBy     int                     `json:"described_by"`
+	DescribedBy     string                  `json:"described_by"`
 	ResourceType    string                  `json:"resource_type"`
 	IntegrationType string                  `json:"integration_type"`
 	IntegrationID   string                  `json:"integration_id"`
@@ -25915,7 +25915,7 @@ type Subscription struct {
 	PlatformID      string                        `json:"platform_id"`
 	Description     azure.SubscriptionDescription `json:"description"`
 	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     int                           `json:"described_by"`
+	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
 	IntegrationType string                        `json:"integration_type"`
 	IntegrationID   string                        `json:"integration_id"`
@@ -26183,7 +26183,7 @@ type ApplicationGateway struct {
 	PlatformID      string                              `json:"platform_id"`
 	Description     azure.ApplicationGatewayDescription `json:"description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     int                                 `json:"described_by"`
+	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
 	IntegrationType string                              `json:"integration_type"`
 	IntegrationID   string                              `json:"integration_id"`
@@ -26479,7 +26479,7 @@ type BatchAccount struct {
 	PlatformID      string                        `json:"platform_id"`
 	Description     azure.BatchAccountDescription `json:"description"`
 	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     int                           `json:"described_by"`
+	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
 	IntegrationType string                        `json:"integration_type"`
 	IntegrationID   string                        `json:"integration_id"`
@@ -26773,7 +26773,7 @@ type CognitiveAccount struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.CognitiveAccountDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -27087,7 +27087,7 @@ type ComputeVirtualMachine struct {
 	PlatformID      string                                 `json:"platform_id"`
 	Description     azure.ComputeVirtualMachineDescription `json:"description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     int                                    `json:"described_by"`
+	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
@@ -27445,7 +27445,7 @@ type ComputeResourceSKU struct {
 	PlatformID      string                              `json:"platform_id"`
 	Description     azure.ComputeResourceSKUDescription `json:"description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     int                                 `json:"described_by"`
+	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
 	IntegrationType string                              `json:"integration_type"`
 	IntegrationID   string                              `json:"integration_id"`
@@ -27721,7 +27721,7 @@ type ComputeVirtualMachineCpuUtilization struct {
 	PlatformID      string                                               `json:"platform_id"`
 	Description     azure.ComputeVirtualMachineCpuUtilizationDescription `json:"description"`
 	Metadata        azure.Metadata                                       `json:"metadata"`
-	DescribedBy     int                                                  `json:"described_by"`
+	DescribedBy     string                                               `json:"described_by"`
 	ResourceType    string                                               `json:"resource_type"`
 	IntegrationType string                                               `json:"integration_type"`
 	IntegrationID   string                                               `json:"integration_id"`
@@ -27969,7 +27969,7 @@ type ComputeVirtualMachineCpuUtilizationDaily struct {
 	PlatformID      string                                                    `json:"platform_id"`
 	Description     azure.ComputeVirtualMachineCpuUtilizationDailyDescription `json:"description"`
 	Metadata        azure.Metadata                                            `json:"metadata"`
-	DescribedBy     int                                                       `json:"described_by"`
+	DescribedBy     string                                                    `json:"described_by"`
 	ResourceType    string                                                    `json:"resource_type"`
 	IntegrationType string                                                    `json:"integration_type"`
 	IntegrationID   string                                                    `json:"integration_id"`
@@ -28217,7 +28217,7 @@ type ComputeVirtualMachineCpuUtilizationHourly struct {
 	PlatformID      string                                                     `json:"platform_id"`
 	Description     azure.ComputeVirtualMachineCpuUtilizationHourlyDescription `json:"description"`
 	Metadata        azure.Metadata                                             `json:"metadata"`
-	DescribedBy     int                                                        `json:"described_by"`
+	DescribedBy     string                                                     `json:"described_by"`
 	ResourceType    string                                                     `json:"resource_type"`
 	IntegrationType string                                                     `json:"integration_type"`
 	IntegrationID   string                                                     `json:"integration_id"`
@@ -28465,7 +28465,7 @@ type ComputeCloudService struct {
 	PlatformID      string                               `json:"platform_id"`
 	Description     azure.ComputeCloudServiceDescription `json:"description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     int                                  `json:"described_by"`
+	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
@@ -28723,7 +28723,7 @@ type ContainerRegistry struct {
 	PlatformID      string                             `json:"platform_id"`
 	Description     azure.ContainerRegistryDescription `json:"description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     int                                `json:"described_by"`
+	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
@@ -29029,7 +29029,7 @@ type CosmosdbAccount struct {
 	PlatformID      string                           `json:"platform_id"`
 	Description     azure.CosmosdbAccountDescription `json:"description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     int                              `json:"described_by"`
+	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
 	IntegrationType string                           `json:"integration_type"`
 	IntegrationID   string                           `json:"integration_id"`
@@ -29350,7 +29350,7 @@ type CosmosdbRestorableDatabaseAccount struct {
 	PlatformID      string                                             `json:"platform_id"`
 	Description     azure.CosmosdbRestorableDatabaseAccountDescription `json:"description"`
 	Metadata        azure.Metadata                                     `json:"metadata"`
-	DescribedBy     int                                                `json:"described_by"`
+	DescribedBy     string                                             `json:"described_by"`
 	ResourceType    string                                             `json:"resource_type"`
 	IntegrationType string                                             `json:"integration_type"`
 	IntegrationID   string                                             `json:"integration_id"`
@@ -29620,7 +29620,7 @@ type CosmosdbMongoDatabase struct {
 	PlatformID      string                                 `json:"platform_id"`
 	Description     azure.CosmosdbMongoDatabaseDescription `json:"description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     int                                    `json:"described_by"`
+	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
@@ -29895,7 +29895,7 @@ type CosmosdbMongoCollection struct {
 	PlatformID      string                                   `json:"platform_id"`
 	Description     azure.CosmosdbMongoCollectionDescription `json:"description"`
 	Metadata        azure.Metadata                           `json:"metadata"`
-	DescribedBy     int                                      `json:"described_by"`
+	DescribedBy     string                                   `json:"described_by"`
 	ResourceType    string                                   `json:"resource_type"`
 	IntegrationType string                                   `json:"integration_type"`
 	IntegrationID   string                                   `json:"integration_id"`
@@ -30179,7 +30179,7 @@ type CosmosdbSqlDatabase struct {
 	PlatformID      string                               `json:"platform_id"`
 	Description     azure.CosmosdbSqlDatabaseDescription `json:"description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     int                                  `json:"described_by"`
+	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
@@ -30456,7 +30456,7 @@ type CosmosdbCassandraCluster struct {
 	PlatformID      string                                    `json:"platform_id"`
 	Description     azure.CosmosdbCassandraClusterDescription `json:"description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     int                                       `json:"described_by"`
+	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
@@ -30714,7 +30714,7 @@ type DatabricksWorkspace struct {
 	PlatformID      string                               `json:"platform_id"`
 	Description     azure.DatabricksWorkspaceDescription `json:"description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     int                                  `json:"described_by"`
+	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
@@ -31000,7 +31000,7 @@ type DataMigrationService struct {
 	PlatformID      string                                `json:"platform_id"`
 	Description     azure.DataMigrationServiceDescription `json:"description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     int                                   `json:"described_by"`
+	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
@@ -31258,7 +31258,7 @@ type DataProtectionBackupVaults struct {
 	PlatformID      string                                      `json:"platform_id"`
 	Description     azure.DataProtectionBackupVaultsDescription `json:"description"`
 	Metadata        azure.Metadata                              `json:"metadata"`
-	DescribedBy     int                                         `json:"described_by"`
+	DescribedBy     string                                      `json:"described_by"`
 	ResourceType    string                                      `json:"resource_type"`
 	IntegrationType string                                      `json:"integration_type"`
 	IntegrationID   string                                      `json:"integration_id"`
@@ -31530,7 +31530,7 @@ type DataProtectionBackupVaultsBackupPolicies struct {
 	PlatformID      string                                                    `json:"platform_id"`
 	Description     azure.DataProtectionBackupVaultsBackupPoliciesDescription `json:"description"`
 	Metadata        azure.Metadata                                            `json:"metadata"`
-	DescribedBy     int                                                       `json:"described_by"`
+	DescribedBy     string                                                    `json:"described_by"`
 	ResourceType    string                                                    `json:"resource_type"`
 	IntegrationType string                                                    `json:"integration_type"`
 	IntegrationID   string                                                    `json:"integration_id"`
@@ -31786,7 +31786,7 @@ type DataProtectionJob struct {
 	PlatformID      string                             `json:"platform_id"`
 	Description     azure.DataProtectionJobDescription `json:"description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     int                                `json:"described_by"`
+	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
@@ -32102,7 +32102,7 @@ type DataFactory struct {
 	PlatformID      string                       `json:"platform_id"`
 	Description     azure.DataFactoryDescription `json:"description"`
 	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     int                          `json:"described_by"`
+	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
@@ -32384,7 +32384,7 @@ type DataFactoryDataset struct {
 	PlatformID      string                              `json:"platform_id"`
 	Description     azure.DataFactoryDatasetDescription `json:"description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     int                                 `json:"described_by"`
+	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
 	IntegrationType string                              `json:"integration_type"`
 	IntegrationID   string                              `json:"integration_id"`
@@ -32650,7 +32650,7 @@ type DataFactoryPipeline struct {
 	PlatformID      string                               `json:"platform_id"`
 	Description     azure.DataFactoryPipelineDescription `json:"description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     int                                  `json:"described_by"`
+	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
@@ -32932,7 +32932,7 @@ type DataLakeAnalyticsAccount struct {
 	PlatformID      string                                    `json:"platform_id"`
 	Description     azure.DataLakeAnalyticsAccountDescription `json:"description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     int                                       `json:"described_by"`
+	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
@@ -33236,7 +33236,7 @@ type DataLakeStore struct {
 	PlatformID      string                         `json:"platform_id"`
 	Description     azure.DataLakeStoreDescription `json:"description"`
 	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     int                            `json:"described_by"`
+	DescribedBy     string                         `json:"described_by"`
 	ResourceType    string                         `json:"resource_type"`
 	IntegrationType string                         `json:"integration_type"`
 	IntegrationID   string                         `json:"integration_id"`
@@ -33534,7 +33534,7 @@ type DiagnosticSetting struct {
 	PlatformID      string                             `json:"platform_id"`
 	Description     azure.DiagnosticSettingDescription `json:"description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     int                                `json:"described_by"`
+	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
@@ -33810,7 +33810,7 @@ type AutoscaleSetting struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.AutoscaleSettingDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -34080,7 +34080,7 @@ type EventGridDomain struct {
 	PlatformID      string                           `json:"platform_id"`
 	Description     azure.EventGridDomainDescription `json:"description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     int                              `json:"described_by"`
+	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
 	IntegrationType string                           `json:"integration_type"`
 	IntegrationID   string                           `json:"integration_id"`
@@ -34380,7 +34380,7 @@ type EventGridTopic struct {
 	PlatformID      string                          `json:"platform_id"`
 	Description     azure.EventGridTopicDescription `json:"description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     int                             `json:"described_by"`
+	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
@@ -34676,7 +34676,7 @@ type EventhubNamespace struct {
 	PlatformID      string                             `json:"platform_id"`
 	Description     azure.EventhubNamespaceDescription `json:"description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     int                                `json:"described_by"`
+	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
@@ -34970,7 +34970,7 @@ type EventhubNamespaceEventhub struct {
 	PlatformID      string                                     `json:"platform_id"`
 	Description     azure.EventhubNamespaceEventhubDescription `json:"description"`
 	Metadata        azure.Metadata                             `json:"metadata"`
-	DescribedBy     int                                        `json:"described_by"`
+	DescribedBy     string                                     `json:"described_by"`
 	ResourceType    string                                     `json:"resource_type"`
 	IntegrationType string                                     `json:"integration_type"`
 	IntegrationID   string                                     `json:"integration_id"`
@@ -35228,7 +35228,7 @@ type Frontdoor struct {
 	PlatformID      string                     `json:"platform_id"`
 	Description     azure.FrontdoorDescription `json:"description"`
 	Metadata        azure.Metadata             `json:"metadata"`
-	DescribedBy     int                        `json:"described_by"`
+	DescribedBy     string                     `json:"described_by"`
 	ResourceType    string                     `json:"resource_type"`
 	IntegrationType string                     `json:"integration_type"`
 	IntegrationID   string                     `json:"integration_id"`
@@ -35516,7 +35516,7 @@ type HdinsightCluster struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.HdinsightClusterDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -35828,7 +35828,7 @@ type HybridComputeMachine struct {
 	PlatformID      string                                `json:"platform_id"`
 	Description     azure.HybridComputeMachineDescription `json:"description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     int                                   `json:"described_by"`
+	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
@@ -36130,7 +36130,7 @@ type IOTHub struct {
 	PlatformID      string                  `json:"platform_id"`
 	Description     azure.IOTHubDescription `json:"description"`
 	Metadata        azure.Metadata          `json:"metadata"`
-	DescribedBy     int                     `json:"described_by"`
+	DescribedBy     string                  `json:"described_by"`
 	ResourceType    string                  `json:"resource_type"`
 	IntegrationType string                  `json:"integration_type"`
 	IntegrationID   string                  `json:"integration_id"`
@@ -36436,7 +36436,7 @@ type IOTHubDps struct {
 	PlatformID      string                     `json:"platform_id"`
 	Description     azure.IOTHubDpsDescription `json:"description"`
 	Metadata        azure.Metadata             `json:"metadata"`
-	DescribedBy     int                        `json:"described_by"`
+	DescribedBy     string                     `json:"described_by"`
 	ResourceType    string                     `json:"resource_type"`
 	IntegrationType string                     `json:"integration_type"`
 	IntegrationID   string                     `json:"integration_id"`
@@ -36724,7 +36724,7 @@ type KeyVault struct {
 	PlatformID      string                    `json:"platform_id"`
 	Description     azure.KeyVaultDescription `json:"description"`
 	Metadata        azure.Metadata            `json:"metadata"`
-	DescribedBy     int                       `json:"described_by"`
+	DescribedBy     string                    `json:"described_by"`
 	ResourceType    string                    `json:"resource_type"`
 	IntegrationType string                    `json:"integration_type"`
 	IntegrationID   string                    `json:"integration_id"`
@@ -37014,7 +37014,7 @@ type KeyVaultCertificate struct {
 	PlatformID      string                               `json:"platform_id"`
 	Description     azure.KeyVaultCertificateDescription `json:"description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     int                                  `json:"described_by"`
+	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
@@ -37283,7 +37283,7 @@ type KeyVaultDeletedVault struct {
 	PlatformID      string                                `json:"platform_id"`
 	Description     azure.KeyVaultDeletedVaultDescription `json:"description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     int                                   `json:"described_by"`
+	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
@@ -37546,7 +37546,7 @@ type KeyVaultManagedHardwareSecurityModule struct {
 	PlatformID      string                                                 `json:"platform_id"`
 	Description     azure.KeyVaultManagedHardwareSecurityModuleDescription `json:"description"`
 	Metadata        azure.Metadata                                         `json:"metadata"`
-	DescribedBy     int                                                    `json:"described_by"`
+	DescribedBy     string                                                 `json:"described_by"`
 	ResourceType    string                                                 `json:"resource_type"`
 	IntegrationType string                                                 `json:"integration_type"`
 	IntegrationID   string                                                 `json:"integration_id"`
@@ -37830,7 +37830,7 @@ type KeyVaultSecret struct {
 	PlatformID      string                          `json:"platform_id"`
 	Description     azure.KeyVaultSecretDescription `json:"description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     int                             `json:"described_by"`
+	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
@@ -38100,7 +38100,7 @@ type KustoCluster struct {
 	PlatformID      string                        `json:"platform_id"`
 	Description     azure.KustoClusterDescription `json:"description"`
 	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     int                           `json:"described_by"`
+	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
 	IntegrationType string                        `json:"integration_type"`
 	IntegrationID   string                        `json:"integration_id"`
@@ -38404,7 +38404,7 @@ type LogAlert struct {
 	PlatformID      string                    `json:"platform_id"`
 	Description     azure.LogAlertDescription `json:"description"`
 	Metadata        azure.Metadata            `json:"metadata"`
-	DescribedBy     int                       `json:"described_by"`
+	DescribedBy     string                    `json:"described_by"`
 	ResourceType    string                    `json:"resource_type"`
 	IntegrationType string                    `json:"integration_type"`
 	IntegrationID   string                    `json:"integration_id"`
@@ -38678,7 +38678,7 @@ type LogProfile struct {
 	PlatformID      string                      `json:"platform_id"`
 	Description     azure.LogProfileDescription `json:"description"`
 	Metadata        azure.Metadata              `json:"metadata"`
-	DescribedBy     int                         `json:"described_by"`
+	DescribedBy     string                      `json:"described_by"`
 	ResourceType    string                      `json:"resource_type"`
 	IntegrationType string                      `json:"integration_type"`
 	IntegrationID   string                      `json:"integration_id"`
@@ -38952,7 +38952,7 @@ type LogicAppWorkflow struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.LogicAppWorkflowDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -39240,7 +39240,7 @@ type LogicIntegrationAccounts struct {
 	PlatformID      string                                    `json:"platform_id"`
 	Description     azure.LogicIntegrationAccountsDescription `json:"description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     int                                       `json:"described_by"`
+	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
@@ -39498,7 +39498,7 @@ type MachineLearningWorkspace struct {
 	PlatformID      string                                    `json:"platform_id"`
 	Description     azure.MachineLearningWorkspaceDescription `json:"description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     int                                       `json:"described_by"`
+	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
@@ -39794,7 +39794,7 @@ type MariadbServer struct {
 	PlatformID      string                         `json:"platform_id"`
 	Description     azure.MariadbServerDescription `json:"description"`
 	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     int                            `json:"described_by"`
+	DescribedBy     string                         `json:"described_by"`
 	ResourceType    string                         `json:"resource_type"`
 	IntegrationType string                         `json:"integration_type"`
 	IntegrationID   string                         `json:"integration_id"`
@@ -40094,7 +40094,7 @@ type MariadbDatabase struct {
 	PlatformID      string                           `json:"platform_id"`
 	Description     azure.MariadbDatabaseDescription `json:"description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     int                              `json:"described_by"`
+	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
 	IntegrationType string                           `json:"integration_type"`
 	IntegrationID   string                           `json:"integration_id"`
@@ -40352,7 +40352,7 @@ type MysqlServer struct {
 	PlatformID      string                       `json:"platform_id"`
 	Description     azure.MysqlServerDescription `json:"description"`
 	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     int                          `json:"described_by"`
+	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
@@ -40668,7 +40668,7 @@ type MysqlFlexibleserver struct {
 	PlatformID      string                               `json:"platform_id"`
 	Description     azure.MysqlFlexibleserverDescription `json:"description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     int                                  `json:"described_by"`
+	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
@@ -40926,7 +40926,7 @@ type NetworkSecurityGroup struct {
 	PlatformID      string                                `json:"platform_id"`
 	Description     azure.NetworkSecurityGroupDescription `json:"description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     int                                   `json:"described_by"`
+	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
@@ -41206,7 +41206,7 @@ type NetworkWatcher struct {
 	PlatformID      string                          `json:"platform_id"`
 	Description     azure.NetworkWatcherDescription `json:"description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     int                             `json:"described_by"`
+	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
@@ -41472,7 +41472,7 @@ type SearchService struct {
 	PlatformID      string                         `json:"platform_id"`
 	Description     azure.SearchServiceDescription `json:"description"`
 	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     int                            `json:"described_by"`
+	DescribedBy     string                         `json:"described_by"`
 	ResourceType    string                         `json:"resource_type"`
 	IntegrationType string                         `json:"integration_type"`
 	IntegrationID   string                         `json:"integration_id"`
@@ -41759,7 +41759,7 @@ type ServiceFabricCluster struct {
 	PlatformID      string                                `json:"platform_id"`
 	Description     azure.ServiceFabricClusterDescription `json:"description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     int                                   `json:"described_by"`
+	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
@@ -42069,7 +42069,7 @@ type ServicebusNamespace struct {
 	PlatformID      string                               `json:"platform_id"`
 	Description     azure.ServicebusNamespaceDescription `json:"description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     int                                  `json:"described_by"`
+	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
@@ -42359,7 +42359,7 @@ type SignalrService struct {
 	PlatformID      string                          `json:"platform_id"`
 	Description     azure.SignalrServiceDescription `json:"description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     int                             `json:"described_by"`
+	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
@@ -42649,7 +42649,7 @@ type SpringCloudService struct {
 	PlatformID      string                              `json:"platform_id"`
 	Description     azure.SpringCloudServiceDescription `json:"description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     int                                 `json:"described_by"`
+	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
 	IntegrationType string                              `json:"integration_type"`
 	IntegrationID   string                              `json:"integration_id"`
@@ -42917,7 +42917,7 @@ type StreamAnalyticsJob struct {
 	PlatformID      string                              `json:"platform_id"`
 	Description     azure.StreamAnalyticsJobDescription `json:"description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     int                                 `json:"described_by"`
+	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
 	IntegrationType string                              `json:"integration_type"`
 	IntegrationID   string                              `json:"integration_id"`
@@ -43213,7 +43213,7 @@ type StreamAnalyticsCluster struct {
 	PlatformID      string                                  `json:"platform_id"`
 	Description     azure.StreamAnalyticsClusterDescription `json:"description"`
 	Metadata        azure.Metadata                          `json:"metadata"`
-	DescribedBy     int                                     `json:"described_by"`
+	DescribedBy     string                                  `json:"described_by"`
 	ResourceType    string                                  `json:"resource_type"`
 	IntegrationType string                                  `json:"integration_type"`
 	IntegrationID   string                                  `json:"integration_id"`
@@ -43471,7 +43471,7 @@ type VirtualMachineImagesImageTemplates struct {
 	PlatformID      string                                              `json:"platform_id"`
 	Description     azure.VirtualMachineImagesImageTemplatesDescription `json:"description"`
 	Metadata        azure.Metadata                                      `json:"metadata"`
-	DescribedBy     int                                                 `json:"described_by"`
+	DescribedBy     string                                              `json:"described_by"`
 	ResourceType    string                                              `json:"resource_type"`
 	IntegrationType string                                              `json:"integration_type"`
 	IntegrationID   string                                              `json:"integration_id"`
@@ -43729,7 +43729,7 @@ type OperationalInsightsWorkspaces struct {
 	PlatformID      string                                         `json:"platform_id"`
 	Description     azure.OperationalInsightsWorkspacesDescription `json:"description"`
 	Metadata        azure.Metadata                                 `json:"metadata"`
-	DescribedBy     int                                            `json:"described_by"`
+	DescribedBy     string                                         `json:"described_by"`
 	ResourceType    string                                         `json:"resource_type"`
 	IntegrationType string                                         `json:"integration_type"`
 	IntegrationID   string                                         `json:"integration_id"`
@@ -44021,7 +44021,7 @@ type TimeSeriesInsightsEnvironments struct {
 	PlatformID      string                                          `json:"platform_id"`
 	Description     azure.TimeSeriesInsightsEnvironmentsDescription `json:"description"`
 	Metadata        azure.Metadata                                  `json:"metadata"`
-	DescribedBy     int                                             `json:"described_by"`
+	DescribedBy     string                                          `json:"described_by"`
 	ResourceType    string                                          `json:"resource_type"`
 	IntegrationType string                                          `json:"integration_type"`
 	IntegrationID   string                                          `json:"integration_id"`
@@ -44279,7 +44279,7 @@ type SynapseWorkspace struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.SynapseWorkspaceDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -44577,7 +44577,7 @@ type SynapseWorkspaceBigdatapools struct {
 	PlatformID      string                                        `json:"platform_id"`
 	Description     azure.SynapseWorkspaceBigdatapoolsDescription `json:"description"`
 	Metadata        azure.Metadata                                `json:"metadata"`
-	DescribedBy     int                                           `json:"described_by"`
+	DescribedBy     string                                        `json:"described_by"`
 	ResourceType    string                                        `json:"resource_type"`
 	IntegrationType string                                        `json:"integration_type"`
 	IntegrationID   string                                        `json:"integration_id"`
@@ -44835,7 +44835,7 @@ type SynapseWorkspaceSqlpools struct {
 	PlatformID      string                                    `json:"platform_id"`
 	Description     azure.SynapseWorkspaceSqlpoolsDescription `json:"description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     int                                       `json:"described_by"`
+	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
@@ -45093,7 +45093,7 @@ type Location struct {
 	PlatformID      string                    `json:"platform_id"`
 	Description     azure.LocationDescription `json:"description"`
 	Metadata        azure.Metadata            `json:"metadata"`
-	DescribedBy     int                       `json:"described_by"`
+	DescribedBy     string                    `json:"described_by"`
 	ResourceType    string                    `json:"resource_type"`
 	IntegrationType string                    `json:"integration_type"`
 	IntegrationID   string                    `json:"integration_id"`
@@ -45356,7 +45356,7 @@ type AnalysisServiceServer struct {
 	PlatformID      string                                 `json:"platform_id"`
 	Description     azure.AnalysisServiceServerDescription `json:"description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     int                                    `json:"described_by"`
+	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
@@ -45615,7 +45615,7 @@ type PostgresqlServer struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.PostgresqlServerDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -45931,7 +45931,7 @@ type PostgresqlFlexibleServer struct {
 	PlatformID      string                                    `json:"platform_id"`
 	Description     azure.PostgresqlFlexibleServerDescription `json:"description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     int                                       `json:"described_by"`
+	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
@@ -46199,7 +46199,7 @@ type StorageSync struct {
 	PlatformID      string                       `json:"platform_id"`
 	Description     azure.StorageSyncDescription `json:"description"`
 	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     int                          `json:"described_by"`
+	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
@@ -46473,7 +46473,7 @@ type MssqlManagedInstance struct {
 	PlatformID      string                                `json:"platform_id"`
 	Description     azure.MssqlManagedInstanceDescription `json:"description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     int                                   `json:"described_by"`
+	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
@@ -46783,7 +46783,7 @@ type MssqlManagedInstanceDatabases struct {
 	PlatformID      string                                         `json:"platform_id"`
 	Description     azure.MssqlManagedInstanceDatabasesDescription `json:"description"`
 	Metadata        azure.Metadata                                 `json:"metadata"`
-	DescribedBy     int                                            `json:"described_by"`
+	DescribedBy     string                                         `json:"described_by"`
 	ResourceType    string                                         `json:"resource_type"`
 	IntegrationType string                                         `json:"integration_type"`
 	IntegrationID   string                                         `json:"integration_id"`
@@ -47041,7 +47041,7 @@ type SqlDatabase struct {
 	PlatformID      string                       `json:"platform_id"`
 	Description     azure.SqlDatabaseDescription `json:"description"`
 	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     int                          `json:"described_by"`
+	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
 	IntegrationType string                       `json:"integration_type"`
 	IntegrationID   string                       `json:"integration_id"`
@@ -47361,7 +47361,7 @@ type SqlInstancePool struct {
 	PlatformID      string                           `json:"platform_id"`
 	Description     azure.SqlInstancePoolDescription `json:"description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     int                              `json:"described_by"`
+	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
 	IntegrationType string                           `json:"integration_type"`
 	IntegrationID   string                           `json:"integration_id"`
@@ -47619,7 +47619,7 @@ type SqlServer struct {
 	PlatformID      string                     `json:"platform_id"`
 	Description     azure.SqlServerDescription `json:"description"`
 	Metadata        azure.Metadata             `json:"metadata"`
-	DescribedBy     int                        `json:"described_by"`
+	DescribedBy     string                     `json:"described_by"`
 	ResourceType    string                     `json:"resource_type"`
 	IntegrationType string                     `json:"integration_type"`
 	IntegrationID   string                     `json:"integration_id"`
@@ -47921,7 +47921,7 @@ type SqlServerJobAgent struct {
 	PlatformID      string                             `json:"platform_id"`
 	Description     azure.SqlServerJobAgentDescription `json:"description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     int                                `json:"described_by"`
+	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
@@ -48179,7 +48179,7 @@ type SqlVirtualClusters struct {
 	PlatformID      string                              `json:"platform_id"`
 	Description     azure.SqlVirtualClustersDescription `json:"description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     int                                 `json:"described_by"`
+	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
 	IntegrationType string                              `json:"integration_type"`
 	IntegrationID   string                              `json:"integration_id"`
@@ -48437,7 +48437,7 @@ type SqlServerElasticPool struct {
 	PlatformID      string                                `json:"platform_id"`
 	Description     azure.SqlServerElasticPoolDescription `json:"description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     int                                   `json:"described_by"`
+	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
@@ -48719,7 +48719,7 @@ type SqlServerVirtualMachine struct {
 	PlatformID      string                                   `json:"platform_id"`
 	Description     azure.SqlServerVirtualMachineDescription `json:"description"`
 	Metadata        azure.Metadata                           `json:"metadata"`
-	DescribedBy     int                                      `json:"described_by"`
+	DescribedBy     string                                   `json:"described_by"`
 	ResourceType    string                                   `json:"resource_type"`
 	IntegrationType string                                   `json:"integration_type"`
 	IntegrationID   string                                   `json:"integration_id"`
@@ -49009,7 +49009,7 @@ type SqlServerVirtualMachineGroup struct {
 	PlatformID      string                                        `json:"platform_id"`
 	Description     azure.SqlServerVirtualMachineGroupDescription `json:"description"`
 	Metadata        azure.Metadata                                `json:"metadata"`
-	DescribedBy     int                                           `json:"described_by"`
+	DescribedBy     string                                        `json:"described_by"`
 	ResourceType    string                                        `json:"resource_type"`
 	IntegrationType string                                        `json:"integration_type"`
 	IntegrationID   string                                        `json:"integration_id"`
@@ -49267,7 +49267,7 @@ type SqlServerFlexibleServer struct {
 	PlatformID      string                                   `json:"platform_id"`
 	Description     azure.SqlServerFlexibleServerDescription `json:"description"`
 	Metadata        azure.Metadata                           `json:"metadata"`
-	DescribedBy     int                                      `json:"described_by"`
+	DescribedBy     string                                   `json:"described_by"`
 	ResourceType    string                                   `json:"resource_type"`
 	IntegrationType string                                   `json:"integration_type"`
 	IntegrationID   string                                   `json:"integration_id"`
@@ -49579,7 +49579,7 @@ type StorageAccount struct {
 	PlatformID      string                          `json:"platform_id"`
 	Description     azure.StorageAccountDescription `json:"description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     int                             `json:"described_by"`
+	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
@@ -49956,7 +49956,7 @@ type RecoveryServicesVault struct {
 	PlatformID      string                                 `json:"platform_id"`
 	Description     azure.RecoveryServicesVaultDescription `json:"description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     int                                    `json:"described_by"`
+	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
 	IntegrationType string                                 `json:"integration_type"`
 	IntegrationID   string                                 `json:"integration_id"`
@@ -50236,7 +50236,7 @@ type RecoveryServicesBackupJob struct {
 	PlatformID      string                                     `json:"platform_id"`
 	Description     azure.RecoveryServicesBackupJobDescription `json:"description"`
 	Metadata        azure.Metadata                             `json:"metadata"`
-	DescribedBy     int                                        `json:"described_by"`
+	DescribedBy     string                                     `json:"described_by"`
 	ResourceType    string                                     `json:"resource_type"`
 	IntegrationType string                                     `json:"integration_type"`
 	IntegrationID   string                                     `json:"integration_id"`
@@ -50504,7 +50504,7 @@ type RecoveryServicesBackupPolicy struct {
 	PlatformID      string                                        `json:"platform_id"`
 	Description     azure.RecoveryServicesBackupPolicyDescription `json:"description"`
 	Metadata        azure.Metadata                                `json:"metadata"`
-	DescribedBy     int                                           `json:"described_by"`
+	DescribedBy     string                                        `json:"described_by"`
 	ResourceType    string                                        `json:"resource_type"`
 	IntegrationType string                                        `json:"integration_type"`
 	IntegrationID   string                                        `json:"integration_id"`
@@ -50766,7 +50766,7 @@ type RecoveryServicesBackupItem struct {
 	PlatformID      string                                      `json:"platform_id"`
 	Description     azure.RecoveryServicesBackupItemDescription `json:"description"`
 	Metadata        azure.Metadata                              `json:"metadata"`
-	DescribedBy     int                                         `json:"described_by"`
+	DescribedBy     string                                      `json:"described_by"`
 	ResourceType    string                                      `json:"resource_type"`
 	IntegrationType string                                      `json:"integration_type"`
 	IntegrationID   string                                      `json:"integration_id"`
@@ -51028,7 +51028,7 @@ type HybridKubernetesConnectedCluster struct {
 	PlatformID      string                                            `json:"platform_id"`
 	Description     azure.HybridKubernetesConnectedClusterDescription `json:"description"`
 	Metadata        azure.Metadata                                    `json:"metadata"`
-	DescribedBy     int                                               `json:"described_by"`
+	DescribedBy     string                                            `json:"described_by"`
 	ResourceType    string                                            `json:"resource_type"`
 	IntegrationType string                                            `json:"integration_type"`
 	IntegrationID   string                                            `json:"integration_id"`
@@ -51322,7 +51322,7 @@ type CostManagementCostByResourceType struct {
 	PlatformID      string                                            `json:"platform_id"`
 	Description     azure.CostManagementCostByResourceTypeDescription `json:"description"`
 	Metadata        azure.Metadata                                    `json:"metadata"`
-	DescribedBy     int                                               `json:"described_by"`
+	DescribedBy     string                                            `json:"described_by"`
 	ResourceType    string                                            `json:"resource_type"`
 	IntegrationType string                                            `json:"integration_type"`
 	IntegrationID   string                                            `json:"integration_id"`
@@ -51584,7 +51584,7 @@ type CostManagementCostBySubscription struct {
 	PlatformID      string                                            `json:"platform_id"`
 	Description     azure.CostManagementCostBySubscriptionDescription `json:"description"`
 	Metadata        azure.Metadata                                    `json:"metadata"`
-	DescribedBy     int                                               `json:"described_by"`
+	DescribedBy     string                                            `json:"described_by"`
 	ResourceType    string                                            `json:"resource_type"`
 	IntegrationType string                                            `json:"integration_type"`
 	IntegrationID   string                                            `json:"integration_id"`
@@ -51838,7 +51838,7 @@ type LoadBalancer struct {
 	PlatformID      string                        `json:"platform_id"`
 	Description     azure.LoadBalancerDescription `json:"description"`
 	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     int                           `json:"described_by"`
+	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
 	IntegrationType string                        `json:"integration_type"`
 	IntegrationID   string                        `json:"integration_id"`
@@ -52130,7 +52130,7 @@ type LoadBalancerBackendAddressPool struct {
 	PlatformID      string                                          `json:"platform_id"`
 	Description     azure.LoadBalancerBackendAddressPoolDescription `json:"description"`
 	Metadata        azure.Metadata                                  `json:"metadata"`
-	DescribedBy     int                                             `json:"described_by"`
+	DescribedBy     string                                          `json:"described_by"`
 	ResourceType    string                                          `json:"resource_type"`
 	IntegrationType string                                          `json:"integration_type"`
 	IntegrationID   string                                          `json:"integration_id"`
@@ -52408,7 +52408,7 @@ type LoadBalancerNatRule struct {
 	PlatformID      string                               `json:"platform_id"`
 	Description     azure.LoadBalancerNatRuleDescription `json:"description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     int                                  `json:"described_by"`
+	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
 	IntegrationType string                               `json:"integration_type"`
 	IntegrationID   string                               `json:"integration_id"`
@@ -52690,7 +52690,7 @@ type LoadBalancerOutboundRule struct {
 	PlatformID      string                                    `json:"platform_id"`
 	Description     azure.LoadBalancerOutboundRuleDescription `json:"description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     int                                       `json:"described_by"`
+	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
@@ -52968,7 +52968,7 @@ type LoadBalancerProbe struct {
 	PlatformID      string                             `json:"platform_id"`
 	Description     azure.LoadBalancerProbeDescription `json:"description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     int                                `json:"described_by"`
+	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
@@ -53246,7 +53246,7 @@ type LoadBalancerRule struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.LoadBalancerRuleDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -53536,7 +53536,7 @@ type ManagementGroup struct {
 	PlatformID      string                           `json:"platform_id"`
 	Description     azure.ManagementGroupDescription `json:"description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     int                              `json:"described_by"`
+	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
 	IntegrationType string                           `json:"integration_type"`
 	IntegrationID   string                           `json:"integration_id"`
@@ -53808,7 +53808,7 @@ type ManagementLock struct {
 	PlatformID      string                          `json:"platform_id"`
 	Description     azure.ManagementLockDescription `json:"description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     int                             `json:"described_by"`
+	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
@@ -54073,7 +54073,7 @@ type ResourceProvider struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.ResourceProviderDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -54333,7 +54333,7 @@ type ResourceGroup struct {
 	PlatformID      string                         `json:"platform_id"`
 	Description     azure.ResourceGroupDescription `json:"description"`
 	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     int                            `json:"described_by"`
+	DescribedBy     string                         `json:"described_by"`
 	ResourceType    string                         `json:"resource_type"`
 	IntegrationType string                         `json:"integration_type"`
 	IntegrationID   string                         `json:"integration_id"`
@@ -54597,7 +54597,7 @@ type GenericResource struct {
 	PlatformID      string                           `json:"platform_id"`
 	Description     azure.GenericResourceDescription `json:"description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     int                              `json:"described_by"`
+	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
 	IntegrationType string                           `json:"integration_type"`
 	IntegrationID   string                           `json:"integration_id"`
@@ -54887,7 +54887,7 @@ type BotServiceBot struct {
 	PlatformID      string                         `json:"platform_id"`
 	Description     azure.BotServiceBotDescription `json:"description"`
 	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     int                            `json:"described_by"`
+	DescribedBy     string                         `json:"described_by"`
 	ResourceType    string                         `json:"resource_type"`
 	IntegrationType string                         `json:"integration_type"`
 	IntegrationID   string                         `json:"integration_id"`
@@ -55145,7 +55145,7 @@ type NetAppAccount struct {
 	PlatformID      string                         `json:"platform_id"`
 	Description     azure.NetAppAccountDescription `json:"description"`
 	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     int                            `json:"described_by"`
+	DescribedBy     string                         `json:"described_by"`
 	ResourceType    string                         `json:"resource_type"`
 	IntegrationType string                         `json:"integration_type"`
 	IntegrationID   string                         `json:"integration_id"`
@@ -55403,7 +55403,7 @@ type NetAppCapacityPool struct {
 	PlatformID      string                              `json:"platform_id"`
 	Description     azure.NetAppCapacityPoolDescription `json:"description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     int                                 `json:"described_by"`
+	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
 	IntegrationType string                              `json:"integration_type"`
 	IntegrationID   string                              `json:"integration_id"`
@@ -55661,7 +55661,7 @@ type DashboardGrafana struct {
 	PlatformID      string                            `json:"platform_id"`
 	Description     azure.DashboardGrafanaDescription `json:"description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     int                               `json:"described_by"`
+	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
 	IntegrationType string                            `json:"integration_type"`
 	IntegrationID   string                            `json:"integration_id"`
@@ -55917,7 +55917,7 @@ type DesktopVirtualizationHostPool struct {
 	PlatformID      string                                         `json:"platform_id"`
 	Description     azure.DesktopVirtualizationHostPoolDescription `json:"description"`
 	Metadata        azure.Metadata                                 `json:"metadata"`
-	DescribedBy     int                                            `json:"described_by"`
+	DescribedBy     string                                         `json:"described_by"`
 	ResourceType    string                                         `json:"resource_type"`
 	IntegrationType string                                         `json:"integration_type"`
 	IntegrationID   string                                         `json:"integration_id"`
@@ -56175,7 +56175,7 @@ type DesktopVirtualizationWorkspace struct {
 	PlatformID      string                                          `json:"platform_id"`
 	Description     azure.DesktopVirtualizationWorkspaceDescription `json:"description"`
 	Metadata        azure.Metadata                                  `json:"metadata"`
-	DescribedBy     int                                             `json:"described_by"`
+	DescribedBy     string                                          `json:"described_by"`
 	ResourceType    string                                          `json:"resource_type"`
 	IntegrationType string                                          `json:"integration_type"`
 	IntegrationID   string                                          `json:"integration_id"`
@@ -56433,7 +56433,7 @@ type DevTestLabLab struct {
 	PlatformID      string                         `json:"platform_id"`
 	Description     azure.DevTestLabLabDescription `json:"description"`
 	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     int                            `json:"described_by"`
+	DescribedBy     string                         `json:"described_by"`
 	ResourceType    string                         `json:"resource_type"`
 	IntegrationType string                         `json:"integration_type"`
 	IntegrationID   string                         `json:"integration_id"`
@@ -56691,7 +56691,7 @@ type PurviewAccount struct {
 	PlatformID      string                          `json:"platform_id"`
 	Description     azure.PurviewAccountDescription `json:"description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     int                             `json:"described_by"`
+	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
 	IntegrationType string                          `json:"integration_type"`
 	IntegrationID   string                          `json:"integration_id"`
@@ -56949,7 +56949,7 @@ type PowerBIDedicatedCapacity struct {
 	PlatformID      string                                    `json:"platform_id"`
 	Description     azure.PowerBIDedicatedCapacityDescription `json:"description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     int                                       `json:"described_by"`
+	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
@@ -57207,7 +57207,7 @@ type ApplicationInsightsComponent struct {
 	PlatformID      string                                        `json:"platform_id"`
 	Description     azure.ApplicationInsightsComponentDescription `json:"description"`
 	Metadata        azure.Metadata                                `json:"metadata"`
-	DescribedBy     int                                           `json:"described_by"`
+	DescribedBy     string                                        `json:"described_by"`
 	ResourceType    string                                        `json:"resource_type"`
 	IntegrationType string                                        `json:"integration_type"`
 	IntegrationID   string                                        `json:"integration_id"`
@@ -57513,7 +57513,7 @@ type LighthouseDefinition struct {
 	PlatformID      string                                `json:"platform_id"`
 	Description     azure.LighthouseDefinitionDescription `json:"description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     int                                   `json:"described_by"`
+	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
@@ -57789,7 +57789,7 @@ type LighthouseAssignment struct {
 	PlatformID      string                                `json:"platform_id"`
 	Description     azure.LighthouseAssignmentDescription `json:"description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     int                                   `json:"described_by"`
+	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
 	IntegrationType string                                `json:"integration_type"`
 	IntegrationID   string                                `json:"integration_id"`
@@ -58055,7 +58055,7 @@ type MaintenanceConfiguration struct {
 	PlatformID      string                                    `json:"platform_id"`
 	Description     azure.MaintenanceConfigurationDescription `json:"description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     int                                       `json:"described_by"`
+	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
 	IntegrationType string                                    `json:"integration_type"`
 	IntegrationID   string                                    `json:"integration_id"`
@@ -58337,7 +58337,7 @@ type MonitorLogProfile struct {
 	PlatformID      string                             `json:"platform_id"`
 	Description     azure.MonitorLogProfileDescription `json:"description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     int                                `json:"described_by"`
+	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
 	IntegrationType string                             `json:"integration_type"`
 	IntegrationID   string                             `json:"integration_id"`
