@@ -111,7 +111,7 @@ require (
 	github.com/manicminer/hamilton v0.44.0
 	github.com/microsoftgraph/msgraph-sdk-go v1.51.0
 	github.com/nats-io/nats.go v1.36.0
-	github.com/opengovern/og-util v1.1.0
+	github.com/opengovern/og-util v1.1.5
 	github.com/opengovern/opengovernance v0.434.59-feat-integrations-service.0
 	github.com/spf13/cobra v1.8.1
 	github.com/tombuildsstuff/giovanni v0.18.0
