@@ -1639,26 +1639,7 @@
     "SteampipeTable": "azure_security_center_contact",
     "Model": "SecurityCenterContact"
   },
-  {
-    "ResourceName": "Microsoft.Compute/diskswriteops",
-
-    "Tags": null,
-
-    "ListDescriber": "DescribeBySubscription(describer.ComputeDiskWriteOps)",
-    "GetDescriber": "",
-    "SteampipeTable": "azure_compute_disk_metric_write_ops",
-    "Model": "ComputeDiskWriteOps"
-  },
-  {
-    "ResourceName": "Microsoft.Compute/diskswriteopshourly",
-
-    "Tags": null,
-
-    "ListDescriber": "DescribeBySubscription(describer.ComputeDiskWriteOpsHourly)",
-    "GetDescriber": "",
-    "SteampipeTable": "azure_compute_disk_metric_write_ops_hourly",
-    "Model": "ComputeDiskWriteOpsHourly"
-  },
+  
   {
     "ResourceName": "Microsoft.EventGrid/domains",
 
@@ -2209,16 +2190,7 @@
     "SteampipeTable": "azure_api_management_backend",
     "Model": "APIManagementBackend"
   },
-  {
-    "ResourceName": "Microsoft.Compute/disksreadops",
-
-    "Tags": null,
-
-    "ListDescriber": "DescribeBySubscription(describer.ComputeDiskReadOps)",
-    "GetDescriber": "",
-    "SteampipeTable": "azure_compute_disk_metric_read_ops",
-    "Model": "ComputeDiskReadOps"
-  },
+ 
   {
     "ResourceName": "Microsoft.Compute/virtualMachineScaleSets",
 
@@ -2645,16 +2617,7 @@
     "SteampipeTable": "azure_mariadb_databases",
     "Model": "MariadbDatabase"
   },
-  {
-    "ResourceName": "Microsoft.Compute/disksreadopsdaily",
-
-    "Tags": null,
-
-    "ListDescriber": "DescribeBySubscription(describer.ComputeDiskReadOpsDaily)",
-    "GetDescriber": "",
-    "SteampipeTable": "azure_compute_disk_metric_read_ops_daily",
-    "Model": "ComputeDiskReadOpsDaily"
-  },
+  
   {
     "ResourceName": "Microsoft.Web/plan",
 
@@ -2674,26 +2637,8 @@
     "SteampipeTable": "azure_app_service_plan",
     "Model": "AppServicePlan"
   },
-  {
-    "ResourceName": "Microsoft.Compute/disksreadopshourly",
-
-    "Tags": null,
-
-    "ListDescriber": "DescribeBySubscription(describer.ComputeDiskReadOpsHourly)",
-    "GetDescriber": "",
-    "SteampipeTable": "azure_compute_disk_metric_read_ops_hourly",
-    "Model": "ComputeDiskReadOpsHourly"
-  },
-  {
-    "ResourceName": "Microsoft.Compute/diskswriteopsdaily",
-
-    "Tags": null,
-
-    "ListDescriber": "DescribeBySubscription(describer.ComputeDiskWriteOpsDaily)",
-    "GetDescriber": "",
-    "SteampipeTable": "azure_compute_disk_metric_write_ops_daily",
-    "Model": "ComputeDiskWriteOpsDaily"
-  },
+  
+  
   {
     "ResourceName": "Microsoft.Resources/tenants",
 
