@@ -2,6 +2,7 @@ package azure
 
 import (
 	"context"
+
 	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
 
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
@@ -20,7 +21,7 @@ func tableAzurePurviewAccount(_ context.Context) *plugin.Table {
 		List: &plugin.ListConfig{
 			Hydrate: opengovernance.ListPurviewAccount,
 		},
-		Columns: azureKaytuColumns([]*plugin.Column{
+		Columns: azureOGColumns([]*plugin.Column{
 			{
 				Name:        "id",
 				Description: "The id of the account.",

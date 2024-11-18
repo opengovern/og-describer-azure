@@ -102,11 +102,11 @@ func commonMonitoringMetricColumns() []*plugin.Column {
 	}
 }
 
-func kaytuMonitoringMetricColumns(columns []*plugin.Column) []*plugin.Column {
-	return append(columns, kaytuCommonMonitoringMetricColumns()...)
+func opengovernanceMonitoringMetricColumns(columns []*plugin.Column) []*plugin.Column {
+	return append(columns, opengovernanceCommonMonitoringMetricColumns()...)
 }
 
-func kaytuCommonMonitoringMetricColumns() []*plugin.Column {
+func opengovernanceCommonMonitoringMetricColumns() []*plugin.Column {
 	return []*plugin.Column{
 		{
 			Name:        "maximum",

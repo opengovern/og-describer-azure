@@ -2,6 +2,7 @@ package azure
 
 import (
 	"context"
+
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
@@ -18,7 +19,7 @@ func tableAzureAppManagedEnvironments(_ context.Context) *plugin.Table {
 		List: &plugin.ListConfig{
 			//Hydrate: opengovernance.ListAppManagedEnvironment,
 		},
-		Columns: azureKaytuColumns([]*plugin.Column{
+		Columns: azureOGColumns([]*plugin.Column{
 			{
 				Name:        "id",
 				Description: "The id of the managedenvironments.",

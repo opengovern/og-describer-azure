@@ -2,9 +2,10 @@ package azure
 
 import (
 	"context"
+	"strings"
+
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/compute/armcompute/v4"
 	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
-	"strings"
 
 	"github.com/turbot/go-kit/types"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
@@ -28,7 +29,7 @@ func tableAzureComputeVirtualMachine(_ context.Context) *plugin.Table {
 		List: &plugin.ListConfig{
 			Hydrate: opengovernance.ListComputeVirtualMachine,
 		},
-		Columns: azureKaytuColumns([]*plugin.Column{
+		Columns: azureOGColumns([]*plugin.Column{
 			{
 				Name:        "name",
 				Description: "The friendly name that identifies the virtual machine.",

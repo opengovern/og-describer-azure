@@ -2,6 +2,7 @@ package azure
 
 import (
 	"context"
+
 	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
@@ -22,7 +23,7 @@ func tableAzureDNSZone(_ context.Context) *plugin.Table {
 		List: &plugin.ListConfig{
 			Hydrate: opengovernance.ListDNSZones,
 		},
-		Columns: azureKaytuColumns([]*plugin.Column{
+		Columns: azureOGColumns([]*plugin.Column{
 			{
 				Name:        "name",
 				Type:        proto.ColumnType_STRING,

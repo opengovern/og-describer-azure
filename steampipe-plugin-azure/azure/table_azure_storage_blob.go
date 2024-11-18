@@ -2,11 +2,12 @@ package azure
 
 import (
 	"context"
+	"strings"
+
 	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
-	"strings"
 )
 
 //// TABLE DEFINITION
@@ -18,7 +19,7 @@ func tableAzureStorageBlob(_ context.Context) *plugin.Table {
 		List: &plugin.ListConfig{
 			Hydrate: opengovernance.ListStorageBlob,
 		},
-		Columns: azureKaytuColumns([]*plugin.Column{
+		Columns: azureOGColumns([]*plugin.Column{
 			// Basic info
 			{
 				Name:        "name",

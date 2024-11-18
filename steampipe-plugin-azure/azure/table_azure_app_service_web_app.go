@@ -2,6 +2,7 @@ package azure
 
 import (
 	"context"
+
 	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
 
 	"github.com/turbot/go-kit/types"
@@ -27,7 +28,7 @@ func tableAzureAppServiceWebApp(_ context.Context) *plugin.Table {
 		List: &plugin.ListConfig{
 			Hydrate: opengovernance.ListAppServiceWebApp,
 		},
-		Columns: azureKaytuColumns([]*plugin.Column{
+		Columns: azureOGColumns([]*plugin.Column{
 			{
 				Name:        "name",
 				Description: "The friendly name that identifies the app service web app.",

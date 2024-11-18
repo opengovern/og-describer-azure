@@ -6,7 +6,7 @@
         "Container"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Container%20App.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Container%20App.svg"
       ]
     },
     "ListDescriber": "DescribeBySubscription(describer.AppContainerApps)",
@@ -19,7 +19,7 @@
 
     "Tags": {
         "logo_uri": [
-            "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Blueprint.svg"
+            "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Blueprint.svg"
         ]
     },
 
@@ -36,7 +36,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/CDN%20Profile.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/CDN%20Profile.svg"
       ]
     },
 
@@ -53,7 +53,7 @@
         "Compute"
       ],
         "logo_uri": [
-            "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Cloud%20Service.svg"
+            "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Cloud%20Service.svg"
         ]
     },
 
@@ -70,7 +70,7 @@
         "Container"
       ],
         "logo_uri": [
-            "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Container%20Instance.svg"
+            "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Container%20Instance.svg"
         ]
     },
 
@@ -87,7 +87,7 @@
         "Migration"
       ],
       "logo_uri": [
-          "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Database%20Migration%20Service.svg"
+          "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Database%20Migration%20Service.svg"
       ]
     },
 
@@ -101,7 +101,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Backup%20vault.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Backup%20vault.svg"
       ]
     },
 
@@ -128,7 +128,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Backup%20vault.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Backup%20vault.svg"
       ]
     },
 
@@ -145,7 +145,7 @@
         "Integration"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Integration%20Account.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Integration%20Account.svg"
       ]
     },
 
@@ -162,7 +162,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Bastion.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Bastion.svg"
       ]
     },
 
@@ -179,7 +179,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Hybrid%20Connection.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Hybrid%20Connection.svg"
       ]
     },
 
@@ -193,7 +193,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Firewall%20Policy.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Firewall%20Policy.svg"
       ]
     },
 
@@ -210,7 +210,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Local%20Network%20Gateway.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Local%20Network%20Gateway.svg"
       ]
     },
 
@@ -224,7 +224,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Private%20link%20Service.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Private%20link%20Service.svg"
       ]
     },
 
@@ -241,7 +241,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Public%20IP%20Prefix.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Public%20IP%20Prefix.svg"
       ]
     },
 
@@ -258,7 +258,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Virtual%20Hub.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Virtual%20Hub.svg"
       ]
     },
 
@@ -275,7 +275,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20WAN.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Virtual%20WAN.svg"
       ]
     },
 
@@ -292,7 +292,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Network%20Gateway.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Virtual%20Network%20Gateway.svg"
       ]
     },
 
@@ -340,7 +340,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Stream%20Analytics%20Cluster.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Stream%20Analytics%20Cluster.svg"
       ]
     },
 
@@ -354,7 +354,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Time%20Series%20Insights%20Environment.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Time%20Series%20Insights%20Environment.svg"
       ]
     },
 
@@ -371,7 +371,7 @@
         "Compute"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Image%20Template.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Image%20Template.svg"
       ]
     },
 
@@ -388,7 +388,7 @@
         "Container"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Server%20Farm.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Server%20Farm.svg"
       ]
     },
 
@@ -402,7 +402,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Scale%20Set.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Scale%20Set.svg"
       ]
     },
 
@@ -419,7 +419,7 @@
         "Management \u0026 Governance"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Automation%20Account.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Automation%20Account.svg"
       ]
     },
 
@@ -436,7 +436,7 @@
         "Management \u0026 Governance"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Automation%20Variable.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Automation%20Variable.svg"
       ]
     },
 
@@ -460,7 +460,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DNS%20Zone%20(Public).svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/DNS%20Zone%20(Public).svg"
       ]
     },
 
@@ -477,7 +477,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Databricks.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Databricks.svg"
       ]
     },
 
@@ -494,7 +494,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DNS%20Zone%20(Private).svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/DNS%20Zone%20(Private).svg"
       ]
     },
 
@@ -511,7 +511,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Private%20Endpoint.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Private%20Endpoint.svg"
       ]
     },
 
@@ -525,7 +525,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Network%20Watcher.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Network%20Watcher.svg"
       ]
     },
 
@@ -539,7 +539,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Resource%20Group.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Resource%20Group.svg"
       ]
     },
 
@@ -556,7 +556,7 @@
         "PaaS"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Static%20Web%20App.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Static%20Web%20App.svg"
       ]
     },
 
@@ -573,7 +573,7 @@
         "PaaS"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Static%20Web%20App.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Static%20Web%20App.svg"
       ]
     },
 
@@ -591,7 +591,7 @@
         "AI + ML"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Cognitive%20Services.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Cognitive%20Services.svg"
       ]
     },
 
@@ -608,7 +608,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Managed%20Instance.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/SQL%20Managed%20Instance.svg"
       ]
     },
 
@@ -630,7 +630,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Database.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/SQL%20Database.svg"
       ]
     },
 
@@ -647,7 +647,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Managed%20Instance.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/SQL%20Managed%20Instance.svg"
       ]
     },
 
@@ -664,7 +664,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Database.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/SQL%20Database.svg"
       ]
     },
 
@@ -686,7 +686,7 @@
         "Storage"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/File%20Share.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/File%20Share.svg"
       ]
     },
 
@@ -708,7 +708,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20PostgreSQL.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20PostgreSQL.svg"
       ]
     },
 
@@ -725,7 +725,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20PostgreSQL.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20PostgreSQL.svg"
       ]
     },
 
@@ -742,7 +742,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Analysis%20Service.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Analysis%20Service.svg"
       ]
     },
 
@@ -766,7 +766,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Diagnostics%20Setting.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Diagnostics%20Setting.svg"
       ]
     },
 
@@ -796,7 +796,7 @@
         "PaaS"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Service%20Environment.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Application%20Service%20Environment.svg"
       ]
     },
 
@@ -813,7 +813,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cache%20for%20Redis.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Cache%20for%20Redis.svg"
       ]
     },
 
@@ -830,7 +830,7 @@
         "Container"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Container%20Registry.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Container%20Registry.svg"
       ]
     },
 
@@ -844,7 +844,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Factory.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Data%20Factory.svg"
       ]
     },
 
@@ -871,7 +871,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/ExpressRoute%20Circuit.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/ExpressRoute%20Circuit.svg"
       ]
     },
 
@@ -885,7 +885,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Management%20Group.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Management%20Group.svg"
       ]
     },
 
@@ -902,7 +902,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"
       ]
     },
 
@@ -919,7 +919,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"
       ]
     },
 
@@ -936,7 +936,7 @@
         "Storage"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Table.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Table.svg"
       ]
     },
 
@@ -953,7 +953,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Synapse%20Analytics.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Synapse%20Analytics.svg"
       ]
     },
 
@@ -970,7 +970,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Synapse%20Analytics.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Synapse%20Analytics.svg"
       ]
     },
 
@@ -987,7 +987,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Synapse%20Analytics.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Synapse%20Analytics.svg"
       ]
     },
 
@@ -1001,7 +1001,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Stream%20Analytics%20job.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Stream%20Analytics%20job.svg"
       ]
     },
 
@@ -1028,7 +1028,7 @@
         "Container"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/AKS%20Hybrid%20Cluster.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/AKS%20Hybrid%20Cluster.svg"
       ]
     },
 
@@ -1059,7 +1059,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Factory.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Data%20Factory.svg"
       ]
     },
 
@@ -1076,7 +1076,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"
       ]
     },
 
@@ -1093,7 +1093,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Elastic%20Job%20Agent.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/SQL%20Elastic%20Job%20Agent.svg"
       ]
     },
 
@@ -1130,7 +1130,7 @@
         "IoT \u0026 Devices"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Box%20Edge.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Data%20Box%20Edge.svg"
       ]
     },
 
@@ -1147,7 +1147,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer.svg"
       ]
     },
 
@@ -1164,7 +1164,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Firewall.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Firewall.svg"
       ]
     },
 
@@ -1178,7 +1178,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Resource%20Lock.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Resource%20Lock.svg"
       ]
     },
 
@@ -1192,7 +1192,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Network%20Interface.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Network%20Interface.svg"
       ]
     },
 
@@ -1209,7 +1209,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Front%20Door.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Front%20Door.svg"
       ]
     },
 
@@ -1226,7 +1226,7 @@
         "Identify \u0026 Access"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Policy%20Assignment.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Policy%20Assignment.svg"
       ]
     },
 
@@ -1243,7 +1243,7 @@
         "Identify \u0026 Access"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Policy%20Assignment.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Policy%20Assignment.svg"
       ]
     },
 
@@ -1260,7 +1260,7 @@
         "AI + ML"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Search%20Service.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Search%20Service.svg"
       ]
     },
 
@@ -1284,7 +1284,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Recovery%20Services%20Vault.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Recovery%20Services%20Vault.svg"
       ]
     },
 
@@ -1340,7 +1340,7 @@
         "Compute"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Disk%20Encryption%20Set.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Disk%20Encryption%20Set.svg"
       ]
     },
 
@@ -1357,7 +1357,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"
       ]
     },
 
@@ -1374,7 +1374,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Event%20Grid%20Topic.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Event%20Grid%20Topic.svg"
       ]
     },
 
@@ -1391,7 +1391,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Event%20Hub.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Event%20Hub.svg"
       ]
     },
 
@@ -1408,7 +1408,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Event%20Hub.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Event%20Hub.svg"
       ]
     },
 
@@ -1425,7 +1425,7 @@
         "AI + ML"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Machine%20Learning%20Studio%20Workspace%20(classic).svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Machine%20Learning%20Studio%20Workspace%20(classic).svg"
       ]
     },
 
@@ -1442,7 +1442,7 @@
         "Managed Services"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Managed%20Grafana.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Managed%20Grafana.svg"
       ]
     },
 
@@ -1459,7 +1459,7 @@
         "End User"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Windows%20Virtual%20Desktop.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Windows%20Virtual%20Desktop.svg"
       ]
     },
 
@@ -1476,7 +1476,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Traffic%20Manager%20profile.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Traffic%20Manager%20profile.svg"
       ]
     },
 
@@ -1493,7 +1493,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DNS%20Private%20Resolver.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/DNS%20Private%20Resolver.svg"
       ]
     },
 
@@ -1520,7 +1520,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Network%20Interface.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Network%20Interface.svg"
       ]
     },
 
@@ -1537,7 +1537,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Public%20IP%20Address.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Public%20IP%20Address.svg"
       ]
     },
 
@@ -1564,7 +1564,7 @@
         "Intergration"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Service%20Bus.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Service%20Bus.svg"
       ]
     },
 
@@ -1581,7 +1581,7 @@
         "PaaS"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Service.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Application%20Service.svg"
       ]
     },
 
@@ -1603,7 +1603,7 @@
         "Compute"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Availability%20Set.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Availability%20Set.svg"
       ]
     },
 
@@ -1620,7 +1620,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Network.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Virtual%20Network.svg"
       ]
     },
 
@@ -1667,7 +1667,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Event%20Grid%20Domain.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Event%20Grid%20Domain.svg"
       ]
     },
 
@@ -1684,7 +1684,7 @@
         "Security"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"
       ]
     },
 
@@ -1701,7 +1701,7 @@
         "Storage"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Table.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Table.svg"
       ]
     },
 
@@ -1718,7 +1718,7 @@
         "Storage"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Managed%20Disk%20Snapshot.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Managed%20Disk%20Snapshot.svg"
       ]
     },
 
@@ -1735,7 +1735,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_Grouped/Data/Azure%20Data%20Explorer%20Cluster.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_Grouped/Data/Azure%20Data%20Explorer%20Cluster.svg"
       ]
     },
 
@@ -1752,7 +1752,7 @@
         "Storage"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Sync%20Service.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Storage%20Sync%20Service.svg"
       ]
     },
 
@@ -1779,7 +1779,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Subnet.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Virtual%20Subnet.svg"
       ]
     },
 
@@ -1796,7 +1796,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Backend%20pool.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Backend%20pool.svg"
       ]
     },
 
@@ -1837,7 +1837,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Lake.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Data%20Lake.svg"
       ]
     },
 
@@ -1854,7 +1854,7 @@
         "Storage"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_Grouped/Data/HPC%20Cache.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_Grouped/Data/HPC%20Cache.svg"
       ]
     },
 
@@ -1871,7 +1871,7 @@
         "Compute"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Batch%20Account.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Batch%20Account.svg"
       ]
     },
 
@@ -1888,7 +1888,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Network%20Security%20Group.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Network%20Security%20Group.svg"
       ]
     },
 
@@ -1905,7 +1905,7 @@
         "Identify \u0026 Access"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Role%20(Custom).svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Role%20(Custom).svg"
       ]
     },
 
@@ -1922,7 +1922,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Security%20Group.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Application%20Security%20Group.svg"
       ]
     },
 
@@ -1949,7 +1949,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"
       ]
     },
 
@@ -1966,7 +1966,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"
       ]
     },
 
@@ -1993,7 +1993,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Elastic%20Pool.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/SQL%20Elastic%20Pool.svg"
       ]
     },
 
@@ -2034,7 +2034,7 @@
         "IoT \u0026 Devices"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/IoT%20Hub.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/IoT%20Hub.svg"
       ]
     },
 
@@ -2051,7 +2051,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/HDInsight%20Cluster.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/HDInsight%20Cluster.svg"
       ]
     },
 
@@ -2076,7 +2076,7 @@
         "PaaS"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Service%20Fabric%20Managed%20Cluster.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Service%20Fabric%20Managed%20Cluster.svg"
       ]
     },
 
@@ -2093,7 +2093,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SignalR.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/SignalR.svg"
       ]
     },
 
@@ -2110,7 +2110,7 @@
         "Storage"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Blob.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Blob.svg"
       ]
     },
 
@@ -2127,7 +2127,7 @@
         "Storage"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Container.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Container.svg"
       ]
     },
 
@@ -2144,7 +2144,7 @@
         "Storage"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Blob.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Blob.svg"
       ]
     },
 
@@ -2161,7 +2161,7 @@
         "Storage"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Queue.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Storage%20Account%20Queue.svg"
       ]
     },
 
@@ -2183,7 +2183,7 @@
         "PaaS"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/API%20Management%20Service.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/API%20Management%20Service.svg"
       ]
     },
 
@@ -2200,7 +2200,7 @@
         "PaaS"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/API%20Management%20Service.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/API%20Management%20Service.svg"
       ]
     },
 
@@ -2227,7 +2227,7 @@
         "Compute"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Scale%20Set.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Scale%20Set.svg"
       ]
     },
 
@@ -2251,7 +2251,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Factory.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Data%20Factory.svg"
       ]
     },
 
@@ -2283,7 +2283,7 @@
         "Identify \u0026 Access"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Policy%20Definition.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Policy%20Definition.svg"
       ]
     },
 
@@ -2310,7 +2310,7 @@
         "Compute"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Disk%20Access.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Disk%20Access.svg"
       ]
     },
 
@@ -2327,7 +2327,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20MySQL.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20MySQL.svg"
       ]
     },
 
@@ -2344,7 +2344,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Wordpress%20and%20MySQL%20Flexible%20server.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Wordpress%20and%20MySQL%20Flexible%20server.svg"
       ]
     },
 
@@ -2361,7 +2361,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cache%20for%20Redis.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Cache%20for%20Redis.svg"
       ]
     },
 
@@ -2378,7 +2378,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Data%20Lake%20Analytics.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Data%20Lake%20Analytics.svg"
       ]
     },
 
@@ -2415,7 +2415,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Backend%20Outbound%20Rule.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Backend%20Outbound%20Rule.svg"
       ]
     },
 
@@ -2446,7 +2446,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Inbound%20NAT%20Rule.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Inbound%20NAT%20Rule.svg"
       ]
     },
 
@@ -2473,7 +2473,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Route%20Table.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Route%20Table.svg"
       ]
     },
 
@@ -2490,7 +2490,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"
       ]
     },
 
@@ -2507,7 +2507,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Cosmos%20DB.svg"
       ]
     },
 
@@ -2524,7 +2524,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Gateway.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Application%20Gateway.svg"
       ]
     },
 
@@ -2551,7 +2551,7 @@
         "Container"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Kubernetes%20Cluster%20(Operator%20Nexus).svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Kubernetes%20Cluster%20(Operator%20Nexus).svg"
       ]
     },
 
@@ -2568,7 +2568,7 @@
         "Security"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"
       ]
     },
 
@@ -2585,7 +2585,7 @@
         "Security"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"
       ]
     },
 
@@ -2602,7 +2602,7 @@
         "Security"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"
       ]
     },
 
@@ -2619,7 +2619,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20MariaDB.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20MariaDB.svg"
       ]
     },
 
@@ -2636,7 +2636,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20MariaDB.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Database%20for%20MariaDB.svg"
       ]
     },
 
@@ -2660,7 +2660,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Service%20plan.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Application%20Service%20plan.svg"
       ]
     },
 
@@ -2712,7 +2712,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Network%20Gateway.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Virtual%20Network%20Gateway.svg"
       ]
     },
 
@@ -2729,7 +2729,7 @@
         "IoT \u0026 Devices"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/IoT%20Hub.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/IoT%20Hub.svg"
       ]
     },
 
@@ -2760,7 +2760,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/SQL%20Server.svg"
       ]
     },
 
@@ -2774,7 +2774,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Resource%20Management%20Private%20Link.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Resource%20Management%20Private%20Link.svg"
       ]
     },
 
@@ -2788,7 +2788,7 @@
 
     "Tags": {
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Subscription.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Subscription.svg"
       ]
     },
 
@@ -2805,7 +2805,7 @@
         "Compute"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Image.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine%20Image.svg"
       ]
     },
 
@@ -2822,7 +2822,7 @@
         "Compute"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Virtual%20Machine.svg"
       ]
     },
 
@@ -2844,7 +2844,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/NAT%20Gateway.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/NAT%20Gateway.svg"
       ]
     },
 
@@ -2861,7 +2861,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Health%20Probe.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Load%20Balancer%20Health%20Probe.svg"
       ]
     },
 
@@ -2878,7 +2878,7 @@
         "Security"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Key%20Vault.svg"
       ]
     },
 
@@ -2895,7 +2895,7 @@
         "Security"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault%20HSM.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Key%20Vault%20HSM.svg"
       ]
     },
 
@@ -2912,7 +2912,7 @@
         "Security"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Key%20Vault%20Secret.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Key%20Vault%20Secret.svg"
       ]
     },
 
@@ -2929,7 +2929,7 @@
         "PaaS"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/App%20Configuration.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/App%20Configuration.svg"
       ]
     },
 
@@ -2956,7 +2956,7 @@
         "Storage"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Storage%20Account.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Storage%20Account.svg"
       ]
     },
 
@@ -2973,7 +2973,7 @@
         "PaaS"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Spring%20Cloud.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Spring%20Cloud.svg"
       ]
     },
 
@@ -2990,7 +2990,7 @@
         "General"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Compute%20Gallery.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Compute%20Gallery.svg"
       ]
     },
 
@@ -3007,7 +3007,7 @@
         "Compute"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Host%20Group.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Host%20Group.svg"
       ]
     },
 
@@ -3024,7 +3024,7 @@
         "Compute"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Host%20Group.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Host%20Group.svg"
       ]
     },
 
@@ -3055,7 +3055,7 @@
         "Management \u0026 Governance"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/SSH%20key.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/SSH%20key.svg"
       ]
     },
 
@@ -3072,7 +3072,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/CDN%20Profile.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/CDN%20Profile.svg"
       ]
     },
 
@@ -3089,7 +3089,7 @@
         "AI + ML"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Bot%20Service.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Bot%20Service.svg"
       ]
     },
 
@@ -3106,7 +3106,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20Managed%20Instance%20for%20Apache%20Cassandra.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20Managed%20Instance%20for%20Apache%20Cassandra.svg"
       ]
     },
 
@@ -3123,7 +3123,7 @@
         "Networking"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DDoS%20Protection%20Plan.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/DDoS%20Protection%20Plan.svg"
       ]
     },
 
@@ -3140,7 +3140,7 @@
         "Database"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Instance%20Pool.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Instance%20Pool.svg"
       ]
     },
 
@@ -3157,7 +3157,7 @@
         "Storage"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20NetApp%20Files.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20NetApp%20Files.svg"
       ]
     },
 
@@ -3174,7 +3174,7 @@
         "Storage"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Azure%20NetApp%20Files.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Azure%20NetApp%20Files.svg"
       ]
     },
 
@@ -3191,7 +3191,7 @@
         "End User"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Windows%20Virtual%20Desktop.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Windows%20Virtual%20Desktop.svg"
       ]
     },
 
@@ -3208,7 +3208,7 @@
         "DevOps + Testing"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/DevTest%20Lab.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/DevTest%20Lab.svg"
       ]
     },
 
@@ -3225,7 +3225,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Purview%20Account.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Purview%20Account.svg"
       ]
     },
 
@@ -3242,7 +3242,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Power%20BI%20Embedded.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Power%20BI%20Embedded.svg"
       ]
     },
 
@@ -3259,7 +3259,7 @@
         "Data and Analytics"
       ],
       "logo_uri": [
-        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/Application%20Insights.svg"
+        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Application%20Insights.svg"
       ]
     },
 

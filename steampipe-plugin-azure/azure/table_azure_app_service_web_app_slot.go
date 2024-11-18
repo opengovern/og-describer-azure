@@ -2,8 +2,9 @@ package azure
 
 import (
 	"context"
-	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
 	"strings"
+
+	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
 
 	"github.com/Azure/azure-sdk-for-go/services/web/mgmt/2020-06-01/web"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
@@ -28,7 +29,7 @@ func tableAzureAppServiceWebAppSlot(_ context.Context) *plugin.Table {
 		List: &plugin.ListConfig{
 			Hydrate: opengovernance.ListAppServiceWebAppSlot,
 		},
-		Columns: azureKaytuColumns([]*plugin.Column{
+		Columns: azureOGColumns([]*plugin.Column{
 			{
 				Name:        "name",
 				Description: "Resource Name.",

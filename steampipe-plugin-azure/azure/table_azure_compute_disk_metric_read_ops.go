@@ -17,7 +17,7 @@ func tableAzureComputeDiskMetricReadOps(_ context.Context) *plugin.Table {
 		List: &plugin.ListConfig{
 			Hydrate: opengovernance.ListComputeDiskReadOps,
 		},
-		Columns: kaytuMonitoringMetricColumns([]*plugin.Column{
+		Columns: opengovernanceMonitoringMetricColumns([]*plugin.Column{
 			{
 				Name:        "name",
 				Description: "The name of the disk.",

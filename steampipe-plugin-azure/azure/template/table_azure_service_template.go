@@ -4,7 +4,6 @@ package main
 
 import (
 	"fmt"
-	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
 	"os"
 	"strings"
 	"text/template"
@@ -22,7 +21,7 @@ import (
 	opengovernance "github.com/opengovern/og-describer-azure/pkg/SDK/generated"
 	"context"
 	"fmt"
-	"github.com/opengovern/og-azure-describer/pkg/kaytu-es-sdk"
+	"github.com/opengovern/og-azure-describer/pkg/opengovernance-es-sdk"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
@@ -39,7 +38,7 @@ func tableAzure{{.Service}}{{.Name}}(_ context.Context) *plugin.Table {
 		List: &plugin.ListConfig{
 			Hydrate: opengovernance.List{{.Service}}{{.Name}},
 		},
-		Columns: azureKaytuColumns([]*plugin.Column{
+		Columns: azureOGColumns([]*plugin.Column{
 			{
 				Name:        "id",
 				Description: "The id of the {{.NameLowerCase}}.",

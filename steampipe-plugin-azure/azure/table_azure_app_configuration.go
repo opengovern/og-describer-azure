@@ -3,10 +3,11 @@ package azure
 import (
 	"context"
 	"fmt"
+	"strings"
+
 	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
-	"strings"
 
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 )
@@ -27,7 +28,7 @@ func tableAzureAppConfiguration(_ context.Context) *plugin.Table {
 		List: &plugin.ListConfig{
 			Hydrate: opengovernance.ListAppConfiguration,
 		},
-		Columns: azureKaytuColumns([]*plugin.Column{
+		Columns: azureOGColumns([]*plugin.Column{
 			{
 				Name:        "name",
 				Description: "The name of the resource.",

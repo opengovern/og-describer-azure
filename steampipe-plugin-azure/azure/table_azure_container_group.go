@@ -2,6 +2,7 @@ package azure
 
 import (
 	"context"
+
 	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
 
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
@@ -22,7 +23,7 @@ func tableAzureContainerGroup(_ context.Context) *plugin.Table {
 		List: &plugin.ListConfig{
 			Hydrate: opengovernance.ListContainerInstanceContainerGroup,
 		},
-		Columns: azureKaytuColumns([]*plugin.Column{
+		Columns: azureOGColumns([]*plugin.Column{
 			{
 				Name:        "name",
 				Description: "The name of the resource.",

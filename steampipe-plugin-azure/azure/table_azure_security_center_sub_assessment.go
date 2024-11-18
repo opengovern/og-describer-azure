@@ -3,9 +3,10 @@ package azure
 import (
 	"context"
 	"encoding/json"
-	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
 	"regexp"
 	"strings"
+
+	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
 
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
@@ -22,7 +23,7 @@ func tableAzureSecurityCenterSubAssessment(_ context.Context) *plugin.Table {
 		List: &plugin.ListConfig{
 			Hydrate: opengovernance.ListSecurityCenterSubAssessment,
 		},
-		Columns: azureKaytuColumns([]*plugin.Column{
+		Columns: azureOGColumns([]*plugin.Column{
 			{
 				Name:        "id",
 				Type:        proto.ColumnType_STRING,
