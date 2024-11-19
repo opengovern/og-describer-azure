@@ -73,6 +73,10 @@ func (r *APIManagement) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -403,6 +407,10 @@ func (r *APIManagementBackend) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -679,6 +687,10 @@ func (r *AutomationAccounts) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -959,6 +971,10 @@ func (r *AutomationVariables) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -1229,6 +1245,10 @@ func (r *AppConfiguration) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -1503,6 +1523,10 @@ func (r *AppServiceEnvironment) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -1786,6 +1810,10 @@ func (r *AppServiceFunctionApp) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -2077,6 +2105,10 @@ func (r *AppServiceWebApp) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -2372,6 +2404,10 @@ func (r *AppServiceWebAppSlot) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -2706,6 +2742,10 @@ func (r *AppServicePlan) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -2999,6 +3039,10 @@ func (r *ContainerApp) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -3255,6 +3299,10 @@ func (r *WebServerFarms) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -3515,6 +3563,10 @@ func (r *Blueprint) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -3769,6 +3821,10 @@ func (r *ComputeDisk) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -4047,1494 +4103,6 @@ func GetComputeDisk(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 
 // ==========================  END: ComputeDisk =============================
 
-// ==========================  START: ComputeDiskReadOps =============================
-
-type ComputeDiskReadOps struct {
-	ResourceID      string                              `json:"resource_id"`
-	PlatformID      string                              `json:"platform_id"`
-	Description     azure.ComputeDiskReadOpsDescription `json:"description"`
-	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     string                              `json:"described_by"`
-	ResourceType    string                              `json:"resource_type"`
-	IntegrationType string                              `json:"integration_type"`
-	IntegrationID   string                              `json:"integration_id"`
-}
-
-func (r *ComputeDiskReadOps) UnmarshalJSON(b []byte) error {
-	var rawMsg map[string]json.RawMessage
-	if err := json.Unmarshal(b, &rawMsg); err != nil {
-		return fmt.Errorf("unmarshalling type %T: %v", r, err)
-	}
-	for k, v := range rawMsg {
-		switch k {
-		case "description":
-			wrapper := azureDescriber.JSONAllFieldsMarshaller{
-				Value: r.Description,
-			}
-			if err := json.Unmarshal(v, &wrapper); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-			var ok bool
-			r.Description, ok = wrapper.Value.(azure.ComputeDiskReadOpsDescription)
-			if !ok {
-				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
-			}
-		case "platform_id":
-			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_id":
-			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_type":
-			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "described_by":
-			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_type":
-			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_id":
-			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		default:
-		}
-	}
-	return nil
-}
-
-type ComputeDiskReadOpsHit struct {
-	ID      string             `json:"_id"`
-	Score   float64            `json:"_score"`
-	Index   string             `json:"_index"`
-	Type    string             `json:"_type"`
-	Version int64              `json:"_version,omitempty"`
-	Source  ComputeDiskReadOps `json:"_source"`
-	Sort    []interface{}      `json:"sort"`
-}
-
-type ComputeDiskReadOpsHits struct {
-	Total essdk.SearchTotal       `json:"total"`
-	Hits  []ComputeDiskReadOpsHit `json:"hits"`
-}
-
-type ComputeDiskReadOpsSearchResponse struct {
-	PitID string                 `json:"pit_id"`
-	Hits  ComputeDiskReadOpsHits `json:"hits"`
-}
-
-type ComputeDiskReadOpsPaginator struct {
-	paginator *essdk.BaseESPaginator
-}
-
-func (k Client) NewComputeDiskReadOpsPaginator(filters []essdk.BoolFilter, limit *int64) (ComputeDiskReadOpsPaginator, error) {
-	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_compute_disksreadops", filters, limit)
-	if err != nil {
-		return ComputeDiskReadOpsPaginator{}, err
-	}
-
-	p := ComputeDiskReadOpsPaginator{
-		paginator: paginator,
-	}
-
-	return p, nil
-}
-
-func (p ComputeDiskReadOpsPaginator) HasNext() bool {
-	return !p.paginator.Done()
-}
-
-func (p ComputeDiskReadOpsPaginator) Close(ctx context.Context) error {
-	return p.paginator.Deallocate(ctx)
-}
-
-func (p ComputeDiskReadOpsPaginator) NextPage(ctx context.Context) ([]ComputeDiskReadOps, error) {
-	var response ComputeDiskReadOpsSearchResponse
-	err := p.paginator.Search(ctx, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	var values []ComputeDiskReadOps
-	for _, hit := range response.Hits.Hits {
-		values = append(values, hit.Source)
-	}
-
-	hits := int64(len(response.Hits.Hits))
-	if hits > 0 {
-		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
-	} else {
-		p.paginator.UpdateState(hits, nil, "")
-	}
-
-	return values, nil
-}
-
-var listComputeDiskReadOpsFilters = map[string]string{}
-
-func ListComputeDiskReadOps(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("ListComputeDiskReadOps")
-	runtime.GC()
-
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOps NewClientCached", "error", err)
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOps NewSelfClientCached", "error", err)
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOps GetConfigTableValueOrNil for OpenGovernanceConfigKeyAccountID", "error", err)
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOps GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOps GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
-		return nil, err
-	}
-
-	paginator, err := k.NewComputeDiskReadOpsPaginator(essdk.BuildFilter(ctx, d.QueryContext, listComputeDiskReadOpsFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOps NewComputeDiskReadOpsPaginator", "error", err)
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			plugin.Logger(ctx).Error("ListComputeDiskReadOps paginator.NextPage", "error", err)
-			return nil, err
-		}
-
-		for _, v := range page {
-			d.StreamListItem(ctx, v)
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-var getComputeDiskReadOpsFilters = map[string]string{}
-
-func GetComputeDiskReadOps(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("GetComputeDiskReadOps")
-	runtime.GC()
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		return nil, err
-	}
-
-	limit := int64(1)
-	paginator, err := k.NewComputeDiskReadOpsPaginator(essdk.BuildFilter(ctx, d.QueryContext, getComputeDiskReadOpsFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), &limit)
-	if err != nil {
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			return nil, err
-		}
-
-		for _, v := range page {
-			return v, nil
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-// ==========================  END: ComputeDiskReadOps =============================
-
-// ==========================  START: ComputeDiskReadOpsDaily =============================
-
-type ComputeDiskReadOpsDaily struct {
-	ResourceID      string                                   `json:"resource_id"`
-	PlatformID      string                                   `json:"platform_id"`
-	Description     azure.ComputeDiskReadOpsDailyDescription `json:"description"`
-	Metadata        azure.Metadata                           `json:"metadata"`
-	DescribedBy     string                                   `json:"described_by"`
-	ResourceType    string                                   `json:"resource_type"`
-	IntegrationType string                                   `json:"integration_type"`
-	IntegrationID   string                                   `json:"integration_id"`
-}
-
-func (r *ComputeDiskReadOpsDaily) UnmarshalJSON(b []byte) error {
-	var rawMsg map[string]json.RawMessage
-	if err := json.Unmarshal(b, &rawMsg); err != nil {
-		return fmt.Errorf("unmarshalling type %T: %v", r, err)
-	}
-	for k, v := range rawMsg {
-		switch k {
-		case "description":
-			wrapper := azureDescriber.JSONAllFieldsMarshaller{
-				Value: r.Description,
-			}
-			if err := json.Unmarshal(v, &wrapper); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-			var ok bool
-			r.Description, ok = wrapper.Value.(azure.ComputeDiskReadOpsDailyDescription)
-			if !ok {
-				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
-			}
-		case "platform_id":
-			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_id":
-			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_type":
-			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "described_by":
-			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_type":
-			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_id":
-			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		default:
-		}
-	}
-	return nil
-}
-
-type ComputeDiskReadOpsDailyHit struct {
-	ID      string                  `json:"_id"`
-	Score   float64                 `json:"_score"`
-	Index   string                  `json:"_index"`
-	Type    string                  `json:"_type"`
-	Version int64                   `json:"_version,omitempty"`
-	Source  ComputeDiskReadOpsDaily `json:"_source"`
-	Sort    []interface{}           `json:"sort"`
-}
-
-type ComputeDiskReadOpsDailyHits struct {
-	Total essdk.SearchTotal            `json:"total"`
-	Hits  []ComputeDiskReadOpsDailyHit `json:"hits"`
-}
-
-type ComputeDiskReadOpsDailySearchResponse struct {
-	PitID string                      `json:"pit_id"`
-	Hits  ComputeDiskReadOpsDailyHits `json:"hits"`
-}
-
-type ComputeDiskReadOpsDailyPaginator struct {
-	paginator *essdk.BaseESPaginator
-}
-
-func (k Client) NewComputeDiskReadOpsDailyPaginator(filters []essdk.BoolFilter, limit *int64) (ComputeDiskReadOpsDailyPaginator, error) {
-	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_compute_disksreadopsdaily", filters, limit)
-	if err != nil {
-		return ComputeDiskReadOpsDailyPaginator{}, err
-	}
-
-	p := ComputeDiskReadOpsDailyPaginator{
-		paginator: paginator,
-	}
-
-	return p, nil
-}
-
-func (p ComputeDiskReadOpsDailyPaginator) HasNext() bool {
-	return !p.paginator.Done()
-}
-
-func (p ComputeDiskReadOpsDailyPaginator) Close(ctx context.Context) error {
-	return p.paginator.Deallocate(ctx)
-}
-
-func (p ComputeDiskReadOpsDailyPaginator) NextPage(ctx context.Context) ([]ComputeDiskReadOpsDaily, error) {
-	var response ComputeDiskReadOpsDailySearchResponse
-	err := p.paginator.Search(ctx, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	var values []ComputeDiskReadOpsDaily
-	for _, hit := range response.Hits.Hits {
-		values = append(values, hit.Source)
-	}
-
-	hits := int64(len(response.Hits.Hits))
-	if hits > 0 {
-		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
-	} else {
-		p.paginator.UpdateState(hits, nil, "")
-	}
-
-	return values, nil
-}
-
-var listComputeDiskReadOpsDailyFilters = map[string]string{}
-
-func ListComputeDiskReadOpsDaily(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("ListComputeDiskReadOpsDaily")
-	runtime.GC()
-
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOpsDaily NewClientCached", "error", err)
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOpsDaily NewSelfClientCached", "error", err)
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOpsDaily GetConfigTableValueOrNil for OpenGovernanceConfigKeyAccountID", "error", err)
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOpsDaily GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOpsDaily GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
-		return nil, err
-	}
-
-	paginator, err := k.NewComputeDiskReadOpsDailyPaginator(essdk.BuildFilter(ctx, d.QueryContext, listComputeDiskReadOpsDailyFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOpsDaily NewComputeDiskReadOpsDailyPaginator", "error", err)
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			plugin.Logger(ctx).Error("ListComputeDiskReadOpsDaily paginator.NextPage", "error", err)
-			return nil, err
-		}
-
-		for _, v := range page {
-			d.StreamListItem(ctx, v)
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-var getComputeDiskReadOpsDailyFilters = map[string]string{}
-
-func GetComputeDiskReadOpsDaily(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("GetComputeDiskReadOpsDaily")
-	runtime.GC()
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		return nil, err
-	}
-
-	limit := int64(1)
-	paginator, err := k.NewComputeDiskReadOpsDailyPaginator(essdk.BuildFilter(ctx, d.QueryContext, getComputeDiskReadOpsDailyFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), &limit)
-	if err != nil {
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			return nil, err
-		}
-
-		for _, v := range page {
-			return v, nil
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-// ==========================  END: ComputeDiskReadOpsDaily =============================
-
-// ==========================  START: ComputeDiskReadOpsHourly =============================
-
-type ComputeDiskReadOpsHourly struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.ComputeDiskReadOpsHourlyDescription `json:"description"`
-	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
-}
-
-func (r *ComputeDiskReadOpsHourly) UnmarshalJSON(b []byte) error {
-	var rawMsg map[string]json.RawMessage
-	if err := json.Unmarshal(b, &rawMsg); err != nil {
-		return fmt.Errorf("unmarshalling type %T: %v", r, err)
-	}
-	for k, v := range rawMsg {
-		switch k {
-		case "description":
-			wrapper := azureDescriber.JSONAllFieldsMarshaller{
-				Value: r.Description,
-			}
-			if err := json.Unmarshal(v, &wrapper); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-			var ok bool
-			r.Description, ok = wrapper.Value.(azure.ComputeDiskReadOpsHourlyDescription)
-			if !ok {
-				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
-			}
-		case "platform_id":
-			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_id":
-			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_type":
-			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "described_by":
-			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_type":
-			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_id":
-			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		default:
-		}
-	}
-	return nil
-}
-
-type ComputeDiskReadOpsHourlyHit struct {
-	ID      string                   `json:"_id"`
-	Score   float64                  `json:"_score"`
-	Index   string                   `json:"_index"`
-	Type    string                   `json:"_type"`
-	Version int64                    `json:"_version,omitempty"`
-	Source  ComputeDiskReadOpsHourly `json:"_source"`
-	Sort    []interface{}            `json:"sort"`
-}
-
-type ComputeDiskReadOpsHourlyHits struct {
-	Total essdk.SearchTotal             `json:"total"`
-	Hits  []ComputeDiskReadOpsHourlyHit `json:"hits"`
-}
-
-type ComputeDiskReadOpsHourlySearchResponse struct {
-	PitID string                       `json:"pit_id"`
-	Hits  ComputeDiskReadOpsHourlyHits `json:"hits"`
-}
-
-type ComputeDiskReadOpsHourlyPaginator struct {
-	paginator *essdk.BaseESPaginator
-}
-
-func (k Client) NewComputeDiskReadOpsHourlyPaginator(filters []essdk.BoolFilter, limit *int64) (ComputeDiskReadOpsHourlyPaginator, error) {
-	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_compute_disksreadopshourly", filters, limit)
-	if err != nil {
-		return ComputeDiskReadOpsHourlyPaginator{}, err
-	}
-
-	p := ComputeDiskReadOpsHourlyPaginator{
-		paginator: paginator,
-	}
-
-	return p, nil
-}
-
-func (p ComputeDiskReadOpsHourlyPaginator) HasNext() bool {
-	return !p.paginator.Done()
-}
-
-func (p ComputeDiskReadOpsHourlyPaginator) Close(ctx context.Context) error {
-	return p.paginator.Deallocate(ctx)
-}
-
-func (p ComputeDiskReadOpsHourlyPaginator) NextPage(ctx context.Context) ([]ComputeDiskReadOpsHourly, error) {
-	var response ComputeDiskReadOpsHourlySearchResponse
-	err := p.paginator.Search(ctx, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	var values []ComputeDiskReadOpsHourly
-	for _, hit := range response.Hits.Hits {
-		values = append(values, hit.Source)
-	}
-
-	hits := int64(len(response.Hits.Hits))
-	if hits > 0 {
-		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
-	} else {
-		p.paginator.UpdateState(hits, nil, "")
-	}
-
-	return values, nil
-}
-
-var listComputeDiskReadOpsHourlyFilters = map[string]string{}
-
-func ListComputeDiskReadOpsHourly(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("ListComputeDiskReadOpsHourly")
-	runtime.GC()
-
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOpsHourly NewClientCached", "error", err)
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOpsHourly NewSelfClientCached", "error", err)
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOpsHourly GetConfigTableValueOrNil for OpenGovernanceConfigKeyAccountID", "error", err)
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOpsHourly GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOpsHourly GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
-		return nil, err
-	}
-
-	paginator, err := k.NewComputeDiskReadOpsHourlyPaginator(essdk.BuildFilter(ctx, d.QueryContext, listComputeDiskReadOpsHourlyFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskReadOpsHourly NewComputeDiskReadOpsHourlyPaginator", "error", err)
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			plugin.Logger(ctx).Error("ListComputeDiskReadOpsHourly paginator.NextPage", "error", err)
-			return nil, err
-		}
-
-		for _, v := range page {
-			d.StreamListItem(ctx, v)
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-var getComputeDiskReadOpsHourlyFilters = map[string]string{}
-
-func GetComputeDiskReadOpsHourly(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("GetComputeDiskReadOpsHourly")
-	runtime.GC()
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		return nil, err
-	}
-
-	limit := int64(1)
-	paginator, err := k.NewComputeDiskReadOpsHourlyPaginator(essdk.BuildFilter(ctx, d.QueryContext, getComputeDiskReadOpsHourlyFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), &limit)
-	if err != nil {
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			return nil, err
-		}
-
-		for _, v := range page {
-			return v, nil
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-// ==========================  END: ComputeDiskReadOpsHourly =============================
-
-// ==========================  START: ComputeDiskWriteOps =============================
-
-type ComputeDiskWriteOps struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure.ComputeDiskWriteOpsDescription `json:"description"`
-	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
-}
-
-func (r *ComputeDiskWriteOps) UnmarshalJSON(b []byte) error {
-	var rawMsg map[string]json.RawMessage
-	if err := json.Unmarshal(b, &rawMsg); err != nil {
-		return fmt.Errorf("unmarshalling type %T: %v", r, err)
-	}
-	for k, v := range rawMsg {
-		switch k {
-		case "description":
-			wrapper := azureDescriber.JSONAllFieldsMarshaller{
-				Value: r.Description,
-			}
-			if err := json.Unmarshal(v, &wrapper); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-			var ok bool
-			r.Description, ok = wrapper.Value.(azure.ComputeDiskWriteOpsDescription)
-			if !ok {
-				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
-			}
-		case "platform_id":
-			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_id":
-			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_type":
-			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "described_by":
-			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_type":
-			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_id":
-			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		default:
-		}
-	}
-	return nil
-}
-
-type ComputeDiskWriteOpsHit struct {
-	ID      string              `json:"_id"`
-	Score   float64             `json:"_score"`
-	Index   string              `json:"_index"`
-	Type    string              `json:"_type"`
-	Version int64               `json:"_version,omitempty"`
-	Source  ComputeDiskWriteOps `json:"_source"`
-	Sort    []interface{}       `json:"sort"`
-}
-
-type ComputeDiskWriteOpsHits struct {
-	Total essdk.SearchTotal        `json:"total"`
-	Hits  []ComputeDiskWriteOpsHit `json:"hits"`
-}
-
-type ComputeDiskWriteOpsSearchResponse struct {
-	PitID string                  `json:"pit_id"`
-	Hits  ComputeDiskWriteOpsHits `json:"hits"`
-}
-
-type ComputeDiskWriteOpsPaginator struct {
-	paginator *essdk.BaseESPaginator
-}
-
-func (k Client) NewComputeDiskWriteOpsPaginator(filters []essdk.BoolFilter, limit *int64) (ComputeDiskWriteOpsPaginator, error) {
-	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_compute_diskswriteops", filters, limit)
-	if err != nil {
-		return ComputeDiskWriteOpsPaginator{}, err
-	}
-
-	p := ComputeDiskWriteOpsPaginator{
-		paginator: paginator,
-	}
-
-	return p, nil
-}
-
-func (p ComputeDiskWriteOpsPaginator) HasNext() bool {
-	return !p.paginator.Done()
-}
-
-func (p ComputeDiskWriteOpsPaginator) Close(ctx context.Context) error {
-	return p.paginator.Deallocate(ctx)
-}
-
-func (p ComputeDiskWriteOpsPaginator) NextPage(ctx context.Context) ([]ComputeDiskWriteOps, error) {
-	var response ComputeDiskWriteOpsSearchResponse
-	err := p.paginator.Search(ctx, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	var values []ComputeDiskWriteOps
-	for _, hit := range response.Hits.Hits {
-		values = append(values, hit.Source)
-	}
-
-	hits := int64(len(response.Hits.Hits))
-	if hits > 0 {
-		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
-	} else {
-		p.paginator.UpdateState(hits, nil, "")
-	}
-
-	return values, nil
-}
-
-var listComputeDiskWriteOpsFilters = map[string]string{}
-
-func ListComputeDiskWriteOps(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("ListComputeDiskWriteOps")
-	runtime.GC()
-
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOps NewClientCached", "error", err)
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOps NewSelfClientCached", "error", err)
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOps GetConfigTableValueOrNil for OpenGovernanceConfigKeyAccountID", "error", err)
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOps GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOps GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
-		return nil, err
-	}
-
-	paginator, err := k.NewComputeDiskWriteOpsPaginator(essdk.BuildFilter(ctx, d.QueryContext, listComputeDiskWriteOpsFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOps NewComputeDiskWriteOpsPaginator", "error", err)
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			plugin.Logger(ctx).Error("ListComputeDiskWriteOps paginator.NextPage", "error", err)
-			return nil, err
-		}
-
-		for _, v := range page {
-			d.StreamListItem(ctx, v)
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-var getComputeDiskWriteOpsFilters = map[string]string{}
-
-func GetComputeDiskWriteOps(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("GetComputeDiskWriteOps")
-	runtime.GC()
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		return nil, err
-	}
-
-	limit := int64(1)
-	paginator, err := k.NewComputeDiskWriteOpsPaginator(essdk.BuildFilter(ctx, d.QueryContext, getComputeDiskWriteOpsFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), &limit)
-	if err != nil {
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			return nil, err
-		}
-
-		for _, v := range page {
-			return v, nil
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-// ==========================  END: ComputeDiskWriteOps =============================
-
-// ==========================  START: ComputeDiskWriteOpsDaily =============================
-
-type ComputeDiskWriteOpsDaily struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.ComputeDiskWriteOpsDailyDescription `json:"description"`
-	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
-}
-
-func (r *ComputeDiskWriteOpsDaily) UnmarshalJSON(b []byte) error {
-	var rawMsg map[string]json.RawMessage
-	if err := json.Unmarshal(b, &rawMsg); err != nil {
-		return fmt.Errorf("unmarshalling type %T: %v", r, err)
-	}
-	for k, v := range rawMsg {
-		switch k {
-		case "description":
-			wrapper := azureDescriber.JSONAllFieldsMarshaller{
-				Value: r.Description,
-			}
-			if err := json.Unmarshal(v, &wrapper); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-			var ok bool
-			r.Description, ok = wrapper.Value.(azure.ComputeDiskWriteOpsDailyDescription)
-			if !ok {
-				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
-			}
-		case "platform_id":
-			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_id":
-			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_type":
-			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "described_by":
-			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_type":
-			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_id":
-			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		default:
-		}
-	}
-	return nil
-}
-
-type ComputeDiskWriteOpsDailyHit struct {
-	ID      string                   `json:"_id"`
-	Score   float64                  `json:"_score"`
-	Index   string                   `json:"_index"`
-	Type    string                   `json:"_type"`
-	Version int64                    `json:"_version,omitempty"`
-	Source  ComputeDiskWriteOpsDaily `json:"_source"`
-	Sort    []interface{}            `json:"sort"`
-}
-
-type ComputeDiskWriteOpsDailyHits struct {
-	Total essdk.SearchTotal             `json:"total"`
-	Hits  []ComputeDiskWriteOpsDailyHit `json:"hits"`
-}
-
-type ComputeDiskWriteOpsDailySearchResponse struct {
-	PitID string                       `json:"pit_id"`
-	Hits  ComputeDiskWriteOpsDailyHits `json:"hits"`
-}
-
-type ComputeDiskWriteOpsDailyPaginator struct {
-	paginator *essdk.BaseESPaginator
-}
-
-func (k Client) NewComputeDiskWriteOpsDailyPaginator(filters []essdk.BoolFilter, limit *int64) (ComputeDiskWriteOpsDailyPaginator, error) {
-	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_compute_diskswriteopsdaily", filters, limit)
-	if err != nil {
-		return ComputeDiskWriteOpsDailyPaginator{}, err
-	}
-
-	p := ComputeDiskWriteOpsDailyPaginator{
-		paginator: paginator,
-	}
-
-	return p, nil
-}
-
-func (p ComputeDiskWriteOpsDailyPaginator) HasNext() bool {
-	return !p.paginator.Done()
-}
-
-func (p ComputeDiskWriteOpsDailyPaginator) Close(ctx context.Context) error {
-	return p.paginator.Deallocate(ctx)
-}
-
-func (p ComputeDiskWriteOpsDailyPaginator) NextPage(ctx context.Context) ([]ComputeDiskWriteOpsDaily, error) {
-	var response ComputeDiskWriteOpsDailySearchResponse
-	err := p.paginator.Search(ctx, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	var values []ComputeDiskWriteOpsDaily
-	for _, hit := range response.Hits.Hits {
-		values = append(values, hit.Source)
-	}
-
-	hits := int64(len(response.Hits.Hits))
-	if hits > 0 {
-		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
-	} else {
-		p.paginator.UpdateState(hits, nil, "")
-	}
-
-	return values, nil
-}
-
-var listComputeDiskWriteOpsDailyFilters = map[string]string{}
-
-func ListComputeDiskWriteOpsDaily(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("ListComputeDiskWriteOpsDaily")
-	runtime.GC()
-
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOpsDaily NewClientCached", "error", err)
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOpsDaily NewSelfClientCached", "error", err)
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOpsDaily GetConfigTableValueOrNil for OpenGovernanceConfigKeyAccountID", "error", err)
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOpsDaily GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOpsDaily GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
-		return nil, err
-	}
-
-	paginator, err := k.NewComputeDiskWriteOpsDailyPaginator(essdk.BuildFilter(ctx, d.QueryContext, listComputeDiskWriteOpsDailyFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOpsDaily NewComputeDiskWriteOpsDailyPaginator", "error", err)
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			plugin.Logger(ctx).Error("ListComputeDiskWriteOpsDaily paginator.NextPage", "error", err)
-			return nil, err
-		}
-
-		for _, v := range page {
-			d.StreamListItem(ctx, v)
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-var getComputeDiskWriteOpsDailyFilters = map[string]string{}
-
-func GetComputeDiskWriteOpsDaily(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("GetComputeDiskWriteOpsDaily")
-	runtime.GC()
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		return nil, err
-	}
-
-	limit := int64(1)
-	paginator, err := k.NewComputeDiskWriteOpsDailyPaginator(essdk.BuildFilter(ctx, d.QueryContext, getComputeDiskWriteOpsDailyFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), &limit)
-	if err != nil {
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			return nil, err
-		}
-
-		for _, v := range page {
-			return v, nil
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-// ==========================  END: ComputeDiskWriteOpsDaily =============================
-
-// ==========================  START: ComputeDiskWriteOpsHourly =============================
-
-type ComputeDiskWriteOpsHourly struct {
-	ResourceID      string                                     `json:"resource_id"`
-	PlatformID      string                                     `json:"platform_id"`
-	Description     azure.ComputeDiskWriteOpsHourlyDescription `json:"description"`
-	Metadata        azure.Metadata                             `json:"metadata"`
-	DescribedBy     string                                     `json:"described_by"`
-	ResourceType    string                                     `json:"resource_type"`
-	IntegrationType string                                     `json:"integration_type"`
-	IntegrationID   string                                     `json:"integration_id"`
-}
-
-func (r *ComputeDiskWriteOpsHourly) UnmarshalJSON(b []byte) error {
-	var rawMsg map[string]json.RawMessage
-	if err := json.Unmarshal(b, &rawMsg); err != nil {
-		return fmt.Errorf("unmarshalling type %T: %v", r, err)
-	}
-	for k, v := range rawMsg {
-		switch k {
-		case "description":
-			wrapper := azureDescriber.JSONAllFieldsMarshaller{
-				Value: r.Description,
-			}
-			if err := json.Unmarshal(v, &wrapper); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-			var ok bool
-			r.Description, ok = wrapper.Value.(azure.ComputeDiskWriteOpsHourlyDescription)
-			if !ok {
-				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
-			}
-		case "platform_id":
-			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_id":
-			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_type":
-			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "described_by":
-			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_type":
-			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_id":
-			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		default:
-		}
-	}
-	return nil
-}
-
-type ComputeDiskWriteOpsHourlyHit struct {
-	ID      string                    `json:"_id"`
-	Score   float64                   `json:"_score"`
-	Index   string                    `json:"_index"`
-	Type    string                    `json:"_type"`
-	Version int64                     `json:"_version,omitempty"`
-	Source  ComputeDiskWriteOpsHourly `json:"_source"`
-	Sort    []interface{}             `json:"sort"`
-}
-
-type ComputeDiskWriteOpsHourlyHits struct {
-	Total essdk.SearchTotal              `json:"total"`
-	Hits  []ComputeDiskWriteOpsHourlyHit `json:"hits"`
-}
-
-type ComputeDiskWriteOpsHourlySearchResponse struct {
-	PitID string                        `json:"pit_id"`
-	Hits  ComputeDiskWriteOpsHourlyHits `json:"hits"`
-}
-
-type ComputeDiskWriteOpsHourlyPaginator struct {
-	paginator *essdk.BaseESPaginator
-}
-
-func (k Client) NewComputeDiskWriteOpsHourlyPaginator(filters []essdk.BoolFilter, limit *int64) (ComputeDiskWriteOpsHourlyPaginator, error) {
-	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_compute_diskswriteopshourly", filters, limit)
-	if err != nil {
-		return ComputeDiskWriteOpsHourlyPaginator{}, err
-	}
-
-	p := ComputeDiskWriteOpsHourlyPaginator{
-		paginator: paginator,
-	}
-
-	return p, nil
-}
-
-func (p ComputeDiskWriteOpsHourlyPaginator) HasNext() bool {
-	return !p.paginator.Done()
-}
-
-func (p ComputeDiskWriteOpsHourlyPaginator) Close(ctx context.Context) error {
-	return p.paginator.Deallocate(ctx)
-}
-
-func (p ComputeDiskWriteOpsHourlyPaginator) NextPage(ctx context.Context) ([]ComputeDiskWriteOpsHourly, error) {
-	var response ComputeDiskWriteOpsHourlySearchResponse
-	err := p.paginator.Search(ctx, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	var values []ComputeDiskWriteOpsHourly
-	for _, hit := range response.Hits.Hits {
-		values = append(values, hit.Source)
-	}
-
-	hits := int64(len(response.Hits.Hits))
-	if hits > 0 {
-		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
-	} else {
-		p.paginator.UpdateState(hits, nil, "")
-	}
-
-	return values, nil
-}
-
-var listComputeDiskWriteOpsHourlyFilters = map[string]string{}
-
-func ListComputeDiskWriteOpsHourly(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("ListComputeDiskWriteOpsHourly")
-	runtime.GC()
-
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOpsHourly NewClientCached", "error", err)
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOpsHourly NewSelfClientCached", "error", err)
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOpsHourly GetConfigTableValueOrNil for OpenGovernanceConfigKeyAccountID", "error", err)
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOpsHourly GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOpsHourly GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
-		return nil, err
-	}
-
-	paginator, err := k.NewComputeDiskWriteOpsHourlyPaginator(essdk.BuildFilter(ctx, d.QueryContext, listComputeDiskWriteOpsHourlyFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeDiskWriteOpsHourly NewComputeDiskWriteOpsHourlyPaginator", "error", err)
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			plugin.Logger(ctx).Error("ListComputeDiskWriteOpsHourly paginator.NextPage", "error", err)
-			return nil, err
-		}
-
-		for _, v := range page {
-			d.StreamListItem(ctx, v)
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-var getComputeDiskWriteOpsHourlyFilters = map[string]string{}
-
-func GetComputeDiskWriteOpsHourly(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("GetComputeDiskWriteOpsHourly")
-	runtime.GC()
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		return nil, err
-	}
-
-	limit := int64(1)
-	paginator, err := k.NewComputeDiskWriteOpsHourlyPaginator(essdk.BuildFilter(ctx, d.QueryContext, getComputeDiskWriteOpsHourlyFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), &limit)
-	if err != nil {
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			return nil, err
-		}
-
-		for _, v := range page {
-			return v, nil
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-// ==========================  END: ComputeDiskWriteOpsHourly =============================
-
 // ==========================  START: ComputeDiskAccess =============================
 
 type ComputeDiskAccess struct {
@@ -5589,6 +4157,10 @@ func (r *ComputeDiskAccess) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -5853,6 +4425,10 @@ func (r *ComputeVirtualMachineScaleSet) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -6163,6 +4739,10 @@ func (r *ComputeVirtualMachineScaleSetNetworkInterface) UnmarshalJSON(b []byte) 
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -6427,6 +5007,10 @@ func (r *ComputeVirtualMachineScaleSetVm) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -6745,6 +5329,10 @@ func (r *ComputeSnapshots) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -7059,6 +5647,10 @@ func (r *ComputeAvailabilitySet) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -7335,6 +5927,10 @@ func (r *ComputeDiskEncryptionSet) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -7615,6 +6211,10 @@ func (r *ComputeImageGallery) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -7872,6 +6472,10 @@ func (r *ComputeImage) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -8164,6 +6768,10 @@ func (r *ComputeHostGroup) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -8420,6 +7028,10 @@ func (r *ComputeHostGroupHost) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -8680,6 +7292,10 @@ func (r *ComputeRestorePointCollection) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -8936,6 +7552,10 @@ func (r *ComputeSSHPublicKey) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -9200,6 +7820,10 @@ func (r *DataboxEdgeDevice) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -9500,6 +8124,10 @@ func (r *HealthcareService) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -9794,6 +8422,10 @@ func (r *HpcCache) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -10078,6 +8710,10 @@ func (r *KeyVaultKey) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -10357,6 +8993,10 @@ func (r *KeyVaultKeyVersion) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -10643,6 +9283,10 @@ func (r *KubernetesCluster) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -10963,6 +9607,10 @@ func (r *KubernetesServiceVersion) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -11223,6 +9871,10 @@ func (r *ContainerInstanceContainerGroup) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -11517,6 +10169,10 @@ func (r *CDNProfile) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -11789,6 +10445,10 @@ func (r *CDNEndpoint) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -12045,6 +10705,10 @@ func (r *NetworkInterface) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -12359,6 +11023,10 @@ func (r *NetworkWatcherFlowLog) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -12645,6 +11313,10 @@ func (r *RouteTables) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -12914,6 +11586,10 @@ func (r *NetworkApplicationSecurityGroups) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -13178,6 +11854,10 @@ func (r *NetworkAzureFirewall) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -13474,6 +12154,10 @@ func (r *ExpressRouteCircuit) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -13764,6 +12448,10 @@ func (r *VirtualNetworkGateway) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -14068,6 +12756,10 @@ func (r *FirewallPolicy) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -14360,6 +13052,10 @@ func (r *LocalNetworkGateway) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -14617,6 +13313,10 @@ func (r *NatGateway) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -14887,6 +13587,10 @@ func (r *PrivateLinkService) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -15144,6 +13848,10 @@ func (r *VpnGateway) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -15405,6 +14113,10 @@ func (r *VpnGatewayVpnConnection) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -15663,6 +14375,10 @@ func (r *VpnSite) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -15919,6 +14635,10 @@ func (r *PublicIPAddress) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -16219,6 +14939,10 @@ func (r *PublicIPPrefix) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -16475,6 +15199,10 @@ func (r *DNSZones) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -16755,6 +15483,10 @@ func (r *BastionHosts) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -17027,6 +15759,10 @@ func (r *Connection) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -17283,6 +16019,10 @@ func (r *VirtualHubs) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -17543,6 +16283,10 @@ func (r *VirtualWans) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -17799,6 +16543,10 @@ func (r *DNSResolver) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -18059,6 +16807,10 @@ func (r *TrafficManagerProfile) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -18315,6 +17067,10 @@ func (r *PrivateDNSZones) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -18595,6 +17351,10 @@ func (r *PrivateEndpoint) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -18853,6 +17613,10 @@ func (r *NetworkDDoSProtectionPlan) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -19109,6 +17873,10 @@ func (r *PolicyAssignment) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -19389,6 +18157,10 @@ func (r *RedisCache) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -19695,6 +18467,10 @@ func (r *RedisEnterpriseCache) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -19951,6 +18727,10 @@ func (r *ResourceLink) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -20217,6 +18997,10 @@ func (r *RoleAssignment) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -20489,6 +19273,10 @@ func (r *RoleDefinition) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -20753,6 +19541,10 @@ func (r *PolicyDefinition) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -21029,6 +19821,10 @@ func (r *UserEffectiveAccess) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -21297,6 +20093,10 @@ func (r *SecurityCenterAutoProvisioning) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -21555,6 +20355,10 @@ func (r *SecurityCenterContact) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -21823,6 +20627,10 @@ func (r *SecurityCenterJitNetworkAccessPolicy) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -22087,6 +20895,10 @@ func (r *SecurityCenterSetting) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -22349,6 +21161,10 @@ func (r *SecurityCenterSubscriptionPricing) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -22609,6 +21425,10 @@ func (r *SecurityCenterAutomation) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -22887,6 +21707,10 @@ func (r *SecurityCenterSubAssessment) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -23157,6 +21981,10 @@ func (r *StorageContainer) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -23447,6 +22275,10 @@ func (r *StorageBlob) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -23788,6 +22620,10 @@ func (r *StorageBlobService) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -24070,6 +22906,10 @@ func (r *StorageQueue) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -24332,6 +23172,10 @@ func (r *StorageFileShare) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -24615,6 +23459,10 @@ func (r *StorageTable) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -24874,6 +23722,10 @@ func (r *StorageTableService) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -25137,6 +23989,10 @@ func (r *Subnet) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -25424,6 +24280,10 @@ func (r *VirtualNetwork) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -25702,6 +24562,10 @@ func (r *Tenant) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -25962,6 +24826,10 @@ func (r *Subscription) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -26230,6 +25098,10 @@ func (r *ApplicationGateway) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -26528,6 +25400,10 @@ func (r *BatchAccount) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -26820,6 +25696,10 @@ func (r *CognitiveAccount) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -27134,6 +26014,10 @@ func (r *ComputeVirtualMachine) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -27494,6 +26378,10 @@ func (r *ComputeResourceSKU) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -27714,750 +26602,6 @@ func GetComputeResourceSKU(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 
 // ==========================  END: ComputeResourceSKU =============================
 
-// ==========================  START: ComputeVirtualMachineCpuUtilization =============================
-
-type ComputeVirtualMachineCpuUtilization struct {
-	ResourceID      string                                               `json:"resource_id"`
-	PlatformID      string                                               `json:"platform_id"`
-	Description     azure.ComputeVirtualMachineCpuUtilizationDescription `json:"description"`
-	Metadata        azure.Metadata                                       `json:"metadata"`
-	DescribedBy     string                                               `json:"described_by"`
-	ResourceType    string                                               `json:"resource_type"`
-	IntegrationType string                                               `json:"integration_type"`
-	IntegrationID   string                                               `json:"integration_id"`
-}
-
-func (r *ComputeVirtualMachineCpuUtilization) UnmarshalJSON(b []byte) error {
-	var rawMsg map[string]json.RawMessage
-	if err := json.Unmarshal(b, &rawMsg); err != nil {
-		return fmt.Errorf("unmarshalling type %T: %v", r, err)
-	}
-	for k, v := range rawMsg {
-		switch k {
-		case "description":
-			wrapper := azureDescriber.JSONAllFieldsMarshaller{
-				Value: r.Description,
-			}
-			if err := json.Unmarshal(v, &wrapper); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-			var ok bool
-			r.Description, ok = wrapper.Value.(azure.ComputeVirtualMachineCpuUtilizationDescription)
-			if !ok {
-				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
-			}
-		case "platform_id":
-			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_id":
-			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_type":
-			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "described_by":
-			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_type":
-			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_id":
-			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		default:
-		}
-	}
-	return nil
-}
-
-type ComputeVirtualMachineCpuUtilizationHit struct {
-	ID      string                              `json:"_id"`
-	Score   float64                             `json:"_score"`
-	Index   string                              `json:"_index"`
-	Type    string                              `json:"_type"`
-	Version int64                               `json:"_version,omitempty"`
-	Source  ComputeVirtualMachineCpuUtilization `json:"_source"`
-	Sort    []interface{}                       `json:"sort"`
-}
-
-type ComputeVirtualMachineCpuUtilizationHits struct {
-	Total essdk.SearchTotal                        `json:"total"`
-	Hits  []ComputeVirtualMachineCpuUtilizationHit `json:"hits"`
-}
-
-type ComputeVirtualMachineCpuUtilizationSearchResponse struct {
-	PitID string                                  `json:"pit_id"`
-	Hits  ComputeVirtualMachineCpuUtilizationHits `json:"hits"`
-}
-
-type ComputeVirtualMachineCpuUtilizationPaginator struct {
-	paginator *essdk.BaseESPaginator
-}
-
-func (k Client) NewComputeVirtualMachineCpuUtilizationPaginator(filters []essdk.BoolFilter, limit *int64) (ComputeVirtualMachineCpuUtilizationPaginator, error) {
-	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_compute_virtualmachinecpuutilization", filters, limit)
-	if err != nil {
-		return ComputeVirtualMachineCpuUtilizationPaginator{}, err
-	}
-
-	p := ComputeVirtualMachineCpuUtilizationPaginator{
-		paginator: paginator,
-	}
-
-	return p, nil
-}
-
-func (p ComputeVirtualMachineCpuUtilizationPaginator) HasNext() bool {
-	return !p.paginator.Done()
-}
-
-func (p ComputeVirtualMachineCpuUtilizationPaginator) Close(ctx context.Context) error {
-	return p.paginator.Deallocate(ctx)
-}
-
-func (p ComputeVirtualMachineCpuUtilizationPaginator) NextPage(ctx context.Context) ([]ComputeVirtualMachineCpuUtilization, error) {
-	var response ComputeVirtualMachineCpuUtilizationSearchResponse
-	err := p.paginator.Search(ctx, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	var values []ComputeVirtualMachineCpuUtilization
-	for _, hit := range response.Hits.Hits {
-		values = append(values, hit.Source)
-	}
-
-	hits := int64(len(response.Hits.Hits))
-	if hits > 0 {
-		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
-	} else {
-		p.paginator.UpdateState(hits, nil, "")
-	}
-
-	return values, nil
-}
-
-var listComputeVirtualMachineCpuUtilizationFilters = map[string]string{}
-
-func ListComputeVirtualMachineCpuUtilization(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("ListComputeVirtualMachineCpuUtilization")
-	runtime.GC()
-
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilization NewClientCached", "error", err)
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilization NewSelfClientCached", "error", err)
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilization GetConfigTableValueOrNil for OpenGovernanceConfigKeyAccountID", "error", err)
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilization GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilization GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
-		return nil, err
-	}
-
-	paginator, err := k.NewComputeVirtualMachineCpuUtilizationPaginator(essdk.BuildFilter(ctx, d.QueryContext, listComputeVirtualMachineCpuUtilizationFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilization NewComputeVirtualMachineCpuUtilizationPaginator", "error", err)
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilization paginator.NextPage", "error", err)
-			return nil, err
-		}
-
-		for _, v := range page {
-			d.StreamListItem(ctx, v)
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-var getComputeVirtualMachineCpuUtilizationFilters = map[string]string{}
-
-func GetComputeVirtualMachineCpuUtilization(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("GetComputeVirtualMachineCpuUtilization")
-	runtime.GC()
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		return nil, err
-	}
-
-	limit := int64(1)
-	paginator, err := k.NewComputeVirtualMachineCpuUtilizationPaginator(essdk.BuildFilter(ctx, d.QueryContext, getComputeVirtualMachineCpuUtilizationFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), &limit)
-	if err != nil {
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			return nil, err
-		}
-
-		for _, v := range page {
-			return v, nil
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-// ==========================  END: ComputeVirtualMachineCpuUtilization =============================
-
-// ==========================  START: ComputeVirtualMachineCpuUtilizationDaily =============================
-
-type ComputeVirtualMachineCpuUtilizationDaily struct {
-	ResourceID      string                                                    `json:"resource_id"`
-	PlatformID      string                                                    `json:"platform_id"`
-	Description     azure.ComputeVirtualMachineCpuUtilizationDailyDescription `json:"description"`
-	Metadata        azure.Metadata                                            `json:"metadata"`
-	DescribedBy     string                                                    `json:"described_by"`
-	ResourceType    string                                                    `json:"resource_type"`
-	IntegrationType string                                                    `json:"integration_type"`
-	IntegrationID   string                                                    `json:"integration_id"`
-}
-
-func (r *ComputeVirtualMachineCpuUtilizationDaily) UnmarshalJSON(b []byte) error {
-	var rawMsg map[string]json.RawMessage
-	if err := json.Unmarshal(b, &rawMsg); err != nil {
-		return fmt.Errorf("unmarshalling type %T: %v", r, err)
-	}
-	for k, v := range rawMsg {
-		switch k {
-		case "description":
-			wrapper := azureDescriber.JSONAllFieldsMarshaller{
-				Value: r.Description,
-			}
-			if err := json.Unmarshal(v, &wrapper); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-			var ok bool
-			r.Description, ok = wrapper.Value.(azure.ComputeVirtualMachineCpuUtilizationDailyDescription)
-			if !ok {
-				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
-			}
-		case "platform_id":
-			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_id":
-			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_type":
-			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "described_by":
-			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_type":
-			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_id":
-			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		default:
-		}
-	}
-	return nil
-}
-
-type ComputeVirtualMachineCpuUtilizationDailyHit struct {
-	ID      string                                   `json:"_id"`
-	Score   float64                                  `json:"_score"`
-	Index   string                                   `json:"_index"`
-	Type    string                                   `json:"_type"`
-	Version int64                                    `json:"_version,omitempty"`
-	Source  ComputeVirtualMachineCpuUtilizationDaily `json:"_source"`
-	Sort    []interface{}                            `json:"sort"`
-}
-
-type ComputeVirtualMachineCpuUtilizationDailyHits struct {
-	Total essdk.SearchTotal                             `json:"total"`
-	Hits  []ComputeVirtualMachineCpuUtilizationDailyHit `json:"hits"`
-}
-
-type ComputeVirtualMachineCpuUtilizationDailySearchResponse struct {
-	PitID string                                       `json:"pit_id"`
-	Hits  ComputeVirtualMachineCpuUtilizationDailyHits `json:"hits"`
-}
-
-type ComputeVirtualMachineCpuUtilizationDailyPaginator struct {
-	paginator *essdk.BaseESPaginator
-}
-
-func (k Client) NewComputeVirtualMachineCpuUtilizationDailyPaginator(filters []essdk.BoolFilter, limit *int64) (ComputeVirtualMachineCpuUtilizationDailyPaginator, error) {
-	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_compute_virtualmachinecpuutilizationdaily", filters, limit)
-	if err != nil {
-		return ComputeVirtualMachineCpuUtilizationDailyPaginator{}, err
-	}
-
-	p := ComputeVirtualMachineCpuUtilizationDailyPaginator{
-		paginator: paginator,
-	}
-
-	return p, nil
-}
-
-func (p ComputeVirtualMachineCpuUtilizationDailyPaginator) HasNext() bool {
-	return !p.paginator.Done()
-}
-
-func (p ComputeVirtualMachineCpuUtilizationDailyPaginator) Close(ctx context.Context) error {
-	return p.paginator.Deallocate(ctx)
-}
-
-func (p ComputeVirtualMachineCpuUtilizationDailyPaginator) NextPage(ctx context.Context) ([]ComputeVirtualMachineCpuUtilizationDaily, error) {
-	var response ComputeVirtualMachineCpuUtilizationDailySearchResponse
-	err := p.paginator.Search(ctx, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	var values []ComputeVirtualMachineCpuUtilizationDaily
-	for _, hit := range response.Hits.Hits {
-		values = append(values, hit.Source)
-	}
-
-	hits := int64(len(response.Hits.Hits))
-	if hits > 0 {
-		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
-	} else {
-		p.paginator.UpdateState(hits, nil, "")
-	}
-
-	return values, nil
-}
-
-var listComputeVirtualMachineCpuUtilizationDailyFilters = map[string]string{}
-
-func ListComputeVirtualMachineCpuUtilizationDaily(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("ListComputeVirtualMachineCpuUtilizationDaily")
-	runtime.GC()
-
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilizationDaily NewClientCached", "error", err)
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilizationDaily NewSelfClientCached", "error", err)
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilizationDaily GetConfigTableValueOrNil for OpenGovernanceConfigKeyAccountID", "error", err)
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilizationDaily GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilizationDaily GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
-		return nil, err
-	}
-
-	paginator, err := k.NewComputeVirtualMachineCpuUtilizationDailyPaginator(essdk.BuildFilter(ctx, d.QueryContext, listComputeVirtualMachineCpuUtilizationDailyFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilizationDaily NewComputeVirtualMachineCpuUtilizationDailyPaginator", "error", err)
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilizationDaily paginator.NextPage", "error", err)
-			return nil, err
-		}
-
-		for _, v := range page {
-			d.StreamListItem(ctx, v)
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-var getComputeVirtualMachineCpuUtilizationDailyFilters = map[string]string{}
-
-func GetComputeVirtualMachineCpuUtilizationDaily(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("GetComputeVirtualMachineCpuUtilizationDaily")
-	runtime.GC()
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		return nil, err
-	}
-
-	limit := int64(1)
-	paginator, err := k.NewComputeVirtualMachineCpuUtilizationDailyPaginator(essdk.BuildFilter(ctx, d.QueryContext, getComputeVirtualMachineCpuUtilizationDailyFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), &limit)
-	if err != nil {
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			return nil, err
-		}
-
-		for _, v := range page {
-			return v, nil
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-// ==========================  END: ComputeVirtualMachineCpuUtilizationDaily =============================
-
-// ==========================  START: ComputeVirtualMachineCpuUtilizationHourly =============================
-
-type ComputeVirtualMachineCpuUtilizationHourly struct {
-	ResourceID      string                                                     `json:"resource_id"`
-	PlatformID      string                                                     `json:"platform_id"`
-	Description     azure.ComputeVirtualMachineCpuUtilizationHourlyDescription `json:"description"`
-	Metadata        azure.Metadata                                             `json:"metadata"`
-	DescribedBy     string                                                     `json:"described_by"`
-	ResourceType    string                                                     `json:"resource_type"`
-	IntegrationType string                                                     `json:"integration_type"`
-	IntegrationID   string                                                     `json:"integration_id"`
-}
-
-func (r *ComputeVirtualMachineCpuUtilizationHourly) UnmarshalJSON(b []byte) error {
-	var rawMsg map[string]json.RawMessage
-	if err := json.Unmarshal(b, &rawMsg); err != nil {
-		return fmt.Errorf("unmarshalling type %T: %v", r, err)
-	}
-	for k, v := range rawMsg {
-		switch k {
-		case "description":
-			wrapper := azureDescriber.JSONAllFieldsMarshaller{
-				Value: r.Description,
-			}
-			if err := json.Unmarshal(v, &wrapper); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-			var ok bool
-			r.Description, ok = wrapper.Value.(azure.ComputeVirtualMachineCpuUtilizationHourlyDescription)
-			if !ok {
-				return fmt.Errorf("unmarshalling type %T: %v", r, fmt.Errorf("expected type %T, got %T", r.Description, wrapper.Value))
-			}
-		case "platform_id":
-			if err := json.Unmarshal(v, &r.PlatformID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_id":
-			if err := json.Unmarshal(v, &r.ResourceID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "resource_type":
-			if err := json.Unmarshal(v, &r.ResourceType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "described_by":
-			if err := json.Unmarshal(v, &r.DescribedBy); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_type":
-			if err := json.Unmarshal(v, &r.IntegrationType); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		case "integration_id":
-			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
-				return fmt.Errorf("unmarshalling type %T: %v", r, err)
-			}
-		default:
-		}
-	}
-	return nil
-}
-
-type ComputeVirtualMachineCpuUtilizationHourlyHit struct {
-	ID      string                                    `json:"_id"`
-	Score   float64                                   `json:"_score"`
-	Index   string                                    `json:"_index"`
-	Type    string                                    `json:"_type"`
-	Version int64                                     `json:"_version,omitempty"`
-	Source  ComputeVirtualMachineCpuUtilizationHourly `json:"_source"`
-	Sort    []interface{}                             `json:"sort"`
-}
-
-type ComputeVirtualMachineCpuUtilizationHourlyHits struct {
-	Total essdk.SearchTotal                              `json:"total"`
-	Hits  []ComputeVirtualMachineCpuUtilizationHourlyHit `json:"hits"`
-}
-
-type ComputeVirtualMachineCpuUtilizationHourlySearchResponse struct {
-	PitID string                                        `json:"pit_id"`
-	Hits  ComputeVirtualMachineCpuUtilizationHourlyHits `json:"hits"`
-}
-
-type ComputeVirtualMachineCpuUtilizationHourlyPaginator struct {
-	paginator *essdk.BaseESPaginator
-}
-
-func (k Client) NewComputeVirtualMachineCpuUtilizationHourlyPaginator(filters []essdk.BoolFilter, limit *int64) (ComputeVirtualMachineCpuUtilizationHourlyPaginator, error) {
-	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_compute_virtualmachinecpuutilizationhourly", filters, limit)
-	if err != nil {
-		return ComputeVirtualMachineCpuUtilizationHourlyPaginator{}, err
-	}
-
-	p := ComputeVirtualMachineCpuUtilizationHourlyPaginator{
-		paginator: paginator,
-	}
-
-	return p, nil
-}
-
-func (p ComputeVirtualMachineCpuUtilizationHourlyPaginator) HasNext() bool {
-	return !p.paginator.Done()
-}
-
-func (p ComputeVirtualMachineCpuUtilizationHourlyPaginator) Close(ctx context.Context) error {
-	return p.paginator.Deallocate(ctx)
-}
-
-func (p ComputeVirtualMachineCpuUtilizationHourlyPaginator) NextPage(ctx context.Context) ([]ComputeVirtualMachineCpuUtilizationHourly, error) {
-	var response ComputeVirtualMachineCpuUtilizationHourlySearchResponse
-	err := p.paginator.Search(ctx, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	var values []ComputeVirtualMachineCpuUtilizationHourly
-	for _, hit := range response.Hits.Hits {
-		values = append(values, hit.Source)
-	}
-
-	hits := int64(len(response.Hits.Hits))
-	if hits > 0 {
-		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
-	} else {
-		p.paginator.UpdateState(hits, nil, "")
-	}
-
-	return values, nil
-}
-
-var listComputeVirtualMachineCpuUtilizationHourlyFilters = map[string]string{}
-
-func ListComputeVirtualMachineCpuUtilizationHourly(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("ListComputeVirtualMachineCpuUtilizationHourly")
-	runtime.GC()
-
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilizationHourly NewClientCached", "error", err)
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilizationHourly NewSelfClientCached", "error", err)
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilizationHourly GetConfigTableValueOrNil for OpenGovernanceConfigKeyAccountID", "error", err)
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilizationHourly GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilizationHourly GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
-		return nil, err
-	}
-
-	paginator, err := k.NewComputeVirtualMachineCpuUtilizationHourlyPaginator(essdk.BuildFilter(ctx, d.QueryContext, listComputeVirtualMachineCpuUtilizationHourlyFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilizationHourly NewComputeVirtualMachineCpuUtilizationHourlyPaginator", "error", err)
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			plugin.Logger(ctx).Error("ListComputeVirtualMachineCpuUtilizationHourly paginator.NextPage", "error", err)
-			return nil, err
-		}
-
-		for _, v := range page {
-			d.StreamListItem(ctx, v)
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-var getComputeVirtualMachineCpuUtilizationHourlyFilters = map[string]string{}
-
-func GetComputeVirtualMachineCpuUtilizationHourly(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("GetComputeVirtualMachineCpuUtilizationHourly")
-	runtime.GC()
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		return nil, err
-	}
-	accountId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyAccountID)
-	if err != nil {
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		return nil, err
-	}
-
-	limit := int64(1)
-	paginator, err := k.NewComputeVirtualMachineCpuUtilizationHourlyPaginator(essdk.BuildFilter(ctx, d.QueryContext, getComputeVirtualMachineCpuUtilizationHourlyFilters, "azure", accountId, encodedResourceCollectionFilters, clientType), &limit)
-	if err != nil {
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			return nil, err
-		}
-
-		for _, v := range page {
-			return v, nil
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-// ==========================  END: ComputeVirtualMachineCpuUtilizationHourly =============================
-
 // ==========================  START: ComputeCloudService =============================
 
 type ComputeCloudService struct {
@@ -28512,6 +26656,10 @@ func (r *ComputeCloudService) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -28770,6 +26918,10 @@ func (r *ContainerRegistry) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -29076,6 +27228,10 @@ func (r *CosmosdbAccount) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -29399,6 +27555,10 @@ func (r *CosmosdbRestorableDatabaseAccount) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -29667,6 +27827,10 @@ func (r *CosmosdbMongoDatabase) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -29942,6 +28106,10 @@ func (r *CosmosdbMongoCollection) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -30228,6 +28396,10 @@ func (r *CosmosdbSqlDatabase) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -30505,6 +28677,10 @@ func (r *CosmosdbCassandraCluster) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -30761,6 +28937,10 @@ func (r *DatabricksWorkspace) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -31049,6 +29229,10 @@ func (r *DataMigrationService) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -31305,6 +29489,10 @@ func (r *DataProtectionBackupVaults) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -31579,6 +29767,10 @@ func (r *DataProtectionBackupVaultsBackupPolicies) UnmarshalJSON(b []byte) error
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -31833,6 +30025,10 @@ func (r *DataProtectionJob) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -32151,6 +30347,10 @@ func (r *DataFactory) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -32433,6 +30633,10 @@ func (r *DataFactoryDataset) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -32697,6 +30901,10 @@ func (r *DataFactoryPipeline) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -32979,6 +31187,10 @@ func (r *DataLakeAnalyticsAccount) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -33285,6 +31497,10 @@ func (r *DataLakeStore) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -33583,6 +31799,10 @@ func (r *DiagnosticSetting) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -33859,6 +32079,10 @@ func (r *AutoscaleSetting) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -34127,6 +32351,10 @@ func (r *EventGridDomain) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -34429,6 +32657,10 @@ func (r *EventGridTopic) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -34725,6 +32957,10 @@ func (r *EventhubNamespace) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -35019,6 +33255,10 @@ func (r *EventhubNamespaceEventhub) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -35275,6 +33515,10 @@ func (r *Frontdoor) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -35563,6 +33807,10 @@ func (r *HdinsightCluster) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -35877,6 +34125,10 @@ func (r *HybridComputeMachine) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -36177,6 +34429,10 @@ func (r *IOTHub) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -36485,6 +34741,10 @@ func (r *IOTHubDps) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -36771,6 +35031,10 @@ func (r *KeyVault) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -37063,6 +35327,10 @@ func (r *KeyVaultCertificate) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -37332,6 +35600,10 @@ func (r *KeyVaultDeletedVault) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -37593,6 +35865,10 @@ func (r *KeyVaultManagedHardwareSecurityModule) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -37879,6 +36155,10 @@ func (r *KeyVaultSecret) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -38147,6 +36427,10 @@ func (r *KustoCluster) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -38453,6 +36737,10 @@ func (r *LogAlert) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -38727,6 +37015,10 @@ func (r *LogProfile) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -38999,6 +37291,10 @@ func (r *LogicAppWorkflow) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -39289,6 +37585,10 @@ func (r *LogicIntegrationAccounts) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -39545,6 +37845,10 @@ func (r *MachineLearningWorkspace) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -39841,6 +38145,10 @@ func (r *MariadbServer) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -40143,6 +38451,10 @@ func (r *MariadbDatabase) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -40399,6 +38711,10 @@ func (r *MysqlServer) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -40717,6 +39033,10 @@ func (r *MysqlFlexibleserver) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -40973,6 +39293,10 @@ func (r *NetworkSecurityGroup) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -41255,6 +39579,10 @@ func (r *NetworkWatcher) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -41519,6 +39847,10 @@ func (r *SearchService) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -41806,6 +40138,10 @@ func (r *ServiceFabricCluster) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -42118,6 +40454,10 @@ func (r *ServicebusNamespace) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -42406,6 +40746,10 @@ func (r *SignalrService) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -42698,6 +41042,10 @@ func (r *SpringCloudService) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -42964,6 +41312,10 @@ func (r *StreamAnalyticsJob) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -43262,6 +41614,10 @@ func (r *StreamAnalyticsCluster) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -43520,6 +41876,10 @@ func (r *VirtualMachineImagesImageTemplates) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -43776,6 +42136,10 @@ func (r *OperationalInsightsWorkspaces) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -44070,6 +42434,10 @@ func (r *TimeSeriesInsightsEnvironments) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -44326,6 +42694,10 @@ func (r *SynapseWorkspace) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -44626,6 +42998,10 @@ func (r *SynapseWorkspaceBigdatapools) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -44884,6 +43260,10 @@ func (r *SynapseWorkspaceSqlpools) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -45140,6 +43520,10 @@ func (r *Location) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -45405,6 +43789,10 @@ func (r *AnalysisServiceServer) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -45662,6 +44050,10 @@ func (r *PostgresqlServer) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -45980,6 +44372,10 @@ func (r *PostgresqlFlexibleServer) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -46246,6 +44642,10 @@ func (r *StorageSync) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -46520,6 +44920,10 @@ func (r *MssqlManagedInstance) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -46832,6 +45236,10 @@ func (r *MssqlManagedInstanceDatabases) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -47088,6 +45496,10 @@ func (r *SqlDatabase) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -47410,6 +45822,10 @@ func (r *SqlInstancePool) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -47666,6 +46082,10 @@ func (r *SqlServer) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -47970,6 +46390,10 @@ func (r *SqlServerJobAgent) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -48228,6 +46652,10 @@ func (r *SqlVirtualClusters) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -48484,6 +46912,10 @@ func (r *SqlServerElasticPool) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -48766,6 +47198,10 @@ func (r *SqlServerVirtualMachine) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -49058,6 +47494,10 @@ func (r *SqlServerVirtualMachineGroup) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -49314,6 +47754,10 @@ func (r *SqlServerFlexibleServer) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -49626,6 +48070,10 @@ func (r *StorageAccount) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -50005,6 +48453,10 @@ func (r *RecoveryServicesVault) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -50285,6 +48737,10 @@ func (r *RecoveryServicesBackupJob) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -50553,6 +49009,10 @@ func (r *RecoveryServicesBackupPolicy) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -50815,6 +49275,10 @@ func (r *RecoveryServicesBackupItem) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -51075,6 +49539,10 @@ func (r *HybridKubernetesConnectedCluster) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -51371,6 +49839,10 @@ func (r *CostManagementCostByResourceType) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -51633,6 +50105,10 @@ func (r *CostManagementCostBySubscription) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -51885,6 +50361,10 @@ func (r *LoadBalancer) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -52179,6 +50659,10 @@ func (r *LoadBalancerBackendAddressPool) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -52455,6 +50939,10 @@ func (r *LoadBalancerNatRule) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -52739,6 +51227,10 @@ func (r *LoadBalancerOutboundRule) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -53017,6 +51509,10 @@ func (r *LoadBalancerProbe) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -53293,6 +51789,10 @@ func (r *LoadBalancerRule) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -53585,6 +52085,10 @@ func (r *ManagementGroup) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -53857,6 +52361,10 @@ func (r *ManagementLock) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -54122,6 +52630,10 @@ func (r *ResourceProvider) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -54380,6 +52892,10 @@ func (r *ResourceGroup) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -54644,6 +53160,10 @@ func (r *GenericResource) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -54936,6 +53456,10 @@ func (r *BotServiceBot) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -55192,6 +53716,10 @@ func (r *NetAppAccount) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -55452,6 +53980,10 @@ func (r *NetAppCapacityPool) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -55710,6 +54242,10 @@ func (r *DashboardGrafana) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -55964,6 +54500,10 @@ func (r *DesktopVirtualizationHostPool) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -56224,6 +54764,10 @@ func (r *DesktopVirtualizationWorkspace) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -56480,6 +55024,10 @@ func (r *DevTestLabLab) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -56740,6 +55288,10 @@ func (r *PurviewAccount) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -56998,6 +55550,10 @@ func (r *PowerBIDedicatedCapacity) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -57254,6 +55810,10 @@ func (r *ApplicationInsightsComponent) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -57562,6 +56122,10 @@ func (r *LighthouseDefinition) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -57838,6 +56402,10 @@ func (r *LighthouseAssignment) UnmarshalJSON(b []byte) error {
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
 		default:
 		}
 	}
@@ -58102,6 +56670,10 @@ func (r *MaintenanceConfiguration) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:
@@ -58384,6 +56956,10 @@ func (r *MonitorLogProfile) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+		case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:

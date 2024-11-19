@@ -16,13 +16,6 @@ import (
 	"strings"
 )
 
-var (
-	file              = flag.String("file", "", "Location of the model file")
-	output            = flag.String("output", "", "Location of the output file")
-	resourceTypesFile = flag.String("resourceTypesFile", "", "Location of the resource types json file file")
-	pluginPath        = flag.String("pluginPath", "", "Location of the steampipe plugin")
-)
-
 const PluginPath = "../../../../steampipe-plugin-azure/azure" // TODO: change to steampipe plugin
 
 type IntegrationType struct {
@@ -42,6 +35,12 @@ type ResourceType struct {
 }
 
 func main() {
+	file := flag.String("file", "", "Location of the model file")
+	output := flag.String("output", "", "Location of the output file")
+	resourceTypesFile := flag.String("resourceTypesFile", "", "Location of the resource types json file file")
+	pluginPath := flag.String("pluginPath", "", "Location of the steampipe plugin")
+	flag.Parse()
+
 	if output == nil || len(*output) == 0 {
 		v := "../../es/resources_clients.go"
 		output = &v
@@ -130,6 +129,10 @@ func (r *{{ .Name }}) UnmarshalJSON(b []byte) error {
 			}
 		case "integration_id":
 			if err := json.Unmarshal(v, &r.IntegrationID); err != nil {
+				return fmt.Errorf("unmarshalling type %T: %v", r, err)
+			}
+        case "metadata":
+			if err := json.Unmarshal(v, &r.Metadata); err != nil {
 				return fmt.Errorf("unmarshalling type %T: %v", r, err)
 			}
 		default:

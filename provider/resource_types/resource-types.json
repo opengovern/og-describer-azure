@@ -1801,16 +1801,6 @@
     "Model": "LoadBalancerRule"
   },
   {
-    "ResourceName": "Microsoft.Compute/virtualMachineCpuUtilizationDaily",
-
-    "Tags": null,
-
-    "ListDescriber": "DescribeBySubscription(describer.ComputeVirtualMachineCpuUtilizationDaily)",
-    "GetDescriber": "",
-    "SteampipeTable": "azure_compute_virtual_machine_metric_cpu_utilization_daily",
-    "Model": "ComputeVirtualMachineCpuUtilizationDaily"
-  },
-  {
     "ResourceName": "Microsoft.DataLakeStore/accounts",
 
     "Tags": {
@@ -2370,16 +2360,6 @@
     "Model": "LogAlert"
   },
   {
-    "ResourceName": "Microsoft.Compute/virtualMachineCpuUtilizationHourly",
-
-    "Tags": null,
-
-    "ListDescriber": "DescribeBySubscription(describer.ComputeVirtualMachineCpuUtilizationHourly)",
-    "GetDescriber": "",
-    "SteampipeTable": "azure_compute_virtual_machine_metric_cpu_utilization_hourly",
-    "Model": "ComputeVirtualMachineCpuUtilizationHourly"
-  },
-  {
     "ResourceName": "Microsoft.Network/loadBalancers/outboundRules",
 
     "Tags": {
@@ -2882,16 +2862,6 @@
     "GetDescriber": "",
     "SteampipeTable": "azure_app_configuration",
     "Model": "AppConfiguration"
-  },
-  {
-    "ResourceName": "Microsoft.Compute/virtualMachineCpuUtilization",
-
-    "Tags": null,
-
-    "ListDescriber": "DescribeBySubscription(describer.ComputeVirtualMachineCpuUtilization)",
-    "GetDescriber": "",
-    "SteampipeTable": "azure_compute_virtual_machine_metric_cpu_utilization",
-    "Model": "ComputeVirtualMachineCpuUtilization"
   },
   {
     "ResourceName": "Microsoft.Storage/storageAccounts",
