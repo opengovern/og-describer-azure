@@ -1520,32 +1520,6 @@ var ResourceTypes = map[string]model.ResourceType{
 		GetDescriber:         nil,
 	},
 
-	"Microsoft.Compute/diskswriteops": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Compute/diskswriteops",
-		Tags:                 map[string][]string{
-        },
-		Labels:               map[string]string{
-        },
-		Annotations:          map[string]string{
-        },
-		ListDescriber:        DescribeBySubscription(describer.ComputeDiskWriteOps),
-		GetDescriber:         nil,
-	},
-
-	"Microsoft.Compute/diskswriteopshourly": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Compute/diskswriteopshourly",
-		Tags:                 map[string][]string{
-        },
-		Labels:               map[string]string{
-        },
-		Annotations:          map[string]string{
-        },
-		ListDescriber:        DescribeBySubscription(describer.ComputeDiskWriteOpsHourly),
-		GetDescriber:         nil,
-	},
-
 	"Microsoft.EventGrid/domains": {
 		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.EventGrid/domains",
@@ -1690,19 +1664,6 @@ var ResourceTypes = map[string]model.ResourceType{
 		Annotations:          map[string]string{
         },
 		ListDescriber:        DescribeBySubscription(describer.LoadBalancerRule),
-		GetDescriber:         nil,
-	},
-
-	"Microsoft.Compute/virtualMachineCpuUtilizationDaily": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Compute/virtualMachineCpuUtilizationDaily",
-		Tags:                 map[string][]string{
-        },
-		Labels:               map[string]string{
-        },
-		Annotations:          map[string]string{
-        },
-		ListDescriber:        DescribeBySubscription(describer.ComputeVirtualMachineCpuUtilizationDaily),
 		GetDescriber:         nil,
 	},
 
@@ -2044,19 +2005,6 @@ var ResourceTypes = map[string]model.ResourceType{
 		GetDescriber:         nil,
 	},
 
-	"Microsoft.Compute/disksreadops": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Compute/disksreadops",
-		Tags:                 map[string][]string{
-        },
-		Labels:               map[string]string{
-        },
-		Annotations:          map[string]string{
-        },
-		ListDescriber:        DescribeBySubscription(describer.ComputeDiskReadOps),
-		GetDescriber:         nil,
-	},
-
 	"Microsoft.Compute/virtualMachineScaleSets": {
 		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.Compute/virtualMachineScaleSets",
@@ -2200,19 +2148,6 @@ var ResourceTypes = map[string]model.ResourceType{
 		Annotations:          map[string]string{
         },
 		ListDescriber:        DescribeBySubscription(describer.LogAlert),
-		GetDescriber:         nil,
-	},
-
-	"Microsoft.Compute/virtualMachineCpuUtilizationHourly": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Compute/virtualMachineCpuUtilizationHourly",
-		Tags:                 map[string][]string{
-        },
-		Labels:               map[string]string{
-        },
-		Annotations:          map[string]string{
-        },
-		ListDescriber:        DescribeBySubscription(describer.ComputeVirtualMachineCpuUtilizationHourly),
 		GetDescriber:         nil,
 	},
 
@@ -2436,19 +2371,6 @@ var ResourceTypes = map[string]model.ResourceType{
 		GetDescriber:         nil,
 	},
 
-	"Microsoft.Compute/disksreadopsdaily": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Compute/disksreadopsdaily",
-		Tags:                 map[string][]string{
-        },
-		Labels:               map[string]string{
-        },
-		Annotations:          map[string]string{
-        },
-		ListDescriber:        DescribeBySubscription(describer.ComputeDiskReadOpsDaily),
-		GetDescriber:         nil,
-	},
-
 	"Microsoft.Web/plan": {
 		IntegrationType:      configs.IntegrationName,
 		ResourceName:         "Microsoft.Web/plan",
@@ -2460,32 +2382,6 @@ var ResourceTypes = map[string]model.ResourceType{
 		Annotations:          map[string]string{
         },
 		ListDescriber:        DescribeBySubscription(describer.AppServicePlan),
-		GetDescriber:         nil,
-	},
-
-	"Microsoft.Compute/disksreadopshourly": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Compute/disksreadopshourly",
-		Tags:                 map[string][]string{
-        },
-		Labels:               map[string]string{
-        },
-		Annotations:          map[string]string{
-        },
-		ListDescriber:        DescribeBySubscription(describer.ComputeDiskReadOpsHourly),
-		GetDescriber:         nil,
-	},
-
-	"Microsoft.Compute/diskswriteopsdaily": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Compute/diskswriteopsdaily",
-		Tags:                 map[string][]string{
-        },
-		Labels:               map[string]string{
-        },
-		Annotations:          map[string]string{
-        },
-		ListDescriber:        DescribeBySubscription(describer.ComputeDiskWriteOpsDaily),
 		GetDescriber:         nil,
 	},
 
@@ -2706,19 +2602,6 @@ var ResourceTypes = map[string]model.ResourceType{
 		Annotations:          map[string]string{
         },
 		ListDescriber:        DescribeBySubscription(describer.AppConfiguration),
-		GetDescriber:         nil,
-	},
-
-	"Microsoft.Compute/virtualMachineCpuUtilization": {
-		IntegrationType:      configs.IntegrationName,
-		ResourceName:         "Microsoft.Compute/virtualMachineCpuUtilization",
-		Tags:                 map[string][]string{
-        },
-		Labels:               map[string]string{
-        },
-		Annotations:          map[string]string{
-        },
-		ListDescriber:        DescribeBySubscription(describer.ComputeVirtualMachineCpuUtilization),
 		GetDescriber:         nil,
 	},
 
