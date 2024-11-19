@@ -271,7 +271,7 @@ func tableAzureStorageBlob(_ context.Context) *plugin.Table {
 				Description: ColumnDescriptionRegion,
 				Type:        proto.ColumnType_STRING,
 
-				Transform: transform.FromField("Description.Blob.VersionID").Transform(toLower),
+				Transform: transform.FromField("Metadata.Location").Transform(toLower),
 			},
 			{
 				Name:        "resource_group",
