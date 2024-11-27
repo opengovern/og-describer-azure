@@ -34,7 +34,7 @@
 	<tr><td>resource_group</td><td>The resource group which holds this resource.</td></tr>
 	<tr><td>cloud_environment</td><td>The Azure Cloud Environment.</td></tr>
 	<tr><td>subscription_id</td><td>The Azure Subscription ID in which the resource is located.</td></tr>
-	<tr><td>og_account_id</td><td>The Platform Account ID in which the resource is located.</td></tr>
-	<tr><td>og_resource_id</td><td>The unique ID of the resource in OG.</td></tr>
-	<tr><td>og_metadata</td><td>Platform Metadata of the Azure resource.</td></tr>
+	<tr><td>platform_account_id</td><td>The Platform Account ID in which the resource is located.</td></tr>
+	<tr><td>platform_resource_id</td><td>The unique ID of the resource in OG.</td></tr>
+	<tr><td>platform_metadata</td><td>Platform Metadata of the Azure resource.</td></tr>
 </table>
