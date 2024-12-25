@@ -22,7 +22,7 @@ type Client struct {
 type APIManagement struct {
 	ResourceID      string                         `json:"resource_id"`
 	PlatformID      string                         `json:"platform_id"`
-	Description     azure.APIManagementDescription `json:"description"`
+	Description     azure.APIManagementDescription `json:"Description"`
 	Metadata        azure.Metadata                 `json:"metadata"`
 	DescribedBy     string                         `json:"described_by"`
 	ResourceType    string                         `json:"resource_type"`
@@ -356,7 +356,7 @@ func GetAPIManagement(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 type APIManagementBackend struct {
 	ResourceID      string                                `json:"resource_id"`
 	PlatformID      string                                `json:"platform_id"`
-	Description     azure.APIManagementBackendDescription `json:"description"`
+	Description     azure.APIManagementBackendDescription `json:"Description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
 	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
@@ -638,7 +638,7 @@ func GetAPIManagementBackend(ctx context.Context, d *plugin.QueryData, _ *plugin
 type AutomationAccounts struct {
 	ResourceID      string                              `json:"resource_id"`
 	PlatformID      string                              `json:"platform_id"`
-	Description     azure.AutomationAccountsDescription `json:"description"`
+	Description     azure.AutomationAccountsDescription `json:"Description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
 	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
@@ -920,7 +920,7 @@ func GetAutomationAccounts(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 type AutomationVariables struct {
 	ResourceID      string                               `json:"resource_id"`
 	PlatformID      string                               `json:"platform_id"`
-	Description     azure.AutomationVariablesDescription `json:"description"`
+	Description     azure.AutomationVariablesDescription `json:"Description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
 	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
@@ -1196,7 +1196,7 @@ func GetAutomationVariables(ctx context.Context, d *plugin.QueryData, _ *plugin.
 type AppConfiguration struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.AppConfigurationDescription `json:"description"`
+	Description     azure.AppConfigurationDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -1474,7 +1474,7 @@ func GetAppConfiguration(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type AppServiceEnvironment struct {
 	ResourceID      string                                 `json:"resource_id"`
 	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.AppServiceEnvironmentDescription `json:"description"`
+	Description     azure.AppServiceEnvironmentDescription `json:"Description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
 	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
@@ -1761,7 +1761,7 @@ func GetAppServiceEnvironment(ctx context.Context, d *plugin.QueryData, _ *plugi
 type AppServiceFunctionApp struct {
 	ResourceID      string                                 `json:"resource_id"`
 	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.AppServiceFunctionAppDescription `json:"description"`
+	Description     azure.AppServiceFunctionAppDescription `json:"Description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
 	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
@@ -2056,7 +2056,7 @@ func GetAppServiceFunctionApp(ctx context.Context, d *plugin.QueryData, _ *plugi
 type AppServiceWebApp struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.AppServiceWebAppDescription `json:"description"`
+	Description     azure.AppServiceWebAppDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -2355,7 +2355,7 @@ func GetAppServiceWebApp(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type AppServiceWebAppSlot struct {
 	ResourceID      string                                `json:"resource_id"`
 	PlatformID      string                                `json:"platform_id"`
-	Description     azure.AppServiceWebAppSlotDescription `json:"description"`
+	Description     azure.AppServiceWebAppSlotDescription `json:"Description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
 	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
@@ -2691,7 +2691,7 @@ func GetAppServiceWebAppSlot(ctx context.Context, d *plugin.QueryData, _ *plugin
 type AppServicePlan struct {
 	ResourceID      string                          `json:"resource_id"`
 	PlatformID      string                          `json:"platform_id"`
-	Description     azure.AppServicePlanDescription `json:"description"`
+	Description     azure.AppServicePlanDescription `json:"Description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
 	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
@@ -2988,7 +2988,7 @@ func GetAppServicePlan(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 type ContainerApp struct {
 	ResourceID      string                        `json:"resource_id"`
 	PlatformID      string                        `json:"platform_id"`
-	Description     azure.ContainerAppDescription `json:"description"`
+	Description     azure.ContainerAppDescription `json:"Description"`
 	Metadata        azure.Metadata                `json:"metadata"`
 	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
@@ -3250,7 +3250,7 @@ func GetContainerApp(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 type WebServerFarms struct {
 	ResourceID      string                          `json:"resource_id"`
 	PlatformID      string                          `json:"platform_id"`
-	Description     azure.WebServerFarmsDescription `json:"description"`
+	Description     azure.WebServerFarmsDescription `json:"Description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
 	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
@@ -3512,7 +3512,7 @@ func GetWebServerFarms(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 type Blueprint struct {
 	ResourceID      string                     `json:"resource_id"`
 	PlatformID      string                     `json:"platform_id"`
-	Description     azure.BlueprintDescription `json:"description"`
+	Description     azure.BlueprintDescription `json:"Description"`
 	Metadata        azure.Metadata             `json:"metadata"`
 	DescribedBy     string                     `json:"described_by"`
 	ResourceType    string                     `json:"resource_type"`
@@ -3772,7 +3772,7 @@ func GetBlueprint(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 type ComputeDisk struct {
 	ResourceID      string                       `json:"resource_id"`
 	PlatformID      string                       `json:"platform_id"`
-	Description     azure.ComputeDiskDescription `json:"description"`
+	Description     azure.ComputeDiskDescription `json:"Description"`
 	Metadata        azure.Metadata               `json:"metadata"`
 	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
@@ -4108,7 +4108,7 @@ func GetComputeDisk(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 type ComputeDiskAccess struct {
 	ResourceID      string                             `json:"resource_id"`
 	PlatformID      string                             `json:"platform_id"`
-	Description     azure.ComputeDiskAccessDescription `json:"description"`
+	Description     azure.ComputeDiskAccessDescription `json:"Description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
 	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
@@ -4376,7 +4376,7 @@ func GetComputeDiskAccess(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 type ComputeVirtualMachineScaleSet struct {
 	ResourceID      string                                         `json:"resource_id"`
 	PlatformID      string                                         `json:"platform_id"`
-	Description     azure.ComputeVirtualMachineScaleSetDescription `json:"description"`
+	Description     azure.ComputeVirtualMachineScaleSetDescription `json:"Description"`
 	Metadata        azure.Metadata                                 `json:"metadata"`
 	DescribedBy     string                                         `json:"described_by"`
 	ResourceType    string                                         `json:"resource_type"`
@@ -4688,7 +4688,7 @@ func GetComputeVirtualMachineScaleSet(ctx context.Context, d *plugin.QueryData, 
 type ComputeVirtualMachineScaleSetNetworkInterface struct {
 	ResourceID      string                                                         `json:"resource_id"`
 	PlatformID      string                                                         `json:"platform_id"`
-	Description     azure.ComputeVirtualMachineScaleSetNetworkInterfaceDescription `json:"description"`
+	Description     azure.ComputeVirtualMachineScaleSetNetworkInterfaceDescription `json:"Description"`
 	Metadata        azure.Metadata                                                 `json:"metadata"`
 	DescribedBy     string                                                         `json:"described_by"`
 	ResourceType    string                                                         `json:"resource_type"`
@@ -4958,7 +4958,7 @@ func GetComputeVirtualMachineScaleSetNetworkInterface(ctx context.Context, d *pl
 type ComputeVirtualMachineScaleSetVm struct {
 	ResourceID      string                                           `json:"resource_id"`
 	PlatformID      string                                           `json:"platform_id"`
-	Description     azure.ComputeVirtualMachineScaleSetVmDescription `json:"description"`
+	Description     azure.ComputeVirtualMachineScaleSetVmDescription `json:"Description"`
 	Metadata        azure.Metadata                                   `json:"metadata"`
 	DescribedBy     string                                           `json:"described_by"`
 	ResourceType    string                                           `json:"resource_type"`
@@ -5278,7 +5278,7 @@ func GetComputeVirtualMachineScaleSetVm(ctx context.Context, d *plugin.QueryData
 type ComputeSnapshots struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.ComputeSnapshotsDescription `json:"description"`
+	Description     azure.ComputeSnapshotsDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -5596,7 +5596,7 @@ func GetComputeSnapshots(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type ComputeAvailabilitySet struct {
 	ResourceID      string                                  `json:"resource_id"`
 	PlatformID      string                                  `json:"platform_id"`
-	Description     azure.ComputeAvailabilitySetDescription `json:"description"`
+	Description     azure.ComputeAvailabilitySetDescription `json:"Description"`
 	Metadata        azure.Metadata                          `json:"metadata"`
 	DescribedBy     string                                  `json:"described_by"`
 	ResourceType    string                                  `json:"resource_type"`
@@ -5878,7 +5878,7 @@ func GetComputeAvailabilitySet(ctx context.Context, d *plugin.QueryData, _ *plug
 type ComputeDiskEncryptionSet struct {
 	ResourceID      string                                    `json:"resource_id"`
 	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.ComputeDiskEncryptionSetDescription `json:"description"`
+	Description     azure.ComputeDiskEncryptionSetDescription `json:"Description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
 	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
@@ -6160,7 +6160,7 @@ func GetComputeDiskEncryptionSet(ctx context.Context, d *plugin.QueryData, _ *pl
 type ComputeImageGallery struct {
 	ResourceID      string                               `json:"resource_id"`
 	PlatformID      string                               `json:"platform_id"`
-	Description     azure.ComputeImageGalleryDescription `json:"description"`
+	Description     azure.ComputeImageGalleryDescription `json:"Description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
 	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
@@ -6423,7 +6423,7 @@ func GetComputeImageGallery(ctx context.Context, d *plugin.QueryData, _ *plugin.
 type ComputeImage struct {
 	ResourceID      string                        `json:"resource_id"`
 	PlatformID      string                        `json:"platform_id"`
-	Description     azure.ComputeImageDescription `json:"description"`
+	Description     azure.ComputeImageDescription `json:"Description"`
 	Metadata        azure.Metadata                `json:"metadata"`
 	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
@@ -6717,7 +6717,7 @@ func GetComputeImage(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 type ComputeHostGroup struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.ComputeHostGroupDescription `json:"description"`
+	Description     azure.ComputeHostGroupDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -6979,7 +6979,7 @@ func GetComputeHostGroup(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type ComputeHostGroupHost struct {
 	ResourceID      string                                `json:"resource_id"`
 	PlatformID      string                                `json:"platform_id"`
-	Description     azure.ComputeHostGroupHostDescription `json:"description"`
+	Description     azure.ComputeHostGroupHostDescription `json:"Description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
 	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
@@ -7241,7 +7241,7 @@ func GetComputeHostGroupHost(ctx context.Context, d *plugin.QueryData, _ *plugin
 type ComputeRestorePointCollection struct {
 	ResourceID      string                                         `json:"resource_id"`
 	PlatformID      string                                         `json:"platform_id"`
-	Description     azure.ComputeRestorePointCollectionDescription `json:"description"`
+	Description     azure.ComputeRestorePointCollectionDescription `json:"Description"`
 	Metadata        azure.Metadata                                 `json:"metadata"`
 	DescribedBy     string                                         `json:"described_by"`
 	ResourceType    string                                         `json:"resource_type"`
@@ -7503,7 +7503,7 @@ func GetComputeRestorePointCollection(ctx context.Context, d *plugin.QueryData, 
 type ComputeSSHPublicKey struct {
 	ResourceID      string                               `json:"resource_id"`
 	PlatformID      string                               `json:"platform_id"`
-	Description     azure.ComputeSSHPublicKeyDescription `json:"description"`
+	Description     azure.ComputeSSHPublicKeyDescription `json:"Description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
 	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
@@ -7771,7 +7771,7 @@ func GetComputeSSHPublicKey(ctx context.Context, d *plugin.QueryData, _ *plugin.
 type DataboxEdgeDevice struct {
 	ResourceID      string                             `json:"resource_id"`
 	PlatformID      string                             `json:"platform_id"`
-	Description     azure.DataboxEdgeDeviceDescription `json:"description"`
+	Description     azure.DataboxEdgeDeviceDescription `json:"Description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
 	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
@@ -8073,7 +8073,7 @@ func GetDataboxEdgeDevice(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 type HealthcareService struct {
 	ResourceID      string                             `json:"resource_id"`
 	PlatformID      string                             `json:"platform_id"`
-	Description     azure.HealthcareServiceDescription `json:"description"`
+	Description     azure.HealthcareServiceDescription `json:"Description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
 	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
@@ -8371,7 +8371,7 @@ func GetHealthcareService(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 type HpcCache struct {
 	ResourceID      string                    `json:"resource_id"`
 	PlatformID      string                    `json:"platform_id"`
-	Description     azure.HpcCacheDescription `json:"description"`
+	Description     azure.HpcCacheDescription `json:"Description"`
 	Metadata        azure.Metadata            `json:"metadata"`
 	DescribedBy     string                    `json:"described_by"`
 	ResourceType    string                    `json:"resource_type"`
@@ -8659,7 +8659,7 @@ func GetHpcCache(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 type KeyVaultKey struct {
 	ResourceID      string                       `json:"resource_id"`
 	PlatformID      string                       `json:"platform_id"`
-	Description     azure.KeyVaultKeyDescription `json:"description"`
+	Description     azure.KeyVaultKeyDescription `json:"Description"`
 	Metadata        azure.Metadata               `json:"metadata"`
 	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
@@ -8944,7 +8944,7 @@ func GetKeyVaultKey(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 type KeyVaultKeyVersion struct {
 	ResourceID      string                              `json:"resource_id"`
 	PlatformID      string                              `json:"platform_id"`
-	Description     azure.KeyVaultKeyVersionDescription `json:"description"`
+	Description     azure.KeyVaultKeyVersionDescription `json:"Description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
 	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
@@ -9234,7 +9234,7 @@ func GetKeyVaultKeyVersion(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 type KubernetesCluster struct {
 	ResourceID      string                             `json:"resource_id"`
 	PlatformID      string                             `json:"platform_id"`
-	Description     azure.KubernetesClusterDescription `json:"description"`
+	Description     azure.KubernetesClusterDescription `json:"Description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
 	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
@@ -9556,7 +9556,7 @@ func GetKubernetesCluster(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 type KubernetesServiceVersion struct {
 	ResourceID      string                                    `json:"resource_id"`
 	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.KubernetesServiceVersionDescription `json:"description"`
+	Description     azure.KubernetesServiceVersionDescription `json:"Description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
 	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
@@ -9822,7 +9822,7 @@ func GetKubernetesServiceVersion(ctx context.Context, d *plugin.QueryData, _ *pl
 type ContainerInstanceContainerGroup struct {
 	ResourceID      string                                           `json:"resource_id"`
 	PlatformID      string                                           `json:"platform_id"`
-	Description     azure.ContainerInstanceContainerGroupDescription `json:"description"`
+	Description     azure.ContainerInstanceContainerGroupDescription `json:"Description"`
 	Metadata        azure.Metadata                                   `json:"metadata"`
 	DescribedBy     string                                           `json:"described_by"`
 	ResourceType    string                                           `json:"resource_type"`
@@ -10118,7 +10118,7 @@ func GetContainerInstanceContainerGroup(ctx context.Context, d *plugin.QueryData
 type CDNProfile struct {
 	ResourceID      string                      `json:"resource_id"`
 	PlatformID      string                      `json:"platform_id"`
-	Description     azure.CDNProfileDescription `json:"description"`
+	Description     azure.CDNProfileDescription `json:"Description"`
 	Metadata        azure.Metadata              `json:"metadata"`
 	DescribedBy     string                      `json:"described_by"`
 	ResourceType    string                      `json:"resource_type"`
@@ -10394,7 +10394,7 @@ func GetCDNProfile(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 type CDNEndpoint struct {
 	ResourceID      string                       `json:"resource_id"`
 	PlatformID      string                       `json:"platform_id"`
-	Description     azure.CDNEndpointDescription `json:"description"`
+	Description     azure.CDNEndpointDescription `json:"Description"`
 	Metadata        azure.Metadata               `json:"metadata"`
 	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
@@ -10656,7 +10656,7 @@ func GetCDNEndpoint(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 type NetworkInterface struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.NetworkInterfaceDescription `json:"description"`
+	Description     azure.NetworkInterfaceDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -10972,7 +10972,7 @@ func GetNetworkInterface(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type NetworkWatcherFlowLog struct {
 	ResourceID      string                                 `json:"resource_id"`
 	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.NetworkWatcherFlowLogDescription `json:"description"`
+	Description     azure.NetworkWatcherFlowLogDescription `json:"Description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
 	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
@@ -11262,7 +11262,7 @@ func GetNetworkWatcherFlowLog(ctx context.Context, d *plugin.QueryData, _ *plugi
 type RouteTables struct {
 	ResourceID      string                       `json:"resource_id"`
 	PlatformID      string                       `json:"platform_id"`
-	Description     azure.RouteTablesDescription `json:"description"`
+	Description     azure.RouteTablesDescription `json:"Description"`
 	Metadata        azure.Metadata               `json:"metadata"`
 	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
@@ -11535,7 +11535,7 @@ func GetRouteTables(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 type NetworkApplicationSecurityGroups struct {
 	ResourceID      string                                            `json:"resource_id"`
 	PlatformID      string                                            `json:"platform_id"`
-	Description     azure.NetworkApplicationSecurityGroupsDescription `json:"description"`
+	Description     azure.NetworkApplicationSecurityGroupsDescription `json:"Description"`
 	Metadata        azure.Metadata                                    `json:"metadata"`
 	DescribedBy     string                                            `json:"described_by"`
 	ResourceType    string                                            `json:"resource_type"`
@@ -11805,7 +11805,7 @@ func GetNetworkApplicationSecurityGroups(ctx context.Context, d *plugin.QueryDat
 type NetworkAzureFirewall struct {
 	ResourceID      string                                `json:"resource_id"`
 	PlatformID      string                                `json:"platform_id"`
-	Description     azure.NetworkAzureFirewallDescription `json:"description"`
+	Description     azure.NetworkAzureFirewallDescription `json:"Description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
 	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
@@ -12103,7 +12103,7 @@ func GetNetworkAzureFirewall(ctx context.Context, d *plugin.QueryData, _ *plugin
 type ExpressRouteCircuit struct {
 	ResourceID      string                               `json:"resource_id"`
 	PlatformID      string                               `json:"platform_id"`
-	Description     azure.ExpressRouteCircuitDescription `json:"description"`
+	Description     azure.ExpressRouteCircuitDescription `json:"Description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
 	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
@@ -12399,7 +12399,7 @@ func GetExpressRouteCircuit(ctx context.Context, d *plugin.QueryData, _ *plugin.
 type VirtualNetworkGateway struct {
 	ResourceID      string                                 `json:"resource_id"`
 	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.VirtualNetworkGatewayDescription `json:"description"`
+	Description     azure.VirtualNetworkGatewayDescription `json:"Description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
 	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
@@ -12705,7 +12705,7 @@ func GetVirtualNetworkGateway(ctx context.Context, d *plugin.QueryData, _ *plugi
 type FirewallPolicy struct {
 	ResourceID      string                          `json:"resource_id"`
 	PlatformID      string                          `json:"platform_id"`
-	Description     azure.FirewallPolicyDescription `json:"description"`
+	Description     azure.FirewallPolicyDescription `json:"Description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
 	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
@@ -13001,7 +13001,7 @@ func GetFirewallPolicy(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 type LocalNetworkGateway struct {
 	ResourceID      string                               `json:"resource_id"`
 	PlatformID      string                               `json:"platform_id"`
-	Description     azure.LocalNetworkGatewayDescription `json:"description"`
+	Description     azure.LocalNetworkGatewayDescription `json:"Description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
 	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
@@ -13264,7 +13264,7 @@ func GetLocalNetworkGateway(ctx context.Context, d *plugin.QueryData, _ *plugin.
 type NatGateway struct {
 	ResourceID      string                      `json:"resource_id"`
 	PlatformID      string                      `json:"platform_id"`
-	Description     azure.NatGatewayDescription `json:"description"`
+	Description     azure.NatGatewayDescription `json:"Description"`
 	Metadata        azure.Metadata              `json:"metadata"`
 	DescribedBy     string                      `json:"described_by"`
 	ResourceType    string                      `json:"resource_type"`
@@ -13536,7 +13536,7 @@ func GetNatGateway(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 type PrivateLinkService struct {
 	ResourceID      string                              `json:"resource_id"`
 	PlatformID      string                              `json:"platform_id"`
-	Description     azure.PrivateLinkServiceDescription `json:"description"`
+	Description     azure.PrivateLinkServiceDescription `json:"Description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
 	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
@@ -13799,7 +13799,7 @@ func GetPrivateLinkService(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 type VpnGateway struct {
 	ResourceID      string                      `json:"resource_id"`
 	PlatformID      string                      `json:"platform_id"`
-	Description     azure.VpnGatewayDescription `json:"description"`
+	Description     azure.VpnGatewayDescription `json:"Description"`
 	Metadata        azure.Metadata              `json:"metadata"`
 	DescribedBy     string                      `json:"described_by"`
 	ResourceType    string                      `json:"resource_type"`
@@ -14062,7 +14062,7 @@ func GetVpnGateway(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 type VpnGatewayVpnConnection struct {
 	ResourceID      string                                   `json:"resource_id"`
 	PlatformID      string                                   `json:"platform_id"`
-	Description     azure.VpnGatewayVpnConnectionDescription `json:"description"`
+	Description     azure.VpnGatewayVpnConnectionDescription `json:"Description"`
 	Metadata        azure.Metadata                           `json:"metadata"`
 	DescribedBy     string                                   `json:"described_by"`
 	ResourceType    string                                   `json:"resource_type"`
@@ -14324,7 +14324,7 @@ func GetVpnGatewayVpnConnection(ctx context.Context, d *plugin.QueryData, _ *plu
 type VpnSite struct {
 	ResourceID      string                   `json:"resource_id"`
 	PlatformID      string                   `json:"platform_id"`
-	Description     azure.VpnSiteDescription `json:"description"`
+	Description     azure.VpnSiteDescription `json:"Description"`
 	Metadata        azure.Metadata           `json:"metadata"`
 	DescribedBy     string                   `json:"described_by"`
 	ResourceType    string                   `json:"resource_type"`
@@ -14586,7 +14586,7 @@ func GetVpnSite(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData)
 type PublicIPAddress struct {
 	ResourceID      string                           `json:"resource_id"`
 	PlatformID      string                           `json:"platform_id"`
-	Description     azure.PublicIPAddressDescription `json:"description"`
+	Description     azure.PublicIPAddressDescription `json:"Description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
 	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
@@ -14888,7 +14888,7 @@ func GetPublicIPAddress(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 type PublicIPPrefix struct {
 	ResourceID      string                          `json:"resource_id"`
 	PlatformID      string                          `json:"platform_id"`
-	Description     azure.PublicIPPrefixDescription `json:"description"`
+	Description     azure.PublicIPPrefixDescription `json:"Description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
 	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
@@ -15150,7 +15150,7 @@ func GetPublicIPPrefix(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 type DNSZones struct {
 	ResourceID      string                    `json:"resource_id"`
 	PlatformID      string                    `json:"platform_id"`
-	Description     azure.DNSZonesDescription `json:"description"`
+	Description     azure.DNSZonesDescription `json:"Description"`
 	Metadata        azure.Metadata            `json:"metadata"`
 	DescribedBy     string                    `json:"described_by"`
 	ResourceType    string                    `json:"resource_type"`
@@ -15432,7 +15432,7 @@ func GetDNSZones(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 type BastionHosts struct {
 	ResourceID      string                        `json:"resource_id"`
 	PlatformID      string                        `json:"platform_id"`
-	Description     azure.BastionHostsDescription `json:"description"`
+	Description     azure.BastionHostsDescription `json:"Description"`
 	Metadata        azure.Metadata                `json:"metadata"`
 	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
@@ -15708,7 +15708,7 @@ func GetBastionHosts(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 type Connection struct {
 	ResourceID      string                      `json:"resource_id"`
 	PlatformID      string                      `json:"platform_id"`
-	Description     azure.ConnectionDescription `json:"description"`
+	Description     azure.ConnectionDescription `json:"Description"`
 	Metadata        azure.Metadata              `json:"metadata"`
 	DescribedBy     string                      `json:"described_by"`
 	ResourceType    string                      `json:"resource_type"`
@@ -15970,7 +15970,7 @@ func GetConnection(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 type VirtualHubs struct {
 	ResourceID      string                       `json:"resource_id"`
 	PlatformID      string                       `json:"platform_id"`
-	Description     azure.VirtualHubsDescription `json:"description"`
+	Description     azure.VirtualHubsDescription `json:"Description"`
 	Metadata        azure.Metadata               `json:"metadata"`
 	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
@@ -16232,7 +16232,7 @@ func GetVirtualHubs(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 type VirtualWans struct {
 	ResourceID      string                       `json:"resource_id"`
 	PlatformID      string                       `json:"platform_id"`
-	Description     azure.VirtualWansDescription `json:"description"`
+	Description     azure.VirtualWansDescription `json:"Description"`
 	Metadata        azure.Metadata               `json:"metadata"`
 	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
@@ -16494,7 +16494,7 @@ func GetVirtualWans(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 type DNSResolver struct {
 	ResourceID      string                       `json:"resource_id"`
 	PlatformID      string                       `json:"platform_id"`
-	Description     azure.DNSResolverDescription `json:"description"`
+	Description     azure.DNSResolverDescription `json:"Description"`
 	Metadata        azure.Metadata               `json:"metadata"`
 	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
@@ -16756,7 +16756,7 @@ func GetDNSResolver(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 type TrafficManagerProfile struct {
 	ResourceID      string                                 `json:"resource_id"`
 	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.TrafficManagerProfileDescription `json:"description"`
+	Description     azure.TrafficManagerProfileDescription `json:"Description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
 	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
@@ -17018,7 +17018,7 @@ func GetTrafficManagerProfile(ctx context.Context, d *plugin.QueryData, _ *plugi
 type PrivateDNSZones struct {
 	ResourceID      string                           `json:"resource_id"`
 	PlatformID      string                           `json:"platform_id"`
-	Description     azure.PrivateDNSZonesDescription `json:"description"`
+	Description     azure.PrivateDNSZonesDescription `json:"Description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
 	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
@@ -17300,7 +17300,7 @@ func GetPrivateDNSZones(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 type PrivateEndpoint struct {
 	ResourceID      string                           `json:"resource_id"`
 	PlatformID      string                           `json:"platform_id"`
-	Description     azure.PrivateEndpointDescription `json:"description"`
+	Description     azure.PrivateEndpointDescription `json:"Description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
 	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
@@ -17562,7 +17562,7 @@ func GetPrivateEndpoint(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 type NetworkDDoSProtectionPlan struct {
 	ResourceID      string                                     `json:"resource_id"`
 	PlatformID      string                                     `json:"platform_id"`
-	Description     azure.NetworkDDoSProtectionPlanDescription `json:"description"`
+	Description     azure.NetworkDDoSProtectionPlanDescription `json:"Description"`
 	Metadata        azure.Metadata                             `json:"metadata"`
 	DescribedBy     string                                     `json:"described_by"`
 	ResourceType    string                                     `json:"resource_type"`
@@ -17824,7 +17824,7 @@ func GetNetworkDDoSProtectionPlan(ctx context.Context, d *plugin.QueryData, _ *p
 type PolicyAssignment struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.PolicyAssignmentDescription `json:"description"`
+	Description     azure.PolicyAssignmentDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -18108,7 +18108,7 @@ func GetPolicyAssignment(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type RedisCache struct {
 	ResourceID      string                      `json:"resource_id"`
 	PlatformID      string                      `json:"platform_id"`
-	Description     azure.RedisCacheDescription `json:"description"`
+	Description     azure.RedisCacheDescription `json:"Description"`
 	Metadata        azure.Metadata              `json:"metadata"`
 	DescribedBy     string                      `json:"described_by"`
 	ResourceType    string                      `json:"resource_type"`
@@ -18416,7 +18416,7 @@ func GetRedisCache(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 type RedisEnterpriseCache struct {
 	ResourceID      string                                `json:"resource_id"`
 	PlatformID      string                                `json:"platform_id"`
-	Description     azure.RedisEnterpriseCacheDescription `json:"description"`
+	Description     azure.RedisEnterpriseCacheDescription `json:"Description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
 	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
@@ -18678,7 +18678,7 @@ func GetRedisEnterpriseCache(ctx context.Context, d *plugin.QueryData, _ *plugin
 type ResourceLink struct {
 	ResourceID      string                        `json:"resource_id"`
 	PlatformID      string                        `json:"platform_id"`
-	Description     azure.ResourceLinkDescription `json:"description"`
+	Description     azure.ResourceLinkDescription `json:"Description"`
 	Metadata        azure.Metadata                `json:"metadata"`
 	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
@@ -18948,7 +18948,7 @@ func GetResourceLink(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 type RoleAssignment struct {
 	ResourceID      string                          `json:"resource_id"`
 	PlatformID      string                          `json:"platform_id"`
-	Description     azure.RoleAssignmentDescription `json:"description"`
+	Description     azure.RoleAssignmentDescription `json:"Description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
 	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
@@ -19222,7 +19222,7 @@ func GetRoleAssignment(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 type RoleDefinition struct {
 	ResourceID      string                          `json:"resource_id"`
 	PlatformID      string                          `json:"platform_id"`
-	Description     azure.RoleDefinitionDescription `json:"description"`
+	Description     azure.RoleDefinitionDescription `json:"Description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
 	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
@@ -19492,7 +19492,7 @@ func GetRoleDefinition(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 type PolicyDefinition struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.PolicyDefinitionDescription `json:"description"`
+	Description     azure.PolicyDefinitionDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -19770,7 +19770,7 @@ func GetPolicyDefinition(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type UserEffectiveAccess struct {
 	ResourceID      string                               `json:"resource_id"`
 	PlatformID      string                               `json:"platform_id"`
-	Description     azure.UserEffectiveAccessDescription `json:"description"`
+	Description     azure.UserEffectiveAccessDescription `json:"Description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
 	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
@@ -20042,7 +20042,7 @@ func GetUserEffectiveAccess(ctx context.Context, d *plugin.QueryData, _ *plugin.
 type SecurityCenterAutoProvisioning struct {
 	ResourceID      string                                          `json:"resource_id"`
 	PlatformID      string                                          `json:"platform_id"`
-	Description     azure.SecurityCenterAutoProvisioningDescription `json:"description"`
+	Description     azure.SecurityCenterAutoProvisioningDescription `json:"Description"`
 	Metadata        azure.Metadata                                  `json:"metadata"`
 	DescribedBy     string                                          `json:"described_by"`
 	ResourceType    string                                          `json:"resource_type"`
@@ -20306,7 +20306,7 @@ func GetSecurityCenterAutoProvisioning(ctx context.Context, d *plugin.QueryData,
 type SecurityCenterContact struct {
 	ResourceID      string                                 `json:"resource_id"`
 	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.SecurityCenterContactDescription `json:"description"`
+	Description     azure.SecurityCenterContactDescription `json:"Description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
 	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
@@ -20576,7 +20576,7 @@ func GetSecurityCenterContact(ctx context.Context, d *plugin.QueryData, _ *plugi
 type SecurityCenterJitNetworkAccessPolicy struct {
 	ResourceID      string                                                `json:"resource_id"`
 	PlatformID      string                                                `json:"platform_id"`
-	Description     azure.SecurityCenterJitNetworkAccessPolicyDescription `json:"description"`
+	Description     azure.SecurityCenterJitNetworkAccessPolicyDescription `json:"Description"`
 	Metadata        azure.Metadata                                        `json:"metadata"`
 	DescribedBy     string                                                `json:"described_by"`
 	ResourceType    string                                                `json:"resource_type"`
@@ -20844,7 +20844,7 @@ func GetSecurityCenterJitNetworkAccessPolicy(ctx context.Context, d *plugin.Quer
 type SecurityCenterSetting struct {
 	ResourceID      string                                 `json:"resource_id"`
 	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.SecurityCenterSettingDescription `json:"description"`
+	Description     azure.SecurityCenterSettingDescription `json:"Description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
 	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
@@ -21110,7 +21110,7 @@ func GetSecurityCenterSetting(ctx context.Context, d *plugin.QueryData, _ *plugi
 type SecurityCenterSubscriptionPricing struct {
 	ResourceID      string                                             `json:"resource_id"`
 	PlatformID      string                                             `json:"platform_id"`
-	Description     azure.SecurityCenterSubscriptionPricingDescription `json:"description"`
+	Description     azure.SecurityCenterSubscriptionPricingDescription `json:"Description"`
 	Metadata        azure.Metadata                                     `json:"metadata"`
 	DescribedBy     string                                             `json:"described_by"`
 	ResourceType    string                                             `json:"resource_type"`
@@ -21376,7 +21376,7 @@ func GetSecurityCenterSubscriptionPricing(ctx context.Context, d *plugin.QueryDa
 type SecurityCenterAutomation struct {
 	ResourceID      string                                    `json:"resource_id"`
 	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.SecurityCenterAutomationDescription `json:"description"`
+	Description     azure.SecurityCenterAutomationDescription `json:"Description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
 	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
@@ -21656,7 +21656,7 @@ func GetSecurityCenterAutomation(ctx context.Context, d *plugin.QueryData, _ *pl
 type SecurityCenterSubAssessment struct {
 	ResourceID      string                                       `json:"resource_id"`
 	PlatformID      string                                       `json:"platform_id"`
-	Description     azure.SecurityCenterSubAssessmentDescription `json:"description"`
+	Description     azure.SecurityCenterSubAssessmentDescription `json:"Description"`
 	Metadata        azure.Metadata                               `json:"metadata"`
 	DescribedBy     string                                       `json:"described_by"`
 	ResourceType    string                                       `json:"resource_type"`
@@ -21932,7 +21932,7 @@ func GetSecurityCenterSubAssessment(ctx context.Context, d *plugin.QueryData, _ 
 type StorageContainer struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.StorageContainerDescription `json:"description"`
+	Description     azure.StorageContainerDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -22226,7 +22226,7 @@ func GetStorageContainer(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type StorageBlob struct {
 	ResourceID      string                       `json:"resource_id"`
 	PlatformID      string                       `json:"platform_id"`
-	Description     azure.StorageBlobDescription `json:"description"`
+	Description     azure.StorageBlobDescription `json:"Description"`
 	Metadata        azure.Metadata               `json:"metadata"`
 	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
@@ -22569,7 +22569,7 @@ func GetStorageBlob(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 type StorageBlobService struct {
 	ResourceID      string                              `json:"resource_id"`
 	PlatformID      string                              `json:"platform_id"`
-	Description     azure.StorageBlobServiceDescription `json:"description"`
+	Description     azure.StorageBlobServiceDescription `json:"Description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
 	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
@@ -22855,7 +22855,7 @@ func GetStorageBlobService(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 type StorageQueue struct {
 	ResourceID      string                        `json:"resource_id"`
 	PlatformID      string                        `json:"platform_id"`
-	Description     azure.StorageQueueDescription `json:"description"`
+	Description     azure.StorageQueueDescription `json:"Description"`
 	Metadata        azure.Metadata                `json:"metadata"`
 	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
@@ -23123,7 +23123,7 @@ func GetStorageQueue(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 type StorageFileShare struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.StorageFileShareDescription `json:"description"`
+	Description     azure.StorageFileShareDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -23408,7 +23408,7 @@ func GetStorageFileShare(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type StorageTable struct {
 	ResourceID      string                        `json:"resource_id"`
 	PlatformID      string                        `json:"platform_id"`
-	Description     azure.StorageTableDescription `json:"description"`
+	Description     azure.StorageTableDescription `json:"Description"`
 	Metadata        azure.Metadata                `json:"metadata"`
 	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
@@ -23673,7 +23673,7 @@ func GetStorageTable(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 type StorageTableService struct {
 	ResourceID      string                               `json:"resource_id"`
 	PlatformID      string                               `json:"platform_id"`
-	Description     azure.StorageTableServiceDescription `json:"description"`
+	Description     azure.StorageTableServiceDescription `json:"Description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
 	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
@@ -23940,7 +23940,7 @@ func GetStorageTableService(ctx context.Context, d *plugin.QueryData, _ *plugin.
 type Subnet struct {
 	ResourceID      string                  `json:"resource_id"`
 	PlatformID      string                  `json:"platform_id"`
-	Description     azure.SubnetDescription `json:"description"`
+	Description     azure.SubnetDescription `json:"Description"`
 	Metadata        azure.Metadata          `json:"metadata"`
 	DescribedBy     string                  `json:"described_by"`
 	ResourceType    string                  `json:"resource_type"`
@@ -24229,7 +24229,7 @@ func GetSubnet(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) 
 type VirtualNetwork struct {
 	ResourceID      string                          `json:"resource_id"`
 	PlatformID      string                          `json:"platform_id"`
-	Description     azure.VirtualNetworkDescription `json:"description"`
+	Description     azure.VirtualNetworkDescription `json:"Description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
 	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
@@ -24511,7 +24511,7 @@ func GetVirtualNetwork(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 type Tenant struct {
 	ResourceID      string                  `json:"resource_id"`
 	PlatformID      string                  `json:"platform_id"`
-	Description     azure.TenantDescription `json:"description"`
+	Description     azure.TenantDescription `json:"Description"`
 	Metadata        azure.Metadata          `json:"metadata"`
 	DescribedBy     string                  `json:"described_by"`
 	ResourceType    string                  `json:"resource_type"`
@@ -24777,7 +24777,7 @@ func GetTenant(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) 
 type Subscription struct {
 	ResourceID      string                        `json:"resource_id"`
 	PlatformID      string                        `json:"platform_id"`
-	Description     azure.SubscriptionDescription `json:"description"`
+	Description     azure.SubscriptionDescription `json:"Description"`
 	Metadata        azure.Metadata                `json:"metadata"`
 	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
@@ -25049,7 +25049,7 @@ func GetSubscription(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 type ApplicationGateway struct {
 	ResourceID      string                              `json:"resource_id"`
 	PlatformID      string                              `json:"platform_id"`
-	Description     azure.ApplicationGatewayDescription `json:"description"`
+	Description     azure.ApplicationGatewayDescription `json:"Description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
 	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
@@ -25349,7 +25349,7 @@ func GetApplicationGateway(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 type BatchAccount struct {
 	ResourceID      string                        `json:"resource_id"`
 	PlatformID      string                        `json:"platform_id"`
-	Description     azure.BatchAccountDescription `json:"description"`
+	Description     azure.BatchAccountDescription `json:"Description"`
 	Metadata        azure.Metadata                `json:"metadata"`
 	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
@@ -25647,7 +25647,7 @@ func GetBatchAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 type CognitiveAccount struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.CognitiveAccountDescription `json:"description"`
+	Description     azure.CognitiveAccountDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -25965,7 +25965,7 @@ func GetCognitiveAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type ComputeVirtualMachine struct {
 	ResourceID      string                                 `json:"resource_id"`
 	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.ComputeVirtualMachineDescription `json:"description"`
+	Description     azure.ComputeVirtualMachineDescription `json:"Description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
 	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
@@ -26327,7 +26327,7 @@ func GetComputeVirtualMachine(ctx context.Context, d *plugin.QueryData, _ *plugi
 type ComputeResourceSKU struct {
 	ResourceID      string                              `json:"resource_id"`
 	PlatformID      string                              `json:"platform_id"`
-	Description     azure.ComputeResourceSKUDescription `json:"description"`
+	Description     azure.ComputeResourceSKUDescription `json:"Description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
 	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
@@ -26607,7 +26607,7 @@ func GetComputeResourceSKU(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 type ComputeCloudService struct {
 	ResourceID      string                               `json:"resource_id"`
 	PlatformID      string                               `json:"platform_id"`
-	Description     azure.ComputeCloudServiceDescription `json:"description"`
+	Description     azure.ComputeCloudServiceDescription `json:"Description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
 	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
@@ -26869,7 +26869,7 @@ func GetComputeCloudService(ctx context.Context, d *plugin.QueryData, _ *plugin.
 type ContainerRegistry struct {
 	ResourceID      string                             `json:"resource_id"`
 	PlatformID      string                             `json:"platform_id"`
-	Description     azure.ContainerRegistryDescription `json:"description"`
+	Description     azure.ContainerRegistryDescription `json:"Description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
 	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
@@ -27179,7 +27179,7 @@ func GetContainerRegistry(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 type CosmosdbAccount struct {
 	ResourceID      string                           `json:"resource_id"`
 	PlatformID      string                           `json:"platform_id"`
-	Description     azure.CosmosdbAccountDescription `json:"description"`
+	Description     azure.CosmosdbAccountDescription `json:"Description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
 	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
@@ -27504,7 +27504,7 @@ func GetCosmosdbAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 type CosmosdbRestorableDatabaseAccount struct {
 	ResourceID      string                                             `json:"resource_id"`
 	PlatformID      string                                             `json:"platform_id"`
-	Description     azure.CosmosdbRestorableDatabaseAccountDescription `json:"description"`
+	Description     azure.CosmosdbRestorableDatabaseAccountDescription `json:"Description"`
 	Metadata        azure.Metadata                                     `json:"metadata"`
 	DescribedBy     string                                             `json:"described_by"`
 	ResourceType    string                                             `json:"resource_type"`
@@ -27778,7 +27778,7 @@ func GetCosmosdbRestorableDatabaseAccount(ctx context.Context, d *plugin.QueryDa
 type CosmosdbMongoDatabase struct {
 	ResourceID      string                                 `json:"resource_id"`
 	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.CosmosdbMongoDatabaseDescription `json:"description"`
+	Description     azure.CosmosdbMongoDatabaseDescription `json:"Description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
 	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
@@ -28057,7 +28057,7 @@ func GetCosmosdbMongoDatabase(ctx context.Context, d *plugin.QueryData, _ *plugi
 type CosmosdbMongoCollection struct {
 	ResourceID      string                                   `json:"resource_id"`
 	PlatformID      string                                   `json:"platform_id"`
-	Description     azure.CosmosdbMongoCollectionDescription `json:"description"`
+	Description     azure.CosmosdbMongoCollectionDescription `json:"Description"`
 	Metadata        azure.Metadata                           `json:"metadata"`
 	DescribedBy     string                                   `json:"described_by"`
 	ResourceType    string                                   `json:"resource_type"`
@@ -28345,7 +28345,7 @@ func GetCosmosdbMongoCollection(ctx context.Context, d *plugin.QueryData, _ *plu
 type CosmosdbSqlDatabase struct {
 	ResourceID      string                               `json:"resource_id"`
 	PlatformID      string                               `json:"platform_id"`
-	Description     azure.CosmosdbSqlDatabaseDescription `json:"description"`
+	Description     azure.CosmosdbSqlDatabaseDescription `json:"Description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
 	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
@@ -28626,7 +28626,7 @@ func GetCosmosdbSqlDatabase(ctx context.Context, d *plugin.QueryData, _ *plugin.
 type CosmosdbCassandraCluster struct {
 	ResourceID      string                                    `json:"resource_id"`
 	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.CosmosdbCassandraClusterDescription `json:"description"`
+	Description     azure.CosmosdbCassandraClusterDescription `json:"Description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
 	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
@@ -28888,7 +28888,7 @@ func GetCosmosdbCassandraCluster(ctx context.Context, d *plugin.QueryData, _ *pl
 type DatabricksWorkspace struct {
 	ResourceID      string                               `json:"resource_id"`
 	PlatformID      string                               `json:"platform_id"`
-	Description     azure.DatabricksWorkspaceDescription `json:"description"`
+	Description     azure.DatabricksWorkspaceDescription `json:"Description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
 	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
@@ -29178,7 +29178,7 @@ func GetDatabricksWorkspace(ctx context.Context, d *plugin.QueryData, _ *plugin.
 type DataMigrationService struct {
 	ResourceID      string                                `json:"resource_id"`
 	PlatformID      string                                `json:"platform_id"`
-	Description     azure.DataMigrationServiceDescription `json:"description"`
+	Description     azure.DataMigrationServiceDescription `json:"Description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
 	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
@@ -29440,7 +29440,7 @@ func GetDataMigrationService(ctx context.Context, d *plugin.QueryData, _ *plugin
 type DataProtectionBackupVaults struct {
 	ResourceID      string                                      `json:"resource_id"`
 	PlatformID      string                                      `json:"platform_id"`
-	Description     azure.DataProtectionBackupVaultsDescription `json:"description"`
+	Description     azure.DataProtectionBackupVaultsDescription `json:"Description"`
 	Metadata        azure.Metadata                              `json:"metadata"`
 	DescribedBy     string                                      `json:"described_by"`
 	ResourceType    string                                      `json:"resource_type"`
@@ -29716,7 +29716,7 @@ func GetDataProtectionBackupVaults(ctx context.Context, d *plugin.QueryData, _ *
 type DataProtectionBackupVaultsBackupPolicies struct {
 	ResourceID      string                                                    `json:"resource_id"`
 	PlatformID      string                                                    `json:"platform_id"`
-	Description     azure.DataProtectionBackupVaultsBackupPoliciesDescription `json:"description"`
+	Description     azure.DataProtectionBackupVaultsBackupPoliciesDescription `json:"Description"`
 	Metadata        azure.Metadata                                            `json:"metadata"`
 	DescribedBy     string                                                    `json:"described_by"`
 	ResourceType    string                                                    `json:"resource_type"`
@@ -29976,7 +29976,7 @@ func GetDataProtectionBackupVaultsBackupPolicies(ctx context.Context, d *plugin.
 type DataProtectionJob struct {
 	ResourceID      string                             `json:"resource_id"`
 	PlatformID      string                             `json:"platform_id"`
-	Description     azure.DataProtectionJobDescription `json:"description"`
+	Description     azure.DataProtectionJobDescription `json:"Description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
 	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
@@ -30296,7 +30296,7 @@ func GetDataProtectionJob(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 type DataFactory struct {
 	ResourceID      string                       `json:"resource_id"`
 	PlatformID      string                       `json:"platform_id"`
-	Description     azure.DataFactoryDescription `json:"description"`
+	Description     azure.DataFactoryDescription `json:"Description"`
 	Metadata        azure.Metadata               `json:"metadata"`
 	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
@@ -30582,7 +30582,7 @@ func GetDataFactory(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 type DataFactoryDataset struct {
 	ResourceID      string                              `json:"resource_id"`
 	PlatformID      string                              `json:"platform_id"`
-	Description     azure.DataFactoryDatasetDescription `json:"description"`
+	Description     azure.DataFactoryDatasetDescription `json:"Description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
 	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
@@ -30852,7 +30852,7 @@ func GetDataFactoryDataset(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 type DataFactoryPipeline struct {
 	ResourceID      string                               `json:"resource_id"`
 	PlatformID      string                               `json:"platform_id"`
-	Description     azure.DataFactoryPipelineDescription `json:"description"`
+	Description     azure.DataFactoryPipelineDescription `json:"Description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
 	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
@@ -31138,7 +31138,7 @@ func GetDataFactoryPipeline(ctx context.Context, d *plugin.QueryData, _ *plugin.
 type DataLakeAnalyticsAccount struct {
 	ResourceID      string                                    `json:"resource_id"`
 	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.DataLakeAnalyticsAccountDescription `json:"description"`
+	Description     azure.DataLakeAnalyticsAccountDescription `json:"Description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
 	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
@@ -31446,7 +31446,7 @@ func GetDataLakeAnalyticsAccount(ctx context.Context, d *plugin.QueryData, _ *pl
 type DataLakeStore struct {
 	ResourceID      string                         `json:"resource_id"`
 	PlatformID      string                         `json:"platform_id"`
-	Description     azure.DataLakeStoreDescription `json:"description"`
+	Description     azure.DataLakeStoreDescription `json:"Description"`
 	Metadata        azure.Metadata                 `json:"metadata"`
 	DescribedBy     string                         `json:"described_by"`
 	ResourceType    string                         `json:"resource_type"`
@@ -31748,7 +31748,7 @@ func GetDataLakeStore(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 type DiagnosticSetting struct {
 	ResourceID      string                             `json:"resource_id"`
 	PlatformID      string                             `json:"platform_id"`
-	Description     azure.DiagnosticSettingDescription `json:"description"`
+	Description     azure.DiagnosticSettingDescription `json:"Description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
 	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
@@ -32028,7 +32028,7 @@ func GetDiagnosticSetting(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 type AutoscaleSetting struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.AutoscaleSettingDescription `json:"description"`
+	Description     azure.AutoscaleSettingDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -32302,7 +32302,7 @@ func GetAutoscaleSetting(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type EventGridDomain struct {
 	ResourceID      string                           `json:"resource_id"`
 	PlatformID      string                           `json:"platform_id"`
-	Description     azure.EventGridDomainDescription `json:"description"`
+	Description     azure.EventGridDomainDescription `json:"Description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
 	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
@@ -32606,7 +32606,7 @@ func GetEventGridDomain(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 type EventGridTopic struct {
 	ResourceID      string                          `json:"resource_id"`
 	PlatformID      string                          `json:"platform_id"`
-	Description     azure.EventGridTopicDescription `json:"description"`
+	Description     azure.EventGridTopicDescription `json:"Description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
 	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
@@ -32906,7 +32906,7 @@ func GetEventGridTopic(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 type EventhubNamespace struct {
 	ResourceID      string                             `json:"resource_id"`
 	PlatformID      string                             `json:"platform_id"`
-	Description     azure.EventhubNamespaceDescription `json:"description"`
+	Description     azure.EventhubNamespaceDescription `json:"Description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
 	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
@@ -33204,7 +33204,7 @@ func GetEventhubNamespace(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 type EventhubNamespaceEventhub struct {
 	ResourceID      string                                     `json:"resource_id"`
 	PlatformID      string                                     `json:"platform_id"`
-	Description     azure.EventhubNamespaceEventhubDescription `json:"description"`
+	Description     azure.EventhubNamespaceEventhubDescription `json:"Description"`
 	Metadata        azure.Metadata                             `json:"metadata"`
 	DescribedBy     string                                     `json:"described_by"`
 	ResourceType    string                                     `json:"resource_type"`
@@ -33466,7 +33466,7 @@ func GetEventhubNamespaceEventhub(ctx context.Context, d *plugin.QueryData, _ *p
 type Frontdoor struct {
 	ResourceID      string                     `json:"resource_id"`
 	PlatformID      string                     `json:"platform_id"`
-	Description     azure.FrontdoorDescription `json:"description"`
+	Description     azure.FrontdoorDescription `json:"Description"`
 	Metadata        azure.Metadata             `json:"metadata"`
 	DescribedBy     string                     `json:"described_by"`
 	ResourceType    string                     `json:"resource_type"`
@@ -33758,7 +33758,7 @@ func GetFrontdoor(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 type HdinsightCluster struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.HdinsightClusterDescription `json:"description"`
+	Description     azure.HdinsightClusterDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -34074,7 +34074,7 @@ func GetHdinsightCluster(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type HybridComputeMachine struct {
 	ResourceID      string                                `json:"resource_id"`
 	PlatformID      string                                `json:"platform_id"`
-	Description     azure.HybridComputeMachineDescription `json:"description"`
+	Description     azure.HybridComputeMachineDescription `json:"Description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
 	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
@@ -34380,7 +34380,7 @@ func GetHybridComputeMachine(ctx context.Context, d *plugin.QueryData, _ *plugin
 type IOTHub struct {
 	ResourceID      string                  `json:"resource_id"`
 	PlatformID      string                  `json:"platform_id"`
-	Description     azure.IOTHubDescription `json:"description"`
+	Description     azure.IOTHubDescription `json:"Description"`
 	Metadata        azure.Metadata          `json:"metadata"`
 	DescribedBy     string                  `json:"described_by"`
 	ResourceType    string                  `json:"resource_type"`
@@ -34690,7 +34690,7 @@ func GetIOTHub(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) 
 type IOTHubDps struct {
 	ResourceID      string                     `json:"resource_id"`
 	PlatformID      string                     `json:"platform_id"`
-	Description     azure.IOTHubDpsDescription `json:"description"`
+	Description     azure.IOTHubDpsDescription `json:"Description"`
 	Metadata        azure.Metadata             `json:"metadata"`
 	DescribedBy     string                     `json:"described_by"`
 	ResourceType    string                     `json:"resource_type"`
@@ -34982,7 +34982,7 @@ func GetIOTHubDps(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 type KeyVault struct {
 	ResourceID      string                    `json:"resource_id"`
 	PlatformID      string                    `json:"platform_id"`
-	Description     azure.KeyVaultDescription `json:"description"`
+	Description     azure.KeyVaultDescription `json:"Description"`
 	Metadata        azure.Metadata            `json:"metadata"`
 	DescribedBy     string                    `json:"described_by"`
 	ResourceType    string                    `json:"resource_type"`
@@ -35276,7 +35276,7 @@ func GetKeyVault(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 type KeyVaultCertificate struct {
 	ResourceID      string                               `json:"resource_id"`
 	PlatformID      string                               `json:"platform_id"`
-	Description     azure.KeyVaultCertificateDescription `json:"description"`
+	Description     azure.KeyVaultCertificateDescription `json:"Description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
 	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
@@ -35549,7 +35549,7 @@ func GetKeyVaultCertificate(ctx context.Context, d *plugin.QueryData, _ *plugin.
 type KeyVaultDeletedVault struct {
 	ResourceID      string                                `json:"resource_id"`
 	PlatformID      string                                `json:"platform_id"`
-	Description     azure.KeyVaultDeletedVaultDescription `json:"description"`
+	Description     azure.KeyVaultDeletedVaultDescription `json:"Description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
 	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
@@ -35816,7 +35816,7 @@ func GetKeyVaultDeletedVault(ctx context.Context, d *plugin.QueryData, _ *plugin
 type KeyVaultManagedHardwareSecurityModule struct {
 	ResourceID      string                                                 `json:"resource_id"`
 	PlatformID      string                                                 `json:"platform_id"`
-	Description     azure.KeyVaultManagedHardwareSecurityModuleDescription `json:"description"`
+	Description     azure.KeyVaultManagedHardwareSecurityModuleDescription `json:"Description"`
 	Metadata        azure.Metadata                                         `json:"metadata"`
 	DescribedBy     string                                                 `json:"described_by"`
 	ResourceType    string                                                 `json:"resource_type"`
@@ -36104,7 +36104,7 @@ func GetKeyVaultManagedHardwareSecurityModule(ctx context.Context, d *plugin.Que
 type KeyVaultSecret struct {
 	ResourceID      string                          `json:"resource_id"`
 	PlatformID      string                          `json:"platform_id"`
-	Description     azure.KeyVaultSecretDescription `json:"description"`
+	Description     azure.KeyVaultSecretDescription `json:"Description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
 	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
@@ -36378,7 +36378,7 @@ func GetKeyVaultSecret(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 type KustoCluster struct {
 	ResourceID      string                        `json:"resource_id"`
 	PlatformID      string                        `json:"platform_id"`
-	Description     azure.KustoClusterDescription `json:"description"`
+	Description     azure.KustoClusterDescription `json:"Description"`
 	Metadata        azure.Metadata                `json:"metadata"`
 	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
@@ -36686,7 +36686,7 @@ func GetKustoCluster(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 type LogAlert struct {
 	ResourceID      string                    `json:"resource_id"`
 	PlatformID      string                    `json:"platform_id"`
-	Description     azure.LogAlertDescription `json:"description"`
+	Description     azure.LogAlertDescription `json:"Description"`
 	Metadata        azure.Metadata            `json:"metadata"`
 	DescribedBy     string                    `json:"described_by"`
 	ResourceType    string                    `json:"resource_type"`
@@ -36964,7 +36964,7 @@ func GetLogAlert(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 type LogProfile struct {
 	ResourceID      string                      `json:"resource_id"`
 	PlatformID      string                      `json:"platform_id"`
-	Description     azure.LogProfileDescription `json:"description"`
+	Description     azure.LogProfileDescription `json:"Description"`
 	Metadata        azure.Metadata              `json:"metadata"`
 	DescribedBy     string                      `json:"described_by"`
 	ResourceType    string                      `json:"resource_type"`
@@ -37242,7 +37242,7 @@ func GetLogProfile(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 type LogicAppWorkflow struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.LogicAppWorkflowDescription `json:"description"`
+	Description     azure.LogicAppWorkflowDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -37534,7 +37534,7 @@ func GetLogicAppWorkflow(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type LogicIntegrationAccounts struct {
 	ResourceID      string                                    `json:"resource_id"`
 	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.LogicIntegrationAccountsDescription `json:"description"`
+	Description     azure.LogicIntegrationAccountsDescription `json:"Description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
 	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
@@ -37796,7 +37796,7 @@ func GetLogicIntegrationAccounts(ctx context.Context, d *plugin.QueryData, _ *pl
 type MachineLearningWorkspace struct {
 	ResourceID      string                                    `json:"resource_id"`
 	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.MachineLearningWorkspaceDescription `json:"description"`
+	Description     azure.MachineLearningWorkspaceDescription `json:"Description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
 	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
@@ -38096,7 +38096,7 @@ func GetMachineLearningWorkspace(ctx context.Context, d *plugin.QueryData, _ *pl
 type MariadbServer struct {
 	ResourceID      string                         `json:"resource_id"`
 	PlatformID      string                         `json:"platform_id"`
-	Description     azure.MariadbServerDescription `json:"description"`
+	Description     azure.MariadbServerDescription `json:"Description"`
 	Metadata        azure.Metadata                 `json:"metadata"`
 	DescribedBy     string                         `json:"described_by"`
 	ResourceType    string                         `json:"resource_type"`
@@ -38400,7 +38400,7 @@ func GetMariadbServer(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 type MariadbDatabase struct {
 	ResourceID      string                           `json:"resource_id"`
 	PlatformID      string                           `json:"platform_id"`
-	Description     azure.MariadbDatabaseDescription `json:"description"`
+	Description     azure.MariadbDatabaseDescription `json:"Description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
 	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
@@ -38662,7 +38662,7 @@ func GetMariadbDatabase(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 type MysqlServer struct {
 	ResourceID      string                       `json:"resource_id"`
 	PlatformID      string                       `json:"platform_id"`
-	Description     azure.MysqlServerDescription `json:"description"`
+	Description     azure.MysqlServerDescription `json:"Description"`
 	Metadata        azure.Metadata               `json:"metadata"`
 	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
@@ -38982,7 +38982,7 @@ func GetMysqlServer(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 type MysqlFlexibleserver struct {
 	ResourceID      string                               `json:"resource_id"`
 	PlatformID      string                               `json:"platform_id"`
-	Description     azure.MysqlFlexibleserverDescription `json:"description"`
+	Description     azure.MysqlFlexibleserverDescription `json:"Description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
 	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
@@ -39244,7 +39244,7 @@ func GetMysqlFlexibleserver(ctx context.Context, d *plugin.QueryData, _ *plugin.
 type NetworkSecurityGroup struct {
 	ResourceID      string                                `json:"resource_id"`
 	PlatformID      string                                `json:"platform_id"`
-	Description     azure.NetworkSecurityGroupDescription `json:"description"`
+	Description     azure.NetworkSecurityGroupDescription `json:"Description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
 	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
@@ -39528,7 +39528,7 @@ func GetNetworkSecurityGroup(ctx context.Context, d *plugin.QueryData, _ *plugin
 type NetworkWatcher struct {
 	ResourceID      string                          `json:"resource_id"`
 	PlatformID      string                          `json:"platform_id"`
-	Description     azure.NetworkWatcherDescription `json:"description"`
+	Description     azure.NetworkWatcherDescription `json:"Description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
 	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
@@ -39798,7 +39798,7 @@ func GetNetworkWatcher(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 type SearchService struct {
 	ResourceID      string                         `json:"resource_id"`
 	PlatformID      string                         `json:"platform_id"`
-	Description     azure.SearchServiceDescription `json:"description"`
+	Description     azure.SearchServiceDescription `json:"Description"`
 	Metadata        azure.Metadata                 `json:"metadata"`
 	DescribedBy     string                         `json:"described_by"`
 	ResourceType    string                         `json:"resource_type"`
@@ -40089,7 +40089,7 @@ func GetSearchService(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 type ServiceFabricCluster struct {
 	ResourceID      string                                `json:"resource_id"`
 	PlatformID      string                                `json:"platform_id"`
-	Description     azure.ServiceFabricClusterDescription `json:"description"`
+	Description     azure.ServiceFabricClusterDescription `json:"Description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
 	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
@@ -40403,7 +40403,7 @@ func GetServiceFabricCluster(ctx context.Context, d *plugin.QueryData, _ *plugin
 type ServicebusNamespace struct {
 	ResourceID      string                               `json:"resource_id"`
 	PlatformID      string                               `json:"platform_id"`
-	Description     azure.ServicebusNamespaceDescription `json:"description"`
+	Description     azure.ServicebusNamespaceDescription `json:"Description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
 	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
@@ -40697,7 +40697,7 @@ func GetServicebusNamespace(ctx context.Context, d *plugin.QueryData, _ *plugin.
 type SignalrService struct {
 	ResourceID      string                          `json:"resource_id"`
 	PlatformID      string                          `json:"platform_id"`
-	Description     azure.SignalrServiceDescription `json:"description"`
+	Description     azure.SignalrServiceDescription `json:"Description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
 	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
@@ -40991,7 +40991,7 @@ func GetSignalrService(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 type SpringCloudService struct {
 	ResourceID      string                              `json:"resource_id"`
 	PlatformID      string                              `json:"platform_id"`
-	Description     azure.SpringCloudServiceDescription `json:"description"`
+	Description     azure.SpringCloudServiceDescription `json:"Description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
 	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
@@ -41263,7 +41263,7 @@ func GetSpringCloudService(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 type StreamAnalyticsJob struct {
 	ResourceID      string                              `json:"resource_id"`
 	PlatformID      string                              `json:"platform_id"`
-	Description     azure.StreamAnalyticsJobDescription `json:"description"`
+	Description     azure.StreamAnalyticsJobDescription `json:"Description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
 	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
@@ -41563,7 +41563,7 @@ func GetStreamAnalyticsJob(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 type StreamAnalyticsCluster struct {
 	ResourceID      string                                  `json:"resource_id"`
 	PlatformID      string                                  `json:"platform_id"`
-	Description     azure.StreamAnalyticsClusterDescription `json:"description"`
+	Description     azure.StreamAnalyticsClusterDescription `json:"Description"`
 	Metadata        azure.Metadata                          `json:"metadata"`
 	DescribedBy     string                                  `json:"described_by"`
 	ResourceType    string                                  `json:"resource_type"`
@@ -41825,7 +41825,7 @@ func GetStreamAnalyticsCluster(ctx context.Context, d *plugin.QueryData, _ *plug
 type VirtualMachineImagesImageTemplates struct {
 	ResourceID      string                                              `json:"resource_id"`
 	PlatformID      string                                              `json:"platform_id"`
-	Description     azure.VirtualMachineImagesImageTemplatesDescription `json:"description"`
+	Description     azure.VirtualMachineImagesImageTemplatesDescription `json:"Description"`
 	Metadata        azure.Metadata                                      `json:"metadata"`
 	DescribedBy     string                                              `json:"described_by"`
 	ResourceType    string                                              `json:"resource_type"`
@@ -42087,7 +42087,7 @@ func GetVirtualMachineImagesImageTemplates(ctx context.Context, d *plugin.QueryD
 type OperationalInsightsWorkspaces struct {
 	ResourceID      string                                         `json:"resource_id"`
 	PlatformID      string                                         `json:"platform_id"`
-	Description     azure.OperationalInsightsWorkspacesDescription `json:"description"`
+	Description     azure.OperationalInsightsWorkspacesDescription `json:"Description"`
 	Metadata        azure.Metadata                                 `json:"metadata"`
 	DescribedBy     string                                         `json:"described_by"`
 	ResourceType    string                                         `json:"resource_type"`
@@ -42383,7 +42383,7 @@ func GetOperationalInsightsWorkspaces(ctx context.Context, d *plugin.QueryData, 
 type TimeSeriesInsightsEnvironments struct {
 	ResourceID      string                                          `json:"resource_id"`
 	PlatformID      string                                          `json:"platform_id"`
-	Description     azure.TimeSeriesInsightsEnvironmentsDescription `json:"description"`
+	Description     azure.TimeSeriesInsightsEnvironmentsDescription `json:"Description"`
 	Metadata        azure.Metadata                                  `json:"metadata"`
 	DescribedBy     string                                          `json:"described_by"`
 	ResourceType    string                                          `json:"resource_type"`
@@ -42645,7 +42645,7 @@ func GetTimeSeriesInsightsEnvironments(ctx context.Context, d *plugin.QueryData,
 type SynapseWorkspace struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.SynapseWorkspaceDescription `json:"description"`
+	Description     azure.SynapseWorkspaceDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -42947,7 +42947,7 @@ func GetSynapseWorkspace(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type SynapseWorkspaceBigdatapools struct {
 	ResourceID      string                                        `json:"resource_id"`
 	PlatformID      string                                        `json:"platform_id"`
-	Description     azure.SynapseWorkspaceBigdatapoolsDescription `json:"description"`
+	Description     azure.SynapseWorkspaceBigdatapoolsDescription `json:"Description"`
 	Metadata        azure.Metadata                                `json:"metadata"`
 	DescribedBy     string                                        `json:"described_by"`
 	ResourceType    string                                        `json:"resource_type"`
@@ -43209,7 +43209,7 @@ func GetSynapseWorkspaceBigdatapools(ctx context.Context, d *plugin.QueryData, _
 type SynapseWorkspaceSqlpools struct {
 	ResourceID      string                                    `json:"resource_id"`
 	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.SynapseWorkspaceSqlpoolsDescription `json:"description"`
+	Description     azure.SynapseWorkspaceSqlpoolsDescription `json:"Description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
 	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
@@ -43471,7 +43471,7 @@ func GetSynapseWorkspaceSqlpools(ctx context.Context, d *plugin.QueryData, _ *pl
 type Location struct {
 	ResourceID      string                    `json:"resource_id"`
 	PlatformID      string                    `json:"platform_id"`
-	Description     azure.LocationDescription `json:"description"`
+	Description     azure.LocationDescription `json:"Description"`
 	Metadata        azure.Metadata            `json:"metadata"`
 	DescribedBy     string                    `json:"described_by"`
 	ResourceType    string                    `json:"resource_type"`
@@ -43738,7 +43738,7 @@ func GetLocation(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 type AnalysisServiceServer struct {
 	ResourceID      string                                 `json:"resource_id"`
 	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.AnalysisServiceServerDescription `json:"description"`
+	Description     azure.AnalysisServiceServerDescription `json:"Description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
 	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
@@ -44001,7 +44001,7 @@ func GetAnalysisServiceServer(ctx context.Context, d *plugin.QueryData, _ *plugi
 type PostgresqlServer struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.PostgresqlServerDescription `json:"description"`
+	Description     azure.PostgresqlServerDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -44321,7 +44321,7 @@ func GetPostgresqlServer(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type PostgresqlFlexibleServer struct {
 	ResourceID      string                                    `json:"resource_id"`
 	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.PostgresqlFlexibleServerDescription `json:"description"`
+	Description     azure.PostgresqlFlexibleServerDescription `json:"Description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
 	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
@@ -44593,7 +44593,7 @@ func GetPostgresqlFlexibleServer(ctx context.Context, d *plugin.QueryData, _ *pl
 type StorageSync struct {
 	ResourceID      string                       `json:"resource_id"`
 	PlatformID      string                       `json:"platform_id"`
-	Description     azure.StorageSyncDescription `json:"description"`
+	Description     azure.StorageSyncDescription `json:"Description"`
 	Metadata        azure.Metadata               `json:"metadata"`
 	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
@@ -44871,7 +44871,7 @@ func GetStorageSync(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 type MssqlManagedInstance struct {
 	ResourceID      string                                `json:"resource_id"`
 	PlatformID      string                                `json:"platform_id"`
-	Description     azure.MssqlManagedInstanceDescription `json:"description"`
+	Description     azure.MssqlManagedInstanceDescription `json:"Description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
 	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
@@ -45185,7 +45185,7 @@ func GetMssqlManagedInstance(ctx context.Context, d *plugin.QueryData, _ *plugin
 type MssqlManagedInstanceDatabases struct {
 	ResourceID      string                                         `json:"resource_id"`
 	PlatformID      string                                         `json:"platform_id"`
-	Description     azure.MssqlManagedInstanceDatabasesDescription `json:"description"`
+	Description     azure.MssqlManagedInstanceDatabasesDescription `json:"Description"`
 	Metadata        azure.Metadata                                 `json:"metadata"`
 	DescribedBy     string                                         `json:"described_by"`
 	ResourceType    string                                         `json:"resource_type"`
@@ -45447,7 +45447,7 @@ func GetMssqlManagedInstanceDatabases(ctx context.Context, d *plugin.QueryData, 
 type SqlDatabase struct {
 	ResourceID      string                       `json:"resource_id"`
 	PlatformID      string                       `json:"platform_id"`
-	Description     azure.SqlDatabaseDescription `json:"description"`
+	Description     azure.SqlDatabaseDescription `json:"Description"`
 	Metadata        azure.Metadata               `json:"metadata"`
 	DescribedBy     string                       `json:"described_by"`
 	ResourceType    string                       `json:"resource_type"`
@@ -45771,7 +45771,7 @@ func GetSqlDatabase(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 type SqlInstancePool struct {
 	ResourceID      string                           `json:"resource_id"`
 	PlatformID      string                           `json:"platform_id"`
-	Description     azure.SqlInstancePoolDescription `json:"description"`
+	Description     azure.SqlInstancePoolDescription `json:"Description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
 	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
@@ -46033,7 +46033,7 @@ func GetSqlInstancePool(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 type SqlServer struct {
 	ResourceID      string                     `json:"resource_id"`
 	PlatformID      string                     `json:"platform_id"`
-	Description     azure.SqlServerDescription `json:"description"`
+	Description     azure.SqlServerDescription `json:"Description"`
 	Metadata        azure.Metadata             `json:"metadata"`
 	DescribedBy     string                     `json:"described_by"`
 	ResourceType    string                     `json:"resource_type"`
@@ -46339,7 +46339,7 @@ func GetSqlServer(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 type SqlServerJobAgent struct {
 	ResourceID      string                             `json:"resource_id"`
 	PlatformID      string                             `json:"platform_id"`
-	Description     azure.SqlServerJobAgentDescription `json:"description"`
+	Description     azure.SqlServerJobAgentDescription `json:"Description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
 	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
@@ -46601,7 +46601,7 @@ func GetSqlServerJobAgent(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 type SqlVirtualClusters struct {
 	ResourceID      string                              `json:"resource_id"`
 	PlatformID      string                              `json:"platform_id"`
-	Description     azure.SqlVirtualClustersDescription `json:"description"`
+	Description     azure.SqlVirtualClustersDescription `json:"Description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
 	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
@@ -46863,7 +46863,7 @@ func GetSqlVirtualClusters(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 type SqlServerElasticPool struct {
 	ResourceID      string                                `json:"resource_id"`
 	PlatformID      string                                `json:"platform_id"`
-	Description     azure.SqlServerElasticPoolDescription `json:"description"`
+	Description     azure.SqlServerElasticPoolDescription `json:"Description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
 	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
@@ -47149,7 +47149,7 @@ func GetSqlServerElasticPool(ctx context.Context, d *plugin.QueryData, _ *plugin
 type SqlServerVirtualMachine struct {
 	ResourceID      string                                   `json:"resource_id"`
 	PlatformID      string                                   `json:"platform_id"`
-	Description     azure.SqlServerVirtualMachineDescription `json:"description"`
+	Description     azure.SqlServerVirtualMachineDescription `json:"Description"`
 	Metadata        azure.Metadata                           `json:"metadata"`
 	DescribedBy     string                                   `json:"described_by"`
 	ResourceType    string                                   `json:"resource_type"`
@@ -47443,7 +47443,7 @@ func GetSqlServerVirtualMachine(ctx context.Context, d *plugin.QueryData, _ *plu
 type SqlServerVirtualMachineGroup struct {
 	ResourceID      string                                        `json:"resource_id"`
 	PlatformID      string                                        `json:"platform_id"`
-	Description     azure.SqlServerVirtualMachineGroupDescription `json:"description"`
+	Description     azure.SqlServerVirtualMachineGroupDescription `json:"Description"`
 	Metadata        azure.Metadata                                `json:"metadata"`
 	DescribedBy     string                                        `json:"described_by"`
 	ResourceType    string                                        `json:"resource_type"`
@@ -47705,7 +47705,7 @@ func GetSqlServerVirtualMachineGroup(ctx context.Context, d *plugin.QueryData, _
 type SqlServerFlexibleServer struct {
 	ResourceID      string                                   `json:"resource_id"`
 	PlatformID      string                                   `json:"platform_id"`
-	Description     azure.SqlServerFlexibleServerDescription `json:"description"`
+	Description     azure.SqlServerFlexibleServerDescription `json:"Description"`
 	Metadata        azure.Metadata                           `json:"metadata"`
 	DescribedBy     string                                   `json:"described_by"`
 	ResourceType    string                                   `json:"resource_type"`
@@ -48021,7 +48021,7 @@ func GetSqlServerFlexibleServer(ctx context.Context, d *plugin.QueryData, _ *plu
 type StorageAccount struct {
 	ResourceID      string                          `json:"resource_id"`
 	PlatformID      string                          `json:"platform_id"`
-	Description     azure.StorageAccountDescription `json:"description"`
+	Description     azure.StorageAccountDescription `json:"Description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
 	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
@@ -48402,7 +48402,7 @@ func GetStorageAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 type RecoveryServicesVault struct {
 	ResourceID      string                                 `json:"resource_id"`
 	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.RecoveryServicesVaultDescription `json:"description"`
+	Description     azure.RecoveryServicesVaultDescription `json:"Description"`
 	Metadata        azure.Metadata                         `json:"metadata"`
 	DescribedBy     string                                 `json:"described_by"`
 	ResourceType    string                                 `json:"resource_type"`
@@ -48686,7 +48686,7 @@ func GetRecoveryServicesVault(ctx context.Context, d *plugin.QueryData, _ *plugi
 type RecoveryServicesBackupJob struct {
 	ResourceID      string                                     `json:"resource_id"`
 	PlatformID      string                                     `json:"platform_id"`
-	Description     azure.RecoveryServicesBackupJobDescription `json:"description"`
+	Description     azure.RecoveryServicesBackupJobDescription `json:"Description"`
 	Metadata        azure.Metadata                             `json:"metadata"`
 	DescribedBy     string                                     `json:"described_by"`
 	ResourceType    string                                     `json:"resource_type"`
@@ -48958,7 +48958,7 @@ func GetRecoveryServicesBackupJob(ctx context.Context, d *plugin.QueryData, _ *p
 type RecoveryServicesBackupPolicy struct {
 	ResourceID      string                                        `json:"resource_id"`
 	PlatformID      string                                        `json:"platform_id"`
-	Description     azure.RecoveryServicesBackupPolicyDescription `json:"description"`
+	Description     azure.RecoveryServicesBackupPolicyDescription `json:"Description"`
 	Metadata        azure.Metadata                                `json:"metadata"`
 	DescribedBy     string                                        `json:"described_by"`
 	ResourceType    string                                        `json:"resource_type"`
@@ -49224,7 +49224,7 @@ func GetRecoveryServicesBackupPolicy(ctx context.Context, d *plugin.QueryData, _
 type RecoveryServicesBackupItem struct {
 	ResourceID      string                                      `json:"resource_id"`
 	PlatformID      string                                      `json:"platform_id"`
-	Description     azure.RecoveryServicesBackupItemDescription `json:"description"`
+	Description     azure.RecoveryServicesBackupItemDescription `json:"Description"`
 	Metadata        azure.Metadata                              `json:"metadata"`
 	DescribedBy     string                                      `json:"described_by"`
 	ResourceType    string                                      `json:"resource_type"`
@@ -49490,7 +49490,7 @@ func GetRecoveryServicesBackupItem(ctx context.Context, d *plugin.QueryData, _ *
 type HybridKubernetesConnectedCluster struct {
 	ResourceID      string                                            `json:"resource_id"`
 	PlatformID      string                                            `json:"platform_id"`
-	Description     azure.HybridKubernetesConnectedClusterDescription `json:"description"`
+	Description     azure.HybridKubernetesConnectedClusterDescription `json:"Description"`
 	Metadata        azure.Metadata                                    `json:"metadata"`
 	DescribedBy     string                                            `json:"described_by"`
 	ResourceType    string                                            `json:"resource_type"`
@@ -49788,7 +49788,7 @@ func GetHybridKubernetesConnectedCluster(ctx context.Context, d *plugin.QueryDat
 type CostManagementCostByResourceType struct {
 	ResourceID      string                                            `json:"resource_id"`
 	PlatformID      string                                            `json:"platform_id"`
-	Description     azure.CostManagementCostByResourceTypeDescription `json:"description"`
+	Description     azure.CostManagementCostByResourceTypeDescription `json:"Description"`
 	Metadata        azure.Metadata                                    `json:"metadata"`
 	DescribedBy     string                                            `json:"described_by"`
 	ResourceType    string                                            `json:"resource_type"`
@@ -50054,7 +50054,7 @@ func GetCostManagementCostByResourceType(ctx context.Context, d *plugin.QueryDat
 type CostManagementCostBySubscription struct {
 	ResourceID      string                                            `json:"resource_id"`
 	PlatformID      string                                            `json:"platform_id"`
-	Description     azure.CostManagementCostBySubscriptionDescription `json:"description"`
+	Description     azure.CostManagementCostBySubscriptionDescription `json:"Description"`
 	Metadata        azure.Metadata                                    `json:"metadata"`
 	DescribedBy     string                                            `json:"described_by"`
 	ResourceType    string                                            `json:"resource_type"`
@@ -50312,7 +50312,7 @@ func GetCostManagementCostBySubscription(ctx context.Context, d *plugin.QueryDat
 type LoadBalancer struct {
 	ResourceID      string                        `json:"resource_id"`
 	PlatformID      string                        `json:"platform_id"`
-	Description     azure.LoadBalancerDescription `json:"description"`
+	Description     azure.LoadBalancerDescription `json:"Description"`
 	Metadata        azure.Metadata                `json:"metadata"`
 	DescribedBy     string                        `json:"described_by"`
 	ResourceType    string                        `json:"resource_type"`
@@ -50608,7 +50608,7 @@ func GetLoadBalancer(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 type LoadBalancerBackendAddressPool struct {
 	ResourceID      string                                          `json:"resource_id"`
 	PlatformID      string                                          `json:"platform_id"`
-	Description     azure.LoadBalancerBackendAddressPoolDescription `json:"description"`
+	Description     azure.LoadBalancerBackendAddressPoolDescription `json:"Description"`
 	Metadata        azure.Metadata                                  `json:"metadata"`
 	DescribedBy     string                                          `json:"described_by"`
 	ResourceType    string                                          `json:"resource_type"`
@@ -50890,7 +50890,7 @@ func GetLoadBalancerBackendAddressPool(ctx context.Context, d *plugin.QueryData,
 type LoadBalancerNatRule struct {
 	ResourceID      string                               `json:"resource_id"`
 	PlatformID      string                               `json:"platform_id"`
-	Description     azure.LoadBalancerNatRuleDescription `json:"description"`
+	Description     azure.LoadBalancerNatRuleDescription `json:"Description"`
 	Metadata        azure.Metadata                       `json:"metadata"`
 	DescribedBy     string                               `json:"described_by"`
 	ResourceType    string                               `json:"resource_type"`
@@ -51176,7 +51176,7 @@ func GetLoadBalancerNatRule(ctx context.Context, d *plugin.QueryData, _ *plugin.
 type LoadBalancerOutboundRule struct {
 	ResourceID      string                                    `json:"resource_id"`
 	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.LoadBalancerOutboundRuleDescription `json:"description"`
+	Description     azure.LoadBalancerOutboundRuleDescription `json:"Description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
 	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
@@ -51458,7 +51458,7 @@ func GetLoadBalancerOutboundRule(ctx context.Context, d *plugin.QueryData, _ *pl
 type LoadBalancerProbe struct {
 	ResourceID      string                             `json:"resource_id"`
 	PlatformID      string                             `json:"platform_id"`
-	Description     azure.LoadBalancerProbeDescription `json:"description"`
+	Description     azure.LoadBalancerProbeDescription `json:"Description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
 	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
@@ -51740,7 +51740,7 @@ func GetLoadBalancerProbe(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 type LoadBalancerRule struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.LoadBalancerRuleDescription `json:"description"`
+	Description     azure.LoadBalancerRuleDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -52034,7 +52034,7 @@ func GetLoadBalancerRule(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type ManagementGroup struct {
 	ResourceID      string                           `json:"resource_id"`
 	PlatformID      string                           `json:"platform_id"`
-	Description     azure.ManagementGroupDescription `json:"description"`
+	Description     azure.ManagementGroupDescription `json:"Description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
 	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
@@ -52310,7 +52310,7 @@ func GetManagementGroup(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 type ManagementLock struct {
 	ResourceID      string                          `json:"resource_id"`
 	PlatformID      string                          `json:"platform_id"`
-	Description     azure.ManagementLockDescription `json:"description"`
+	Description     azure.ManagementLockDescription `json:"Description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
 	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
@@ -52579,7 +52579,7 @@ func GetManagementLock(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 type ResourceProvider struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.ResourceProviderDescription `json:"description"`
+	Description     azure.ResourceProviderDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -52843,7 +52843,7 @@ func GetResourceProvider(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type ResourceGroup struct {
 	ResourceID      string                         `json:"resource_id"`
 	PlatformID      string                         `json:"platform_id"`
-	Description     azure.ResourceGroupDescription `json:"description"`
+	Description     azure.ResourceGroupDescription `json:"Description"`
 	Metadata        azure.Metadata                 `json:"metadata"`
 	DescribedBy     string                         `json:"described_by"`
 	ResourceType    string                         `json:"resource_type"`
@@ -53111,7 +53111,7 @@ func GetResourceGroup(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 type GenericResource struct {
 	ResourceID      string                           `json:"resource_id"`
 	PlatformID      string                           `json:"platform_id"`
-	Description     azure.GenericResourceDescription `json:"description"`
+	Description     azure.GenericResourceDescription `json:"Description"`
 	Metadata        azure.Metadata                   `json:"metadata"`
 	DescribedBy     string                           `json:"described_by"`
 	ResourceType    string                           `json:"resource_type"`
@@ -53405,7 +53405,7 @@ func GetGenericResource(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 type BotServiceBot struct {
 	ResourceID      string                         `json:"resource_id"`
 	PlatformID      string                         `json:"platform_id"`
-	Description     azure.BotServiceBotDescription `json:"description"`
+	Description     azure.BotServiceBotDescription `json:"Description"`
 	Metadata        azure.Metadata                 `json:"metadata"`
 	DescribedBy     string                         `json:"described_by"`
 	ResourceType    string                         `json:"resource_type"`
@@ -53667,7 +53667,7 @@ func GetBotServiceBot(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 type NetAppAccount struct {
 	ResourceID      string                         `json:"resource_id"`
 	PlatformID      string                         `json:"platform_id"`
-	Description     azure.NetAppAccountDescription `json:"description"`
+	Description     azure.NetAppAccountDescription `json:"Description"`
 	Metadata        azure.Metadata                 `json:"metadata"`
 	DescribedBy     string                         `json:"described_by"`
 	ResourceType    string                         `json:"resource_type"`
@@ -53929,7 +53929,7 @@ func GetNetAppAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 type NetAppCapacityPool struct {
 	ResourceID      string                              `json:"resource_id"`
 	PlatformID      string                              `json:"platform_id"`
-	Description     azure.NetAppCapacityPoolDescription `json:"description"`
+	Description     azure.NetAppCapacityPoolDescription `json:"Description"`
 	Metadata        azure.Metadata                      `json:"metadata"`
 	DescribedBy     string                              `json:"described_by"`
 	ResourceType    string                              `json:"resource_type"`
@@ -54191,7 +54191,7 @@ func GetNetAppCapacityPool(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 type DashboardGrafana struct {
 	ResourceID      string                            `json:"resource_id"`
 	PlatformID      string                            `json:"platform_id"`
-	Description     azure.DashboardGrafanaDescription `json:"description"`
+	Description     azure.DashboardGrafanaDescription `json:"Description"`
 	Metadata        azure.Metadata                    `json:"metadata"`
 	DescribedBy     string                            `json:"described_by"`
 	ResourceType    string                            `json:"resource_type"`
@@ -54451,7 +54451,7 @@ func GetDashboardGrafana(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 type DesktopVirtualizationHostPool struct {
 	ResourceID      string                                         `json:"resource_id"`
 	PlatformID      string                                         `json:"platform_id"`
-	Description     azure.DesktopVirtualizationHostPoolDescription `json:"description"`
+	Description     azure.DesktopVirtualizationHostPoolDescription `json:"Description"`
 	Metadata        azure.Metadata                                 `json:"metadata"`
 	DescribedBy     string                                         `json:"described_by"`
 	ResourceType    string                                         `json:"resource_type"`
@@ -54713,7 +54713,7 @@ func GetDesktopVirtualizationHostPool(ctx context.Context, d *plugin.QueryData, 
 type DesktopVirtualizationWorkspace struct {
 	ResourceID      string                                          `json:"resource_id"`
 	PlatformID      string                                          `json:"platform_id"`
-	Description     azure.DesktopVirtualizationWorkspaceDescription `json:"description"`
+	Description     azure.DesktopVirtualizationWorkspaceDescription `json:"Description"`
 	Metadata        azure.Metadata                                  `json:"metadata"`
 	DescribedBy     string                                          `json:"described_by"`
 	ResourceType    string                                          `json:"resource_type"`
@@ -54975,7 +54975,7 @@ func GetDesktopVirtualizationWorkspace(ctx context.Context, d *plugin.QueryData,
 type DevTestLabLab struct {
 	ResourceID      string                         `json:"resource_id"`
 	PlatformID      string                         `json:"platform_id"`
-	Description     azure.DevTestLabLabDescription `json:"description"`
+	Description     azure.DevTestLabLabDescription `json:"Description"`
 	Metadata        azure.Metadata                 `json:"metadata"`
 	DescribedBy     string                         `json:"described_by"`
 	ResourceType    string                         `json:"resource_type"`
@@ -55237,7 +55237,7 @@ func GetDevTestLabLab(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 type PurviewAccount struct {
 	ResourceID      string                          `json:"resource_id"`
 	PlatformID      string                          `json:"platform_id"`
-	Description     azure.PurviewAccountDescription `json:"description"`
+	Description     azure.PurviewAccountDescription `json:"Description"`
 	Metadata        azure.Metadata                  `json:"metadata"`
 	DescribedBy     string                          `json:"described_by"`
 	ResourceType    string                          `json:"resource_type"`
@@ -55499,7 +55499,7 @@ func GetPurviewAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 type PowerBIDedicatedCapacity struct {
 	ResourceID      string                                    `json:"resource_id"`
 	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.PowerBIDedicatedCapacityDescription `json:"description"`
+	Description     azure.PowerBIDedicatedCapacityDescription `json:"Description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
 	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
@@ -55761,7 +55761,7 @@ func GetPowerBIDedicatedCapacity(ctx context.Context, d *plugin.QueryData, _ *pl
 type ApplicationInsightsComponent struct {
 	ResourceID      string                                        `json:"resource_id"`
 	PlatformID      string                                        `json:"platform_id"`
-	Description     azure.ApplicationInsightsComponentDescription `json:"description"`
+	Description     azure.ApplicationInsightsComponentDescription `json:"Description"`
 	Metadata        azure.Metadata                                `json:"metadata"`
 	DescribedBy     string                                        `json:"described_by"`
 	ResourceType    string                                        `json:"resource_type"`
@@ -56071,7 +56071,7 @@ func GetApplicationInsightsComponent(ctx context.Context, d *plugin.QueryData, _
 type LighthouseDefinition struct {
 	ResourceID      string                                `json:"resource_id"`
 	PlatformID      string                                `json:"platform_id"`
-	Description     azure.LighthouseDefinitionDescription `json:"description"`
+	Description     azure.LighthouseDefinitionDescription `json:"Description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
 	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
@@ -56351,7 +56351,7 @@ func GetLighthouseDefinition(ctx context.Context, d *plugin.QueryData, _ *plugin
 type LighthouseAssignment struct {
 	ResourceID      string                                `json:"resource_id"`
 	PlatformID      string                                `json:"platform_id"`
-	Description     azure.LighthouseAssignmentDescription `json:"description"`
+	Description     azure.LighthouseAssignmentDescription `json:"Description"`
 	Metadata        azure.Metadata                        `json:"metadata"`
 	DescribedBy     string                                `json:"described_by"`
 	ResourceType    string                                `json:"resource_type"`
@@ -56621,7 +56621,7 @@ func GetLighthouseAssignment(ctx context.Context, d *plugin.QueryData, _ *plugin
 type MaintenanceConfiguration struct {
 	ResourceID      string                                    `json:"resource_id"`
 	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.MaintenanceConfigurationDescription `json:"description"`
+	Description     azure.MaintenanceConfigurationDescription `json:"Description"`
 	Metadata        azure.Metadata                            `json:"metadata"`
 	DescribedBy     string                                    `json:"described_by"`
 	ResourceType    string                                    `json:"resource_type"`
@@ -56907,7 +56907,7 @@ func GetMaintenanceConfiguration(ctx context.Context, d *plugin.QueryData, _ *pl
 type MonitorLogProfile struct {
 	ResourceID      string                             `json:"resource_id"`
 	PlatformID      string                             `json:"platform_id"`
-	Description     azure.MonitorLogProfileDescription `json:"description"`
+	Description     azure.MonitorLogProfileDescription `json:"Description"`
 	Metadata        azure.Metadata                     `json:"metadata"`
 	DescribedBy     string                             `json:"described_by"`
 	ResourceType    string                             `json:"resource_type"`
