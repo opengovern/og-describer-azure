@@ -4,8 +4,6 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/opengovern/og-describer-azure/provider/describer"
-
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
@@ -73,7 +71,7 @@ func commonOGColumns() []*plugin.Column {
 			Name:        "platform_resource_description",
 			Type:        proto.ColumnType_JSON,
 			Description: "The full model description of the resource",
-			Transform:   transform.FromField("Description").Transform(marshalAzureJSON),
+			Transform:   transform.FromField("Description").Transform(marshalJSON),
 		},
 	}
 }
@@ -135,14 +133,6 @@ func getCloudEnvironment(ctx context.Context, d *plugin.QueryData, h *plugin.Hyd
 
 func marshalJSON(_ context.Context, d *transform.TransformData) (interface{}, error) {
 	b, err := json.Marshal(d.Value)
-	if err != nil {
-		return nil, err
-	}
-	return string(b), nil
-}
-
-func marshalAzureJSON(_ context.Context, d *transform.TransformData) (interface{}, error) {
-	b, err := json.Marshal(describer.JSONAllFieldsMarshaller{Value: d.Value})
 	if err != nil {
 		return nil, err
 	}
