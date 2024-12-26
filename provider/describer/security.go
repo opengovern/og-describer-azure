@@ -176,11 +176,9 @@ func GetSecurityCenterSetting(ctx context.Context, v armsecurity.SettingClassifi
 		ID:       *v.GetSetting().ID,
 		Name:     *v.GetSetting().Name,
 		Location: "global",
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SecurityCenterSettingDescription{
-				Setting:             *v.GetSetting(),
-				ExportSettingStatus: settingStatus,
-			},
+		Description: model.SecurityCenterSettingDescription{
+			Setting:             *v.GetSetting(),
+			ExportSettingStatus: settingStatus,
 		},
 	}
 	return &resource
