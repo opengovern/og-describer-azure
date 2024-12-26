@@ -84,13 +84,11 @@ func KeyVaultSecret(ctx context.Context, cred *azidentity.ClientSecretCredential
 							ID:       *sc.ID,
 							Name:     *sc.ID,
 							Location: "global",
-							Description: JSONAllFieldsMarshaller{
-								Value: model.KeyVaultSecretDescription{
-									SecretItem:    *sc,
-									Vault:         keyVaultGetOp.Vault,
-									TurboData:     turbotData,
-									ResourceGroup: *rg.Name,
-								},
+							Description: model.KeyVaultSecretDescription{
+								SecretItem:    *sc,
+								Vault:         keyVaultGetOp.Vault,
+								TurboData:     turbotData,
+								ResourceGroup: *rg.Name,
 							},
 						}
 						if stream != nil {

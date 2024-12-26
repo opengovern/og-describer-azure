@@ -44,11 +44,9 @@ func GetApplicationInsights(ctx context.Context, component *armapplicationinsigh
 		ID:       *component.ID,
 		Name:     *component.Name,
 		Location: *component.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.ApplicationInsightsComponentDescription{
-				Component:     *component,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.ApplicationInsightsComponentDescription{
+			Component:     *component,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource

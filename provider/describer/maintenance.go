@@ -51,11 +51,9 @@ func getMaintenanceConfiguration(ctx context.Context, configuration *armmaintena
 	resource := models.Resource{
 		ID:   *configuration.ID,
 		Name: *configuration.Name,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.MaintenanceConfigurationDescription{
-				MaintenanceConfiguration: *configuration,
-				ResourceGroup:            resourceGroup,
-			},
+		Description: model.MaintenanceConfigurationDescription{
+			MaintenanceConfiguration: *configuration,
+			ResourceGroup:            resourceGroup,
 		},
 	}
 	return &resource, nil

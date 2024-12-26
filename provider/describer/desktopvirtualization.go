@@ -28,11 +28,9 @@ func DesktopVirtualizationWorkspaces(ctx context.Context, cred *azidentity.Clien
 				ID:       *v.ID,
 				Name:     *v.Name,
 				Location: *v.Location,
-				Description: JSONAllFieldsMarshaller{
-					Value: model.DesktopVirtualizationWorkspaceDescription{
-						Workspace:     *v,
-						ResourceGroup: resourceGroupName,
-					},
+				Description: model.DesktopVirtualizationWorkspaceDescription{
+					Workspace:     *v,
+					ResourceGroup: resourceGroupName,
 				},
 			}
 			if stream != nil {
@@ -79,11 +77,9 @@ func getDesktopVirtualizationHostPool(ctx context.Context, v *armdesktopvirtuali
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.DesktopVirtualizationHostPoolDescription{
-				HostPool:      *v,
-				ResourceGroup: resourceGroupName,
-			},
+		Description: model.DesktopVirtualizationHostPoolDescription{
+			HostPool:      *v,
+			ResourceGroup: resourceGroupName,
 		},
 	}
 	return &resource

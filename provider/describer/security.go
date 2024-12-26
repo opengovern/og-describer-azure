@@ -43,10 +43,8 @@ func GetSecurityCenterAutoProvisioning(ctx context.Context, v *armsecurity.AutoP
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SecurityCenterAutoProvisioningDescription{
-				AutoProvisioningSetting: *v,
-			},
+		Description: model.SecurityCenterAutoProvisioningDescription{
+			AutoProvisioningSetting: *v,
 		},
 	}
 
@@ -86,10 +84,8 @@ func GetSecurityCenterContact(ctx context.Context, v *armsecurity.Contact) *mode
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SecurityCenterContactDescription{
-				Contact: *v,
-			},
+		Description: model.SecurityCenterContactDescription{
+			Contact: *v,
 		},
 	}
 	return &resource
@@ -128,10 +124,8 @@ func GetSecurityCenterJitNetworkAccessPolicy(ctx context.Context, v *armsecurity
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SecurityCenterJitNetworkAccessPolicyDescription{
-				JitNetworkAccessPolicy: *v,
-			},
+		Description: model.SecurityCenterJitNetworkAccessPolicyDescription{
+			JitNetworkAccessPolicy: *v,
 		},
 	}
 	return &resource
@@ -214,10 +208,8 @@ func GetSecurityCenterSubscriptionPricing(ctx context.Context, v *armsecurity.Pr
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SecurityCenterSubscriptionPricingDescription{
-				Pricing: *v,
-			},
+		Description: model.SecurityCenterSubscriptionPricingDescription{
+			Pricing: *v,
 		},
 	}
 	return &resource
@@ -257,11 +249,9 @@ func GetSecurityCenterAutomation(ctx context.Context, v *armsecurity.Automation)
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SecurityCenterAutomationDescription{
-				Automation:    *v,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.SecurityCenterAutomationDescription{
+			Automation:    *v,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource
@@ -302,11 +292,9 @@ func GetSecurityCenterSubAssessment(ctx context.Context, v *armsecurity.SubAsses
 		ID:       *v.ID,
 		Location: "global",
 		Name:     *v.Name,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SecurityCenterSubAssessmentDescription{
-				SubAssessment: *v,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.SecurityCenterSubAssessmentDescription{
+			SubAssessment: *v,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource

@@ -64,7 +64,7 @@ func getDevicesProvisioningServicesCertificates(ctx context.Context, client *arm
 			ID:          *v.ID,
 			Name:        *v.Name,
 			Location:    "global",
-			Description: JSONAllFieldsMarshaller{Value: v},
+			Description: v,
 		}
 		values = append(values, resource)
 	}
@@ -150,12 +150,10 @@ func getIOTHub(ctx context.Context, client *armmonitor.DiagnosticSettingsClient,
 		ID:       *iotHubDescription.ID,
 		Name:     *iotHubDescription.Name,
 		Location: *iotHubDescription.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.IOTHubDescription{
-				IotHubDescription:           *iotHubDescription,
-				DiagnosticSettingsResources: &devicesListOp,
-				ResourceGroup:               resourceGroup,
-			},
+		Description: model.IOTHubDescription{
+			IotHubDescription:           *iotHubDescription,
+			DiagnosticSettingsResources: &devicesListOp,
+			ResourceGroup:               resourceGroup,
 		},
 	}
 
@@ -220,12 +218,10 @@ func getIOTHubDps(ctx context.Context, client *armmonitor.DiagnosticSettingsClie
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.IOTHubDpsDescription{
-				IotHubDps:                   *v,
-				DiagnosticSettingsResources: &devicesListOp,
-				ResourceGroup:               resourceGroup,
-			},
+		Description: model.IOTHubDpsDescription{
+			IotHubDps:                   *v,
+			DiagnosticSettingsResources: &devicesListOp,
+			ResourceGroup:               resourceGroup,
 		},
 	}
 

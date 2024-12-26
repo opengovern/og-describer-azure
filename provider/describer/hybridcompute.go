@@ -59,12 +59,10 @@ func getHybridComputeMachine(ctx context.Context, extentionClient *armhybridcomp
 		ID:       *machine.ID,
 		Name:     *machine.Name,
 		Location: *machine.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.HybridComputeMachineDescription{
-				Machine:           *machine,
-				MachineExtensions: hybridComputeListResult,
-				ResourceGroup:     resourceGroup,
-			},
+		Description: model.HybridComputeMachineDescription{
+			Machine:           *machine,
+			MachineExtensions: hybridComputeListResult,
+			ResourceGroup:     resourceGroup,
 		},
 	}
 

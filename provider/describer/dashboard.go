@@ -44,11 +44,9 @@ func getDashboardGrafana(ctx context.Context, v *armdashboard.ManagedGrafana) *m
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.DashboardGrafanaDescription{
-				Grafana:       *v,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.DashboardGrafanaDescription{
+			Grafana:       *v,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource

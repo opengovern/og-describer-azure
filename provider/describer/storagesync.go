@@ -45,11 +45,9 @@ func GetStorageSync(ctx context.Context, storage *armstoragesync.Service) *model
 		ID:       *storage.ID,
 		Name:     *storage.Name,
 		Location: *storage.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.StorageSyncDescription{
-				Service:       *storage,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.StorageSyncDescription{
+			Service:       *storage,
+			ResourceGroup: resourceGroup,
 		}}
 	return &resource
 }

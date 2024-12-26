@@ -82,7 +82,7 @@ func GetServiceBusQueue(ctx context.Context, v *armservicebus.SBQueue) *models.R
 		ID:          *v.ID,
 		Name:        *v.Name,
 		Location:    "global",
-		Description: JSONAllFieldsMarshaller{Value: v},
+		Description: v,
 	}
 	return &resource
 }
@@ -156,7 +156,7 @@ func GetServiceBusTopic(ctx context.Context, v *armservicebus.SBTopic) *models.R
 		ID:          *v.ID,
 		Name:        *v.Name,
 		Location:    "global",
-		Description: JSONAllFieldsMarshaller{Value: v},
+		Description: v,
 	}
 	return &resource
 }
@@ -266,15 +266,13 @@ func GetServicebusNamespace(ctx context.Context, namespaceClient *armservicebus.
 		ID:       *namespace.ID,
 		Name:     *namespace.Name,
 		Location: *namespace.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.ServicebusNamespaceDescription{
-				SBNamespace:                 *namespace,
-				DiagnosticSettingsResources: insightsListOp,
-				NetworkRuleSet:              servicebusGetNetworkRuleSetOp,
-				PrivateEndpointConnections:  servicebusListOp,
-				AuthorizationRules:          servicebusAuthorizationRules,
-				ResourceGroup:               resourceGroup,
-			},
+		Description: model.ServicebusNamespaceDescription{
+			SBNamespace:                 *namespace,
+			DiagnosticSettingsResources: insightsListOp,
+			NetworkRuleSet:              servicebusGetNetworkRuleSetOp,
+			PrivateEndpointConnections:  servicebusListOp,
+			AuthorizationRules:          servicebusAuthorizationRules,
+			ResourceGroup:               resourceGroup,
 		},
 	}
 	return &resource, nil

@@ -44,11 +44,9 @@ func getDataboxEdgeDevice(ctx context.Context, v *armdataboxedge.Device) *models
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.DataboxEdgeDeviceDescription{
-				Device:        *v,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.DataboxEdgeDeviceDescription{
+			Device:        *v,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource

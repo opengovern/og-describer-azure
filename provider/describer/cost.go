@@ -154,11 +154,9 @@ func DailyCostByResourceType(ctx context.Context, cred *azidentity.ClientSecretC
 		resource := models.Resource{
 			ID:       fmt.Sprintf("resource-cost-%s/%s-%d", subscription, *row.ServiceName, row.UsageDate),
 			Location: location,
-			Description: JSONAllFieldsMarshaller{
-				Value: model.CostManagementCostByResourceTypeDescription{
-					CostManagementCostByResourceType: row,
-					CostDateMillis:                   costDate.UnixMilli(),
-				},
+			Description: model.CostManagementCostByResourceTypeDescription{
+				CostManagementCostByResourceType: row,
+				CostDateMillis:                   costDate.UnixMilli(),
 			},
 		}
 		if stream != nil {
@@ -194,10 +192,8 @@ func DailyCostBySubscription(ctx context.Context, cred *azidentity.ClientSecretC
 		resource := models.Resource{
 			ID:       fmt.Sprintf("resource-cost-%s/%d", subscription, row.UsageDate),
 			Location: location,
-			Description: JSONAllFieldsMarshaller{
-				Value: model.CostManagementCostBySubscriptionDescription{
-					CostManagementCostBySubscription: row,
-				},
+			Description: model.CostManagementCostBySubscriptionDescription{
+				CostManagementCostBySubscription: row,
 			},
 		}
 		if stream != nil {

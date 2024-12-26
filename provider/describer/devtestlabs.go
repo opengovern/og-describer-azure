@@ -44,11 +44,9 @@ func getDevTestLabLab(ctx context.Context, v *armdevtestlabs.Lab) *models.Resour
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.DevTestLabLabDescription{
-				Lab:           *v,
-				ResourceGroup: resourceGroupName,
-			},
+		Description: model.DevTestLabLabDescription{
+			Lab:           *v,
+			ResourceGroup: resourceGroupName,
 		},
 	}
 	return &resource

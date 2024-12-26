@@ -63,10 +63,8 @@ func GetResourceProvider(ctx context.Context, provider *armresources.Provider) *
 	resource := models.Resource{
 		ID:       *provider.ID,
 		Location: "global",
-		Description: JSONAllFieldsMarshaller{
-			Value: model.ResourceProviderDescription{
-				Provider: *provider,
-			},
+		Description: model.ResourceProviderDescription{
+			Provider: *provider,
 		},
 	}
 
@@ -106,10 +104,8 @@ func GetResourceGroup(ctx context.Context, group *armresources.ResourceGroup) *m
 		ID:       *group.ID,
 		Name:     *group.Name,
 		Location: *group.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.ResourceGroupDescription{
-				Group: *group,
-			},
+		Description: model.ResourceGroupDescription{
+			Group: *group,
 		},
 	}
 
@@ -154,11 +150,9 @@ func GetResource(ctx context.Context, genericResource *armresources.GenericResou
 		ID:       *genericResource.ID,
 		Name:     *genericResource.Name,
 		Location: *genericResource.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.GenericResourceDescription{
-				GenericResource: *genericResource,
-				ResourceGroup:   resourceGroupName,
-			},
+		Description: model.GenericResourceDescription{
+			GenericResource: *genericResource,
+			ResourceGroup:   resourceGroupName,
 		},
 	}
 	return &resource

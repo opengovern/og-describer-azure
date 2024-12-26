@@ -67,12 +67,10 @@ func GetRecoveryServicesVault(ctx context.Context, diagnosticClient *armmonitor.
 		ID:       *vault.ID,
 		Name:     *vault.Name,
 		Location: *vault.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.RecoveryServicesVaultDescription{
-				Vault:                      *vault,
-				DiagnosticSettingsResource: diagnostic,
-				ResourceGroup:              resourceGroup,
-			},
+		Description: model.RecoveryServicesVaultDescription{
+			Vault:                      *vault,
+			DiagnosticSettingsResource: diagnostic,
+			ResourceGroup:              resourceGroup,
 		},
 	}
 	return &resource, nil
@@ -146,27 +144,25 @@ func GetRecoveryServicesBackupJob(resourceGroup, vaultName string, job *armrecov
 		return nil, err
 	}
 	resource := models.Resource{
-		Description: JSONAllFieldsMarshaller{
-			Value: model.RecoveryServicesBackupJobDescription{
-				Job: struct {
-					Name     *string
-					ID       *string
-					Type     *string
-					ETag     *string
-					Tags     map[string]*string
-					Location *string
-				}{
-					Name:     job.Name,
-					ID:       job.ID,
-					Location: job.Location,
-					Type:     job.Type,
-					Tags:     job.Tags,
-					ETag:     job.ETag,
-				},
-				VaultName:     vaultName,
-				Properties:    properties,
-				ResourceGroup: resourceGroup,
+		Description: model.RecoveryServicesBackupJobDescription{
+			Job: struct {
+				Name     *string
+				ID       *string
+				Type     *string
+				ETag     *string
+				Tags     map[string]*string
+				Location *string
+			}{
+				Name:     job.Name,
+				ID:       job.ID,
+				Location: job.Location,
+				Type:     job.Type,
+				Tags:     job.Tags,
+				ETag:     job.ETag,
 			},
+			VaultName:     vaultName,
+			Properties:    properties,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	if job.ID != nil {
@@ -280,27 +276,25 @@ func ListRecoveryServicesVaultBackupPolicies(ctx context.Context, client *armrec
 
 func GetRecoveryServicesBackupPolicy(policy *armrecoveryservicesbackup.ProtectionPolicyResource, vaultName, resourceGroup string) models.Resource {
 	return models.Resource{
-		Description: JSONAllFieldsMarshaller{
-			Value: model.RecoveryServicesBackupPolicyDescription{
-				ResourceGroup: resourceGroup,
-				VaultName:     vaultName,
-				Policy: struct {
-					Name     *string
-					ID       *string
-					Type     *string
-					ETag     *string
-					Tags     map[string]*string
-					Location *string
-				}{
-					Name:     policy.Name,
-					ID:       policy.ID,
-					Location: policy.Location,
-					Type:     policy.Type,
-					Tags:     policy.Tags,
-					ETag:     policy.ETag,
-				},
-				Properties: extractData(policy.Properties),
+		Description: model.RecoveryServicesBackupPolicyDescription{
+			ResourceGroup: resourceGroup,
+			VaultName:     vaultName,
+			Policy: struct {
+				Name     *string
+				ID       *string
+				Type     *string
+				ETag     *string
+				Tags     map[string]*string
+				Location *string
+			}{
+				Name:     policy.Name,
+				ID:       policy.ID,
+				Location: policy.Location,
+				Type:     policy.Type,
+				Tags:     policy.Tags,
+				ETag:     policy.ETag,
 			},
+			Properties: extractData(policy.Properties),
 		},
 	}
 }
@@ -367,27 +361,25 @@ func ListRecoveryServicesVaultBackupItems(ctx context.Context, client *armrecove
 
 func GetRecoveryServicesBackupItem(item *armrecoveryservicesbackup.ProtectedItemResource, vaultName, resourceGroup string) models.Resource {
 	return models.Resource{
-		Description: JSONAllFieldsMarshaller{
-			Value: model.RecoveryServicesBackupItemDescription{
-				ResourceGroup: resourceGroup,
-				VaultName:     vaultName,
-				Item: struct {
-					Name     *string
-					ID       *string
-					Type     *string
-					ETag     *string
-					Tags     map[string]*string
-					Location *string
-				}{
-					Name:     item.Name,
-					ID:       item.ID,
-					Location: item.Location,
-					Type:     item.Type,
-					Tags:     item.Tags,
-					ETag:     item.ETag,
-				},
-				Properties: extractData(item.Properties),
+		Description: model.RecoveryServicesBackupItemDescription{
+			ResourceGroup: resourceGroup,
+			VaultName:     vaultName,
+			Item: struct {
+				Name     *string
+				ID       *string
+				Type     *string
+				ETag     *string
+				Tags     map[string]*string
+				Location *string
+			}{
+				Name:     item.Name,
+				ID:       item.ID,
+				Location: item.Location,
+				Type:     item.Type,
+				Tags:     item.Tags,
+				ETag:     item.ETag,
 			},
+			Properties: extractData(item.Properties),
 		},
 	}
 }

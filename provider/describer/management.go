@@ -51,10 +51,8 @@ func getManagementGroup(ctx context.Context, client *armmanagementgroups.Client,
 	resource := &models.Resource{
 		ID:   *info.ID,
 		Name: *info.Name,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.ManagementGroupDescription{
-				Group: info.ManagementGroup,
-			},
+		Description: model.ManagementGroupDescription{
+			Group: info.ManagementGroup,
 		},
 	}
 	return resource, nil
@@ -94,11 +92,9 @@ func getManagementLock(ctx context.Context, lockObject *armlocks.ManagementLockO
 		ID:       *lockObject.ID,
 		Name:     *lockObject.Name,
 		Location: "global",
-		Description: JSONAllFieldsMarshaller{
-			Value: model.ManagementLockDescription{
-				Lock:          *lockObject,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.ManagementLockDescription{
+			Lock:          *lockObject,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource

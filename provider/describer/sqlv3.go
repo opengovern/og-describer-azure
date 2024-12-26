@@ -155,21 +155,19 @@ func GetSqlServer(ctx context.Context, automaticTuningClient *armsql.ServerAutom
 		ID:       *server.ID,
 		Name:     *server.Name,
 		Location: *server.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SqlServerDescription{
-				Server:                         *server,
-				ServerBlobAuditingPolicies:     bop,
-				ServerSecurityAlertPolicies:    sop,
-				ServerAzureADAdministrators:    adminOp,
-				ServerVulnerabilityAssessments: vop,
-				FirewallRules:                  firewallOp,
-				EncryptionProtectors:           eop,
-				PrivateEndpointConnections:     pop,
-				VirtualNetworkRules:            nop,
-				FailoverGroups:                 fop,
-				AutomaticTuning:                automaticTuning.ServerAutomaticTuning,
-				ResourceGroup:                  resourceGroupName,
-			},
+		Description: model.SqlServerDescription{
+			Server:                         *server,
+			ServerBlobAuditingPolicies:     bop,
+			ServerSecurityAlertPolicies:    sop,
+			ServerAzureADAdministrators:    adminOp,
+			ServerVulnerabilityAssessments: vop,
+			FirewallRules:                  firewallOp,
+			EncryptionProtectors:           eop,
+			PrivateEndpointConnections:     pop,
+			VirtualNetworkRules:            nop,
+			FailoverGroups:                 fop,
+			AutomaticTuning:                automaticTuning.ServerAutomaticTuning,
+			ResourceGroup:                  resourceGroupName,
 		},
 	}
 	return &resource, nil
@@ -235,12 +233,10 @@ func GetSqlServerJobAgent(ctx context.Context, server *armsql.Server, job *armsq
 		ID:       *job.ID,
 		Name:     *job.Name,
 		Location: *job.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SqlServerJobAgentDescription{
-				Server:        *server,
-				JobAgent:      *job,
-				ResourceGroup: jobResourceGroupName,
-			},
+		Description: model.SqlServerJobAgentDescription{
+			Server:        *server,
+			JobAgent:      *job,
+			ResourceGroup: jobResourceGroupName,
 		},
 	}
 	return &resource
@@ -282,11 +278,9 @@ func GetSqlVirtualCluster(ctx context.Context, v *armsql.VirtualCluster) *models
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SqlVirtualClustersDescription{
-				VirtualClusters: *v,
-				ResourceGroup:   resourceGroupName,
-			},
+		Description: model.SqlVirtualClustersDescription{
+			VirtualClusters: *v,
+			ResourceGroup:   resourceGroupName,
 		},
 	}
 
@@ -392,13 +386,11 @@ func GetSqlServerElasticPool(ctx context.Context, server *armsql.Server, activit
 		ID:       *elasticPool.ID,
 		Name:     *elasticPool.Name,
 		Location: *elasticPool.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SqlServerElasticPoolDescription{
-				TotalDTU:      totalDTU,
-				Pool:          *elasticPool,
-				ServerName:    name,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.SqlServerElasticPoolDescription{
+			TotalDTU:      totalDTU,
+			Pool:          *elasticPool,
+			ServerName:    name,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource, nil
@@ -438,11 +430,9 @@ func GetSqlServerVirtualMachine(ctx context.Context, vm *armsqlvirtualmachine.SQ
 		ID:       *vm.ID,
 		Name:     *vm.Name,
 		Location: *vm.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SqlServerVirtualMachineDescription{
-				VirtualMachine: *vm,
-				ResourceGroup:  resourceGroup,
-			},
+		Description: model.SqlServerVirtualMachineDescription{
+			VirtualMachine: *vm,
+			ResourceGroup:  resourceGroup,
 		},
 	}
 	return &resource
@@ -483,11 +473,9 @@ func GetSqlServerVirtualMachineGroups(ctx context.Context, vm *armsqlvirtualmach
 		ID:       *vm.ID,
 		Name:     *vm.Name,
 		Location: *vm.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SqlServerVirtualMachineGroupDescription{
-				Group:         *vm,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.SqlServerVirtualMachineGroupDescription{
+			Group:         *vm,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource
@@ -527,11 +515,9 @@ func GetSqlServerFlexibleServer(ctx context.Context, fs *armmysqlflexibleservers
 		ID:       *fs.ID,
 		Name:     *fs.Name,
 		Location: *fs.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SqlServerFlexibleServerDescription{
-				FlexibleServer: *fs,
-				ResourceGroup:  resourceGroup,
-			},
+		Description: model.SqlServerFlexibleServerDescription{
+			FlexibleServer: *fs,
+			ResourceGroup:  resourceGroup,
 		},
 	}
 	return &resource

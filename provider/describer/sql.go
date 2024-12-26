@@ -84,15 +84,13 @@ func GetMssqlManagedInstance(ctx context.Context, managedInstanceClient *armsql.
 		ID:       *managedInstance.ID,
 		Name:     *managedInstance.Name,
 		Location: *managedInstance.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.MssqlManagedInstanceDescription{
+		Description: model.MssqlManagedInstanceDescription{
 				ManagedInstance:                         *managedInstance,
 				ManagedInstanceVulnerabilityAssessments: viop,
 				ManagedDatabaseSecurityAlertPolicies:    vsop,
 				ManagedInstanceEncryptionProtectors:     veop,
 				ResourceGroup:                           resourceGroup,
 			},
-		},
 	}
 
 	return &resource, nil
@@ -157,13 +155,11 @@ func GetManagedInstanceDatabases(ctx context.Context, managedInstance *armsql.Ma
 		ID:       *db.ID,
 		Name:     *db.Name,
 		Location: *db.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.MssqlManagedInstanceDatabasesDescription{
+		Description: model.MssqlManagedInstanceDatabasesDescription{
 				ManagedInstance: *managedInstance,
 				Database:        *db,
 				ResourceGroup:   resourceGroup,
 			},
-		},
 	}
 	return &resource
 }
@@ -307,8 +303,7 @@ func GetSqlDatabase(ctx context.Context, recoverableClient *armsql.RecoverableDa
 		ID:       *server.ID,
 		Name:     *server.Name,
 		Location: *server.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SqlDatabaseDescription{
+		Description: model.SqlDatabaseDescription{
 				Database:                           getOp.Database,
 				LongTermRetentionPolicy:            longTermRetentionPolicy,
 				TransparentDataEncryption:          transparentDataOp,
@@ -318,7 +313,6 @@ func GetSqlDatabase(ctx context.Context, recoverableClient *armsql.RecoverableDa
 				AuditPolicies:                      auditPolicies,
 				ResourceGroup:                      resourceGroupName,
 			},
-		},
 	}
 	return &resource, nil
 }
@@ -354,12 +348,10 @@ func GetSqlInstancePool(ctx context.Context, clientFactory *armsql.ClientFactory
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SqlInstancePoolDescription{
+		Description: model.SqlInstancePoolDescription{
 				InstancePool:  *v,
 				ResourceGroup: resourceGroupName,
 			},
-		},
 	}
 	return &resource, nil
 }

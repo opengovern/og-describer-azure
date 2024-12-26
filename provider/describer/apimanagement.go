@@ -66,12 +66,10 @@ func getAPIMangement(ctx context.Context, diagnosticClient *armmonitor.Diagnosti
 		ID:       *apiManagement.ID,
 		Name:     *apiManagement.Name,
 		Location: *apiManagement.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.APIManagementDescription{
-				APIManagement:               *apiManagement,
-				DiagnosticSettingsResources: &op,
-				ResourceGroup:               resourceGroup,
-			},
+		Description: model.APIManagementDescription{
+			APIManagement:               *apiManagement,
+			DiagnosticSettingsResources: &op,
+			ResourceGroup:               resourceGroup,
 		},
 	}
 	return &resource, nil
@@ -141,12 +139,10 @@ func GetAPIManagementBackend(ctx context.Context, service *armapimanagement.Serv
 	resource := models.Resource{
 		ID:   *backend.ID,
 		Name: *backend.Name,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.APIManagementBackendDescription{
-				APIManagementBackend: *backend,
-				ServiceName:          *service.Name,
-				ResourceGroup:        resourceGroup,
-			},
+		Description: model.APIManagementBackendDescription{
+			APIManagementBackend: *backend,
+			ServiceName:          *service.Name,
+			ResourceGroup:        resourceGroup,
 		},
 	}
 	return &resource

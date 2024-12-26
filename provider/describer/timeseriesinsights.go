@@ -44,11 +44,9 @@ func GetTimeSeriesInsightsEnvironments(ctx context.Context, record armtimeseries
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.TimeSeriesInsightsEnvironmentsDescription{
-				Environment:   v,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.TimeSeriesInsightsEnvironmentsDescription{
+			Environment:   v,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource

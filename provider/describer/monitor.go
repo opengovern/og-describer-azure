@@ -50,11 +50,9 @@ func getMonitorLogProfile(ctx context.Context, logProfile *armmonitor.LogProfile
 		ID:       *logProfile.ID,
 		Name:     *logProfile.Name,
 		Location: *logProfile.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.MonitorLogProfileDescription{
-				LogProfile:    *logProfile,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.MonitorLogProfileDescription{
+			LogProfile:    *logProfile,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource, nil

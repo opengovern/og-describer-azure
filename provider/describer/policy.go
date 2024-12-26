@@ -55,11 +55,9 @@ func GetPolicyAssignment(ctx context.Context, resourceClient *armresources.Clien
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.PolicyAssignmentDescription{
-				Assignment: *v,
-				Resource:   res.GenericResource,
-			},
+		Description: model.PolicyAssignmentDescription{
+			Assignment: *v,
+			Resource:   res.GenericResource,
 		},
 	}
 

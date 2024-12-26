@@ -88,13 +88,11 @@ func getHealthcareService(ctx context.Context, privateEndpointClient *armhealthc
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.HealthcareServiceDescription{
-				ServicesDescription:         *v,
-				DiagnosticSettingsResources: opValue,
-				PrivateEndpointConnections:  opService,
-				ResourceGroup:               resourceGroup,
-			},
+		Description: model.HealthcareServiceDescription{
+			ServicesDescription:         *v,
+			DiagnosticSettingsResources: opValue,
+			PrivateEndpointConnections:  opService,
+			ResourceGroup:               resourceGroup,
 		},
 	}
 

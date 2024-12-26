@@ -69,13 +69,11 @@ func getSpringCloudService(ctx context.Context, service *armspringappdiscovery.S
 		ID:       *service.ID,
 		Name:     *service.Name,
 		Location: *site.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SpringCloudServiceDescription{
-				App:                        *service,
-				Site:                       site,
-				DiagnosticSettingsResource: nil, // TODO: Arta fix this =)))
-				ResourceGroup:              resourceGroup,
-			},
+		Description: model.SpringCloudServiceDescription{
+			App:                        *service,
+			Site:                       site,
+			DiagnosticSettingsResource: nil, // TODO: Arta fix this =)))
+			ResourceGroup:              resourceGroup,
 		},
 	}
 	return &resource, nil

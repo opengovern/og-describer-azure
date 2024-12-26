@@ -65,12 +65,10 @@ func GetStreamAnalyticsJob(ctx context.Context, diagnosticClient *armmonitor.Dia
 		ID:       *streamingJob.ID,
 		Name:     *streamingJob.Name,
 		Location: *streamingJob.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.StreamAnalyticsJobDescription{
-				StreamingJob:                *streamingJob,
-				DiagnosticSettingsResources: streamanalyticsListOp,
-				ResourceGroup:               resourceGroup,
-			},
+		Description: model.StreamAnalyticsJobDescription{
+			StreamingJob:                *streamingJob,
+			DiagnosticSettingsResources: streamanalyticsListOp,
+			ResourceGroup:               resourceGroup,
 		},
 	}
 	return &resource, nil
@@ -111,11 +109,9 @@ func GetStreamAnalyticsCluster(ctx context.Context, streamingJob *armstreamanaly
 		ID:       *streamingJob.ID,
 		Name:     *streamingJob.Name,
 		Location: *streamingJob.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.StreamAnalyticsClusterDescription{
-				StreamingJob:  *streamingJob,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.StreamAnalyticsClusterDescription{
+			StreamingJob:  *streamingJob,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource

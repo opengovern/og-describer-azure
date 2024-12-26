@@ -63,10 +63,10 @@ func getCognitiveAccount(ctx context.Context, diagnosticsClient *armmonitor.Diag
 	}
 	return &models.Resource{
 		ID: *account.ID,
-		Description: JSONAllFieldsMarshaller{Value: model.CognitiveAccountDescription{
+		Description: model.CognitiveAccountDescription{
 			Account:                     *account,
 			DiagnosticSettingsResources: diagnosticSettings,
 			ResourceGroup:               resourceGroupName,
-		}},
+		},
 	}, nil
 }

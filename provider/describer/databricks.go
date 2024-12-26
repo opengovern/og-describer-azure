@@ -45,11 +45,9 @@ func getDatabricksWorkspace(ctx context.Context, v *armdatabricks.Workspace) *mo
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.DatabricksWorkspaceDescription{
-				Workspace:     *v,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.DatabricksWorkspaceDescription{
+			Workspace:     *v,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource

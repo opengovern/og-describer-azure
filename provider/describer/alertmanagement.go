@@ -46,11 +46,9 @@ func getAlertManagement(_ context.Context, alert *armalertsmanagement.Alert) *mo
 	return &models.Resource{
 		ID:   *alert.ID,
 		Name: *alert.Name,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.AlertManagementDescription{
-				Alert:         *alert,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.AlertManagementDescription{
+			Alert:         *alert,
+			ResourceGroup: resourceGroup,
 		},
 	}
 }

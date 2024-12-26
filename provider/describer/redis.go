@@ -45,11 +45,9 @@ func GetRedisCache(ctx context.Context, v *armredis.ResourceInfo) *models.Resour
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.RedisCacheDescription{
-				ResourceInfo:  *v,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.RedisCacheDescription{
+			ResourceInfo:  *v,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource
@@ -89,11 +87,9 @@ func GetCacheRedisEnterprise(ctx context.Context, v *armredisenterprise.Cluster)
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.RedisEnterpriseCacheDescription{
-				RedisEnterprise: *v,
-				ResourceGroup:   resourceGroup,
-			},
+		Description: model.RedisEnterpriseCacheDescription{
+			RedisEnterprise: *v,
+			ResourceGroup:   resourceGroup,
 		},
 	}
 	return &resource

@@ -65,12 +65,10 @@ func getFrontDoor(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSe
 		ID:       *door.ID,
 		Name:     *door.Name,
 		Location: *door.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.FrontdoorDescription{
-				FrontDoor:                   *door,
-				DiagnosticSettingsResources: frontDoorListOp,
-				ResourceGroup:               resourceGroup,
-			},
+		Description: model.FrontdoorDescription{
+			FrontDoor:                   *door,
+			DiagnosticSettingsResources: frontDoorListOp,
+			ResourceGroup:               resourceGroup,
 		},
 	}
 	return &resource, nil

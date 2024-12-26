@@ -39,11 +39,10 @@ func GetServiceFabricCluster(ctx context.Context, cluster *armservicefabric.Clus
 	resourceGroup := strings.Split(*cluster.ID, "/")[4]
 
 	resource := models.Resource{
-		ID:       *cluster.ID,
-		Name:     *cluster.Name,
-		Location: *cluster.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.ServiceFabricClusterDescription{Cluster: *cluster, ResourceGroup: resourceGroup},
-		}}
+		ID:          *cluster.ID,
+		Name:        *cluster.Name,
+		Location:    *cluster.Location,
+		Description: model.ServiceFabricClusterDescription{Cluster: *cluster, ResourceGroup: resourceGroup},
+	}
 	return &resource
 }

@@ -45,11 +45,9 @@ func GetLocation(ctx context.Context, location *armsubscription.Location) *model
 		ID:       *location.ID,
 		Name:     *location.Name,
 		Location: "global",
-		Description: JSONAllFieldsMarshaller{
-			Value: model.LocationDescription{
-				Location:      *location,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.LocationDescription{
+			Location:      *location,
+			ResourceGroup: resourceGroup,
 		},
 	}
 

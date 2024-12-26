@@ -72,14 +72,12 @@ func getContainerRegistry(ctx context.Context, client *armcontainerregistry.Regi
 		ID:       *registry.ID,
 		Name:     *registry.Name,
 		Location: *registry.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.ContainerRegistryDescription{
-				Registry:                      *registry,
-				RegistryListCredentialsResult: containerRegistryListCredentialsOp,
-				RegistryUsages:                containerRegistryListUsagesOp.Value,
-				Webhooks:                      webhooks,
-				ResourceGroup:                 resourceGroup,
-			},
+		Description: model.ContainerRegistryDescription{
+			Registry:                      *registry,
+			RegistryListCredentialsResult: containerRegistryListCredentialsOp,
+			RegistryUsages:                containerRegistryListUsagesOp.Value,
+			Webhooks:                      webhooks,
+			ResourceGroup:                 resourceGroup,
 		},
 	}
 	return &resource, nil

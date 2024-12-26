@@ -44,11 +44,9 @@ func GetHpcCache(ctx context.Context, v *armstoragecache.Cache) *models.Resource
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.HpcCacheDescription{
-				Cache:         *v,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.HpcCacheDescription{
+			Cache:         *v,
+			ResourceGroup: resourceGroup,
 		},
 	}
 

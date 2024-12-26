@@ -45,11 +45,9 @@ func GetAppServiceEnvironment(ctx context.Context, v *appservice.EnvironmentReso
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.AppServiceEnvironmentDescription{
-				AppServiceEnvironmentResource: *v,
-				ResourceGroup:                 resourceGroup,
-			},
+		Description: model.AppServiceEnvironmentDescription{
+			AppServiceEnvironmentResource: *v,
+			ResourceGroup:                 resourceGroup,
 		},
 	}
 
@@ -106,13 +104,11 @@ func GetAppServiceFunctionApp(ctx context.Context, webClient *appservice.WebApps
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.AppServiceFunctionAppDescription{
-				Site:               *v,
-				SiteAuthSettings:   authSettings.SiteAuthSettings,
-				SiteConfigResource: configuration.SiteConfigResource,
-				ResourceGroup:      resourceGroup,
-			},
+		Description: model.AppServiceFunctionAppDescription{
+			Site:               *v,
+			SiteAuthSettings:   authSettings.SiteAuthSettings,
+			SiteConfigResource: configuration.SiteConfigResource,
+			ResourceGroup:      resourceGroup,
 		},
 	}
 	return &resource, nil
@@ -207,16 +203,14 @@ func GetAppServiceWebApp(ctx context.Context, webClient *appservice.WebAppsClien
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.AppServiceWebAppDescription{
-				Site:               *v,
-				SiteConfigResource: configuration.SiteConfigResource,
-				SiteAuthSettings:   authSettings.SiteAuthSettings,
-				SiteLogConfig:      diagnosticLogConfiguration.SiteLogsConfig,
-				VnetInfo:           vnet.VnetInfoResource,
-				StorageAccounts:    storageAccounts.Properties,
-				ResourceGroup:      resourceGroup,
-			},
+		Description: model.AppServiceWebAppDescription{
+			Site:               *v,
+			SiteConfigResource: configuration.SiteConfigResource,
+			SiteAuthSettings:   authSettings.SiteAuthSettings,
+			SiteLogConfig:      diagnosticLogConfiguration.SiteLogsConfig,
+			VnetInfo:           vnet.VnetInfoResource,
+			StorageAccounts:    storageAccounts.Properties,
+			ResourceGroup:      resourceGroup,
 		},
 	}
 
@@ -278,12 +272,10 @@ func GetAppServiceWebAppSlot(ctx context.Context, app *appservice.Site, v *appse
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.AppServiceWebAppSlotDescription{
-				Site:          *v,
-				AppName:       *app.Name,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.AppServiceWebAppSlotDescription{
+			Site:          *v,
+			AppName:       *app.Name,
+			ResourceGroup: resourceGroup,
 		},
 	}
 
@@ -343,12 +335,10 @@ func GetAppServicePlan(ctx context.Context, client *appservice.PlansClient, v *a
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.AppServicePlanDescription{
-				Plan:          *v,
-				Apps:          webApps,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.AppServicePlanDescription{
+			Plan:          *v,
+			Apps:          webApps,
+			ResourceGroup: resourceGroup,
 		},
 	}
 
@@ -389,11 +379,9 @@ func GetAppContainerApps(ctx context.Context, server *appservice.ContainerApp) *
 		ID:       *server.ID,
 		Name:     *server.Name,
 		Location: *server.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.ContainerAppDescription{
-				Server:        *server,
-				ResourceGroup: resourceGroupName,
-			},
+		Description: model.ContainerAppDescription{
+			Server:        *server,
+			ResourceGroup: resourceGroupName,
 		},
 	}
 
@@ -434,11 +422,9 @@ func GetWebServerFarm(ctx context.Context, v *appservice.Plan) *models.Resource 
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.WebServerFarmsDescription{
-				ServerFarm:    *v,
-				ResourceGroup: resourceGroupName,
-			},
+		Description: model.WebServerFarmsDescription{
+			ServerFarm:    *v,
+			ResourceGroup: resourceGroupName,
 		},
 	}
 	return &resource

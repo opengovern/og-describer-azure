@@ -71,12 +71,10 @@ func getBatchAccount(ctx context.Context, account *armbatch.Account, diagnosticC
 		ID:       *account.ID,
 		Name:     *account.Name,
 		Location: *account.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.BatchAccountDescription{
-				Account:                     *account,
-				DiagnosticSettingsResources: &batchListOp,
-				ResourceGroup:               resourceGroup,
-			},
+		Description: model.BatchAccountDescription{
+			Account:                     *account,
+			DiagnosticSettingsResources: &batchListOp,
+			ResourceGroup:               resourceGroup,
 		},
 	}
 	return &resource, nil

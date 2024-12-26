@@ -64,12 +64,10 @@ func getMachineLearningWorkspace(ctx context.Context, diagnosticClient *armmonit
 		ID:       *workspace.ID,
 		Name:     *workspace.Name,
 		Location: *workspace.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.MachineLearningWorkspaceDescription{
-				Workspace:                   *workspace,
-				DiagnosticSettingsResources: machineLearningServicesListOp,
-				ResourceGroup:               resourceGroup,
-			},
+		Description: model.MachineLearningWorkspaceDescription{
+			Workspace:                   *workspace,
+			DiagnosticSettingsResources: machineLearningServicesListOp,
+			ResourceGroup:               resourceGroup,
 		},
 	}
 

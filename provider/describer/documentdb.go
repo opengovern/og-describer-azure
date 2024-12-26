@@ -69,12 +69,10 @@ func getDocumentDBSQLDatabase(ctx context.Context, v *armcosmos.SQLDatabaseGetRe
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.CosmosdbSqlDatabaseDescription{
-				Account:       *account,
-				SqlDatabase:   *v,
-				ResourceGroup: *rg.Name,
-			},
+		Description: model.CosmosdbSqlDatabaseDescription{
+			Account:       *account,
+			SqlDatabase:   *v,
+			ResourceGroup: *rg.Name,
 		},
 	}
 	return &resource
@@ -136,12 +134,10 @@ func getDocumentDBMongoDatabase(ctx context.Context, v *armcosmos.MongoDBDatabas
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.CosmosdbMongoDatabaseDescription{
-				Account:       *account,
-				MongoDatabase: *v,
-				ResourceGroup: *rg.Name,
-			},
+		Description: model.CosmosdbMongoDatabaseDescription{
+			Account:       *account,
+			MongoDatabase: *v,
+			ResourceGroup: *rg.Name,
 		},
 	}
 	return &resource
@@ -231,14 +227,12 @@ func getDocumentDBMongoCollection(ctx context.Context, client *armcosmos.MongoDB
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.CosmosdbMongoCollectionDescription{
-				Account:         *account,
-				MongoDatabase:   *db,
-				MongoCollection: *v,
-				Throughput:      tp.ThroughputSettingsGetResults,
-				ResourceGroup:   *rg.Name,
-			},
+		Description: model.CosmosdbMongoCollectionDescription{
+			Account:         *account,
+			MongoDatabase:   *db,
+			MongoCollection: *v,
+			Throughput:      tp.ThroughputSettingsGetResults,
+			ResourceGroup:   *rg.Name,
 		},
 	}
 	return &resource, nil
@@ -282,11 +276,9 @@ func getDocumentDBCassandraCluster(ctx context.Context, v *armcosmos.ClusterReso
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.CosmosdbCassandraClusterDescription{
-				CassandraCluster: *v,
-				ResourceGroup:    resourceGroup,
-			},
+		Description: model.CosmosdbCassandraClusterDescription{
+			CassandraCluster: *v,
+			ResourceGroup:    resourceGroup,
 		},
 	}
 	return &resource
@@ -350,11 +342,9 @@ func getCosmosdbAccount(ctx context.Context, v *armcosmos.DatabaseAccountGetResu
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.CosmosdbAccountDescription{
-				DatabaseAccountGetResults: *v,
-				ResourceGroup:             resourceGroup,
-			},
+		Description: model.CosmosdbAccountDescription{
+			DatabaseAccountGetResults: *v,
+			ResourceGroup:             resourceGroup,
 		},
 	}
 	return &resource
@@ -398,11 +388,9 @@ func getRestorableDatabaseAccount(ctx context.Context, v *armcosmos.RestorableDa
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.CosmosdbRestorableDatabaseAccountDescription{
-				Account:       *v,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.CosmosdbRestorableDatabaseAccountDescription{
+			Account:       *v,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource

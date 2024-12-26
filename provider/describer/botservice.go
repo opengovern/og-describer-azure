@@ -43,9 +43,9 @@ func getBotServiceBot(ctx context.Context, bot *armbotservice.Bot) *models.Resou
 	resourceGroupName := strings.Split(string(*bot.ID), "/")[4]
 	return &models.Resource{
 		ID: *bot.ID,
-		Description: JSONAllFieldsMarshaller{Value: model.BotServiceBotDescription{
+		Description: model.BotServiceBotDescription{
 			Bot:           *bot,
 			ResourceGroup: resourceGroupName,
-		}},
+		},
 	}
 }

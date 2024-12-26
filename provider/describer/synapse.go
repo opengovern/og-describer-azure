@@ -86,13 +86,11 @@ func GetSynapseWorkspace(ctx context.Context, synapseClient *armsynapse.Workspac
 		ID:       *config.ID,
 		Name:     *config.Name,
 		Location: *config.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SynapseWorkspaceDescription{
-				Workspace:                      *config,
-				ServerVulnerabilityAssessments: serverVulnerabilityAssessments,
-				DiagnosticSettingsResources:    synapseListOp,
-				ResourceGroup:                  resourceGroup,
-			},
+		Description: model.SynapseWorkspaceDescription{
+			Workspace:                      *config,
+			ServerVulnerabilityAssessments: serverVulnerabilityAssessments,
+			DiagnosticSettingsResources:    synapseListOp,
+			ResourceGroup:                  resourceGroup,
 		},
 	}
 	return &resource, nil
@@ -147,12 +145,10 @@ func GetSynapseWorkspaceBigdataPools(ctx context.Context, resourceGroup string, 
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SynapseWorkspaceBigdatapoolsDescription{
-				Workspace:     *v,
-				BigDataPool:   *bp,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.SynapseWorkspaceBigdatapoolsDescription{
+			Workspace:     *v,
+			BigDataPool:   *bp,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource
@@ -220,12 +216,10 @@ func GetSynapseWorkspaceSqlpools(ctx context.Context, v *armsynapse.Workspace, b
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SynapseWorkspaceSqlpoolsDescription{
-				Workspace:     *v,
-				SqlPool:       *bp,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.SynapseWorkspaceSqlpoolsDescription{
+			Workspace:     *v,
+			SqlPool:       *bp,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource

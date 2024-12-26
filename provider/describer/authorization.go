@@ -47,10 +47,8 @@ func getRoleAssignment(ctx context.Context, v *armauthorization.RoleAssignment) 
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
-		Description: JSONAllFieldsMarshaller{
-			Value: model.RoleAssignmentDescription{
-				RoleAssignment: *v,
-			},
+		Description: model.RoleAssignmentDescription{
+			RoleAssignment: *v,
 		},
 	}
 }
@@ -87,10 +85,8 @@ func getRoleDefinition(ctx context.Context, v *armauthorization.RoleDefinition) 
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
-		Description: JSONAllFieldsMarshaller{
-			Value: model.RoleDefinitionDescription{
-				RoleDefinition: *v,
-			},
+		Description: model.RoleDefinitionDescription{
+			RoleDefinition: *v,
 		},
 	}
 }
@@ -133,11 +129,9 @@ func getPolicyDefinition(ctx context.Context, subscription string, definition *a
 		ID:       *definition.ID,
 		Name:     *definition.Name,
 		Location: "global",
-		Description: JSONAllFieldsMarshaller{
-			Value: model.PolicyDefinitionDescription{
-				Definition: *definition,
-				TurboData:  turbotData,
-			},
+		Description: model.PolicyDefinitionDescription{
+			Definition: *definition,
+			TurboData:  turbotData,
 		},
 	}
 }
@@ -175,17 +169,15 @@ func UserEffectiveAccess(ctx context.Context, cred *azidentity.ClientSecretCrede
 						ID:       id,
 						Name:     *roleAssignment.Name,
 						Location: "global",
-						Description: JSONAllFieldsMarshaller{
-							Value: model.UserEffectiveAccessDescription{
-								RoleAssignment:    *roleAssignment,
-								PrincipalName:     *m.GetDisplayName(),
-								PrincipalId:       *m.GetId(),
-								PrincipalType:     armauthorization.PrincipalTypeUser,
-								Scope:             *roleAssignment.Properties.Scope,
-								ScopeType:         getScopeType(*roleAssignment.Properties.Scope),
-								AssignmentType:    "GroupAssignment",
-								ParentPrincipalId: roleAssignment.Properties.PrincipalID,
-							},
+						Description: model.UserEffectiveAccessDescription{
+							RoleAssignment:    *roleAssignment,
+							PrincipalName:     *m.GetDisplayName(),
+							PrincipalId:       *m.GetId(),
+							PrincipalType:     armauthorization.PrincipalTypeUser,
+							Scope:             *roleAssignment.Properties.Scope,
+							ScopeType:         getScopeType(*roleAssignment.Properties.Scope),
+							AssignmentType:    "GroupAssignment",
+							ParentPrincipalId: roleAssignment.Properties.PrincipalID,
 						},
 					}
 					if stream != nil {
@@ -209,17 +201,15 @@ func UserEffectiveAccess(ctx context.Context, cred *azidentity.ClientSecretCrede
 					ID:       id,
 					Name:     *roleAssignment.Name,
 					Location: "global",
-					Description: JSONAllFieldsMarshaller{
-						Value: model.UserEffectiveAccessDescription{
-							RoleAssignment:    *roleAssignment,
-							PrincipalId:       *roleAssignment.Properties.PrincipalID,
-							PrincipalName:     *user.GetDisplayName(),
-							PrincipalType:     armauthorization.PrincipalTypeUser,
-							Scope:             *roleAssignment.Properties.Scope,
-							ScopeType:         getScopeType(*roleAssignment.Properties.Scope),
-							AssignmentType:    "Explicit",
-							ParentPrincipalId: nil,
-						},
+					Description: model.UserEffectiveAccessDescription{
+						RoleAssignment:    *roleAssignment,
+						PrincipalId:       *roleAssignment.Properties.PrincipalID,
+						PrincipalName:     *user.GetDisplayName(),
+						PrincipalType:     armauthorization.PrincipalTypeUser,
+						Scope:             *roleAssignment.Properties.Scope,
+						ScopeType:         getScopeType(*roleAssignment.Properties.Scope),
+						AssignmentType:    "Explicit",
+						ParentPrincipalId: nil,
 					},
 				}
 				if stream != nil {
@@ -242,17 +232,15 @@ func UserEffectiveAccess(ctx context.Context, cred *azidentity.ClientSecretCrede
 					ID:       id,
 					Name:     *roleAssignment.Name,
 					Location: "global",
-					Description: JSONAllFieldsMarshaller{
-						Value: model.UserEffectiveAccessDescription{
-							RoleAssignment:    *roleAssignment,
-							PrincipalId:       *roleAssignment.Properties.PrincipalID,
-							PrincipalName:     *spn.GetDisplayName(),
-							PrincipalType:     armauthorization.PrincipalTypeServicePrincipal,
-							Scope:             *roleAssignment.Properties.Scope,
-							ScopeType:         getScopeType(*roleAssignment.Properties.Scope),
-							AssignmentType:    "Explicit",
-							ParentPrincipalId: nil,
-						},
+					Description: model.UserEffectiveAccessDescription{
+						RoleAssignment:    *roleAssignment,
+						PrincipalId:       *roleAssignment.Properties.PrincipalID,
+						PrincipalName:     *spn.GetDisplayName(),
+						PrincipalType:     armauthorization.PrincipalTypeServicePrincipal,
+						Scope:             *roleAssignment.Properties.Scope,
+						ScopeType:         getScopeType(*roleAssignment.Properties.Scope),
+						AssignmentType:    "Explicit",
+						ParentPrincipalId: nil,
 					},
 				}
 				if stream != nil {

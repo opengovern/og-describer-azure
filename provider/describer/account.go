@@ -83,12 +83,10 @@ func getDataLakeAnalyticsAccount(ctx context.Context, account *armdatalakeanalyt
 		ID:       *account.ID,
 		Name:     *account.Name,
 		Location: *account.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.DataLakeAnalyticsAccountDescription{
-				DataLakeAnalyticsAccount:   accountGetOp.Account,
-				DiagnosticSettingsResource: &accountListOp,
-				ResourceGroup:              resourceGroup,
-			},
+		Description: model.DataLakeAnalyticsAccountDescription{
+			DataLakeAnalyticsAccount:   accountGetOp.Account,
+			DiagnosticSettingsResource: &accountListOp,
+			ResourceGroup:              resourceGroup,
 		},
 	}
 	return &resource, nil
@@ -162,12 +160,10 @@ func getDataLakeStore(ctx context.Context, account *armdatalakestore.AccountBasi
 		ID:       *account.ID,
 		Name:     name,
 		Location: "",
-		Description: JSONAllFieldsMarshaller{
-			Value: model.DataLakeStoreDescription{
-				DataLakeStoreAccount:       accountGetOp.Account,
-				DiagnosticSettingsResource: &accountListOp,
-				ResourceGroup:              resourceGroup,
-			},
+		Description: model.DataLakeStoreDescription{
+			DataLakeStoreAccount:       accountGetOp.Account,
+			DiagnosticSettingsResource: &accountListOp,
+			ResourceGroup:              resourceGroup,
 		},
 	}
 	return &resource, nil

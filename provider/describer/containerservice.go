@@ -45,11 +45,9 @@ func getKubernatesCluster(ctx context.Context, v *armcontainerservice.ManagedClu
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.KubernetesClusterDescription{
-				ManagedCluster: *v,
-				ResourceGroup:  resourceGroup,
-			},
+		Description: model.KubernetesClusterDescription{
+			ManagedCluster: *v,
+			ResourceGroup:  resourceGroup,
 		},
 	}
 	return &resource
@@ -103,10 +101,8 @@ func getKubernatesService(ctx context.Context, location *armsubscriptions.Locati
 		Name:     *v.Version,
 		Type:     *v.Version,
 		Location: *location.ID,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.KubernetesServiceVersionDescription{
-				Version: *v,
-			},
+		Description: model.KubernetesServiceVersionDescription{
+			Version: *v,
 		},
 	}
 	return &resource

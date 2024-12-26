@@ -44,11 +44,9 @@ func GetPowerBIDedicatedCapacity(ctx context.Context, v *armpowerbidedicated.Ded
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.PowerBIDedicatedCapacityDescription{
-				Capacity:      *v,
-				ResourceGroup: resourceGroupName,
-			},
+		Description: model.PowerBIDedicatedCapacityDescription{
+			Capacity:      *v,
+			ResourceGroup: resourceGroupName,
 		},
 	}
 	return &resource

@@ -44,11 +44,9 @@ func getDataProtectionBackupVaults(ctx context.Context, v *armdataprotection.Bac
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.DataProtectionBackupVaultsDescription{
-				BackupVaults:  *v,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.DataProtectionBackupVaultsDescription{
+			BackupVaults:  *v,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource
@@ -106,11 +104,9 @@ func getDataProtectionBackupVaultsBackupPolicies(ctx context.Context, client *ar
 				ID:       *p.ID,
 				Name:     *p.Name,
 				Location: *v.Location,
-				Description: JSONAllFieldsMarshaller{
-					Value: model.DataProtectionBackupVaultsBackupPoliciesDescription{
-						BackupPolicies: *p,
-						ResourceGroup:  resourceGroup,
-					},
+				Description: model.DataProtectionBackupVaultsBackupPoliciesDescription{
+					BackupPolicies: *p,
+					ResourceGroup:  resourceGroup,
 				},
 			}
 			values = append(values, resource)
@@ -184,12 +180,10 @@ func GetDataPotectionJob(ctx context.Context, vault *armdataprotection.BackupVau
 	resource := models.Resource{
 		ID:   *job.ID,
 		Name: *job.Name,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.DataProtectionJobDescription{
-				DataProtectionJob: *job,
-				VaultName:         *vault.Name,
-				ResourceGroup:     resourceGroup,
-			},
+		Description: model.DataProtectionJobDescription{
+			DataProtectionJob: *job,
+			VaultName:         *vault.Name,
+			ResourceGroup:     resourceGroup,
 		},
 	}
 	return &resource

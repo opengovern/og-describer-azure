@@ -50,11 +50,9 @@ func getNetworkInterface(ctx context.Context, v *armnetwork.Interface) *models.R
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.NetworkInterfaceDescription{
-				Interface:     *v,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.NetworkInterfaceDescription{
+			Interface:     *v,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource
@@ -121,12 +119,10 @@ func getWatcherFlowLog(ctx context.Context, watcher *armnetwork.Watcher, v *armn
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.NetworkWatcherFlowLogDescription{
-				NetworkWatcherName: *watcher.Name,
-				FlowLog:            *v,
-				ResourceGroup:      resourceGroupID,
-			},
+		Description: model.NetworkWatcherFlowLogDescription{
+			NetworkWatcherName: *watcher.Name,
+			FlowLog:            *v,
+			ResourceGroup:      resourceGroupID,
 		},
 	}
 	return &resource
@@ -193,12 +189,10 @@ func getVirtualNetworkSubnet(ctx context.Context, virtualnetwork *armnetwork.Vir
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
-		Description: JSONAllFieldsMarshaller{
-			Value: model.SubnetDescription{
-				VirtualNetworkName: *virtualnetwork.Name,
-				Subnet:             *v,
-				ResourceGroup:      resourceGroupID,
-			},
+		Description: model.SubnetDescription{
+			VirtualNetworkName: *virtualnetwork.Name,
+			Subnet:             *v,
+			ResourceGroup:      resourceGroupID,
 		},
 	}
 	return &resource
@@ -238,11 +232,9 @@ func getVirtualNetwork(ctx context.Context, v *armnetwork.VirtualNetwork) *model
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.VirtualNetworkDescription{
-				VirtualNetwork: *v,
-				ResourceGroup:  resourceGroup,
-			},
+		Description: model.VirtualNetworkDescription{
+			VirtualNetwork: *v,
+			ResourceGroup:  resourceGroup,
 		},
 	}
 
@@ -302,12 +294,10 @@ func getApplicationGateway(ctx context.Context, diagnosticClient *armmonitor.Dia
 		ID:       *gateway.ID,
 		Name:     *gateway.Name,
 		Location: *gateway.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.ApplicationGatewayDescription{
-				ApplicationGateway:          *gateway,
-				DiagnosticSettingsResources: networkListOp,
-				ResourceGroup:               resourceGroup,
-			},
+		Description: model.ApplicationGatewayDescription{
+			ApplicationGateway:          *gateway,
+			DiagnosticSettingsResources: networkListOp,
+			ResourceGroup:               resourceGroup,
 		},
 	}
 	return &resource, nil
@@ -371,12 +361,10 @@ func getNetworkSecurityGroup(ctx context.Context, diagnosticClient *armmonitor.D
 		ID:       *networkSecurityGroup.ID,
 		Name:     *networkSecurityGroup.Name,
 		Location: *networkSecurityGroup.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.NetworkSecurityGroupDescription{
-				SecurityGroup:               *networkSecurityGroup,
-				DiagnosticSettingsResources: networkListOp,
-				ResourceGroup:               resourceGroup,
-			},
+		Description: model.NetworkSecurityGroupDescription{
+			SecurityGroup:               *networkSecurityGroup,
+			DiagnosticSettingsResources: networkListOp,
+			ResourceGroup:               resourceGroup,
 		},
 	}
 
@@ -417,11 +405,9 @@ func getNetworkWatcher(ctx context.Context, networkWatcher *armnetwork.Watcher) 
 		ID:       *networkWatcher.ID,
 		Name:     *networkWatcher.Name,
 		Location: *networkWatcher.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.NetworkWatcherDescription{
-				Watcher:       *networkWatcher,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.NetworkWatcherDescription{
+			Watcher:       *networkWatcher,
+			ResourceGroup: resourceGroup,
 		},
 	}
 
@@ -462,11 +448,9 @@ func getRouteTable(ctx context.Context, routeTable *armnetwork.RouteTable) *mode
 		ID:       *routeTable.ID,
 		Name:     *routeTable.Name,
 		Location: *routeTable.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.RouteTablesDescription{
-				ResourceGroup: resourceGroup,
-				RouteTable:    *routeTable,
-			},
+		Description: model.RouteTablesDescription{
+			ResourceGroup: resourceGroup,
+			RouteTable:    *routeTable,
 		},
 	}
 	return &resource
@@ -506,11 +490,9 @@ func getApplicationSecurityGroup(ctx context.Context, applicationSecurityGroup *
 		ID:       *applicationSecurityGroup.ID,
 		Name:     *applicationSecurityGroup.Name,
 		Location: *applicationSecurityGroup.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.NetworkApplicationSecurityGroupsDescription{
-				ApplicationSecurityGroup: *applicationSecurityGroup,
-				ResourceGroup:            resourceGroup,
-			},
+		Description: model.NetworkApplicationSecurityGroupsDescription{
+			ApplicationSecurityGroup: *applicationSecurityGroup,
+			ResourceGroup:            resourceGroup,
 		},
 	}
 
@@ -551,11 +533,9 @@ func getAzureFirewall(ctx context.Context, azureFirewall *armnetwork.AzureFirewa
 		ID:       *azureFirewall.ID,
 		Name:     *azureFirewall.Name,
 		Location: *azureFirewall.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.NetworkAzureFirewallDescription{
-				AzureFirewall: *azureFirewall,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.NetworkAzureFirewallDescription{
+			AzureFirewall: *azureFirewall,
+			ResourceGroup: resourceGroup,
 		},
 	}
 
@@ -596,11 +576,9 @@ func getExpressRouteCircuit(ctx context.Context, expressRouteCircuit *armnetwork
 		ID:       *expressRouteCircuit.ID,
 		Name:     *expressRouteCircuit.Name,
 		Location: *expressRouteCircuit.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.ExpressRouteCircuitDescription{
-				ExpressRouteCircuit: *expressRouteCircuit,
-				ResourceGroup:       resourceGroup,
-			},
+		Description: model.ExpressRouteCircuitDescription{
+			ExpressRouteCircuit: *expressRouteCircuit,
+			ResourceGroup:       resourceGroup,
 		},
 	}
 	return &resource
@@ -685,13 +663,11 @@ func getVirtualNetworkGateway(ctx context.Context, client *armnetwork.VirtualNet
 		ID:       *virtualNetworkGateway.ID,
 		Name:     *virtualNetworkGateway.Name,
 		Location: *virtualNetworkGateway.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.VirtualNetworkGatewayDescription{
-				ResourceGroup:                   resourceGroup,
-				VirtualNetworkGateway:           *virtualNetworkGateway,
-				VirtualNetworkGatewayConnection: gatewayConnections,
-				VirtualNetwork:                  virtualNetwork,
-			},
+		Description: model.VirtualNetworkGatewayDescription{
+			ResourceGroup:                   resourceGroup,
+			VirtualNetworkGateway:           *virtualNetworkGateway,
+			VirtualNetworkGatewayConnection: gatewayConnections,
+			VirtualNetwork:                  virtualNetwork,
 		},
 	}
 
@@ -732,11 +708,9 @@ func getFirewallPolicy(ctx context.Context, firewallPolicy *armnetwork.FirewallP
 		ID:       *firewallPolicy.ID,
 		Name:     *firewallPolicy.Name,
 		Location: *firewallPolicy.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.FirewallPolicyDescription{
-				ResourceGroup:  resourceGroup,
-				FirewallPolicy: *firewallPolicy,
-			},
+		Description: model.FirewallPolicyDescription{
+			ResourceGroup:  resourceGroup,
+			FirewallPolicy: *firewallPolicy,
 		},
 	}
 
@@ -796,11 +770,9 @@ func getLocalNetworkGateway(ctx context.Context, localNetworkGateway *armnetwork
 		ID:       *localNetworkGateway.ID,
 		Name:     *localNetworkGateway.Name,
 		Location: *localNetworkGateway.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.LocalNetworkGatewayDescription{
-				ResourceGroup:       resourceGroup,
-				LocalNetworkGateway: *localNetworkGateway,
-			},
+		Description: model.LocalNetworkGatewayDescription{
+			ResourceGroup:       resourceGroup,
+			LocalNetworkGateway: *localNetworkGateway,
 		},
 	}
 
@@ -860,11 +832,9 @@ func getNatGateway(ctx context.Context, natGateway *armnetwork.NatGateway) *mode
 		ID:       *natGateway.ID,
 		Name:     *natGateway.Name,
 		Location: *natGateway.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.NatGatewayDescription{
-				ResourceGroup: resourceGroup,
-				NatGateway:    *natGateway,
-			},
+		Description: model.NatGatewayDescription{
+			ResourceGroup: resourceGroup,
+			NatGateway:    *natGateway,
 		},
 	}
 
@@ -924,11 +894,9 @@ func getPrivateLinkService(ctx context.Context, privateLinkService *armnetwork.P
 		ID:       *privateLinkService.ID,
 		Name:     *privateLinkService.Name,
 		Location: *privateLinkService.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.PrivateLinkServiceDescription{
-				ResourceGroup:      resourceGroup,
-				PrivateLinkService: *privateLinkService,
-			},
+		Description: model.PrivateLinkServiceDescription{
+			ResourceGroup:      resourceGroup,
+			PrivateLinkService: *privateLinkService,
 		},
 	}
 
@@ -969,11 +937,9 @@ func getRouteFilter(ctx context.Context, routeFilter *armnetwork.RouteFilter) *m
 		ID:       *routeFilter.ID,
 		Name:     *routeFilter.Name,
 		Location: *routeFilter.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.RouteFilterDescription{
-				ResourceGroup: resourceGroup,
-				RouteFilter:   *routeFilter,
-			},
+		Description: model.RouteFilterDescription{
+			ResourceGroup: resourceGroup,
+			RouteFilter:   *routeFilter,
 		},
 	}
 
@@ -1014,11 +980,9 @@ func getVpnGateway(ctx context.Context, vpnGateway *armnetwork.VPNGateway) *mode
 		ID:       *vpnGateway.ID,
 		Name:     *vpnGateway.Name,
 		Location: *vpnGateway.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.VpnGatewayDescription{
-				ResourceGroup: resourceGroup,
-				VpnGateway:    *vpnGateway,
-			},
+		Description: model.VpnGatewayDescription{
+			ResourceGroup: resourceGroup,
+			VpnGateway:    *vpnGateway,
 		},
 	}
 
@@ -1086,12 +1050,10 @@ func getNetworkVpnGatewaysVpnConnections(ctx context.Context, vpnGateway *armnet
 		ID:       *vpnConn.ID,
 		Name:     *vpnConn.Name,
 		Location: *vpnGateway.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.VpnGatewayVpnConnectionDescription{
-				VpnConnection: *vpnConn,
-				VpnGateway:    *vpnGateway,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.VpnGatewayVpnConnectionDescription{
+			VpnConnection: *vpnConn,
+			VpnGateway:    *vpnGateway,
+			ResourceGroup: resourceGroup,
 		},
 	}
 
@@ -1126,11 +1088,9 @@ func getNetworkVpnGatewaysVpnSites(ctx context.Context, v *armnetwork.VPNSite) *
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.VpnSiteDescription{
-				ResourceGroup: resourceGroup,
-				VpnSite:       *v,
-			},
+		Description: model.VpnSiteDescription{
+			ResourceGroup: resourceGroup,
+			VpnSite:       *v,
 		},
 	}
 
@@ -1188,11 +1148,9 @@ func getPublicIPAddress(ctx context.Context, resourceGroup armresources.Resource
 		ID:       *publicIPAddress.ID,
 		Name:     *publicIPAddress.Name,
 		Location: *publicIPAddress.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.PublicIPAddressDescription{
-				ResourceGroup:   *resourceGroup.Name,
-				PublicIPAddress: *publicIPAddress,
-			},
+		Description: model.PublicIPAddressDescription{
+			ResourceGroup:   *resourceGroup.Name,
+			PublicIPAddress: *publicIPAddress,
 		},
 	}
 	return &resource
@@ -1249,11 +1207,9 @@ func getPublicIPPrefix(ctx context.Context, resourceGroup armresources.ResourceG
 		ID:       *publicIPPrefix.ID,
 		Name:     *publicIPPrefix.Name,
 		Location: *publicIPPrefix.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.PublicIPPrefixDescription{
-				ResourceGroup:  *resourceGroup.Name,
-				PublicIPPrefix: *publicIPPrefix,
-			},
+		Description: model.PublicIPPrefixDescription{
+			ResourceGroup:  *resourceGroup.Name,
+			PublicIPPrefix: *publicIPPrefix,
 		},
 	}
 
@@ -1294,11 +1250,9 @@ func GetDNSZone(ctx context.Context, dnsZone *armdns.Zone) *models.Resource {
 		ID:       *dnsZone.ID,
 		Name:     *dnsZone.Name,
 		Location: *dnsZone.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.DNSZonesDescription{
-				DNSZone:       *dnsZone,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.DNSZonesDescription{
+			DNSZone:       *dnsZone,
+			ResourceGroup: resourceGroup,
 		},
 	}
 
@@ -1338,11 +1292,9 @@ func GetDNSResolver(ctx context.Context, dnsResolver *armdnsresolver.DNSResolver
 		ID:       *dnsResolver.ID,
 		Name:     *dnsResolver.Name,
 		Location: *dnsResolver.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.DNSResolverDescription{
-				DNSResolver:   *dnsResolver,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.DNSResolverDescription{
+			DNSResolver:   *dnsResolver,
+			ResourceGroup: resourceGroup,
 		},
 	}
 
@@ -1383,11 +1335,9 @@ func GetTrafficManagerProfile(ctx context.Context, profile *armtrafficmanager.Pr
 		ID:       *profile.ID,
 		Name:     *profile.Name,
 		Location: *profile.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.TrafficManagerProfileDescription{
-				Profile:       *profile,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.TrafficManagerProfileDescription{
+			Profile:       *profile,
+			ResourceGroup: resourceGroup,
 		},
 	}
 
@@ -1428,11 +1378,9 @@ func GetPrivateDnsZone(ctx context.Context, privateZone *armprivatedns.PrivateZo
 		ID:       *privateZone.ID,
 		Name:     *privateZone.Name,
 		Location: *privateZone.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.PrivateDNSZonesDescription{
-				PrivateZone:   *privateZone,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.PrivateDNSZonesDescription{
+			PrivateZone:   *privateZone,
+			ResourceGroup: resourceGroup,
 		},
 	}
 
@@ -1490,11 +1438,9 @@ func GetPrivateEndpoint(ctx context.Context, resourceGroup armresources.Resource
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.PrivateEndpointDescription{
-				PrivateEndpoint: *v,
-				ResourceGroup:   *resourceGroup.Name,
-			},
+		Description: model.PrivateEndpointDescription{
+			PrivateEndpoint: *v,
+			ResourceGroup:   *resourceGroup.Name,
 		},
 	}
 
@@ -1534,11 +1480,9 @@ func GetBastionHost(ctx context.Context, v *armnetwork.BastionHost) *models.Reso
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.BastionHostsDescription{
-				BastianHost:   *v,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.BastionHostsDescription{
+			BastianHost:   *v,
+			ResourceGroup: resourceGroup,
 		},
 	}
 
@@ -1597,11 +1541,9 @@ func GetNetworkConnection(ctx context.Context, resourceGroup armresources.Resour
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.ConnectionDescription{
-				Connection:    *v,
-				ResourceGroup: resourceGroupName,
-			},
+		Description: model.ConnectionDescription{
+			Connection:    *v,
+			ResourceGroup: resourceGroupName,
 		},
 	}
 
@@ -1641,11 +1583,9 @@ func GetNetworkVirtualHub(ctx context.Context, v *armnetwork.VirtualHub) *models
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.VirtualHubsDescription{
-				VirtualHub:    *v,
-				ResourceGroup: resourceGroupName,
-			},
+		Description: model.VirtualHubsDescription{
+			VirtualHub:    *v,
+			ResourceGroup: resourceGroupName,
 		},
 	}
 
@@ -1685,11 +1625,9 @@ func GetNetworkVirtualWan(ctx context.Context, v *armnetwork.VirtualWAN) *models
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.VirtualWansDescription{
-				VirtualWan:    *v,
-				ResourceGroup: resourceGroupName,
-			},
+		Description: model.VirtualWansDescription{
+			VirtualWan:    *v,
+			ResourceGroup: resourceGroupName,
 		},
 	}
 	return &resource
@@ -1728,11 +1666,9 @@ func GetNetworkDDoSProtectionPlan(ctx context.Context, v *armnetwork.DdosProtect
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.NetworkDDoSProtectionPlanDescription{
-				DDoSProtectionPlan: *v,
-				ResourceGroup:      resourceGroupName,
-			},
+		Description: model.NetworkDDoSProtectionPlanDescription{
+			DDoSProtectionPlan: *v,
+			ResourceGroup:      resourceGroupName,
 		},
 	}
 	return &resource

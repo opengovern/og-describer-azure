@@ -106,13 +106,11 @@ func GetAccountStorageContainter(ctx context.Context, client *armstorage.BlobCon
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
-		Description: JSONAllFieldsMarshaller{
-			Value: model.StorageContainerDescription{
-				AccountName:        *acc.Name,
-				ListContainerItem:  *v,
-				ImmutabilityPolicy: op.ImmutabilityPolicy,
-				ResourceGroup:      resourceGroup,
-			},
+		Description: model.StorageContainerDescription{
+			AccountName:        *acc.Name,
+			ListContainerItem:  *v,
+			ImmutabilityPolicy: op.ImmutabilityPolicy,
+			ResourceGroup:      resourceGroup,
 		},
 	}, nil
 }
@@ -332,20 +330,18 @@ func GetStorageAccount(ctx context.Context, storageClient *armstorage.AccountsCl
 		ID:       *account.ID,
 		Name:     *account.Name,
 		Location: *account.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.StorageAccountDescription{
-				Account:                     *account,
-				ManagementPolicy:            managementPolicy,
-				BlobServiceProperties:       blobServicesProperties,
-				Logging:                     logging,
-				StorageServiceProperties:    storageProperties,
-				FileServiceProperties:       storageGetServicePropertiesOp,
-				DiagnosticSettingsResources: diagSettingsOp,
-				EncryptionScopes:            vsop,
-				TableProperties:             tableProperties,
-				AccessKeys:                  keysMap,
-				ResourceGroup:               *resourceGroup,
-			},
+		Description: model.StorageAccountDescription{
+			Account:                     *account,
+			ManagementPolicy:            managementPolicy,
+			BlobServiceProperties:       blobServicesProperties,
+			Logging:                     logging,
+			StorageServiceProperties:    storageProperties,
+			FileServiceProperties:       storageGetServicePropertiesOp,
+			DiagnosticSettingsResources: diagSettingsOp,
+			EncryptionScopes:            vsop,
+			TableProperties:             tableProperties,
+			AccessKeys:                  keysMap,
+			ResourceGroup:               *resourceGroup,
 		},
 	}
 	return &resource, nil
@@ -536,12 +532,10 @@ func ListAccountStorageBlobs(ctx context.Context, containerClient *armstorage.Bl
 					}
 
 					resource := models.Resource{
-						ID:       *blob.Name,
-						Name:     *blob.Name,
-						Location: *storageAccount.Location,
-						Description: JSONAllFieldsMarshaller{
-							Value: desc,
-						},
+						ID:          *blob.Name,
+						Name:        *blob.Name,
+						Location:    *storageAccount.Location,
+						Description: desc,
 					}
 					values = append(values, resource)
 				}
@@ -609,13 +603,11 @@ func GetStorageBlobService(ctx context.Context, account *armstorage.Account, res
 		ID:       *blobService.ID,
 		Name:     *blobService.Name,
 		Location: *account.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.StorageBlobServiceDescription{
-				BlobService:   *blobService,
-				AccountName:   *account.Name,
-				Location:      *account.Location,
-				ResourceGroup: *resourceGroup.Name,
-			},
+		Description: model.StorageBlobServiceDescription{
+			BlobService:   *blobService,
+			AccountName:   *account.Name,
+			Location:      *account.Location,
+			ResourceGroup: *resourceGroup.Name,
 		},
 	}
 	return &resource
@@ -695,13 +687,11 @@ func GetStorageQueue(ctx context.Context, account *armstorage.Account, resourceG
 		ID:       *queue.ID,
 		Name:     *queue.Name,
 		Location: *account.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.StorageQueueDescription{
-				Queue:         *queue,
-				AccountName:   *account.Name,
-				Location:      *account.Location,
-				ResourceGroup: *resourceGroup.Name,
-			},
+		Description: model.StorageQueueDescription{
+			Queue:         *queue,
+			AccountName:   *account.Name,
+			Location:      *account.Location,
+			ResourceGroup: *resourceGroup.Name,
 		},
 	}
 	return &resource
@@ -774,13 +764,11 @@ func GetStorageFileShares(ctx context.Context, account *armstorage.Account, reso
 		ID:       *fileShareItem.ID,
 		Name:     *fileShareItem.Name,
 		Location: *account.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.StorageFileShareDescription{
-				FileShare:     *fileShareItem,
-				AccountName:   *account.Name,
-				Location:      *account.Location,
-				ResourceGroup: *resourceGroup.Name,
-			},
+		Description: model.StorageFileShareDescription{
+			FileShare:     *fileShareItem,
+			AccountName:   *account.Name,
+			Location:      *account.Location,
+			ResourceGroup: *resourceGroup.Name,
 		},
 	}
 	return &resource
@@ -862,13 +850,11 @@ func GetStorageTable(ctx context.Context, account *armstorage.Account, resourceG
 		ID:       *table.ID,
 		Name:     *table.Name,
 		Location: *account.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.StorageTableDescription{
-				Table:         *table,
-				AccountName:   *account.Name,
-				Location:      *account.Location,
-				ResourceGroup: *resourceGroup.Name,
-			},
+		Description: model.StorageTableDescription{
+			Table:         *table,
+			AccountName:   *account.Name,
+			Location:      *account.Location,
+			ResourceGroup: *resourceGroup.Name,
 		},
 	}
 	return &resource
@@ -943,13 +929,11 @@ func GetAccountStorageTableService(ctx context.Context, resourceGroup armresourc
 		ID:       *tableService.ID,
 		Name:     *tableService.Name,
 		Location: *account.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.StorageTableServiceDescription{
-				TableService:  *tableService,
-				AccountName:   *account.Name,
-				Location:      *account.Location,
-				ResourceGroup: *resourceGroup.Name,
-			},
+		Description: model.StorageTableServiceDescription{
+			TableService:  *tableService,
+			AccountName:   *account.Name,
+			Location:      *account.Location,
+			ResourceGroup: *resourceGroup.Name,
 		},
 	}
 	return &resource

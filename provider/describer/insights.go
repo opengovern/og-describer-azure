@@ -52,11 +52,9 @@ func getDiagnosticSetting(ctx context.Context, diagnosticSetting *armmonitor.Dia
 		ID:       *diagnosticSetting.ID,
 		Name:     *diagnosticSetting.Name,
 		Location: "global",
-		Description: JSONAllFieldsMarshaller{
-			Value: model.DiagnosticSettingDescription{
-				DiagnosticSettingsResource: *diagnosticSetting,
-				ResourceGroup:              resourceGroup,
-			},
+		Description: model.DiagnosticSettingDescription{
+			DiagnosticSettingsResource: *diagnosticSetting,
+			ResourceGroup:              resourceGroup,
 		},
 	}
 	return &resource
@@ -98,11 +96,9 @@ func getLogAlert(ctx context.Context, logAlert *armmonitor.ActivityLogAlertResou
 		ID:       *logAlert.ID,
 		Name:     *logAlert.Name,
 		Location: *logAlert.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.LogAlertDescription{
-				ActivityLogAlertResource: *logAlert,
-				ResourceGroup:            resourceGroup,
-			},
+		Description: model.LogAlertDescription{
+			ActivityLogAlertResource: *logAlert,
+			ResourceGroup:            resourceGroup,
 		},
 	}
 
@@ -147,11 +143,9 @@ func getLogProfile(ctx context.Context, logProfile *armmonitor.LogProfileResourc
 		ID:       *logProfile.ID,
 		Name:     *logProfile.Name,
 		Location: location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.LogProfileDescription{
-				LogProfileResource: *logProfile,
-				ResourceGroup:      resourceGroup,
-			},
+		Description: model.LogProfileDescription{
+			LogProfileResource: *logProfile,
+			ResourceGroup:      resourceGroup,
 		},
 	}
 
@@ -270,11 +264,9 @@ func getAutoscaleSetting(v *armmonitor.AutoscaleSettingResource) models.Resource
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.AutoscaleSettingDescription{
-				AutoscaleSettingsResource: *v,
-				ResourceGroup:             resourceGroup,
-			},
+		Description: model.AutoscaleSettingDescription{
+			AutoscaleSettingsResource: *v,
+			ResourceGroup:             resourceGroup,
 		},
 	}
 }

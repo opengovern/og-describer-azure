@@ -71,12 +71,10 @@ func KeyVaultKey(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 							ID:       *vCopy.ID,
 							Name:     *vCopy.Name,
 							Location: *vCopy.Location,
-							Description: JSONAllFieldsMarshaller{
-								Value: model.KeyVaultKeyDescription{
-									Vault:         *vaultCopy,
-									Key:           *vCopy,
-									ResourceGroup: resourceGroupCopy,
-								},
+							Description: model.KeyVaultKeyDescription{
+								Vault:         *vaultCopy,
+								Key:           *vCopy,
+								ResourceGroup: resourceGroupCopy,
 							},
 						}, nil
 					})
@@ -136,12 +134,10 @@ func getKeyVaultKey(ctx context.Context, keysClient *armkeyvault.KeysClient, vCo
 		ID:       *vCopy.ID,
 		Name:     *vCopy.Name,
 		Location: *vCopy.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.KeyVaultKeyDescription{
-				Vault:         *vaultCopy,
-				Key:           *vCopy,
-				ResourceGroup: resourceGroupCopy,
-			},
+		Description: model.KeyVaultKeyDescription{
+			Vault:         *vaultCopy,
+			Key:           *vCopy,
+			ResourceGroup: resourceGroupCopy,
 		},
 	}, nil
 }
@@ -213,13 +209,11 @@ func getKeyVault(ctx context.Context, vault *armkeyvault.Resource, vaultsClient 
 		ID:       *vault.ID,
 		Name:     *vault.Name,
 		Location: *vault.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.KeyVaultDescription{
-				Resource:                    *vault,
-				Vault:                       keyVaultGetOp.Vault,
-				DiagnosticSettingsResources: insightsListOp,
-				ResourceGroup:               resourceGroup,
-			},
+		Description: model.KeyVaultDescription{
+			Resource:                    *vault,
+			Vault:                       keyVaultGetOp.Vault,
+			DiagnosticSettingsResources: insightsListOp,
+			ResourceGroup:               resourceGroup,
 		},
 	}
 	return &resource, nil
@@ -260,11 +254,9 @@ func getDeletedVault(ctx context.Context, vault *armkeyvault.DeletedVault) *mode
 		ID:       *vault.ID,
 		Name:     *vault.Name,
 		Location: *vault.Properties.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.KeyVaultDeletedVaultDescription{
-				Vault:         *vault,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.KeyVaultDeletedVaultDescription{
+			Vault:         *vault,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource
@@ -330,12 +322,10 @@ func getKeyVaultManagedHardwareSecurityModule(ctx context.Context, client *armmo
 		ID:       *vault.ID,
 		Name:     *vault.Name,
 		Location: *vault.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.KeyVaultManagedHardwareSecurityModuleDescription{
-				ManagedHsm:                  *vault,
-				DiagnosticSettingsResources: keyvaultListOp,
-				ResourceGroup:               resourceGroup,
-			},
+		Description: model.KeyVaultManagedHardwareSecurityModuleDescription{
+			ManagedHsm:                  *vault,
+			DiagnosticSettingsResources: keyvaultListOp,
+			ResourceGroup:               resourceGroup,
 		},
 	}
 	return &resource, nil
@@ -461,13 +451,11 @@ func GetKeyVaultKeyVersion(ctx context.Context, resourceGroup string, vault *arm
 		ID:       *version.ID,
 		Name:     *version.Name,
 		Location: *version.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.KeyVaultKeyVersionDescription{
-				Vault:         *vault,
-				Key:           *key,
-				Version:       *version,
-				ResourceGroup: resourceGroup,
-			},
+		Description: model.KeyVaultKeyVersionDescription{
+			Vault:         *vault,
+			Key:           *key,
+			Version:       *version,
+			ResourceGroup: resourceGroup,
 		},
 	}
 	return &resource
@@ -539,12 +527,10 @@ func getKeyVaultCertificates(ctx context.Context, cred *azidentity.ClientSecretC
 				ID:       *vault.ID,
 				Name:     *vault.Name,
 				Location: *vault.Location,
-				Description: JSONAllFieldsMarshaller{
-					Value: model.KeyVaultCertificateDescription{
-						Policy:        policy.CertificatePolicy,
-						Vault:         *vault,
-						ResourceGroup: resourceGroup,
-					},
+				Description: model.KeyVaultCertificateDescription{
+					Policy:        policy.CertificatePolicy,
+					Vault:         *vault,
+					ResourceGroup: resourceGroup,
 				},
 			}
 			resources = append(resources, resource)

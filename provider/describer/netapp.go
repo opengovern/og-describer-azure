@@ -43,11 +43,9 @@ func getNetAppAccount(ctx context.Context, v *armnetapp.Account) *models.Resourc
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.NetAppAccountDescription{
-				Account:       *v,
-				ResourceGroup: resourceGroupName,
-			},
+		Description: model.NetAppAccountDescription{
+			Account:       *v,
+			ResourceGroup: resourceGroupName,
 		},
 	}
 
@@ -116,11 +114,9 @@ func getNetAppCapacityPool(ctx context.Context, v *armnetapp.Account, pool *armn
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
-		Description: JSONAllFieldsMarshaller{
-			Value: model.NetAppCapacityPoolDescription{
-				CapacityPool:  *pool,
-				ResourceGroup: resourceGroupName,
-			},
+		Description: model.NetAppCapacityPoolDescription{
+			CapacityPool:  *pool,
+			ResourceGroup: resourceGroupName,
 		},
 	}
 	return &resource

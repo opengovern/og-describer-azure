@@ -57,7 +57,7 @@ func BlueprintArtifact(ctx context.Context, cred *azidentity.ClientSecretCredent
 func getBluePrintArtifact(ctx context.Context, v armblueprint.ArtifactClassification) *models.Resource {
 	return &models.Resource{
 		ID:          *v.GetArtifact().ID,
-		Description: JSONAllFieldsMarshaller{Value: v.GetArtifact()},
+		Description: v.GetArtifact(),
 	}
 }
 
@@ -94,9 +94,9 @@ func getBlueprintBlueprint(ctx context.Context, blueprint *armblueprint.Blueprin
 	resourceGroupName := strings.Split(*blueprint.ID, "/")[4]
 	return &models.Resource{
 		ID: *blueprint.ID,
-		Description: JSONAllFieldsMarshaller{Value: model.BlueprintDescription{
+		Description: model.BlueprintDescription{
 			Blueprint:     *blueprint,
 			ResourceGroup: resourceGroupName,
-		}},
+		},
 	}
 }
