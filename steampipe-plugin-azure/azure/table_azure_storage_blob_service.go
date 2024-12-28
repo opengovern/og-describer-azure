@@ -22,6 +22,7 @@ func tableAzureStorageBlobService(_ context.Context) *plugin.Table {
 			IgnoreConfig: &plugin.IgnoreConfig{
 				ShouldIgnoreErrorFunc: isNotFoundError([]string{"ResourceNotFound", "ResourceGroupNotFound"}),
 			},
+			KeyColumns: plugin.AllColumns([]string{"id"}),
 		},
 		List: &plugin.ListConfig{
 			Hydrate: opengovernance.ListStorageBlobService,
