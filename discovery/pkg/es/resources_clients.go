@@ -3,7 +3,7 @@ package opengovernance
 
 import (
 	"context"
-	azure_subscription "github.com/opengovern/og-describer-azure/discovery/provider"
+	azure "github.com/opengovern/og-describer-azure/discovery/provider"
 	essdk "github.com/opengovern/og-util/pkg/opengovernance-es-sdk"
 	steampipesdk "github.com/opengovern/og-util/pkg/steampipe"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
@@ -17,14 +17,14 @@ type Client struct {
 // ==========================  START: APIManagement =============================
 
 type APIManagement struct {
-	ResourceID      string                                      `json:"resource_id"`
-	PlatformID      string                                      `json:"platform_id"`
-	Description     azure_subscription.APIManagementDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                 `json:"metadata"`
-	DescribedBy     string                                      `json:"described_by"`
-	ResourceType    string                                      `json:"resource_type"`
-	IntegrationType string                                      `json:"integration_type"`
-	IntegrationID   string                                      `json:"integration_id"`
+	ResourceID      string                         `json:"resource_id"`
+	PlatformID      string                         `json:"platform_id"`
+	Description     azure.APIManagementDescription `json:"Description"`
+	Metadata        azure.Metadata                 `json:"metadata"`
+	DescribedBy     string                         `json:"described_by"`
+	ResourceType    string                         `json:"resource_type"`
+	IntegrationType string                         `json:"integration_type"`
+	IntegrationID   string                         `json:"integration_id"`
 }
 
 type APIManagementHit struct {
@@ -300,14 +300,14 @@ func GetAPIManagement(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 // ==========================  START: APIManagementBackend =============================
 
 type APIManagementBackend struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure_subscription.APIManagementBackendDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                        `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
+	ResourceID      string                                `json:"resource_id"`
+	PlatformID      string                                `json:"platform_id"`
+	Description     azure.APIManagementBackendDescription `json:"Description"`
+	Metadata        azure.Metadata                        `json:"metadata"`
+	DescribedBy     string                                `json:"described_by"`
+	ResourceType    string                                `json:"resource_type"`
+	IntegrationType string                                `json:"integration_type"`
+	IntegrationID   string                                `json:"integration_id"`
 }
 
 type APIManagementBackendHit struct {
@@ -529,14 +529,14 @@ func GetAPIManagementBackend(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: AutomationAccounts =============================
 
 type AutomationAccounts struct {
-	ResourceID      string                                           `json:"resource_id"`
-	PlatformID      string                                           `json:"platform_id"`
-	Description     azure_subscription.AutomationAccountsDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                      `json:"metadata"`
-	DescribedBy     string                                           `json:"described_by"`
-	ResourceType    string                                           `json:"resource_type"`
-	IntegrationType string                                           `json:"integration_type"`
-	IntegrationID   string                                           `json:"integration_id"`
+	ResourceID      string                              `json:"resource_id"`
+	PlatformID      string                              `json:"platform_id"`
+	Description     azure.AutomationAccountsDescription `json:"Description"`
+	Metadata        azure.Metadata                      `json:"metadata"`
+	DescribedBy     string                              `json:"described_by"`
+	ResourceType    string                              `json:"resource_type"`
+	IntegrationType string                              `json:"integration_type"`
+	IntegrationID   string                              `json:"integration_id"`
 }
 
 type AutomationAccountsHit struct {
@@ -760,14 +760,14 @@ func GetAutomationAccounts(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: AutomationVariables =============================
 
 type AutomationVariables struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure_subscription.AutomationVariablesDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                       `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure.AutomationVariablesDescription `json:"Description"`
+	Metadata        azure.Metadata                       `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type AutomationVariablesHit struct {
@@ -985,14 +985,14 @@ func GetAutomationVariables(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: AppConfiguration =============================
 
 type AppConfiguration struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.AppConfigurationDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.AppConfigurationDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type AppConfigurationHit struct {
@@ -1212,14 +1212,14 @@ func GetAppConfiguration(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: AppServiceEnvironment =============================
 
 type AppServiceEnvironment struct {
-	ResourceID      string                                              `json:"resource_id"`
-	PlatformID      string                                              `json:"platform_id"`
-	Description     azure_subscription.AppServiceEnvironmentDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                         `json:"metadata"`
-	DescribedBy     string                                              `json:"described_by"`
-	ResourceType    string                                              `json:"resource_type"`
-	IntegrationType string                                              `json:"integration_type"`
-	IntegrationID   string                                              `json:"integration_id"`
+	ResourceID      string                                 `json:"resource_id"`
+	PlatformID      string                                 `json:"platform_id"`
+	Description     azure.AppServiceEnvironmentDescription `json:"Description"`
+	Metadata        azure.Metadata                         `json:"metadata"`
+	DescribedBy     string                                 `json:"described_by"`
+	ResourceType    string                                 `json:"resource_type"`
+	IntegrationType string                                 `json:"integration_type"`
+	IntegrationID   string                                 `json:"integration_id"`
 }
 
 type AppServiceEnvironmentHit struct {
@@ -1448,14 +1448,14 @@ func GetAppServiceEnvironment(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: AppServiceFunctionApp =============================
 
 type AppServiceFunctionApp struct {
-	ResourceID      string                                              `json:"resource_id"`
-	PlatformID      string                                              `json:"platform_id"`
-	Description     azure_subscription.AppServiceFunctionAppDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                         `json:"metadata"`
-	DescribedBy     string                                              `json:"described_by"`
-	ResourceType    string                                              `json:"resource_type"`
-	IntegrationType string                                              `json:"integration_type"`
-	IntegrationID   string                                              `json:"integration_id"`
+	ResourceID      string                                 `json:"resource_id"`
+	PlatformID      string                                 `json:"platform_id"`
+	Description     azure.AppServiceFunctionAppDescription `json:"Description"`
+	Metadata        azure.Metadata                         `json:"metadata"`
+	DescribedBy     string                                 `json:"described_by"`
+	ResourceType    string                                 `json:"resource_type"`
+	IntegrationType string                                 `json:"integration_type"`
+	IntegrationID   string                                 `json:"integration_id"`
 }
 
 type AppServiceFunctionAppHit struct {
@@ -1692,14 +1692,14 @@ func GetAppServiceFunctionApp(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: AppServiceWebApp =============================
 
 type AppServiceWebApp struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.AppServiceWebAppDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.AppServiceWebAppDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type AppServiceWebAppHit struct {
@@ -1940,14 +1940,14 @@ func GetAppServiceWebApp(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: AppServiceWebAppSlot =============================
 
 type AppServiceWebAppSlot struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure_subscription.AppServiceWebAppSlotDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                        `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
+	ResourceID      string                                `json:"resource_id"`
+	PlatformID      string                                `json:"platform_id"`
+	Description     azure.AppServiceWebAppSlotDescription `json:"Description"`
+	Metadata        azure.Metadata                        `json:"metadata"`
+	DescribedBy     string                                `json:"described_by"`
+	ResourceType    string                                `json:"resource_type"`
+	IntegrationType string                                `json:"integration_type"`
+	IntegrationID   string                                `json:"integration_id"`
 }
 
 type AppServiceWebAppSlotHit struct {
@@ -2223,14 +2223,14 @@ func GetAppServiceWebAppSlot(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: AppServicePlan =============================
 
 type AppServicePlan struct {
-	ResourceID      string                                       `json:"resource_id"`
-	PlatformID      string                                       `json:"platform_id"`
-	Description     azure_subscription.AppServicePlanDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                  `json:"metadata"`
-	DescribedBy     string                                       `json:"described_by"`
-	ResourceType    string                                       `json:"resource_type"`
-	IntegrationType string                                       `json:"integration_type"`
-	IntegrationID   string                                       `json:"integration_id"`
+	ResourceID      string                          `json:"resource_id"`
+	PlatformID      string                          `json:"platform_id"`
+	Description     azure.AppServicePlanDescription `json:"Description"`
+	Metadata        azure.Metadata                  `json:"metadata"`
+	DescribedBy     string                          `json:"described_by"`
+	ResourceType    string                          `json:"resource_type"`
+	IntegrationType string                          `json:"integration_type"`
+	IntegrationID   string                          `json:"integration_id"`
 }
 
 type AppServicePlanHit struct {
@@ -2469,14 +2469,14 @@ func GetAppServicePlan(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: ContainerApp =============================
 
 type ContainerApp struct {
-	ResourceID      string                                     `json:"resource_id"`
-	PlatformID      string                                     `json:"platform_id"`
-	Description     azure_subscription.ContainerAppDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                `json:"metadata"`
-	DescribedBy     string                                     `json:"described_by"`
-	ResourceType    string                                     `json:"resource_type"`
-	IntegrationType string                                     `json:"integration_type"`
-	IntegrationID   string                                     `json:"integration_id"`
+	ResourceID      string                        `json:"resource_id"`
+	PlatformID      string                        `json:"platform_id"`
+	Description     azure.ContainerAppDescription `json:"Description"`
+	Metadata        azure.Metadata                `json:"metadata"`
+	DescribedBy     string                        `json:"described_by"`
+	ResourceType    string                        `json:"resource_type"`
+	IntegrationType string                        `json:"integration_type"`
+	IntegrationID   string                        `json:"integration_id"`
 }
 
 type ContainerAppHit struct {
@@ -2680,14 +2680,14 @@ func GetContainerApp(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: WebServerFarms =============================
 
 type WebServerFarms struct {
-	ResourceID      string                                       `json:"resource_id"`
-	PlatformID      string                                       `json:"platform_id"`
-	Description     azure_subscription.WebServerFarmsDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                  `json:"metadata"`
-	DescribedBy     string                                       `json:"described_by"`
-	ResourceType    string                                       `json:"resource_type"`
-	IntegrationType string                                       `json:"integration_type"`
-	IntegrationID   string                                       `json:"integration_id"`
+	ResourceID      string                          `json:"resource_id"`
+	PlatformID      string                          `json:"platform_id"`
+	Description     azure.WebServerFarmsDescription `json:"Description"`
+	Metadata        azure.Metadata                  `json:"metadata"`
+	DescribedBy     string                          `json:"described_by"`
+	ResourceType    string                          `json:"resource_type"`
+	IntegrationType string                          `json:"integration_type"`
+	IntegrationID   string                          `json:"integration_id"`
 }
 
 type WebServerFarmsHit struct {
@@ -2891,14 +2891,14 @@ func GetWebServerFarms(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: Blueprint =============================
 
 type Blueprint struct {
-	ResourceID      string                                  `json:"resource_id"`
-	PlatformID      string                                  `json:"platform_id"`
-	Description     azure_subscription.BlueprintDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata             `json:"metadata"`
-	DescribedBy     string                                  `json:"described_by"`
-	ResourceType    string                                  `json:"resource_type"`
-	IntegrationType string                                  `json:"integration_type"`
-	IntegrationID   string                                  `json:"integration_id"`
+	ResourceID      string                     `json:"resource_id"`
+	PlatformID      string                     `json:"platform_id"`
+	Description     azure.BlueprintDescription `json:"Description"`
+	Metadata        azure.Metadata             `json:"metadata"`
+	DescribedBy     string                     `json:"described_by"`
+	ResourceType    string                     `json:"resource_type"`
+	IntegrationType string                     `json:"integration_type"`
+	IntegrationID   string                     `json:"integration_id"`
 }
 
 type BlueprintHit struct {
@@ -3100,14 +3100,14 @@ func GetBlueprint(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 // ==========================  START: ComputeDisk =============================
 
 type ComputeDisk struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure_subscription.ComputeDiskDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata               `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                       `json:"resource_id"`
+	PlatformID      string                       `json:"platform_id"`
+	Description     azure.ComputeDiskDescription `json:"Description"`
+	Metadata        azure.Metadata               `json:"metadata"`
+	DescribedBy     string                       `json:"described_by"`
+	ResourceType    string                       `json:"resource_type"`
+	IntegrationType string                       `json:"integration_type"`
+	IntegrationID   string                       `json:"integration_id"`
 }
 
 type ComputeDiskHit struct {
@@ -3385,14 +3385,14 @@ func GetComputeDisk(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: ComputeDiskAccess =============================
 
 type ComputeDiskAccess struct {
-	ResourceID      string                                          `json:"resource_id"`
-	PlatformID      string                                          `json:"platform_id"`
-	Description     azure_subscription.ComputeDiskAccessDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                     `json:"metadata"`
-	DescribedBy     string                                          `json:"described_by"`
-	ResourceType    string                                          `json:"resource_type"`
-	IntegrationType string                                          `json:"integration_type"`
-	IntegrationID   string                                          `json:"integration_id"`
+	ResourceID      string                             `json:"resource_id"`
+	PlatformID      string                             `json:"platform_id"`
+	Description     azure.ComputeDiskAccessDescription `json:"Description"`
+	Metadata        azure.Metadata                     `json:"metadata"`
+	DescribedBy     string                             `json:"described_by"`
+	ResourceType    string                             `json:"resource_type"`
+	IntegrationType string                             `json:"integration_type"`
+	IntegrationID   string                             `json:"integration_id"`
 }
 
 type ComputeDiskAccessHit struct {
@@ -3602,14 +3602,14 @@ func GetComputeDiskAccess(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: ComputeVirtualMachineScaleSet =============================
 
 type ComputeVirtualMachineScaleSet struct {
-	ResourceID      string                                                      `json:"resource_id"`
-	PlatformID      string                                                      `json:"platform_id"`
-	Description     azure_subscription.ComputeVirtualMachineScaleSetDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                 `json:"metadata"`
-	DescribedBy     string                                                      `json:"described_by"`
-	ResourceType    string                                                      `json:"resource_type"`
-	IntegrationType string                                                      `json:"integration_type"`
-	IntegrationID   string                                                      `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure.ComputeVirtualMachineScaleSetDescription `json:"Description"`
+	Metadata        azure.Metadata                                 `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type ComputeVirtualMachineScaleSetHit struct {
@@ -3863,14 +3863,14 @@ func GetComputeVirtualMachineScaleSet(ctx context.Context, d *plugin.QueryData, 
 // ==========================  START: ComputeVirtualMachineScaleSetNetworkInterface =============================
 
 type ComputeVirtualMachineScaleSetNetworkInterface struct {
-	ResourceID      string                                                                      `json:"resource_id"`
-	PlatformID      string                                                                      `json:"platform_id"`
-	Description     azure_subscription.ComputeVirtualMachineScaleSetNetworkInterfaceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                                 `json:"metadata"`
-	DescribedBy     string                                                                      `json:"described_by"`
-	ResourceType    string                                                                      `json:"resource_type"`
-	IntegrationType string                                                                      `json:"integration_type"`
-	IntegrationID   string                                                                      `json:"integration_id"`
+	ResourceID      string                                                         `json:"resource_id"`
+	PlatformID      string                                                         `json:"platform_id"`
+	Description     azure.ComputeVirtualMachineScaleSetNetworkInterfaceDescription `json:"Description"`
+	Metadata        azure.Metadata                                                 `json:"metadata"`
+	DescribedBy     string                                                         `json:"described_by"`
+	ResourceType    string                                                         `json:"resource_type"`
+	IntegrationType string                                                         `json:"integration_type"`
+	IntegrationID   string                                                         `json:"integration_id"`
 }
 
 type ComputeVirtualMachineScaleSetNetworkInterfaceHit struct {
@@ -4082,14 +4082,14 @@ func GetComputeVirtualMachineScaleSetNetworkInterface(ctx context.Context, d *pl
 // ==========================  START: ComputeVirtualMachineScaleSetVm =============================
 
 type ComputeVirtualMachineScaleSetVm struct {
-	ResourceID      string                                                        `json:"resource_id"`
-	PlatformID      string                                                        `json:"platform_id"`
-	Description     azure_subscription.ComputeVirtualMachineScaleSetVmDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                   `json:"metadata"`
-	DescribedBy     string                                                        `json:"described_by"`
-	ResourceType    string                                                        `json:"resource_type"`
-	IntegrationType string                                                        `json:"integration_type"`
-	IntegrationID   string                                                        `json:"integration_id"`
+	ResourceID      string                                           `json:"resource_id"`
+	PlatformID      string                                           `json:"platform_id"`
+	Description     azure.ComputeVirtualMachineScaleSetVmDescription `json:"Description"`
+	Metadata        azure.Metadata                                   `json:"metadata"`
+	DescribedBy     string                                           `json:"described_by"`
+	ResourceType    string                                           `json:"resource_type"`
+	IntegrationType string                                           `json:"integration_type"`
+	IntegrationID   string                                           `json:"integration_id"`
 }
 
 type ComputeVirtualMachineScaleSetVmHit struct {
@@ -4351,14 +4351,14 @@ func GetComputeVirtualMachineScaleSetVm(ctx context.Context, d *plugin.QueryData
 // ==========================  START: ComputeSnapshots =============================
 
 type ComputeSnapshots struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.ComputeSnapshotsDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.ComputeSnapshotsDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type ComputeSnapshotsHit struct {
@@ -4618,14 +4618,14 @@ func GetComputeSnapshots(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: ComputeAvailabilitySet =============================
 
 type ComputeAvailabilitySet struct {
-	ResourceID      string                                               `json:"resource_id"`
-	PlatformID      string                                               `json:"platform_id"`
-	Description     azure_subscription.ComputeAvailabilitySetDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                          `json:"metadata"`
-	DescribedBy     string                                               `json:"described_by"`
-	ResourceType    string                                               `json:"resource_type"`
-	IntegrationType string                                               `json:"integration_type"`
-	IntegrationID   string                                               `json:"integration_id"`
+	ResourceID      string                                  `json:"resource_id"`
+	PlatformID      string                                  `json:"platform_id"`
+	Description     azure.ComputeAvailabilitySetDescription `json:"Description"`
+	Metadata        azure.Metadata                          `json:"metadata"`
+	DescribedBy     string                                  `json:"described_by"`
+	ResourceType    string                                  `json:"resource_type"`
+	IntegrationType string                                  `json:"integration_type"`
+	IntegrationID   string                                  `json:"integration_id"`
 }
 
 type ComputeAvailabilitySetHit struct {
@@ -4849,14 +4849,14 @@ func GetComputeAvailabilitySet(ctx context.Context, d *plugin.QueryData, _ *plug
 // ==========================  START: ComputeDiskEncryptionSet =============================
 
 type ComputeDiskEncryptionSet struct {
-	ResourceID      string                                                 `json:"resource_id"`
-	PlatformID      string                                                 `json:"platform_id"`
-	Description     azure_subscription.ComputeDiskEncryptionSetDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                            `json:"metadata"`
-	DescribedBy     string                                                 `json:"described_by"`
-	ResourceType    string                                                 `json:"resource_type"`
-	IntegrationType string                                                 `json:"integration_type"`
-	IntegrationID   string                                                 `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure.ComputeDiskEncryptionSetDescription `json:"Description"`
+	Metadata        azure.Metadata                            `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type ComputeDiskEncryptionSetHit struct {
@@ -5080,14 +5080,14 @@ func GetComputeDiskEncryptionSet(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: ComputeImageGallery =============================
 
 type ComputeImageGallery struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure_subscription.ComputeImageGalleryDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                       `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure.ComputeImageGalleryDescription `json:"Description"`
+	Metadata        azure.Metadata                       `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type ComputeImageGalleryHit struct {
@@ -5292,14 +5292,14 @@ func GetComputeImageGallery(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: ComputeImage =============================
 
 type ComputeImage struct {
-	ResourceID      string                                     `json:"resource_id"`
-	PlatformID      string                                     `json:"platform_id"`
-	Description     azure_subscription.ComputeImageDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                `json:"metadata"`
-	DescribedBy     string                                     `json:"described_by"`
-	ResourceType    string                                     `json:"resource_type"`
-	IntegrationType string                                     `json:"integration_type"`
-	IntegrationID   string                                     `json:"integration_id"`
+	ResourceID      string                        `json:"resource_id"`
+	PlatformID      string                        `json:"platform_id"`
+	Description     azure.ComputeImageDescription `json:"Description"`
+	Metadata        azure.Metadata                `json:"metadata"`
+	DescribedBy     string                        `json:"described_by"`
+	ResourceType    string                        `json:"resource_type"`
+	IntegrationType string                        `json:"integration_type"`
+	IntegrationID   string                        `json:"integration_id"`
 }
 
 type ComputeImageHit struct {
@@ -5535,14 +5535,14 @@ func GetComputeImage(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: ComputeHostGroup =============================
 
 type ComputeHostGroup struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.ComputeHostGroupDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.ComputeHostGroupDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type ComputeHostGroupHit struct {
@@ -5744,14 +5744,14 @@ func GetComputeHostGroup(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: ComputeHostGroupHost =============================
 
 type ComputeHostGroupHost struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure_subscription.ComputeHostGroupHostDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                        `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
+	ResourceID      string                                `json:"resource_id"`
+	PlatformID      string                                `json:"platform_id"`
+	Description     azure.ComputeHostGroupHostDescription `json:"Description"`
+	Metadata        azure.Metadata                        `json:"metadata"`
+	DescribedBy     string                                `json:"described_by"`
+	ResourceType    string                                `json:"resource_type"`
+	IntegrationType string                                `json:"integration_type"`
+	IntegrationID   string                                `json:"integration_id"`
 }
 
 type ComputeHostGroupHostHit struct {
@@ -5953,14 +5953,14 @@ func GetComputeHostGroupHost(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: ComputeRestorePointCollection =============================
 
 type ComputeRestorePointCollection struct {
-	ResourceID      string                                                      `json:"resource_id"`
-	PlatformID      string                                                      `json:"platform_id"`
-	Description     azure_subscription.ComputeRestorePointCollectionDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                 `json:"metadata"`
-	DescribedBy     string                                                      `json:"described_by"`
-	ResourceType    string                                                      `json:"resource_type"`
-	IntegrationType string                                                      `json:"integration_type"`
-	IntegrationID   string                                                      `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure.ComputeRestorePointCollectionDescription `json:"Description"`
+	Metadata        azure.Metadata                                 `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type ComputeRestorePointCollectionHit struct {
@@ -6162,14 +6162,14 @@ func GetComputeRestorePointCollection(ctx context.Context, d *plugin.QueryData, 
 // ==========================  START: ComputeSSHPublicKey =============================
 
 type ComputeSSHPublicKey struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure_subscription.ComputeSSHPublicKeyDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                       `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure.ComputeSSHPublicKeyDescription `json:"Description"`
+	Metadata        azure.Metadata                       `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type ComputeSSHPublicKeyHit struct {
@@ -6377,14 +6377,14 @@ func GetComputeSSHPublicKey(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: DataboxEdgeDevice =============================
 
 type DataboxEdgeDevice struct {
-	ResourceID      string                                          `json:"resource_id"`
-	PlatformID      string                                          `json:"platform_id"`
-	Description     azure_subscription.DataboxEdgeDeviceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                     `json:"metadata"`
-	DescribedBy     string                                          `json:"described_by"`
-	ResourceType    string                                          `json:"resource_type"`
-	IntegrationType string                                          `json:"integration_type"`
-	IntegrationID   string                                          `json:"integration_id"`
+	ResourceID      string                             `json:"resource_id"`
+	PlatformID      string                             `json:"platform_id"`
+	Description     azure.DataboxEdgeDeviceDescription `json:"Description"`
+	Metadata        azure.Metadata                     `json:"metadata"`
+	DescribedBy     string                             `json:"described_by"`
+	ResourceType    string                             `json:"resource_type"`
+	IntegrationType string                             `json:"integration_type"`
+	IntegrationID   string                             `json:"integration_id"`
 }
 
 type DataboxEdgeDeviceHit struct {
@@ -6628,14 +6628,14 @@ func GetDataboxEdgeDevice(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: HealthcareService =============================
 
 type HealthcareService struct {
-	ResourceID      string                                          `json:"resource_id"`
-	PlatformID      string                                          `json:"platform_id"`
-	Description     azure_subscription.HealthcareServiceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                     `json:"metadata"`
-	DescribedBy     string                                          `json:"described_by"`
-	ResourceType    string                                          `json:"resource_type"`
-	IntegrationType string                                          `json:"integration_type"`
-	IntegrationID   string                                          `json:"integration_id"`
+	ResourceID      string                             `json:"resource_id"`
+	PlatformID      string                             `json:"platform_id"`
+	Description     azure.HealthcareServiceDescription `json:"Description"`
+	Metadata        azure.Metadata                     `json:"metadata"`
+	DescribedBy     string                             `json:"described_by"`
+	ResourceType    string                             `json:"resource_type"`
+	IntegrationType string                             `json:"integration_type"`
+	IntegrationID   string                             `json:"integration_id"`
 }
 
 type HealthcareServiceHit struct {
@@ -6875,14 +6875,14 @@ func GetHealthcareService(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: HpcCache =============================
 
 type HpcCache struct {
-	ResourceID      string                                 `json:"resource_id"`
-	PlatformID      string                                 `json:"platform_id"`
-	Description     azure_subscription.HpcCacheDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata            `json:"metadata"`
-	DescribedBy     string                                 `json:"described_by"`
-	ResourceType    string                                 `json:"resource_type"`
-	IntegrationType string                                 `json:"integration_type"`
-	IntegrationID   string                                 `json:"integration_id"`
+	ResourceID      string                    `json:"resource_id"`
+	PlatformID      string                    `json:"platform_id"`
+	Description     azure.HpcCacheDescription `json:"Description"`
+	Metadata        azure.Metadata            `json:"metadata"`
+	DescribedBy     string                    `json:"described_by"`
+	ResourceType    string                    `json:"resource_type"`
+	IntegrationType string                    `json:"integration_type"`
+	IntegrationID   string                    `json:"integration_id"`
 }
 
 type HpcCacheHit struct {
@@ -7112,14 +7112,14 @@ func GetHpcCache(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 // ==========================  START: KeyVaultKey =============================
 
 type KeyVaultKey struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure_subscription.KeyVaultKeyDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata               `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                       `json:"resource_id"`
+	PlatformID      string                       `json:"platform_id"`
+	Description     azure.KeyVaultKeyDescription `json:"Description"`
+	Metadata        azure.Metadata               `json:"metadata"`
+	DescribedBy     string                       `json:"described_by"`
+	ResourceType    string                       `json:"resource_type"`
+	IntegrationType string                       `json:"integration_type"`
+	IntegrationID   string                       `json:"integration_id"`
 }
 
 type KeyVaultKeyHit struct {
@@ -7346,14 +7346,14 @@ func GetKeyVaultKey(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: KeyVaultKeyVersion =============================
 
 type KeyVaultKeyVersion struct {
-	ResourceID      string                                           `json:"resource_id"`
-	PlatformID      string                                           `json:"platform_id"`
-	Description     azure_subscription.KeyVaultKeyVersionDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                      `json:"metadata"`
-	DescribedBy     string                                           `json:"described_by"`
-	ResourceType    string                                           `json:"resource_type"`
-	IntegrationType string                                           `json:"integration_type"`
-	IntegrationID   string                                           `json:"integration_id"`
+	ResourceID      string                              `json:"resource_id"`
+	PlatformID      string                              `json:"platform_id"`
+	Description     azure.KeyVaultKeyVersionDescription `json:"Description"`
+	Metadata        azure.Metadata                      `json:"metadata"`
+	DescribedBy     string                              `json:"described_by"`
+	ResourceType    string                              `json:"resource_type"`
+	IntegrationType string                              `json:"integration_type"`
+	IntegrationID   string                              `json:"integration_id"`
 }
 
 type KeyVaultKeyVersionHit struct {
@@ -7585,14 +7585,14 @@ func GetKeyVaultKeyVersion(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: KubernetesCluster =============================
 
 type KubernetesCluster struct {
-	ResourceID      string                                          `json:"resource_id"`
-	PlatformID      string                                          `json:"platform_id"`
-	Description     azure_subscription.KubernetesClusterDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                     `json:"metadata"`
-	DescribedBy     string                                          `json:"described_by"`
-	ResourceType    string                                          `json:"resource_type"`
-	IntegrationType string                                          `json:"integration_type"`
-	IntegrationID   string                                          `json:"integration_id"`
+	ResourceID      string                             `json:"resource_id"`
+	PlatformID      string                             `json:"platform_id"`
+	Description     azure.KubernetesClusterDescription `json:"Description"`
+	Metadata        azure.Metadata                     `json:"metadata"`
+	DescribedBy     string                             `json:"described_by"`
+	ResourceType    string                             `json:"resource_type"`
+	IntegrationType string                             `json:"integration_type"`
+	IntegrationID   string                             `json:"integration_id"`
 }
 
 type KubernetesClusterHit struct {
@@ -7856,14 +7856,14 @@ func GetKubernetesCluster(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: KubernetesServiceVersion =============================
 
 type KubernetesServiceVersion struct {
-	ResourceID      string                                                 `json:"resource_id"`
-	PlatformID      string                                                 `json:"platform_id"`
-	Description     azure_subscription.KubernetesServiceVersionDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                            `json:"metadata"`
-	DescribedBy     string                                                 `json:"described_by"`
-	ResourceType    string                                                 `json:"resource_type"`
-	IntegrationType string                                                 `json:"integration_type"`
-	IntegrationID   string                                                 `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure.KubernetesServiceVersionDescription `json:"Description"`
+	Metadata        azure.Metadata                            `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type KubernetesServiceVersionHit struct {
@@ -8071,14 +8071,14 @@ func GetKubernetesServiceVersion(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: ContainerInstanceContainerGroup =============================
 
 type ContainerInstanceContainerGroup struct {
-	ResourceID      string                                                        `json:"resource_id"`
-	PlatformID      string                                                        `json:"platform_id"`
-	Description     azure_subscription.ContainerInstanceContainerGroupDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                   `json:"metadata"`
-	DescribedBy     string                                                        `json:"described_by"`
-	ResourceType    string                                                        `json:"resource_type"`
-	IntegrationType string                                                        `json:"integration_type"`
-	IntegrationID   string                                                        `json:"integration_id"`
+	ResourceID      string                                           `json:"resource_id"`
+	PlatformID      string                                           `json:"platform_id"`
+	Description     azure.ContainerInstanceContainerGroupDescription `json:"Description"`
+	Metadata        azure.Metadata                                   `json:"metadata"`
+	DescribedBy     string                                           `json:"described_by"`
+	ResourceType    string                                           `json:"resource_type"`
+	IntegrationType string                                           `json:"integration_type"`
+	IntegrationID   string                                           `json:"integration_id"`
 }
 
 type ContainerInstanceContainerGroupHit struct {
@@ -8316,14 +8316,14 @@ func GetContainerInstanceContainerGroup(ctx context.Context, d *plugin.QueryData
 // ==========================  START: CDNProfile =============================
 
 type CDNProfile struct {
-	ResourceID      string                                   `json:"resource_id"`
-	PlatformID      string                                   `json:"platform_id"`
-	Description     azure_subscription.CDNProfileDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata              `json:"metadata"`
-	DescribedBy     string                                   `json:"described_by"`
-	ResourceType    string                                   `json:"resource_type"`
-	IntegrationType string                                   `json:"integration_type"`
-	IntegrationID   string                                   `json:"integration_id"`
+	ResourceID      string                      `json:"resource_id"`
+	PlatformID      string                      `json:"platform_id"`
+	Description     azure.CDNProfileDescription `json:"Description"`
+	Metadata        azure.Metadata              `json:"metadata"`
+	DescribedBy     string                      `json:"described_by"`
+	ResourceType    string                      `json:"resource_type"`
+	IntegrationType string                      `json:"integration_type"`
+	IntegrationID   string                      `json:"integration_id"`
 }
 
 type CDNProfileHit struct {
@@ -8541,14 +8541,14 @@ func GetCDNProfile(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 // ==========================  START: CDNEndpoint =============================
 
 type CDNEndpoint struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure_subscription.CDNEndpointDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata               `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                       `json:"resource_id"`
+	PlatformID      string                       `json:"platform_id"`
+	Description     azure.CDNEndpointDescription `json:"Description"`
+	Metadata        azure.Metadata               `json:"metadata"`
+	DescribedBy     string                       `json:"described_by"`
+	ResourceType    string                       `json:"resource_type"`
+	IntegrationType string                       `json:"integration_type"`
+	IntegrationID   string                       `json:"integration_id"`
 }
 
 type CDNEndpointHit struct {
@@ -8750,14 +8750,14 @@ func GetCDNEndpoint(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: NetworkInterface =============================
 
 type NetworkInterface struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.NetworkInterfaceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.NetworkInterfaceDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type NetworkInterfaceHit struct {
@@ -9015,14 +9015,14 @@ func GetNetworkInterface(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: NetworkWatcherFlowLog =============================
 
 type NetworkWatcherFlowLog struct {
-	ResourceID      string                                              `json:"resource_id"`
-	PlatformID      string                                              `json:"platform_id"`
-	Description     azure_subscription.NetworkWatcherFlowLogDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                         `json:"metadata"`
-	DescribedBy     string                                              `json:"described_by"`
-	ResourceType    string                                              `json:"resource_type"`
-	IntegrationType string                                              `json:"integration_type"`
-	IntegrationID   string                                              `json:"integration_id"`
+	ResourceID      string                                 `json:"resource_id"`
+	PlatformID      string                                 `json:"platform_id"`
+	Description     azure.NetworkWatcherFlowLogDescription `json:"Description"`
+	Metadata        azure.Metadata                         `json:"metadata"`
+	DescribedBy     string                                 `json:"described_by"`
+	ResourceType    string                                 `json:"resource_type"`
+	IntegrationType string                                 `json:"integration_type"`
+	IntegrationID   string                                 `json:"integration_id"`
 }
 
 type NetworkWatcherFlowLogHit struct {
@@ -9254,14 +9254,14 @@ func GetNetworkWatcherFlowLog(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: RouteTables =============================
 
 type RouteTables struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure_subscription.RouteTablesDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata               `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                       `json:"resource_id"`
+	PlatformID      string                       `json:"platform_id"`
+	Description     azure.RouteTablesDescription `json:"Description"`
+	Metadata        azure.Metadata               `json:"metadata"`
+	DescribedBy     string                       `json:"described_by"`
+	ResourceType    string                       `json:"resource_type"`
+	IntegrationType string                       `json:"integration_type"`
+	IntegrationID   string                       `json:"integration_id"`
 }
 
 type RouteTablesHit struct {
@@ -9476,14 +9476,14 @@ func GetRouteTables(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: NetworkApplicationSecurityGroups =============================
 
 type NetworkApplicationSecurityGroups struct {
-	ResourceID      string                                                         `json:"resource_id"`
-	PlatformID      string                                                         `json:"platform_id"`
-	Description     azure_subscription.NetworkApplicationSecurityGroupsDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                    `json:"metadata"`
-	DescribedBy     string                                                         `json:"described_by"`
-	ResourceType    string                                                         `json:"resource_type"`
-	IntegrationType string                                                         `json:"integration_type"`
-	IntegrationID   string                                                         `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure.NetworkApplicationSecurityGroupsDescription `json:"Description"`
+	Metadata        azure.Metadata                                    `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type NetworkApplicationSecurityGroupsHit struct {
@@ -9695,14 +9695,14 @@ func GetNetworkApplicationSecurityGroups(ctx context.Context, d *plugin.QueryDat
 // ==========================  START: NetworkAzureFirewall =============================
 
 type NetworkAzureFirewall struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure_subscription.NetworkAzureFirewallDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                        `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
+	ResourceID      string                                `json:"resource_id"`
+	PlatformID      string                                `json:"platform_id"`
+	Description     azure.NetworkAzureFirewallDescription `json:"Description"`
+	Metadata        azure.Metadata                        `json:"metadata"`
+	DescribedBy     string                                `json:"described_by"`
+	ResourceType    string                                `json:"resource_type"`
+	IntegrationType string                                `json:"integration_type"`
+	IntegrationID   string                                `json:"integration_id"`
 }
 
 type NetworkAzureFirewallHit struct {
@@ -9942,14 +9942,14 @@ func GetNetworkAzureFirewall(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: ExpressRouteCircuit =============================
 
 type ExpressRouteCircuit struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure_subscription.ExpressRouteCircuitDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                       `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure.ExpressRouteCircuitDescription `json:"Description"`
+	Metadata        azure.Metadata                       `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type ExpressRouteCircuitHit struct {
@@ -10187,14 +10187,14 @@ func GetExpressRouteCircuit(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: VirtualNetworkGateway =============================
 
 type VirtualNetworkGateway struct {
-	ResourceID      string                                              `json:"resource_id"`
-	PlatformID      string                                              `json:"platform_id"`
-	Description     azure_subscription.VirtualNetworkGatewayDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                         `json:"metadata"`
-	DescribedBy     string                                              `json:"described_by"`
-	ResourceType    string                                              `json:"resource_type"`
-	IntegrationType string                                              `json:"integration_type"`
-	IntegrationID   string                                              `json:"integration_id"`
+	ResourceID      string                                 `json:"resource_id"`
+	PlatformID      string                                 `json:"platform_id"`
+	Description     azure.VirtualNetworkGatewayDescription `json:"Description"`
+	Metadata        azure.Metadata                         `json:"metadata"`
+	DescribedBy     string                                 `json:"described_by"`
+	ResourceType    string                                 `json:"resource_type"`
+	IntegrationType string                                 `json:"integration_type"`
+	IntegrationID   string                                 `json:"integration_id"`
 }
 
 type VirtualNetworkGatewayHit struct {
@@ -10442,14 +10442,14 @@ func GetVirtualNetworkGateway(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: FirewallPolicy =============================
 
 type FirewallPolicy struct {
-	ResourceID      string                                       `json:"resource_id"`
-	PlatformID      string                                       `json:"platform_id"`
-	Description     azure_subscription.FirewallPolicyDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                  `json:"metadata"`
-	DescribedBy     string                                       `json:"described_by"`
-	ResourceType    string                                       `json:"resource_type"`
-	IntegrationType string                                       `json:"integration_type"`
-	IntegrationID   string                                       `json:"integration_id"`
+	ResourceID      string                          `json:"resource_id"`
+	PlatformID      string                          `json:"platform_id"`
+	Description     azure.FirewallPolicyDescription `json:"Description"`
+	Metadata        azure.Metadata                  `json:"metadata"`
+	DescribedBy     string                          `json:"described_by"`
+	ResourceType    string                          `json:"resource_type"`
+	IntegrationType string                          `json:"integration_type"`
+	IntegrationID   string                          `json:"integration_id"`
 }
 
 type FirewallPolicyHit struct {
@@ -10687,14 +10687,14 @@ func GetFirewallPolicy(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: LocalNetworkGateway =============================
 
 type LocalNetworkGateway struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure_subscription.LocalNetworkGatewayDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                       `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure.LocalNetworkGatewayDescription `json:"Description"`
+	Metadata        azure.Metadata                       `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type LocalNetworkGatewayHit struct {
@@ -10899,14 +10899,14 @@ func GetLocalNetworkGateway(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: NatGateway =============================
 
 type NatGateway struct {
-	ResourceID      string                                   `json:"resource_id"`
-	PlatformID      string                                   `json:"platform_id"`
-	Description     azure_subscription.NatGatewayDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata              `json:"metadata"`
-	DescribedBy     string                                   `json:"described_by"`
-	ResourceType    string                                   `json:"resource_type"`
-	IntegrationType string                                   `json:"integration_type"`
-	IntegrationID   string                                   `json:"integration_id"`
+	ResourceID      string                      `json:"resource_id"`
+	PlatformID      string                      `json:"platform_id"`
+	Description     azure.NatGatewayDescription `json:"Description"`
+	Metadata        azure.Metadata              `json:"metadata"`
+	DescribedBy     string                      `json:"described_by"`
+	ResourceType    string                      `json:"resource_type"`
+	IntegrationType string                      `json:"integration_type"`
+	IntegrationID   string                      `json:"integration_id"`
 }
 
 type NatGatewayHit struct {
@@ -11120,14 +11120,14 @@ func GetNatGateway(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 // ==========================  START: PrivateLinkService =============================
 
 type PrivateLinkService struct {
-	ResourceID      string                                           `json:"resource_id"`
-	PlatformID      string                                           `json:"platform_id"`
-	Description     azure_subscription.PrivateLinkServiceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                      `json:"metadata"`
-	DescribedBy     string                                           `json:"described_by"`
-	ResourceType    string                                           `json:"resource_type"`
-	IntegrationType string                                           `json:"integration_type"`
-	IntegrationID   string                                           `json:"integration_id"`
+	ResourceID      string                              `json:"resource_id"`
+	PlatformID      string                              `json:"platform_id"`
+	Description     azure.PrivateLinkServiceDescription `json:"Description"`
+	Metadata        azure.Metadata                      `json:"metadata"`
+	DescribedBy     string                              `json:"described_by"`
+	ResourceType    string                              `json:"resource_type"`
+	IntegrationType string                              `json:"integration_type"`
+	IntegrationID   string                              `json:"integration_id"`
 }
 
 type PrivateLinkServiceHit struct {
@@ -11332,14 +11332,14 @@ func GetPrivateLinkService(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: VpnGateway =============================
 
 type VpnGateway struct {
-	ResourceID      string                                   `json:"resource_id"`
-	PlatformID      string                                   `json:"platform_id"`
-	Description     azure_subscription.VpnGatewayDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata              `json:"metadata"`
-	DescribedBy     string                                   `json:"described_by"`
-	ResourceType    string                                   `json:"resource_type"`
-	IntegrationType string                                   `json:"integration_type"`
-	IntegrationID   string                                   `json:"integration_id"`
+	ResourceID      string                      `json:"resource_id"`
+	PlatformID      string                      `json:"platform_id"`
+	Description     azure.VpnGatewayDescription `json:"Description"`
+	Metadata        azure.Metadata              `json:"metadata"`
+	DescribedBy     string                      `json:"described_by"`
+	ResourceType    string                      `json:"resource_type"`
+	IntegrationType string                      `json:"integration_type"`
+	IntegrationID   string                      `json:"integration_id"`
 }
 
 type VpnGatewayHit struct {
@@ -11544,14 +11544,14 @@ func GetVpnGateway(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 // ==========================  START: VpnGatewayVpnConnection =============================
 
 type VpnGatewayVpnConnection struct {
-	ResourceID      string                                                `json:"resource_id"`
-	PlatformID      string                                                `json:"platform_id"`
-	Description     azure_subscription.VpnGatewayVpnConnectionDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                           `json:"metadata"`
-	DescribedBy     string                                                `json:"described_by"`
-	ResourceType    string                                                `json:"resource_type"`
-	IntegrationType string                                                `json:"integration_type"`
-	IntegrationID   string                                                `json:"integration_id"`
+	ResourceID      string                                   `json:"resource_id"`
+	PlatformID      string                                   `json:"platform_id"`
+	Description     azure.VpnGatewayVpnConnectionDescription `json:"Description"`
+	Metadata        azure.Metadata                           `json:"metadata"`
+	DescribedBy     string                                   `json:"described_by"`
+	ResourceType    string                                   `json:"resource_type"`
+	IntegrationType string                                   `json:"integration_type"`
+	IntegrationID   string                                   `json:"integration_id"`
 }
 
 type VpnGatewayVpnConnectionHit struct {
@@ -11755,14 +11755,14 @@ func GetVpnGatewayVpnConnection(ctx context.Context, d *plugin.QueryData, _ *plu
 // ==========================  START: VpnSite =============================
 
 type VpnSite struct {
-	ResourceID      string                                `json:"resource_id"`
-	PlatformID      string                                `json:"platform_id"`
-	Description     azure_subscription.VpnSiteDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata           `json:"metadata"`
-	DescribedBy     string                                `json:"described_by"`
-	ResourceType    string                                `json:"resource_type"`
-	IntegrationType string                                `json:"integration_type"`
-	IntegrationID   string                                `json:"integration_id"`
+	ResourceID      string                   `json:"resource_id"`
+	PlatformID      string                   `json:"platform_id"`
+	Description     azure.VpnSiteDescription `json:"Description"`
+	Metadata        azure.Metadata           `json:"metadata"`
+	DescribedBy     string                   `json:"described_by"`
+	ResourceType    string                   `json:"resource_type"`
+	IntegrationType string                   `json:"integration_type"`
+	IntegrationID   string                   `json:"integration_id"`
 }
 
 type VpnSiteHit struct {
@@ -11966,14 +11966,14 @@ func GetVpnSite(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData)
 // ==========================  START: PublicIPAddress =============================
 
 type PublicIPAddress struct {
-	ResourceID      string                                        `json:"resource_id"`
-	PlatformID      string                                        `json:"platform_id"`
-	Description     azure_subscription.PublicIPAddressDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                   `json:"metadata"`
-	DescribedBy     string                                        `json:"described_by"`
-	ResourceType    string                                        `json:"resource_type"`
-	IntegrationType string                                        `json:"integration_type"`
-	IntegrationID   string                                        `json:"integration_id"`
+	ResourceID      string                           `json:"resource_id"`
+	PlatformID      string                           `json:"platform_id"`
+	Description     azure.PublicIPAddressDescription `json:"Description"`
+	Metadata        azure.Metadata                   `json:"metadata"`
+	DescribedBy     string                           `json:"described_by"`
+	ResourceType    string                           `json:"resource_type"`
+	IntegrationType string                           `json:"integration_type"`
+	IntegrationID   string                           `json:"integration_id"`
 }
 
 type PublicIPAddressHit struct {
@@ -12217,14 +12217,14 @@ func GetPublicIPAddress(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: PublicIPPrefix =============================
 
 type PublicIPPrefix struct {
-	ResourceID      string                                       `json:"resource_id"`
-	PlatformID      string                                       `json:"platform_id"`
-	Description     azure_subscription.PublicIPPrefixDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                  `json:"metadata"`
-	DescribedBy     string                                       `json:"described_by"`
-	ResourceType    string                                       `json:"resource_type"`
-	IntegrationType string                                       `json:"integration_type"`
-	IntegrationID   string                                       `json:"integration_id"`
+	ResourceID      string                          `json:"resource_id"`
+	PlatformID      string                          `json:"platform_id"`
+	Description     azure.PublicIPPrefixDescription `json:"Description"`
+	Metadata        azure.Metadata                  `json:"metadata"`
+	DescribedBy     string                          `json:"described_by"`
+	ResourceType    string                          `json:"resource_type"`
+	IntegrationType string                          `json:"integration_type"`
+	IntegrationID   string                          `json:"integration_id"`
 }
 
 type PublicIPPrefixHit struct {
@@ -12428,14 +12428,14 @@ func GetPublicIPPrefix(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: DNSZones =============================
 
 type DNSZones struct {
-	ResourceID      string                                 `json:"resource_id"`
-	PlatformID      string                                 `json:"platform_id"`
-	Description     azure_subscription.DNSZonesDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata            `json:"metadata"`
-	DescribedBy     string                                 `json:"described_by"`
-	ResourceType    string                                 `json:"resource_type"`
-	IntegrationType string                                 `json:"integration_type"`
-	IntegrationID   string                                 `json:"integration_id"`
+	ResourceID      string                    `json:"resource_id"`
+	PlatformID      string                    `json:"platform_id"`
+	Description     azure.DNSZonesDescription `json:"Description"`
+	Metadata        azure.Metadata            `json:"metadata"`
+	DescribedBy     string                    `json:"described_by"`
+	ResourceType    string                    `json:"resource_type"`
+	IntegrationType string                    `json:"integration_type"`
+	IntegrationID   string                    `json:"integration_id"`
 }
 
 type DNSZonesHit struct {
@@ -12659,14 +12659,14 @@ func GetDNSZones(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 // ==========================  START: BastionHosts =============================
 
 type BastionHosts struct {
-	ResourceID      string                                     `json:"resource_id"`
-	PlatformID      string                                     `json:"platform_id"`
-	Description     azure_subscription.BastionHostsDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                `json:"metadata"`
-	DescribedBy     string                                     `json:"described_by"`
-	ResourceType    string                                     `json:"resource_type"`
-	IntegrationType string                                     `json:"integration_type"`
-	IntegrationID   string                                     `json:"integration_id"`
+	ResourceID      string                        `json:"resource_id"`
+	PlatformID      string                        `json:"platform_id"`
+	Description     azure.BastionHostsDescription `json:"Description"`
+	Metadata        azure.Metadata                `json:"metadata"`
+	DescribedBy     string                        `json:"described_by"`
+	ResourceType    string                        `json:"resource_type"`
+	IntegrationType string                        `json:"integration_type"`
+	IntegrationID   string                        `json:"integration_id"`
 }
 
 type BastionHostsHit struct {
@@ -12884,14 +12884,14 @@ func GetBastionHosts(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: Connection =============================
 
 type Connection struct {
-	ResourceID      string                                   `json:"resource_id"`
-	PlatformID      string                                   `json:"platform_id"`
-	Description     azure_subscription.ConnectionDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata              `json:"metadata"`
-	DescribedBy     string                                   `json:"described_by"`
-	ResourceType    string                                   `json:"resource_type"`
-	IntegrationType string                                   `json:"integration_type"`
-	IntegrationID   string                                   `json:"integration_id"`
+	ResourceID      string                      `json:"resource_id"`
+	PlatformID      string                      `json:"platform_id"`
+	Description     azure.ConnectionDescription `json:"Description"`
+	Metadata        azure.Metadata              `json:"metadata"`
+	DescribedBy     string                      `json:"described_by"`
+	ResourceType    string                      `json:"resource_type"`
+	IntegrationType string                      `json:"integration_type"`
+	IntegrationID   string                      `json:"integration_id"`
 }
 
 type ConnectionHit struct {
@@ -13095,14 +13095,14 @@ func GetConnection(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 // ==========================  START: VirtualHubs =============================
 
 type VirtualHubs struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure_subscription.VirtualHubsDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata               `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                       `json:"resource_id"`
+	PlatformID      string                       `json:"platform_id"`
+	Description     azure.VirtualHubsDescription `json:"Description"`
+	Metadata        azure.Metadata               `json:"metadata"`
+	DescribedBy     string                       `json:"described_by"`
+	ResourceType    string                       `json:"resource_type"`
+	IntegrationType string                       `json:"integration_type"`
+	IntegrationID   string                       `json:"integration_id"`
 }
 
 type VirtualHubsHit struct {
@@ -13306,14 +13306,14 @@ func GetVirtualHubs(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: VirtualWans =============================
 
 type VirtualWans struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure_subscription.VirtualWansDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata               `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                       `json:"resource_id"`
+	PlatformID      string                       `json:"platform_id"`
+	Description     azure.VirtualWansDescription `json:"Description"`
+	Metadata        azure.Metadata               `json:"metadata"`
+	DescribedBy     string                       `json:"described_by"`
+	ResourceType    string                       `json:"resource_type"`
+	IntegrationType string                       `json:"integration_type"`
+	IntegrationID   string                       `json:"integration_id"`
 }
 
 type VirtualWansHit struct {
@@ -13517,14 +13517,14 @@ func GetVirtualWans(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: DNSResolver =============================
 
 type DNSResolver struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure_subscription.DNSResolverDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata               `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                       `json:"resource_id"`
+	PlatformID      string                       `json:"platform_id"`
+	Description     azure.DNSResolverDescription `json:"Description"`
+	Metadata        azure.Metadata               `json:"metadata"`
+	DescribedBy     string                       `json:"described_by"`
+	ResourceType    string                       `json:"resource_type"`
+	IntegrationType string                       `json:"integration_type"`
+	IntegrationID   string                       `json:"integration_id"`
 }
 
 type DNSResolverHit struct {
@@ -13728,14 +13728,14 @@ func GetDNSResolver(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: TrafficManagerProfile =============================
 
 type TrafficManagerProfile struct {
-	ResourceID      string                                              `json:"resource_id"`
-	PlatformID      string                                              `json:"platform_id"`
-	Description     azure_subscription.TrafficManagerProfileDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                         `json:"metadata"`
-	DescribedBy     string                                              `json:"described_by"`
-	ResourceType    string                                              `json:"resource_type"`
-	IntegrationType string                                              `json:"integration_type"`
-	IntegrationID   string                                              `json:"integration_id"`
+	ResourceID      string                                 `json:"resource_id"`
+	PlatformID      string                                 `json:"platform_id"`
+	Description     azure.TrafficManagerProfileDescription `json:"Description"`
+	Metadata        azure.Metadata                         `json:"metadata"`
+	DescribedBy     string                                 `json:"described_by"`
+	ResourceType    string                                 `json:"resource_type"`
+	IntegrationType string                                 `json:"integration_type"`
+	IntegrationID   string                                 `json:"integration_id"`
 }
 
 type TrafficManagerProfileHit struct {
@@ -13937,14 +13937,14 @@ func GetTrafficManagerProfile(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: PrivateDNSZones =============================
 
 type PrivateDNSZones struct {
-	ResourceID      string                                        `json:"resource_id"`
-	PlatformID      string                                        `json:"platform_id"`
-	Description     azure_subscription.PrivateDNSZonesDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                   `json:"metadata"`
-	DescribedBy     string                                        `json:"described_by"`
-	ResourceType    string                                        `json:"resource_type"`
-	IntegrationType string                                        `json:"integration_type"`
-	IntegrationID   string                                        `json:"integration_id"`
+	ResourceID      string                           `json:"resource_id"`
+	PlatformID      string                           `json:"platform_id"`
+	Description     azure.PrivateDNSZonesDescription `json:"Description"`
+	Metadata        azure.Metadata                   `json:"metadata"`
+	DescribedBy     string                           `json:"described_by"`
+	ResourceType    string                           `json:"resource_type"`
+	IntegrationType string                           `json:"integration_type"`
+	IntegrationID   string                           `json:"integration_id"`
 }
 
 type PrivateDNSZonesHit struct {
@@ -14168,14 +14168,14 @@ func GetPrivateDNSZones(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: PrivateEndpoint =============================
 
 type PrivateEndpoint struct {
-	ResourceID      string                                        `json:"resource_id"`
-	PlatformID      string                                        `json:"platform_id"`
-	Description     azure_subscription.PrivateEndpointDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                   `json:"metadata"`
-	DescribedBy     string                                        `json:"described_by"`
-	ResourceType    string                                        `json:"resource_type"`
-	IntegrationType string                                        `json:"integration_type"`
-	IntegrationID   string                                        `json:"integration_id"`
+	ResourceID      string                           `json:"resource_id"`
+	PlatformID      string                           `json:"platform_id"`
+	Description     azure.PrivateEndpointDescription `json:"Description"`
+	Metadata        azure.Metadata                   `json:"metadata"`
+	DescribedBy     string                           `json:"described_by"`
+	ResourceType    string                           `json:"resource_type"`
+	IntegrationType string                           `json:"integration_type"`
+	IntegrationID   string                           `json:"integration_id"`
 }
 
 type PrivateEndpointHit struct {
@@ -14379,14 +14379,14 @@ func GetPrivateEndpoint(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: NetworkDDoSProtectionPlan =============================
 
 type NetworkDDoSProtectionPlan struct {
-	ResourceID      string                                                  `json:"resource_id"`
-	PlatformID      string                                                  `json:"platform_id"`
-	Description     azure_subscription.NetworkDDoSProtectionPlanDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                             `json:"metadata"`
-	DescribedBy     string                                                  `json:"described_by"`
-	ResourceType    string                                                  `json:"resource_type"`
-	IntegrationType string                                                  `json:"integration_type"`
-	IntegrationID   string                                                  `json:"integration_id"`
+	ResourceID      string                                     `json:"resource_id"`
+	PlatformID      string                                     `json:"platform_id"`
+	Description     azure.NetworkDDoSProtectionPlanDescription `json:"Description"`
+	Metadata        azure.Metadata                             `json:"metadata"`
+	DescribedBy     string                                     `json:"described_by"`
+	ResourceType    string                                     `json:"resource_type"`
+	IntegrationType string                                     `json:"integration_type"`
+	IntegrationID   string                                     `json:"integration_id"`
 }
 
 type NetworkDDoSProtectionPlanHit struct {
@@ -14588,14 +14588,14 @@ func GetNetworkDDoSProtectionPlan(ctx context.Context, d *plugin.QueryData, _ *p
 // ==========================  START: PolicyAssignment =============================
 
 type PolicyAssignment struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.PolicyAssignmentDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.PolicyAssignmentDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type PolicyAssignmentHit struct {
@@ -14821,14 +14821,14 @@ func GetPolicyAssignment(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: RedisCache =============================
 
 type RedisCache struct {
-	ResourceID      string                                   `json:"resource_id"`
-	PlatformID      string                                   `json:"platform_id"`
-	Description     azure_subscription.RedisCacheDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata              `json:"metadata"`
-	DescribedBy     string                                   `json:"described_by"`
-	ResourceType    string                                   `json:"resource_type"`
-	IntegrationType string                                   `json:"integration_type"`
-	IntegrationID   string                                   `json:"integration_id"`
+	ResourceID      string                      `json:"resource_id"`
+	PlatformID      string                      `json:"platform_id"`
+	Description     azure.RedisCacheDescription `json:"Description"`
+	Metadata        azure.Metadata              `json:"metadata"`
+	DescribedBy     string                      `json:"described_by"`
+	ResourceType    string                      `json:"resource_type"`
+	IntegrationType string                      `json:"integration_type"`
+	IntegrationID   string                      `json:"integration_id"`
 }
 
 type RedisCacheHit struct {
@@ -15078,14 +15078,14 @@ func GetRedisCache(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 // ==========================  START: RedisEnterpriseCache =============================
 
 type RedisEnterpriseCache struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure_subscription.RedisEnterpriseCacheDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                        `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
+	ResourceID      string                                `json:"resource_id"`
+	PlatformID      string                                `json:"platform_id"`
+	Description     azure.RedisEnterpriseCacheDescription `json:"Description"`
+	Metadata        azure.Metadata                        `json:"metadata"`
+	DescribedBy     string                                `json:"described_by"`
+	ResourceType    string                                `json:"resource_type"`
+	IntegrationType string                                `json:"integration_type"`
+	IntegrationID   string                                `json:"integration_id"`
 }
 
 type RedisEnterpriseCacheHit struct {
@@ -15289,14 +15289,14 @@ func GetRedisEnterpriseCache(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: ResourceLink =============================
 
 type ResourceLink struct {
-	ResourceID      string                                     `json:"resource_id"`
-	PlatformID      string                                     `json:"platform_id"`
-	Description     azure_subscription.ResourceLinkDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                `json:"metadata"`
-	DescribedBy     string                                     `json:"described_by"`
-	ResourceType    string                                     `json:"resource_type"`
-	IntegrationType string                                     `json:"integration_type"`
-	IntegrationID   string                                     `json:"integration_id"`
+	ResourceID      string                        `json:"resource_id"`
+	PlatformID      string                        `json:"platform_id"`
+	Description     azure.ResourceLinkDescription `json:"Description"`
+	Metadata        azure.Metadata                `json:"metadata"`
+	DescribedBy     string                        `json:"described_by"`
+	ResourceType    string                        `json:"resource_type"`
+	IntegrationType string                        `json:"integration_type"`
+	IntegrationID   string                        `json:"integration_id"`
 }
 
 type ResourceLinkHit struct {
@@ -15508,14 +15508,14 @@ func GetResourceLink(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: RoleAssignment =============================
 
 type RoleAssignment struct {
-	ResourceID      string                                       `json:"resource_id"`
-	PlatformID      string                                       `json:"platform_id"`
-	Description     azure_subscription.RoleAssignmentDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                  `json:"metadata"`
-	DescribedBy     string                                       `json:"described_by"`
-	ResourceType    string                                       `json:"resource_type"`
-	IntegrationType string                                       `json:"integration_type"`
-	IntegrationID   string                                       `json:"integration_id"`
+	ResourceID      string                          `json:"resource_id"`
+	PlatformID      string                          `json:"platform_id"`
+	Description     azure.RoleAssignmentDescription `json:"Description"`
+	Metadata        azure.Metadata                  `json:"metadata"`
+	DescribedBy     string                          `json:"described_by"`
+	ResourceType    string                          `json:"resource_type"`
+	IntegrationType string                          `json:"integration_type"`
+	IntegrationID   string                          `json:"integration_id"`
 }
 
 type RoleAssignmentHit struct {
@@ -15731,14 +15731,14 @@ func GetRoleAssignment(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: RoleDefinition =============================
 
 type RoleDefinition struct {
-	ResourceID      string                                       `json:"resource_id"`
-	PlatformID      string                                       `json:"platform_id"`
-	Description     azure_subscription.RoleDefinitionDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                  `json:"metadata"`
-	DescribedBy     string                                       `json:"described_by"`
-	ResourceType    string                                       `json:"resource_type"`
-	IntegrationType string                                       `json:"integration_type"`
-	IntegrationID   string                                       `json:"integration_id"`
+	ResourceID      string                          `json:"resource_id"`
+	PlatformID      string                          `json:"platform_id"`
+	Description     azure.RoleDefinitionDescription `json:"Description"`
+	Metadata        azure.Metadata                  `json:"metadata"`
+	DescribedBy     string                          `json:"described_by"`
+	ResourceType    string                          `json:"resource_type"`
+	IntegrationType string                          `json:"integration_type"`
+	IntegrationID   string                          `json:"integration_id"`
 }
 
 type RoleDefinitionHit struct {
@@ -15950,14 +15950,14 @@ func GetRoleDefinition(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: PolicyDefinition =============================
 
 type PolicyDefinition struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.PolicyDefinitionDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.PolicyDefinitionDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type PolicyDefinitionHit struct {
@@ -16177,14 +16177,14 @@ func GetPolicyDefinition(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: UserEffectiveAccess =============================
 
 type UserEffectiveAccess struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure_subscription.UserEffectiveAccessDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                       `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure.UserEffectiveAccessDescription `json:"Description"`
+	Metadata        azure.Metadata                       `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type UserEffectiveAccessHit struct {
@@ -16398,14 +16398,14 @@ func GetUserEffectiveAccess(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: SecurityCenterAutoProvisioning =============================
 
 type SecurityCenterAutoProvisioning struct {
-	ResourceID      string                                                       `json:"resource_id"`
-	PlatformID      string                                                       `json:"platform_id"`
-	Description     azure_subscription.SecurityCenterAutoProvisioningDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                  `json:"metadata"`
-	DescribedBy     string                                                       `json:"described_by"`
-	ResourceType    string                                                       `json:"resource_type"`
-	IntegrationType string                                                       `json:"integration_type"`
-	IntegrationID   string                                                       `json:"integration_id"`
+	ResourceID      string                                          `json:"resource_id"`
+	PlatformID      string                                          `json:"platform_id"`
+	Description     azure.SecurityCenterAutoProvisioningDescription `json:"Description"`
+	Metadata        azure.Metadata                                  `json:"metadata"`
+	DescribedBy     string                                          `json:"described_by"`
+	ResourceType    string                                          `json:"resource_type"`
+	IntegrationType string                                          `json:"integration_type"`
+	IntegrationID   string                                          `json:"integration_id"`
 }
 
 type SecurityCenterAutoProvisioningHit struct {
@@ -16611,14 +16611,14 @@ func GetSecurityCenterAutoProvisioning(ctx context.Context, d *plugin.QueryData,
 // ==========================  START: SecurityCenterContact =============================
 
 type SecurityCenterContact struct {
-	ResourceID      string                                              `json:"resource_id"`
-	PlatformID      string                                              `json:"platform_id"`
-	Description     azure_subscription.SecurityCenterContactDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                         `json:"metadata"`
-	DescribedBy     string                                              `json:"described_by"`
-	ResourceType    string                                              `json:"resource_type"`
-	IntegrationType string                                              `json:"integration_type"`
-	IntegrationID   string                                              `json:"integration_id"`
+	ResourceID      string                                 `json:"resource_id"`
+	PlatformID      string                                 `json:"platform_id"`
+	Description     azure.SecurityCenterContactDescription `json:"Description"`
+	Metadata        azure.Metadata                         `json:"metadata"`
+	DescribedBy     string                                 `json:"described_by"`
+	ResourceType    string                                 `json:"resource_type"`
+	IntegrationType string                                 `json:"integration_type"`
+	IntegrationID   string                                 `json:"integration_id"`
 }
 
 type SecurityCenterContactHit struct {
@@ -16830,14 +16830,14 @@ func GetSecurityCenterContact(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: SecurityCenterJitNetworkAccessPolicy =============================
 
 type SecurityCenterJitNetworkAccessPolicy struct {
-	ResourceID      string                                                             `json:"resource_id"`
-	PlatformID      string                                                             `json:"platform_id"`
-	Description     azure_subscription.SecurityCenterJitNetworkAccessPolicyDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                        `json:"metadata"`
-	DescribedBy     string                                                             `json:"described_by"`
-	ResourceType    string                                                             `json:"resource_type"`
-	IntegrationType string                                                             `json:"integration_type"`
-	IntegrationID   string                                                             `json:"integration_id"`
+	ResourceID      string                                                `json:"resource_id"`
+	PlatformID      string                                                `json:"platform_id"`
+	Description     azure.SecurityCenterJitNetworkAccessPolicyDescription `json:"Description"`
+	Metadata        azure.Metadata                                        `json:"metadata"`
+	DescribedBy     string                                                `json:"described_by"`
+	ResourceType    string                                                `json:"resource_type"`
+	IntegrationType string                                                `json:"integration_type"`
+	IntegrationID   string                                                `json:"integration_id"`
 }
 
 type SecurityCenterJitNetworkAccessPolicyHit struct {
@@ -17047,14 +17047,14 @@ func GetSecurityCenterJitNetworkAccessPolicy(ctx context.Context, d *plugin.Quer
 // ==========================  START: SecurityCenterSetting =============================
 
 type SecurityCenterSetting struct {
-	ResourceID      string                                              `json:"resource_id"`
-	PlatformID      string                                              `json:"platform_id"`
-	Description     azure_subscription.SecurityCenterSettingDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                         `json:"metadata"`
-	DescribedBy     string                                              `json:"described_by"`
-	ResourceType    string                                              `json:"resource_type"`
-	IntegrationType string                                              `json:"integration_type"`
-	IntegrationID   string                                              `json:"integration_id"`
+	ResourceID      string                                 `json:"resource_id"`
+	PlatformID      string                                 `json:"platform_id"`
+	Description     azure.SecurityCenterSettingDescription `json:"Description"`
+	Metadata        azure.Metadata                         `json:"metadata"`
+	DescribedBy     string                                 `json:"described_by"`
+	ResourceType    string                                 `json:"resource_type"`
+	IntegrationType string                                 `json:"integration_type"`
+	IntegrationID   string                                 `json:"integration_id"`
 }
 
 type SecurityCenterSettingHit struct {
@@ -17262,14 +17262,14 @@ func GetSecurityCenterSetting(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: SecurityCenterSubscriptionPricing =============================
 
 type SecurityCenterSubscriptionPricing struct {
-	ResourceID      string                                                          `json:"resource_id"`
-	PlatformID      string                                                          `json:"platform_id"`
-	Description     azure_subscription.SecurityCenterSubscriptionPricingDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                     `json:"metadata"`
-	DescribedBy     string                                                          `json:"described_by"`
-	ResourceType    string                                                          `json:"resource_type"`
-	IntegrationType string                                                          `json:"integration_type"`
-	IntegrationID   string                                                          `json:"integration_id"`
+	ResourceID      string                                             `json:"resource_id"`
+	PlatformID      string                                             `json:"platform_id"`
+	Description     azure.SecurityCenterSubscriptionPricingDescription `json:"Description"`
+	Metadata        azure.Metadata                                     `json:"metadata"`
+	DescribedBy     string                                             `json:"described_by"`
+	ResourceType    string                                             `json:"resource_type"`
+	IntegrationType string                                             `json:"integration_type"`
+	IntegrationID   string                                             `json:"integration_id"`
 }
 
 type SecurityCenterSubscriptionPricingHit struct {
@@ -17477,14 +17477,14 @@ func GetSecurityCenterSubscriptionPricing(ctx context.Context, d *plugin.QueryDa
 // ==========================  START: SecurityCenterAutomation =============================
 
 type SecurityCenterAutomation struct {
-	ResourceID      string                                                 `json:"resource_id"`
-	PlatformID      string                                                 `json:"platform_id"`
-	Description     azure_subscription.SecurityCenterAutomationDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                            `json:"metadata"`
-	DescribedBy     string                                                 `json:"described_by"`
-	ResourceType    string                                                 `json:"resource_type"`
-	IntegrationType string                                                 `json:"integration_type"`
-	IntegrationID   string                                                 `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure.SecurityCenterAutomationDescription `json:"Description"`
+	Metadata        azure.Metadata                            `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type SecurityCenterAutomationHit struct {
@@ -17706,14 +17706,14 @@ func GetSecurityCenterAutomation(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: SecurityCenterSubAssessment =============================
 
 type SecurityCenterSubAssessment struct {
-	ResourceID      string                                                    `json:"resource_id"`
-	PlatformID      string                                                    `json:"platform_id"`
-	Description     azure_subscription.SecurityCenterSubAssessmentDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                               `json:"metadata"`
-	DescribedBy     string                                                    `json:"described_by"`
-	ResourceType    string                                                    `json:"resource_type"`
-	IntegrationType string                                                    `json:"integration_type"`
-	IntegrationID   string                                                    `json:"integration_id"`
+	ResourceID      string                                       `json:"resource_id"`
+	PlatformID      string                                       `json:"platform_id"`
+	Description     azure.SecurityCenterSubAssessmentDescription `json:"Description"`
+	Metadata        azure.Metadata                               `json:"metadata"`
+	DescribedBy     string                                       `json:"described_by"`
+	ResourceType    string                                       `json:"resource_type"`
+	IntegrationType string                                       `json:"integration_type"`
+	IntegrationID   string                                       `json:"integration_id"`
 }
 
 type SecurityCenterSubAssessmentHit struct {
@@ -17931,14 +17931,14 @@ func GetSecurityCenterSubAssessment(ctx context.Context, d *plugin.QueryData, _ 
 // ==========================  START: StorageContainer =============================
 
 type StorageContainer struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.StorageContainerDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.StorageContainerDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type StorageContainerHit struct {
@@ -18174,14 +18174,14 @@ func GetStorageContainer(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: StorageBlob =============================
 
 type StorageBlob struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure_subscription.StorageBlobDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata               `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                       `json:"resource_id"`
+	PlatformID      string                       `json:"platform_id"`
+	Description     azure.StorageBlobDescription `json:"Description"`
+	Metadata        azure.Metadata               `json:"metadata"`
+	DescribedBy     string                       `json:"described_by"`
+	ResourceType    string                       `json:"resource_type"`
+	IntegrationType string                       `json:"integration_type"`
+	IntegrationID   string                       `json:"integration_id"`
 }
 
 type StorageBlobHit struct {
@@ -18466,14 +18466,14 @@ func GetStorageBlob(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: StorageBlobService =============================
 
 type StorageBlobService struct {
-	ResourceID      string                                           `json:"resource_id"`
-	PlatformID      string                                           `json:"platform_id"`
-	Description     azure_subscription.StorageBlobServiceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                      `json:"metadata"`
-	DescribedBy     string                                           `json:"described_by"`
-	ResourceType    string                                           `json:"resource_type"`
-	IntegrationType string                                           `json:"integration_type"`
-	IntegrationID   string                                           `json:"integration_id"`
+	ResourceID      string                              `json:"resource_id"`
+	PlatformID      string                              `json:"platform_id"`
+	Description     azure.StorageBlobServiceDescription `json:"Description"`
+	Metadata        azure.Metadata                      `json:"metadata"`
+	DescribedBy     string                              `json:"described_by"`
+	ResourceType    string                              `json:"resource_type"`
+	IntegrationType string                              `json:"integration_type"`
+	IntegrationID   string                              `json:"integration_id"`
 }
 
 type StorageBlobServiceHit struct {
@@ -18701,14 +18701,14 @@ func GetStorageBlobService(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: StorageQueue =============================
 
 type StorageQueue struct {
-	ResourceID      string                                     `json:"resource_id"`
-	PlatformID      string                                     `json:"platform_id"`
-	Description     azure_subscription.StorageQueueDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                `json:"metadata"`
-	DescribedBy     string                                     `json:"described_by"`
-	ResourceType    string                                     `json:"resource_type"`
-	IntegrationType string                                     `json:"integration_type"`
-	IntegrationID   string                                     `json:"integration_id"`
+	ResourceID      string                        `json:"resource_id"`
+	PlatformID      string                        `json:"platform_id"`
+	Description     azure.StorageQueueDescription `json:"Description"`
+	Metadata        azure.Metadata                `json:"metadata"`
+	DescribedBy     string                        `json:"described_by"`
+	ResourceType    string                        `json:"resource_type"`
+	IntegrationType string                        `json:"integration_type"`
+	IntegrationID   string                        `json:"integration_id"`
 }
 
 type StorageQueueHit struct {
@@ -18918,14 +18918,14 @@ func GetStorageQueue(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: StorageFileShare =============================
 
 type StorageFileShare struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.StorageFileShareDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.StorageFileShareDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type StorageFileShareHit struct {
@@ -19152,14 +19152,14 @@ func GetStorageFileShare(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: StorageTable =============================
 
 type StorageTable struct {
-	ResourceID      string                                     `json:"resource_id"`
-	PlatformID      string                                     `json:"platform_id"`
-	Description     azure_subscription.StorageTableDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                `json:"metadata"`
-	DescribedBy     string                                     `json:"described_by"`
-	ResourceType    string                                     `json:"resource_type"`
-	IntegrationType string                                     `json:"integration_type"`
-	IntegrationID   string                                     `json:"integration_id"`
+	ResourceID      string                        `json:"resource_id"`
+	PlatformID      string                        `json:"platform_id"`
+	Description     azure.StorageTableDescription `json:"Description"`
+	Metadata        azure.Metadata                `json:"metadata"`
+	DescribedBy     string                        `json:"described_by"`
+	ResourceType    string                        `json:"resource_type"`
+	IntegrationType string                        `json:"integration_type"`
+	IntegrationID   string                        `json:"integration_id"`
 }
 
 type StorageTableHit struct {
@@ -19366,14 +19366,14 @@ func GetStorageTable(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: StorageTableService =============================
 
 type StorageTableService struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure_subscription.StorageTableServiceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                       `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure.StorageTableServiceDescription `json:"Description"`
+	Metadata        azure.Metadata                       `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type StorageTableServiceHit struct {
@@ -19582,14 +19582,14 @@ func GetStorageTableService(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: Subnet =============================
 
 type Subnet struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure_subscription.SubnetDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata          `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                  `json:"resource_id"`
+	PlatformID      string                  `json:"platform_id"`
+	Description     azure.SubnetDescription `json:"Description"`
+	Metadata        azure.Metadata          `json:"metadata"`
+	DescribedBy     string                  `json:"described_by"`
+	ResourceType    string                  `json:"resource_type"`
+	IntegrationType string                  `json:"integration_type"`
+	IntegrationID   string                  `json:"integration_id"`
 }
 
 type SubnetHit struct {
@@ -19820,14 +19820,14 @@ func GetSubnet(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) 
 // ==========================  START: VirtualNetwork =============================
 
 type VirtualNetwork struct {
-	ResourceID      string                                       `json:"resource_id"`
-	PlatformID      string                                       `json:"platform_id"`
-	Description     azure_subscription.VirtualNetworkDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                  `json:"metadata"`
-	DescribedBy     string                                       `json:"described_by"`
-	ResourceType    string                                       `json:"resource_type"`
-	IntegrationType string                                       `json:"integration_type"`
-	IntegrationID   string                                       `json:"integration_id"`
+	ResourceID      string                          `json:"resource_id"`
+	PlatformID      string                          `json:"platform_id"`
+	Description     azure.VirtualNetworkDescription `json:"Description"`
+	Metadata        azure.Metadata                  `json:"metadata"`
+	DescribedBy     string                          `json:"described_by"`
+	ResourceType    string                          `json:"resource_type"`
+	IntegrationType string                          `json:"integration_type"`
+	IntegrationID   string                          `json:"integration_id"`
 }
 
 type VirtualNetworkHit struct {
@@ -20051,14 +20051,14 @@ func GetVirtualNetwork(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: Tenant =============================
 
 type Tenant struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure_subscription.TenantDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata          `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                  `json:"resource_id"`
+	PlatformID      string                  `json:"platform_id"`
+	Description     azure.TenantDescription `json:"Description"`
+	Metadata        azure.Metadata          `json:"metadata"`
+	DescribedBy     string                  `json:"described_by"`
+	ResourceType    string                  `json:"resource_type"`
+	IntegrationType string                  `json:"integration_type"`
+	IntegrationID   string                  `json:"integration_id"`
 }
 
 type TenantHit struct {
@@ -20266,14 +20266,14 @@ func GetTenant(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) 
 // ==========================  START: Subscription =============================
 
 type Subscription struct {
-	ResourceID      string                                     `json:"resource_id"`
-	PlatformID      string                                     `json:"platform_id"`
-	Description     azure_subscription.SubscriptionDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                `json:"metadata"`
-	DescribedBy     string                                     `json:"described_by"`
-	ResourceType    string                                     `json:"resource_type"`
-	IntegrationType string                                     `json:"integration_type"`
-	IntegrationID   string                                     `json:"integration_id"`
+	ResourceID      string                        `json:"resource_id"`
+	PlatformID      string                        `json:"platform_id"`
+	Description     azure.SubscriptionDescription `json:"Description"`
+	Metadata        azure.Metadata                `json:"metadata"`
+	DescribedBy     string                        `json:"described_by"`
+	ResourceType    string                        `json:"resource_type"`
+	IntegrationType string                        `json:"integration_type"`
+	IntegrationID   string                        `json:"integration_id"`
 }
 
 type SubscriptionHit struct {
@@ -20487,14 +20487,14 @@ func GetSubscription(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: ApplicationGateway =============================
 
 type ApplicationGateway struct {
-	ResourceID      string                                           `json:"resource_id"`
-	PlatformID      string                                           `json:"platform_id"`
-	Description     azure_subscription.ApplicationGatewayDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                      `json:"metadata"`
-	DescribedBy     string                                           `json:"described_by"`
-	ResourceType    string                                           `json:"resource_type"`
-	IntegrationType string                                           `json:"integration_type"`
-	IntegrationID   string                                           `json:"integration_id"`
+	ResourceID      string                              `json:"resource_id"`
+	PlatformID      string                              `json:"platform_id"`
+	Description     azure.ApplicationGatewayDescription `json:"Description"`
+	Metadata        azure.Metadata                      `json:"metadata"`
+	DescribedBy     string                              `json:"described_by"`
+	ResourceType    string                              `json:"resource_type"`
+	IntegrationType string                              `json:"integration_type"`
+	IntegrationID   string                              `json:"integration_id"`
 }
 
 type ApplicationGatewayHit struct {
@@ -20736,14 +20736,14 @@ func GetApplicationGateway(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: BatchAccount =============================
 
 type BatchAccount struct {
-	ResourceID      string                                     `json:"resource_id"`
-	PlatformID      string                                     `json:"platform_id"`
-	Description     azure_subscription.BatchAccountDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                `json:"metadata"`
-	DescribedBy     string                                     `json:"described_by"`
-	ResourceType    string                                     `json:"resource_type"`
-	IntegrationType string                                     `json:"integration_type"`
-	IntegrationID   string                                     `json:"integration_id"`
+	ResourceID      string                        `json:"resource_id"`
+	PlatformID      string                        `json:"platform_id"`
+	Description     azure.BatchAccountDescription `json:"Description"`
+	Metadata        azure.Metadata                `json:"metadata"`
+	DescribedBy     string                        `json:"described_by"`
+	ResourceType    string                        `json:"resource_type"`
+	IntegrationType string                        `json:"integration_type"`
+	IntegrationID   string                        `json:"integration_id"`
 }
 
 type BatchAccountHit struct {
@@ -20983,14 +20983,14 @@ func GetBatchAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: CognitiveAccount =============================
 
 type CognitiveAccount struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.CognitiveAccountDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.CognitiveAccountDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type CognitiveAccountHit struct {
@@ -21250,14 +21250,14 @@ func GetCognitiveAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: ComputeVirtualMachine =============================
 
 type ComputeVirtualMachine struct {
-	ResourceID      string                                              `json:"resource_id"`
-	PlatformID      string                                              `json:"platform_id"`
-	Description     azure_subscription.ComputeVirtualMachineDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                         `json:"metadata"`
-	DescribedBy     string                                              `json:"described_by"`
-	ResourceType    string                                              `json:"resource_type"`
-	IntegrationType string                                              `json:"integration_type"`
-	IntegrationID   string                                              `json:"integration_id"`
+	ResourceID      string                                 `json:"resource_id"`
+	PlatformID      string                                 `json:"platform_id"`
+	Description     azure.ComputeVirtualMachineDescription `json:"Description"`
+	Metadata        azure.Metadata                         `json:"metadata"`
+	DescribedBy     string                                 `json:"described_by"`
+	ResourceType    string                                 `json:"resource_type"`
+	IntegrationType string                                 `json:"integration_type"`
+	IntegrationID   string                                 `json:"integration_id"`
 }
 
 type ComputeVirtualMachineHit struct {
@@ -21561,14 +21561,14 @@ func GetComputeVirtualMachine(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: ComputeResourceSKU =============================
 
 type ComputeResourceSKU struct {
-	ResourceID      string                                           `json:"resource_id"`
-	PlatformID      string                                           `json:"platform_id"`
-	Description     azure_subscription.ComputeResourceSKUDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                      `json:"metadata"`
-	DescribedBy     string                                           `json:"described_by"`
-	ResourceType    string                                           `json:"resource_type"`
-	IntegrationType string                                           `json:"integration_type"`
-	IntegrationID   string                                           `json:"integration_id"`
+	ResourceID      string                              `json:"resource_id"`
+	PlatformID      string                              `json:"platform_id"`
+	Description     azure.ComputeResourceSKUDescription `json:"Description"`
+	Metadata        azure.Metadata                      `json:"metadata"`
+	DescribedBy     string                              `json:"described_by"`
+	ResourceType    string                              `json:"resource_type"`
+	IntegrationType string                              `json:"integration_type"`
+	IntegrationID   string                              `json:"integration_id"`
 }
 
 type ComputeResourceSKUHit struct {
@@ -21790,14 +21790,14 @@ func GetComputeResourceSKU(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: ComputeCloudService =============================
 
 type ComputeCloudService struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure_subscription.ComputeCloudServiceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                       `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure.ComputeCloudServiceDescription `json:"Description"`
+	Metadata        azure.Metadata                       `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type ComputeCloudServiceHit struct {
@@ -22001,14 +22001,14 @@ func GetComputeCloudService(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: ContainerRegistry =============================
 
 type ContainerRegistry struct {
-	ResourceID      string                                          `json:"resource_id"`
-	PlatformID      string                                          `json:"platform_id"`
-	Description     azure_subscription.ContainerRegistryDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                     `json:"metadata"`
-	DescribedBy     string                                          `json:"described_by"`
-	ResourceType    string                                          `json:"resource_type"`
-	IntegrationType string                                          `json:"integration_type"`
-	IntegrationID   string                                          `json:"integration_id"`
+	ResourceID      string                             `json:"resource_id"`
+	PlatformID      string                             `json:"platform_id"`
+	Description     azure.ContainerRegistryDescription `json:"Description"`
+	Metadata        azure.Metadata                     `json:"metadata"`
+	DescribedBy     string                             `json:"described_by"`
+	ResourceType    string                             `json:"resource_type"`
+	IntegrationType string                             `json:"integration_type"`
+	IntegrationID   string                             `json:"integration_id"`
 }
 
 type ContainerRegistryHit struct {
@@ -22260,14 +22260,14 @@ func GetContainerRegistry(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: CosmosdbAccount =============================
 
 type CosmosdbAccount struct {
-	ResourceID      string                                        `json:"resource_id"`
-	PlatformID      string                                        `json:"platform_id"`
-	Description     azure_subscription.CosmosdbAccountDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                   `json:"metadata"`
-	DescribedBy     string                                        `json:"described_by"`
-	ResourceType    string                                        `json:"resource_type"`
-	IntegrationType string                                        `json:"integration_type"`
-	IntegrationID   string                                        `json:"integration_id"`
+	ResourceID      string                           `json:"resource_id"`
+	PlatformID      string                           `json:"platform_id"`
+	Description     azure.CosmosdbAccountDescription `json:"Description"`
+	Metadata        azure.Metadata                   `json:"metadata"`
+	DescribedBy     string                           `json:"described_by"`
+	ResourceType    string                           `json:"resource_type"`
+	IntegrationType string                           `json:"integration_type"`
+	IntegrationID   string                           `json:"integration_id"`
 }
 
 type CosmosdbAccountHit struct {
@@ -22534,14 +22534,14 @@ func GetCosmosdbAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: CosmosdbRestorableDatabaseAccount =============================
 
 type CosmosdbRestorableDatabaseAccount struct {
-	ResourceID      string                                                          `json:"resource_id"`
-	PlatformID      string                                                          `json:"platform_id"`
-	Description     azure_subscription.CosmosdbRestorableDatabaseAccountDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                     `json:"metadata"`
-	DescribedBy     string                                                          `json:"described_by"`
-	ResourceType    string                                                          `json:"resource_type"`
-	IntegrationType string                                                          `json:"integration_type"`
-	IntegrationID   string                                                          `json:"integration_id"`
+	ResourceID      string                                             `json:"resource_id"`
+	PlatformID      string                                             `json:"platform_id"`
+	Description     azure.CosmosdbRestorableDatabaseAccountDescription `json:"Description"`
+	Metadata        azure.Metadata                                     `json:"metadata"`
+	DescribedBy     string                                             `json:"described_by"`
+	ResourceType    string                                             `json:"resource_type"`
+	IntegrationType string                                             `json:"integration_type"`
+	IntegrationID   string                                             `json:"integration_id"`
 }
 
 type CosmosdbRestorableDatabaseAccountHit struct {
@@ -22757,14 +22757,14 @@ func GetCosmosdbRestorableDatabaseAccount(ctx context.Context, d *plugin.QueryDa
 // ==========================  START: CosmosdbMongoDatabase =============================
 
 type CosmosdbMongoDatabase struct {
-	ResourceID      string                                              `json:"resource_id"`
-	PlatformID      string                                              `json:"platform_id"`
-	Description     azure_subscription.CosmosdbMongoDatabaseDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                         `json:"metadata"`
-	DescribedBy     string                                              `json:"described_by"`
-	ResourceType    string                                              `json:"resource_type"`
-	IntegrationType string                                              `json:"integration_type"`
-	IntegrationID   string                                              `json:"integration_id"`
+	ResourceID      string                                 `json:"resource_id"`
+	PlatformID      string                                 `json:"platform_id"`
+	Description     azure.CosmosdbMongoDatabaseDescription `json:"Description"`
+	Metadata        azure.Metadata                         `json:"metadata"`
+	DescribedBy     string                                 `json:"described_by"`
+	ResourceType    string                                 `json:"resource_type"`
+	IntegrationType string                                 `json:"integration_type"`
+	IntegrationID   string                                 `json:"integration_id"`
 }
 
 type CosmosdbMongoDatabaseHit struct {
@@ -22985,14 +22985,14 @@ func GetCosmosdbMongoDatabase(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: CosmosdbMongoCollection =============================
 
 type CosmosdbMongoCollection struct {
-	ResourceID      string                                                `json:"resource_id"`
-	PlatformID      string                                                `json:"platform_id"`
-	Description     azure_subscription.CosmosdbMongoCollectionDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                           `json:"metadata"`
-	DescribedBy     string                                                `json:"described_by"`
-	ResourceType    string                                                `json:"resource_type"`
-	IntegrationType string                                                `json:"integration_type"`
-	IntegrationID   string                                                `json:"integration_id"`
+	ResourceID      string                                   `json:"resource_id"`
+	PlatformID      string                                   `json:"platform_id"`
+	Description     azure.CosmosdbMongoCollectionDescription `json:"Description"`
+	Metadata        azure.Metadata                           `json:"metadata"`
+	DescribedBy     string                                   `json:"described_by"`
+	ResourceType    string                                   `json:"resource_type"`
+	IntegrationType string                                   `json:"integration_type"`
+	IntegrationID   string                                   `json:"integration_id"`
 }
 
 type CosmosdbMongoCollectionHit struct {
@@ -23222,14 +23222,14 @@ func GetCosmosdbMongoCollection(ctx context.Context, d *plugin.QueryData, _ *plu
 // ==========================  START: CosmosdbSqlDatabase =============================
 
 type CosmosdbSqlDatabase struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure_subscription.CosmosdbSqlDatabaseDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                       `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure.CosmosdbSqlDatabaseDescription `json:"Description"`
+	Metadata        azure.Metadata                       `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type CosmosdbSqlDatabaseHit struct {
@@ -23452,14 +23452,14 @@ func GetCosmosdbSqlDatabase(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: CosmosdbCassandraCluster =============================
 
 type CosmosdbCassandraCluster struct {
-	ResourceID      string                                                 `json:"resource_id"`
-	PlatformID      string                                                 `json:"platform_id"`
-	Description     azure_subscription.CosmosdbCassandraClusterDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                            `json:"metadata"`
-	DescribedBy     string                                                 `json:"described_by"`
-	ResourceType    string                                                 `json:"resource_type"`
-	IntegrationType string                                                 `json:"integration_type"`
-	IntegrationID   string                                                 `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure.CosmosdbCassandraClusterDescription `json:"Description"`
+	Metadata        azure.Metadata                            `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type CosmosdbCassandraClusterHit struct {
@@ -23661,14 +23661,14 @@ func GetCosmosdbCassandraCluster(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: DatabricksWorkspace =============================
 
 type DatabricksWorkspace struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure_subscription.DatabricksWorkspaceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                       `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure.DatabricksWorkspaceDescription `json:"Description"`
+	Metadata        azure.Metadata                       `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type DatabricksWorkspaceHit struct {
@@ -23900,14 +23900,14 @@ func GetDatabricksWorkspace(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: DataMigrationService =============================
 
 type DataMigrationService struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure_subscription.DataMigrationServiceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                        `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
+	ResourceID      string                                `json:"resource_id"`
+	PlatformID      string                                `json:"platform_id"`
+	Description     azure.DataMigrationServiceDescription `json:"Description"`
+	Metadata        azure.Metadata                        `json:"metadata"`
+	DescribedBy     string                                `json:"described_by"`
+	ResourceType    string                                `json:"resource_type"`
+	IntegrationType string                                `json:"integration_type"`
+	IntegrationID   string                                `json:"integration_id"`
 }
 
 type DataMigrationServiceHit struct {
@@ -24111,14 +24111,14 @@ func GetDataMigrationService(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: DataProtectionBackupVaults =============================
 
 type DataProtectionBackupVaults struct {
-	ResourceID      string                                                   `json:"resource_id"`
-	PlatformID      string                                                   `json:"platform_id"`
-	Description     azure_subscription.DataProtectionBackupVaultsDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                              `json:"metadata"`
-	DescribedBy     string                                                   `json:"described_by"`
-	ResourceType    string                                                   `json:"resource_type"`
-	IntegrationType string                                                   `json:"integration_type"`
-	IntegrationID   string                                                   `json:"integration_id"`
+	ResourceID      string                                      `json:"resource_id"`
+	PlatformID      string                                      `json:"platform_id"`
+	Description     azure.DataProtectionBackupVaultsDescription `json:"Description"`
+	Metadata        azure.Metadata                              `json:"metadata"`
+	DescribedBy     string                                      `json:"described_by"`
+	ResourceType    string                                      `json:"resource_type"`
+	IntegrationType string                                      `json:"integration_type"`
+	IntegrationID   string                                      `json:"integration_id"`
 }
 
 type DataProtectionBackupVaultsHit struct {
@@ -24336,14 +24336,14 @@ func GetDataProtectionBackupVaults(ctx context.Context, d *plugin.QueryData, _ *
 // ==========================  START: DataProtectionBackupVaultsBackupPolicies =============================
 
 type DataProtectionBackupVaultsBackupPolicies struct {
-	ResourceID      string                                                                 `json:"resource_id"`
-	PlatformID      string                                                                 `json:"platform_id"`
-	Description     azure_subscription.DataProtectionBackupVaultsBackupPoliciesDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                            `json:"metadata"`
-	DescribedBy     string                                                                 `json:"described_by"`
-	ResourceType    string                                                                 `json:"resource_type"`
-	IntegrationType string                                                                 `json:"integration_type"`
-	IntegrationID   string                                                                 `json:"integration_id"`
+	ResourceID      string                                                    `json:"resource_id"`
+	PlatformID      string                                                    `json:"platform_id"`
+	Description     azure.DataProtectionBackupVaultsBackupPoliciesDescription `json:"Description"`
+	Metadata        azure.Metadata                                            `json:"metadata"`
+	DescribedBy     string                                                    `json:"described_by"`
+	ResourceType    string                                                    `json:"resource_type"`
+	IntegrationType string                                                    `json:"integration_type"`
+	IntegrationID   string                                                    `json:"integration_id"`
 }
 
 type DataProtectionBackupVaultsBackupPoliciesHit struct {
@@ -24545,14 +24545,14 @@ func GetDataProtectionBackupVaultsBackupPolicies(ctx context.Context, d *plugin.
 // ==========================  START: DataProtectionJob =============================
 
 type DataProtectionJob struct {
-	ResourceID      string                                          `json:"resource_id"`
-	PlatformID      string                                          `json:"platform_id"`
-	Description     azure_subscription.DataProtectionJobDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                     `json:"metadata"`
-	DescribedBy     string                                          `json:"described_by"`
-	ResourceType    string                                          `json:"resource_type"`
-	IntegrationType string                                          `json:"integration_type"`
-	IntegrationID   string                                          `json:"integration_id"`
+	ResourceID      string                             `json:"resource_id"`
+	PlatformID      string                             `json:"platform_id"`
+	Description     azure.DataProtectionJobDescription `json:"Description"`
+	Metadata        azure.Metadata                     `json:"metadata"`
+	DescribedBy     string                             `json:"described_by"`
+	ResourceType    string                             `json:"resource_type"`
+	IntegrationType string                             `json:"integration_type"`
+	IntegrationID   string                             `json:"integration_id"`
 }
 
 type DataProtectionJobHit struct {
@@ -24812,14 +24812,14 @@ func GetDataProtectionJob(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: DataFactory =============================
 
 type DataFactory struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure_subscription.DataFactoryDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata               `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                       `json:"resource_id"`
+	PlatformID      string                       `json:"platform_id"`
+	Description     azure.DataFactoryDescription `json:"Description"`
+	Metadata        azure.Metadata               `json:"metadata"`
+	DescribedBy     string                       `json:"described_by"`
+	ResourceType    string                       `json:"resource_type"`
+	IntegrationType string                       `json:"integration_type"`
+	IntegrationID   string                       `json:"integration_id"`
 }
 
 type DataFactoryHit struct {
@@ -25047,14 +25047,14 @@ func GetDataFactory(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: DataFactoryDataset =============================
 
 type DataFactoryDataset struct {
-	ResourceID      string                                           `json:"resource_id"`
-	PlatformID      string                                           `json:"platform_id"`
-	Description     azure_subscription.DataFactoryDatasetDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                      `json:"metadata"`
-	DescribedBy     string                                           `json:"described_by"`
-	ResourceType    string                                           `json:"resource_type"`
-	IntegrationType string                                           `json:"integration_type"`
-	IntegrationID   string                                           `json:"integration_id"`
+	ResourceID      string                              `json:"resource_id"`
+	PlatformID      string                              `json:"platform_id"`
+	Description     azure.DataFactoryDatasetDescription `json:"Description"`
+	Metadata        azure.Metadata                      `json:"metadata"`
+	DescribedBy     string                              `json:"described_by"`
+	ResourceType    string                              `json:"resource_type"`
+	IntegrationType string                              `json:"integration_type"`
+	IntegrationID   string                              `json:"integration_id"`
 }
 
 type DataFactoryDatasetHit struct {
@@ -25266,14 +25266,14 @@ func GetDataFactoryDataset(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: DataFactoryPipeline =============================
 
 type DataFactoryPipeline struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure_subscription.DataFactoryPipelineDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                       `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure.DataFactoryPipelineDescription `json:"Description"`
+	Metadata        azure.Metadata                       `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type DataFactoryPipelineHit struct {
@@ -25501,14 +25501,14 @@ func GetDataFactoryPipeline(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: DataLakeAnalyticsAccount =============================
 
 type DataLakeAnalyticsAccount struct {
-	ResourceID      string                                                 `json:"resource_id"`
-	PlatformID      string                                                 `json:"platform_id"`
-	Description     azure_subscription.DataLakeAnalyticsAccountDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                            `json:"metadata"`
-	DescribedBy     string                                                 `json:"described_by"`
-	ResourceType    string                                                 `json:"resource_type"`
-	IntegrationType string                                                 `json:"integration_type"`
-	IntegrationID   string                                                 `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure.DataLakeAnalyticsAccountDescription `json:"Description"`
+	Metadata        azure.Metadata                            `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type DataLakeAnalyticsAccountHit struct {
@@ -25758,14 +25758,14 @@ func GetDataLakeAnalyticsAccount(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: DataLakeStore =============================
 
 type DataLakeStore struct {
-	ResourceID      string                                      `json:"resource_id"`
-	PlatformID      string                                      `json:"platform_id"`
-	Description     azure_subscription.DataLakeStoreDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                 `json:"metadata"`
-	DescribedBy     string                                      `json:"described_by"`
-	ResourceType    string                                      `json:"resource_type"`
-	IntegrationType string                                      `json:"integration_type"`
-	IntegrationID   string                                      `json:"integration_id"`
+	ResourceID      string                         `json:"resource_id"`
+	PlatformID      string                         `json:"platform_id"`
+	Description     azure.DataLakeStoreDescription `json:"Description"`
+	Metadata        azure.Metadata                 `json:"metadata"`
+	DescribedBy     string                         `json:"described_by"`
+	ResourceType    string                         `json:"resource_type"`
+	IntegrationType string                         `json:"integration_type"`
+	IntegrationID   string                         `json:"integration_id"`
 }
 
 type DataLakeStoreHit struct {
@@ -26009,14 +26009,14 @@ func GetDataLakeStore(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 // ==========================  START: DiagnosticSetting =============================
 
 type DiagnosticSetting struct {
-	ResourceID      string                                          `json:"resource_id"`
-	PlatformID      string                                          `json:"platform_id"`
-	Description     azure_subscription.DiagnosticSettingDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                     `json:"metadata"`
-	DescribedBy     string                                          `json:"described_by"`
-	ResourceType    string                                          `json:"resource_type"`
-	IntegrationType string                                          `json:"integration_type"`
-	IntegrationID   string                                          `json:"integration_id"`
+	ResourceID      string                             `json:"resource_id"`
+	PlatformID      string                             `json:"platform_id"`
+	Description     azure.DiagnosticSettingDescription `json:"Description"`
+	Metadata        azure.Metadata                     `json:"metadata"`
+	DescribedBy     string                             `json:"described_by"`
+	ResourceType    string                             `json:"resource_type"`
+	IntegrationType string                             `json:"integration_type"`
+	IntegrationID   string                             `json:"integration_id"`
 }
 
 type DiagnosticSettingHit struct {
@@ -26238,14 +26238,14 @@ func GetDiagnosticSetting(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: AutoscaleSetting =============================
 
 type AutoscaleSetting struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.AutoscaleSettingDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.AutoscaleSettingDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type AutoscaleSettingHit struct {
@@ -26461,14 +26461,14 @@ func GetAutoscaleSetting(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: EventGridDomain =============================
 
 type EventGridDomain struct {
-	ResourceID      string                                        `json:"resource_id"`
-	PlatformID      string                                        `json:"platform_id"`
-	Description     azure_subscription.EventGridDomainDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                   `json:"metadata"`
-	DescribedBy     string                                        `json:"described_by"`
-	ResourceType    string                                        `json:"resource_type"`
-	IntegrationType string                                        `json:"integration_type"`
-	IntegrationID   string                                        `json:"integration_id"`
+	ResourceID      string                           `json:"resource_id"`
+	PlatformID      string                           `json:"platform_id"`
+	Description     azure.EventGridDomainDescription `json:"Description"`
+	Metadata        azure.Metadata                   `json:"metadata"`
+	DescribedBy     string                           `json:"described_by"`
+	ResourceType    string                           `json:"resource_type"`
+	IntegrationType string                           `json:"integration_type"`
+	IntegrationID   string                           `json:"integration_id"`
 }
 
 type EventGridDomainHit struct {
@@ -26714,14 +26714,14 @@ func GetEventGridDomain(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: EventGridTopic =============================
 
 type EventGridTopic struct {
-	ResourceID      string                                       `json:"resource_id"`
-	PlatformID      string                                       `json:"platform_id"`
-	Description     azure_subscription.EventGridTopicDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                  `json:"metadata"`
-	DescribedBy     string                                       `json:"described_by"`
-	ResourceType    string                                       `json:"resource_type"`
-	IntegrationType string                                       `json:"integration_type"`
-	IntegrationID   string                                       `json:"integration_id"`
+	ResourceID      string                          `json:"resource_id"`
+	PlatformID      string                          `json:"platform_id"`
+	Description     azure.EventGridTopicDescription `json:"Description"`
+	Metadata        azure.Metadata                  `json:"metadata"`
+	DescribedBy     string                          `json:"described_by"`
+	ResourceType    string                          `json:"resource_type"`
+	IntegrationType string                          `json:"integration_type"`
+	IntegrationID   string                          `json:"integration_id"`
 }
 
 type EventGridTopicHit struct {
@@ -26963,14 +26963,14 @@ func GetEventGridTopic(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: EventhubNamespace =============================
 
 type EventhubNamespace struct {
-	ResourceID      string                                          `json:"resource_id"`
-	PlatformID      string                                          `json:"platform_id"`
-	Description     azure_subscription.EventhubNamespaceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                     `json:"metadata"`
-	DescribedBy     string                                          `json:"described_by"`
-	ResourceType    string                                          `json:"resource_type"`
-	IntegrationType string                                          `json:"integration_type"`
-	IntegrationID   string                                          `json:"integration_id"`
+	ResourceID      string                             `json:"resource_id"`
+	PlatformID      string                             `json:"platform_id"`
+	Description     azure.EventhubNamespaceDescription `json:"Description"`
+	Metadata        azure.Metadata                     `json:"metadata"`
+	DescribedBy     string                             `json:"described_by"`
+	ResourceType    string                             `json:"resource_type"`
+	IntegrationType string                             `json:"integration_type"`
+	IntegrationID   string                             `json:"integration_id"`
 }
 
 type EventhubNamespaceHit struct {
@@ -27210,14 +27210,14 @@ func GetEventhubNamespace(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: EventhubNamespaceEventhub =============================
 
 type EventhubNamespaceEventhub struct {
-	ResourceID      string                                                  `json:"resource_id"`
-	PlatformID      string                                                  `json:"platform_id"`
-	Description     azure_subscription.EventhubNamespaceEventhubDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                             `json:"metadata"`
-	DescribedBy     string                                                  `json:"described_by"`
-	ResourceType    string                                                  `json:"resource_type"`
-	IntegrationType string                                                  `json:"integration_type"`
-	IntegrationID   string                                                  `json:"integration_id"`
+	ResourceID      string                                     `json:"resource_id"`
+	PlatformID      string                                     `json:"platform_id"`
+	Description     azure.EventhubNamespaceEventhubDescription `json:"Description"`
+	Metadata        azure.Metadata                             `json:"metadata"`
+	DescribedBy     string                                     `json:"described_by"`
+	ResourceType    string                                     `json:"resource_type"`
+	IntegrationType string                                     `json:"integration_type"`
+	IntegrationID   string                                     `json:"integration_id"`
 }
 
 type EventhubNamespaceEventhubHit struct {
@@ -27421,14 +27421,14 @@ func GetEventhubNamespaceEventhub(ctx context.Context, d *plugin.QueryData, _ *p
 // ==========================  START: Frontdoor =============================
 
 type Frontdoor struct {
-	ResourceID      string                                  `json:"resource_id"`
-	PlatformID      string                                  `json:"platform_id"`
-	Description     azure_subscription.FrontdoorDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata             `json:"metadata"`
-	DescribedBy     string                                  `json:"described_by"`
-	ResourceType    string                                  `json:"resource_type"`
-	IntegrationType string                                  `json:"integration_type"`
-	IntegrationID   string                                  `json:"integration_id"`
+	ResourceID      string                     `json:"resource_id"`
+	PlatformID      string                     `json:"platform_id"`
+	Description     azure.FrontdoorDescription `json:"Description"`
+	Metadata        azure.Metadata             `json:"metadata"`
+	DescribedBy     string                     `json:"described_by"`
+	ResourceType    string                     `json:"resource_type"`
+	IntegrationType string                     `json:"integration_type"`
+	IntegrationID   string                     `json:"integration_id"`
 }
 
 type FrontdoorHit struct {
@@ -27662,14 +27662,14 @@ func GetFrontdoor(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 // ==========================  START: HdinsightCluster =============================
 
 type HdinsightCluster struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.HdinsightClusterDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.HdinsightClusterDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type HdinsightClusterHit struct {
@@ -27927,14 +27927,14 @@ func GetHdinsightCluster(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: HybridComputeMachine =============================
 
 type HybridComputeMachine struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure_subscription.HybridComputeMachineDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                        `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
+	ResourceID      string                                `json:"resource_id"`
+	PlatformID      string                                `json:"platform_id"`
+	Description     azure.HybridComputeMachineDescription `json:"Description"`
+	Metadata        azure.Metadata                        `json:"metadata"`
+	DescribedBy     string                                `json:"described_by"`
+	ResourceType    string                                `json:"resource_type"`
+	IntegrationType string                                `json:"integration_type"`
+	IntegrationID   string                                `json:"integration_id"`
 }
 
 type HybridComputeMachineHit struct {
@@ -28182,14 +28182,14 @@ func GetHybridComputeMachine(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: IOTHub =============================
 
 type IOTHub struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure_subscription.IOTHubDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata          `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                  `json:"resource_id"`
+	PlatformID      string                  `json:"platform_id"`
+	Description     azure.IOTHubDescription `json:"Description"`
+	Metadata        azure.Metadata          `json:"metadata"`
+	DescribedBy     string                  `json:"described_by"`
+	ResourceType    string                  `json:"resource_type"`
+	IntegrationType string                  `json:"integration_type"`
+	IntegrationID   string                  `json:"integration_id"`
 }
 
 type IOTHubHit struct {
@@ -28441,14 +28441,14 @@ func GetIOTHub(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) 
 // ==========================  START: IOTHubDps =============================
 
 type IOTHubDps struct {
-	ResourceID      string                                  `json:"resource_id"`
-	PlatformID      string                                  `json:"platform_id"`
-	Description     azure_subscription.IOTHubDpsDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata             `json:"metadata"`
-	DescribedBy     string                                  `json:"described_by"`
-	ResourceType    string                                  `json:"resource_type"`
-	IntegrationType string                                  `json:"integration_type"`
-	IntegrationID   string                                  `json:"integration_id"`
+	ResourceID      string                     `json:"resource_id"`
+	PlatformID      string                     `json:"platform_id"`
+	Description     azure.IOTHubDpsDescription `json:"Description"`
+	Metadata        azure.Metadata             `json:"metadata"`
+	DescribedBy     string                     `json:"described_by"`
+	ResourceType    string                     `json:"resource_type"`
+	IntegrationType string                     `json:"integration_type"`
+	IntegrationID   string                     `json:"integration_id"`
 }
 
 type IOTHubDpsHit struct {
@@ -28682,14 +28682,14 @@ func GetIOTHubDps(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 // ==========================  START: KeyVault =============================
 
 type KeyVault struct {
-	ResourceID      string                                 `json:"resource_id"`
-	PlatformID      string                                 `json:"platform_id"`
-	Description     azure_subscription.KeyVaultDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata            `json:"metadata"`
-	DescribedBy     string                                 `json:"described_by"`
-	ResourceType    string                                 `json:"resource_type"`
-	IntegrationType string                                 `json:"integration_type"`
-	IntegrationID   string                                 `json:"integration_id"`
+	ResourceID      string                    `json:"resource_id"`
+	PlatformID      string                    `json:"platform_id"`
+	Description     azure.KeyVaultDescription `json:"Description"`
+	Metadata        azure.Metadata            `json:"metadata"`
+	DescribedBy     string                    `json:"described_by"`
+	ResourceType    string                    `json:"resource_type"`
+	IntegrationType string                    `json:"integration_type"`
+	IntegrationID   string                    `json:"integration_id"`
 }
 
 type KeyVaultHit struct {
@@ -28925,14 +28925,14 @@ func GetKeyVault(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 // ==========================  START: KeyVaultCertificate =============================
 
 type KeyVaultCertificate struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure_subscription.KeyVaultCertificateDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                       `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure.KeyVaultCertificateDescription `json:"Description"`
+	Metadata        azure.Metadata                       `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type KeyVaultCertificateHit struct {
@@ -29147,14 +29147,14 @@ func GetKeyVaultCertificate(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: KeyVaultDeletedVault =============================
 
 type KeyVaultDeletedVault struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure_subscription.KeyVaultDeletedVaultDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                        `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
+	ResourceID      string                                `json:"resource_id"`
+	PlatformID      string                                `json:"platform_id"`
+	Description     azure.KeyVaultDeletedVaultDescription `json:"Description"`
+	Metadata        azure.Metadata                        `json:"metadata"`
+	DescribedBy     string                                `json:"described_by"`
+	ResourceType    string                                `json:"resource_type"`
+	IntegrationType string                                `json:"integration_type"`
+	IntegrationID   string                                `json:"integration_id"`
 }
 
 type KeyVaultDeletedVaultHit struct {
@@ -29363,14 +29363,14 @@ func GetKeyVaultDeletedVault(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: KeyVaultManagedHardwareSecurityModule =============================
 
 type KeyVaultManagedHardwareSecurityModule struct {
-	ResourceID      string                                                              `json:"resource_id"`
-	PlatformID      string                                                              `json:"platform_id"`
-	Description     azure_subscription.KeyVaultManagedHardwareSecurityModuleDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                         `json:"metadata"`
-	DescribedBy     string                                                              `json:"described_by"`
-	ResourceType    string                                                              `json:"resource_type"`
-	IntegrationType string                                                              `json:"integration_type"`
-	IntegrationID   string                                                              `json:"integration_id"`
+	ResourceID      string                                                 `json:"resource_id"`
+	PlatformID      string                                                 `json:"platform_id"`
+	Description     azure.KeyVaultManagedHardwareSecurityModuleDescription `json:"Description"`
+	Metadata        azure.Metadata                                         `json:"metadata"`
+	DescribedBy     string                                                 `json:"described_by"`
+	ResourceType    string                                                 `json:"resource_type"`
+	IntegrationType string                                                 `json:"integration_type"`
+	IntegrationID   string                                                 `json:"integration_id"`
 }
 
 type KeyVaultManagedHardwareSecurityModuleHit struct {
@@ -29600,14 +29600,14 @@ func GetKeyVaultManagedHardwareSecurityModule(ctx context.Context, d *plugin.Que
 // ==========================  START: KeyVaultSecret =============================
 
 type KeyVaultSecret struct {
-	ResourceID      string                                       `json:"resource_id"`
-	PlatformID      string                                       `json:"platform_id"`
-	Description     azure_subscription.KeyVaultSecretDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                  `json:"metadata"`
-	DescribedBy     string                                       `json:"described_by"`
-	ResourceType    string                                       `json:"resource_type"`
-	IntegrationType string                                       `json:"integration_type"`
-	IntegrationID   string                                       `json:"integration_id"`
+	ResourceID      string                          `json:"resource_id"`
+	PlatformID      string                          `json:"platform_id"`
+	Description     azure.KeyVaultSecretDescription `json:"Description"`
+	Metadata        azure.Metadata                  `json:"metadata"`
+	DescribedBy     string                          `json:"described_by"`
+	ResourceType    string                          `json:"resource_type"`
+	IntegrationType string                          `json:"integration_type"`
+	IntegrationID   string                          `json:"integration_id"`
 }
 
 type KeyVaultSecretHit struct {
@@ -29823,14 +29823,14 @@ func GetKeyVaultSecret(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: KustoCluster =============================
 
 type KustoCluster struct {
-	ResourceID      string                                     `json:"resource_id"`
-	PlatformID      string                                     `json:"platform_id"`
-	Description     azure_subscription.KustoClusterDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                `json:"metadata"`
-	DescribedBy     string                                     `json:"described_by"`
-	ResourceType    string                                     `json:"resource_type"`
-	IntegrationType string                                     `json:"integration_type"`
-	IntegrationID   string                                     `json:"integration_id"`
+	ResourceID      string                        `json:"resource_id"`
+	PlatformID      string                        `json:"platform_id"`
+	Description     azure.KustoClusterDescription `json:"Description"`
+	Metadata        azure.Metadata                `json:"metadata"`
+	DescribedBy     string                        `json:"described_by"`
+	ResourceType    string                        `json:"resource_type"`
+	IntegrationType string                        `json:"integration_type"`
+	IntegrationID   string                        `json:"integration_id"`
 }
 
 type KustoClusterHit struct {
@@ -30080,14 +30080,14 @@ func GetKustoCluster(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: LogAlert =============================
 
 type LogAlert struct {
-	ResourceID      string                                 `json:"resource_id"`
-	PlatformID      string                                 `json:"platform_id"`
-	Description     azure_subscription.LogAlertDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata            `json:"metadata"`
-	DescribedBy     string                                 `json:"described_by"`
-	ResourceType    string                                 `json:"resource_type"`
-	IntegrationType string                                 `json:"integration_type"`
-	IntegrationID   string                                 `json:"integration_id"`
+	ResourceID      string                    `json:"resource_id"`
+	PlatformID      string                    `json:"platform_id"`
+	Description     azure.LogAlertDescription `json:"Description"`
+	Metadata        azure.Metadata            `json:"metadata"`
+	DescribedBy     string                    `json:"described_by"`
+	ResourceType    string                    `json:"resource_type"`
+	IntegrationType string                    `json:"integration_type"`
+	IntegrationID   string                    `json:"integration_id"`
 }
 
 type LogAlertHit struct {
@@ -30307,14 +30307,14 @@ func GetLogAlert(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 // ==========================  START: LogProfile =============================
 
 type LogProfile struct {
-	ResourceID      string                                   `json:"resource_id"`
-	PlatformID      string                                   `json:"platform_id"`
-	Description     azure_subscription.LogProfileDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata              `json:"metadata"`
-	DescribedBy     string                                   `json:"described_by"`
-	ResourceType    string                                   `json:"resource_type"`
-	IntegrationType string                                   `json:"integration_type"`
-	IntegrationID   string                                   `json:"integration_id"`
+	ResourceID      string                      `json:"resource_id"`
+	PlatformID      string                      `json:"platform_id"`
+	Description     azure.LogProfileDescription `json:"Description"`
+	Metadata        azure.Metadata              `json:"metadata"`
+	DescribedBy     string                      `json:"described_by"`
+	ResourceType    string                      `json:"resource_type"`
+	IntegrationType string                      `json:"integration_type"`
+	IntegrationID   string                      `json:"integration_id"`
 }
 
 type LogProfileHit struct {
@@ -30534,14 +30534,14 @@ func GetLogProfile(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 // ==========================  START: LogicAppWorkflow =============================
 
 type LogicAppWorkflow struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.LogicAppWorkflowDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.LogicAppWorkflowDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type LogicAppWorkflowHit struct {
@@ -30775,14 +30775,14 @@ func GetLogicAppWorkflow(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: LogicIntegrationAccounts =============================
 
 type LogicIntegrationAccounts struct {
-	ResourceID      string                                                 `json:"resource_id"`
-	PlatformID      string                                                 `json:"platform_id"`
-	Description     azure_subscription.LogicIntegrationAccountsDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                            `json:"metadata"`
-	DescribedBy     string                                                 `json:"described_by"`
-	ResourceType    string                                                 `json:"resource_type"`
-	IntegrationType string                                                 `json:"integration_type"`
-	IntegrationID   string                                                 `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure.LogicIntegrationAccountsDescription `json:"Description"`
+	Metadata        azure.Metadata                            `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type LogicIntegrationAccountsHit struct {
@@ -30986,14 +30986,14 @@ func GetLogicIntegrationAccounts(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: MachineLearningWorkspace =============================
 
 type MachineLearningWorkspace struct {
-	ResourceID      string                                                 `json:"resource_id"`
-	PlatformID      string                                                 `json:"platform_id"`
-	Description     azure_subscription.MachineLearningWorkspaceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                            `json:"metadata"`
-	DescribedBy     string                                                 `json:"described_by"`
-	ResourceType    string                                                 `json:"resource_type"`
-	IntegrationType string                                                 `json:"integration_type"`
-	IntegrationID   string                                                 `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure.MachineLearningWorkspaceDescription `json:"Description"`
+	Metadata        azure.Metadata                            `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type MachineLearningWorkspaceHit struct {
@@ -31235,14 +31235,14 @@ func GetMachineLearningWorkspace(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: MariadbServer =============================
 
 type MariadbServer struct {
-	ResourceID      string                                      `json:"resource_id"`
-	PlatformID      string                                      `json:"platform_id"`
-	Description     azure_subscription.MariadbServerDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                 `json:"metadata"`
-	DescribedBy     string                                      `json:"described_by"`
-	ResourceType    string                                      `json:"resource_type"`
-	IntegrationType string                                      `json:"integration_type"`
-	IntegrationID   string                                      `json:"integration_id"`
+	ResourceID      string                         `json:"resource_id"`
+	PlatformID      string                         `json:"platform_id"`
+	Description     azure.MariadbServerDescription `json:"Description"`
+	Metadata        azure.Metadata                 `json:"metadata"`
+	DescribedBy     string                         `json:"described_by"`
+	ResourceType    string                         `json:"resource_type"`
+	IntegrationType string                         `json:"integration_type"`
+	IntegrationID   string                         `json:"integration_id"`
 }
 
 type MariadbServerHit struct {
@@ -31488,14 +31488,14 @@ func GetMariadbServer(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 // ==========================  START: MariadbDatabase =============================
 
 type MariadbDatabase struct {
-	ResourceID      string                                        `json:"resource_id"`
-	PlatformID      string                                        `json:"platform_id"`
-	Description     azure_subscription.MariadbDatabaseDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                   `json:"metadata"`
-	DescribedBy     string                                        `json:"described_by"`
-	ResourceType    string                                        `json:"resource_type"`
-	IntegrationType string                                        `json:"integration_type"`
-	IntegrationID   string                                        `json:"integration_id"`
+	ResourceID      string                           `json:"resource_id"`
+	PlatformID      string                           `json:"platform_id"`
+	Description     azure.MariadbDatabaseDescription `json:"Description"`
+	Metadata        azure.Metadata                   `json:"metadata"`
+	DescribedBy     string                           `json:"described_by"`
+	ResourceType    string                           `json:"resource_type"`
+	IntegrationType string                           `json:"integration_type"`
+	IntegrationID   string                           `json:"integration_id"`
 }
 
 type MariadbDatabaseHit struct {
@@ -31699,14 +31699,14 @@ func GetMariadbDatabase(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: MysqlServer =============================
 
 type MysqlServer struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure_subscription.MysqlServerDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata               `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                       `json:"resource_id"`
+	PlatformID      string                       `json:"platform_id"`
+	Description     azure.MysqlServerDescription `json:"Description"`
+	Metadata        azure.Metadata               `json:"metadata"`
+	DescribedBy     string                       `json:"described_by"`
+	ResourceType    string                       `json:"resource_type"`
+	IntegrationType string                       `json:"integration_type"`
+	IntegrationID   string                       `json:"integration_id"`
 }
 
 type MysqlServerHit struct {
@@ -31968,14 +31968,14 @@ func GetMysqlServer(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: MysqlFlexibleserver =============================
 
 type MysqlFlexibleserver struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure_subscription.MysqlFlexibleserverDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                       `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure.MysqlFlexibleserverDescription `json:"Description"`
+	Metadata        azure.Metadata                       `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type MysqlFlexibleserverHit struct {
@@ -32179,14 +32179,14 @@ func GetMysqlFlexibleserver(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: NetworkSecurityGroup =============================
 
 type NetworkSecurityGroup struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure_subscription.NetworkSecurityGroupDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                        `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
+	ResourceID      string                                `json:"resource_id"`
+	PlatformID      string                                `json:"platform_id"`
+	Description     azure.NetworkSecurityGroupDescription `json:"Description"`
+	Metadata        azure.Metadata                        `json:"metadata"`
+	DescribedBy     string                                `json:"described_by"`
+	ResourceType    string                                `json:"resource_type"`
+	IntegrationType string                                `json:"integration_type"`
+	IntegrationID   string                                `json:"integration_id"`
 }
 
 type NetworkSecurityGroupHit struct {
@@ -32412,14 +32412,14 @@ func GetNetworkSecurityGroup(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: NetworkWatcher =============================
 
 type NetworkWatcher struct {
-	ResourceID      string                                       `json:"resource_id"`
-	PlatformID      string                                       `json:"platform_id"`
-	Description     azure_subscription.NetworkWatcherDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                  `json:"metadata"`
-	DescribedBy     string                                       `json:"described_by"`
-	ResourceType    string                                       `json:"resource_type"`
-	IntegrationType string                                       `json:"integration_type"`
-	IntegrationID   string                                       `json:"integration_id"`
+	ResourceID      string                          `json:"resource_id"`
+	PlatformID      string                          `json:"platform_id"`
+	Description     azure.NetworkWatcherDescription `json:"Description"`
+	Metadata        azure.Metadata                  `json:"metadata"`
+	DescribedBy     string                          `json:"described_by"`
+	ResourceType    string                          `json:"resource_type"`
+	IntegrationType string                          `json:"integration_type"`
+	IntegrationID   string                          `json:"integration_id"`
 }
 
 type NetworkWatcherHit struct {
@@ -32631,14 +32631,14 @@ func GetNetworkWatcher(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: SearchService =============================
 
 type SearchService struct {
-	ResourceID      string                                      `json:"resource_id"`
-	PlatformID      string                                      `json:"platform_id"`
-	Description     azure_subscription.SearchServiceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                 `json:"metadata"`
-	DescribedBy     string                                      `json:"described_by"`
-	ResourceType    string                                      `json:"resource_type"`
-	IntegrationType string                                      `json:"integration_type"`
-	IntegrationID   string                                      `json:"integration_id"`
+	ResourceID      string                         `json:"resource_id"`
+	PlatformID      string                         `json:"platform_id"`
+	Description     azure.SearchServiceDescription `json:"Description"`
+	Metadata        azure.Metadata                 `json:"metadata"`
+	DescribedBy     string                         `json:"described_by"`
+	ResourceType    string                         `json:"resource_type"`
+	IntegrationType string                         `json:"integration_type"`
+	IntegrationID   string                         `json:"integration_id"`
 }
 
 type SearchServiceHit struct {
@@ -32871,14 +32871,14 @@ func GetSearchService(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 // ==========================  START: ServiceFabricCluster =============================
 
 type ServiceFabricCluster struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure_subscription.ServiceFabricClusterDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                        `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
+	ResourceID      string                                `json:"resource_id"`
+	PlatformID      string                                `json:"platform_id"`
+	Description     azure.ServiceFabricClusterDescription `json:"Description"`
+	Metadata        azure.Metadata                        `json:"metadata"`
+	DescribedBy     string                                `json:"described_by"`
+	ResourceType    string                                `json:"resource_type"`
+	IntegrationType string                                `json:"integration_type"`
+	IntegrationID   string                                `json:"integration_id"`
 }
 
 type ServiceFabricClusterHit struct {
@@ -33134,14 +33134,14 @@ func GetServiceFabricCluster(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: ServicebusNamespace =============================
 
 type ServicebusNamespace struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure_subscription.ServicebusNamespaceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                       `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure.ServicebusNamespaceDescription `json:"Description"`
+	Metadata        azure.Metadata                       `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type ServicebusNamespaceHit struct {
@@ -33377,14 +33377,14 @@ func GetServicebusNamespace(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: SignalrService =============================
 
 type SignalrService struct {
-	ResourceID      string                                       `json:"resource_id"`
-	PlatformID      string                                       `json:"platform_id"`
-	Description     azure_subscription.SignalrServiceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                  `json:"metadata"`
-	DescribedBy     string                                       `json:"described_by"`
-	ResourceType    string                                       `json:"resource_type"`
-	IntegrationType string                                       `json:"integration_type"`
-	IntegrationID   string                                       `json:"integration_id"`
+	ResourceID      string                          `json:"resource_id"`
+	PlatformID      string                          `json:"platform_id"`
+	Description     azure.SignalrServiceDescription `json:"Description"`
+	Metadata        azure.Metadata                  `json:"metadata"`
+	DescribedBy     string                          `json:"described_by"`
+	ResourceType    string                          `json:"resource_type"`
+	IntegrationType string                          `json:"integration_type"`
+	IntegrationID   string                          `json:"integration_id"`
 }
 
 type SignalrServiceHit struct {
@@ -33620,14 +33620,14 @@ func GetSignalrService(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: SpringCloudService =============================
 
 type SpringCloudService struct {
-	ResourceID      string                                           `json:"resource_id"`
-	PlatformID      string                                           `json:"platform_id"`
-	Description     azure_subscription.SpringCloudServiceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                      `json:"metadata"`
-	DescribedBy     string                                           `json:"described_by"`
-	ResourceType    string                                           `json:"resource_type"`
-	IntegrationType string                                           `json:"integration_type"`
-	IntegrationID   string                                           `json:"integration_id"`
+	ResourceID      string                              `json:"resource_id"`
+	PlatformID      string                              `json:"platform_id"`
+	Description     azure.SpringCloudServiceDescription `json:"Description"`
+	Metadata        azure.Metadata                      `json:"metadata"`
+	DescribedBy     string                              `json:"described_by"`
+	ResourceType    string                              `json:"resource_type"`
+	IntegrationType string                              `json:"integration_type"`
+	IntegrationID   string                              `json:"integration_id"`
 }
 
 type SpringCloudServiceHit struct {
@@ -33841,14 +33841,14 @@ func GetSpringCloudService(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: StreamAnalyticsJob =============================
 
 type StreamAnalyticsJob struct {
-	ResourceID      string                                           `json:"resource_id"`
-	PlatformID      string                                           `json:"platform_id"`
-	Description     azure_subscription.StreamAnalyticsJobDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                      `json:"metadata"`
-	DescribedBy     string                                           `json:"described_by"`
-	ResourceType    string                                           `json:"resource_type"`
-	IntegrationType string                                           `json:"integration_type"`
-	IntegrationID   string                                           `json:"integration_id"`
+	ResourceID      string                              `json:"resource_id"`
+	PlatformID      string                              `json:"platform_id"`
+	Description     azure.StreamAnalyticsJobDescription `json:"Description"`
+	Metadata        azure.Metadata                      `json:"metadata"`
+	DescribedBy     string                              `json:"described_by"`
+	ResourceType    string                              `json:"resource_type"`
+	IntegrationType string                              `json:"integration_type"`
+	IntegrationID   string                              `json:"integration_id"`
 }
 
 type StreamAnalyticsJobHit struct {
@@ -34090,14 +34090,14 @@ func GetStreamAnalyticsJob(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: StreamAnalyticsCluster =============================
 
 type StreamAnalyticsCluster struct {
-	ResourceID      string                                               `json:"resource_id"`
-	PlatformID      string                                               `json:"platform_id"`
-	Description     azure_subscription.StreamAnalyticsClusterDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                          `json:"metadata"`
-	DescribedBy     string                                               `json:"described_by"`
-	ResourceType    string                                               `json:"resource_type"`
-	IntegrationType string                                               `json:"integration_type"`
-	IntegrationID   string                                               `json:"integration_id"`
+	ResourceID      string                                  `json:"resource_id"`
+	PlatformID      string                                  `json:"platform_id"`
+	Description     azure.StreamAnalyticsClusterDescription `json:"Description"`
+	Metadata        azure.Metadata                          `json:"metadata"`
+	DescribedBy     string                                  `json:"described_by"`
+	ResourceType    string                                  `json:"resource_type"`
+	IntegrationType string                                  `json:"integration_type"`
+	IntegrationID   string                                  `json:"integration_id"`
 }
 
 type StreamAnalyticsClusterHit struct {
@@ -34301,14 +34301,14 @@ func GetStreamAnalyticsCluster(ctx context.Context, d *plugin.QueryData, _ *plug
 // ==========================  START: VirtualMachineImagesImageTemplates =============================
 
 type VirtualMachineImagesImageTemplates struct {
-	ResourceID      string                                                           `json:"resource_id"`
-	PlatformID      string                                                           `json:"platform_id"`
-	Description     azure_subscription.VirtualMachineImagesImageTemplatesDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                      `json:"metadata"`
-	DescribedBy     string                                                           `json:"described_by"`
-	ResourceType    string                                                           `json:"resource_type"`
-	IntegrationType string                                                           `json:"integration_type"`
-	IntegrationID   string                                                           `json:"integration_id"`
+	ResourceID      string                                              `json:"resource_id"`
+	PlatformID      string                                              `json:"platform_id"`
+	Description     azure.VirtualMachineImagesImageTemplatesDescription `json:"Description"`
+	Metadata        azure.Metadata                                      `json:"metadata"`
+	DescribedBy     string                                              `json:"described_by"`
+	ResourceType    string                                              `json:"resource_type"`
+	IntegrationType string                                              `json:"integration_type"`
+	IntegrationID   string                                              `json:"integration_id"`
 }
 
 type VirtualMachineImagesImageTemplatesHit struct {
@@ -34512,14 +34512,14 @@ func GetVirtualMachineImagesImageTemplates(ctx context.Context, d *plugin.QueryD
 // ==========================  START: OperationalInsightsWorkspaces =============================
 
 type OperationalInsightsWorkspaces struct {
-	ResourceID      string                                                      `json:"resource_id"`
-	PlatformID      string                                                      `json:"platform_id"`
-	Description     azure_subscription.OperationalInsightsWorkspacesDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                 `json:"metadata"`
-	DescribedBy     string                                                      `json:"described_by"`
-	ResourceType    string                                                      `json:"resource_type"`
-	IntegrationType string                                                      `json:"integration_type"`
-	IntegrationID   string                                                      `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure.OperationalInsightsWorkspacesDescription `json:"Description"`
+	Metadata        azure.Metadata                                 `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type OperationalInsightsWorkspacesHit struct {
@@ -34757,14 +34757,14 @@ func GetOperationalInsightsWorkspaces(ctx context.Context, d *plugin.QueryData, 
 // ==========================  START: TimeSeriesInsightsEnvironments =============================
 
 type TimeSeriesInsightsEnvironments struct {
-	ResourceID      string                                                       `json:"resource_id"`
-	PlatformID      string                                                       `json:"platform_id"`
-	Description     azure_subscription.TimeSeriesInsightsEnvironmentsDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                  `json:"metadata"`
-	DescribedBy     string                                                       `json:"described_by"`
-	ResourceType    string                                                       `json:"resource_type"`
-	IntegrationType string                                                       `json:"integration_type"`
-	IntegrationID   string                                                       `json:"integration_id"`
+	ResourceID      string                                          `json:"resource_id"`
+	PlatformID      string                                          `json:"platform_id"`
+	Description     azure.TimeSeriesInsightsEnvironmentsDescription `json:"Description"`
+	Metadata        azure.Metadata                                  `json:"metadata"`
+	DescribedBy     string                                          `json:"described_by"`
+	ResourceType    string                                          `json:"resource_type"`
+	IntegrationType string                                          `json:"integration_type"`
+	IntegrationID   string                                          `json:"integration_id"`
 }
 
 type TimeSeriesInsightsEnvironmentsHit struct {
@@ -34968,14 +34968,14 @@ func GetTimeSeriesInsightsEnvironments(ctx context.Context, d *plugin.QueryData,
 // ==========================  START: SynapseWorkspace =============================
 
 type SynapseWorkspace struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.SynapseWorkspaceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.SynapseWorkspaceDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type SynapseWorkspaceHit struct {
@@ -35219,14 +35219,14 @@ func GetSynapseWorkspace(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: SynapseWorkspaceBigdatapools =============================
 
 type SynapseWorkspaceBigdatapools struct {
-	ResourceID      string                                                     `json:"resource_id"`
-	PlatformID      string                                                     `json:"platform_id"`
-	Description     azure_subscription.SynapseWorkspaceBigdatapoolsDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                `json:"metadata"`
-	DescribedBy     string                                                     `json:"described_by"`
-	ResourceType    string                                                     `json:"resource_type"`
-	IntegrationType string                                                     `json:"integration_type"`
-	IntegrationID   string                                                     `json:"integration_id"`
+	ResourceID      string                                        `json:"resource_id"`
+	PlatformID      string                                        `json:"platform_id"`
+	Description     azure.SynapseWorkspaceBigdatapoolsDescription `json:"Description"`
+	Metadata        azure.Metadata                                `json:"metadata"`
+	DescribedBy     string                                        `json:"described_by"`
+	ResourceType    string                                        `json:"resource_type"`
+	IntegrationType string                                        `json:"integration_type"`
+	IntegrationID   string                                        `json:"integration_id"`
 }
 
 type SynapseWorkspaceBigdatapoolsHit struct {
@@ -35430,14 +35430,14 @@ func GetSynapseWorkspaceBigdatapools(ctx context.Context, d *plugin.QueryData, _
 // ==========================  START: SynapseWorkspaceSqlpools =============================
 
 type SynapseWorkspaceSqlpools struct {
-	ResourceID      string                                                 `json:"resource_id"`
-	PlatformID      string                                                 `json:"platform_id"`
-	Description     azure_subscription.SynapseWorkspaceSqlpoolsDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                            `json:"metadata"`
-	DescribedBy     string                                                 `json:"described_by"`
-	ResourceType    string                                                 `json:"resource_type"`
-	IntegrationType string                                                 `json:"integration_type"`
-	IntegrationID   string                                                 `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure.SynapseWorkspaceSqlpoolsDescription `json:"Description"`
+	Metadata        azure.Metadata                            `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type SynapseWorkspaceSqlpoolsHit struct {
@@ -35641,14 +35641,14 @@ func GetSynapseWorkspaceSqlpools(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: Location =============================
 
 type Location struct {
-	ResourceID      string                                 `json:"resource_id"`
-	PlatformID      string                                 `json:"platform_id"`
-	Description     azure_subscription.LocationDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata            `json:"metadata"`
-	DescribedBy     string                                 `json:"described_by"`
-	ResourceType    string                                 `json:"resource_type"`
-	IntegrationType string                                 `json:"integration_type"`
-	IntegrationID   string                                 `json:"integration_id"`
+	ResourceID      string                    `json:"resource_id"`
+	PlatformID      string                    `json:"platform_id"`
+	Description     azure.LocationDescription `json:"Description"`
+	Metadata        azure.Metadata            `json:"metadata"`
+	DescribedBy     string                    `json:"described_by"`
+	ResourceType    string                    `json:"resource_type"`
+	IntegrationType string                    `json:"integration_type"`
+	IntegrationID   string                    `json:"integration_id"`
 }
 
 type LocationHit struct {
@@ -35857,14 +35857,14 @@ func GetLocation(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 // ==========================  START: AnalysisServiceServer =============================
 
 type AnalysisServiceServer struct {
-	ResourceID      string                                              `json:"resource_id"`
-	PlatformID      string                                              `json:"platform_id"`
-	Description     azure_subscription.AnalysisServiceServerDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                         `json:"metadata"`
-	DescribedBy     string                                              `json:"described_by"`
-	ResourceType    string                                              `json:"resource_type"`
-	IntegrationType string                                              `json:"integration_type"`
-	IntegrationID   string                                              `json:"integration_id"`
+	ResourceID      string                                 `json:"resource_id"`
+	PlatformID      string                                 `json:"platform_id"`
+	Description     azure.AnalysisServiceServerDescription `json:"Description"`
+	Metadata        azure.Metadata                         `json:"metadata"`
+	DescribedBy     string                                 `json:"described_by"`
+	ResourceType    string                                 `json:"resource_type"`
+	IntegrationType string                                 `json:"integration_type"`
+	IntegrationID   string                                 `json:"integration_id"`
 }
 
 type AnalysisServiceServerHit struct {
@@ -36069,14 +36069,14 @@ func GetAnalysisServiceServer(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: PostgresqlServer =============================
 
 type PostgresqlServer struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.PostgresqlServerDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.PostgresqlServerDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type PostgresqlServerHit struct {
@@ -36338,14 +36338,14 @@ func GetPostgresqlServer(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: PostgresqlFlexibleServer =============================
 
 type PostgresqlFlexibleServer struct {
-	ResourceID      string                                                 `json:"resource_id"`
-	PlatformID      string                                                 `json:"platform_id"`
-	Description     azure_subscription.PostgresqlFlexibleServerDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                            `json:"metadata"`
-	DescribedBy     string                                                 `json:"described_by"`
-	ResourceType    string                                                 `json:"resource_type"`
-	IntegrationType string                                                 `json:"integration_type"`
-	IntegrationID   string                                                 `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure.PostgresqlFlexibleServerDescription `json:"Description"`
+	Metadata        azure.Metadata                            `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type PostgresqlFlexibleServerHit struct {
@@ -36559,14 +36559,14 @@ func GetPostgresqlFlexibleServer(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: StorageSync =============================
 
 type StorageSync struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure_subscription.StorageSyncDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata               `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                       `json:"resource_id"`
+	PlatformID      string                       `json:"platform_id"`
+	Description     azure.StorageSyncDescription `json:"Description"`
+	Metadata        azure.Metadata               `json:"metadata"`
+	DescribedBy     string                       `json:"described_by"`
+	ResourceType    string                       `json:"resource_type"`
+	IntegrationType string                       `json:"integration_type"`
+	IntegrationID   string                       `json:"integration_id"`
 }
 
 type StorageSyncHit struct {
@@ -36786,14 +36786,14 @@ func GetStorageSync(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: MssqlManagedInstance =============================
 
 type MssqlManagedInstance struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure_subscription.MssqlManagedInstanceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                        `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
+	ResourceID      string                                `json:"resource_id"`
+	PlatformID      string                                `json:"platform_id"`
+	Description     azure.MssqlManagedInstanceDescription `json:"Description"`
+	Metadata        azure.Metadata                        `json:"metadata"`
+	DescribedBy     string                                `json:"described_by"`
+	ResourceType    string                                `json:"resource_type"`
+	IntegrationType string                                `json:"integration_type"`
+	IntegrationID   string                                `json:"integration_id"`
 }
 
 type MssqlManagedInstanceHit struct {
@@ -37049,14 +37049,14 @@ func GetMssqlManagedInstance(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: MssqlManagedInstanceDatabases =============================
 
 type MssqlManagedInstanceDatabases struct {
-	ResourceID      string                                                      `json:"resource_id"`
-	PlatformID      string                                                      `json:"platform_id"`
-	Description     azure_subscription.MssqlManagedInstanceDatabasesDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                 `json:"metadata"`
-	DescribedBy     string                                                      `json:"described_by"`
-	ResourceType    string                                                      `json:"resource_type"`
-	IntegrationType string                                                      `json:"integration_type"`
-	IntegrationID   string                                                      `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure.MssqlManagedInstanceDatabasesDescription `json:"Description"`
+	Metadata        azure.Metadata                                 `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type MssqlManagedInstanceDatabasesHit struct {
@@ -37260,14 +37260,14 @@ func GetMssqlManagedInstanceDatabases(ctx context.Context, d *plugin.QueryData, 
 // ==========================  START: SqlDatabase =============================
 
 type SqlDatabase struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure_subscription.SqlDatabaseDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata               `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                       `json:"resource_id"`
+	PlatformID      string                       `json:"platform_id"`
+	Description     azure.SqlDatabaseDescription `json:"Description"`
+	Metadata        azure.Metadata               `json:"metadata"`
+	DescribedBy     string                       `json:"described_by"`
+	ResourceType    string                       `json:"resource_type"`
+	IntegrationType string                       `json:"integration_type"`
+	IntegrationID   string                       `json:"integration_id"`
 }
 
 type SqlDatabaseHit struct {
@@ -37533,14 +37533,14 @@ func GetSqlDatabase(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: SqlInstancePool =============================
 
 type SqlInstancePool struct {
-	ResourceID      string                                        `json:"resource_id"`
-	PlatformID      string                                        `json:"platform_id"`
-	Description     azure_subscription.SqlInstancePoolDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                   `json:"metadata"`
-	DescribedBy     string                                        `json:"described_by"`
-	ResourceType    string                                        `json:"resource_type"`
-	IntegrationType string                                        `json:"integration_type"`
-	IntegrationID   string                                        `json:"integration_id"`
+	ResourceID      string                           `json:"resource_id"`
+	PlatformID      string                           `json:"platform_id"`
+	Description     azure.SqlInstancePoolDescription `json:"Description"`
+	Metadata        azure.Metadata                   `json:"metadata"`
+	DescribedBy     string                           `json:"described_by"`
+	ResourceType    string                           `json:"resource_type"`
+	IntegrationType string                           `json:"integration_type"`
+	IntegrationID   string                           `json:"integration_id"`
 }
 
 type SqlInstancePoolHit struct {
@@ -37742,14 +37742,14 @@ func GetSqlInstancePool(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: SqlServer =============================
 
 type SqlServer struct {
-	ResourceID      string                                  `json:"resource_id"`
-	PlatformID      string                                  `json:"platform_id"`
-	Description     azure_subscription.SqlServerDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata             `json:"metadata"`
-	DescribedBy     string                                  `json:"described_by"`
-	ResourceType    string                                  `json:"resource_type"`
-	IntegrationType string                                  `json:"integration_type"`
-	IntegrationID   string                                  `json:"integration_id"`
+	ResourceID      string                     `json:"resource_id"`
+	PlatformID      string                     `json:"platform_id"`
+	Description     azure.SqlServerDescription `json:"Description"`
+	Metadata        azure.Metadata             `json:"metadata"`
+	DescribedBy     string                     `json:"described_by"`
+	ResourceType    string                     `json:"resource_type"`
+	IntegrationType string                     `json:"integration_type"`
+	IntegrationID   string                     `json:"integration_id"`
 }
 
 type SqlServerHit struct {
@@ -37997,14 +37997,14 @@ func GetSqlServer(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 // ==========================  START: SqlServerJobAgent =============================
 
 type SqlServerJobAgent struct {
-	ResourceID      string                                          `json:"resource_id"`
-	PlatformID      string                                          `json:"platform_id"`
-	Description     azure_subscription.SqlServerJobAgentDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                     `json:"metadata"`
-	DescribedBy     string                                          `json:"described_by"`
-	ResourceType    string                                          `json:"resource_type"`
-	IntegrationType string                                          `json:"integration_type"`
-	IntegrationID   string                                          `json:"integration_id"`
+	ResourceID      string                             `json:"resource_id"`
+	PlatformID      string                             `json:"platform_id"`
+	Description     azure.SqlServerJobAgentDescription `json:"Description"`
+	Metadata        azure.Metadata                     `json:"metadata"`
+	DescribedBy     string                             `json:"described_by"`
+	ResourceType    string                             `json:"resource_type"`
+	IntegrationType string                             `json:"integration_type"`
+	IntegrationID   string                             `json:"integration_id"`
 }
 
 type SqlServerJobAgentHit struct {
@@ -38208,14 +38208,14 @@ func GetSqlServerJobAgent(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: SqlVirtualClusters =============================
 
 type SqlVirtualClusters struct {
-	ResourceID      string                                           `json:"resource_id"`
-	PlatformID      string                                           `json:"platform_id"`
-	Description     azure_subscription.SqlVirtualClustersDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                      `json:"metadata"`
-	DescribedBy     string                                           `json:"described_by"`
-	ResourceType    string                                           `json:"resource_type"`
-	IntegrationType string                                           `json:"integration_type"`
-	IntegrationID   string                                           `json:"integration_id"`
+	ResourceID      string                              `json:"resource_id"`
+	PlatformID      string                              `json:"platform_id"`
+	Description     azure.SqlVirtualClustersDescription `json:"Description"`
+	Metadata        azure.Metadata                      `json:"metadata"`
+	DescribedBy     string                              `json:"described_by"`
+	ResourceType    string                              `json:"resource_type"`
+	IntegrationType string                              `json:"integration_type"`
+	IntegrationID   string                              `json:"integration_id"`
 }
 
 type SqlVirtualClustersHit struct {
@@ -38419,14 +38419,14 @@ func GetSqlVirtualClusters(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: SqlServerElasticPool =============================
 
 type SqlServerElasticPool struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure_subscription.SqlServerElasticPoolDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                        `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
+	ResourceID      string                                `json:"resource_id"`
+	PlatformID      string                                `json:"platform_id"`
+	Description     azure.SqlServerElasticPoolDescription `json:"Description"`
+	Metadata        azure.Metadata                        `json:"metadata"`
+	DescribedBy     string                                `json:"described_by"`
+	ResourceType    string                                `json:"resource_type"`
+	IntegrationType string                                `json:"integration_type"`
+	IntegrationID   string                                `json:"integration_id"`
 }
 
 type SqlServerElasticPoolHit struct {
@@ -38654,14 +38654,14 @@ func GetSqlServerElasticPool(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: SqlServerVirtualMachine =============================
 
 type SqlServerVirtualMachine struct {
-	ResourceID      string                                                `json:"resource_id"`
-	PlatformID      string                                                `json:"platform_id"`
-	Description     azure_subscription.SqlServerVirtualMachineDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                           `json:"metadata"`
-	DescribedBy     string                                                `json:"described_by"`
-	ResourceType    string                                                `json:"resource_type"`
-	IntegrationType string                                                `json:"integration_type"`
-	IntegrationID   string                                                `json:"integration_id"`
+	ResourceID      string                                   `json:"resource_id"`
+	PlatformID      string                                   `json:"platform_id"`
+	Description     azure.SqlServerVirtualMachineDescription `json:"Description"`
+	Metadata        azure.Metadata                           `json:"metadata"`
+	DescribedBy     string                                   `json:"described_by"`
+	ResourceType    string                                   `json:"resource_type"`
+	IntegrationType string                                   `json:"integration_type"`
+	IntegrationID   string                                   `json:"integration_id"`
 }
 
 type SqlServerVirtualMachineHit struct {
@@ -38897,14 +38897,14 @@ func GetSqlServerVirtualMachine(ctx context.Context, d *plugin.QueryData, _ *plu
 // ==========================  START: SqlServerVirtualMachineGroup =============================
 
 type SqlServerVirtualMachineGroup struct {
-	ResourceID      string                                                     `json:"resource_id"`
-	PlatformID      string                                                     `json:"platform_id"`
-	Description     azure_subscription.SqlServerVirtualMachineGroupDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                `json:"metadata"`
-	DescribedBy     string                                                     `json:"described_by"`
-	ResourceType    string                                                     `json:"resource_type"`
-	IntegrationType string                                                     `json:"integration_type"`
-	IntegrationID   string                                                     `json:"integration_id"`
+	ResourceID      string                                        `json:"resource_id"`
+	PlatformID      string                                        `json:"platform_id"`
+	Description     azure.SqlServerVirtualMachineGroupDescription `json:"Description"`
+	Metadata        azure.Metadata                                `json:"metadata"`
+	DescribedBy     string                                        `json:"described_by"`
+	ResourceType    string                                        `json:"resource_type"`
+	IntegrationType string                                        `json:"integration_type"`
+	IntegrationID   string                                        `json:"integration_id"`
 }
 
 type SqlServerVirtualMachineGroupHit struct {
@@ -39108,14 +39108,14 @@ func GetSqlServerVirtualMachineGroup(ctx context.Context, d *plugin.QueryData, _
 // ==========================  START: SqlServerFlexibleServer =============================
 
 type SqlServerFlexibleServer struct {
-	ResourceID      string                                                `json:"resource_id"`
-	PlatformID      string                                                `json:"platform_id"`
-	Description     azure_subscription.SqlServerFlexibleServerDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                           `json:"metadata"`
-	DescribedBy     string                                                `json:"described_by"`
-	ResourceType    string                                                `json:"resource_type"`
-	IntegrationType string                                                `json:"integration_type"`
-	IntegrationID   string                                                `json:"integration_id"`
+	ResourceID      string                                   `json:"resource_id"`
+	PlatformID      string                                   `json:"platform_id"`
+	Description     azure.SqlServerFlexibleServerDescription `json:"Description"`
+	Metadata        azure.Metadata                           `json:"metadata"`
+	DescribedBy     string                                   `json:"described_by"`
+	ResourceType    string                                   `json:"resource_type"`
+	IntegrationType string                                   `json:"integration_type"`
+	IntegrationID   string                                   `json:"integration_id"`
 }
 
 type SqlServerFlexibleServerHit struct {
@@ -39373,14 +39373,14 @@ func GetSqlServerFlexibleServer(ctx context.Context, d *plugin.QueryData, _ *plu
 // ==========================  START: StorageAccount =============================
 
 type StorageAccount struct {
-	ResourceID      string                                       `json:"resource_id"`
-	PlatformID      string                                       `json:"platform_id"`
-	Description     azure_subscription.StorageAccountDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                  `json:"metadata"`
-	DescribedBy     string                                       `json:"described_by"`
-	ResourceType    string                                       `json:"resource_type"`
-	IntegrationType string                                       `json:"integration_type"`
-	IntegrationID   string                                       `json:"integration_id"`
+	ResourceID      string                          `json:"resource_id"`
+	PlatformID      string                          `json:"platform_id"`
+	Description     azure.StorageAccountDescription `json:"Description"`
+	Metadata        azure.Metadata                  `json:"metadata"`
+	DescribedBy     string                          `json:"described_by"`
+	ResourceType    string                          `json:"resource_type"`
+	IntegrationType string                          `json:"integration_type"`
+	IntegrationID   string                          `json:"integration_id"`
 }
 
 type StorageAccountHit struct {
@@ -39703,14 +39703,14 @@ func GetStorageAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: RecoveryServicesVault =============================
 
 type RecoveryServicesVault struct {
-	ResourceID      string                                              `json:"resource_id"`
-	PlatformID      string                                              `json:"platform_id"`
-	Description     azure_subscription.RecoveryServicesVaultDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                         `json:"metadata"`
-	DescribedBy     string                                              `json:"described_by"`
-	ResourceType    string                                              `json:"resource_type"`
-	IntegrationType string                                              `json:"integration_type"`
-	IntegrationID   string                                              `json:"integration_id"`
+	ResourceID      string                                 `json:"resource_id"`
+	PlatformID      string                                 `json:"platform_id"`
+	Description     azure.RecoveryServicesVaultDescription `json:"Description"`
+	Metadata        azure.Metadata                         `json:"metadata"`
+	DescribedBy     string                                 `json:"described_by"`
+	ResourceType    string                                 `json:"resource_type"`
+	IntegrationType string                                 `json:"integration_type"`
+	IntegrationID   string                                 `json:"integration_id"`
 }
 
 type RecoveryServicesVaultHit struct {
@@ -39936,14 +39936,14 @@ func GetRecoveryServicesVault(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: RecoveryServicesBackupJob =============================
 
 type RecoveryServicesBackupJob struct {
-	ResourceID      string                                                  `json:"resource_id"`
-	PlatformID      string                                                  `json:"platform_id"`
-	Description     azure_subscription.RecoveryServicesBackupJobDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                             `json:"metadata"`
-	DescribedBy     string                                                  `json:"described_by"`
-	ResourceType    string                                                  `json:"resource_type"`
-	IntegrationType string                                                  `json:"integration_type"`
-	IntegrationID   string                                                  `json:"integration_id"`
+	ResourceID      string                                     `json:"resource_id"`
+	PlatformID      string                                     `json:"platform_id"`
+	Description     azure.RecoveryServicesBackupJobDescription `json:"Description"`
+	Metadata        azure.Metadata                             `json:"metadata"`
+	DescribedBy     string                                     `json:"described_by"`
+	ResourceType    string                                     `json:"resource_type"`
+	IntegrationType string                                     `json:"integration_type"`
+	IntegrationID   string                                     `json:"integration_id"`
 }
 
 type RecoveryServicesBackupJobHit struct {
@@ -40157,14 +40157,14 @@ func GetRecoveryServicesBackupJob(ctx context.Context, d *plugin.QueryData, _ *p
 // ==========================  START: RecoveryServicesBackupPolicy =============================
 
 type RecoveryServicesBackupPolicy struct {
-	ResourceID      string                                                     `json:"resource_id"`
-	PlatformID      string                                                     `json:"platform_id"`
-	Description     azure_subscription.RecoveryServicesBackupPolicyDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                `json:"metadata"`
-	DescribedBy     string                                                     `json:"described_by"`
-	ResourceType    string                                                     `json:"resource_type"`
-	IntegrationType string                                                     `json:"integration_type"`
-	IntegrationID   string                                                     `json:"integration_id"`
+	ResourceID      string                                        `json:"resource_id"`
+	PlatformID      string                                        `json:"platform_id"`
+	Description     azure.RecoveryServicesBackupPolicyDescription `json:"Description"`
+	Metadata        azure.Metadata                                `json:"metadata"`
+	DescribedBy     string                                        `json:"described_by"`
+	ResourceType    string                                        `json:"resource_type"`
+	IntegrationType string                                        `json:"integration_type"`
+	IntegrationID   string                                        `json:"integration_id"`
 }
 
 type RecoveryServicesBackupPolicyHit struct {
@@ -40372,14 +40372,14 @@ func GetRecoveryServicesBackupPolicy(ctx context.Context, d *plugin.QueryData, _
 // ==========================  START: RecoveryServicesBackupItem =============================
 
 type RecoveryServicesBackupItem struct {
-	ResourceID      string                                                   `json:"resource_id"`
-	PlatformID      string                                                   `json:"platform_id"`
-	Description     azure_subscription.RecoveryServicesBackupItemDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                              `json:"metadata"`
-	DescribedBy     string                                                   `json:"described_by"`
-	ResourceType    string                                                   `json:"resource_type"`
-	IntegrationType string                                                   `json:"integration_type"`
-	IntegrationID   string                                                   `json:"integration_id"`
+	ResourceID      string                                      `json:"resource_id"`
+	PlatformID      string                                      `json:"platform_id"`
+	Description     azure.RecoveryServicesBackupItemDescription `json:"Description"`
+	Metadata        azure.Metadata                              `json:"metadata"`
+	DescribedBy     string                                      `json:"described_by"`
+	ResourceType    string                                      `json:"resource_type"`
+	IntegrationType string                                      `json:"integration_type"`
+	IntegrationID   string                                      `json:"integration_id"`
 }
 
 type RecoveryServicesBackupItemHit struct {
@@ -40587,14 +40587,14 @@ func GetRecoveryServicesBackupItem(ctx context.Context, d *plugin.QueryData, _ *
 // ==========================  START: HybridKubernetesConnectedCluster =============================
 
 type HybridKubernetesConnectedCluster struct {
-	ResourceID      string                                                         `json:"resource_id"`
-	PlatformID      string                                                         `json:"platform_id"`
-	Description     azure_subscription.HybridKubernetesConnectedClusterDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                    `json:"metadata"`
-	DescribedBy     string                                                         `json:"described_by"`
-	ResourceType    string                                                         `json:"resource_type"`
-	IntegrationType string                                                         `json:"integration_type"`
-	IntegrationID   string                                                         `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure.HybridKubernetesConnectedClusterDescription `json:"Description"`
+	Metadata        azure.Metadata                                    `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type HybridKubernetesConnectedClusterHit struct {
@@ -40834,14 +40834,14 @@ func GetHybridKubernetesConnectedCluster(ctx context.Context, d *plugin.QueryDat
 // ==========================  START: CostManagementCostByResourceType =============================
 
 type CostManagementCostByResourceType struct {
-	ResourceID      string                                                         `json:"resource_id"`
-	PlatformID      string                                                         `json:"platform_id"`
-	Description     azure_subscription.CostManagementCostByResourceTypeDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                    `json:"metadata"`
-	DescribedBy     string                                                         `json:"described_by"`
-	ResourceType    string                                                         `json:"resource_type"`
-	IntegrationType string                                                         `json:"integration_type"`
-	IntegrationID   string                                                         `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure.CostManagementCostByResourceTypeDescription `json:"Description"`
+	Metadata        azure.Metadata                                    `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type CostManagementCostByResourceTypeHit struct {
@@ -41049,14 +41049,14 @@ func GetCostManagementCostByResourceType(ctx context.Context, d *plugin.QueryDat
 // ==========================  START: CostManagementCostBySubscription =============================
 
 type CostManagementCostBySubscription struct {
-	ResourceID      string                                                         `json:"resource_id"`
-	PlatformID      string                                                         `json:"platform_id"`
-	Description     azure_subscription.CostManagementCostBySubscriptionDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                    `json:"metadata"`
-	DescribedBy     string                                                         `json:"described_by"`
-	ResourceType    string                                                         `json:"resource_type"`
-	IntegrationType string                                                         `json:"integration_type"`
-	IntegrationID   string                                                         `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure.CostManagementCostBySubscriptionDescription `json:"Description"`
+	Metadata        azure.Metadata                                    `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type CostManagementCostBySubscriptionHit struct {
@@ -41256,14 +41256,14 @@ func GetCostManagementCostBySubscription(ctx context.Context, d *plugin.QueryDat
 // ==========================  START: LoadBalancer =============================
 
 type LoadBalancer struct {
-	ResourceID      string                                     `json:"resource_id"`
-	PlatformID      string                                     `json:"platform_id"`
-	Description     azure_subscription.LoadBalancerDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                `json:"metadata"`
-	DescribedBy     string                                     `json:"described_by"`
-	ResourceType    string                                     `json:"resource_type"`
-	IntegrationType string                                     `json:"integration_type"`
-	IntegrationID   string                                     `json:"integration_id"`
+	ResourceID      string                        `json:"resource_id"`
+	PlatformID      string                        `json:"platform_id"`
+	Description     azure.LoadBalancerDescription `json:"Description"`
+	Metadata        azure.Metadata                `json:"metadata"`
+	DescribedBy     string                        `json:"described_by"`
+	ResourceType    string                        `json:"resource_type"`
+	IntegrationType string                        `json:"integration_type"`
+	IntegrationID   string                        `json:"integration_id"`
 }
 
 type LoadBalancerHit struct {
@@ -41501,14 +41501,14 @@ func GetLoadBalancer(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: LoadBalancerBackendAddressPool =============================
 
 type LoadBalancerBackendAddressPool struct {
-	ResourceID      string                                                       `json:"resource_id"`
-	PlatformID      string                                                       `json:"platform_id"`
-	Description     azure_subscription.LoadBalancerBackendAddressPoolDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                  `json:"metadata"`
-	DescribedBy     string                                                       `json:"described_by"`
-	ResourceType    string                                                       `json:"resource_type"`
-	IntegrationType string                                                       `json:"integration_type"`
-	IntegrationID   string                                                       `json:"integration_id"`
+	ResourceID      string                                          `json:"resource_id"`
+	PlatformID      string                                          `json:"platform_id"`
+	Description     azure.LoadBalancerBackendAddressPoolDescription `json:"Description"`
+	Metadata        azure.Metadata                                  `json:"metadata"`
+	DescribedBy     string                                          `json:"described_by"`
+	ResourceType    string                                          `json:"resource_type"`
+	IntegrationType string                                          `json:"integration_type"`
+	IntegrationID   string                                          `json:"integration_id"`
 }
 
 type LoadBalancerBackendAddressPoolHit struct {
@@ -41732,14 +41732,14 @@ func GetLoadBalancerBackendAddressPool(ctx context.Context, d *plugin.QueryData,
 // ==========================  START: LoadBalancerNatRule =============================
 
 type LoadBalancerNatRule struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure_subscription.LoadBalancerNatRuleDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                       `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure.LoadBalancerNatRuleDescription `json:"Description"`
+	Metadata        azure.Metadata                       `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type LoadBalancerNatRuleHit struct {
@@ -41967,14 +41967,14 @@ func GetLoadBalancerNatRule(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: LoadBalancerOutboundRule =============================
 
 type LoadBalancerOutboundRule struct {
-	ResourceID      string                                                 `json:"resource_id"`
-	PlatformID      string                                                 `json:"platform_id"`
-	Description     azure_subscription.LoadBalancerOutboundRuleDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                            `json:"metadata"`
-	DescribedBy     string                                                 `json:"described_by"`
-	ResourceType    string                                                 `json:"resource_type"`
-	IntegrationType string                                                 `json:"integration_type"`
-	IntegrationID   string                                                 `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure.LoadBalancerOutboundRuleDescription `json:"Description"`
+	Metadata        azure.Metadata                            `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type LoadBalancerOutboundRuleHit struct {
@@ -42198,14 +42198,14 @@ func GetLoadBalancerOutboundRule(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: LoadBalancerProbe =============================
 
 type LoadBalancerProbe struct {
-	ResourceID      string                                          `json:"resource_id"`
-	PlatformID      string                                          `json:"platform_id"`
-	Description     azure_subscription.LoadBalancerProbeDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                     `json:"metadata"`
-	DescribedBy     string                                          `json:"described_by"`
-	ResourceType    string                                          `json:"resource_type"`
-	IntegrationType string                                          `json:"integration_type"`
-	IntegrationID   string                                          `json:"integration_id"`
+	ResourceID      string                             `json:"resource_id"`
+	PlatformID      string                             `json:"platform_id"`
+	Description     azure.LoadBalancerProbeDescription `json:"Description"`
+	Metadata        azure.Metadata                     `json:"metadata"`
+	DescribedBy     string                             `json:"described_by"`
+	ResourceType    string                             `json:"resource_type"`
+	IntegrationType string                             `json:"integration_type"`
+	IntegrationID   string                             `json:"integration_id"`
 }
 
 type LoadBalancerProbeHit struct {
@@ -42429,14 +42429,14 @@ func GetLoadBalancerProbe(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: LoadBalancerRule =============================
 
 type LoadBalancerRule struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.LoadBalancerRuleDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.LoadBalancerRuleDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type LoadBalancerRuleHit struct {
@@ -42672,14 +42672,14 @@ func GetLoadBalancerRule(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: ManagementGroup =============================
 
 type ManagementGroup struct {
-	ResourceID      string                                        `json:"resource_id"`
-	PlatformID      string                                        `json:"platform_id"`
-	Description     azure_subscription.ManagementGroupDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                   `json:"metadata"`
-	DescribedBy     string                                        `json:"described_by"`
-	ResourceType    string                                        `json:"resource_type"`
-	IntegrationType string                                        `json:"integration_type"`
-	IntegrationID   string                                        `json:"integration_id"`
+	ResourceID      string                           `json:"resource_id"`
+	PlatformID      string                           `json:"platform_id"`
+	Description     azure.ManagementGroupDescription `json:"Description"`
+	Metadata        azure.Metadata                   `json:"metadata"`
+	DescribedBy     string                           `json:"described_by"`
+	ResourceType    string                           `json:"resource_type"`
+	IntegrationType string                           `json:"integration_type"`
+	IntegrationID   string                           `json:"integration_id"`
 }
 
 type ManagementGroupHit struct {
@@ -42897,14 +42897,14 @@ func GetManagementGroup(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: ManagementLock =============================
 
 type ManagementLock struct {
-	ResourceID      string                                       `json:"resource_id"`
-	PlatformID      string                                       `json:"platform_id"`
-	Description     azure_subscription.ManagementLockDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                  `json:"metadata"`
-	DescribedBy     string                                       `json:"described_by"`
-	ResourceType    string                                       `json:"resource_type"`
-	IntegrationType string                                       `json:"integration_type"`
-	IntegrationID   string                                       `json:"integration_id"`
+	ResourceID      string                          `json:"resource_id"`
+	PlatformID      string                          `json:"platform_id"`
+	Description     azure.ManagementLockDescription `json:"Description"`
+	Metadata        azure.Metadata                  `json:"metadata"`
+	DescribedBy     string                          `json:"described_by"`
+	ResourceType    string                          `json:"resource_type"`
+	IntegrationType string                          `json:"integration_type"`
+	IntegrationID   string                          `json:"integration_id"`
 }
 
 type ManagementLockHit struct {
@@ -43115,14 +43115,14 @@ func GetManagementLock(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: ResourceProvider =============================
 
 type ResourceProvider struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.ResourceProviderDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.ResourceProviderDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type ResourceProviderHit struct {
@@ -43328,14 +43328,14 @@ func GetResourceProvider(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: ResourceGroup =============================
 
 type ResourceGroup struct {
-	ResourceID      string                                      `json:"resource_id"`
-	PlatformID      string                                      `json:"platform_id"`
-	Description     azure_subscription.ResourceGroupDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                 `json:"metadata"`
-	DescribedBy     string                                      `json:"described_by"`
-	ResourceType    string                                      `json:"resource_type"`
-	IntegrationType string                                      `json:"integration_type"`
-	IntegrationID   string                                      `json:"integration_id"`
+	ResourceID      string                         `json:"resource_id"`
+	PlatformID      string                         `json:"platform_id"`
+	Description     azure.ResourceGroupDescription `json:"Description"`
+	Metadata        azure.Metadata                 `json:"metadata"`
+	DescribedBy     string                         `json:"described_by"`
+	ResourceType    string                         `json:"resource_type"`
+	IntegrationType string                         `json:"integration_type"`
+	IntegrationID   string                         `json:"integration_id"`
 }
 
 type ResourceGroupHit struct {
@@ -43545,14 +43545,14 @@ func GetResourceGroup(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 // ==========================  START: GenericResource =============================
 
 type GenericResource struct {
-	ResourceID      string                                        `json:"resource_id"`
-	PlatformID      string                                        `json:"platform_id"`
-	Description     azure_subscription.GenericResourceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                   `json:"metadata"`
-	DescribedBy     string                                        `json:"described_by"`
-	ResourceType    string                                        `json:"resource_type"`
-	IntegrationType string                                        `json:"integration_type"`
-	IntegrationID   string                                        `json:"integration_id"`
+	ResourceID      string                           `json:"resource_id"`
+	PlatformID      string                           `json:"platform_id"`
+	Description     azure.GenericResourceDescription `json:"Description"`
+	Metadata        azure.Metadata                   `json:"metadata"`
+	DescribedBy     string                           `json:"described_by"`
+	ResourceType    string                           `json:"resource_type"`
+	IntegrationType string                           `json:"integration_type"`
+	IntegrationID   string                           `json:"integration_id"`
 }
 
 type GenericResourceHit struct {
@@ -43786,14 +43786,14 @@ func GetGenericResource(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: BotServiceBot =============================
 
 type BotServiceBot struct {
-	ResourceID      string                                      `json:"resource_id"`
-	PlatformID      string                                      `json:"platform_id"`
-	Description     azure_subscription.BotServiceBotDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                 `json:"metadata"`
-	DescribedBy     string                                      `json:"described_by"`
-	ResourceType    string                                      `json:"resource_type"`
-	IntegrationType string                                      `json:"integration_type"`
-	IntegrationID   string                                      `json:"integration_id"`
+	ResourceID      string                         `json:"resource_id"`
+	PlatformID      string                         `json:"platform_id"`
+	Description     azure.BotServiceBotDescription `json:"Description"`
+	Metadata        azure.Metadata                 `json:"metadata"`
+	DescribedBy     string                         `json:"described_by"`
+	ResourceType    string                         `json:"resource_type"`
+	IntegrationType string                         `json:"integration_type"`
+	IntegrationID   string                         `json:"integration_id"`
 }
 
 type BotServiceBotHit struct {
@@ -43995,14 +43995,14 @@ func GetBotServiceBot(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 // ==========================  START: NetAppAccount =============================
 
 type NetAppAccount struct {
-	ResourceID      string                                      `json:"resource_id"`
-	PlatformID      string                                      `json:"platform_id"`
-	Description     azure_subscription.NetAppAccountDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                 `json:"metadata"`
-	DescribedBy     string                                      `json:"described_by"`
-	ResourceType    string                                      `json:"resource_type"`
-	IntegrationType string                                      `json:"integration_type"`
-	IntegrationID   string                                      `json:"integration_id"`
+	ResourceID      string                         `json:"resource_id"`
+	PlatformID      string                         `json:"platform_id"`
+	Description     azure.NetAppAccountDescription `json:"Description"`
+	Metadata        azure.Metadata                 `json:"metadata"`
+	DescribedBy     string                         `json:"described_by"`
+	ResourceType    string                         `json:"resource_type"`
+	IntegrationType string                         `json:"integration_type"`
+	IntegrationID   string                         `json:"integration_id"`
 }
 
 type NetAppAccountHit struct {
@@ -44204,14 +44204,14 @@ func GetNetAppAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 // ==========================  START: NetAppCapacityPool =============================
 
 type NetAppCapacityPool struct {
-	ResourceID      string                                           `json:"resource_id"`
-	PlatformID      string                                           `json:"platform_id"`
-	Description     azure_subscription.NetAppCapacityPoolDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                      `json:"metadata"`
-	DescribedBy     string                                           `json:"described_by"`
-	ResourceType    string                                           `json:"resource_type"`
-	IntegrationType string                                           `json:"integration_type"`
-	IntegrationID   string                                           `json:"integration_id"`
+	ResourceID      string                              `json:"resource_id"`
+	PlatformID      string                              `json:"platform_id"`
+	Description     azure.NetAppCapacityPoolDescription `json:"Description"`
+	Metadata        azure.Metadata                      `json:"metadata"`
+	DescribedBy     string                              `json:"described_by"`
+	ResourceType    string                              `json:"resource_type"`
+	IntegrationType string                              `json:"integration_type"`
+	IntegrationID   string                              `json:"integration_id"`
 }
 
 type NetAppCapacityPoolHit struct {
@@ -44413,14 +44413,14 @@ func GetNetAppCapacityPool(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: DashboardGrafana =============================
 
 type DashboardGrafana struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure_subscription.DashboardGrafanaDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                    `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                            `json:"resource_id"`
+	PlatformID      string                            `json:"platform_id"`
+	Description     azure.DashboardGrafanaDescription `json:"Description"`
+	Metadata        azure.Metadata                    `json:"metadata"`
+	DescribedBy     string                            `json:"described_by"`
+	ResourceType    string                            `json:"resource_type"`
+	IntegrationType string                            `json:"integration_type"`
+	IntegrationID   string                            `json:"integration_id"`
 }
 
 type DashboardGrafanaHit struct {
@@ -44620,14 +44620,14 @@ func GetDashboardGrafana(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: DesktopVirtualizationHostPool =============================
 
 type DesktopVirtualizationHostPool struct {
-	ResourceID      string                                                      `json:"resource_id"`
-	PlatformID      string                                                      `json:"platform_id"`
-	Description     azure_subscription.DesktopVirtualizationHostPoolDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                 `json:"metadata"`
-	DescribedBy     string                                                      `json:"described_by"`
-	ResourceType    string                                                      `json:"resource_type"`
-	IntegrationType string                                                      `json:"integration_type"`
-	IntegrationID   string                                                      `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure.DesktopVirtualizationHostPoolDescription `json:"Description"`
+	Metadata        azure.Metadata                                 `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type DesktopVirtualizationHostPoolHit struct {
@@ -44829,14 +44829,14 @@ func GetDesktopVirtualizationHostPool(ctx context.Context, d *plugin.QueryData, 
 // ==========================  START: DesktopVirtualizationWorkspace =============================
 
 type DesktopVirtualizationWorkspace struct {
-	ResourceID      string                                                       `json:"resource_id"`
-	PlatformID      string                                                       `json:"platform_id"`
-	Description     azure_subscription.DesktopVirtualizationWorkspaceDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                  `json:"metadata"`
-	DescribedBy     string                                                       `json:"described_by"`
-	ResourceType    string                                                       `json:"resource_type"`
-	IntegrationType string                                                       `json:"integration_type"`
-	IntegrationID   string                                                       `json:"integration_id"`
+	ResourceID      string                                          `json:"resource_id"`
+	PlatformID      string                                          `json:"platform_id"`
+	Description     azure.DesktopVirtualizationWorkspaceDescription `json:"Description"`
+	Metadata        azure.Metadata                                  `json:"metadata"`
+	DescribedBy     string                                          `json:"described_by"`
+	ResourceType    string                                          `json:"resource_type"`
+	IntegrationType string                                          `json:"integration_type"`
+	IntegrationID   string                                          `json:"integration_id"`
 }
 
 type DesktopVirtualizationWorkspaceHit struct {
@@ -45038,14 +45038,14 @@ func GetDesktopVirtualizationWorkspace(ctx context.Context, d *plugin.QueryData,
 // ==========================  START: DevTestLabLab =============================
 
 type DevTestLabLab struct {
-	ResourceID      string                                      `json:"resource_id"`
-	PlatformID      string                                      `json:"platform_id"`
-	Description     azure_subscription.DevTestLabLabDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                 `json:"metadata"`
-	DescribedBy     string                                      `json:"described_by"`
-	ResourceType    string                                      `json:"resource_type"`
-	IntegrationType string                                      `json:"integration_type"`
-	IntegrationID   string                                      `json:"integration_id"`
+	ResourceID      string                         `json:"resource_id"`
+	PlatformID      string                         `json:"platform_id"`
+	Description     azure.DevTestLabLabDescription `json:"Description"`
+	Metadata        azure.Metadata                 `json:"metadata"`
+	DescribedBy     string                         `json:"described_by"`
+	ResourceType    string                         `json:"resource_type"`
+	IntegrationType string                         `json:"integration_type"`
+	IntegrationID   string                         `json:"integration_id"`
 }
 
 type DevTestLabLabHit struct {
@@ -45247,14 +45247,14 @@ func GetDevTestLabLab(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 // ==========================  START: PurviewAccount =============================
 
 type PurviewAccount struct {
-	ResourceID      string                                       `json:"resource_id"`
-	PlatformID      string                                       `json:"platform_id"`
-	Description     azure_subscription.PurviewAccountDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                  `json:"metadata"`
-	DescribedBy     string                                       `json:"described_by"`
-	ResourceType    string                                       `json:"resource_type"`
-	IntegrationType string                                       `json:"integration_type"`
-	IntegrationID   string                                       `json:"integration_id"`
+	ResourceID      string                          `json:"resource_id"`
+	PlatformID      string                          `json:"platform_id"`
+	Description     azure.PurviewAccountDescription `json:"Description"`
+	Metadata        azure.Metadata                  `json:"metadata"`
+	DescribedBy     string                          `json:"described_by"`
+	ResourceType    string                          `json:"resource_type"`
+	IntegrationType string                          `json:"integration_type"`
+	IntegrationID   string                          `json:"integration_id"`
 }
 
 type PurviewAccountHit struct {
@@ -45456,14 +45456,14 @@ func GetPurviewAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: PowerBIDedicatedCapacity =============================
 
 type PowerBIDedicatedCapacity struct {
-	ResourceID      string                                                 `json:"resource_id"`
-	PlatformID      string                                                 `json:"platform_id"`
-	Description     azure_subscription.PowerBIDedicatedCapacityDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                            `json:"metadata"`
-	DescribedBy     string                                                 `json:"described_by"`
-	ResourceType    string                                                 `json:"resource_type"`
-	IntegrationType string                                                 `json:"integration_type"`
-	IntegrationID   string                                                 `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure.PowerBIDedicatedCapacityDescription `json:"Description"`
+	Metadata        azure.Metadata                            `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type PowerBIDedicatedCapacityHit struct {
@@ -45665,14 +45665,14 @@ func GetPowerBIDedicatedCapacity(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: ApplicationInsightsComponent =============================
 
 type ApplicationInsightsComponent struct {
-	ResourceID      string                                                     `json:"resource_id"`
-	PlatformID      string                                                     `json:"platform_id"`
-	Description     azure_subscription.ApplicationInsightsComponentDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                                `json:"metadata"`
-	DescribedBy     string                                                     `json:"described_by"`
-	ResourceType    string                                                     `json:"resource_type"`
-	IntegrationType string                                                     `json:"integration_type"`
-	IntegrationID   string                                                     `json:"integration_id"`
+	ResourceID      string                                        `json:"resource_id"`
+	PlatformID      string                                        `json:"platform_id"`
+	Description     azure.ApplicationInsightsComponentDescription `json:"Description"`
+	Metadata        azure.Metadata                                `json:"metadata"`
+	DescribedBy     string                                        `json:"described_by"`
+	ResourceType    string                                        `json:"resource_type"`
+	IntegrationType string                                        `json:"integration_type"`
+	IntegrationID   string                                        `json:"integration_id"`
 }
 
 type ApplicationInsightsComponentHit struct {
@@ -45922,14 +45922,14 @@ func GetApplicationInsightsComponent(ctx context.Context, d *plugin.QueryData, _
 // ==========================  START: LighthouseDefinition =============================
 
 type LighthouseDefinition struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure_subscription.LighthouseDefinitionDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                        `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
+	ResourceID      string                                `json:"resource_id"`
+	PlatformID      string                                `json:"platform_id"`
+	Description     azure.LighthouseDefinitionDescription `json:"Description"`
+	Metadata        azure.Metadata                        `json:"metadata"`
+	DescribedBy     string                                `json:"described_by"`
+	ResourceType    string                                `json:"resource_type"`
+	IntegrationType string                                `json:"integration_type"`
+	IntegrationID   string                                `json:"integration_id"`
 }
 
 type LighthouseDefinitionHit struct {
@@ -46149,14 +46149,14 @@ func GetLighthouseDefinition(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: LighthouseAssignment =============================
 
 type LighthouseAssignment struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure_subscription.LighthouseAssignmentDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                        `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
+	ResourceID      string                                `json:"resource_id"`
+	PlatformID      string                                `json:"platform_id"`
+	Description     azure.LighthouseAssignmentDescription `json:"Description"`
+	Metadata        azure.Metadata                        `json:"metadata"`
+	DescribedBy     string                                `json:"described_by"`
+	ResourceType    string                                `json:"resource_type"`
+	IntegrationType string                                `json:"integration_type"`
+	IntegrationID   string                                `json:"integration_id"`
 }
 
 type LighthouseAssignmentHit struct {
@@ -46366,14 +46366,14 @@ func GetLighthouseAssignment(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: MaintenanceConfiguration =============================
 
 type MaintenanceConfiguration struct {
-	ResourceID      string                                                 `json:"resource_id"`
-	PlatformID      string                                                 `json:"platform_id"`
-	Description     azure_subscription.MaintenanceConfigurationDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                            `json:"metadata"`
-	DescribedBy     string                                                 `json:"described_by"`
-	ResourceType    string                                                 `json:"resource_type"`
-	IntegrationType string                                                 `json:"integration_type"`
-	IntegrationID   string                                                 `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure.MaintenanceConfigurationDescription `json:"Description"`
+	Metadata        azure.Metadata                            `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type MaintenanceConfigurationHit struct {
@@ -46599,14 +46599,14 @@ func GetMaintenanceConfiguration(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: MonitorLogProfile =============================
 
 type MonitorLogProfile struct {
-	ResourceID      string                                          `json:"resource_id"`
-	PlatformID      string                                          `json:"platform_id"`
-	Description     azure_subscription.MonitorLogProfileDescription `json:"Description"`
-	Metadata        azure_subscription.Metadata                     `json:"metadata"`
-	DescribedBy     string                                          `json:"described_by"`
-	ResourceType    string                                          `json:"resource_type"`
-	IntegrationType string                                          `json:"integration_type"`
-	IntegrationID   string                                          `json:"integration_id"`
+	ResourceID      string                             `json:"resource_id"`
+	PlatformID      string                             `json:"platform_id"`
+	Description     azure.MonitorLogProfileDescription `json:"Description"`
+	Metadata        azure.Metadata                     `json:"metadata"`
+	DescribedBy     string                             `json:"described_by"`
+	ResourceType    string                             `json:"resource_type"`
+	IntegrationType string                             `json:"integration_type"`
+	IntegrationID   string                             `json:"integration_id"`
 }
 
 type MonitorLogProfileHit struct {
