@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	#
-	#
+	"github.com/opengovern/og-describer-azure/discovery/pkg/models"
+	model "github.com/opengovern/og-describer-azure/discovery/provider"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	appservice "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appservice/armappservice"

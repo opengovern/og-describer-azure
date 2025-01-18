@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	#
+	"github.com/opengovern/og-describer-azure/discovery/pkg/models"
+	model "github.com/opengovern/og-describer-azure/discovery/provider"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/data/aztables"
@@ -18,7 +19,8 @@ import (
 	"github.com/opengovern/og-util/pkg/concurrency"
 
 	"github.com/Azure/go-autorest/autorest"
-	#
+	"github.com/opengovern/og-describer-azure/discovery/pkg/models"
+	model "github.com/opengovern/og-describer-azure/discovery/provider"
 	"github.com/tombuildsstuff/giovanni/storage/2018-11-09/queue/queues"
 	"github.com/tombuildsstuff/giovanni/storage/2019-12-12/blob/accounts"
 )
