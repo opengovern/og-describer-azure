@@ -1,8 +1,0 @@
-[
-  {
-    "id": "{{ output.resource_id.value }}",
-    "name": "{{ resourceName }}",
-    "resource_group": "{{ resourceName }}",
-    "sku_tier": "{{ output.sku_tire.value }}"
-  }
-]

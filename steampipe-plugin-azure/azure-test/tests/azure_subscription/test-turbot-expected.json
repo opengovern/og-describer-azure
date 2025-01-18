@@ -1,6 +1,0 @@
-[
-  {
-    "display_name": "{{ output.current_subscription_display_name.value }}",
-    "title": "{{ output.current_subscription_display_name.value }}"
-  }
-]

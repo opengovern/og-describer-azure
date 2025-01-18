@@ -1,7 +1,0 @@
-[
-  {
-    "display_name": "turbot",
-    "name": "turbot",
-    "tenant_id": "{{ output.tenant_id.value }}"
-  }
-]
