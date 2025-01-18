@@ -1,14 +1,14 @@
-package describer
+package describers
 
 import (
 	"context"
+	"strings"
+
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/streamanalytics/armstreamanalytics"
-	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
-	"strings"
-
-	"github.com/opengovern/og-describer-azure/provider/model"
+	"github.com/opengovern/og-describer-azure/discovery/pkg/models"
+	model "github.com/opengovern/og-describer-azure/discovery/provider"
 )
 
 func StreamAnalyticsJob(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {

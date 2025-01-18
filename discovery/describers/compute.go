@@ -1,18 +1,19 @@
-package describer
+package describers
 
 import (
 	"context"
 	"fmt"
-	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
 	"path/filepath"
 	"strings"
+
+	#
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/compute/armcompute/v4"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/guestconfiguration/armguestconfiguration"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/network/armnetwork"
 
-	"github.com/opengovern/og-describer-azure/provider/model"
+	#
 	"github.com/turbot/go-kit/types"
 )
 

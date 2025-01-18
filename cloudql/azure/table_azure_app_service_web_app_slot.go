@@ -4,7 +4,7 @@ import (
 	"context"
 	"strings"
 
-	opengovernance "github.com/opengovern/og-describer-azure/pkg/sdk/es"
+	opengovernance "github.com/opengovern/og-describer-azure/discovery/pkg/es"
 
 	"github.com/Azure/azure-sdk-for-go/services/web/mgmt/2020-06-01/web"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"

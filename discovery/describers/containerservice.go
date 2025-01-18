@@ -1,14 +1,14 @@
-package describer
+package describers
 
 import (
 	"context"
+	"strings"
+
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/containerservice/armcontainerservice/v4"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armsubscriptions"
-	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
-	"strings"
-
-	"github.com/opengovern/og-describer-azure/provider/model"
+	"github.com/opengovern/og-describer-azure/discovery/pkg/models"
+	model "github.com/opengovern/og-describer-azure/discovery/provider"
 )
 
 func KubernetesCluster(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {

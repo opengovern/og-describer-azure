@@ -1,12 +1,13 @@
-package describer
+package describers
 
 import (
 	"context"
+
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armpolicy"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armresources"
-	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
-	"github.com/opengovern/og-describer-azure/provider/model"
+	#
+	#
 )
 
 func PolicyAssignment(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {

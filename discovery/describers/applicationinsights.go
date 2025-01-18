@@ -1,12 +1,13 @@
-package describer
+package describers
 
 import (
+	"strings"
+
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/applicationinsights/armapplicationinsights"
-	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
-	"github.com/opengovern/og-describer-azure/provider/model"
+	#
+	#
 	"golang.org/x/net/context"
-	"strings"
 )
 
 func ApplicationInsights(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {

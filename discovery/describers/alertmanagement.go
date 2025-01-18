@@ -1,13 +1,14 @@
-package describer
+package describers
 
 import (
 	"context"
-	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
 	"strings"
+
+	#
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/alertsmanagement/armalertsmanagement"
-	"github.com/opengovern/og-describer-azure/provider/model"
+	#
 )
 
 func AlertManagement(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {

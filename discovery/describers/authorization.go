@@ -1,19 +1,19 @@
-package describer
+package describers
 
 import (
 	"context"
 	"fmt"
+	"regexp"
+	"strings"
+
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/authorization/armauthorization/v2"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armpolicy"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
 	"github.com/microsoftgraph/msgraph-sdk-go/groups"
-	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
-	"regexp"
-	"strings"
-
-	"github.com/opengovern/og-describer-azure/provider/model"
+	"github.com/opengovern/og-describer-azure/discovery/pkg/models"
+	model "github.com/opengovern/og-describer-azure/discovery/provider"
 )
 
 func RoleAssignment(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {

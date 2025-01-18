@@ -1,13 +1,13 @@
-package describer
+package describers
 
 import (
 	"context"
-	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
-	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/servicefabric/armservicefabric"
-	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
 	"strings"
 
-	"github.com/opengovern/og-describer-azure/provider/model"
+	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/servicefabric/armservicefabric"
+	"github.com/opengovern/og-describer-azure/discovery/pkg/models"
+	model "github.com/opengovern/og-describer-azure/discovery/provider"
 )
 
 func ServiceFabricCluster(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {

@@ -1,15 +1,15 @@
-package describer
+package describers
 
 import (
 	"context"
+	"strings"
+
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/datalake-analytics/armdatalakeanalytics"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/datalake-store/armdatalakestore"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
-	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
-	"strings"
-
-	"github.com/opengovern/og-describer-azure/provider/model"
+	"github.com/opengovern/og-describer-azure/discovery/pkg/models"
+	model "github.com/opengovern/og-describer-azure/discovery/provider"
 )
 
 func DataLakeAnalyticsAccount(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {

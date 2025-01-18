@@ -1,11 +1,12 @@
-package describer
+package describers
 
 import (
 	"context"
+
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armlinks"
-	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
-	"github.com/opengovern/og-describer-azure/provider/model"
+	#
+	#
 )
 
 func ResourceLink(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {

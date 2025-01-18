@@ -1,17 +1,18 @@
-package describer
+package describers
 
 import (
 	"context"
+	"strings"
+
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/keyvault/azcertificates"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/keyvault/armkeyvault"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
-	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
-	"strings"
+	#
 
 	"github.com/opengovern/og-util/pkg/concurrency"
 
-	"github.com/opengovern/og-describer-azure/provider/model"
+	#
 )
 
 func KeyVaultKey(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {

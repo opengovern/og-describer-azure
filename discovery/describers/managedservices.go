@@ -1,14 +1,15 @@
-package describer
+package describers
 
 import (
 	"context"
 	"fmt"
-	"github.com/opengovern/og-describer-azure/pkg/sdk/models"
 	"strings"
+
+	#
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/managedservices/armmanagedservices"
-	"github.com/opengovern/og-describer-azure/provider/model"
+	#
 )
 
 func LighthouseDefinition(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
