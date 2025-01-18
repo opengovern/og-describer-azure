@@ -1,8 +1,0 @@
-[
-  {
-    "id": "{{ output.resource_id.value }}",
-    "name": "{{resourceName}}",
-    "region": "eastus",
-    "type": "Microsoft.Resources/resourceGroups"
-  }
-]
