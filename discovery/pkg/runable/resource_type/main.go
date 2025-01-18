@@ -103,10 +103,10 @@ import (
 	"%[1]s/discovery/provider"
 	"%[1]s/platform/constants"
 	"github.com/opengovern/og-util/pkg/integration/interfaces"
-	model "github.com/opengovern/og-describer-%[2]s/discovery/pkg/models"
+	model "%[1]s/discovery/pkg/models"
 )
 var ResourceTypes = map[string]model.ResourceType{
-`, global.OGPluginRepoURL, global.IntegrationTypeLower,))
+`, global.OGPluginRepoURL,))
 
 	// Iterate over each resource type to build its string representations
 	for _, resourceType := range resourceTypes {

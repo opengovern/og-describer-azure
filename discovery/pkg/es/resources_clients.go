@@ -3,7 +3,7 @@ package opengovernance
 
 import (
 	"context"
-	azure "github.com/opengovern/og-describer-azure/discovery/provider"
+	azure_subscription "github.com/opengovern/og-describer-azure/discovery/provider"
 	essdk "github.com/opengovern/og-util/pkg/opengovernance-es-sdk"
 	steampipesdk "github.com/opengovern/og-util/pkg/steampipe"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
@@ -17,14 +17,14 @@ type Client struct {
 // ==========================  START: APIManagement =============================
 
 type APIManagement struct {
-	ResourceID      string                         `json:"resource_id"`
-	PlatformID      string                         `json:"platform_id"`
-	Description     azure.APIManagementDescription `json:"description"`
-	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     string                         `json:"described_by"`
-	ResourceType    string                         `json:"resource_type"`
-	IntegrationType string                         `json:"integration_type"`
-	IntegrationID   string                         `json:"integration_id"`
+	ResourceID      string                                      `json:"resource_id"`
+	PlatformID      string                                      `json:"platform_id"`
+	Description     azure_subscription.APIManagementDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                 `json:"metadata"`
+	DescribedBy     string                                      `json:"described_by"`
+	ResourceType    string                                      `json:"resource_type"`
+	IntegrationType string                                      `json:"integration_type"`
+	IntegrationID   string                                      `json:"integration_id"`
 }
 
 type APIManagementHit struct {
@@ -115,7 +115,7 @@ var listAPIManagementFilters = map[string]string{
 	"management_api_url":                "Description.APIManagement.Properties.ManagementAPIURL",
 	"name":                              "Description.APIManagement.Name",
 	"notification_sender_email":         "Description.APIManagement.Properties.NotificationSenderEmail",
-	"platform_integration_id":           "metadata.IntegrationID",
+	"platform_integration_id":           "IntegrationID",
 	"portal_url":                        "Description.APIManagement.Properties.PortalURL",
 	"private_ip_addresses":              "Description.APIManagement.Properties.PrivateIPAddresses",
 	"provisioning_state":                "Description.APIManagement.Properties.ProvisioningState",
@@ -219,7 +219,7 @@ var getAPIManagementFilters = map[string]string{
 	"management_api_url":                "Description.APIManagement.Properties.ManagementAPIURL",
 	"name":                              "description.APIManagement.name",
 	"notification_sender_email":         "Description.APIManagement.Properties.NotificationSenderEmail",
-	"platform_integration_id":           "metadata.IntegrationID",
+	"platform_integration_id":           "IntegrationID",
 	"portal_url":                        "Description.APIManagement.Properties.PortalURL",
 	"private_ip_addresses":              "Description.APIManagement.Properties.PrivateIPAddresses",
 	"provisioning_state":                "Description.APIManagement.Properties.ProvisioningState",
@@ -300,14 +300,14 @@ func GetAPIManagement(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 // ==========================  START: APIManagementBackend =============================
 
 type APIManagementBackend struct {
-	ResourceID      string                                `json:"resource_id"`
-	PlatformID      string                                `json:"platform_id"`
-	Description     azure.APIManagementBackendDescription `json:"description"`
-	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     string                                `json:"described_by"`
-	ResourceType    string                                `json:"resource_type"`
-	IntegrationType string                                `json:"integration_type"`
-	IntegrationID   string                                `json:"integration_id"`
+	ResourceID      string                                             `json:"resource_id"`
+	PlatformID      string                                             `json:"platform_id"`
+	Description     azure_subscription.APIManagementBackendDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                        `json:"metadata"`
+	DescribedBy     string                                             `json:"described_by"`
+	ResourceType    string                                             `json:"resource_type"`
+	IntegrationType string                                             `json:"integration_type"`
+	IntegrationID   string                                             `json:"integration_id"`
 }
 
 type APIManagementBackendHit struct {
@@ -529,14 +529,14 @@ func GetAPIManagementBackend(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: AutomationAccounts =============================
 
 type AutomationAccounts struct {
-	ResourceID      string                              `json:"resource_id"`
-	PlatformID      string                              `json:"platform_id"`
-	Description     azure.AutomationAccountsDescription `json:"description"`
-	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     string                              `json:"described_by"`
-	ResourceType    string                              `json:"resource_type"`
-	IntegrationType string                              `json:"integration_type"`
-	IntegrationID   string                              `json:"integration_id"`
+	ResourceID      string                                           `json:"resource_id"`
+	PlatformID      string                                           `json:"platform_id"`
+	Description     azure_subscription.AutomationAccountsDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                      `json:"metadata"`
+	DescribedBy     string                                           `json:"described_by"`
+	ResourceType    string                                           `json:"resource_type"`
+	IntegrationType string                                           `json:"integration_type"`
+	IntegrationID   string                                           `json:"integration_id"`
 }
 
 type AutomationAccountsHit struct {
@@ -614,7 +614,7 @@ var listAutomationAccountsFilters = map[string]string{
 	"last_modified_by":        "Description.Automation.Properties.LastModifiedBy",
 	"last_modified_time":      "Description.Automation.Properties.LastModifiedTime",
 	"name":                    "Description.Automation.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"sku_capacity":            "Description.Automation.Properties.SKU.Capacity",
 	"sku_family":              "Description.Automation.Properties.SKU.Family",
 	"sku_name":                "Description.Automation.Properties.SKU.Name",
@@ -692,7 +692,7 @@ var getAutomationAccountsFilters = map[string]string{
 	"last_modified_by":        "Description.Automation.Properties.LastModifiedBy",
 	"last_modified_time":      "Description.Automation.Properties.LastModifiedTime",
 	"name":                    "Description.Automation.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"sku_capacity":            "Description.Automation.Properties.SKU.Capacity",
 	"sku_family":              "Description.Automation.Properties.SKU.Family",
 	"sku_name":                "Description.Automation.Properties.SKU.Name",
@@ -760,14 +760,14 @@ func GetAutomationAccounts(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: AutomationVariables =============================
 
 type AutomationVariables struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure.AutomationVariablesDescription `json:"description"`
-	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure_subscription.AutomationVariablesDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                       `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type AutomationVariablesHit struct {
@@ -845,7 +845,7 @@ var listAutomationVariablesFilters = map[string]string{
 	"is_encrypted":            "Description.Automation.Properties.IsEncrypted",
 	"last_modified_time":      "Description.Automation.Properties.LastModifiedTime",
 	"name":                    "Description.Automation.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"title":                   "Description.Automation.Name",
 	"type":                    "Description.Automation.Type",
@@ -920,7 +920,7 @@ var getAutomationVariablesFilters = map[string]string{
 	"is_encrypted":            "Description.Automation.Properties.IsEncrypted",
 	"last_modified_time":      "Description.Automation.Properties.LastModifiedTime",
 	"name":                    "Description.Automation.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"title":                   "Description.Automation.Name",
 	"type":                    "Description.Automation.Type",
@@ -985,14 +985,14 @@ func GetAutomationVariables(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: AppConfiguration =============================
 
 type AppConfiguration struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.AppConfigurationDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.AppConfigurationDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type AppConfigurationHit struct {
@@ -1069,7 +1069,7 @@ var listAppConfigurationFilters = map[string]string{
 	"id":                      "Description.ConfigurationStore.ID",
 	"identity":                "Description.ConfigurationStore.Identity",
 	"name":                    "Description.ConfigurationStore.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.ConfigurationStore.Properties.ProvisioningState",
 	"resource_group":          "Description.ResourceGroup",
 	"sku_name":                "Description.ConfigurationStore.SKU.Name",
@@ -1145,7 +1145,7 @@ var getAppConfigurationFilters = map[string]string{
 	"id":                      "Description.ConfigurationStore.ID",
 	"identity":                "Description.ConfigurationStore.Identity",
 	"name":                    "description.ConfigurationStore.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.ConfigurationStore.Properties.ProvisioningState",
 	"resource_group":          "description.ResourceGroup",
 	"sku_name":                "Description.ConfigurationStore.SKU.Name",
@@ -1212,14 +1212,14 @@ func GetAppConfiguration(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: AppServiceEnvironment =============================
 
 type AppServiceEnvironment struct {
-	ResourceID      string                                 `json:"resource_id"`
-	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.AppServiceEnvironmentDescription `json:"description"`
-	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     string                                 `json:"described_by"`
-	ResourceType    string                                 `json:"resource_type"`
-	IntegrationType string                                 `json:"integration_type"`
-	IntegrationID   string                                 `json:"integration_id"`
+	ResourceID      string                                              `json:"resource_id"`
+	PlatformID      string                                              `json:"platform_id"`
+	Description     azure_subscription.AppServiceEnvironmentDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                         `json:"metadata"`
+	DescribedBy     string                                              `json:"described_by"`
+	ResourceType    string                                              `json:"resource_type"`
+	IntegrationType string                                              `json:"integration_type"`
+	IntegrationID   string                                              `json:"integration_id"`
 }
 
 type AppServiceEnvironmentHit struct {
@@ -1300,7 +1300,7 @@ var listAppServiceEnvironmentFilters = map[string]string{
 	"is_healthy_environment":         "Description.AppServiceEnvironmentResource.Properties.EnvironmentIsHealthy",
 	"kind":                           "Description.AppServiceEnvironmentResource.Kind",
 	"name":                           "Description.AppServiceEnvironmentResource.Name",
-	"platform_integration_id":        "metadata.IntegrationID",
+	"platform_integration_id":        "IntegrationID",
 	"provisioning_state":             "Description.AppServiceEnvironmentResource.Properties.ProvisioningState",
 	"status":                         "Description.AppServiceEnvironmentResource.Properties.Status",
 	"suspended":                      "Description.AppServiceEnvironmentResource.Properties.Suspended",
@@ -1380,7 +1380,7 @@ var getAppServiceEnvironmentFilters = map[string]string{
 	"is_healthy_environment":         "Description.AppServiceEnvironmentResource.Properties.EnvironmentIsHealthy",
 	"kind":                           "Description.AppServiceEnvironmentResource.Kind",
 	"name":                           "description.AppServiceEnvironmentResource.name",
-	"platform_integration_id":        "metadata.IntegrationID",
+	"platform_integration_id":        "IntegrationID",
 	"provisioning_state":             "Description.AppServiceEnvironmentResource.Properties.ProvisioningState",
 	"resource_group":                 "description.ResourceGroup",
 	"status":                         "Description.AppServiceEnvironmentResource.Properties.Status",
@@ -1448,14 +1448,14 @@ func GetAppServiceEnvironment(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: AppServiceFunctionApp =============================
 
 type AppServiceFunctionApp struct {
-	ResourceID      string                                 `json:"resource_id"`
-	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.AppServiceFunctionAppDescription `json:"description"`
-	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     string                                 `json:"described_by"`
-	ResourceType    string                                 `json:"resource_type"`
-	IntegrationType string                                 `json:"integration_type"`
-	IntegrationID   string                                 `json:"integration_id"`
+	ResourceID      string                                              `json:"resource_id"`
+	PlatformID      string                                              `json:"platform_id"`
+	Description     azure_subscription.AppServiceFunctionAppDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                         `json:"metadata"`
+	DescribedBy     string                                              `json:"described_by"`
+	ResourceType    string                                              `json:"resource_type"`
+	IntegrationType string                                              `json:"integration_type"`
+	IntegrationID   string                                              `json:"integration_id"`
 }
 
 type AppServiceFunctionAppHit struct {
@@ -1539,7 +1539,7 @@ var listAppServiceFunctionAppFilters = map[string]string{
 	"kind":                           "Description.Site.Kind",
 	"name":                           "Description.Site.Name",
 	"outbound_ip_addresses":          "Description.Site.Properties.OutboundIPAddresses",
-	"platform_integration_id":        "metadata.IntegrationID",
+	"platform_integration_id":        "IntegrationID",
 	"possible_outbound_ip_addresses": "Description.Site.Properties.PossibleOutboundIPAddresses",
 	"reserved":                       "Description.Site.Properties.Reserved",
 	"site_config":                    "Description.Site.Properties.SiteConfig",
@@ -1623,7 +1623,7 @@ var getAppServiceFunctionAppFilters = map[string]string{
 	"kind":                           "Description.Site.Kind",
 	"name":                           "description.Site.name",
 	"outbound_ip_addresses":          "Description.Site.Properties.OutboundIPAddresses",
-	"platform_integration_id":        "metadata.IntegrationID",
+	"platform_integration_id":        "IntegrationID",
 	"possible_outbound_ip_addresses": "Description.Site.Properties.PossibleOutboundIPAddresses",
 	"reserved":                       "Description.Site.Properties.Reserved",
 	"resource_group":                 "description.ResourceGroup",
@@ -1692,14 +1692,14 @@ func GetAppServiceFunctionApp(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: AppServiceWebApp =============================
 
 type AppServiceWebApp struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.AppServiceWebAppDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.AppServiceWebAppDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type AppServiceWebAppHit struct {
@@ -1784,7 +1784,7 @@ var listAppServiceWebAppFilters = map[string]string{
 	"kind":                           "Description.Site.Kind",
 	"name":                           "Description.Site.Name",
 	"outbound_ip_addresses":          "Description.Site.Properties.OutboundIPAddresses",
-	"platform_integration_id":        "metadata.IntegrationID",
+	"platform_integration_id":        "IntegrationID",
 	"possible_outbound_ip_addresses": "Description.Site.Properties.PossibleOutboundIPAddresses",
 	"reserved":                       "Description.Site.Properties.Reserved",
 	"site_config":                    "Description.Site.Properties.SiteConfig",
@@ -1870,7 +1870,7 @@ var getAppServiceWebAppFilters = map[string]string{
 	"kind":                           "Description.Site.Kind",
 	"name":                           "description.Site.name",
 	"outbound_ip_addresses":          "Description.Site.Properties.OutboundIPAddresses",
-	"platform_integration_id":        "metadata.IntegrationID",
+	"platform_integration_id":        "IntegrationID",
 	"possible_outbound_ip_addresses": "Description.Site.Properties.PossibleOutboundIPAddresses",
 	"reserved":                       "Description.Site.Properties.Reserved",
 	"resource_group":                 "description.ResourceGroup",
@@ -1940,14 +1940,14 @@ func GetAppServiceWebApp(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: AppServiceWebAppSlot =============================
 
 type AppServiceWebAppSlot struct {
-	ResourceID      string                                `json:"resource_id"`
-	PlatformID      string                                `json:"platform_id"`
-	Description     azure.AppServiceWebAppSlotDescription `json:"description"`
-	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     string                                `json:"described_by"`
-	ResourceType    string                                `json:"resource_type"`
-	IntegrationType string                                `json:"integration_type"`
-	IntegrationID   string                                `json:"integration_id"`
+	ResourceID      string                                             `json:"resource_id"`
+	PlatformID      string                                             `json:"platform_id"`
+	Description     azure_subscription.AppServiceWebAppSlotDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                        `json:"metadata"`
+	DescribedBy     string                                             `json:"described_by"`
+	ResourceType    string                                             `json:"resource_type"`
+	IntegrationType string                                             `json:"integration_type"`
+	IntegrationID   string                                             `json:"integration_id"`
 }
 
 type AppServiceWebAppSlotHit struct {
@@ -2223,14 +2223,14 @@ func GetAppServiceWebAppSlot(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: AppServicePlan =============================
 
 type AppServicePlan struct {
-	ResourceID      string                          `json:"resource_id"`
-	PlatformID      string                          `json:"platform_id"`
-	Description     azure.AppServicePlanDescription `json:"description"`
-	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     string                          `json:"described_by"`
-	ResourceType    string                          `json:"resource_type"`
-	IntegrationType string                          `json:"integration_type"`
-	IntegrationID   string                          `json:"integration_id"`
+	ResourceID      string                                       `json:"resource_id"`
+	PlatformID      string                                       `json:"platform_id"`
+	Description     azure_subscription.AppServicePlanDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                  `json:"metadata"`
+	DescribedBy     string                                       `json:"described_by"`
+	ResourceType    string                                       `json:"resource_type"`
+	IntegrationType string                                       `json:"integration_type"`
+	IntegrationID   string                                       `json:"integration_id"`
 }
 
 type AppServicePlanHit struct {
@@ -2311,7 +2311,7 @@ var listAppServicePlanFilters = map[string]string{
 	"maximum_number_of_workers":    "Description.Plan.Properties.MaximumNumberOfWorkers",
 	"name":                         "Description.Plan.Name",
 	"per_site_scaling":             "Description.Plan.Properties.PerSiteScaling",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"provisioning_state":           "Description.Plan.Properties.ProvisioningState",
 	"reserved":                     "Description.Plan.Properties.Reserved",
 	"sku_capacity":                 "Description.Plan.SKU.Capacity",
@@ -2396,7 +2396,7 @@ var getAppServicePlanFilters = map[string]string{
 	"maximum_number_of_workers":    "Description.Plan.Properties.MaximumNumberOfWorkers",
 	"name":                         "description.Site.name",
 	"per_site_scaling":             "Description.Plan.Properties.PerSiteScaling",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"provisioning_state":           "Description.Plan.Properties.ProvisioningState",
 	"reserved":                     "Description.Plan.Properties.Reserved",
 	"resource_group":               "description.ResourceGroup",
@@ -2469,14 +2469,14 @@ func GetAppServicePlan(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: ContainerApp =============================
 
 type ContainerApp struct {
-	ResourceID      string                        `json:"resource_id"`
-	PlatformID      string                        `json:"platform_id"`
-	Description     azure.ContainerAppDescription `json:"description"`
-	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     string                        `json:"described_by"`
-	ResourceType    string                        `json:"resource_type"`
-	IntegrationType string                        `json:"integration_type"`
-	IntegrationID   string                        `json:"integration_id"`
+	ResourceID      string                                     `json:"resource_id"`
+	PlatformID      string                                     `json:"platform_id"`
+	Description     azure_subscription.ContainerAppDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                `json:"metadata"`
+	DescribedBy     string                                     `json:"described_by"`
+	ResourceType    string                                     `json:"resource_type"`
+	IntegrationType string                                     `json:"integration_type"`
+	IntegrationID   string                                     `json:"integration_id"`
 }
 
 type ContainerAppHit struct {
@@ -2549,7 +2549,7 @@ func (p ContainerAppPaginator) NextPage(ctx context.Context) ([]ContainerApp, er
 var listContainerAppFilters = map[string]string{
 	"id":                      "Description.Server.ID",
 	"name":                    "Description.Server.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Server.Tags",
 	"title":                   "Description.Server.Name",
 }
@@ -2617,7 +2617,7 @@ func ListContainerApp(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 var getContainerAppFilters = map[string]string{
 	"id":                      "Description.Server.ID",
 	"name":                    "Description.Server.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Server.Tags",
 	"title":                   "Description.Server.Name",
 }
@@ -2680,14 +2680,14 @@ func GetContainerApp(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: WebServerFarms =============================
 
 type WebServerFarms struct {
-	ResourceID      string                          `json:"resource_id"`
-	PlatformID      string                          `json:"platform_id"`
-	Description     azure.WebServerFarmsDescription `json:"description"`
-	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     string                          `json:"described_by"`
-	ResourceType    string                          `json:"resource_type"`
-	IntegrationType string                          `json:"integration_type"`
-	IntegrationID   string                          `json:"integration_id"`
+	ResourceID      string                                       `json:"resource_id"`
+	PlatformID      string                                       `json:"platform_id"`
+	Description     azure_subscription.WebServerFarmsDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                  `json:"metadata"`
+	DescribedBy     string                                       `json:"described_by"`
+	ResourceType    string                                       `json:"resource_type"`
+	IntegrationType string                                       `json:"integration_type"`
+	IntegrationID   string                                       `json:"integration_id"`
 }
 
 type WebServerFarmsHit struct {
@@ -2760,7 +2760,7 @@ func (p WebServerFarmsPaginator) NextPage(ctx context.Context) ([]WebServerFarms
 var listWebServerFarmsFilters = map[string]string{
 	"id":                      "Description.ServerFarm.ID",
 	"name":                    "Description.ServerFarm.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.ServerFarm.Tags",
 	"title":                   "Description.ServerFarm.Name",
 }
@@ -2828,7 +2828,7 @@ func ListWebServerFarms(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 var getWebServerFarmsFilters = map[string]string{
 	"id":                      "Description.ServerFarm.ID",
 	"name":                    "Description.ServerFarm.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.ServerFarm.Tags",
 	"title":                   "Description.ServerFarm.Name",
 }
@@ -2891,14 +2891,14 @@ func GetWebServerFarms(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: Blueprint =============================
 
 type Blueprint struct {
-	ResourceID      string                     `json:"resource_id"`
-	PlatformID      string                     `json:"platform_id"`
-	Description     azure.BlueprintDescription `json:"description"`
-	Metadata        azure.Metadata             `json:"metadata"`
-	DescribedBy     string                     `json:"described_by"`
-	ResourceType    string                     `json:"resource_type"`
-	IntegrationType string                     `json:"integration_type"`
-	IntegrationID   string                     `json:"integration_id"`
+	ResourceID      string                                  `json:"resource_id"`
+	PlatformID      string                                  `json:"platform_id"`
+	Description     azure_subscription.BlueprintDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata             `json:"metadata"`
+	DescribedBy     string                                  `json:"described_by"`
+	ResourceType    string                                  `json:"resource_type"`
+	IntegrationType string                                  `json:"integration_type"`
+	IntegrationID   string                                  `json:"integration_id"`
 }
 
 type BlueprintHit struct {
@@ -2971,7 +2971,7 @@ func (p BlueprintPaginator) NextPage(ctx context.Context) ([]Blueprint, error) {
 var listBlueprintFilters = map[string]string{
 	"id":                      "Description.Blueprints.ID",
 	"name":                    "Description.Blueprint.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"title":                   "Description.Blueprint.Name",
 }
 
@@ -3038,7 +3038,7 @@ func ListBlueprint(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 var getBlueprintFilters = map[string]string{
 	"id":                      "Description.Blueprints.ID",
 	"name":                    "Description.Blueprint.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"title":                   "Description.Blueprint.Name",
 }
 
@@ -3100,14 +3100,14 @@ func GetBlueprint(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 // ==========================  START: ComputeDisk =============================
 
 type ComputeDisk struct {
-	ResourceID      string                       `json:"resource_id"`
-	PlatformID      string                       `json:"platform_id"`
-	Description     azure.ComputeDiskDescription `json:"description"`
-	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     string                       `json:"described_by"`
-	ResourceType    string                       `json:"resource_type"`
-	IntegrationType string                       `json:"integration_type"`
-	IntegrationID   string                       `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure_subscription.ComputeDiskDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata               `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type ComputeDiskHit struct {
@@ -3209,7 +3209,7 @@ var listComputeDiskFilters = map[string]string{
 	"name":                                      "Description.Disk.Name",
 	"network_access_policy":                     "Description.Disk.Properties.NetworkAccessPolicy",
 	"os_type":                                   "Description.Disk.Properties.OSType",
-	"platform_integration_id":                   "metadata.IntegrationID",
+	"platform_integration_id":                   "IntegrationID",
 	"provisioning_state":                        "Description.Disk.ProvisioningState",
 	"resource_group":                            "Description.ResourceGroup",
 	"share_info":                                "Description.Disk.Properties.ShareInfo",
@@ -3314,7 +3314,7 @@ var getComputeDiskFilters = map[string]string{
 	"name":                                      "description.Disk.name",
 	"network_access_policy":                     "Description.Disk.Properties.NetworkAccessPolicy",
 	"os_type":                                   "Description.Disk.Properties.OSType",
-	"platform_integration_id":                   "metadata.IntegrationID",
+	"platform_integration_id":                   "IntegrationID",
 	"provisioning_state":                        "Description.Disk.ProvisioningState",
 	"resource_group":                            "description.ResourceGroup",
 	"share_info":                                "Description.Disk.Properties.ShareInfo",
@@ -3385,14 +3385,14 @@ func GetComputeDisk(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: ComputeDiskAccess =============================
 
 type ComputeDiskAccess struct {
-	ResourceID      string                             `json:"resource_id"`
-	PlatformID      string                             `json:"platform_id"`
-	Description     azure.ComputeDiskAccessDescription `json:"description"`
-	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     string                             `json:"described_by"`
-	ResourceType    string                             `json:"resource_type"`
-	IntegrationType string                             `json:"integration_type"`
-	IntegrationID   string                             `json:"integration_id"`
+	ResourceID      string                                          `json:"resource_id"`
+	PlatformID      string                                          `json:"platform_id"`
+	Description     azure_subscription.ComputeDiskAccessDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                     `json:"metadata"`
+	DescribedBy     string                                          `json:"described_by"`
+	ResourceType    string                                          `json:"resource_type"`
+	IntegrationType string                                          `json:"integration_type"`
+	IntegrationID   string                                          `json:"integration_id"`
 }
 
 type ComputeDiskAccessHit struct {
@@ -3465,7 +3465,7 @@ func (p ComputeDiskAccessPaginator) NextPage(ctx context.Context) ([]ComputeDisk
 var listComputeDiskAccessFilters = map[string]string{
 	"id":                      "Description.DiskAccess.ID",
 	"name":                    "Description.DiskAccess.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.DiskAccess.Properties.ProvisioningState",
 	"resource_group":          "Description.ResourceGroup",
 	"tags":                    "Description.DiskAccess.Tags",
@@ -3536,7 +3536,7 @@ func ListComputeDiskAccess(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 var getComputeDiskAccessFilters = map[string]string{
 	"id":                      "Description.DiskAccess.ID",
 	"name":                    "description.DiskAccess.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.DiskAccess.Properties.ProvisioningState",
 	"resource_group":          "description.ResourceGroup",
 	"tags":                    "Description.DiskAccess.Tags",
@@ -3602,14 +3602,14 @@ func GetComputeDiskAccess(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: ComputeVirtualMachineScaleSet =============================
 
 type ComputeVirtualMachineScaleSet struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure.ComputeVirtualMachineScaleSetDescription `json:"description"`
-	Metadata        azure.Metadata                                 `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                                                      `json:"resource_id"`
+	PlatformID      string                                                      `json:"platform_id"`
+	Description     azure_subscription.ComputeVirtualMachineScaleSetDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                 `json:"metadata"`
+	DescribedBy     string                                                      `json:"described_by"`
+	ResourceType    string                                                      `json:"resource_type"`
+	IntegrationType string                                                      `json:"integration_type"`
+	IntegrationID   string                                                      `json:"integration_id"`
 }
 
 type ComputeVirtualMachineScaleSetHit struct {
@@ -3689,7 +3689,7 @@ var listComputeVirtualMachineScaleSetFilters = map[string]string{
 	"overprovision":                       "Description.VirtualMachineScaleSet.Properties.Overprovision",
 	"plan":                                "Description.VirtualMachineScaleSet.Plan",
 	"platform_fault_domain_count":         "Description.VirtualMachineScaleSet.Properties.PlatformFaultDomainCount",
-	"platform_integration_id":             "metadata.IntegrationID",
+	"platform_integration_id":             "IntegrationID",
 	"provisioning_state":                  "Description.VirtualMachineScaleSet.Properties.ProvisioningState",
 	"resource_group":                      "Description.ResourceGroup",
 	"scale_in_policy":                     "Description.VirtualMachineScaleSet.Properties.ScaleInPolicy",
@@ -3782,7 +3782,7 @@ var getComputeVirtualMachineScaleSetFilters = map[string]string{
 	"overprovision":                       "Description.VirtualMachineScaleSet.Properties.Overprovision",
 	"plan":                                "Description.VirtualMachineScaleSet.Plan",
 	"platform_fault_domain_count":         "Description.VirtualMachineScaleSet.Properties.PlatformFaultDomainCount",
-	"platform_integration_id":             "metadata.IntegrationID",
+	"platform_integration_id":             "IntegrationID",
 	"provisioning_state":                  "Description.VirtualMachineScaleSet.Properties.ProvisioningState",
 	"resource_group":                      "description.ResourceGroup",
 	"scale_in_policy":                     "Description.VirtualMachineScaleSet.Properties.ScaleInPolicy",
@@ -3863,14 +3863,14 @@ func GetComputeVirtualMachineScaleSet(ctx context.Context, d *plugin.QueryData, 
 // ==========================  START: ComputeVirtualMachineScaleSetNetworkInterface =============================
 
 type ComputeVirtualMachineScaleSetNetworkInterface struct {
-	ResourceID      string                                                         `json:"resource_id"`
-	PlatformID      string                                                         `json:"platform_id"`
-	Description     azure.ComputeVirtualMachineScaleSetNetworkInterfaceDescription `json:"description"`
-	Metadata        azure.Metadata                                                 `json:"metadata"`
-	DescribedBy     string                                                         `json:"described_by"`
-	ResourceType    string                                                         `json:"resource_type"`
-	IntegrationType string                                                         `json:"integration_type"`
-	IntegrationID   string                                                         `json:"integration_id"`
+	ResourceID      string                                                                      `json:"resource_id"`
+	PlatformID      string                                                                      `json:"platform_id"`
+	Description     azure_subscription.ComputeVirtualMachineScaleSetNetworkInterfaceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                                 `json:"metadata"`
+	DescribedBy     string                                                                      `json:"described_by"`
+	ResourceType    string                                                                      `json:"resource_type"`
+	IntegrationType string                                                                      `json:"integration_type"`
+	IntegrationID   string                                                                      `json:"integration_id"`
 }
 
 type ComputeVirtualMachineScaleSetNetworkInterfaceHit struct {
@@ -3944,7 +3944,7 @@ var listComputeVirtualMachineScaleSetNetworkInterfaceFilters = map[string]string
 	"id":                      "Description.NetworkInterface.ID",
 	"mac_address":             "Description.NetworkInterface.MacAddress",
 	"name":                    "Description.NetworkInterface.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"scale_set_name":          "Description.VirtualMachineScaleSet.Name",
 	"tags":                    "Description.NetworkInterface.Tags",
@@ -4016,7 +4016,7 @@ var getComputeVirtualMachineScaleSetNetworkInterfaceFilters = map[string]string{
 	"id":                      "Description.NetworkInterface.ID",
 	"mac_address":             "Description.NetworkInterface.MacAddress",
 	"name":                    "Description.NetworkInterface.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"scale_set_name":          "Description.VirtualMachineScaleSet.Name",
 	"tags":                    "Description.NetworkInterface.Tags",
@@ -4082,14 +4082,14 @@ func GetComputeVirtualMachineScaleSetNetworkInterface(ctx context.Context, d *pl
 // ==========================  START: ComputeVirtualMachineScaleSetVm =============================
 
 type ComputeVirtualMachineScaleSetVm struct {
-	ResourceID      string                                           `json:"resource_id"`
-	PlatformID      string                                           `json:"platform_id"`
-	Description     azure.ComputeVirtualMachineScaleSetVmDescription `json:"description"`
-	Metadata        azure.Metadata                                   `json:"metadata"`
-	DescribedBy     string                                           `json:"described_by"`
-	ResourceType    string                                           `json:"resource_type"`
-	IntegrationType string                                           `json:"integration_type"`
-	IntegrationID   string                                           `json:"integration_id"`
+	ResourceID      string                                                        `json:"resource_id"`
+	PlatformID      string                                                        `json:"platform_id"`
+	Description     azure_subscription.ComputeVirtualMachineScaleSetVmDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                   `json:"metadata"`
+	DescribedBy     string                                                        `json:"described_by"`
+	ResourceType    string                                                        `json:"resource_type"`
+	IntegrationType string                                                        `json:"integration_type"`
+	IntegrationID   string                                                        `json:"integration_id"`
 }
 
 type ComputeVirtualMachineScaleSetVmHit struct {
@@ -4170,7 +4170,7 @@ var listComputeVirtualMachineScaleSetVmFilters = map[string]string{
 	"model_definition_applied":            "Description.ScaleSetVM.Properties.ModelDefinitionApplied",
 	"name":                                "Description.ScaleSetVM.Name",
 	"plan":                                "Description.ScaleSetVM.Plan",
-	"platform_integration_id":             "metadata.IntegrationID",
+	"platform_integration_id":             "IntegrationID",
 	"power_state":                         "Description.PowerState",
 	"protection_policy":                   "Description.VirtualMachineScaleSet.Properties.SpotRestorePolicy",
 	"provisioning_state":                  "Description.VirtualMachineScaleSet.Properties.ProvisioningState",
@@ -4267,7 +4267,7 @@ var getComputeVirtualMachineScaleSetVmFilters = map[string]string{
 	"model_definition_applied":            "Description.ScaleSetVM.Properties.ModelDefinitionApplied",
 	"name":                                "Description.ScaleSetVM.Name",
 	"plan":                                "Description.ScaleSetVM.Plan",
-	"platform_integration_id":             "metadata.IntegrationID",
+	"platform_integration_id":             "IntegrationID",
 	"power_state":                         "Description.PowerState",
 	"protection_policy":                   "Description.VirtualMachineScaleSet.Properties.SpotRestorePolicy",
 	"provisioning_state":                  "Description.VirtualMachineScaleSet.Properties.ProvisioningState",
@@ -4351,14 +4351,14 @@ func GetComputeVirtualMachineScaleSetVm(ctx context.Context, d *plugin.QueryData
 // ==========================  START: ComputeSnapshots =============================
 
 type ComputeSnapshots struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.ComputeSnapshotsDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.ComputeSnapshotsDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type ComputeSnapshotsHit struct {
@@ -4448,7 +4448,7 @@ var listComputeSnapshotsFilters = map[string]string{
 	"name":                                  "Description.Snapshot.Name",
 	"network_access_policy":                 "Description.Snapshot.Properties.NetworkAccessPolicy",
 	"os_type":                               "Description.Snapshot.Properties.OSType",
-	"platform_integration_id":               "metadata.IntegrationID",
+	"platform_integration_id":               "IntegrationID",
 	"provisioning_state":                    "Description.Snapshot.Properties.ProvisioningState",
 	"resource_group":                        "Description.ResourceGroup",
 	"sku_name":                              "Description.Snapshot.SKU.Name",
@@ -4544,7 +4544,7 @@ var getComputeSnapshotsFilters = map[string]string{
 	"name":                                  "description.Snapshot.Name",
 	"network_access_policy":                 "Description.Snapshot.Properties.NetworkAccessPolicy",
 	"os_type":                               "Description.Snapshot.Properties.OSType",
-	"platform_integration_id":               "metadata.IntegrationID",
+	"platform_integration_id":               "IntegrationID",
 	"provisioning_state":                    "Description.Snapshot.Properties.ProvisioningState",
 	"resource_group":                        "description.ResourceGroup",
 	"sku_name":                              "Description.Snapshot.SKU.Name",
@@ -4618,14 +4618,14 @@ func GetComputeSnapshots(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: ComputeAvailabilitySet =============================
 
 type ComputeAvailabilitySet struct {
-	ResourceID      string                                  `json:"resource_id"`
-	PlatformID      string                                  `json:"platform_id"`
-	Description     azure.ComputeAvailabilitySetDescription `json:"description"`
-	Metadata        azure.Metadata                          `json:"metadata"`
-	DescribedBy     string                                  `json:"described_by"`
-	ResourceType    string                                  `json:"resource_type"`
-	IntegrationType string                                  `json:"integration_type"`
-	IntegrationID   string                                  `json:"integration_id"`
+	ResourceID      string                                               `json:"resource_id"`
+	PlatformID      string                                               `json:"platform_id"`
+	Description     azure_subscription.ComputeAvailabilitySetDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                          `json:"metadata"`
+	DescribedBy     string                                               `json:"described_by"`
+	ResourceType    string                                               `json:"resource_type"`
+	IntegrationType string                                               `json:"integration_type"`
+	IntegrationID   string                                               `json:"integration_id"`
 }
 
 type ComputeAvailabilitySetHit struct {
@@ -4699,7 +4699,7 @@ var listComputeAvailabilitySetFilters = map[string]string{
 	"id":                           "Description.AvailabilitySet.ID",
 	"name":                         "Description.AvailabilitySet.Name",
 	"platform_fault_domain_count":  "Description.AvailabilitySet.Properties.PlatformFaultDomainCount",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"platform_update_domain_count": "Description.AvailabilitySet.Properties.PlatformUpdateDomainCount",
 	"proximity_placement_group_id": "Description.AvailabilitySet.Properties.ProximityPlacementGroup.ID",
 	"resource_group":               "Description.ResourceGroup",
@@ -4777,7 +4777,7 @@ var getComputeAvailabilitySetFilters = map[string]string{
 	"id":                           "Description.AvailabilitySet.ID",
 	"name":                         "description.AvailabilitySet.Name",
 	"platform_fault_domain_count":  "Description.AvailabilitySet.Properties.PlatformFaultDomainCount",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"platform_update_domain_count": "Description.AvailabilitySet.Properties.PlatformUpdateDomainCount",
 	"proximity_placement_group_id": "Description.AvailabilitySet.Properties.ProximityPlacementGroup.ID",
 	"resource_group":               "description.ResourceGroup",
@@ -4849,14 +4849,14 @@ func GetComputeAvailabilitySet(ctx context.Context, d *plugin.QueryData, _ *plug
 // ==========================  START: ComputeDiskEncryptionSet =============================
 
 type ComputeDiskEncryptionSet struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.ComputeDiskEncryptionSetDescription `json:"description"`
-	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                                                 `json:"resource_id"`
+	PlatformID      string                                                 `json:"platform_id"`
+	Description     azure_subscription.ComputeDiskEncryptionSetDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                            `json:"metadata"`
+	DescribedBy     string                                                 `json:"described_by"`
+	ResourceType    string                                                 `json:"resource_type"`
+	IntegrationType string                                                 `json:"integration_type"`
+	IntegrationID   string                                                 `json:"integration_id"`
 }
 
 type ComputeDiskEncryptionSetHit struct {
@@ -4935,7 +4935,7 @@ var listComputeDiskEncryptionSetFilters = map[string]string{
 	"identity_tenant_id":         "Description.DiskEncryptionSet.Identity.TenantID",
 	"identity_type":              "Description.DiskEncryptionSet.Identity.Type",
 	"name":                       "Description.DiskEncryptionSet.Name",
-	"platform_integration_id":    "metadata.IntegrationID",
+	"platform_integration_id":    "IntegrationID",
 	"previous_keys":              "Description.DiskEncryptionSet.Properties.PreviousKeys",
 	"provisioning_state":         "Description.DiskEncryptionSet.Properties.ProvisioningState",
 	"resource_group":             "Description.ResourceGroup",
@@ -5013,7 +5013,7 @@ var getComputeDiskEncryptionSetFilters = map[string]string{
 	"identity_tenant_id":         "Description.DiskEncryptionSet.Identity.TenantID",
 	"identity_type":              "Description.DiskEncryptionSet.Identity.Type",
 	"name":                       "description.DiskEncryptionSet.Name",
-	"platform_integration_id":    "metadata.IntegrationID",
+	"platform_integration_id":    "IntegrationID",
 	"previous_keys":              "Description.DiskEncryptionSet.Properties.PreviousKeys",
 	"provisioning_state":         "Description.DiskEncryptionSet.Properties.ProvisioningState",
 	"resource_group":             "description.ResourceGroup",
@@ -5080,14 +5080,14 @@ func GetComputeDiskEncryptionSet(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: ComputeImageGallery =============================
 
 type ComputeImageGallery struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure.ComputeImageGalleryDescription `json:"description"`
-	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure_subscription.ComputeImageGalleryDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                       `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type ComputeImageGalleryHit struct {
@@ -5160,7 +5160,7 @@ func (p ComputeImageGalleryPaginator) NextPage(ctx context.Context) ([]ComputeIm
 var listComputeImageGalleryFilters = map[string]string{
 	"id":                      "Description.ImageGallery.ID",
 	"name":                    "Description.ImageGallery.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.ImageGallery.Tags",
 	"title":                   "Description.ImageGallery.Name",
 }
@@ -5228,7 +5228,7 @@ func ListComputeImageGallery(ctx context.Context, d *plugin.QueryData, _ *plugin
 var getComputeImageGalleryFilters = map[string]string{
 	"id":                      "Description.ImageGallery.ID",
 	"name":                    "description.ImageGallery.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"tags":                    "Description.ImageGallery.Tags",
 	"title":                   "Description.ImageGallery.Name",
@@ -5292,14 +5292,14 @@ func GetComputeImageGallery(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: ComputeImage =============================
 
 type ComputeImage struct {
-	ResourceID      string                        `json:"resource_id"`
-	PlatformID      string                        `json:"platform_id"`
-	Description     azure.ComputeImageDescription `json:"description"`
-	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     string                        `json:"described_by"`
-	ResourceType    string                        `json:"resource_type"`
-	IntegrationType string                        `json:"integration_type"`
-	IntegrationID   string                        `json:"integration_id"`
+	ResourceID      string                                     `json:"resource_id"`
+	PlatformID      string                                     `json:"platform_id"`
+	Description     azure_subscription.ComputeImageDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                `json:"metadata"`
+	DescribedBy     string                                     `json:"described_by"`
+	ResourceType    string                                     `json:"resource_type"`
+	IntegrationType string                                     `json:"integration_type"`
+	IntegrationID   string                                     `json:"integration_id"`
 }
 
 type ComputeImageHit struct {
@@ -5373,7 +5373,7 @@ var listComputeImageFilters = map[string]string{
 	"hyper_v_generation":                           "Description.Image.Properties.HyperVGeneration",
 	"id":                                           "Description.Image.ID",
 	"name":                                         "Description.Image.Name",
-	"platform_integration_id":                      "metadata.IntegrationID",
+	"platform_integration_id":                      "IntegrationID",
 	"provisioning_state":                           "Description.Image.Properties.ProvisioningState",
 	"resource_group":                               "Description.ResourceGroup",
 	"source_virtual_machine_id":                    "Description.Image.Properties.SourceVirtualMachine.ID",
@@ -5457,7 +5457,7 @@ var getComputeImageFilters = map[string]string{
 	"hyper_v_generation":                           "Description.Image.Properties.HyperVGeneration",
 	"id":                                           "Description.Image.ID",
 	"name":                                         "Description.Image.Name",
-	"platform_integration_id":                      "metadata.IntegrationID",
+	"platform_integration_id":                      "IntegrationID",
 	"provisioning_state":                           "Description.Image.Properties.ProvisioningState",
 	"resource_group":                               "Description.Image.ResourceGroup",
 	"source_virtual_machine_id":                    "Description.Image.Properties.SourceVirtualMachine.ID",
@@ -5535,14 +5535,14 @@ func GetComputeImage(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: ComputeHostGroup =============================
 
 type ComputeHostGroup struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.ComputeHostGroupDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.ComputeHostGroupDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type ComputeHostGroupHit struct {
@@ -5744,14 +5744,14 @@ func GetComputeHostGroup(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: ComputeHostGroupHost =============================
 
 type ComputeHostGroupHost struct {
-	ResourceID      string                                `json:"resource_id"`
-	PlatformID      string                                `json:"platform_id"`
-	Description     azure.ComputeHostGroupHostDescription `json:"description"`
-	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     string                                `json:"described_by"`
-	ResourceType    string                                `json:"resource_type"`
-	IntegrationType string                                `json:"integration_type"`
-	IntegrationID   string                                `json:"integration_id"`
+	ResourceID      string                                             `json:"resource_id"`
+	PlatformID      string                                             `json:"platform_id"`
+	Description     azure_subscription.ComputeHostGroupHostDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                        `json:"metadata"`
+	DescribedBy     string                                             `json:"described_by"`
+	ResourceType    string                                             `json:"resource_type"`
+	IntegrationType string                                             `json:"integration_type"`
+	IntegrationID   string                                             `json:"integration_id"`
 }
 
 type ComputeHostGroupHostHit struct {
@@ -5953,14 +5953,14 @@ func GetComputeHostGroupHost(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: ComputeRestorePointCollection =============================
 
 type ComputeRestorePointCollection struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure.ComputeRestorePointCollectionDescription `json:"description"`
-	Metadata        azure.Metadata                                 `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                                                      `json:"resource_id"`
+	PlatformID      string                                                      `json:"platform_id"`
+	Description     azure_subscription.ComputeRestorePointCollectionDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                 `json:"metadata"`
+	DescribedBy     string                                                      `json:"described_by"`
+	ResourceType    string                                                      `json:"resource_type"`
+	IntegrationType string                                                      `json:"integration_type"`
+	IntegrationID   string                                                      `json:"integration_id"`
 }
 
 type ComputeRestorePointCollectionHit struct {
@@ -6162,14 +6162,14 @@ func GetComputeRestorePointCollection(ctx context.Context, d *plugin.QueryData, 
 // ==========================  START: ComputeSSHPublicKey =============================
 
 type ComputeSSHPublicKey struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure.ComputeSSHPublicKeyDescription `json:"description"`
-	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure_subscription.ComputeSSHPublicKeyDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                       `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type ComputeSSHPublicKeyHit struct {
@@ -6377,14 +6377,14 @@ func GetComputeSSHPublicKey(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: DataboxEdgeDevice =============================
 
 type DataboxEdgeDevice struct {
-	ResourceID      string                             `json:"resource_id"`
-	PlatformID      string                             `json:"platform_id"`
-	Description     azure.DataboxEdgeDeviceDescription `json:"description"`
-	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     string                             `json:"described_by"`
-	ResourceType    string                             `json:"resource_type"`
-	IntegrationType string                             `json:"integration_type"`
-	IntegrationID   string                             `json:"integration_id"`
+	ResourceID      string                                          `json:"resource_id"`
+	PlatformID      string                                          `json:"platform_id"`
+	Description     azure_subscription.DataboxEdgeDeviceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                     `json:"metadata"`
+	DescribedBy     string                                          `json:"described_by"`
+	ResourceType    string                                          `json:"resource_type"`
+	IntegrationType string                                          `json:"integration_type"`
+	IntegrationID   string                                          `json:"integration_id"`
 }
 
 type DataboxEdgeDeviceHit struct {
@@ -6471,7 +6471,7 @@ var listDataboxEdgeDeviceFilters = map[string]string{
 	"model_description":           "Description.Device.Properties.ModelDescription",
 	"name":                        "Description.Device.Name",
 	"node_count":                  "Description.Device.Properties.NodeCount",
-	"platform_integration_id":     "metadata.IntegrationID",
+	"platform_integration_id":     "IntegrationID",
 	"resource_group":              "Description.ResourceGroup",
 	"serial_number":               "Description.Device.Properties.SerialNumber",
 	"sku_name":                    "Description.Device.SKU.Name",
@@ -6559,7 +6559,7 @@ var getDataboxEdgeDeviceFilters = map[string]string{
 	"model_description":           "Description.Device.Properties.ModelDescription",
 	"name":                        "description.Device.name",
 	"node_count":                  "Description.Device.Properties.NodeCount",
-	"platform_integration_id":     "metadata.IntegrationID",
+	"platform_integration_id":     "IntegrationID",
 	"resource_group":              "description.ResourceGroup",
 	"serial_number":               "Description.Device.Properties.SerialNumber",
 	"sku_name":                    "Description.Device.SKU.Name",
@@ -6628,14 +6628,14 @@ func GetDataboxEdgeDevice(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: HealthcareService =============================
 
 type HealthcareService struct {
-	ResourceID      string                             `json:"resource_id"`
-	PlatformID      string                             `json:"platform_id"`
-	Description     azure.HealthcareServiceDescription `json:"description"`
-	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     string                             `json:"described_by"`
-	ResourceType    string                             `json:"resource_type"`
-	IntegrationType string                             `json:"integration_type"`
-	IntegrationID   string                             `json:"integration_id"`
+	ResourceID      string                                          `json:"resource_id"`
+	PlatformID      string                                          `json:"platform_id"`
+	Description     azure_subscription.HealthcareServiceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                     `json:"metadata"`
+	DescribedBy     string                                          `json:"described_by"`
+	ResourceType    string                                          `json:"resource_type"`
+	IntegrationType string                                          `json:"integration_type"`
+	IntegrationID   string                                          `json:"integration_id"`
 }
 
 type HealthcareServiceHit struct {
@@ -6721,7 +6721,7 @@ var listHealthcareServiceFilters = map[string]string{
 	"methods":                      "Description.ServicesDescription.Properties.CorsConfiguration.Methods",
 	"name":                         "Description.ServicesDescription.Name",
 	"origins":                      "Description.ServicesDescription.Properties.CorsConfiguration.Origins",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"private_endpoint_connections": "Description.ServicesDescription.Properties.PrivateEndpointConnections",
 	"provisioning_state":           "Description.ServicesDescription.Properties.ProvisioningState",
 	"resource_group":               "Description.ResourceGroup",
@@ -6807,7 +6807,7 @@ var getHealthcareServiceFilters = map[string]string{
 	"methods":                      "Description.ServicesDescription.Properties.CorsConfiguration.Methods",
 	"name":                         "description.ServicesDescription.name",
 	"origins":                      "Description.ServicesDescription.Properties.CorsConfiguration.Origins",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"private_endpoint_connections": "Description.ServicesDescription.Properties.PrivateEndpointConnections",
 	"provisioning_state":           "Description.ServicesDescription.Properties.ProvisioningState",
 	"resource_group":               "description.ResourceGroup",
@@ -6875,14 +6875,14 @@ func GetHealthcareService(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: HpcCache =============================
 
 type HpcCache struct {
-	ResourceID      string                    `json:"resource_id"`
-	PlatformID      string                    `json:"platform_id"`
-	Description     azure.HpcCacheDescription `json:"description"`
-	Metadata        azure.Metadata            `json:"metadata"`
-	DescribedBy     string                    `json:"described_by"`
-	ResourceType    string                    `json:"resource_type"`
-	IntegrationType string                    `json:"integration_type"`
-	IntegrationID   string                    `json:"integration_id"`
+	ResourceID      string                                 `json:"resource_id"`
+	PlatformID      string                                 `json:"platform_id"`
+	Description     azure_subscription.HpcCacheDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata            `json:"metadata"`
+	DescribedBy     string                                 `json:"described_by"`
+	ResourceType    string                                 `json:"resource_type"`
+	IntegrationType string                                 `json:"integration_type"`
+	IntegrationID   string                                 `json:"integration_id"`
 }
 
 type HpcCacheHit struct {
@@ -6961,7 +6961,7 @@ var listHpcCacheFilters = map[string]string{
 	"identity":                    "Description.Cache.Identity",
 	"mount_addresses":             "Description.Cache.Properties.MountAddresses",
 	"name":                        "Description.Cache.Name",
-	"platform_integration_id":     "metadata.IntegrationID",
+	"platform_integration_id":     "IntegrationID",
 	"provisioning_state":          "Description.Cache.Properties.ProvisioningState",
 	"resource_group":              "Description.ResourceGroup",
 	"security_settings":           "Description.Cache.Properties.SecuritySettings",
@@ -7042,7 +7042,7 @@ var getHpcCacheFilters = map[string]string{
 	"identity":                    "Description.Cache.Identity",
 	"mount_addresses":             "Description.Cache.Properties.MountAddresses",
 	"name":                        "description.Cache.name",
-	"platform_integration_id":     "metadata.IntegrationID",
+	"platform_integration_id":     "IntegrationID",
 	"provisioning_state":          "Description.Cache.Properties.ProvisioningState",
 	"resource_group":              "description.ResourceGroup",
 	"security_settings":           "Description.Cache.Properties.SecuritySettings",
@@ -7112,14 +7112,14 @@ func GetHpcCache(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 // ==========================  START: KeyVaultKey =============================
 
 type KeyVaultKey struct {
-	ResourceID      string                       `json:"resource_id"`
-	PlatformID      string                       `json:"platform_id"`
-	Description     azure.KeyVaultKeyDescription `json:"description"`
-	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     string                       `json:"described_by"`
-	ResourceType    string                       `json:"resource_type"`
-	IntegrationType string                       `json:"integration_type"`
-	IntegrationID   string                       `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure_subscription.KeyVaultKeyDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata               `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type KeyVaultKeyHit struct {
@@ -7200,7 +7200,7 @@ var listKeyVaultKeyFilters = map[string]string{
 	"key_uri_with_version":    "Description.Key.Properties.KeyURIWithVersion",
 	"location":                "Description.Key.Location",
 	"name":                    "Description.Key.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"recovery_level":          "Description.Key.Properties.Attributes.RecoveryLevel",
 	"resource_group":          "Description.ResourceGroup",
 	"tags":                    "Description.Key.Tags",
@@ -7279,7 +7279,7 @@ var getKeyVaultKeyFilters = map[string]string{
 	"key_uri_with_version":    "Description.Key.Properties.KeyURIWithVersion",
 	"location":                "Description.Key.Location",
 	"name":                    "description.Key.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"recovery_level":          "Description.Key.Properties.Attributes.RecoveryLevel",
 	"resource_group":          "description.ResourceGroup",
 	"tags":                    "Description.Key.Tags",
@@ -7346,14 +7346,14 @@ func GetKeyVaultKey(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: KeyVaultKeyVersion =============================
 
 type KeyVaultKeyVersion struct {
-	ResourceID      string                              `json:"resource_id"`
-	PlatformID      string                              `json:"platform_id"`
-	Description     azure.KeyVaultKeyVersionDescription `json:"description"`
-	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     string                              `json:"described_by"`
-	ResourceType    string                              `json:"resource_type"`
-	IntegrationType string                              `json:"integration_type"`
-	IntegrationID   string                              `json:"integration_id"`
+	ResourceID      string                                           `json:"resource_id"`
+	PlatformID      string                                           `json:"platform_id"`
+	Description     azure_subscription.KeyVaultKeyVersionDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                      `json:"metadata"`
+	DescribedBy     string                                           `json:"described_by"`
+	ResourceType    string                                           `json:"resource_type"`
+	IntegrationType string                                           `json:"integration_type"`
+	IntegrationID   string                                           `json:"integration_id"`
 }
 
 type KeyVaultKeyVersionHit struct {
@@ -7436,7 +7436,7 @@ var listKeyVaultKeyVersionFilters = map[string]string{
 	"key_uri_with_version":    "Description.Version.Properties.KeyURIWithVersion",
 	"location":                "Description.Version.Location",
 	"name":                    "Description.Version.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"recovery_level":          "Description.Version.Properties.Attributes.RecoveryLevel",
 	"resource_group":          "Description.ResourceGroup",
 	"tags":                    "Description.Version.Tags",
@@ -7518,7 +7518,7 @@ var getKeyVaultKeyVersionFilters = map[string]string{
 	"key_uri_with_version":    "Description.Version.Properties.KeyURIWithVersion",
 	"location":                "Description.Version.Location",
 	"name":                    "description.Version.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"recovery_level":          "Description.Version.Properties.Attributes.RecoveryLevel",
 	"resource_group":          "description.ResourceGroup",
 	"tags":                    "Description.Version.Tags",
@@ -7585,14 +7585,14 @@ func GetKeyVaultKeyVersion(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: KubernetesCluster =============================
 
 type KubernetesCluster struct {
-	ResourceID      string                             `json:"resource_id"`
-	PlatformID      string                             `json:"platform_id"`
-	Description     azure.KubernetesClusterDescription `json:"description"`
-	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     string                             `json:"described_by"`
-	ResourceType    string                             `json:"resource_type"`
-	IntegrationType string                             `json:"integration_type"`
-	IntegrationID   string                             `json:"integration_id"`
+	ResourceID      string                                          `json:"resource_id"`
+	PlatformID      string                                          `json:"platform_id"`
+	Description     azure_subscription.KubernetesClusterDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                     `json:"metadata"`
+	DescribedBy     string                                          `json:"described_by"`
+	ResourceType    string                                          `json:"resource_type"`
+	IntegrationType string                                          `json:"integration_type"`
+	IntegrationID   string                                          `json:"integration_id"`
 }
 
 type KubernetesClusterHit struct {
@@ -7686,7 +7686,7 @@ var listKubernetesClusterFilters = map[string]string{
 	"name":                       "Description.ManagedCluster.Name",
 	"network_profile":            "Description.ManagedCluster.Properties.NetworkProfile",
 	"node_resource_group":        "Description.ManagedCluster.Properties.NodeResourceGroup",
-	"platform_integration_id":    "metadata.IntegrationID",
+	"platform_integration_id":    "IntegrationID",
 	"pod_identity_profile":       "Description.ManagedCluster.Properties.PodIdentityProfile",
 	"power_state":                "Description.ManagedCluster.Properties.PowerState",
 	"private_fqdn":               "Description.ManagedCluster.Properties.PrivateFQDN",
@@ -7784,7 +7784,7 @@ var getKubernetesClusterFilters = map[string]string{
 	"name":                       "description.ManagedCluster.name",
 	"network_profile":            "Description.ManagedCluster.Properties.NetworkProfile",
 	"node_resource_group":        "Description.ManagedCluster.Properties.NodeResourceGroup",
-	"platform_integration_id":    "metadata.IntegrationID",
+	"platform_integration_id":    "IntegrationID",
 	"pod_identity_profile":       "Description.ManagedCluster.Properties.PodIdentityProfile",
 	"power_state":                "Description.ManagedCluster.Properties.PowerState",
 	"private_fqdn":               "Description.ManagedCluster.Properties.PrivateFQDN",
@@ -7856,14 +7856,14 @@ func GetKubernetesCluster(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: KubernetesServiceVersion =============================
 
 type KubernetesServiceVersion struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.KubernetesServiceVersionDescription `json:"description"`
-	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                                                 `json:"resource_id"`
+	PlatformID      string                                                 `json:"platform_id"`
+	Description     azure_subscription.KubernetesServiceVersionDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                            `json:"metadata"`
+	DescribedBy     string                                                 `json:"described_by"`
+	ResourceType    string                                                 `json:"resource_type"`
+	IntegrationType string                                                 `json:"integration_type"`
+	IntegrationID   string                                                 `json:"integration_id"`
 }
 
 type KubernetesServiceVersionHit struct {
@@ -7937,7 +7937,7 @@ var listKubernetesServiceVersionFilters = map[string]string{
 	"capabilities":            "Description.Version.Capabilities",
 	"is_preview":              "Description.Version.IsPreview",
 	"patch_versions":          "Description.Version.PatchVersions",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"title":                   "Description.Version.Version",
 	"version":                 "Description.Version.Version",
 }
@@ -8007,7 +8007,7 @@ var getKubernetesServiceVersionFilters = map[string]string{
 	"is_preview":              "Description.Version.IsPreview",
 	"name":                    "description.Orchestrator.name",
 	"patch_versions":          "Description.Version.PatchVersions",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"title":                   "Description.Version.Version",
 	"version":                 "Description.Version.Version",
@@ -8071,14 +8071,14 @@ func GetKubernetesServiceVersion(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: ContainerInstanceContainerGroup =============================
 
 type ContainerInstanceContainerGroup struct {
-	ResourceID      string                                           `json:"resource_id"`
-	PlatformID      string                                           `json:"platform_id"`
-	Description     azure.ContainerInstanceContainerGroupDescription `json:"description"`
-	Metadata        azure.Metadata                                   `json:"metadata"`
-	DescribedBy     string                                           `json:"described_by"`
-	ResourceType    string                                           `json:"resource_type"`
-	IntegrationType string                                           `json:"integration_type"`
-	IntegrationID   string                                           `json:"integration_id"`
+	ResourceID      string                                                        `json:"resource_id"`
+	PlatformID      string                                                        `json:"platform_id"`
+	Description     azure_subscription.ContainerInstanceContainerGroupDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                   `json:"metadata"`
+	DescribedBy     string                                                        `json:"described_by"`
+	ResourceType    string                                                        `json:"resource_type"`
+	IntegrationType string                                                        `json:"integration_type"`
+	IntegrationID   string                                                        `json:"integration_id"`
 }
 
 type ContainerInstanceContainerGroupHit struct {
@@ -8161,7 +8161,7 @@ var listContainerInstanceContainerGroupFilters = map[string]string{
 	"ip_address":                 "Description.ContainerGroup.Properties.IPAddress",
 	"name":                       "Description.ContainerGroup.Name",
 	"os_type":                    "Description.ContainerGroup.Properties.OSType",
-	"platform_integration_id":    "metadata.IntegrationID",
+	"platform_integration_id":    "IntegrationID",
 	"provisioning_state":         "Description.ContainerGroup.Properties.ProvisioningState",
 	"resource_group":             "Description.ResourceGroup",
 	"restart_policy":             "Description.ContainerGroup.Properties.RestartPolicy",
@@ -8246,7 +8246,7 @@ var getContainerInstanceContainerGroupFilters = map[string]string{
 	"ip_address":                 "Description.ContainerGroup.Properties.IPAddress",
 	"name":                       "Description.ContainerGroup.Name",
 	"os_type":                    "Description.ContainerGroup.Properties.OSType",
-	"platform_integration_id":    "metadata.IntegrationID",
+	"platform_integration_id":    "IntegrationID",
 	"provisioning_state":         "Description.ContainerGroup.Properties.ProvisioningState",
 	"resource_group":             "Description.ResourceGroup",
 	"restart_policy":             "Description.ContainerGroup.Properties.RestartPolicy",
@@ -8316,14 +8316,14 @@ func GetContainerInstanceContainerGroup(ctx context.Context, d *plugin.QueryData
 // ==========================  START: CDNProfile =============================
 
 type CDNProfile struct {
-	ResourceID      string                      `json:"resource_id"`
-	PlatformID      string                      `json:"platform_id"`
-	Description     azure.CDNProfileDescription `json:"description"`
-	Metadata        azure.Metadata              `json:"metadata"`
-	DescribedBy     string                      `json:"described_by"`
-	ResourceType    string                      `json:"resource_type"`
-	IntegrationType string                      `json:"integration_type"`
-	IntegrationID   string                      `json:"integration_id"`
+	ResourceID      string                                   `json:"resource_id"`
+	PlatformID      string                                   `json:"platform_id"`
+	Description     azure_subscription.CDNProfileDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata              `json:"metadata"`
+	DescribedBy     string                                   `json:"described_by"`
+	ResourceType    string                                   `json:"resource_type"`
+	IntegrationType string                                   `json:"integration_type"`
+	IntegrationID   string                                   `json:"integration_id"`
 }
 
 type CDNProfileHit struct {
@@ -8399,7 +8399,7 @@ var listCDNProfileFilters = map[string]string{
 	"kind":                            "Description.Profile.Kind",
 	"name":                            "Description.Profile.Name",
 	"origin_response_timeout_seconds": "Description.Profile.Properties.OriginResponseTimeoutSeconds",
-	"platform_integration_id":         "metadata.IntegrationID",
+	"platform_integration_id":         "IntegrationID",
 	"provisioning_state":              "Description.Profile.Properties.ProvisioningState",
 	"resource_group":                  "Description.ResourceGroup",
 	"sku_name":                        "Description.Profile.SKU.Name",
@@ -8474,7 +8474,7 @@ var getCDNProfileFilters = map[string]string{
 	"kind":                            "Description.Profile.Kind",
 	"name":                            "Description.Profile.Name",
 	"origin_response_timeout_seconds": "Description.Profile.Properties.OriginResponseTimeoutSeconds",
-	"platform_integration_id":         "metadata.IntegrationID",
+	"platform_integration_id":         "IntegrationID",
 	"provisioning_state":              "Description.Profile.Properties.ProvisioningState",
 	"resource_group":                  "Description.ResourceGroup",
 	"sku_name":                        "Description.Profile.SKU.Name",
@@ -8541,14 +8541,14 @@ func GetCDNProfile(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 // ==========================  START: CDNEndpoint =============================
 
 type CDNEndpoint struct {
-	ResourceID      string                       `json:"resource_id"`
-	PlatformID      string                       `json:"platform_id"`
-	Description     azure.CDNEndpointDescription `json:"description"`
-	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     string                       `json:"described_by"`
-	ResourceType    string                       `json:"resource_type"`
-	IntegrationType string                       `json:"integration_type"`
-	IntegrationID   string                       `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure_subscription.CDNEndpointDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata               `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type CDNEndpointHit struct {
@@ -8750,14 +8750,14 @@ func GetCDNEndpoint(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: NetworkInterface =============================
 
 type NetworkInterface struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.NetworkInterfaceDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.NetworkInterfaceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type NetworkInterfaceHit struct {
@@ -8847,7 +8847,7 @@ var listNetworkInterfaceFilters = map[string]string{
 	"name":                          "Description.Interface.Name",
 	"network_security_group_id":     "Description.Interface.Properties.NetworkSecurityGroup.ID",
 	"nic_type":                      "Description.Interface.Properties.NicType",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"private_endpoint":              "Description.Interface.Properties.PrivateEndpoint",
 	"private_link_service":          "Description.Interface.Properties.PrivateLinkService",
 	"provisioning_state":            "Description.Interface.Properties.ProvisioningState",
@@ -8942,7 +8942,7 @@ var getNetworkInterfaceFilters = map[string]string{
 	"name":                          "description.Interface.name",
 	"network_security_group_id":     "Description.Interface.Properties.NetworkSecurityGroup.ID",
 	"nic_type":                      "Description.Interface.Properties.NicType",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"private_endpoint":              "Description.Interface.Properties.PrivateEndpoint",
 	"private_link_service":          "Description.Interface.Properties.PrivateLinkService",
 	"provisioning_state":            "Description.Interface.Properties.ProvisioningState",
@@ -9015,14 +9015,14 @@ func GetNetworkInterface(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: NetworkWatcherFlowLog =============================
 
 type NetworkWatcherFlowLog struct {
-	ResourceID      string                                 `json:"resource_id"`
-	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.NetworkWatcherFlowLogDescription `json:"description"`
-	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     string                                 `json:"described_by"`
-	ResourceType    string                                 `json:"resource_type"`
-	IntegrationType string                                 `json:"integration_type"`
-	IntegrationID   string                                 `json:"integration_id"`
+	ResourceID      string                                              `json:"resource_id"`
+	PlatformID      string                                              `json:"platform_id"`
+	Description     azure_subscription.NetworkWatcherFlowLogDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                         `json:"metadata"`
+	DescribedBy     string                                              `json:"described_by"`
+	ResourceType    string                                              `json:"resource_type"`
+	IntegrationType string                                              `json:"integration_type"`
+	IntegrationID   string                                              `json:"integration_id"`
 }
 
 type NetworkWatcherFlowLogHit struct {
@@ -9099,7 +9099,7 @@ var listNetworkWatcherFlowLogFilters = map[string]string{
 	"id":                       "Description.FlowLog.ID",
 	"name":                     "Description.FlowLog.Name",
 	"network_watcher_name":     "Description.NetworkWatcherName",
-	"platform_integration_id":  "metadata.IntegrationID",
+	"platform_integration_id":  "IntegrationID",
 	"provisioning_state":       "Description.FlowLog.Properties.ProvisioningState",
 	"resource_group":           "Description.ResourceGroup",
 	"retention_policy_days":    "Description.FlowLog.Properties.RetentionPolicy.Days",
@@ -9181,7 +9181,7 @@ var getNetworkWatcherFlowLogFilters = map[string]string{
 	"id":                       "Description.FlowLog.ID",
 	"name":                     "description.ManagedCluster.name",
 	"network_watcher_name":     "description.NetworkWatcherName",
-	"platform_integration_id":  "metadata.IntegrationID",
+	"platform_integration_id":  "IntegrationID",
 	"provisioning_state":       "Description.FlowLog.Properties.ProvisioningState",
 	"resource_group":           "description.ResourceGroup",
 	"retention_policy_days":    "Description.FlowLog.Properties.RetentionPolicy.Days",
@@ -9254,14 +9254,14 @@ func GetNetworkWatcherFlowLog(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: RouteTables =============================
 
 type RouteTables struct {
-	ResourceID      string                       `json:"resource_id"`
-	PlatformID      string                       `json:"platform_id"`
-	Description     azure.RouteTablesDescription `json:"description"`
-	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     string                       `json:"described_by"`
-	ResourceType    string                       `json:"resource_type"`
-	IntegrationType string                       `json:"integration_type"`
-	IntegrationID   string                       `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure_subscription.RouteTablesDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata               `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type RouteTablesHit struct {
@@ -9335,7 +9335,7 @@ var listRouteTablesFilters = map[string]string{
 	"disable_bgp_route_propagation": "Description.RouteTable.Properties.DisableBgpRoutePropagation",
 	"etag":                          "Description.RouteTable.Etag",
 	"name":                          "Description.RouteTable.Name",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"provisioning_state":            "Description.RouteTable.Properties.ProvisioningState",
 	"routes":                        "Description.RouteTable.Properties.Routes",
 	"subnets":                       "Description.RouteTable.Properties.Subnets",
@@ -9408,7 +9408,7 @@ var getRouteTablesFilters = map[string]string{
 	"disable_bgp_route_propagation": "Description.RouteTable.Properties.DisableBgpRoutePropagation",
 	"etag":                          "Description.RouteTable.Etag",
 	"name":                          "description.RouteTable.Name",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"provisioning_state":            "Description.RouteTable.Properties.ProvisioningState",
 	"resource_group":                "description.ResourceGroup",
 	"routes":                        "Description.RouteTable.Properties.Routes",
@@ -9476,14 +9476,14 @@ func GetRouteTables(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: NetworkApplicationSecurityGroups =============================
 
 type NetworkApplicationSecurityGroups struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure.NetworkApplicationSecurityGroupsDescription `json:"description"`
-	Metadata        azure.Metadata                                    `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                                                         `json:"resource_id"`
+	PlatformID      string                                                         `json:"platform_id"`
+	Description     azure_subscription.NetworkApplicationSecurityGroupsDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                    `json:"metadata"`
+	DescribedBy     string                                                         `json:"described_by"`
+	ResourceType    string                                                         `json:"resource_type"`
+	IntegrationType string                                                         `json:"integration_type"`
+	IntegrationID   string                                                         `json:"integration_id"`
 }
 
 type NetworkApplicationSecurityGroupsHit struct {
@@ -9556,7 +9556,7 @@ func (p NetworkApplicationSecurityGroupsPaginator) NextPage(ctx context.Context)
 var listNetworkApplicationSecurityGroupsFilters = map[string]string{
 	"etag":                    "Description.ApplicationSecurityGroup.Etag",
 	"name":                    "Description.ApplicationSecurityGroup.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.ApplicationSecurityGroup.Properties.ProvisioningState",
 	"resource_group":          "Description.ResourceGroup",
 	"resource_guid":           "Description.ApplicationSecurityGroup.Properties.ResourceGUID",
@@ -9628,7 +9628,7 @@ func ListNetworkApplicationSecurityGroups(ctx context.Context, d *plugin.QueryDa
 var getNetworkApplicationSecurityGroupsFilters = map[string]string{
 	"etag":                    "Description.ApplicationSecurityGroup.Etag",
 	"name":                    "description.ApplicationSecurityGroup.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.ApplicationSecurityGroup.Properties.ProvisioningState",
 	"resource_group":          "description.ResourceGroup",
 	"resource_guid":           "Description.ApplicationSecurityGroup.Properties.ResourceGUID",
@@ -9695,14 +9695,14 @@ func GetNetworkApplicationSecurityGroups(ctx context.Context, d *plugin.QueryDat
 // ==========================  START: NetworkAzureFirewall =============================
 
 type NetworkAzureFirewall struct {
-	ResourceID      string                                `json:"resource_id"`
-	PlatformID      string                                `json:"platform_id"`
-	Description     azure.NetworkAzureFirewallDescription `json:"description"`
-	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     string                                `json:"described_by"`
-	ResourceType    string                                `json:"resource_type"`
-	IntegrationType string                                `json:"integration_type"`
-	IntegrationID   string                                `json:"integration_id"`
+	ResourceID      string                                             `json:"resource_id"`
+	PlatformID      string                                             `json:"platform_id"`
+	Description     azure_subscription.NetworkAzureFirewallDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                        `json:"metadata"`
+	DescribedBy     string                                             `json:"described_by"`
+	ResourceType    string                                             `json:"resource_type"`
+	IntegrationType string                                             `json:"integration_type"`
+	IntegrationID   string                                             `json:"integration_id"`
 }
 
 type NetworkAzureFirewallHit struct {
@@ -9786,7 +9786,7 @@ var listNetworkAzureFirewallFilters = map[string]string{
 	"name":                         "Description.AzureFirewall.Name",
 	"nat_rule_collections":         "Description.AzureFirewall.Properties.NatRuleCollections",
 	"network_rule_collections":     "Description.AzureFirewall.Properties.NetworkRuleCollections",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"provisioning_state":           "Description.AzureFirewall.Properties.ProvisioningState",
 	"resource_group":               "Description.ResourceGroup",
 	"sku_name":                     "Description.AzureFirewall.Properties.SKU.Name",
@@ -9872,7 +9872,7 @@ var getNetworkAzureFirewallFilters = map[string]string{
 	"name":                         "description.AzureFirewall.Name",
 	"nat_rule_collections":         "Description.AzureFirewall.Properties.NatRuleCollections",
 	"network_rule_collections":     "Description.AzureFirewall.Properties.NetworkRuleCollections",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"provisioning_state":           "Description.AzureFirewall.Properties.ProvisioningState",
 	"resource_group":               "description.ResourceGroup",
 	"sku_name":                     "Description.AzureFirewall.Properties.SKU.Name",
@@ -9942,14 +9942,14 @@ func GetNetworkAzureFirewall(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: ExpressRouteCircuit =============================
 
 type ExpressRouteCircuit struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure.ExpressRouteCircuitDescription `json:"description"`
-	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure_subscription.ExpressRouteCircuitDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                       `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type ExpressRouteCircuitHit struct {
@@ -10030,7 +10030,7 @@ var listExpressRouteCircuitFilters = map[string]string{
 	"id":                                  "Description.ExpressRouteCircuit.ID",
 	"name":                                "Description.ExpressRouteCircuit.Name",
 	"peerings":                            "Description.ExpressRouteCircuit.Properties.Peerings",
-	"platform_integration_id":             "metadata.IntegrationID",
+	"platform_integration_id":             "IntegrationID",
 	"provisioning_state":                  "Description.ExpressRouteCircuit.Properties.ProvisioningState",
 	"resource_group":                      "Description.ResourceGroup",
 	"service_key":                         "Description.ExpressRouteCircuit.Properties.ServiceKey",
@@ -10115,7 +10115,7 @@ var getExpressRouteCircuitFilters = map[string]string{
 	"id":                                  "Description.ExpressRouteCircuit.ID",
 	"name":                                "description.ExpressRouteCircuit.name",
 	"peerings":                            "Description.ExpressRouteCircuit.Properties.Peerings",
-	"platform_integration_id":             "metadata.IntegrationID",
+	"platform_integration_id":             "IntegrationID",
 	"provisioning_state":                  "Description.ExpressRouteCircuit.Properties.ProvisioningState",
 	"resource_group":                      "description.ResourceGroup",
 	"service_key":                         "Description.ExpressRouteCircuit.Properties.ServiceKey",
@@ -10187,14 +10187,14 @@ func GetExpressRouteCircuit(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: VirtualNetworkGateway =============================
 
 type VirtualNetworkGateway struct {
-	ResourceID      string                                 `json:"resource_id"`
-	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.VirtualNetworkGatewayDescription `json:"description"`
-	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     string                                 `json:"described_by"`
-	ResourceType    string                                 `json:"resource_type"`
-	IntegrationType string                                 `json:"integration_type"`
-	IntegrationID   string                                 `json:"integration_id"`
+	ResourceID      string                                              `json:"resource_id"`
+	PlatformID      string                                              `json:"platform_id"`
+	Description     azure_subscription.VirtualNetworkGatewayDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                         `json:"metadata"`
+	DescribedBy     string                                              `json:"described_by"`
+	ResourceType    string                                              `json:"resource_type"`
+	IntegrationType string                                              `json:"integration_type"`
+	IntegrationID   string                                              `json:"integration_id"`
 }
 
 type VirtualNetworkGatewayHit struct {
@@ -10279,7 +10279,7 @@ var listVirtualNetworkGatewayFilters = map[string]string{
 	"inbound_dns_forwarding_endpoint": "Description.VirtualNetworkGateway.Properties.InboundDNSForwardingEndpoint",
 	"ip_configurations":               "Description.VirtualNetworkGateway.Properties.IPConfigurations",
 	"name":                            "Description.VirtualNetworkGateway.Name",
-	"platform_integration_id":         "metadata.IntegrationID",
+	"platform_integration_id":         "IntegrationID",
 	"provisioning_state":              "Description.VirtualNetworkGateway.Properties.ProvisioningState",
 	"resource_group":                  "Description.ResourceGroup",
 	"resource_guid":                   "Description.VirtualNetworkGateway.Properties.ResourceGUID",
@@ -10369,7 +10369,7 @@ var getVirtualNetworkGatewayFilters = map[string]string{
 	"inbound_dns_forwarding_endpoint": "Description.VirtualNetworkGateway.Properties.InboundDNSForwardingEndpoint",
 	"ip_configurations":               "Description.VirtualNetworkGateway.Properties.IPConfigurations",
 	"name":                            "description.VirtualNetworkGateway.Name",
-	"platform_integration_id":         "metadata.IntegrationID",
+	"platform_integration_id":         "IntegrationID",
 	"provisioning_state":              "Description.VirtualNetworkGateway.Properties.ProvisioningState",
 	"resource_group":                  "description.ResourceGroup",
 	"resource_guid":                   "Description.VirtualNetworkGateway.Properties.ResourceGUID",
@@ -10442,14 +10442,14 @@ func GetVirtualNetworkGateway(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: FirewallPolicy =============================
 
 type FirewallPolicy struct {
-	ResourceID      string                          `json:"resource_id"`
-	PlatformID      string                          `json:"platform_id"`
-	Description     azure.FirewallPolicyDescription `json:"description"`
-	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     string                          `json:"described_by"`
-	ResourceType    string                          `json:"resource_type"`
-	IntegrationType string                          `json:"integration_type"`
-	IntegrationID   string                          `json:"integration_id"`
+	ResourceID      string                                       `json:"resource_id"`
+	PlatformID      string                                       `json:"platform_id"`
+	Description     azure_subscription.FirewallPolicyDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                  `json:"metadata"`
+	DescribedBy     string                                       `json:"described_by"`
+	ResourceType    string                                       `json:"resource_type"`
+	IntegrationType string                                       `json:"integration_type"`
+	IntegrationID   string                                       `json:"integration_id"`
 }
 
 type FirewallPolicyHit struct {
@@ -10530,7 +10530,7 @@ var listFirewallPolicyFilters = map[string]string{
 	"intrusion_detection_configuration":   "Description.FirewallPolicy.Properties.IntrusionDetection.Configuration",
 	"intrusion_detection_mode":            "Description.FirewallPolicy.Properties.IntrusionDetection.Mode",
 	"name":                                "Description.FirewallPolicy.Name",
-	"platform_integration_id":             "metadata.IntegrationID",
+	"platform_integration_id":             "IntegrationID",
 	"provisioning_state":                  "Description.FirewallPolicy.Properties.ProvisioningState",
 	"resource_group":                      "Description.ResourceGroup",
 	"rule_collection_groups":              "Description.FirewallPolicy.Properties.RuleCollectionGroups",
@@ -10615,7 +10615,7 @@ var getFirewallPolicyFilters = map[string]string{
 	"intrusion_detection_configuration":   "Description.FirewallPolicy.Properties.IntrusionDetection.Configuration",
 	"intrusion_detection_mode":            "Description.FirewallPolicy.Properties.IntrusionDetection.Mode",
 	"name":                                "description.FirewallPolicy.Name",
-	"platform_integration_id":             "metadata.IntegrationID",
+	"platform_integration_id":             "IntegrationID",
 	"provisioning_state":                  "Description.FirewallPolicy.Properties.ProvisioningState",
 	"resource_group":                      "description.ResourceGroup",
 	"rule_collection_groups":              "Description.FirewallPolicy.Properties.RuleCollectionGroups",
@@ -10687,14 +10687,14 @@ func GetFirewallPolicy(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: LocalNetworkGateway =============================
 
 type LocalNetworkGateway struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure.LocalNetworkGatewayDescription `json:"description"`
-	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure_subscription.LocalNetworkGatewayDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                       `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type LocalNetworkGatewayHit struct {
@@ -10767,7 +10767,7 @@ func (p LocalNetworkGatewayPaginator) NextPage(ctx context.Context) ([]LocalNetw
 var listLocalNetworkGatewayFilters = map[string]string{
 	"id":                      "Description.LocalNetworkGateways.ID",
 	"name":                    "Description.LocalNetworkGateway.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.LocalNetworkGateway.Tags",
 	"title":                   "Description.LocalNetworkGateway.Name",
 }
@@ -10835,7 +10835,7 @@ func ListLocalNetworkGateway(ctx context.Context, d *plugin.QueryData, _ *plugin
 var getLocalNetworkGatewayFilters = map[string]string{
 	"id":                      "Description.LocalNetworkGateways.ID",
 	"name":                    "description.LocalNetworkGateway.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"tags":                    "Description.LocalNetworkGateway.Tags",
 	"title":                   "Description.LocalNetworkGateway.Name",
@@ -10899,14 +10899,14 @@ func GetLocalNetworkGateway(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: NatGateway =============================
 
 type NatGateway struct {
-	ResourceID      string                      `json:"resource_id"`
-	PlatformID      string                      `json:"platform_id"`
-	Description     azure.NatGatewayDescription `json:"description"`
-	Metadata        azure.Metadata              `json:"metadata"`
-	DescribedBy     string                      `json:"described_by"`
-	ResourceType    string                      `json:"resource_type"`
-	IntegrationType string                      `json:"integration_type"`
-	IntegrationID   string                      `json:"integration_id"`
+	ResourceID      string                                   `json:"resource_id"`
+	PlatformID      string                                   `json:"platform_id"`
+	Description     azure_subscription.NatGatewayDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata              `json:"metadata"`
+	DescribedBy     string                                   `json:"described_by"`
+	ResourceType    string                                   `json:"resource_type"`
+	IntegrationType string                                   `json:"integration_type"`
+	IntegrationID   string                                   `json:"integration_id"`
 }
 
 type NatGatewayHit struct {
@@ -10980,7 +10980,7 @@ var listNatGatewayFilters = map[string]string{
 	"etag":                    "Description.NatGateway.Etag",
 	"id":                      "Description.NatGateway.ID",
 	"name":                    "Description.NatGateway.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"sku_name":                "Description.NatGateway.SKU.Name",
 	"tags":                    "Description.NatGateway.Tags",
@@ -11053,7 +11053,7 @@ var getNatGatewayFilters = map[string]string{
 	"etag":                    "Description.NatGateway.Etag",
 	"id":                      "Description.NatGateway.ID",
 	"name":                    "description.NatGateway.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"sku_name":                "Description.NatGateway.SKU.Name",
 	"tags":                    "Description.NatGateway.Tags",
@@ -11120,14 +11120,14 @@ func GetNatGateway(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 // ==========================  START: PrivateLinkService =============================
 
 type PrivateLinkService struct {
-	ResourceID      string                              `json:"resource_id"`
-	PlatformID      string                              `json:"platform_id"`
-	Description     azure.PrivateLinkServiceDescription `json:"description"`
-	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     string                              `json:"described_by"`
-	ResourceType    string                              `json:"resource_type"`
-	IntegrationType string                              `json:"integration_type"`
-	IntegrationID   string                              `json:"integration_id"`
+	ResourceID      string                                           `json:"resource_id"`
+	PlatformID      string                                           `json:"platform_id"`
+	Description     azure_subscription.PrivateLinkServiceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                      `json:"metadata"`
+	DescribedBy     string                                           `json:"described_by"`
+	ResourceType    string                                           `json:"resource_type"`
+	IntegrationType string                                           `json:"integration_type"`
+	IntegrationID   string                                           `json:"integration_id"`
 }
 
 type PrivateLinkServiceHit struct {
@@ -11200,7 +11200,7 @@ func (p PrivateLinkServicePaginator) NextPage(ctx context.Context) ([]PrivateLin
 var listPrivateLinkServiceFilters = map[string]string{
 	"id":                      "Description.PrivateLinkServices.ID",
 	"name":                    "Description.PrivateLinkService.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.PrivateLinkService.Tags",
 	"title":                   "Description.PrivateLinkService.Name",
 }
@@ -11268,7 +11268,7 @@ func ListPrivateLinkService(ctx context.Context, d *plugin.QueryData, _ *plugin.
 var getPrivateLinkServiceFilters = map[string]string{
 	"id":                      "Description.PrivateLinkServices.ID",
 	"name":                    "description.PrivateLinkService.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"tags":                    "Description.PrivateLinkService.Tags",
 	"title":                   "Description.PrivateLinkService.Name",
@@ -11332,14 +11332,14 @@ func GetPrivateLinkService(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: VpnGateway =============================
 
 type VpnGateway struct {
-	ResourceID      string                      `json:"resource_id"`
-	PlatformID      string                      `json:"platform_id"`
-	Description     azure.VpnGatewayDescription `json:"description"`
-	Metadata        azure.Metadata              `json:"metadata"`
-	DescribedBy     string                      `json:"described_by"`
-	ResourceType    string                      `json:"resource_type"`
-	IntegrationType string                      `json:"integration_type"`
-	IntegrationID   string                      `json:"integration_id"`
+	ResourceID      string                                   `json:"resource_id"`
+	PlatformID      string                                   `json:"platform_id"`
+	Description     azure_subscription.VpnGatewayDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata              `json:"metadata"`
+	DescribedBy     string                                   `json:"described_by"`
+	ResourceType    string                                   `json:"resource_type"`
+	IntegrationType string                                   `json:"integration_type"`
+	IntegrationID   string                                   `json:"integration_id"`
 }
 
 type VpnGatewayHit struct {
@@ -11412,7 +11412,7 @@ func (p VpnGatewayPaginator) NextPage(ctx context.Context) ([]VpnGateway, error)
 var listVpnGatewayFilters = map[string]string{
 	"id":                      "Description.VPNGateways.ID",
 	"name":                    "Description.VpnGateway.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.VpnGateway.Tags",
 	"title":                   "Description.VpnGateway.Name",
 }
@@ -11480,7 +11480,7 @@ func ListVpnGateway(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 var getVpnGatewayFilters = map[string]string{
 	"id":                      "Description.VPNGateways.ID",
 	"name":                    "description.VpnGateway.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"tags":                    "Description.VpnGateway.Tags",
 	"title":                   "Description.VpnGateway.Name",
@@ -11544,14 +11544,14 @@ func GetVpnGateway(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 // ==========================  START: VpnGatewayVpnConnection =============================
 
 type VpnGatewayVpnConnection struct {
-	ResourceID      string                                   `json:"resource_id"`
-	PlatformID      string                                   `json:"platform_id"`
-	Description     azure.VpnGatewayVpnConnectionDescription `json:"description"`
-	Metadata        azure.Metadata                           `json:"metadata"`
-	DescribedBy     string                                   `json:"described_by"`
-	ResourceType    string                                   `json:"resource_type"`
-	IntegrationType string                                   `json:"integration_type"`
-	IntegrationID   string                                   `json:"integration_id"`
+	ResourceID      string                                                `json:"resource_id"`
+	PlatformID      string                                                `json:"platform_id"`
+	Description     azure_subscription.VpnGatewayVpnConnectionDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                           `json:"metadata"`
+	DescribedBy     string                                                `json:"described_by"`
+	ResourceType    string                                                `json:"resource_type"`
+	IntegrationType string                                                `json:"integration_type"`
+	IntegrationID   string                                                `json:"integration_id"`
 }
 
 type VpnGatewayVpnConnectionHit struct {
@@ -11624,7 +11624,7 @@ func (p VpnGatewayVpnConnectionPaginator) NextPage(ctx context.Context) ([]VpnGa
 var listVpnGatewayVpnConnectionFilters = map[string]string{
 	"id":                      "Description.VPNConnections.ID",
 	"name":                    "Description.VpnConnection.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.VpnConnection.Etag",
 	"title":                   "Description.VpnConnection.Name",
 }
@@ -11692,7 +11692,7 @@ func ListVpnGatewayVpnConnection(ctx context.Context, d *plugin.QueryData, _ *pl
 var getVpnGatewayVpnConnectionFilters = map[string]string{
 	"id":                      "Description.VPNConnections.ID",
 	"name":                    "Description.VpnConnection.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.VpnConnection.Etag",
 	"title":                   "Description.VpnConnection.Name",
 }
@@ -11755,14 +11755,14 @@ func GetVpnGatewayVpnConnection(ctx context.Context, d *plugin.QueryData, _ *plu
 // ==========================  START: VpnSite =============================
 
 type VpnSite struct {
-	ResourceID      string                   `json:"resource_id"`
-	PlatformID      string                   `json:"platform_id"`
-	Description     azure.VpnSiteDescription `json:"description"`
-	Metadata        azure.Metadata           `json:"metadata"`
-	DescribedBy     string                   `json:"described_by"`
-	ResourceType    string                   `json:"resource_type"`
-	IntegrationType string                   `json:"integration_type"`
-	IntegrationID   string                   `json:"integration_id"`
+	ResourceID      string                                `json:"resource_id"`
+	PlatformID      string                                `json:"platform_id"`
+	Description     azure_subscription.VpnSiteDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata           `json:"metadata"`
+	DescribedBy     string                                `json:"described_by"`
+	ResourceType    string                                `json:"resource_type"`
+	IntegrationType string                                `json:"integration_type"`
+	IntegrationID   string                                `json:"integration_id"`
 }
 
 type VpnSiteHit struct {
@@ -11835,7 +11835,7 @@ func (p VpnSitePaginator) NextPage(ctx context.Context) ([]VpnSite, error) {
 var listVpnSiteFilters = map[string]string{
 	"id":                      "Description.VPNSites.ID",
 	"name":                    "Description.VpnSite.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.VpnSite.Tags",
 	"title":                   "Description.VpnSite.Name",
 }
@@ -11903,7 +11903,7 @@ func ListVpnSite(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 var getVpnSiteFilters = map[string]string{
 	"id":                      "Description.VPNSites.ID",
 	"name":                    "Description.VpnSite.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.VpnSite.Tags",
 	"title":                   "Description.VpnSite.Name",
 }
@@ -11966,14 +11966,14 @@ func GetVpnSite(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData)
 // ==========================  START: PublicIPAddress =============================
 
 type PublicIPAddress struct {
-	ResourceID      string                           `json:"resource_id"`
-	PlatformID      string                           `json:"platform_id"`
-	Description     azure.PublicIPAddressDescription `json:"description"`
-	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     string                           `json:"described_by"`
-	ResourceType    string                           `json:"resource_type"`
-	IntegrationType string                           `json:"integration_type"`
-	IntegrationID   string                           `json:"integration_id"`
+	ResourceID      string                                        `json:"resource_id"`
+	PlatformID      string                                        `json:"platform_id"`
+	Description     azure_subscription.PublicIPAddressDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                   `json:"metadata"`
+	DescribedBy     string                                        `json:"described_by"`
+	ResourceType    string                                        `json:"resource_type"`
+	IntegrationType string                                        `json:"integration_type"`
+	IntegrationID   string                                        `json:"integration_id"`
 }
 
 type PublicIPAddressHit struct {
@@ -12057,7 +12057,7 @@ var listPublicIPAddressFilters = map[string]string{
 	"ip_configuration_id":               "Description.PublicIPAddress.Properties.IPConfiguration.ID",
 	"ip_tags":                           "Description.PublicIPAddress.PublicIPAddressPropertiesFormat.IPTags",
 	"name":                              "Description.PublicIPAddress.Name",
-	"platform_integration_id":           "metadata.IntegrationID",
+	"platform_integration_id":           "IntegrationID",
 	"provisioning_state":                "Description.PublicIPAddress.Properties.ProvisioningState",
 	"public_ip_address_version":         "Description.PublicIPAddress.Properties.PublicIPAddressVersion",
 	"public_ip_allocation_method":       "Description.PublicIPAddress.Properties.PublicIPAllocationMethod",
@@ -12145,7 +12145,7 @@ var getPublicIPAddressFilters = map[string]string{
 	"ip_configuration_id":               "Description.PublicIPAddress.Properties.IPConfiguration.ID",
 	"ip_tags":                           "Description.PublicIPAddress.PublicIPAddressPropertiesFormat.IPTags",
 	"name":                              "description.PublicIPAddress.Name",
-	"platform_integration_id":           "metadata.IntegrationID",
+	"platform_integration_id":           "IntegrationID",
 	"provisioning_state":                "Description.PublicIPAddress.Properties.ProvisioningState",
 	"public_ip_address_version":         "Description.PublicIPAddress.Properties.PublicIPAddressVersion",
 	"public_ip_allocation_method":       "Description.PublicIPAddress.Properties.PublicIPAllocationMethod",
@@ -12217,14 +12217,14 @@ func GetPublicIPAddress(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: PublicIPPrefix =============================
 
 type PublicIPPrefix struct {
-	ResourceID      string                          `json:"resource_id"`
-	PlatformID      string                          `json:"platform_id"`
-	Description     azure.PublicIPPrefixDescription `json:"description"`
-	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     string                          `json:"described_by"`
-	ResourceType    string                          `json:"resource_type"`
-	IntegrationType string                          `json:"integration_type"`
-	IntegrationID   string                          `json:"integration_id"`
+	ResourceID      string                                       `json:"resource_id"`
+	PlatformID      string                                       `json:"platform_id"`
+	Description     azure_subscription.PublicIPPrefixDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                  `json:"metadata"`
+	DescribedBy     string                                       `json:"described_by"`
+	ResourceType    string                                       `json:"resource_type"`
+	IntegrationType string                                       `json:"integration_type"`
+	IntegrationID   string                                       `json:"integration_id"`
 }
 
 type PublicIPPrefixHit struct {
@@ -12297,7 +12297,7 @@ func (p PublicIPPrefixPaginator) NextPage(ctx context.Context) ([]PublicIPPrefix
 var listPublicIPPrefixFilters = map[string]string{
 	"id":                      "Description.PublicIPPrefixes.ID",
 	"name":                    "Description.PublicIPPrefix.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.PublicIPPrefix.Tags",
 	"title":                   "Description.PublicIPPrefix.Name",
 }
@@ -12365,7 +12365,7 @@ func ListPublicIPPrefix(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 var getPublicIPPrefixFilters = map[string]string{
 	"id":                      "Description.PublicIPPrefixes.ID",
 	"name":                    "Description.PublicIPPrefix.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.PublicIPPrefix.Tags",
 	"title":                   "Description.PublicIPPrefix.Name",
 }
@@ -12428,14 +12428,14 @@ func GetPublicIPPrefix(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: DNSZones =============================
 
 type DNSZones struct {
-	ResourceID      string                    `json:"resource_id"`
-	PlatformID      string                    `json:"platform_id"`
-	Description     azure.DNSZonesDescription `json:"description"`
-	Metadata        azure.Metadata            `json:"metadata"`
-	DescribedBy     string                    `json:"described_by"`
-	ResourceType    string                    `json:"resource_type"`
-	IntegrationType string                    `json:"integration_type"`
-	IntegrationID   string                    `json:"integration_id"`
+	ResourceID      string                                 `json:"resource_id"`
+	PlatformID      string                                 `json:"platform_id"`
+	Description     azure_subscription.DNSZonesDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata            `json:"metadata"`
+	DescribedBy     string                                 `json:"described_by"`
+	ResourceType    string                                 `json:"resource_type"`
+	IntegrationType string                                 `json:"integration_type"`
+	IntegrationID   string                                 `json:"integration_id"`
 }
 
 type DNSZonesHit struct {
@@ -12513,7 +12513,7 @@ var listDNSZonesFilters = map[string]string{
 	"name":                                 "Description.Zone.Name",
 	"name_servers":                         "Description.Zone.Properties.NameServers",
 	"number_of_record_sets":                "Description.Zone.Properties.NumberOfRecordSets",
-	"platform_integration_id":              "metadata.IntegrationID",
+	"platform_integration_id":              "IntegrationID",
 	"registration_virtual_networks":        "Description.Zone.Properties.RegistrationVirtualNetworks",
 	"resolution_virtual_networks":          "Description.Zone.Properties.ResolutionVirtualNetworks",
 	"resource_group":                       "Description.ResourceGroup",
@@ -12591,7 +12591,7 @@ var getDNSZonesFilters = map[string]string{
 	"name":                                 "Description.Zone.Name",
 	"name_servers":                         "Description.Zone.Properties.NameServers",
 	"number_of_record_sets":                "Description.Zone.Properties.NumberOfRecordSets",
-	"platform_integration_id":              "metadata.IntegrationID",
+	"platform_integration_id":              "IntegrationID",
 	"registration_virtual_networks":        "Description.Zone.Properties.RegistrationVirtualNetworks",
 	"resolution_virtual_networks":          "Description.Zone.Properties.ResolutionVirtualNetworks",
 	"resource_group":                       "Description.ResourceGroup",
@@ -12659,14 +12659,14 @@ func GetDNSZones(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 // ==========================  START: BastionHosts =============================
 
 type BastionHosts struct {
-	ResourceID      string                        `json:"resource_id"`
-	PlatformID      string                        `json:"platform_id"`
-	Description     azure.BastionHostsDescription `json:"description"`
-	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     string                        `json:"described_by"`
-	ResourceType    string                        `json:"resource_type"`
-	IntegrationType string                        `json:"integration_type"`
-	IntegrationID   string                        `json:"integration_id"`
+	ResourceID      string                                     `json:"resource_id"`
+	PlatformID      string                                     `json:"platform_id"`
+	Description     azure_subscription.BastionHostsDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                `json:"metadata"`
+	DescribedBy     string                                     `json:"described_by"`
+	ResourceType    string                                     `json:"resource_type"`
+	IntegrationType string                                     `json:"integration_type"`
+	IntegrationID   string                                     `json:"integration_id"`
 }
 
 type BastionHostsHit struct {
@@ -12742,7 +12742,7 @@ var listBastionHostsFilters = map[string]string{
 	"id":                      "Description.BastianHost.ID",
 	"ip_configurations":       "Description.BastianHost.Properties.IPConfigurations",
 	"name":                    "Description.BastianHost.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.BastianHost.Properties.ProvisioningState",
 	"region":                  "Description.BastianHost.Location",
 	"resource_group":          "Description.ResourceGroup",
@@ -12817,7 +12817,7 @@ var getBastionHostsFilters = map[string]string{
 	"id":                      "Description.BastianHost.ID",
 	"ip_configurations":       "Description.BastianHost.Properties.IPConfigurations",
 	"name":                    "Description.BastianHost.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.BastianHost.Properties.ProvisioningState",
 	"region":                  "Description.BastianHost.Location",
 	"resource_group":          "Description.ResourceGroup",
@@ -12884,14 +12884,14 @@ func GetBastionHosts(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: Connection =============================
 
 type Connection struct {
-	ResourceID      string                      `json:"resource_id"`
-	PlatformID      string                      `json:"platform_id"`
-	Description     azure.ConnectionDescription `json:"description"`
-	Metadata        azure.Metadata              `json:"metadata"`
-	DescribedBy     string                      `json:"described_by"`
-	ResourceType    string                      `json:"resource_type"`
-	IntegrationType string                      `json:"integration_type"`
-	IntegrationID   string                      `json:"integration_id"`
+	ResourceID      string                                   `json:"resource_id"`
+	PlatformID      string                                   `json:"platform_id"`
+	Description     azure_subscription.ConnectionDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata              `json:"metadata"`
+	DescribedBy     string                                   `json:"described_by"`
+	ResourceType    string                                   `json:"resource_type"`
+	IntegrationType string                                   `json:"integration_type"`
+	IntegrationID   string                                   `json:"integration_id"`
 }
 
 type ConnectionHit struct {
@@ -12964,7 +12964,7 @@ func (p ConnectionPaginator) NextPage(ctx context.Context) ([]Connection, error)
 var listConnectionFilters = map[string]string{
 	"id":                      "Description.Connection.ID",
 	"name":                    "Description.Connection.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Connection.Tags",
 	"title":                   "Description.Connection.Name",
 }
@@ -13032,7 +13032,7 @@ func ListConnection(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 var getConnectionFilters = map[string]string{
 	"id":                      "Description.Connection.ID",
 	"name":                    "Description.Connection.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Connection.Tags",
 	"title":                   "Description.Connection.Name",
 }
@@ -13095,14 +13095,14 @@ func GetConnection(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 // ==========================  START: VirtualHubs =============================
 
 type VirtualHubs struct {
-	ResourceID      string                       `json:"resource_id"`
-	PlatformID      string                       `json:"platform_id"`
-	Description     azure.VirtualHubsDescription `json:"description"`
-	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     string                       `json:"described_by"`
-	ResourceType    string                       `json:"resource_type"`
-	IntegrationType string                       `json:"integration_type"`
-	IntegrationID   string                       `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure_subscription.VirtualHubsDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata               `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type VirtualHubsHit struct {
@@ -13175,7 +13175,7 @@ func (p VirtualHubsPaginator) NextPage(ctx context.Context) ([]VirtualHubs, erro
 var listVirtualHubsFilters = map[string]string{
 	"id":                      "Description.VirtualHubs.ID",
 	"name":                    "Description.VirtualHub.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.VirtualHub.Tags",
 	"title":                   "Description.VirtualHub.Name",
 }
@@ -13243,7 +13243,7 @@ func ListVirtualHubs(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 var getVirtualHubsFilters = map[string]string{
 	"id":                      "Description.VirtualHubs.ID",
 	"name":                    "Description.VirtualHub.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.VirtualHub.Tags",
 	"title":                   "Description.VirtualHub.Name",
 }
@@ -13306,14 +13306,14 @@ func GetVirtualHubs(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: VirtualWans =============================
 
 type VirtualWans struct {
-	ResourceID      string                       `json:"resource_id"`
-	PlatformID      string                       `json:"platform_id"`
-	Description     azure.VirtualWansDescription `json:"description"`
-	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     string                       `json:"described_by"`
-	ResourceType    string                       `json:"resource_type"`
-	IntegrationType string                       `json:"integration_type"`
-	IntegrationID   string                       `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure_subscription.VirtualWansDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata               `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type VirtualWansHit struct {
@@ -13386,7 +13386,7 @@ func (p VirtualWansPaginator) NextPage(ctx context.Context) ([]VirtualWans, erro
 var listVirtualWansFilters = map[string]string{
 	"id":                      "Description.VirtualWans.ID",
 	"name":                    "Description.VirtualWan.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.VirtualWan.Tags",
 	"title":                   "Description.VirtualWan.Name",
 }
@@ -13454,7 +13454,7 @@ func ListVirtualWans(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 var getVirtualWansFilters = map[string]string{
 	"id":                      "Description.VirtualWans.ID",
 	"name":                    "Description.VirtualWan.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.VirtualWan.Tags",
 	"title":                   "Description.VirtualWan.Name",
 }
@@ -13517,14 +13517,14 @@ func GetVirtualWans(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: DNSResolver =============================
 
 type DNSResolver struct {
-	ResourceID      string                       `json:"resource_id"`
-	PlatformID      string                       `json:"platform_id"`
-	Description     azure.DNSResolverDescription `json:"description"`
-	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     string                       `json:"described_by"`
-	ResourceType    string                       `json:"resource_type"`
-	IntegrationType string                       `json:"integration_type"`
-	IntegrationID   string                       `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure_subscription.DNSResolverDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata               `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type DNSResolverHit struct {
@@ -13597,7 +13597,7 @@ func (p DNSResolverPaginator) NextPage(ctx context.Context) ([]DNSResolver, erro
 var listDNSResolverFilters = map[string]string{
 	"id":                      "Description.DNSResolver.ID",
 	"name":                    "Description.DNSResolver.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.DNSResolver.Tags",
 	"title":                   "Description.DNSResolver.Name",
 }
@@ -13665,7 +13665,7 @@ func ListDNSResolver(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 var getDNSResolverFilters = map[string]string{
 	"id":                      "Description.DNSResolver.ID",
 	"name":                    "Description.DNSResolver.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.DNSResolver.Tags",
 	"title":                   "Description.DNSResolver.Name",
 }
@@ -13728,14 +13728,14 @@ func GetDNSResolver(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: TrafficManagerProfile =============================
 
 type TrafficManagerProfile struct {
-	ResourceID      string                                 `json:"resource_id"`
-	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.TrafficManagerProfileDescription `json:"description"`
-	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     string                                 `json:"described_by"`
-	ResourceType    string                                 `json:"resource_type"`
-	IntegrationType string                                 `json:"integration_type"`
-	IntegrationID   string                                 `json:"integration_id"`
+	ResourceID      string                                              `json:"resource_id"`
+	PlatformID      string                                              `json:"platform_id"`
+	Description     azure_subscription.TrafficManagerProfileDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                         `json:"metadata"`
+	DescribedBy     string                                              `json:"described_by"`
+	ResourceType    string                                              `json:"resource_type"`
+	IntegrationType string                                              `json:"integration_type"`
+	IntegrationID   string                                              `json:"integration_id"`
 }
 
 type TrafficManagerProfileHit struct {
@@ -13937,14 +13937,14 @@ func GetTrafficManagerProfile(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: PrivateDNSZones =============================
 
 type PrivateDNSZones struct {
-	ResourceID      string                           `json:"resource_id"`
-	PlatformID      string                           `json:"platform_id"`
-	Description     azure.PrivateDNSZonesDescription `json:"description"`
-	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     string                           `json:"described_by"`
-	ResourceType    string                           `json:"resource_type"`
-	IntegrationType string                           `json:"integration_type"`
-	IntegrationID   string                           `json:"integration_id"`
+	ResourceID      string                                        `json:"resource_id"`
+	PlatformID      string                                        `json:"platform_id"`
+	Description     azure_subscription.PrivateDNSZonesDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                   `json:"metadata"`
+	DescribedBy     string                                        `json:"described_by"`
+	ResourceType    string                                        `json:"resource_type"`
+	IntegrationType string                                        `json:"integration_type"`
+	IntegrationID   string                                        `json:"integration_id"`
 }
 
 type PrivateDNSZonesHit struct {
@@ -14024,7 +14024,7 @@ var listPrivateDNSZonesFilters = map[string]string{
 	"number_of_record_sets":           "Description.PrivateZone.Properties.NumberOfRecordSets",
 	"number_of_virtual_network_links": "Description.PrivateZone.Properties.NumberOfVirtualNetworkLinks",
 	"number_of_virtual_network_links_with_registration": "Description.PrivateZone.Properties.NumberOfVirtualNetworkLinksWithRegistration",
-	"platform_integration_id":                           "metadata.IntegrationID",
+	"platform_integration_id":                           "IntegrationID",
 	"provisioning_state":                                "Description.PrivateZone.Properties.ProvisioningState",
 	"resource_group":                                    "Description.ResourceGroup",
 	"tags":                                              "Description.PrivateZone.Tags",
@@ -14102,7 +14102,7 @@ var getPrivateDNSZonesFilters = map[string]string{
 	"number_of_record_sets":           "Description.PrivateZone.Properties.NumberOfRecordSets",
 	"number_of_virtual_network_links": "Description.PrivateZone.Properties.NumberOfVirtualNetworkLinks",
 	"number_of_virtual_network_links_with_registration": "Description.PrivateZone.Properties.NumberOfVirtualNetworkLinksWithRegistration",
-	"platform_integration_id":                           "metadata.IntegrationID",
+	"platform_integration_id":                           "IntegrationID",
 	"provisioning_state":                                "Description.PrivateZone.Properties.ProvisioningState",
 	"resource_group":                                    "Description.ResourceGroup",
 	"tags":                                              "Description.PrivateZone.Tags",
@@ -14168,14 +14168,14 @@ func GetPrivateDNSZones(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: PrivateEndpoint =============================
 
 type PrivateEndpoint struct {
-	ResourceID      string                           `json:"resource_id"`
-	PlatformID      string                           `json:"platform_id"`
-	Description     azure.PrivateEndpointDescription `json:"description"`
-	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     string                           `json:"described_by"`
-	ResourceType    string                           `json:"resource_type"`
-	IntegrationType string                           `json:"integration_type"`
-	IntegrationID   string                           `json:"integration_id"`
+	ResourceID      string                                        `json:"resource_id"`
+	PlatformID      string                                        `json:"platform_id"`
+	Description     azure_subscription.PrivateEndpointDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                   `json:"metadata"`
+	DescribedBy     string                                        `json:"described_by"`
+	ResourceType    string                                        `json:"resource_type"`
+	IntegrationType string                                        `json:"integration_type"`
+	IntegrationID   string                                        `json:"integration_id"`
 }
 
 type PrivateEndpointHit struct {
@@ -14248,7 +14248,7 @@ func (p PrivateEndpointPaginator) NextPage(ctx context.Context) ([]PrivateEndpoi
 var listPrivateEndpointFilters = map[string]string{
 	"id":                      "Description.PrivateEndpoints.ID",
 	"name":                    "Description.PrivateEndpoint.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.PrivateEndpoint.Tags",
 	"title":                   "Description.PrivateEndpoint.Name",
 }
@@ -14316,7 +14316,7 @@ func ListPrivateEndpoint(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 var getPrivateEndpointFilters = map[string]string{
 	"id":                      "Description.PrivateEndpoints.ID",
 	"name":                    "Description.PrivateEndpoint.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.PrivateEndpoint.Tags",
 	"title":                   "Description.PrivateEndpoint.Name",
 }
@@ -14379,14 +14379,14 @@ func GetPrivateEndpoint(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: NetworkDDoSProtectionPlan =============================
 
 type NetworkDDoSProtectionPlan struct {
-	ResourceID      string                                     `json:"resource_id"`
-	PlatformID      string                                     `json:"platform_id"`
-	Description     azure.NetworkDDoSProtectionPlanDescription `json:"description"`
-	Metadata        azure.Metadata                             `json:"metadata"`
-	DescribedBy     string                                     `json:"described_by"`
-	ResourceType    string                                     `json:"resource_type"`
-	IntegrationType string                                     `json:"integration_type"`
-	IntegrationID   string                                     `json:"integration_id"`
+	ResourceID      string                                                  `json:"resource_id"`
+	PlatformID      string                                                  `json:"platform_id"`
+	Description     azure_subscription.NetworkDDoSProtectionPlanDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                             `json:"metadata"`
+	DescribedBy     string                                                  `json:"described_by"`
+	ResourceType    string                                                  `json:"resource_type"`
+	IntegrationType string                                                  `json:"integration_type"`
+	IntegrationID   string                                                  `json:"integration_id"`
 }
 
 type NetworkDDoSProtectionPlanHit struct {
@@ -14588,14 +14588,14 @@ func GetNetworkDDoSProtectionPlan(ctx context.Context, d *plugin.QueryData, _ *p
 // ==========================  START: PolicyAssignment =============================
 
 type PolicyAssignment struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.PolicyAssignmentDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.PolicyAssignmentDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type PolicyAssignmentHit struct {
@@ -14675,7 +14675,7 @@ var listPolicyAssignmentFilters = map[string]string{
 	"name":                    "Description.Assignment.Name",
 	"not_scopes":              "Description.Assignment.Properties.NotScopes",
 	"parameters":              "Description.Assignment.Properties.Parameters",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"policy_definition_id":    "Description.Assignment.Properties.PolicyDefinitionID",
 	"scope":                   "Description.Assignment.Properties.Scope",
 	"sku_name":                "Description.Resource.SKU.Name",
@@ -14754,7 +14754,7 @@ var getPolicyAssignmentFilters = map[string]string{
 	"name":                    "description.Assignment.name",
 	"not_scopes":              "Description.Assignment.Properties.NotScopes",
 	"parameters":              "Description.Assignment.Properties.Parameters",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"policy_definition_id":    "Description.Assignment.Properties.PolicyDefinitionID",
 	"scope":                   "Description.Assignment.Properties.Scope",
 	"sku_name":                "Description.Resource.SKU.Name",
@@ -14821,14 +14821,14 @@ func GetPolicyAssignment(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: RedisCache =============================
 
 type RedisCache struct {
-	ResourceID      string                      `json:"resource_id"`
-	PlatformID      string                      `json:"platform_id"`
-	Description     azure.RedisCacheDescription `json:"description"`
-	Metadata        azure.Metadata              `json:"metadata"`
-	DescribedBy     string                      `json:"described_by"`
-	ResourceType    string                      `json:"resource_type"`
-	IntegrationType string                      `json:"integration_type"`
-	IntegrationID   string                      `json:"integration_id"`
+	ResourceID      string                                   `json:"resource_id"`
+	PlatformID      string                                   `json:"platform_id"`
+	Description     azure_subscription.RedisCacheDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata              `json:"metadata"`
+	DescribedBy     string                                   `json:"described_by"`
+	ResourceType    string                                   `json:"resource_type"`
+	IntegrationType string                                   `json:"integration_type"`
+	IntegrationID   string                                   `json:"integration_id"`
 }
 
 type RedisCacheHit struct {
@@ -14906,7 +14906,7 @@ var listRedisCacheFilters = map[string]string{
 	"instances":                    "Description.ResourceInfo.Properties.Instances",
 	"linked_servers":               "Description.ResourceInfo.Properties.LinkedServers",
 	"name":                         "Description.ResourceInfo.Name",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"port":                         "Description.ResourceInfo.Properties.Port",
 	"private_endpoint_connections": "Description.ResourceInfo.Properties.PrivateEndpointConnections",
 	"provisioning_state":           "Description.ResourceInfo.Properties.ProvisioningState",
@@ -14997,7 +14997,7 @@ var getRedisCacheFilters = map[string]string{
 	"instances":                    "Description.ResourceInfo.Properties.Instances",
 	"linked_servers":               "Description.ResourceInfo.Properties.LinkedServers",
 	"name":                         "description.ResourceType.name",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"port":                         "Description.ResourceInfo.Properties.Port",
 	"private_endpoint_connections": "Description.ResourceInfo.Properties.PrivateEndpointConnections",
 	"provisioning_state":           "Description.ResourceInfo.Properties.ProvisioningState",
@@ -15078,14 +15078,14 @@ func GetRedisCache(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 // ==========================  START: RedisEnterpriseCache =============================
 
 type RedisEnterpriseCache struct {
-	ResourceID      string                                `json:"resource_id"`
-	PlatformID      string                                `json:"platform_id"`
-	Description     azure.RedisEnterpriseCacheDescription `json:"description"`
-	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     string                                `json:"described_by"`
-	ResourceType    string                                `json:"resource_type"`
-	IntegrationType string                                `json:"integration_type"`
-	IntegrationID   string                                `json:"integration_id"`
+	ResourceID      string                                             `json:"resource_id"`
+	PlatformID      string                                             `json:"platform_id"`
+	Description     azure_subscription.RedisEnterpriseCacheDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                        `json:"metadata"`
+	DescribedBy     string                                             `json:"described_by"`
+	ResourceType    string                                             `json:"resource_type"`
+	IntegrationType string                                             `json:"integration_type"`
+	IntegrationID   string                                             `json:"integration_id"`
 }
 
 type RedisEnterpriseCacheHit struct {
@@ -15158,7 +15158,7 @@ func (p RedisEnterpriseCachePaginator) NextPage(ctx context.Context) ([]RedisEnt
 var listRedisEnterpriseCacheFilters = map[string]string{
 	"id":                      "Description.RedisEnterprise.ID",
 	"name":                    "Description.RedisEnterprise.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.RedisEnterprise.Tags",
 	"title":                   "Description.RedisEnterprise.Name",
 }
@@ -15226,7 +15226,7 @@ func ListRedisEnterpriseCache(ctx context.Context, d *plugin.QueryData, _ *plugi
 var getRedisEnterpriseCacheFilters = map[string]string{
 	"id":                      "Description.RedisEnterprise.ID",
 	"name":                    "Description.RedisEnterprise.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.RedisEnterprise.Tags",
 	"title":                   "Description.RedisEnterprise.Name",
 }
@@ -15289,14 +15289,14 @@ func GetRedisEnterpriseCache(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: ResourceLink =============================
 
 type ResourceLink struct {
-	ResourceID      string                        `json:"resource_id"`
-	PlatformID      string                        `json:"platform_id"`
-	Description     azure.ResourceLinkDescription `json:"description"`
-	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     string                        `json:"described_by"`
-	ResourceType    string                        `json:"resource_type"`
-	IntegrationType string                        `json:"integration_type"`
-	IntegrationID   string                        `json:"integration_id"`
+	ResourceID      string                                     `json:"resource_id"`
+	PlatformID      string                                     `json:"platform_id"`
+	Description     azure_subscription.ResourceLinkDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                `json:"metadata"`
+	DescribedBy     string                                     `json:"described_by"`
+	ResourceType    string                                     `json:"resource_type"`
+	IntegrationType string                                     `json:"integration_type"`
+	IntegrationID   string                                     `json:"integration_id"`
 }
 
 type ResourceLinkHit struct {
@@ -15370,7 +15370,7 @@ var listResourceLinkFilters = map[string]string{
 	"id":                      "Description.ResourceLink.ID",
 	"name":                    "Description.ResourceLink.Name",
 	"notes":                   "Description.ResourceLink.Properties.Notes",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceLink.Properties.SourceID",
 	"source_id":               "Description.ResourceLink.Properties.SourceID",
 	"target_id":               "Description.ResourceLink.Properties.TargetID",
@@ -15442,7 +15442,7 @@ var getResourceLinkFilters = map[string]string{
 	"id":                      "description.ResourceLink.id",
 	"name":                    "Description.ResourceLink.Name",
 	"notes":                   "Description.ResourceLink.Properties.Notes",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceLink.Properties.SourceID",
 	"source_id":               "Description.ResourceLink.Properties.SourceID",
 	"target_id":               "Description.ResourceLink.Properties.TargetID",
@@ -15508,14 +15508,14 @@ func GetResourceLink(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: RoleAssignment =============================
 
 type RoleAssignment struct {
-	ResourceID      string                          `json:"resource_id"`
-	PlatformID      string                          `json:"platform_id"`
-	Description     azure.RoleAssignmentDescription `json:"description"`
-	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     string                          `json:"described_by"`
-	ResourceType    string                          `json:"resource_type"`
-	IntegrationType string                          `json:"integration_type"`
-	IntegrationID   string                          `json:"integration_id"`
+	ResourceID      string                                       `json:"resource_id"`
+	PlatformID      string                                       `json:"platform_id"`
+	Description     azure_subscription.RoleAssignmentDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                  `json:"metadata"`
+	DescribedBy     string                                       `json:"described_by"`
+	ResourceType    string                                       `json:"resource_type"`
+	IntegrationType string                                       `json:"integration_type"`
+	IntegrationID   string                                       `json:"integration_id"`
 }
 
 type RoleAssignmentHit struct {
@@ -15589,7 +15589,7 @@ var listRoleAssignmentFilters = map[string]string{
 	"created_on":              "Description.RoleAssignment.Properties.CreatedOn",
 	"id":                      "Description.RoleAssignment.ID",
 	"name":                    "Description.RoleAssignment.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"principal_id":            "Description.RoleAssignment.Properties.PrincipalID",
 	"principal_type":          "Description.RoleAssignment.Properties.PrincipalType",
 	"role_definition_id":      "Description.RoleAssignment.Properties.RoleDefinitionID",
@@ -15663,7 +15663,7 @@ var getRoleAssignmentFilters = map[string]string{
 	"created_on":              "Description.RoleAssignment.Properties.CreatedOn",
 	"id":                      "description.RoleAssignment.id",
 	"name":                    "Description.RoleAssignment.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"principal_id":            "Description.RoleAssignment.Properties.PrincipalID",
 	"principal_type":          "Description.RoleAssignment.Properties.PrincipalType",
 	"role_definition_id":      "Description.RoleAssignment.Properties.RoleDefinitionID",
@@ -15731,14 +15731,14 @@ func GetRoleAssignment(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: RoleDefinition =============================
 
 type RoleDefinition struct {
-	ResourceID      string                          `json:"resource_id"`
-	PlatformID      string                          `json:"platform_id"`
-	Description     azure.RoleDefinitionDescription `json:"description"`
-	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     string                          `json:"described_by"`
-	ResourceType    string                          `json:"resource_type"`
-	IntegrationType string                          `json:"integration_type"`
-	IntegrationID   string                          `json:"integration_id"`
+	ResourceID      string                                       `json:"resource_id"`
+	PlatformID      string                                       `json:"platform_id"`
+	Description     azure_subscription.RoleDefinitionDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                  `json:"metadata"`
+	DescribedBy     string                                       `json:"described_by"`
+	ResourceType    string                                       `json:"resource_type"`
+	IntegrationType string                                       `json:"integration_type"`
+	IntegrationID   string                                       `json:"integration_id"`
 }
 
 type RoleDefinitionHit struct {
@@ -15814,7 +15814,7 @@ var listRoleDefinitionFilters = map[string]string{
 	"id":                      "Description.RoleDefinition.ID",
 	"name":                    "Description.RoleDefinition.Name",
 	"permissions":             "Description.RoleDefinition.Properties.Permissions",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"role_name":               "Description.RoleDefinition.Properties.RoleName",
 	"role_type":               "Description.RoleDefinition.Properties.RoleType",
 	"type":                    "Description.RoleDefinition.Type",
@@ -15886,7 +15886,7 @@ var getRoleDefinitionFilters = map[string]string{
 	"id":                      "Description.RoleDefinition.ID",
 	"name":                    "Description.RoleDefinition.Name",
 	"permissions":             "Description.RoleDefinition.Properties.Permissions",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"role_name":               "Description.RoleDefinition.Properties.RoleName",
 	"role_type":               "Description.RoleDefinition.Properties.RoleType",
 	"type":                    "Description.RoleDefinition.Type",
@@ -15950,14 +15950,14 @@ func GetRoleDefinition(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: PolicyDefinition =============================
 
 type PolicyDefinition struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.PolicyDefinitionDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.PolicyDefinitionDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type PolicyDefinitionHit struct {
@@ -16036,7 +16036,7 @@ var listPolicyDefinitionFilters = map[string]string{
 	"mode":                    "Description.Definition.Properties.Mode",
 	"name":                    "Description.Definition.Name",
 	"parameters":              "Description.Definition.Properties.Parameters",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"policy_rule":             "Description.Definition.Properties.PolicyRule",
 	"policy_type":             "Description.Definition.Properties.PolicyType",
 	"title":                   "Description.Definition.Properties.DisplayName",
@@ -16112,7 +16112,7 @@ var getPolicyDefinitionFilters = map[string]string{
 	"mode":                    "Description.Definition.Properties.Mode",
 	"name":                    "description.Definition.Name",
 	"parameters":              "Description.Definition.Properties.Parameters",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"policy_rule":             "Description.Definition.Properties.PolicyRule",
 	"policy_type":             "Description.Definition.Properties.PolicyType",
 	"title":                   "Description.Definition.Properties.DisplayName",
@@ -16177,14 +16177,14 @@ func GetPolicyDefinition(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: UserEffectiveAccess =============================
 
 type UserEffectiveAccess struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure.UserEffectiveAccessDescription `json:"description"`
-	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure_subscription.UserEffectiveAccessDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                       `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type UserEffectiveAccessHit struct {
@@ -16258,7 +16258,7 @@ var listUserEffectiveAccessFilters = map[string]string{
 	"assignment_type":         "Description.AssignmentType",
 	"id":                      "ResourceID",
 	"parent_principal_id":     "Description.ParentPrincipalId",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"principal_id":            "Description.PrincipalId",
 	"principal_name":          "Description.PrincipalName",
 	"principal_type":          "Description.PrincipalType",
@@ -16331,7 +16331,7 @@ var getUserEffectiveAccessFilters = map[string]string{
 	"assignment_type":         "Description.AssignmentType",
 	"id":                      "ResourceID",
 	"parent_principal_id":     "Description.ParentPrincipalId",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"principal_id":            "Description.PrincipalId",
 	"principal_name":          "Description.PrincipalName",
 	"principal_type":          "Description.PrincipalType",
@@ -16398,14 +16398,14 @@ func GetUserEffectiveAccess(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: SecurityCenterAutoProvisioning =============================
 
 type SecurityCenterAutoProvisioning struct {
-	ResourceID      string                                          `json:"resource_id"`
-	PlatformID      string                                          `json:"platform_id"`
-	Description     azure.SecurityCenterAutoProvisioningDescription `json:"description"`
-	Metadata        azure.Metadata                                  `json:"metadata"`
-	DescribedBy     string                                          `json:"described_by"`
-	ResourceType    string                                          `json:"resource_type"`
-	IntegrationType string                                          `json:"integration_type"`
-	IntegrationID   string                                          `json:"integration_id"`
+	ResourceID      string                                                       `json:"resource_id"`
+	PlatformID      string                                                       `json:"platform_id"`
+	Description     azure_subscription.SecurityCenterAutoProvisioningDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                  `json:"metadata"`
+	DescribedBy     string                                                       `json:"described_by"`
+	ResourceType    string                                                       `json:"resource_type"`
+	IntegrationType string                                                       `json:"integration_type"`
+	IntegrationID   string                                                       `json:"integration_id"`
 }
 
 type SecurityCenterAutoProvisioningHit struct {
@@ -16479,7 +16479,7 @@ var listSecurityCenterAutoProvisioningFilters = map[string]string{
 	"auto_provision":          "Description.AutoProvisioningSetting.Properties.AutoProvision",
 	"id":                      "Description.AutoProvisioningSetting.ID",
 	"name":                    "Description.AutoProvisioningSetting.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"title":                   "Description.AutoProvisioningSetting.Name",
 	"type":                    "Description.AutoProvisioningSetting.Type",
 }
@@ -16548,7 +16548,7 @@ var getSecurityCenterAutoProvisioningFilters = map[string]string{
 	"auto_provision":          "Description.AutoProvisioningSetting.Properties.AutoProvision",
 	"id":                      "Description.AutoProvisioningSetting.ID",
 	"name":                    "description.AutoProvisioningSetting.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"title":                   "Description.AutoProvisioningSetting.Name",
 	"type":                    "Description.AutoProvisioningSetting.Type",
 }
@@ -16611,14 +16611,14 @@ func GetSecurityCenterAutoProvisioning(ctx context.Context, d *plugin.QueryData,
 // ==========================  START: SecurityCenterContact =============================
 
 type SecurityCenterContact struct {
-	ResourceID      string                                 `json:"resource_id"`
-	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.SecurityCenterContactDescription `json:"description"`
-	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     string                                 `json:"described_by"`
-	ResourceType    string                                 `json:"resource_type"`
-	IntegrationType string                                 `json:"integration_type"`
-	IntegrationID   string                                 `json:"integration_id"`
+	ResourceID      string                                              `json:"resource_id"`
+	PlatformID      string                                              `json:"platform_id"`
+	Description     azure_subscription.SecurityCenterContactDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                         `json:"metadata"`
+	DescribedBy     string                                              `json:"described_by"`
+	ResourceType    string                                              `json:"resource_type"`
+	IntegrationType string                                              `json:"integration_type"`
+	IntegrationID   string                                              `json:"integration_id"`
 }
 
 type SecurityCenterContactHit struct {
@@ -16695,7 +16695,7 @@ var listSecurityCenterContactFilters = map[string]string{
 	"id":                      "Description.Contact.ID",
 	"name":                    "Description.Contact.Name",
 	"phone":                   "Description.Contact.Properties.Phone",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"title":                   "Description.Contact.Name",
 	"type":                    "Description.Contact.Type",
 }
@@ -16767,7 +16767,7 @@ var getSecurityCenterContactFilters = map[string]string{
 	"id":                      "Description.Contact.ID",
 	"name":                    "description.Contact.name",
 	"phone":                   "Description.Contact.Properties.Phone",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"title":                   "Description.Contact.Name",
 	"type":                    "Description.Contact.Type",
 }
@@ -16830,14 +16830,14 @@ func GetSecurityCenterContact(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: SecurityCenterJitNetworkAccessPolicy =============================
 
 type SecurityCenterJitNetworkAccessPolicy struct {
-	ResourceID      string                                                `json:"resource_id"`
-	PlatformID      string                                                `json:"platform_id"`
-	Description     azure.SecurityCenterJitNetworkAccessPolicyDescription `json:"description"`
-	Metadata        azure.Metadata                                        `json:"metadata"`
-	DescribedBy     string                                                `json:"described_by"`
-	ResourceType    string                                                `json:"resource_type"`
-	IntegrationType string                                                `json:"integration_type"`
-	IntegrationID   string                                                `json:"integration_id"`
+	ResourceID      string                                                             `json:"resource_id"`
+	PlatformID      string                                                             `json:"platform_id"`
+	Description     azure_subscription.SecurityCenterJitNetworkAccessPolicyDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                        `json:"metadata"`
+	DescribedBy     string                                                             `json:"described_by"`
+	ResourceType    string                                                             `json:"resource_type"`
+	IntegrationType string                                                             `json:"integration_type"`
+	IntegrationID   string                                                             `json:"integration_id"`
 }
 
 type SecurityCenterJitNetworkAccessPolicyHit struct {
@@ -16911,7 +16911,7 @@ var listSecurityCenterJitNetworkAccessPolicyFilters = map[string]string{
 	"id":                      "Description.JitNetworkAccessPolicy.ID",
 	"kind":                    "Description.JitNetworkAccessPolicy.Kind",
 	"name":                    "Description.JitNetworkAccessPolicy.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.JitNetworkAccessPolicy.Properties.ProvisioningState",
 	"title":                   "Description.JitNetworkAccessPolicy.Name",
 	"type":                    "Description.JitNetworkAccessPolicy.Type",
@@ -16982,7 +16982,7 @@ var getSecurityCenterJitNetworkAccessPolicyFilters = map[string]string{
 	"id":                      "Description.JitNetworkAccessPolicy.ID",
 	"kind":                    "Description.JitNetworkAccessPolicy.Kind",
 	"name":                    "Description.JitNetworkAccessPolicy.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.JitNetworkAccessPolicy.Properties.ProvisioningState",
 	"title":                   "Description.JitNetworkAccessPolicy.Name",
 	"type":                    "Description.JitNetworkAccessPolicy.Type",
@@ -17047,14 +17047,14 @@ func GetSecurityCenterJitNetworkAccessPolicy(ctx context.Context, d *plugin.Quer
 // ==========================  START: SecurityCenterSetting =============================
 
 type SecurityCenterSetting struct {
-	ResourceID      string                                 `json:"resource_id"`
-	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.SecurityCenterSettingDescription `json:"description"`
-	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     string                                 `json:"described_by"`
-	ResourceType    string                                 `json:"resource_type"`
-	IntegrationType string                                 `json:"integration_type"`
-	IntegrationID   string                                 `json:"integration_id"`
+	ResourceID      string                                              `json:"resource_id"`
+	PlatformID      string                                              `json:"platform_id"`
+	Description     azure_subscription.SecurityCenterSettingDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                         `json:"metadata"`
+	DescribedBy     string                                              `json:"described_by"`
+	ResourceType    string                                              `json:"resource_type"`
+	IntegrationType string                                              `json:"integration_type"`
+	IntegrationID   string                                              `json:"integration_id"`
 }
 
 type SecurityCenterSettingHit struct {
@@ -17129,7 +17129,7 @@ var listSecurityCenterSettingFilters = map[string]string{
 	"id":                      "Description.Setting.ID",
 	"kind":                    "Description.Setting.Kind",
 	"name":                    "Description.Setting.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"title":                   "Description.Setting.Name",
 	"type":                    "Description.Setting.Type",
 }
@@ -17199,7 +17199,7 @@ var getSecurityCenterSettingFilters = map[string]string{
 	"id":                      "Description.Setting.ID",
 	"kind":                    "Description.Setting.Kind",
 	"name":                    "description.Setting.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"title":                   "Description.Setting.Name",
 	"type":                    "Description.Setting.Type",
 }
@@ -17262,14 +17262,14 @@ func GetSecurityCenterSetting(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: SecurityCenterSubscriptionPricing =============================
 
 type SecurityCenterSubscriptionPricing struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure.SecurityCenterSubscriptionPricingDescription `json:"description"`
-	Metadata        azure.Metadata                                     `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
+	ResourceID      string                                                          `json:"resource_id"`
+	PlatformID      string                                                          `json:"platform_id"`
+	Description     azure_subscription.SecurityCenterSubscriptionPricingDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                     `json:"metadata"`
+	DescribedBy     string                                                          `json:"described_by"`
+	ResourceType    string                                                          `json:"resource_type"`
+	IntegrationType string                                                          `json:"integration_type"`
+	IntegrationID   string                                                          `json:"integration_id"`
 }
 
 type SecurityCenterSubscriptionPricingHit struct {
@@ -17343,7 +17343,7 @@ var listSecurityCenterSubscriptionPricingFilters = map[string]string{
 	"free_trial_remaining_time": "Description.Pricing.Properties.FreeTrialRemainingTime",
 	"id":                        "Description.Pricing.ID",
 	"name":                      "Description.Pricing.Name",
-	"platform_integration_id":   "metadata.IntegrationID",
+	"platform_integration_id":   "IntegrationID",
 	"pricing_tier":              "Description.Pricing.Properties.PricingTier",
 	"title":                     "Description.Pricing.Name",
 	"type":                      "Description.Pricing.Type",
@@ -17413,7 +17413,7 @@ var getSecurityCenterSubscriptionPricingFilters = map[string]string{
 	"free_trial_remaining_time": "Description.Pricing.Properties.FreeTrialRemainingTime",
 	"id":                        "Description.Pricing.ID",
 	"name":                      "description.Pricing.Name",
-	"platform_integration_id":   "metadata.IntegrationID",
+	"platform_integration_id":   "IntegrationID",
 	"pricing_tier":              "Description.Pricing.Properties.PricingTier",
 	"title":                     "Description.Pricing.Name",
 	"type":                      "Description.Pricing.Type",
@@ -17477,14 +17477,14 @@ func GetSecurityCenterSubscriptionPricing(ctx context.Context, d *plugin.QueryDa
 // ==========================  START: SecurityCenterAutomation =============================
 
 type SecurityCenterAutomation struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.SecurityCenterAutomationDescription `json:"description"`
-	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                                                 `json:"resource_id"`
+	PlatformID      string                                                 `json:"platform_id"`
+	Description     azure_subscription.SecurityCenterAutomationDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                            `json:"metadata"`
+	DescribedBy     string                                                 `json:"described_by"`
+	ResourceType    string                                                 `json:"resource_type"`
+	IntegrationType string                                                 `json:"integration_type"`
+	IntegrationID   string                                                 `json:"integration_id"`
 }
 
 type SecurityCenterAutomationHit struct {
@@ -17562,7 +17562,7 @@ var listSecurityCenterAutomationFilters = map[string]string{
 	"is_enabled":              "Description.Automation.Properties.IsEnabled",
 	"kind":                    "Description.Automation.Kind",
 	"name":                    "Description.Automation.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"scopes":                  "Description.Automation.Properties.Scopes",
 	"sources":                 "Description.Automation.Properties.Sources",
@@ -17639,7 +17639,7 @@ var getSecurityCenterAutomationFilters = map[string]string{
 	"is_enabled":              "Description.Automation.Properties.IsEnabled",
 	"kind":                    "Description.Automation.Kind",
 	"name":                    "description.Automation.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"scopes":                  "Description.Automation.Properties.Scopes",
 	"sources":                 "Description.Automation.Properties.Sources",
@@ -17706,14 +17706,14 @@ func GetSecurityCenterAutomation(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: SecurityCenterSubAssessment =============================
 
 type SecurityCenterSubAssessment struct {
-	ResourceID      string                                       `json:"resource_id"`
-	PlatformID      string                                       `json:"platform_id"`
-	Description     azure.SecurityCenterSubAssessmentDescription `json:"description"`
-	Metadata        azure.Metadata                               `json:"metadata"`
-	DescribedBy     string                                       `json:"described_by"`
-	ResourceType    string                                       `json:"resource_type"`
-	IntegrationType string                                       `json:"integration_type"`
-	IntegrationID   string                                       `json:"integration_id"`
+	ResourceID      string                                                    `json:"resource_id"`
+	PlatformID      string                                                    `json:"platform_id"`
+	Description     azure_subscription.SecurityCenterSubAssessmentDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                               `json:"metadata"`
+	DescribedBy     string                                                    `json:"described_by"`
+	ResourceType    string                                                    `json:"resource_type"`
+	IntegrationType string                                                    `json:"integration_type"`
+	IntegrationID   string                                                    `json:"integration_id"`
 }
 
 type SecurityCenterSubAssessmentHit struct {
@@ -17790,7 +17790,7 @@ var listSecurityCenterSubAssessmentFilters = map[string]string{
 	"id":                      "Description.SubAssessment.ID",
 	"impact":                  "Description.SubAssessment.Properties.Impact",
 	"name":                    "Description.SubAssessment.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"remediation":             "Description.SubAssessment.Properties.Remediation",
 	"resource_group":          "Description.ResourceGroup",
 	"time_generated":          "Description.SubAssessment.Properties.TimeGenerated",
@@ -17865,7 +17865,7 @@ var getSecurityCenterSubAssessmentFilters = map[string]string{
 	"id":                      "Description.SubAssessment.ID",
 	"impact":                  "Description.SubAssessment.Properties.Impact",
 	"name":                    "Description.SubAssessment.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"remediation":             "Description.SubAssessment.Properties.Remediation",
 	"resource_group":          "Description.ResourceGroup",
 	"time_generated":          "Description.SubAssessment.Properties.TimeGenerated",
@@ -17931,14 +17931,14 @@ func GetSecurityCenterSubAssessment(ctx context.Context, d *plugin.QueryData, _ 
 // ==========================  START: StorageContainer =============================
 
 type StorageContainer struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.StorageContainerDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.StorageContainerDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type StorageContainerHit struct {
@@ -18023,7 +18023,7 @@ var listStorageContainerFilters = map[string]string{
 	"legal_hold":                     "Description.ListContainerItem.Properties.LegalHold",
 	"metadata":                       "Description.ListContainerItem.Properties.Metadata",
 	"name":                           "Description.ListContainerItem.Name",
-	"platform_integration_id":        "metadata.IntegrationID",
+	"platform_integration_id":        "IntegrationID",
 	"public_access":                  "Description.ListContainerItem.Properties.PublicAccess",
 	"remaining_retention_days":       "Description.ListContainerItem.Properties.RemainingRetentionDays",
 	"resource_group":                 "Description.ResourceGroup",
@@ -18107,7 +18107,7 @@ var getStorageContainerFilters = map[string]string{
 	"legal_hold":                     "Description.ListContainerItem.Properties.LegalHold",
 	"metadata":                       "Description.ListContainerItem.Properties.Metadata",
 	"name":                           "description.ListContainerItem.name",
-	"platform_integration_id":        "metadata.IntegrationID",
+	"platform_integration_id":        "IntegrationID",
 	"public_access":                  "Description.ListContainerItem.Properties.PublicAccess",
 	"remaining_retention_days":       "Description.ListContainerItem.Properties.RemainingRetentionDays",
 	"resource_group":                 "description.ResourceGroup",
@@ -18174,14 +18174,14 @@ func GetStorageContainer(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: StorageBlob =============================
 
 type StorageBlob struct {
-	ResourceID      string                       `json:"resource_id"`
-	PlatformID      string                       `json:"platform_id"`
-	Description     azure.StorageBlobDescription `json:"description"`
-	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     string                       `json:"described_by"`
-	ResourceType    string                       `json:"resource_type"`
-	IntegrationType string                       `json:"integration_type"`
-	IntegrationID   string                       `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure_subscription.StorageBlobDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata               `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type StorageBlobHit struct {
@@ -18289,7 +18289,7 @@ var listStorageBlobFilters = map[string]string{
 	"lease_status":             "Description.Blob.Properties.LeaseStatus",
 	"metadata":                 "Description.Blob.Metadata",
 	"name":                     "Description.Blob.Name",
-	"platform_integration_id":  "metadata.IntegrationID",
+	"platform_integration_id":  "IntegrationID",
 	"remaining_retention_days": "Description.Blob.Properties.RemainingRetentionDays",
 	"resource_group":           "description.ResourceGroup",
 	"server_encrypted":         "Description.Blob.Properties.ServerEncrypted",
@@ -18398,7 +18398,7 @@ var getStorageBlobFilters = map[string]string{
 	"lease_status":             "Description.Blob.Properties.LeaseStatus",
 	"metadata":                 "Description.Blob.Metadata",
 	"name":                     "Description.Blob.Name",
-	"platform_integration_id":  "metadata.IntegrationID",
+	"platform_integration_id":  "IntegrationID",
 	"remaining_retention_days": "Description.Blob.Properties.RemainingRetentionDays",
 	"server_encrypted":         "Description.Blob.Properties.ServerEncrypted",
 	"snapshot":                 "Description.Blob.Snapshot",
@@ -18466,14 +18466,14 @@ func GetStorageBlob(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: StorageBlobService =============================
 
 type StorageBlobService struct {
-	ResourceID      string                              `json:"resource_id"`
-	PlatformID      string                              `json:"platform_id"`
-	Description     azure.StorageBlobServiceDescription `json:"description"`
-	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     string                              `json:"described_by"`
-	ResourceType    string                              `json:"resource_type"`
-	IntegrationType string                              `json:"integration_type"`
-	IntegrationID   string                              `json:"integration_id"`
+	ResourceID      string                                           `json:"resource_id"`
+	PlatformID      string                                           `json:"platform_id"`
+	Description     azure_subscription.StorageBlobServiceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                      `json:"metadata"`
+	DescribedBy     string                                           `json:"described_by"`
+	ResourceType    string                                           `json:"resource_type"`
+	IntegrationType string                                           `json:"integration_type"`
+	IntegrationID   string                                           `json:"integration_id"`
 }
 
 type StorageBlobServiceHit struct {
@@ -18553,7 +18553,7 @@ var listStorageBlobServiceFilters = map[string]string{
 	"id":                                "Description.BlobService.ID",
 	"is_versioning_enabled":             "Description.BlobService.BlobServiceProperties.IsVersioningEnabled",
 	"name":                              "Description.BlobService.Name",
-	"platform_integration_id":           "metadata.IntegrationID",
+	"platform_integration_id":           "IntegrationID",
 	"resource_group":                    "description.ResourceGroup",
 	"restore_policy":                    "Description.BlobService.BlobServiceProperties.RestorePolicy",
 	"sku_name":                          "Description.BlobService.SKU.Name",
@@ -18633,7 +18633,7 @@ var getStorageBlobServiceFilters = map[string]string{
 	"id":                                "Description.BlobService.ID",
 	"is_versioning_enabled":             "Description.BlobService.BlobServiceProperties.IsVersioningEnabled",
 	"name":                              "Description.BlobService.Name",
-	"platform_integration_id":           "metadata.IntegrationID",
+	"platform_integration_id":           "IntegrationID",
 	"resource_group":                    "Description.ResourceGroup",
 	"restore_policy":                    "Description.BlobService.BlobServiceProperties.RestorePolicy",
 	"sku_name":                          "Description.BlobService.SKU.Name",
@@ -18701,14 +18701,14 @@ func GetStorageBlobService(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: StorageQueue =============================
 
 type StorageQueue struct {
-	ResourceID      string                        `json:"resource_id"`
-	PlatformID      string                        `json:"platform_id"`
-	Description     azure.StorageQueueDescription `json:"description"`
-	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     string                        `json:"described_by"`
-	ResourceType    string                        `json:"resource_type"`
-	IntegrationType string                        `json:"integration_type"`
-	IntegrationID   string                        `json:"integration_id"`
+	ResourceID      string                                     `json:"resource_id"`
+	PlatformID      string                                     `json:"platform_id"`
+	Description     azure_subscription.StorageQueueDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                `json:"metadata"`
+	DescribedBy     string                                     `json:"described_by"`
+	ResourceType    string                                     `json:"resource_type"`
+	IntegrationType string                                     `json:"integration_type"`
+	IntegrationID   string                                     `json:"integration_id"`
 }
 
 type StorageQueueHit struct {
@@ -18782,7 +18782,7 @@ var listStorageQueueFilters = map[string]string{
 	"id":                      "Description.Queue.ID",
 	"metadata":                "Description.Queue.QueueProperties.Metadata",
 	"name":                    "description.Queue.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"storage_account_name":    "description.AccountName",
 	"title":                   "Description.Queue.Name",
@@ -18853,7 +18853,7 @@ var getStorageQueueFilters = map[string]string{
 	"id":                      "Description.Queue.ID",
 	"metadata":                "Description.Queue.QueueProperties.Metadata",
 	"name":                    "Description.Queue.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"storage_account_name":    "Description.AccountName",
 	"title":                   "Description.Queue.Name",
@@ -18918,14 +18918,14 @@ func GetStorageQueue(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: StorageFileShare =============================
 
 type StorageFileShare struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.StorageFileShareDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.StorageFileShareDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type StorageFileShareHit struct {
@@ -19003,7 +19003,7 @@ var listStorageFileShareFilters = map[string]string{
 	"id":                       "Description.FileShare.ID",
 	"metadata":                 "Description.FileShare.Properties.Metadata",
 	"name":                     "description.FileShare.Name",
-	"platform_integration_id":  "metadata.IntegrationID",
+	"platform_integration_id":  "IntegrationID",
 	"remaining_retention_days": "Description.FileShare.Properties.RemainingRetentionDays",
 	"resource_group":           "description.ResourceGroup",
 	"root_squash":              "Description.FileShare.Properties.RootSquash",
@@ -19083,7 +19083,7 @@ var getStorageFileShareFilters = map[string]string{
 	"id":                       "Description.FileShare.ID",
 	"metadata":                 "Description.FileShare.Properties.Metadata",
 	"name":                     "Description.FileShare.Name",
-	"platform_integration_id":  "metadata.IntegrationID",
+	"platform_integration_id":  "IntegrationID",
 	"remaining_retention_days": "Description.FileShare.Properties.RemainingRetentionDays",
 	"root_squash":              "Description.FileShare.Properties.RootSquash",
 	"share_quota":              "Description.FileShare.Properties.ShareQuota",
@@ -19152,14 +19152,14 @@ func GetStorageFileShare(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: StorageTable =============================
 
 type StorageTable struct {
-	ResourceID      string                        `json:"resource_id"`
-	PlatformID      string                        `json:"platform_id"`
-	Description     azure.StorageTableDescription `json:"description"`
-	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     string                        `json:"described_by"`
-	ResourceType    string                        `json:"resource_type"`
-	IntegrationType string                        `json:"integration_type"`
-	IntegrationID   string                        `json:"integration_id"`
+	ResourceID      string                                     `json:"resource_id"`
+	PlatformID      string                                     `json:"platform_id"`
+	Description     azure_subscription.StorageTableDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                `json:"metadata"`
+	DescribedBy     string                                     `json:"described_by"`
+	ResourceType    string                                     `json:"resource_type"`
+	IntegrationType string                                     `json:"integration_type"`
+	IntegrationID   string                                     `json:"integration_id"`
 }
 
 type StorageTableHit struct {
@@ -19232,7 +19232,7 @@ func (p StorageTablePaginator) NextPage(ctx context.Context) ([]StorageTable, er
 var listStorageTableFilters = map[string]string{
 	"id":                      "Description.Table.ID",
 	"name":                    "description.Table.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"storage_account_name":    "description.AccountName",
 	"title":                   "Description.Table.Name",
@@ -19302,7 +19302,7 @@ func ListStorageTable(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 var getStorageTableFilters = map[string]string{
 	"id":                      "Description.Table.ID",
 	"name":                    "Description.Table.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"storage_account_name":    "Description.AccountName",
 	"title":                   "Description.Table.Name",
 	"type":                    "Description.Table.Type",
@@ -19366,14 +19366,14 @@ func GetStorageTable(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: StorageTableService =============================
 
 type StorageTableService struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure.StorageTableServiceDescription `json:"description"`
-	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure_subscription.StorageTableServiceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                       `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type StorageTableServiceHit struct {
@@ -19447,7 +19447,7 @@ var listStorageTableServiceFilters = map[string]string{
 	"cors_rules":              "Description.TableService.TableServiceProperties.Cors.CorsRules",
 	"id":                      "Description.TableService.ID",
 	"name":                    "description.TableService.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"storage_account_name":    "description.AccountName",
 	"title":                   "Description.TableService.Name",
@@ -19518,7 +19518,7 @@ var getStorageTableServiceFilters = map[string]string{
 	"cors_rules":              "Description.TableService.TableServiceProperties.Cors.CorsRules",
 	"id":                      "Description.TableService.ID",
 	"name":                    "Description.TableService.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"storage_account_name":    "Description.AccountName",
 	"title":                   "Description.TableService.Name",
 	"type":                    "Description.TableService.Type",
@@ -19582,14 +19582,14 @@ func GetStorageTableService(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: Subnet =============================
 
 type Subnet struct {
-	ResourceID      string                  `json:"resource_id"`
-	PlatformID      string                  `json:"platform_id"`
-	Description     azure.SubnetDescription `json:"description"`
-	Metadata        azure.Metadata          `json:"metadata"`
-	DescribedBy     string                  `json:"described_by"`
-	ResourceType    string                  `json:"resource_type"`
-	IntegrationType string                  `json:"integration_type"`
-	IntegrationID   string                  `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure_subscription.SubnetDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata          `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type SubnetHit struct {
@@ -19668,7 +19668,7 @@ var listSubnetFilters = map[string]string{
 	"name":                                  "Description.Subnet.Name",
 	"nat_gateway_id":                        "Description.Subnet.Properties.NatGateway.ID",
 	"network_security_group_id":             "Description.Subnet.Properties.NetworkSecurityGroup.ID",
-	"platform_integration_id":               "metadata.IntegrationID",
+	"platform_integration_id":               "IntegrationID",
 	"private_endpoint_network_policies":     "Description.Subnet.Properties.PrivateEndpointNetworkPolicies",
 	"private_link_service_network_policies": "Description.Subnet.Properties.PrivateLinkServiceNetworkPolicies",
 	"provisioning_state":                    "Description.Subnet.Properties.ProvisioningState",
@@ -19749,7 +19749,7 @@ var getSubnetFilters = map[string]string{
 	"name":                                  "description.Subnet.name",
 	"nat_gateway_id":                        "Description.Subnet.Properties.NatGateway.ID",
 	"network_security_group_id":             "Description.Subnet.Properties.NetworkSecurityGroup.ID",
-	"platform_integration_id":               "metadata.IntegrationID",
+	"platform_integration_id":               "IntegrationID",
 	"private_endpoint_network_policies":     "Description.Subnet.Properties.PrivateEndpointNetworkPolicies",
 	"private_link_service_network_policies": "Description.Subnet.Properties.PrivateLinkServiceNetworkPolicies",
 	"provisioning_state":                    "Description.Subnet.Properties.ProvisioningState",
@@ -19820,14 +19820,14 @@ func GetSubnet(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) 
 // ==========================  START: VirtualNetwork =============================
 
 type VirtualNetwork struct {
-	ResourceID      string                          `json:"resource_id"`
-	PlatformID      string                          `json:"platform_id"`
-	Description     azure.VirtualNetworkDescription `json:"description"`
-	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     string                          `json:"described_by"`
-	ResourceType    string                          `json:"resource_type"`
-	IntegrationType string                          `json:"integration_type"`
-	IntegrationID   string                          `json:"integration_id"`
+	ResourceID      string                                       `json:"resource_id"`
+	PlatformID      string                                       `json:"platform_id"`
+	Description     azure_subscription.VirtualNetworkDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                  `json:"metadata"`
+	DescribedBy     string                                       `json:"described_by"`
+	ResourceType    string                                       `json:"resource_type"`
+	IntegrationType string                                       `json:"integration_type"`
+	IntegrationID   string                                       `json:"integration_id"`
 }
 
 type VirtualNetworkHit struct {
@@ -19905,7 +19905,7 @@ var listVirtualNetworkFilters = map[string]string{
 	"id":                      "Description.VirtualNetwork.ID",
 	"name":                    "Description.VirtualNetwork.Name",
 	"network_peerings":        "Description.VirtualNetwork.Properties.VirtualNetworkPeerings",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.VirtualNetwork.Properties.ProvisioningState",
 	"resource_group":          "Description.ResourceGroup",
 	"resource_guid":           "Description.VirtualNetwork.Properties.ResourceGUID",
@@ -19983,7 +19983,7 @@ var getVirtualNetworkFilters = map[string]string{
 	"id":                      "Description.VirtualNetwork.ID",
 	"name":                    "description.VirtualNetwork.name",
 	"network_peerings":        "Description.VirtualNetwork.Properties.VirtualNetworkPeerings",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.VirtualNetwork.Properties.ProvisioningState",
 	"resource_group":          "description.ResourceGroup",
 	"resource_guid":           "Description.VirtualNetwork.Properties.ResourceGUID",
@@ -20051,14 +20051,14 @@ func GetVirtualNetwork(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: Tenant =============================
 
 type Tenant struct {
-	ResourceID      string                  `json:"resource_id"`
-	PlatformID      string                  `json:"platform_id"`
-	Description     azure.TenantDescription `json:"description"`
-	Metadata        azure.Metadata          `json:"metadata"`
-	DescribedBy     string                  `json:"described_by"`
-	ResourceType    string                  `json:"resource_type"`
-	IntegrationType string                  `json:"integration_type"`
-	IntegrationID   string                  `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure_subscription.TenantDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata          `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type TenantHit struct {
@@ -20132,7 +20132,7 @@ var listTenantFilters = map[string]string{
 	"display_name":            "Description.TenantIDDescription.Name",
 	"id":                      "Description.TenantIDDescription.ID",
 	"name":                    "Description.TenantIDDescription.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tenant_category":         "TenantCategory",
 	"tenant_id":               "Description.TenantIDDescription.TenantID",
 	"title":                   "Description.TenantIDDescription.Name",
@@ -20202,7 +20202,7 @@ var getTenantFilters = map[string]string{
 	"display_name":            "Description.TenantIDDescription.Name",
 	"id":                      "Description.TenantIDDescription.ID",
 	"name":                    "Description.TenantIDDescription.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tenant_category":         "TenantCategory",
 	"tenant_id":               "Description.TenantIDDescription.TenantID",
 	"title":                   "Description.TenantIDDescription.Name",
@@ -20266,14 +20266,14 @@ func GetTenant(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) 
 // ==========================  START: Subscription =============================
 
 type Subscription struct {
-	ResourceID      string                        `json:"resource_id"`
-	PlatformID      string                        `json:"platform_id"`
-	Description     azure.SubscriptionDescription `json:"description"`
-	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     string                        `json:"described_by"`
-	ResourceType    string                        `json:"resource_type"`
-	IntegrationType string                        `json:"integration_type"`
-	IntegrationID   string                        `json:"integration_id"`
+	ResourceID      string                                     `json:"resource_id"`
+	PlatformID      string                                     `json:"platform_id"`
+	Description     azure_subscription.SubscriptionDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                `json:"metadata"`
+	DescribedBy     string                                     `json:"described_by"`
+	ResourceType    string                                     `json:"resource_type"`
+	IntegrationType string                                     `json:"integration_type"`
+	IntegrationID   string                                     `json:"integration_id"`
 }
 
 type SubscriptionHit struct {
@@ -20347,7 +20347,7 @@ var listSubscriptionFilters = map[string]string{
 	"authorization_source":    "Description.Subscription.AuthorizationSource",
 	"display_name":            "Description.Subscription.DisplayName",
 	"id":                      "Description.Subscription.ID",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"state":                   "Description.Subscription.State",
 	"subscription_id":         "Description.Subscription.SubscriptionID",
 	"subscription_policies":   "Description.Subscription.SubscriptionPolicies",
@@ -20420,7 +20420,7 @@ var getSubscriptionFilters = map[string]string{
 	"authorization_source":    "Description.Subscription.AuthorizationSource",
 	"display_name":            "Description.Subscription.DisplayName",
 	"id":                      "Description.Subscription.ID",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"state":                   "Description.Subscription.State",
 	"subscription_id":         "Description.Subscription.SubscriptionID",
 	"subscription_policies":   "Description.Subscription.SubscriptionPolicies",
@@ -20487,14 +20487,14 @@ func GetSubscription(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: ApplicationGateway =============================
 
 type ApplicationGateway struct {
-	ResourceID      string                              `json:"resource_id"`
-	PlatformID      string                              `json:"platform_id"`
-	Description     azure.ApplicationGatewayDescription `json:"description"`
-	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     string                              `json:"described_by"`
-	ResourceType    string                              `json:"resource_type"`
-	IntegrationType string                              `json:"integration_type"`
-	IntegrationID   string                              `json:"integration_id"`
+	ResourceID      string                                           `json:"resource_id"`
+	PlatformID      string                                           `json:"platform_id"`
+	Description     azure_subscription.ApplicationGatewayDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                      `json:"metadata"`
+	DescribedBy     string                                           `json:"described_by"`
+	ResourceType    string                                           `json:"resource_type"`
+	IntegrationType string                                           `json:"integration_type"`
+	IntegrationID   string                                           `json:"integration_id"`
 }
 
 type ApplicationGatewayHit struct {
@@ -20577,7 +20577,7 @@ var listApplicationGatewayFilters = map[string]string{
 	"identity":                               "Description.ApplicationGateway.Identity",
 	"name":                                   "Description.ApplicationGateway.Name",
 	"operational_state":                      "Description.ApplicationGateway.Properties.OperationalState",
-	"platform_integration_id":                "metadata.IntegrationID",
+	"platform_integration_id":                "IntegrationID",
 	"provisioning_state":                     "Description.ApplicationGateway.Properties.ProvisioningState",
 	"redirect_configurations":                "Description.ApplicationGateway.Properties.RedirectConfigurations",
 	"resource_group":                         "Description.ResourceGroup",
@@ -20664,7 +20664,7 @@ var getApplicationGatewayFilters = map[string]string{
 	"identity":                               "Description.ApplicationGateway.Identity",
 	"name":                                   "description.ApplicationGateway.name",
 	"operational_state":                      "Description.ApplicationGateway.Properties.OperationalState",
-	"platform_integration_id":                "metadata.IntegrationID",
+	"platform_integration_id":                "IntegrationID",
 	"provisioning_state":                     "Description.ApplicationGateway.Properties.ProvisioningState",
 	"redirect_configurations":                "Description.ApplicationGateway.Properties.RedirectConfigurations",
 	"resource_group":                         "description.ResourceGroup",
@@ -20736,14 +20736,14 @@ func GetApplicationGateway(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: BatchAccount =============================
 
 type BatchAccount struct {
-	ResourceID      string                        `json:"resource_id"`
-	PlatformID      string                        `json:"platform_id"`
-	Description     azure.BatchAccountDescription `json:"description"`
-	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     string                        `json:"described_by"`
-	ResourceType    string                        `json:"resource_type"`
-	IntegrationType string                        `json:"integration_type"`
-	IntegrationID   string                        `json:"integration_id"`
+	ResourceID      string                                     `json:"resource_id"`
+	PlatformID      string                                     `json:"platform_id"`
+	Description     azure_subscription.BatchAccountDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                `json:"metadata"`
+	DescribedBy     string                                     `json:"described_by"`
+	ResourceType    string                                     `json:"resource_type"`
+	IntegrationType string                                     `json:"integration_type"`
+	IntegrationID   string                                     `json:"integration_id"`
 }
 
 type BatchAccountHit struct {
@@ -20827,7 +20827,7 @@ var listBatchAccountFilters = map[string]string{
 	"key_vault_reference":                         "Description.Account.Properties.KeyVaultReference",
 	"low_priority_core_quota":                     "Description.Account.Properties.LowPriorityCoreQuota",
 	"name":                                        "Description.Account.Name",
-	"platform_integration_id":                     "metadata.IntegrationID",
+	"platform_integration_id":                     "IntegrationID",
 	"pool_allocation_mode":                        "Description.Account.Properties.PoolAllocationMode",
 	"pool_quota":                                  "Description.Account.Properties.PoolQuota",
 	"private_endpoint_connections":                "Description.Account.Properties.PrivateEndpointConnections",
@@ -20913,7 +20913,7 @@ var getBatchAccountFilters = map[string]string{
 	"key_vault_reference":                         "Description.Account.Properties.KeyVaultReference",
 	"low_priority_core_quota":                     "Description.Account.Properties.LowPriorityCoreQuota",
 	"name":                                        "description.Account.name",
-	"platform_integration_id":                     "metadata.IntegrationID",
+	"platform_integration_id":                     "IntegrationID",
 	"pool_allocation_mode":                        "Description.Account.Properties.PoolAllocationMode",
 	"pool_quota":                                  "Description.Account.Properties.PoolQuota",
 	"private_endpoint_connections":                "Description.Account.Properties.PrivateEndpointConnections",
@@ -20983,14 +20983,14 @@ func GetBatchAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: CognitiveAccount =============================
 
 type CognitiveAccount struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.CognitiveAccountDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.CognitiveAccountDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type CognitiveAccountHit struct {
@@ -21080,7 +21080,7 @@ var listCognitiveAccountFilters = map[string]string{
 	"migration_token":                  "Description.Account.Properties.MigrationToken",
 	"name":                             "Description.Account.Name",
 	"network_acls":                     "Description.Account.Properties.NetworkACLs",
-	"platform_integration_id":          "metadata.IntegrationID",
+	"platform_integration_id":          "IntegrationID",
 	"provisioning_state":               "Description.Account.Properties.ProvisioningState",
 	"public_network_access":            "Description.Account.Properties.PublicNetworkAccess",
 	"quota_limit":                      "Description.Account.Properties.QuotaLimit",
@@ -21176,7 +21176,7 @@ var getCognitiveAccountFilters = map[string]string{
 	"migration_token":                  "Description.Account.Properties.MigrationToken",
 	"name":                             "description.Account.name",
 	"network_acls":                     "Description.Account.Properties.NetworkACLs",
-	"platform_integration_id":          "metadata.IntegrationID",
+	"platform_integration_id":          "IntegrationID",
 	"provisioning_state":               "Description.Account.Properties.ProvisioningState",
 	"public_network_access":            "Description.Account.Properties.PublicNetworkAccess",
 	"quota_limit":                      "Description.Account.Properties.QuotaLimit",
@@ -21250,14 +21250,14 @@ func GetCognitiveAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: ComputeVirtualMachine =============================
 
 type ComputeVirtualMachine struct {
-	ResourceID      string                                 `json:"resource_id"`
-	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.ComputeVirtualMachineDescription `json:"description"`
-	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     string                                 `json:"described_by"`
-	ResourceType    string                                 `json:"resource_type"`
-	IntegrationType string                                 `json:"integration_type"`
-	IntegrationID   string                                 `json:"integration_id"`
+	ResourceID      string                                              `json:"resource_id"`
+	PlatformID      string                                              `json:"platform_id"`
+	Description     azure_subscription.ComputeVirtualMachineDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                         `json:"metadata"`
+	DescribedBy     string                                              `json:"described_by"`
+	ResourceType    string                                              `json:"resource_type"`
+	IntegrationType string                                              `json:"integration_type"`
+	IntegrationID   string                                              `json:"integration_id"`
 }
 
 type ComputeVirtualMachineHit struct {
@@ -21363,7 +21363,7 @@ var listComputeVirtualMachineFilters = map[string]string{
 	"os_type":                             "Description.VirtualMachine.Properties.StorageProfile.OSDisk.OSType",
 	"os_version":                          "Description.VirtualMachineInstanceView.OSVersion",
 	"patch_settings":                      "Description.VirtualMachine.Properties.OSProfile.WindowsConfiguration.PatchSettings",
-	"platform_integration_id":             "metadata.IntegrationID",
+	"platform_integration_id":             "IntegrationID",
 	"priority":                            "Description.VirtualMachine.Properties.Priority",
 	"provision_vm_agent":                  "Description.VirtualMachine.Properties.OSProfile.LinuxConfiguration.ProvisionVMAgent",
 	"provision_vm_agent_windows":          "Description.VirtualMachine.Properties.OSProfile.WindowsConfiguration.ProvisionVMAgent",
@@ -21481,7 +21481,7 @@ var getComputeVirtualMachineFilters = map[string]string{
 	"os_type":                             "Description.VirtualMachine.Properties.StorageProfile.OSDisk.OSType",
 	"os_version":                          "Description.VirtualMachineInstanceView.OSVersion",
 	"patch_settings":                      "Description.VirtualMachine.Properties.OSProfile.WindowsConfiguration.PatchSettings",
-	"platform_integration_id":             "metadata.IntegrationID",
+	"platform_integration_id":             "IntegrationID",
 	"priority":                            "Description.VirtualMachine.Properties.Priority",
 	"provision_vm_agent":                  "Description.VirtualMachine.Properties.OSProfile.LinuxConfiguration.ProvisionVMAgent",
 	"provision_vm_agent_windows":          "Description.VirtualMachine.Properties.OSProfile.WindowsConfiguration.ProvisionVMAgent",
@@ -21561,14 +21561,14 @@ func GetComputeVirtualMachine(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: ComputeResourceSKU =============================
 
 type ComputeResourceSKU struct {
-	ResourceID      string                              `json:"resource_id"`
-	PlatformID      string                              `json:"platform_id"`
-	Description     azure.ComputeResourceSKUDescription `json:"description"`
-	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     string                              `json:"described_by"`
-	ResourceType    string                              `json:"resource_type"`
-	IntegrationType string                              `json:"integration_type"`
-	IntegrationID   string                              `json:"integration_id"`
+	ResourceID      string                                           `json:"resource_id"`
+	PlatformID      string                                           `json:"platform_id"`
+	Description     azure_subscription.ComputeResourceSKUDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                      `json:"metadata"`
+	DescribedBy     string                                           `json:"described_by"`
+	ResourceType    string                                           `json:"resource_type"`
+	IntegrationType string                                           `json:"integration_type"`
+	IntegrationID   string                                           `json:"integration_id"`
 }
 
 type ComputeResourceSKUHit struct {
@@ -21647,7 +21647,7 @@ var listComputeResourceSKUFilters = map[string]string{
 	"maximum_capacity":        "Description.ResourceSKU.Capacity.Maximum",
 	"minimum_capacity":        "Description.ResourceSKU.Capacity.Minimum",
 	"name":                    "Description.ResourceSKU.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_type":           "Description.ResourceSKU.ResourceType",
 	"scale_type":              "Description.ResourceSKU.Capacity.ScaleType",
 	"size":                    "Description.ResourceSKU.Size",
@@ -21724,7 +21724,7 @@ var getComputeResourceSKUFilters = map[string]string{
 	"maximum_capacity":        "Description.ResourceSKU.Capacity.Maximum",
 	"minimum_capacity":        "Description.ResourceSKU.Capacity.Minimum",
 	"name":                    "Description.ResourceSKU.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_type":           "Description.ResourceSKU.ResourceType",
 	"scale_type":              "Description.ResourceSKU.Capacity.ScaleType",
 	"size":                    "Description.ResourceSKU.Size",
@@ -21790,14 +21790,14 @@ func GetComputeResourceSKU(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: ComputeCloudService =============================
 
 type ComputeCloudService struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure.ComputeCloudServiceDescription `json:"description"`
-	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure_subscription.ComputeCloudServiceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                       `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type ComputeCloudServiceHit struct {
@@ -21870,7 +21870,7 @@ func (p ComputeCloudServicePaginator) NextPage(ctx context.Context) ([]ComputeCl
 var listComputeCloudServiceFilters = map[string]string{
 	"id":                      "Description.CloudServices.ID",
 	"name":                    "Description.CloudService.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.CloudService.Tags",
 	"title":                   "Description.CloudService.Name",
 }
@@ -21938,7 +21938,7 @@ func ListComputeCloudService(ctx context.Context, d *plugin.QueryData, _ *plugin
 var getComputeCloudServiceFilters = map[string]string{
 	"id":                      "Description.CloudServices.ID",
 	"name":                    "Description.CloudService.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.CloudService.Tags",
 	"title":                   "Description.CloudService.Name",
 }
@@ -22001,14 +22001,14 @@ func GetComputeCloudService(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: ContainerRegistry =============================
 
 type ContainerRegistry struct {
-	ResourceID      string                             `json:"resource_id"`
-	PlatformID      string                             `json:"platform_id"`
-	Description     azure.ContainerRegistryDescription `json:"description"`
-	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     string                             `json:"described_by"`
-	ResourceType    string                             `json:"resource_type"`
-	IntegrationType string                             `json:"integration_type"`
-	IntegrationID   string                             `json:"integration_id"`
+	ResourceID      string                                          `json:"resource_id"`
+	PlatformID      string                                          `json:"platform_id"`
+	Description     azure_subscription.ContainerRegistryDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                     `json:"metadata"`
+	DescribedBy     string                                          `json:"described_by"`
+	ResourceType    string                                          `json:"resource_type"`
+	IntegrationType string                                          `json:"integration_type"`
+	IntegrationID   string                                          `json:"integration_id"`
 }
 
 type ContainerRegistryHit struct {
@@ -22090,7 +22090,7 @@ var listContainerRegistryFilters = map[string]string{
 	"name":                         "Description.Registry.Name",
 	"network_rule_bypass_options":  "Description.Registry.Properties.NetworkRuleBypassOptions",
 	"network_rule_set":             "Description.Registry.Properties.NetworkRuleSet",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"policies":                     "Description.Registry.Properties.Policies",
 	"private_endpoint_connections": "Description.Registry.Properties.PrivateEndpointConnections",
 	"provisioning_state":           "Description.Registry.Properties.ProvisioningState",
@@ -22182,7 +22182,7 @@ var getContainerRegistryFilters = map[string]string{
 	"name":                         "description.Registry.name",
 	"network_rule_bypass_options":  "Description.Registry.Properties.NetworkRuleBypassOptions",
 	"network_rule_set":             "Description.Registry.Properties.NetworkRuleSet",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"policies":                     "Description.Registry.Properties.Policies",
 	"private_endpoint_connections": "Description.Registry.Properties.PrivateEndpointConnections",
 	"provisioning_state":           "Description.Registry.Properties.ProvisioningState",
@@ -22260,14 +22260,14 @@ func GetContainerRegistry(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: CosmosdbAccount =============================
 
 type CosmosdbAccount struct {
-	ResourceID      string                           `json:"resource_id"`
-	PlatformID      string                           `json:"platform_id"`
-	Description     azure.CosmosdbAccountDescription `json:"description"`
-	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     string                           `json:"described_by"`
-	ResourceType    string                           `json:"resource_type"`
-	IntegrationType string                           `json:"integration_type"`
-	IntegrationID   string                           `json:"integration_id"`
+	ResourceID      string                                        `json:"resource_id"`
+	PlatformID      string                                        `json:"platform_id"`
+	Description     azure_subscription.CosmosdbAccountDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                   `json:"metadata"`
+	DescribedBy     string                                        `json:"described_by"`
+	ResourceType    string                                        `json:"resource_type"`
+	IntegrationType string                                        `json:"integration_type"`
+	IntegrationID   string                                        `json:"integration_id"`
 }
 
 type CosmosdbAccountHit struct {
@@ -22362,7 +22362,7 @@ var listCosmosdbAccountFilters = map[string]string{
 	"kind":                                    "Description.DatabaseAccountGetResults.Kind",
 	"locations":                               "Description.DatabaseAccountGetResults.Properties.Locations",
 	"name":                                    "Description.DatabaseAccountGetResults.Name",
-	"platform_integration_id":                 "metadata.IntegrationID",
+	"platform_integration_id":                 "IntegrationID",
 	"private_endpoint_connections":            "Description.DatabaseAccountGetResults.Properties.PrivateEndpointConnections",
 	"provisioning_state":                      "Description.DatabaseAccountGetResults.Properties.ProvisioningState",
 	"public_network_access":                   "Description.DatabaseAccountGetResults.Properties.PublicNetworkAccess",
@@ -22461,7 +22461,7 @@ var getCosmosdbAccountFilters = map[string]string{
 	"kind":                                    "Description.DatabaseAccountGetResults.Kind",
 	"locations":                               "Description.DatabaseAccountGetResults.Properties.Locations",
 	"name":                                    "description.DatabaseAccountGetResults.name",
-	"platform_integration_id":                 "metadata.IntegrationID",
+	"platform_integration_id":                 "IntegrationID",
 	"private_endpoint_connections":            "Description.DatabaseAccountGetResults.Properties.PrivateEndpointConnections",
 	"provisioning_state":                      "Description.DatabaseAccountGetResults.Properties.ProvisioningState",
 	"public_network_access":                   "Description.DatabaseAccountGetResults.Properties.PublicNetworkAccess",
@@ -22534,14 +22534,14 @@ func GetCosmosdbAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: CosmosdbRestorableDatabaseAccount =============================
 
 type CosmosdbRestorableDatabaseAccount struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure.CosmosdbRestorableDatabaseAccountDescription `json:"description"`
-	Metadata        azure.Metadata                                     `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
+	ResourceID      string                                                          `json:"resource_id"`
+	PlatformID      string                                                          `json:"platform_id"`
+	Description     azure_subscription.CosmosdbRestorableDatabaseAccountDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                     `json:"metadata"`
+	DescribedBy     string                                                          `json:"described_by"`
+	ResourceType    string                                                          `json:"resource_type"`
+	IntegrationType string                                                          `json:"integration_type"`
+	IntegrationID   string                                                          `json:"integration_id"`
 }
 
 type CosmosdbRestorableDatabaseAccountHit struct {
@@ -22618,7 +22618,7 @@ var listCosmosdbRestorableDatabaseAccountFilters = map[string]string{
 	"deletion_time":           "Description.Account.Properties.DeletionTime",
 	"id":                      "Description.Account.ID",
 	"name":                    "Description.Account.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"restorable_locations":    "Description.Account.Properties.RestorableLocations",
 	"title":                   "Description.Account.Name",
@@ -22692,7 +22692,7 @@ var getCosmosdbRestorableDatabaseAccountFilters = map[string]string{
 	"deletion_time":           "Description.Account.Properties.DeletionTime",
 	"id":                      "Description.Account.ID",
 	"name":                    "description.Account.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"restorable_locations":    "Description.Account.Properties.RestorableLocations",
 	"title":                   "Description.Account.Name",
@@ -22757,14 +22757,14 @@ func GetCosmosdbRestorableDatabaseAccount(ctx context.Context, d *plugin.QueryDa
 // ==========================  START: CosmosdbMongoDatabase =============================
 
 type CosmosdbMongoDatabase struct {
-	ResourceID      string                                 `json:"resource_id"`
-	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.CosmosdbMongoDatabaseDescription `json:"description"`
-	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     string                                 `json:"described_by"`
-	ResourceType    string                                 `json:"resource_type"`
-	IntegrationType string                                 `json:"integration_type"`
-	IntegrationID   string                                 `json:"integration_id"`
+	ResourceID      string                                              `json:"resource_id"`
+	PlatformID      string                                              `json:"platform_id"`
+	Description     azure_subscription.CosmosdbMongoDatabaseDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                         `json:"metadata"`
+	DescribedBy     string                                              `json:"described_by"`
+	ResourceType    string                                              `json:"resource_type"`
+	IntegrationType string                                              `json:"integration_type"`
+	IntegrationID   string                                              `json:"integration_id"`
 }
 
 type CosmosdbMongoDatabaseHit struct {
@@ -22842,7 +22842,7 @@ var listCosmosdbMongoDatabaseFilters = map[string]string{
 	"database_rid":                      "Description.MongoDatabase.Properties.Resource.Rid",
 	"id":                                "Description.MongoDatabase.ID",
 	"name":                              "Description.MongoDatabase.Name",
-	"platform_integration_id":           "metadata.IntegrationID",
+	"platform_integration_id":           "IntegrationID",
 	"tags":                              "Description.MongoDatabase.Tags",
 	"throughput":                        "Description.MongoDatabase.Properties.Options.Throughput",
 	"throughput_settings":               "Description.MongoDatabase.Properties.Options.Throughput.ThroughputSettingsGetResults.Properties.Resource",
@@ -22918,7 +22918,7 @@ var getCosmosdbMongoDatabaseFilters = map[string]string{
 	"database_rid":                      "Description.MongoDatabase.Properties.Resource.Rid",
 	"id":                                "Description.MongoDatabase.ID",
 	"name":                              "description.MongoDatabase.name",
-	"platform_integration_id":           "metadata.IntegrationID",
+	"platform_integration_id":           "IntegrationID",
 	"resource_group":                    "description.ResourceGroup",
 	"tags":                              "Description.MongoDatabase.Tags",
 	"throughput":                        "Description.MongoDatabase.Properties.Options.Throughput",
@@ -22985,14 +22985,14 @@ func GetCosmosdbMongoDatabase(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: CosmosdbMongoCollection =============================
 
 type CosmosdbMongoCollection struct {
-	ResourceID      string                                   `json:"resource_id"`
-	PlatformID      string                                   `json:"platform_id"`
-	Description     azure.CosmosdbMongoCollectionDescription `json:"description"`
-	Metadata        azure.Metadata                           `json:"metadata"`
-	DescribedBy     string                                   `json:"described_by"`
-	ResourceType    string                                   `json:"resource_type"`
-	IntegrationType string                                   `json:"integration_type"`
-	IntegrationID   string                                   `json:"integration_id"`
+	ResourceID      string                                                `json:"resource_id"`
+	PlatformID      string                                                `json:"platform_id"`
+	Description     azure_subscription.CosmosdbMongoCollectionDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                           `json:"metadata"`
+	DescribedBy     string                                                `json:"described_by"`
+	ResourceType    string                                                `json:"resource_type"`
+	IntegrationType string                                                `json:"integration_type"`
+	IntegrationID   string                                                `json:"integration_id"`
 }
 
 type CosmosdbMongoCollectionHit struct {
@@ -23073,7 +23073,7 @@ var listCosmosdbMongoCollectionFilters = map[string]string{
 	"id":                                "Description.MongoCollection.ID",
 	"indexes":                           "Description.MongoCollection.Properties.Resource.Indexes",
 	"name":                              "Description.MongoCollection.Name",
-	"platform_integration_id":           "metadata.IntegrationID",
+	"platform_integration_id":           "IntegrationID",
 	"resource_group":                    "Description.ResourceGroup",
 	"shard_key":                         "Description.MongoCollection.Properties.Resource.ShardKey",
 	"tags":                              "Description.MongoCollection.Tags",
@@ -23154,7 +23154,7 @@ var getCosmosdbMongoCollectionFilters = map[string]string{
 	"id":                                "Description.MongoCollection.ID",
 	"indexes":                           "Description.MongoCollection.Properties.Resource.Indexes",
 	"name":                              "description.MongoCollection.name",
-	"platform_integration_id":           "metadata.IntegrationID",
+	"platform_integration_id":           "IntegrationID",
 	"resource_group":                    "description.ResourceGroup",
 	"shard_key":                         "Description.MongoCollection.Properties.Resource.ShardKey",
 	"tags":                              "Description.MongoCollection.Tags",
@@ -23222,14 +23222,14 @@ func GetCosmosdbMongoCollection(ctx context.Context, d *plugin.QueryData, _ *plu
 // ==========================  START: CosmosdbSqlDatabase =============================
 
 type CosmosdbSqlDatabase struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure.CosmosdbSqlDatabaseDescription `json:"description"`
-	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure_subscription.CosmosdbSqlDatabaseDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                       `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type CosmosdbSqlDatabaseHit struct {
@@ -23309,7 +23309,7 @@ var listCosmosdbSqlDatabaseFilters = map[string]string{
 	"database_users":                    "Description.SqlDatabase.Properties.Resource.Users",
 	"id":                                "Description.SqlDatabase.ID",
 	"name":                              "Description.SqlDatabase.Name",
-	"platform_integration_id":           "metadata.IntegrationID",
+	"platform_integration_id":           "IntegrationID",
 	"tags":                              "Description.SqlDatabase.Tags",
 	"throughput":                        "Description.SqlDatabase.Properties.Options.Throughput",
 	"title":                             "Description.SqlDatabase.Name",
@@ -23386,7 +23386,7 @@ var getCosmosdbSqlDatabaseFilters = map[string]string{
 	"database_users":                    "Description.SqlDatabase.Properties.Resource.Users",
 	"id":                                "Description.SqlDatabase.ID",
 	"name":                              "description.SqlDatabase.name",
-	"platform_integration_id":           "metadata.IntegrationID",
+	"platform_integration_id":           "IntegrationID",
 	"resource_group":                    "description.ResourceGroup",
 	"tags":                              "Description.SqlDatabase.Tags",
 	"throughput":                        "Description.SqlDatabase.Properties.Options.Throughput",
@@ -23452,14 +23452,14 @@ func GetCosmosdbSqlDatabase(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: CosmosdbCassandraCluster =============================
 
 type CosmosdbCassandraCluster struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.CosmosdbCassandraClusterDescription `json:"description"`
-	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                                                 `json:"resource_id"`
+	PlatformID      string                                                 `json:"platform_id"`
+	Description     azure_subscription.CosmosdbCassandraClusterDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                            `json:"metadata"`
+	DescribedBy     string                                                 `json:"described_by"`
+	ResourceType    string                                                 `json:"resource_type"`
+	IntegrationType string                                                 `json:"integration_type"`
+	IntegrationID   string                                                 `json:"integration_id"`
 }
 
 type CosmosdbCassandraClusterHit struct {
@@ -23661,14 +23661,14 @@ func GetCosmosdbCassandraCluster(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: DatabricksWorkspace =============================
 
 type DatabricksWorkspace struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure.DatabricksWorkspaceDescription `json:"description"`
-	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure_subscription.DatabricksWorkspaceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                       `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type DatabricksWorkspaceHit struct {
@@ -23746,7 +23746,7 @@ var listDatabricksWorkspaceFilters = map[string]string{
 	"managed_resource_group_id": "Description.Workspace.Properties.ManagedResourceGroupID",
 	"name":                      "Description.Workspace.Name",
 	"parameters":                "Description.Workspace.Properties.Parameters",
-	"platform_integration_id":   "metadata.IntegrationID",
+	"platform_integration_id":   "IntegrationID",
 	"provisioning_state":        "Description.Workspace.Properties.ProvisioningState",
 	"resource_group":            "Description.ResourceGroup",
 	"sku":                       "Description.Workspace.SKU",
@@ -23828,7 +23828,7 @@ var getDatabricksWorkspaceFilters = map[string]string{
 	"managed_resource_group_id": "Description.Workspace.Properties.ManagedResourceGroupID",
 	"name":                      "Description.Workspace.Name",
 	"parameters":                "Description.Workspace.Properties.Parameters",
-	"platform_integration_id":   "metadata.IntegrationID",
+	"platform_integration_id":   "IntegrationID",
 	"provisioning_state":        "Description.Workspace.Properties.ProvisioningState",
 	"resource_group":            "Description.ResourceGroup",
 	"sku":                       "Description.Workspace.SKU",
@@ -23900,14 +23900,14 @@ func GetDatabricksWorkspace(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: DataMigrationService =============================
 
 type DataMigrationService struct {
-	ResourceID      string                                `json:"resource_id"`
-	PlatformID      string                                `json:"platform_id"`
-	Description     azure.DataMigrationServiceDescription `json:"description"`
-	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     string                                `json:"described_by"`
-	ResourceType    string                                `json:"resource_type"`
-	IntegrationType string                                `json:"integration_type"`
-	IntegrationID   string                                `json:"integration_id"`
+	ResourceID      string                                             `json:"resource_id"`
+	PlatformID      string                                             `json:"platform_id"`
+	Description     azure_subscription.DataMigrationServiceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                        `json:"metadata"`
+	DescribedBy     string                                             `json:"described_by"`
+	ResourceType    string                                             `json:"resource_type"`
+	IntegrationType string                                             `json:"integration_type"`
+	IntegrationID   string                                             `json:"integration_id"`
 }
 
 type DataMigrationServiceHit struct {
@@ -23980,7 +23980,7 @@ func (p DataMigrationServicePaginator) NextPage(ctx context.Context) ([]DataMigr
 var listDataMigrationServiceFilters = map[string]string{
 	"id":                      "Description.Service.ID",
 	"name":                    "Description.Service.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Service.Tags",
 	"title":                   "Description.Service.Name",
 }
@@ -24048,7 +24048,7 @@ func ListDataMigrationService(ctx context.Context, d *plugin.QueryData, _ *plugi
 var getDataMigrationServiceFilters = map[string]string{
 	"id":                      "Description.Service.ID",
 	"name":                    "Description.Service.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Service.Tags",
 	"title":                   "Description.Service.Name",
 }
@@ -24111,14 +24111,14 @@ func GetDataMigrationService(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: DataProtectionBackupVaults =============================
 
 type DataProtectionBackupVaults struct {
-	ResourceID      string                                      `json:"resource_id"`
-	PlatformID      string                                      `json:"platform_id"`
-	Description     azure.DataProtectionBackupVaultsDescription `json:"description"`
-	Metadata        azure.Metadata                              `json:"metadata"`
-	DescribedBy     string                                      `json:"described_by"`
-	ResourceType    string                                      `json:"resource_type"`
-	IntegrationType string                                      `json:"integration_type"`
-	IntegrationID   string                                      `json:"integration_id"`
+	ResourceID      string                                                   `json:"resource_id"`
+	PlatformID      string                                                   `json:"platform_id"`
+	Description     azure_subscription.DataProtectionBackupVaultsDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                              `json:"metadata"`
+	DescribedBy     string                                                   `json:"described_by"`
+	ResourceType    string                                                   `json:"resource_type"`
+	IntegrationType string                                                   `json:"integration_type"`
+	IntegrationID   string                                                   `json:"integration_id"`
 }
 
 type DataProtectionBackupVaultsHit struct {
@@ -24193,7 +24193,7 @@ var listDataProtectionBackupVaultsFilters = map[string]string{
 	"identity":                "Description.BackupVaults.Identity",
 	"monitoring_settings":     "Description.BackupVaults.Properties.MonitoringSettings",
 	"name":                    "Description.BackupVaults.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.BackupVaults.Properties.ProvisioningState",
 	"resource_move_state":     "Description.BackupVaults.Properties.ResourceMoveState",
 	"storage_settings":        "Description.BackupVaults.Properties.StorageSettings",
@@ -24268,7 +24268,7 @@ var getDataProtectionBackupVaultsFilters = map[string]string{
 	"identity":                "Description.BackupVaults.Identity",
 	"monitoring_settings":     "Description.BackupVaults.Properties.MonitoringSettings",
 	"name":                    "Description.BackupVaults.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.BackupVaults.Properties.ProvisioningState",
 	"resource_move_state":     "Description.BackupVaults.Properties.ResourceMoveState",
 	"storage_settings":        "Description.BackupVaults.Properties.StorageSettings",
@@ -24336,14 +24336,14 @@ func GetDataProtectionBackupVaults(ctx context.Context, d *plugin.QueryData, _ *
 // ==========================  START: DataProtectionBackupVaultsBackupPolicies =============================
 
 type DataProtectionBackupVaultsBackupPolicies struct {
-	ResourceID      string                                                    `json:"resource_id"`
-	PlatformID      string                                                    `json:"platform_id"`
-	Description     azure.DataProtectionBackupVaultsBackupPoliciesDescription `json:"description"`
-	Metadata        azure.Metadata                                            `json:"metadata"`
-	DescribedBy     string                                                    `json:"described_by"`
-	ResourceType    string                                                    `json:"resource_type"`
-	IntegrationType string                                                    `json:"integration_type"`
-	IntegrationID   string                                                    `json:"integration_id"`
+	ResourceID      string                                                                 `json:"resource_id"`
+	PlatformID      string                                                                 `json:"platform_id"`
+	Description     azure_subscription.DataProtectionBackupVaultsBackupPoliciesDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                            `json:"metadata"`
+	DescribedBy     string                                                                 `json:"described_by"`
+	ResourceType    string                                                                 `json:"resource_type"`
+	IntegrationType string                                                                 `json:"integration_type"`
+	IntegrationID   string                                                                 `json:"integration_id"`
 }
 
 type DataProtectionBackupVaultsBackupPoliciesHit struct {
@@ -24416,7 +24416,7 @@ func (p DataProtectionBackupVaultsBackupPoliciesPaginator) NextPage(ctx context.
 var listDataProtectionBackupVaultsBackupPoliciesFilters = map[string]string{
 	"id":                      "Description.BackupPolicies.ID",
 	"name":                    "Description.BackupPolicies.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"title":                   "Description.BackupPolicies.Name",
 }
 
@@ -24483,7 +24483,7 @@ func ListDataProtectionBackupVaultsBackupPolicies(ctx context.Context, d *plugin
 var getDataProtectionBackupVaultsBackupPoliciesFilters = map[string]string{
 	"id":                      "Description.BackupPolicies.ID",
 	"name":                    "Description.BackupPolicies.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"title":                   "Description.BackupPolicies.Name",
 }
 
@@ -24545,14 +24545,14 @@ func GetDataProtectionBackupVaultsBackupPolicies(ctx context.Context, d *plugin.
 // ==========================  START: DataProtectionJob =============================
 
 type DataProtectionJob struct {
-	ResourceID      string                             `json:"resource_id"`
-	PlatformID      string                             `json:"platform_id"`
-	Description     azure.DataProtectionJobDescription `json:"description"`
-	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     string                             `json:"described_by"`
-	ResourceType    string                             `json:"resource_type"`
-	IntegrationType string                             `json:"integration_type"`
-	IntegrationID   string                             `json:"integration_id"`
+	ResourceID      string                                          `json:"resource_id"`
+	PlatformID      string                                          `json:"platform_id"`
+	Description     azure_subscription.DataProtectionJobDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                     `json:"metadata"`
+	DescribedBy     string                                          `json:"described_by"`
+	ResourceType    string                                          `json:"resource_type"`
+	IntegrationType string                                          `json:"integration_type"`
+	IntegrationID   string                                          `json:"integration_id"`
 }
 
 type DataProtectionJobHit struct {
@@ -24812,14 +24812,14 @@ func GetDataProtectionJob(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: DataFactory =============================
 
 type DataFactory struct {
-	ResourceID      string                       `json:"resource_id"`
-	PlatformID      string                       `json:"platform_id"`
-	Description     azure.DataFactoryDescription `json:"description"`
-	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     string                       `json:"described_by"`
-	ResourceType    string                       `json:"resource_type"`
-	IntegrationType string                       `json:"integration_type"`
-	IntegrationID   string                       `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure_subscription.DataFactoryDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata               `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type DataFactoryHit struct {
@@ -24897,7 +24897,7 @@ var listDataFactoryFilters = map[string]string{
 	"id":                           "Description.Factory.ID",
 	"identity":                     "Description.Factory.Identity",
 	"name":                         "Description.Factory.Name",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"private_endpoint_connections": "Description.PrivateEndPointConnections",
 	"provisioning_state":           "Description.Factory.Properties.ProvisioningState",
 	"public_network_access":        "Description.Factory.Properties.PublicNetworkAccess",
@@ -24977,7 +24977,7 @@ var getDataFactoryFilters = map[string]string{
 	"id":                           "Description.Factory.ID",
 	"identity":                     "Description.Factory.Identity",
 	"name":                         "description.Factory.name",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"private_endpoint_connections": "Description.PrivateEndPointConnections",
 	"provisioning_state":           "Description.Factory.Properties.ProvisioningState",
 	"public_network_access":        "Description.Factory.Properties.PublicNetworkAccess",
@@ -25047,14 +25047,14 @@ func GetDataFactory(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: DataFactoryDataset =============================
 
 type DataFactoryDataset struct {
-	ResourceID      string                              `json:"resource_id"`
-	PlatformID      string                              `json:"platform_id"`
-	Description     azure.DataFactoryDatasetDescription `json:"description"`
-	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     string                              `json:"described_by"`
-	ResourceType    string                              `json:"resource_type"`
-	IntegrationType string                              `json:"integration_type"`
-	IntegrationID   string                              `json:"integration_id"`
+	ResourceID      string                                           `json:"resource_id"`
+	PlatformID      string                                           `json:"platform_id"`
+	Description     azure_subscription.DataFactoryDatasetDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                      `json:"metadata"`
+	DescribedBy     string                                           `json:"described_by"`
+	ResourceType    string                                           `json:"resource_type"`
+	IntegrationType string                                           `json:"integration_type"`
+	IntegrationID   string                                           `json:"integration_id"`
 }
 
 type DataFactoryDatasetHit struct {
@@ -25129,7 +25129,7 @@ var listDataFactoryDatasetFilters = map[string]string{
 	"factory_name":            "Description.Factory.Name",
 	"id":                      "Description.Dataset.ID",
 	"name":                    "Description.Dataset.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"properties":              "Description.Dataset.Properties",
 	"resource_group":          "Description.ResourceGroup",
 	"title":                   "Description.Dataset.Name",
@@ -25201,7 +25201,7 @@ var getDataFactoryDatasetFilters = map[string]string{
 	"factory_name":            "description.Factory.name",
 	"id":                      "Description.Dataset.ID",
 	"name":                    "description.Dataset.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"properties":              "Description.Dataset.Properties",
 	"resource_group":          "description.ResourceGroup",
 	"title":                   "Description.Dataset.Name",
@@ -25266,14 +25266,14 @@ func GetDataFactoryDataset(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: DataFactoryPipeline =============================
 
 type DataFactoryPipeline struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure.DataFactoryPipelineDescription `json:"description"`
-	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure_subscription.DataFactoryPipelineDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                       `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type DataFactoryPipelineHit struct {
@@ -25355,7 +25355,7 @@ var listDataFactoryPipelineFilters = map[string]string{
 	"parameters":              "Description.Pipeline.Properties.Parameters",
 	"pipeline_folder":         "Description.Pipeline.Properties.Folder.Name",
 	"pipeline_policy":         "Description.Pipeline.Properties.Policy",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"run_dimensions":          "Description.Pipeline.Properties.RunDimensions",
 	"title":                   "Description.Pipeline.Name",
@@ -25435,7 +25435,7 @@ var getDataFactoryPipelineFilters = map[string]string{
 	"parameters":              "Description.Pipeline.Properties.Parameters",
 	"pipeline_folder":         "Description.Pipeline.Properties.Folder.Name",
 	"pipeline_policy":         "Description.Pipeline.Properties.Policy",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"run_dimensions":          "Description.Pipeline.Properties.RunDimensions",
 	"title":                   "Description.Pipeline.Name",
@@ -25501,14 +25501,14 @@ func GetDataFactoryPipeline(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: DataLakeAnalyticsAccount =============================
 
 type DataLakeAnalyticsAccount struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.DataLakeAnalyticsAccountDescription `json:"description"`
-	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                                                 `json:"resource_id"`
+	PlatformID      string                                                 `json:"platform_id"`
+	Description     azure_subscription.DataLakeAnalyticsAccountDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                            `json:"metadata"`
+	DescribedBy     string                                                 `json:"described_by"`
+	ResourceType    string                                                 `json:"resource_type"`
+	IntegrationType string                                                 `json:"integration_type"`
+	IntegrationID   string                                                 `json:"integration_id"`
 }
 
 type DataLakeAnalyticsAccountHit struct {
@@ -25596,7 +25596,7 @@ var listDataLakeAnalyticsAccountFilters = map[string]string{
 	"min_priority_per_job":              "Description.DataLakeAnalyticsAccount.Properties.MinPriorityPerJob",
 	"name":                              "Description.DataLakeAnalyticsAccount.Name",
 	"new_tier":                          "Description.DataLakeAnalyticsAccount.Properties.NewTier",
-	"platform_integration_id":           "metadata.IntegrationID",
+	"platform_integration_id":           "IntegrationID",
 	"provisioning_state":                "Description.DataLakeAnalyticsAccount.Properties.ProvisioningState",
 	"query_store_retention":             "Description.DataLakeAnalyticsAccount.Properties.QueryStoreRetention",
 	"resource_group":                    "Description.ResourceGroup",
@@ -25687,7 +25687,7 @@ var getDataLakeAnalyticsAccountFilters = map[string]string{
 	"min_priority_per_job":              "Description.DataLakeAnalyticsAccount.Properties.MinPriorityPerJob",
 	"name":                              "description.DataLakeAnalyticsAccount.name",
 	"new_tier":                          "Description.DataLakeAnalyticsAccount.Properties.NewTier",
-	"platform_integration_id":           "metadata.IntegrationID",
+	"platform_integration_id":           "IntegrationID",
 	"provisioning_state":                "Description.DataLakeAnalyticsAccount.Properties.ProvisioningState",
 	"query_store_retention":             "Description.DataLakeAnalyticsAccount.Properties.QueryStoreRetention",
 	"resource_group":                    "description.ResourceGroup",
@@ -25758,14 +25758,14 @@ func GetDataLakeAnalyticsAccount(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: DataLakeStore =============================
 
 type DataLakeStore struct {
-	ResourceID      string                         `json:"resource_id"`
-	PlatformID      string                         `json:"platform_id"`
-	Description     azure.DataLakeStoreDescription `json:"description"`
-	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     string                         `json:"described_by"`
-	ResourceType    string                         `json:"resource_type"`
-	IntegrationType string                         `json:"integration_type"`
-	IntegrationID   string                         `json:"integration_id"`
+	ResourceID      string                                      `json:"resource_id"`
+	PlatformID      string                                      `json:"platform_id"`
+	Description     azure_subscription.DataLakeStoreDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                 `json:"metadata"`
+	DescribedBy     string                                      `json:"described_by"`
+	ResourceType    string                                      `json:"resource_type"`
+	IntegrationType string                                      `json:"integration_type"`
+	IntegrationID   string                                      `json:"integration_id"`
 }
 
 type DataLakeStoreHit struct {
@@ -25851,7 +25851,7 @@ var listDataLakeStoreFilters = map[string]string{
 	"identity":                      "Description.DataLakeStoreAccount.Identity",
 	"name":                          "Description.DataLakeStoreAccount.Name",
 	"new_tier":                      "Description.DataLakeStoreAccount.Properties.NewTier",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"provisioning_state":            "Description.DataLakeStoreAccount.Properties.ProvisioningState",
 	"resource_group":                "Description.ResourceGroup",
 	"state":                         "Description.DataLakeStoreAccount.Properties.State",
@@ -25939,7 +25939,7 @@ var getDataLakeStoreFilters = map[string]string{
 	"identity":                      "Description.DataLakeStoreAccount.Identity",
 	"name":                          "description.DataLakeStoreAccount.name",
 	"new_tier":                      "Description.DataLakeStoreAccount.Properties.NewTier",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"provisioning_state":            "Description.DataLakeStoreAccount.Properties.ProvisioningState",
 	"resource_group":                "description.ResourceGroup",
 	"state":                         "Description.DataLakeStoreAccount.Properties.State",
@@ -26009,14 +26009,14 @@ func GetDataLakeStore(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 // ==========================  START: DiagnosticSetting =============================
 
 type DiagnosticSetting struct {
-	ResourceID      string                             `json:"resource_id"`
-	PlatformID      string                             `json:"platform_id"`
-	Description     azure.DiagnosticSettingDescription `json:"description"`
-	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     string                             `json:"described_by"`
-	ResourceType    string                             `json:"resource_type"`
-	IntegrationType string                             `json:"integration_type"`
-	IntegrationID   string                             `json:"integration_id"`
+	ResourceID      string                                          `json:"resource_id"`
+	PlatformID      string                                          `json:"platform_id"`
+	Description     azure_subscription.DiagnosticSettingDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                     `json:"metadata"`
+	DescribedBy     string                                          `json:"described_by"`
+	ResourceType    string                                          `json:"resource_type"`
+	IntegrationType string                                          `json:"integration_type"`
+	IntegrationID   string                                          `json:"integration_id"`
 }
 
 type DiagnosticSettingHit struct {
@@ -26094,7 +26094,7 @@ var listDiagnosticSettingFilters = map[string]string{
 	"logs":                            "Description.DiagnosticSettingsResource.Properties.Logs",
 	"metrics":                         "Description.DiagnosticSettingsResource.Properties.Metrics",
 	"name":                            "Description.DiagnosticSettingsResource.Name",
-	"platform_integration_id":         "metadata.IntegrationID",
+	"platform_integration_id":         "IntegrationID",
 	"resource_group":                  "Description.ResourceGroup",
 	"service_bus_rule_id":             "Description.DiagnosticSettingsResource.Properties.ServiceBusRuleID",
 	"storage_account_id":              "Description.DiagnosticSettingsResource.Properties.StorageAccountID",
@@ -26171,7 +26171,7 @@ var getDiagnosticSettingFilters = map[string]string{
 	"logs":                            "Description.DiagnosticSettingsResource.Properties.Logs",
 	"metrics":                         "Description.DiagnosticSettingsResource.Properties.Metrics",
 	"name":                            "description.DiagnosticSettingsResource.name",
-	"platform_integration_id":         "metadata.IntegrationID",
+	"platform_integration_id":         "IntegrationID",
 	"resource_group":                  "description.ResourceGroup",
 	"service_bus_rule_id":             "Description.DiagnosticSettingsResource.Properties.ServiceBusRuleID",
 	"storage_account_id":              "Description.DiagnosticSettingsResource.Properties.StorageAccountID",
@@ -26238,14 +26238,14 @@ func GetDiagnosticSetting(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: AutoscaleSetting =============================
 
 type AutoscaleSetting struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.AutoscaleSettingDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.AutoscaleSettingDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type AutoscaleSettingHit struct {
@@ -26320,7 +26320,7 @@ var listAutoscaleSettingFilters = map[string]string{
 	"id":                       "Description.AutoscaleSettingsResource.ID",
 	"name":                     "Description.AutoscaleSettingsResource.Name",
 	"notifications":            "Description.AutoscaleSettingsResource.Properties.Notifications",
-	"platform_integration_id":  "metadata.IntegrationID",
+	"platform_integration_id":  "IntegrationID",
 	"profiles":                 "Description.AutoscaleSettingsResource.Properties.Profiles",
 	"resource_group":           "Description.ResourceGroup",
 	"target_resource_location": "Description.AutoscaleSettingsResource.Properties.TargetResourceLocation",
@@ -26394,7 +26394,7 @@ var getAutoscaleSettingFilters = map[string]string{
 	"id":                       "Description.AutoscaleSettingsResource.ID",
 	"name":                     "description.AutoscaleSettingsResource.name",
 	"notifications":            "Description.AutoscaleSettingsResource.Properties.Notifications",
-	"platform_integration_id":  "metadata.IntegrationID",
+	"platform_integration_id":  "IntegrationID",
 	"profiles":                 "Description.AutoscaleSettingsResource.Properties.Profiles",
 	"resource_group":           "description.ResourceGroup",
 	"target_resource_location": "Description.AutoscaleSettingsResource.Properties.TargetResourceLocation",
@@ -26461,14 +26461,14 @@ func GetAutoscaleSetting(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: EventGridDomain =============================
 
 type EventGridDomain struct {
-	ResourceID      string                           `json:"resource_id"`
-	PlatformID      string                           `json:"platform_id"`
-	Description     azure.EventGridDomainDescription `json:"description"`
-	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     string                           `json:"described_by"`
-	ResourceType    string                           `json:"resource_type"`
-	IntegrationType string                           `json:"integration_type"`
-	IntegrationID   string                           `json:"integration_id"`
+	ResourceID      string                                        `json:"resource_id"`
+	PlatformID      string                                        `json:"platform_id"`
+	Description     azure_subscription.EventGridDomainDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                   `json:"metadata"`
+	DescribedBy     string                                        `json:"described_by"`
+	ResourceType    string                                        `json:"resource_type"`
+	IntegrationType string                                        `json:"integration_type"`
+	IntegrationID   string                                        `json:"integration_id"`
 }
 
 type EventGridDomainHit struct {
@@ -26555,7 +26555,7 @@ var listEventGridDomainFilters = map[string]string{
 	"last_modified_by_type":    "Description.Domain.SystemData.LastModifiedByType",
 	"location":                 "Description.Domain.Location",
 	"name":                     "Description.Domain.Name",
-	"platform_integration_id":  "metadata.IntegrationID",
+	"platform_integration_id":  "IntegrationID",
 	"principal_id":             "Description.Domain.Identity.PrincipalID",
 	"provisioning_state":       "Description.Domain.Properties.ProvisioningState",
 	"public_network_access":    "Description.Domain.Properties.PublicNetworkAccess",
@@ -26644,7 +26644,7 @@ var getEventGridDomainFilters = map[string]string{
 	"last_modified_by_type":    "Description.Domain.SystemData.LastModifiedByType",
 	"location":                 "Description.Domain.Location",
 	"name":                     "description.Domain.name",
-	"platform_integration_id":  "metadata.IntegrationID",
+	"platform_integration_id":  "IntegrationID",
 	"principal_id":             "Description.Domain.Identity.PrincipalID",
 	"provisioning_state":       "Description.Domain.Properties.ProvisioningState",
 	"public_network_access":    "Description.Domain.Properties.PublicNetworkAccess",
@@ -26714,14 +26714,14 @@ func GetEventGridDomain(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: EventGridTopic =============================
 
 type EventGridTopic struct {
-	ResourceID      string                          `json:"resource_id"`
-	PlatformID      string                          `json:"platform_id"`
-	Description     azure.EventGridTopicDescription `json:"description"`
-	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     string                          `json:"described_by"`
-	ResourceType    string                          `json:"resource_type"`
-	IntegrationType string                          `json:"integration_type"`
-	IntegrationID   string                          `json:"integration_id"`
+	ResourceID      string                                       `json:"resource_id"`
+	PlatformID      string                                       `json:"platform_id"`
+	Description     azure_subscription.EventGridTopicDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                  `json:"metadata"`
+	DescribedBy     string                                       `json:"described_by"`
+	ResourceType    string                                       `json:"resource_type"`
+	IntegrationType string                                       `json:"integration_type"`
+	IntegrationID   string                                       `json:"integration_id"`
 }
 
 type EventGridTopicHit struct {
@@ -26808,7 +26808,7 @@ var listEventGridTopicFilters = map[string]string{
 	"last_modified_by_type":   "Description.Topic.SystemData.LastModifiedByType",
 	"location":                "Description.Topic.Location",
 	"name":                    "Description.Topic.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.Topic.Properties.ProvisioningState",
 	"public_network_access":   "Description.Topic.Properties.PublicNetworkAccess",
 	"resource_group":          "Description.ResourceGroup",
@@ -26895,7 +26895,7 @@ var getEventGridTopicFilters = map[string]string{
 	"last_modified_by_type":   "Description.Topic.SystemData.LastModifiedByType",
 	"location":                "Description.Topic.Location",
 	"name":                    "description.Topic.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.Topic.Properties.ProvisioningState",
 	"public_network_access":   "Description.Topic.Properties.PublicNetworkAccess",
 	"resource_group":          "description.ResourceGroup",
@@ -26963,14 +26963,14 @@ func GetEventGridTopic(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: EventhubNamespace =============================
 
 type EventhubNamespace struct {
-	ResourceID      string                             `json:"resource_id"`
-	PlatformID      string                             `json:"platform_id"`
-	Description     azure.EventhubNamespaceDescription `json:"description"`
-	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     string                             `json:"described_by"`
-	ResourceType    string                             `json:"resource_type"`
-	IntegrationType string                             `json:"integration_type"`
-	IntegrationID   string                             `json:"integration_id"`
+	ResourceID      string                                          `json:"resource_id"`
+	PlatformID      string                                          `json:"platform_id"`
+	Description     azure_subscription.EventhubNamespaceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                     `json:"metadata"`
+	DescribedBy     string                                          `json:"described_by"`
+	ResourceType    string                                          `json:"resource_type"`
+	IntegrationType string                                          `json:"integration_type"`
+	IntegrationID   string                                          `json:"integration_id"`
 }
 
 type EventhubNamespaceHit struct {
@@ -27052,7 +27052,7 @@ var listEventhubNamespaceFilters = map[string]string{
 	"metric_id":                    "Description.EHNamespace.Properties.MetricID",
 	"name":                         "Description.EHNamespace.Name",
 	"network_rule_set":             "Description.NetworkRuleSet",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"private_endpoint_connections": "Description.EHNamespace.Properties.PrivateEndpointConnections",
 	"provisioning_state":           "Description.EHNamespace.Properties.ProvisioningState",
 	"resource_group":               "Description.ResourceGroup",
@@ -27138,7 +27138,7 @@ var getEventhubNamespaceFilters = map[string]string{
 	"metric_id":                    "Description.EHNamespace.Properties.MetricID",
 	"name":                         "description.EHNamespace.name",
 	"network_rule_set":             "Description.NetworkRuleSet",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"private_endpoint_connections": "Description.EHNamespace.Properties.PrivateEndpointConnections",
 	"provisioning_state":           "Description.EHNamespace.Properties.ProvisioningState",
 	"resource_group":               "description.ResourceGroup",
@@ -27210,14 +27210,14 @@ func GetEventhubNamespace(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: EventhubNamespaceEventhub =============================
 
 type EventhubNamespaceEventhub struct {
-	ResourceID      string                                     `json:"resource_id"`
-	PlatformID      string                                     `json:"platform_id"`
-	Description     azure.EventhubNamespaceEventhubDescription `json:"description"`
-	Metadata        azure.Metadata                             `json:"metadata"`
-	DescribedBy     string                                     `json:"described_by"`
-	ResourceType    string                                     `json:"resource_type"`
-	IntegrationType string                                     `json:"integration_type"`
-	IntegrationID   string                                     `json:"integration_id"`
+	ResourceID      string                                                  `json:"resource_id"`
+	PlatformID      string                                                  `json:"platform_id"`
+	Description     azure_subscription.EventhubNamespaceEventhubDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                             `json:"metadata"`
+	DescribedBy     string                                                  `json:"described_by"`
+	ResourceType    string                                                  `json:"resource_type"`
+	IntegrationType string                                                  `json:"integration_type"`
+	IntegrationID   string                                                  `json:"integration_id"`
 }
 
 type EventhubNamespaceEventhubHit struct {
@@ -27290,7 +27290,7 @@ func (p EventhubNamespaceEventhubPaginator) NextPage(ctx context.Context) ([]Eve
 var listEventhubNamespaceEventhubFilters = map[string]string{
 	"id":                      "Description.EventHub.ID",
 	"name":                    "Description.EHNamespace.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.EHNamespace.Tags",
 	"title":                   "Description.EHNamespace.Identity.Type",
 }
@@ -27358,7 +27358,7 @@ func ListEventhubNamespaceEventhub(ctx context.Context, d *plugin.QueryData, _ *
 var getEventhubNamespaceEventhubFilters = map[string]string{
 	"id":                      "Description.EventHub.ID",
 	"name":                    "Description.EHNamespace.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.EHNamespace.Tags",
 	"title":                   "Description.EHNamespace.Identity.Type",
 }
@@ -27421,14 +27421,14 @@ func GetEventhubNamespaceEventhub(ctx context.Context, d *plugin.QueryData, _ *p
 // ==========================  START: Frontdoor =============================
 
 type Frontdoor struct {
-	ResourceID      string                     `json:"resource_id"`
-	PlatformID      string                     `json:"platform_id"`
-	Description     azure.FrontdoorDescription `json:"description"`
-	Metadata        azure.Metadata             `json:"metadata"`
-	DescribedBy     string                     `json:"described_by"`
-	ResourceType    string                     `json:"resource_type"`
-	IntegrationType string                     `json:"integration_type"`
-	IntegrationID   string                     `json:"integration_id"`
+	ResourceID      string                                  `json:"resource_id"`
+	PlatformID      string                                  `json:"platform_id"`
+	Description     azure_subscription.FrontdoorDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata             `json:"metadata"`
+	DescribedBy     string                                  `json:"described_by"`
+	ResourceType    string                                  `json:"resource_type"`
+	IntegrationType string                                  `json:"integration_type"`
+	IntegrationID   string                                  `json:"integration_id"`
 }
 
 type FrontdoorHit struct {
@@ -27510,7 +27510,7 @@ var listFrontdoorFilters = map[string]string{
 	"id":                      "Description.FrontDoor.ID",
 	"load_balancing_settings": "Description.FrontDoor.Properties.LoadBalancingSettings",
 	"name":                    "Description.FrontDoor.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.FrontDoor.Properties.ProvisioningState",
 	"resource_group":          "Description.ResourceGroup",
 	"resource_state":          "Description.FrontDoor.Properties.ResourceState",
@@ -27593,7 +27593,7 @@ var getFrontdoorFilters = map[string]string{
 	"id":                      "Description.FrontDoor.ID",
 	"load_balancing_settings": "Description.FrontDoor.Properties.LoadBalancingSettings",
 	"name":                    "description.FrontDoor.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.FrontDoor.Properties.ProvisioningState",
 	"resource_group":          "description.ResourceGroup",
 	"resource_state":          "Description.FrontDoor.Properties.ResourceState",
@@ -27662,14 +27662,14 @@ func GetFrontdoor(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 // ==========================  START: HdinsightCluster =============================
 
 type HdinsightCluster struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.HdinsightClusterDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.HdinsightClusterDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type HdinsightClusterHit struct {
@@ -27762,7 +27762,7 @@ var listHdinsightClusterFilters = map[string]string{
 	"name":                             "Description.Cluster.Name",
 	"network_properties":               "Description.Cluster.Properties.NetworkProperties",
 	"os_type":                          "Description.Cluster.Properties.OSType",
-	"platform_integration_id":          "metadata.IntegrationID",
+	"platform_integration_id":          "IntegrationID",
 	"provisioning_state":               "Description.Cluster.Properties.ProvisioningState",
 	"quota_info":                       "Description.Cluster.Properties.QuotaInfo",
 	"resource_group":                   "Description.ResourceGroup",
@@ -27857,7 +27857,7 @@ var getHdinsightClusterFilters = map[string]string{
 	"name":                             "description.Cluster.name",
 	"network_properties":               "Description.Cluster.Properties.NetworkProperties",
 	"os_type":                          "Description.Cluster.Properties.OSType",
-	"platform_integration_id":          "metadata.IntegrationID",
+	"platform_integration_id":          "IntegrationID",
 	"provisioning_state":               "Description.Cluster.Properties.ProvisioningState",
 	"quota_info":                       "Description.Cluster.Properties.QuotaInfo",
 	"resource_group":                   "description.ResourceGroup",
@@ -27927,14 +27927,14 @@ func GetHdinsightCluster(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: HybridComputeMachine =============================
 
 type HybridComputeMachine struct {
-	ResourceID      string                                `json:"resource_id"`
-	PlatformID      string                                `json:"platform_id"`
-	Description     azure.HybridComputeMachineDescription `json:"description"`
-	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     string                                `json:"described_by"`
-	ResourceType    string                                `json:"resource_type"`
-	IntegrationType string                                `json:"integration_type"`
-	IntegrationID   string                                `json:"integration_id"`
+	ResourceID      string                                             `json:"resource_id"`
+	PlatformID      string                                             `json:"platform_id"`
+	Description     azure_subscription.HybridComputeMachineDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                        `json:"metadata"`
+	DescribedBy     string                                             `json:"described_by"`
+	ResourceType    string                                             `json:"resource_type"`
+	IntegrationType string                                             `json:"integration_type"`
+	IntegrationID   string                                             `json:"integration_id"`
 }
 
 type HybridComputeMachineHit struct {
@@ -28023,7 +28023,7 @@ var listHybridComputeMachineFilters = map[string]string{
 	"os_profile":                    "Description.Machine.Properties.OSProfile",
 	"os_sku":                        "Description.Machine.Properties.OSSKU",
 	"os_version":                    "Description.Machine.Properties.OSVersion",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"provisioning_state":            "Description.Machine.Properties.ProvisioningState",
 	"resource_group":                "Description.ResourceGroup",
 	"status":                        "Description.Machine.Properties.Status",
@@ -28113,7 +28113,7 @@ var getHybridComputeMachineFilters = map[string]string{
 	"os_profile":                    "Description.Machine.Properties.OSProfile",
 	"os_sku":                        "Description.Machine.Properties.OSSKU",
 	"os_version":                    "Description.Machine.Properties.OSVersion",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"provisioning_state":            "Description.Machine.Properties.ProvisioningState",
 	"resource_group":                "description.ResourceGroup",
 	"status":                        "Description.Machine.Properties.Status",
@@ -28182,14 +28182,14 @@ func GetHybridComputeMachine(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: IOTHub =============================
 
 type IOTHub struct {
-	ResourceID      string                  `json:"resource_id"`
-	PlatformID      string                  `json:"platform_id"`
-	Description     azure.IOTHubDescription `json:"description"`
-	Metadata        azure.Metadata          `json:"metadata"`
-	DescribedBy     string                  `json:"described_by"`
-	ResourceType    string                  `json:"resource_type"`
-	IntegrationType string                  `json:"integration_type"`
-	IntegrationID   string                  `json:"integration_id"`
+	ResourceID      string                               `json:"resource_id"`
+	PlatformID      string                               `json:"platform_id"`
+	Description     azure_subscription.IOTHubDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata          `json:"metadata"`
+	DescribedBy     string                               `json:"described_by"`
+	ResourceType    string                               `json:"resource_type"`
+	IntegrationType string                               `json:"integration_type"`
+	IntegrationID   string                               `json:"integration_id"`
 }
 
 type IOTHubHit struct {
@@ -28275,7 +28275,7 @@ var listIOTHubFilters = map[string]string{
 	"messaging_endpoints":              "Description.IotHubDescription.Properties.MessagingEndpoints",
 	"min_tls_version":                  "Description.IotHubDescription.Properties.MinTLSVersion",
 	"name":                             "Description.IotHubDescription.Name",
-	"platform_integration_id":          "metadata.IntegrationID",
+	"platform_integration_id":          "IntegrationID",
 	"private_endpoint_connections":     "Description.IotHubDescription.Properties.PrivateEndpointConnections",
 	"provisioning_state":               "Description.IotHubDescription.Properties.ProvisioningState",
 	"public_network_access":            "Description.IotHubDescription.Properties.PublicNetworkAccess",
@@ -28367,7 +28367,7 @@ var getIOTHubFilters = map[string]string{
 	"messaging_endpoints":              "Description.IotHubDescription.Properties.MessagingEndpoints",
 	"min_tls_version":                  "Description.IotHubDescription.Properties.MinTLSVersion",
 	"name":                             "description.IotHubDescription.name",
-	"platform_integration_id":          "metadata.IntegrationID",
+	"platform_integration_id":          "IntegrationID",
 	"private_endpoint_connections":     "Description.IotHubDescription.Properties.PrivateEndpointConnections",
 	"provisioning_state":               "Description.IotHubDescription.Properties.ProvisioningState",
 	"public_network_access":            "Description.IotHubDescription.Properties.PublicNetworkAccess",
@@ -28441,14 +28441,14 @@ func GetIOTHub(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) 
 // ==========================  START: IOTHubDps =============================
 
 type IOTHubDps struct {
-	ResourceID      string                     `json:"resource_id"`
-	PlatformID      string                     `json:"platform_id"`
-	Description     azure.IOTHubDpsDescription `json:"description"`
-	Metadata        azure.Metadata             `json:"metadata"`
-	DescribedBy     string                     `json:"described_by"`
-	ResourceType    string                     `json:"resource_type"`
-	IntegrationType string                     `json:"integration_type"`
-	IntegrationID   string                     `json:"integration_id"`
+	ResourceID      string                                  `json:"resource_id"`
+	PlatformID      string                                  `json:"platform_id"`
+	Description     azure_subscription.IOTHubDpsDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata             `json:"metadata"`
+	DescribedBy     string                                  `json:"described_by"`
+	ResourceType    string                                  `json:"resource_type"`
+	IntegrationType string                                  `json:"integration_type"`
+	IntegrationID   string                                  `json:"integration_id"`
 }
 
 type IOTHubDpsHit struct {
@@ -28528,7 +28528,7 @@ var listIOTHubDpsFilters = map[string]string{
 	"id_scope":                      "Description.IotHubDps.Properties.IDScope",
 	"iot_hubs":                      "Description.IotHubDps.Properties.IotHubs",
 	"name":                          "Description.IotHubDps.Name",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"provisioning_state":            "Description.IotHubDps.Properties.ProvisioningState",
 	"resource_group":                "Description.ResourceGroup",
 	"service_operations_host_name":  "Description.IotHubDps.Properties.ServiceOperationsHostName",
@@ -28611,7 +28611,7 @@ var getIOTHubDpsFilters = map[string]string{
 	"id_scope":                      "Description.IotHubDps.Properties.IDScope",
 	"iot_hubs":                      "Description.IotHubDps.Properties.IotHubs",
 	"name":                          "description.IotHubDps.name",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"provisioning_state":            "Description.IotHubDps.Properties.ProvisioningState",
 	"resource_group":                "description.ResourceGroup",
 	"service_operations_host_name":  "Description.IotHubDps.Properties.ServiceOperationsHostName",
@@ -28682,14 +28682,14 @@ func GetIOTHubDps(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 // ==========================  START: KeyVault =============================
 
 type KeyVault struct {
-	ResourceID      string                    `json:"resource_id"`
-	PlatformID      string                    `json:"platform_id"`
-	Description     azure.KeyVaultDescription `json:"description"`
-	Metadata        azure.Metadata            `json:"metadata"`
-	DescribedBy     string                    `json:"described_by"`
-	ResourceType    string                    `json:"resource_type"`
-	IntegrationType string                    `json:"integration_type"`
-	IntegrationID   string                    `json:"integration_id"`
+	ResourceID      string                                 `json:"resource_id"`
+	PlatformID      string                                 `json:"platform_id"`
+	Description     azure_subscription.KeyVaultDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata            `json:"metadata"`
+	DescribedBy     string                                 `json:"described_by"`
+	ResourceType    string                                 `json:"resource_type"`
+	IntegrationType string                                 `json:"integration_type"`
+	IntegrationID   string                                 `json:"integration_id"`
 }
 
 type KeyVaultHit struct {
@@ -28769,7 +28769,7 @@ var listKeyVaultFilters = map[string]string{
 	"id":                              "Description.Vault.ID",
 	"name":                            "Description.Vault.Name",
 	"network_acls":                    "Description.Vault.Properties.NetworkACLs",
-	"platform_integration_id":         "metadata.IntegrationID",
+	"platform_integration_id":         "IntegrationID",
 	"purge_protection_enabled":        "Description.Vault.Properties.EnablePurgeProtection",
 	"resource_group":                  "Description.ResourceGroup",
 	"sku_family":                      "Description.Vault.Properties.SKU.Family",
@@ -28853,7 +28853,7 @@ var getKeyVaultFilters = map[string]string{
 	"id":                              "Description.Vault.ID",
 	"name":                            "description.Resource.name",
 	"network_acls":                    "Description.Vault.Properties.NetworkACLs",
-	"platform_integration_id":         "metadata.IntegrationID",
+	"platform_integration_id":         "IntegrationID",
 	"purge_protection_enabled":        "Description.Vault.Properties.EnablePurgeProtection",
 	"resource_group":                  "description.ResourceGroup",
 	"sku_family":                      "Description.Vault.Properties.SKU.Family",
@@ -28925,14 +28925,14 @@ func GetKeyVault(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 // ==========================  START: KeyVaultCertificate =============================
 
 type KeyVaultCertificate struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure.KeyVaultCertificateDescription `json:"description"`
-	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure_subscription.KeyVaultCertificateDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                       `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type KeyVaultCertificateHit struct {
@@ -29008,7 +29008,7 @@ var listKeyVaultCertificateFilters = map[string]string{
 	"issuer_parameters":       "Description.Policy.IssuerParameters",
 	"key_properties":          "Description.Policy.KeyProperties",
 	"lifetime_actions":        "Description.Policy.LifetimeActions",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"secret_properties":       "Description.Policy.SecretProperties",
 	"tags":                    "Description.Policy.Tags",
@@ -29082,7 +29082,7 @@ var getKeyVaultCertificateFilters = map[string]string{
 	"key_properties":          "Description.Policy.KeyProperties",
 	"lifetime_actions":        "Description.Policy.LifetimeActions",
 	"name":                    "description.Resource.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"secret_properties":       "Description.Policy.SecretProperties",
 	"tags":                    "Description.Policy.Tags",
@@ -29147,14 +29147,14 @@ func GetKeyVaultCertificate(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: KeyVaultDeletedVault =============================
 
 type KeyVaultDeletedVault struct {
-	ResourceID      string                                `json:"resource_id"`
-	PlatformID      string                                `json:"platform_id"`
-	Description     azure.KeyVaultDeletedVaultDescription `json:"description"`
-	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     string                                `json:"described_by"`
-	ResourceType    string                                `json:"resource_type"`
-	IntegrationType string                                `json:"integration_type"`
-	IntegrationID   string                                `json:"integration_id"`
+	ResourceID      string                                             `json:"resource_id"`
+	PlatformID      string                                             `json:"platform_id"`
+	Description     azure_subscription.KeyVaultDeletedVaultDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                        `json:"metadata"`
+	DescribedBy     string                                             `json:"described_by"`
+	ResourceType    string                                             `json:"resource_type"`
+	IntegrationType string                                             `json:"integration_type"`
+	IntegrationID   string                                             `json:"integration_id"`
 }
 
 type KeyVaultDeletedVaultHit struct {
@@ -29227,7 +29227,7 @@ func (p KeyVaultDeletedVaultPaginator) NextPage(ctx context.Context) ([]KeyVault
 var listKeyVaultDeletedVaultFilters = map[string]string{
 	"id":                      "Description.Vault.ID",
 	"name":                    "Description.Vault.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Vault.Properties.Tags",
 	"title":                   "Description.Vault.Name",
 	"type":                    "Description.Vault.Type",
@@ -29297,7 +29297,7 @@ func ListKeyVaultDeletedVault(ctx context.Context, d *plugin.QueryData, _ *plugi
 var getKeyVaultDeletedVaultFilters = map[string]string{
 	"id":                      "Description.Vault.ID",
 	"name":                    "description.Vault.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"region":                  "description.Vault.Properties.Location",
 	"tags":                    "Description.Vault.Properties.Tags",
 	"title":                   "Description.Vault.Name",
@@ -29363,14 +29363,14 @@ func GetKeyVaultDeletedVault(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: KeyVaultManagedHardwareSecurityModule =============================
 
 type KeyVaultManagedHardwareSecurityModule struct {
-	ResourceID      string                                                 `json:"resource_id"`
-	PlatformID      string                                                 `json:"platform_id"`
-	Description     azure.KeyVaultManagedHardwareSecurityModuleDescription `json:"description"`
-	Metadata        azure.Metadata                                         `json:"metadata"`
-	DescribedBy     string                                                 `json:"described_by"`
-	ResourceType    string                                                 `json:"resource_type"`
-	IntegrationType string                                                 `json:"integration_type"`
-	IntegrationID   string                                                 `json:"integration_id"`
+	ResourceID      string                                                              `json:"resource_id"`
+	PlatformID      string                                                              `json:"platform_id"`
+	Description     azure_subscription.KeyVaultManagedHardwareSecurityModuleDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                         `json:"metadata"`
+	DescribedBy     string                                                              `json:"described_by"`
+	ResourceType    string                                                              `json:"resource_type"`
+	IntegrationType string                                                              `json:"integration_type"`
+	IntegrationID   string                                                              `json:"integration_id"`
 }
 
 type KeyVaultManagedHardwareSecurityModuleHit struct {
@@ -29448,7 +29448,7 @@ var listKeyVaultManagedHardwareSecurityModuleFilters = map[string]string{
 	"hsm_uri":                       "Description.ManagedHsm.Properties.HsmURI",
 	"id":                            "Description.ManagedHsm.ID",
 	"name":                          "Description.ManagedHsm.Name",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"provisioning_state":            "Description.ManagedHsm.Properties.ProvisioningState",
 	"resource_group":                "Description.ResourceGroup",
 	"sku_family":                    "Description.ManagedHsm.SKU.Family",
@@ -29529,7 +29529,7 @@ var getKeyVaultManagedHardwareSecurityModuleFilters = map[string]string{
 	"hsm_uri":                       "Description.ManagedHsm.Properties.HsmURI",
 	"id":                            "Description.ManagedHsm.ID",
 	"name":                          "description.ManagedHsm.name",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"provisioning_state":            "Description.ManagedHsm.Properties.ProvisioningState",
 	"resource_group":                "description.ResourceGroup",
 	"sku_family":                    "Description.ManagedHsm.SKU.Family",
@@ -29600,14 +29600,14 @@ func GetKeyVaultManagedHardwareSecurityModule(ctx context.Context, d *plugin.Que
 // ==========================  START: KeyVaultSecret =============================
 
 type KeyVaultSecret struct {
-	ResourceID      string                          `json:"resource_id"`
-	PlatformID      string                          `json:"platform_id"`
-	Description     azure.KeyVaultSecretDescription `json:"description"`
-	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     string                          `json:"described_by"`
-	ResourceType    string                          `json:"resource_type"`
-	IntegrationType string                          `json:"integration_type"`
-	IntegrationID   string                          `json:"integration_id"`
+	ResourceID      string                                       `json:"resource_id"`
+	PlatformID      string                                       `json:"platform_id"`
+	Description     azure_subscription.KeyVaultSecretDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                  `json:"metadata"`
+	DescribedBy     string                                       `json:"described_by"`
+	ResourceType    string                                       `json:"resource_type"`
+	IntegrationType string                                       `json:"integration_type"`
+	IntegrationID   string                                       `json:"integration_id"`
 }
 
 type KeyVaultSecretHit struct {
@@ -29684,7 +29684,7 @@ var listKeyVaultSecretFilters = map[string]string{
 	"id":                      "Description.SecretItem.ID",
 	"kid":                     "Description.SecretBundle.Kid",
 	"name":                    "Description.SecretItem.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"recoverable_days":        "Description.Vault.Properties.SoftDeleteRetentionInDays",
 	"resource_group":          "Description.TurboData.ResourceGroup",
 	"tags":                    "Description.SecretItem.Tags",
@@ -29758,7 +29758,7 @@ var getKeyVaultSecretFilters = map[string]string{
 	"id":                      "Description.SecretItem.ID",
 	"kid":                     "Description.SecretBundle.Kid",
 	"name":                    "description.SecretItem.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"recoverable_days":        "Description.Vault.Properties.SoftDeleteRetentionInDays",
 	"resource_group":          "description.ResourceGroup",
 	"tags":                    "Description.SecretItem.Tags",
@@ -29823,14 +29823,14 @@ func GetKeyVaultSecret(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: KustoCluster =============================
 
 type KustoCluster struct {
-	ResourceID      string                        `json:"resource_id"`
-	PlatformID      string                        `json:"platform_id"`
-	Description     azure.KustoClusterDescription `json:"description"`
-	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     string                        `json:"described_by"`
-	ResourceType    string                        `json:"resource_type"`
-	IntegrationType string                        `json:"integration_type"`
-	IntegrationID   string                        `json:"integration_id"`
+	ResourceID      string                                     `json:"resource_id"`
+	PlatformID      string                                     `json:"platform_id"`
+	Description     azure_subscription.KustoClusterDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                `json:"metadata"`
+	DescribedBy     string                                     `json:"described_by"`
+	ResourceType    string                                     `json:"resource_type"`
+	IntegrationType string                                     `json:"integration_type"`
+	IntegrationID   string                                     `json:"integration_id"`
 }
 
 type KustoClusterHit struct {
@@ -29915,7 +29915,7 @@ var listKustoClusterFilters = map[string]string{
 	"location":                      "Description.Cluster.Location",
 	"name":                          "Description.Cluster.Name",
 	"optimized_autoscale":           "Description.Cluster.Properties.OptimizedAutoscale",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"provisioning_state":            "Description.Cluster.Properties.ProvisioningState",
 	"resource_group":                "Description.ResourceGroup",
 	"sku_capacity":                  "Description.Cluster.SKU.Capacity",
@@ -30006,7 +30006,7 @@ var getKustoClusterFilters = map[string]string{
 	"location":                      "Description.Cluster.Location",
 	"name":                          "description.Cluster.name",
 	"optimized_autoscale":           "Description.Cluster.Properties.OptimizedAutoscale",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"provisioning_state":            "Description.Cluster.Properties.ProvisioningState",
 	"resource_group":                "description.ResourceGroup",
 	"sku_capacity":                  "Description.Cluster.SKU.Capacity",
@@ -30080,14 +30080,14 @@ func GetKustoCluster(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: LogAlert =============================
 
 type LogAlert struct {
-	ResourceID      string                    `json:"resource_id"`
-	PlatformID      string                    `json:"platform_id"`
-	Description     azure.LogAlertDescription `json:"description"`
-	Metadata        azure.Metadata            `json:"metadata"`
-	DescribedBy     string                    `json:"described_by"`
-	ResourceType    string                    `json:"resource_type"`
-	IntegrationType string                    `json:"integration_type"`
-	IntegrationID   string                    `json:"integration_id"`
+	ResourceID      string                                 `json:"resource_id"`
+	PlatformID      string                                 `json:"platform_id"`
+	Description     azure_subscription.LogAlertDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata            `json:"metadata"`
+	DescribedBy     string                                 `json:"described_by"`
+	ResourceType    string                                 `json:"resource_type"`
+	IntegrationType string                                 `json:"integration_type"`
+	IntegrationID   string                                 `json:"integration_id"`
 }
 
 type LogAlertHit struct {
@@ -30165,7 +30165,7 @@ var listLogAlertFilters = map[string]string{
 	"id":                      "Description.ActivityLogAlertResource.ID",
 	"location":                "Description.ActivityLogAlertResource.Location",
 	"name":                    "Description.ActivityLogAlertResource.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"scopes":                  "Description.ActivityLogAlertResource.Properties.Scopes",
 	"tags":                    "Description.ActivityLogAlertResource.Tags",
@@ -30241,7 +30241,7 @@ var getLogAlertFilters = map[string]string{
 	"id":                      "Description.ActivityLogAlertResource.ID",
 	"location":                "Description.ActivityLogAlertResource.Location",
 	"name":                    "description.ActivityLogAlertResource.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"scopes":                  "Description.ActivityLogAlertResource.Properties.Scopes",
 	"tags":                    "Description.ActivityLogAlertResource.Tags",
@@ -30307,14 +30307,14 @@ func GetLogAlert(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 // ==========================  START: LogProfile =============================
 
 type LogProfile struct {
-	ResourceID      string                      `json:"resource_id"`
-	PlatformID      string                      `json:"platform_id"`
-	Description     azure.LogProfileDescription `json:"description"`
-	Metadata        azure.Metadata              `json:"metadata"`
-	DescribedBy     string                      `json:"described_by"`
-	ResourceType    string                      `json:"resource_type"`
-	IntegrationType string                      `json:"integration_type"`
-	IntegrationID   string                      `json:"integration_id"`
+	ResourceID      string                                   `json:"resource_id"`
+	PlatformID      string                                   `json:"platform_id"`
+	Description     azure_subscription.LogProfileDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata              `json:"metadata"`
+	DescribedBy     string                                   `json:"described_by"`
+	ResourceType    string                                   `json:"resource_type"`
+	IntegrationType string                                   `json:"integration_type"`
+	IntegrationID   string                                   `json:"integration_id"`
 }
 
 type LogProfileHit struct {
@@ -30390,7 +30390,7 @@ var listLogProfileFilters = map[string]string{
 	"location":                "Description.LogProfileResource.Location",
 	"log_event_location":      "Description.LogProfileResource.Properties.Locations",
 	"name":                    "Description.LogProfileResource.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"retention_policy":        "Description.LogProfileResource.Properties.RetentionPolicy",
 	"service_bus_rule_id":     "Description.LogProfileResource.Properties.ServiceBusRuleID",
@@ -30466,7 +30466,7 @@ var getLogProfileFilters = map[string]string{
 	"location":                "Description.LogProfileResource.Location",
 	"log_event_location":      "Description.LogProfileResource.Properties.Locations",
 	"name":                    "description.LogProfileResource.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"retention_policy":        "Description.LogProfileResource.Properties.RetentionPolicy",
 	"service_bus_rule_id":     "Description.LogProfileResource.Properties.ServiceBusRuleID",
@@ -30534,14 +30534,14 @@ func GetLogProfile(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDa
 // ==========================  START: LogicAppWorkflow =============================
 
 type LogicAppWorkflow struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.LogicAppWorkflowDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.LogicAppWorkflowDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type LogicAppWorkflowHit struct {
@@ -30622,7 +30622,7 @@ var listLogicAppWorkflowFilters = map[string]string{
 	"integration_service_environment": "Description.Workflow.Properties.IntegrationServiceEnvironment",
 	"name":                            "Description.Workflow.Name",
 	"parameters":                      "Description.Workflow.Properties.Parameters",
-	"platform_integration_id":         "metadata.IntegrationID",
+	"platform_integration_id":         "IntegrationID",
 	"provisioning_state":              "Description.Workflow.Properties.ProvisioningState",
 	"resource_group":                  "Description.ResourceGroup",
 	"sku_name":                        "Description.Workflow.Properties.SKU.Name",
@@ -30705,7 +30705,7 @@ var getLogicAppWorkflowFilters = map[string]string{
 	"integration_service_environment": "Description.Workflow.Properties.IntegrationServiceEnvironment",
 	"name":                            "description.Workflow.name",
 	"parameters":                      "Description.Workflow.Properties.Parameters",
-	"platform_integration_id":         "metadata.IntegrationID",
+	"platform_integration_id":         "IntegrationID",
 	"provisioning_state":              "Description.Workflow.Properties.ProvisioningState",
 	"resource_group":                  "description.ResourceGroup",
 	"sku_name":                        "Description.Workflow.Properties.SKU.Name",
@@ -30775,14 +30775,14 @@ func GetLogicAppWorkflow(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: LogicIntegrationAccounts =============================
 
 type LogicIntegrationAccounts struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.LogicIntegrationAccountsDescription `json:"description"`
-	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                                                 `json:"resource_id"`
+	PlatformID      string                                                 `json:"platform_id"`
+	Description     azure_subscription.LogicIntegrationAccountsDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                            `json:"metadata"`
+	DescribedBy     string                                                 `json:"described_by"`
+	ResourceType    string                                                 `json:"resource_type"`
+	IntegrationType string                                                 `json:"integration_type"`
+	IntegrationID   string                                                 `json:"integration_id"`
 }
 
 type LogicIntegrationAccountsHit struct {
@@ -30855,7 +30855,7 @@ func (p LogicIntegrationAccountsPaginator) NextPage(ctx context.Context) ([]Logi
 var listLogicIntegrationAccountsFilters = map[string]string{
 	"id":                      "Description.IntegrationAccounts.ID",
 	"name":                    "Description.Account.Properties.IntegrationServiceEnvironment.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Account.Properties.IntegrationServiceEnvironment.Name",
 	"title":                   "Description.Account.Properties.IntegrationServiceEnvironment.Name",
 }
@@ -30923,7 +30923,7 @@ func ListLogicIntegrationAccounts(ctx context.Context, d *plugin.QueryData, _ *p
 var getLogicIntegrationAccountsFilters = map[string]string{
 	"id":                      "Description.IntegrationAccounts.ID",
 	"name":                    "Description.Account.Properties.IntegrationServiceEnvironment.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Account.Properties.IntegrationServiceEnvironment.Name",
 	"title":                   "Description.Account.Properties.IntegrationServiceEnvironment.Name",
 }
@@ -30986,14 +30986,14 @@ func GetLogicIntegrationAccounts(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: MachineLearningWorkspace =============================
 
 type MachineLearningWorkspace struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.MachineLearningWorkspaceDescription `json:"description"`
-	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                                                 `json:"resource_id"`
+	PlatformID      string                                                 `json:"platform_id"`
+	Description     azure_subscription.MachineLearningWorkspaceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                            `json:"metadata"`
+	DescribedBy     string                                                 `json:"described_by"`
+	ResourceType    string                                                 `json:"resource_type"`
+	IntegrationType string                                                 `json:"integration_type"`
+	IntegrationID   string                                                 `json:"integration_id"`
 }
 
 type MachineLearningWorkspaceHit struct {
@@ -31077,7 +31077,7 @@ var listMachineLearningWorkspaceFilters = map[string]string{
 	"key_vault":                          "Description.Workspace.Properties.KeyVault",
 	"location":                           "Description.Workspace.Location",
 	"name":                               "Description.Workspace.Name",
-	"platform_integration_id":            "metadata.IntegrationID",
+	"platform_integration_id":            "IntegrationID",
 	"provisioning_state":                 "Description.Workspace.Properties.ProvisioningState",
 	"resource_group":                     "Description.ResourceGroup",
 	"service_provisioned_resource_group": "Description.Workspace.Properties.ServiceProvisionedResourceGroup",
@@ -31164,7 +31164,7 @@ var getMachineLearningWorkspaceFilters = map[string]string{
 	"key_vault":                          "Description.Workspace.Properties.KeyVault",
 	"location":                           "Description.Workspace.Location",
 	"name":                               "description.Workspace.name",
-	"platform_integration_id":            "metadata.IntegrationID",
+	"platform_integration_id":            "IntegrationID",
 	"provisioning_state":                 "Description.Workspace.Properties.ProvisioningState",
 	"resource_group":                     "description.ResourceGroup",
 	"service_provisioned_resource_group": "Description.Workspace.Properties.ServiceProvisionedResourceGroup",
@@ -31235,14 +31235,14 @@ func GetMachineLearningWorkspace(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: MariadbServer =============================
 
 type MariadbServer struct {
-	ResourceID      string                         `json:"resource_id"`
-	PlatformID      string                         `json:"platform_id"`
-	Description     azure.MariadbServerDescription `json:"description"`
-	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     string                         `json:"described_by"`
-	ResourceType    string                         `json:"resource_type"`
-	IntegrationType string                         `json:"integration_type"`
-	IntegrationID   string                         `json:"integration_id"`
+	ResourceID      string                                      `json:"resource_id"`
+	PlatformID      string                                      `json:"platform_id"`
+	Description     azure_subscription.MariadbServerDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                 `json:"metadata"`
+	DescribedBy     string                                      `json:"described_by"`
+	ResourceType    string                                      `json:"resource_type"`
+	IntegrationType string                                      `json:"integration_type"`
+	IntegrationID   string                                      `json:"integration_id"`
 }
 
 type MariadbServerHit struct {
@@ -31321,7 +31321,7 @@ var listMariadbServerFilters = map[string]string{
 	"id":                           "Description.Server.ID",
 	"master_service_id":            "Description.Server.Properties.MasterServerID",
 	"name":                         "Description.Server.Name",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"private_endpoint_connections": "Description.Server.Properties.PrivateEndpointConnections",
 	"public_network_access":        "Description.Server.Properties.PublicNetworkAccess",
 	"replica_capacity":             "Description.Server.Properties.ReplicaCapacity",
@@ -31410,7 +31410,7 @@ var getMariadbServerFilters = map[string]string{
 	"id":                           "Description.Server.ID",
 	"master_service_id":            "Description.Server.Properties.MasterServerID",
 	"name":                         "description.Server.name",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"private_endpoint_connections": "Description.Server.Properties.PrivateEndpointConnections",
 	"public_network_access":        "Description.Server.Properties.PublicNetworkAccess",
 	"replica_capacity":             "Description.Server.Properties.ReplicaCapacity",
@@ -31488,14 +31488,14 @@ func GetMariadbServer(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 // ==========================  START: MariadbDatabase =============================
 
 type MariadbDatabase struct {
-	ResourceID      string                           `json:"resource_id"`
-	PlatformID      string                           `json:"platform_id"`
-	Description     azure.MariadbDatabaseDescription `json:"description"`
-	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     string                           `json:"described_by"`
-	ResourceType    string                           `json:"resource_type"`
-	IntegrationType string                           `json:"integration_type"`
-	IntegrationID   string                           `json:"integration_id"`
+	ResourceID      string                                        `json:"resource_id"`
+	PlatformID      string                                        `json:"platform_id"`
+	Description     azure_subscription.MariadbDatabaseDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                   `json:"metadata"`
+	DescribedBy     string                                        `json:"described_by"`
+	ResourceType    string                                        `json:"resource_type"`
+	IntegrationType string                                        `json:"integration_type"`
+	IntegrationID   string                                        `json:"integration_id"`
 }
 
 type MariadbDatabaseHit struct {
@@ -31568,7 +31568,7 @@ func (p MariadbDatabasePaginator) NextPage(ctx context.Context) ([]MariadbDataba
 var listMariadbDatabaseFilters = map[string]string{
 	"id":                      "Description.Databases.ID",
 	"name":                    "Description.Database.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Database.Name",
 	"title":                   "Description.Database.Name",
 }
@@ -31636,7 +31636,7 @@ func ListMariadbDatabase(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 var getMariadbDatabaseFilters = map[string]string{
 	"id":                      "Description.Databases.ID",
 	"name":                    "Description.Database.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Database.Name",
 	"title":                   "Description.Database.Name",
 }
@@ -31699,14 +31699,14 @@ func GetMariadbDatabase(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: MysqlServer =============================
 
 type MysqlServer struct {
-	ResourceID      string                       `json:"resource_id"`
-	PlatformID      string                       `json:"platform_id"`
-	Description     azure.MysqlServerDescription `json:"description"`
-	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     string                       `json:"described_by"`
-	ResourceType    string                       `json:"resource_type"`
-	IntegrationType string                       `json:"integration_type"`
-	IntegrationID   string                       `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure_subscription.MysqlServerDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata               `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type MysqlServerHit struct {
@@ -31788,7 +31788,7 @@ var listMysqlServerFilters = map[string]string{
 	"master_server_id":             "Description.Server.Properties.MasterServerID",
 	"minimal_tls_version":          "Description.Server.Properties.MinimalTLSVersion",
 	"name":                         "Description.Server.Name",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"public_network_access":        "Description.Server.Properties.PublicNetworkAccess",
 	"replica_capacity":             "Description.Server.Properties.ReplicaCapacity",
 	"replication_role":             "Description.Server.Properties.ReplicationRole",
@@ -31885,7 +31885,7 @@ var getMysqlServerFilters = map[string]string{
 	"master_server_id":             "Description.Server.Properties.MasterServerID",
 	"minimal_tls_version":          "Description.Server.Properties.MinimalTLSVersion",
 	"name":                         "description.Server.name",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"public_network_access":        "Description.Server.Properties.PublicNetworkAccess",
 	"replica_capacity":             "Description.Server.Properties.ReplicaCapacity",
 	"replication_role":             "Description.Server.Properties.ReplicationRole",
@@ -31968,14 +31968,14 @@ func GetMysqlServer(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: MysqlFlexibleserver =============================
 
 type MysqlFlexibleserver struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure.MysqlFlexibleserverDescription `json:"description"`
-	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure_subscription.MysqlFlexibleserverDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                       `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type MysqlFlexibleserverHit struct {
@@ -32048,7 +32048,7 @@ func (p MysqlFlexibleserverPaginator) NextPage(ctx context.Context) ([]MysqlFlex
 var listMysqlFlexibleserverFilters = map[string]string{
 	"id":                      "Description.Server.ID",
 	"name":                    "Description.Server.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Server.Tags",
 	"title":                   "Description.Server.Name",
 }
@@ -32116,7 +32116,7 @@ func ListMysqlFlexibleserver(ctx context.Context, d *plugin.QueryData, _ *plugin
 var getMysqlFlexibleserverFilters = map[string]string{
 	"id":                      "Description.Server.ID",
 	"name":                    "Description.Server.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Server.Tags",
 	"title":                   "Description.Server.Name",
 }
@@ -32179,14 +32179,14 @@ func GetMysqlFlexibleserver(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: NetworkSecurityGroup =============================
 
 type NetworkSecurityGroup struct {
-	ResourceID      string                                `json:"resource_id"`
-	PlatformID      string                                `json:"platform_id"`
-	Description     azure.NetworkSecurityGroupDescription `json:"description"`
-	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     string                                `json:"described_by"`
-	ResourceType    string                                `json:"resource_type"`
-	IntegrationType string                                `json:"integration_type"`
-	IntegrationID   string                                `json:"integration_id"`
+	ResourceID      string                                             `json:"resource_id"`
+	PlatformID      string                                             `json:"platform_id"`
+	Description     azure_subscription.NetworkSecurityGroupDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                        `json:"metadata"`
+	DescribedBy     string                                             `json:"described_by"`
+	ResourceType    string                                             `json:"resource_type"`
+	IntegrationType string                                             `json:"integration_type"`
+	IntegrationID   string                                             `json:"integration_id"`
 }
 
 type NetworkSecurityGroupHit struct {
@@ -32264,7 +32264,7 @@ var listNetworkSecurityGroupFilters = map[string]string{
 	"id":                      "Description.SecurityGroup.ID",
 	"name":                    "Description.SecurityGroup.Name",
 	"network_interfaces":      "Description.SecurityGroup.Properties.NetworkInterfaces",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.SecurityGroup.Properties.ProvisioningState",
 	"resource_group":          "Description.ResourceGroup",
 	"resource_guid":           "Description.SecurityGroup.Properties.ResourceGUID",
@@ -32343,7 +32343,7 @@ var getNetworkSecurityGroupFilters = map[string]string{
 	"id":                      "Description.SecurityGroup.ID",
 	"name":                    "description.SecurityGroup.name",
 	"network_interfaces":      "Description.SecurityGroup.Properties.NetworkInterfaces",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.SecurityGroup.Properties.ProvisioningState",
 	"resource_group":          "description.ResourceGroup",
 	"resource_guid":           "Description.SecurityGroup.Properties.ResourceGUID",
@@ -32412,14 +32412,14 @@ func GetNetworkSecurityGroup(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: NetworkWatcher =============================
 
 type NetworkWatcher struct {
-	ResourceID      string                          `json:"resource_id"`
-	PlatformID      string                          `json:"platform_id"`
-	Description     azure.NetworkWatcherDescription `json:"description"`
-	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     string                          `json:"described_by"`
-	ResourceType    string                          `json:"resource_type"`
-	IntegrationType string                          `json:"integration_type"`
-	IntegrationID   string                          `json:"integration_id"`
+	ResourceID      string                                       `json:"resource_id"`
+	PlatformID      string                                       `json:"platform_id"`
+	Description     azure_subscription.NetworkWatcherDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                  `json:"metadata"`
+	DescribedBy     string                                       `json:"described_by"`
+	ResourceType    string                                       `json:"resource_type"`
+	IntegrationType string                                       `json:"integration_type"`
+	IntegrationID   string                                       `json:"integration_id"`
 }
 
 type NetworkWatcherHit struct {
@@ -32493,7 +32493,7 @@ var listNetworkWatcherFilters = map[string]string{
 	"etag":                    "Description.Watcher.Etag",
 	"id":                      "Description.Watcher.ID",
 	"name":                    "Description.Watcher.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.Watcher.Properties.ProvisioningState",
 	"resource_group":          "Description.ResourceGroup",
 	"tags":                    "Description.Watcher.Tags",
@@ -32565,7 +32565,7 @@ var getNetworkWatcherFilters = map[string]string{
 	"etag":                    "Description.Watcher.Etag",
 	"id":                      "Description.Watcher.ID",
 	"name":                    "description.Watcher.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.Watcher.Properties.ProvisioningState",
 	"resource_group":          "description.ResourceGroup",
 	"tags":                    "Description.Watcher.Tags",
@@ -32631,14 +32631,14 @@ func GetNetworkWatcher(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: SearchService =============================
 
 type SearchService struct {
-	ResourceID      string                         `json:"resource_id"`
-	PlatformID      string                         `json:"platform_id"`
-	Description     azure.SearchServiceDescription `json:"description"`
-	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     string                         `json:"described_by"`
-	ResourceType    string                         `json:"resource_type"`
-	IntegrationType string                         `json:"integration_type"`
-	IntegrationID   string                         `json:"integration_id"`
+	ResourceID      string                                      `json:"resource_id"`
+	PlatformID      string                                      `json:"platform_id"`
+	Description     azure_subscription.SearchServiceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                 `json:"metadata"`
+	DescribedBy     string                                      `json:"described_by"`
+	ResourceType    string                                      `json:"resource_type"`
+	IntegrationType string                                      `json:"integration_type"`
+	IntegrationID   string                                      `json:"integration_id"`
 }
 
 type SearchServiceHit struct {
@@ -32716,7 +32716,7 @@ var listSearchServiceFilters = map[string]string{
 	"name":                          "Description.Service.Name",
 	"network_rule_set":              "Description.Service.Properties.NetworkRuleSet",
 	"partition_count":               "Description.Service.Properties.PartitionCount",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"private_endpoint_connections":  "Description.Service.Properties.PrivateEndpointConnections",
 	"provisioning_state":            "Description.Service.Properties.ProvisioningState",
 	"public_network_access":         "Description.Service.Properties.PublicNetworkAccess",
@@ -32798,7 +32798,7 @@ var getSearchServiceFilters = map[string]string{
 	"name":                          "description.Service.name",
 	"network_rule_set":              "Description.Service.Properties.NetworkRuleSet",
 	"partition_count":               "Description.Service.Properties.PartitionCount",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"private_endpoint_connections":  "Description.Service.Properties.PrivateEndpointConnections",
 	"provisioning_state":            "Description.Service.Properties.ProvisioningState",
 	"public_network_access":         "Description.Service.Properties.PublicNetworkAccess",
@@ -32871,14 +32871,14 @@ func GetSearchService(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 // ==========================  START: ServiceFabricCluster =============================
 
 type ServiceFabricCluster struct {
-	ResourceID      string                                `json:"resource_id"`
-	PlatformID      string                                `json:"platform_id"`
-	Description     azure.ServiceFabricClusterDescription `json:"description"`
-	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     string                                `json:"described_by"`
-	ResourceType    string                                `json:"resource_type"`
-	IntegrationType string                                `json:"integration_type"`
-	IntegrationID   string                                `json:"integration_id"`
+	ResourceID      string                                             `json:"resource_id"`
+	PlatformID      string                                             `json:"platform_id"`
+	Description     azure_subscription.ServiceFabricClusterDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                        `json:"metadata"`
+	DescribedBy     string                                             `json:"described_by"`
+	ResourceType    string                                             `json:"resource_type"`
+	IntegrationType string                                             `json:"integration_type"`
+	IntegrationID   string                                             `json:"integration_id"`
 }
 
 type ServiceFabricClusterHit struct {
@@ -32968,7 +32968,7 @@ var listServiceFabricClusterFilters = map[string]string{
 	"management_endpoint":                    "Description.Cluster.Properties.ManagementEndpoint",
 	"name":                                   "Description.Cluster.Name",
 	"node_types":                             "Description.Cluster.Properties.NodeTypes",
-	"platform_integration_id":                "metadata.IntegrationID",
+	"platform_integration_id":                "IntegrationID",
 	"provisioning_state":                     "Description.Cluster.Properties.ProvisioningState",
 	"reliability_level":                      "Description.Cluster.Properties.ReliabilityLevel",
 	"resource_group":                         "Description.ResourceGroup",
@@ -33062,7 +33062,7 @@ var getServiceFabricClusterFilters = map[string]string{
 	"management_endpoint":                    "Description.Cluster.Properties.ManagementEndpoint",
 	"name":                                   "description.Cluster.name",
 	"node_types":                             "Description.Cluster.Properties.NodeTypes",
-	"platform_integration_id":                "metadata.IntegrationID",
+	"platform_integration_id":                "IntegrationID",
 	"provisioning_state":                     "Description.Cluster.Properties.ProvisioningState",
 	"reliability_level":                      "Description.Cluster.Properties.ReliabilityLevel",
 	"resource_group":                         "description.ResourceGroup",
@@ -33134,14 +33134,14 @@ func GetServiceFabricCluster(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: ServicebusNamespace =============================
 
 type ServicebusNamespace struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure.ServicebusNamespaceDescription `json:"description"`
-	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure_subscription.ServicebusNamespaceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                       `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type ServicebusNamespaceHit struct {
@@ -33220,7 +33220,7 @@ var listServicebusNamespaceFilters = map[string]string{
 	"metric_id":                    "Description.SBNamespace.Properties.MetricID",
 	"name":                         "Description.SBNamespace.Name",
 	"network_rule_set":             "Description.NetworkRuleSet",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"private_endpoint_connections": "Description.SBNamespace.Properties.PrivateEndpointConnections",
 	"provisioning_state":           "Description.SBNamespace.Properties.ProvisioningState",
 	"resource_group":               "Description.ResourceGroup",
@@ -33304,7 +33304,7 @@ var getServicebusNamespaceFilters = map[string]string{
 	"metric_id":                    "Description.SBNamespace.Properties.MetricID",
 	"name":                         "description.SBNamespace.name",
 	"network_rule_set":             "Description.NetworkRuleSet",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"private_endpoint_connections": "Description.SBNamespace.Properties.PrivateEndpointConnections",
 	"provisioning_state":           "Description.SBNamespace.Properties.ProvisioningState",
 	"resource_group":               "description.ResourceGroup",
@@ -33377,14 +33377,14 @@ func GetServicebusNamespace(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: SignalrService =============================
 
 type SignalrService struct {
-	ResourceID      string                          `json:"resource_id"`
-	PlatformID      string                          `json:"platform_id"`
-	Description     azure.SignalrServiceDescription `json:"description"`
-	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     string                          `json:"described_by"`
-	ResourceType    string                          `json:"resource_type"`
-	IntegrationType string                          `json:"integration_type"`
-	IntegrationID   string                          `json:"integration_id"`
+	ResourceID      string                                       `json:"resource_id"`
+	PlatformID      string                                       `json:"platform_id"`
+	Description     azure_subscription.SignalrServiceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                  `json:"metadata"`
+	DescribedBy     string                                       `json:"described_by"`
+	ResourceType    string                                       `json:"resource_type"`
+	IntegrationType string                                       `json:"integration_type"`
+	IntegrationID   string                                       `json:"integration_id"`
 }
 
 type SignalrServiceHit struct {
@@ -33465,7 +33465,7 @@ var listSignalrServiceFilters = map[string]string{
 	"kind":                    "Description.ResourceInfo.Kind",
 	"name":                    "Description.ResourceInfo.Name",
 	"network_acls":            "Description.ResourceInfo.Properties.NetworkACLs",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.ResourceInfo.Properties.ProvisioningState",
 	"public_port":             "Description.ResourceInfo.Properties.PublicPort",
 	"resource_group":          "Description.ResourceGroup",
@@ -33549,7 +33549,7 @@ var getSignalrServiceFilters = map[string]string{
 	"kind":                    "Description.ResourceInfo.Kind",
 	"name":                    "description.ResourceType.name",
 	"network_acls":            "Description.ResourceInfo.Properties.NetworkACLs",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.ResourceInfo.Properties.ProvisioningState",
 	"public_port":             "Description.ResourceInfo.Properties.PublicPort",
 	"resource_group":          "description.ResourceGroup",
@@ -33620,14 +33620,14 @@ func GetSignalrService(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: SpringCloudService =============================
 
 type SpringCloudService struct {
-	ResourceID      string                              `json:"resource_id"`
-	PlatformID      string                              `json:"platform_id"`
-	Description     azure.SpringCloudServiceDescription `json:"description"`
-	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     string                              `json:"described_by"`
-	ResourceType    string                              `json:"resource_type"`
-	IntegrationType string                              `json:"integration_type"`
-	IntegrationID   string                              `json:"integration_id"`
+	ResourceID      string                                           `json:"resource_id"`
+	PlatformID      string                                           `json:"platform_id"`
+	Description     azure_subscription.SpringCloudServiceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                      `json:"metadata"`
+	DescribedBy     string                                           `json:"described_by"`
+	ResourceType    string                                           `json:"resource_type"`
+	IntegrationType string                                           `json:"integration_type"`
+	IntegrationID   string                                           `json:"integration_id"`
 }
 
 type SpringCloudServiceHit struct {
@@ -33701,7 +33701,7 @@ var listSpringCloudServiceFilters = map[string]string{
 	"diagnostic_settings":     "Description.DiagnosticSettingsResource",
 	"id":                      "Description.App.ID",
 	"name":                    "Description.App.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.App.Properties.ProvisioningState",
 	"resource_group":          "Description.ResourceGroup",
 	"tags":                    "Description.App.Tags",
@@ -33774,7 +33774,7 @@ var getSpringCloudServiceFilters = map[string]string{
 	"diagnostic_settings":     "Description.DiagnosticSettingsResource",
 	"id":                      "Description.App.ID",
 	"name":                    "description.ServiceResource.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.App.Properties.ProvisioningState",
 	"resource_group":          "description.ResourceGroup",
 	"tags":                    "Description.App.Tags",
@@ -33841,14 +33841,14 @@ func GetSpringCloudService(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: StreamAnalyticsJob =============================
 
 type StreamAnalyticsJob struct {
-	ResourceID      string                              `json:"resource_id"`
-	PlatformID      string                              `json:"platform_id"`
-	Description     azure.StreamAnalyticsJobDescription `json:"description"`
-	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     string                              `json:"described_by"`
-	ResourceType    string                              `json:"resource_type"`
-	IntegrationType string                              `json:"integration_type"`
-	IntegrationID   string                              `json:"integration_id"`
+	ResourceID      string                                           `json:"resource_id"`
+	PlatformID      string                                           `json:"platform_id"`
+	Description     azure_subscription.StreamAnalyticsJobDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                      `json:"metadata"`
+	DescribedBy     string                                           `json:"described_by"`
+	ResourceType    string                                           `json:"resource_type"`
+	IntegrationType string                                           `json:"integration_type"`
+	IntegrationID   string                                           `json:"integration_id"`
 }
 
 type StreamAnalyticsJobHit struct {
@@ -33935,7 +33935,7 @@ var listStreamAnalyticsJobFilters = map[string]string{
 	"output_error_policy":                      "Description.StreamingJob.Properties.OutputErrorPolicy",
 	"output_start_mode":                        "Description.StreamingJob.Properties.OutputStartMode",
 	"outputs":                                  "Description.StreamingJob.Properties.Outputs",
-	"platform_integration_id":                  "metadata.IntegrationID",
+	"platform_integration_id":                  "IntegrationID",
 	"provisioning_state":                       "Description.StreamingJob.Properties.ProvisioningState",
 	"resource_group":                           "Description.ResourceGroup",
 	"sku_name":                                 "Description.StreamingJob.Properties.SKU.Name",
@@ -34022,7 +34022,7 @@ var getStreamAnalyticsJobFilters = map[string]string{
 	"output_error_policy":                      "Description.StreamingJob.Properties.OutputErrorPolicy",
 	"output_start_mode":                        "Description.StreamingJob.Properties.OutputStartMode",
 	"outputs":                                  "Description.StreamingJob.Properties.Outputs",
-	"platform_integration_id":                  "metadata.IntegrationID",
+	"platform_integration_id":                  "IntegrationID",
 	"provisioning_state":                       "Description.StreamingJob.Properties.ProvisioningState",
 	"resource_group":                           "description.ResourceGroup",
 	"sku_name":                                 "Description.StreamingJob.Properties.SKU.Name",
@@ -34090,14 +34090,14 @@ func GetStreamAnalyticsJob(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: StreamAnalyticsCluster =============================
 
 type StreamAnalyticsCluster struct {
-	ResourceID      string                                  `json:"resource_id"`
-	PlatformID      string                                  `json:"platform_id"`
-	Description     azure.StreamAnalyticsClusterDescription `json:"description"`
-	Metadata        azure.Metadata                          `json:"metadata"`
-	DescribedBy     string                                  `json:"described_by"`
-	ResourceType    string                                  `json:"resource_type"`
-	IntegrationType string                                  `json:"integration_type"`
-	IntegrationID   string                                  `json:"integration_id"`
+	ResourceID      string                                               `json:"resource_id"`
+	PlatformID      string                                               `json:"platform_id"`
+	Description     azure_subscription.StreamAnalyticsClusterDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                          `json:"metadata"`
+	DescribedBy     string                                               `json:"described_by"`
+	ResourceType    string                                               `json:"resource_type"`
+	IntegrationType string                                               `json:"integration_type"`
+	IntegrationID   string                                               `json:"integration_id"`
 }
 
 type StreamAnalyticsClusterHit struct {
@@ -34170,7 +34170,7 @@ func (p StreamAnalyticsClusterPaginator) NextPage(ctx context.Context) ([]Stream
 var listStreamAnalyticsClusterFilters = map[string]string{
 	"id":                      "Description.Cluster.ID",
 	"name":                    "Description.StreamingJob.SKU.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.StreamingJob.Tags",
 	"title":                   "Description.StreamingJob.SKU.Name",
 }
@@ -34238,7 +34238,7 @@ func ListStreamAnalyticsCluster(ctx context.Context, d *plugin.QueryData, _ *plu
 var getStreamAnalyticsClusterFilters = map[string]string{
 	"id":                      "Description.Cluster.ID",
 	"name":                    "Description.StreamingJob.SKU.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.StreamingJob.Tags",
 	"title":                   "Description.StreamingJob.SKU.Name",
 }
@@ -34301,14 +34301,14 @@ func GetStreamAnalyticsCluster(ctx context.Context, d *plugin.QueryData, _ *plug
 // ==========================  START: VirtualMachineImagesImageTemplates =============================
 
 type VirtualMachineImagesImageTemplates struct {
-	ResourceID      string                                              `json:"resource_id"`
-	PlatformID      string                                              `json:"platform_id"`
-	Description     azure.VirtualMachineImagesImageTemplatesDescription `json:"description"`
-	Metadata        azure.Metadata                                      `json:"metadata"`
-	DescribedBy     string                                              `json:"described_by"`
-	ResourceType    string                                              `json:"resource_type"`
-	IntegrationType string                                              `json:"integration_type"`
-	IntegrationID   string                                              `json:"integration_id"`
+	ResourceID      string                                                           `json:"resource_id"`
+	PlatformID      string                                                           `json:"platform_id"`
+	Description     azure_subscription.VirtualMachineImagesImageTemplatesDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                      `json:"metadata"`
+	DescribedBy     string                                                           `json:"described_by"`
+	ResourceType    string                                                           `json:"resource_type"`
+	IntegrationType string                                                           `json:"integration_type"`
+	IntegrationID   string                                                           `json:"integration_id"`
 }
 
 type VirtualMachineImagesImageTemplatesHit struct {
@@ -34381,7 +34381,7 @@ func (p VirtualMachineImagesImageTemplatesPaginator) NextPage(ctx context.Contex
 var listVirtualMachineImagesImageTemplatesFilters = map[string]string{
 	"id":                      "Description.ImageTemplates.ID",
 	"name":                    "Description.ImageTemplate.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.ImageTemplate.Tags",
 	"title":                   "Description.ImageTemplate.Name",
 }
@@ -34449,7 +34449,7 @@ func ListVirtualMachineImagesImageTemplates(ctx context.Context, d *plugin.Query
 var getVirtualMachineImagesImageTemplatesFilters = map[string]string{
 	"id":                      "Description.ImageTemplates.ID",
 	"name":                    "Description.ImageTemplate.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.ImageTemplate.Tags",
 	"title":                   "Description.ImageTemplate.Name",
 }
@@ -34512,14 +34512,14 @@ func GetVirtualMachineImagesImageTemplates(ctx context.Context, d *plugin.QueryD
 // ==========================  START: OperationalInsightsWorkspaces =============================
 
 type OperationalInsightsWorkspaces struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure.OperationalInsightsWorkspacesDescription `json:"description"`
-	Metadata        azure.Metadata                                 `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                                                      `json:"resource_id"`
+	PlatformID      string                                                      `json:"platform_id"`
+	Description     azure_subscription.OperationalInsightsWorkspacesDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                 `json:"metadata"`
+	DescribedBy     string                                                      `json:"described_by"`
+	ResourceType    string                                                      `json:"resource_type"`
+	IntegrationType string                                                      `json:"integration_type"`
+	IntegrationID   string                                                      `json:"integration_id"`
 }
 
 type OperationalInsightsWorkspacesHit struct {
@@ -34600,7 +34600,7 @@ var listOperationalInsightsWorkspacesFilters = map[string]string{
 	"immediate_purge_data_on_30_days":                   "Description.Workspace.Properties.Features.ImmediatePurgeDataOn30Days",
 	"location":                                          "Description.Workspace.Location",
 	"name":                                              "Description.Workspace.Name",
-	"platform_integration_id":                           "metadata.IntegrationID",
+	"platform_integration_id":                           "IntegrationID",
 	"private_link_scoped_resources":                     "Description.Workspace.Properties.PrivateLinkScopedResources",
 	"provisioning_state":                                "Description.Workspace.Properties.ProvisioningState",
 	"public_network_access_for_ingestion":               "Description.Workspace.Properties.PublicNetworkAccessForIngestion",
@@ -34685,7 +34685,7 @@ var getOperationalInsightsWorkspacesFilters = map[string]string{
 	"immediate_purge_data_on_30_days":                   "Description.Workspace.Properties.Features.ImmediatePurgeDataOn30Days",
 	"location":                                          "Description.Workspace.Location",
 	"name":                                              "Description.Workspace.Name",
-	"platform_integration_id":                           "metadata.IntegrationID",
+	"platform_integration_id":                           "IntegrationID",
 	"private_link_scoped_resources":                     "Description.Workspace.Properties.PrivateLinkScopedResources",
 	"provisioning_state":                                "Description.Workspace.Properties.ProvisioningState",
 	"public_network_access_for_ingestion":               "Description.Workspace.Properties.PublicNetworkAccessForIngestion",
@@ -34757,14 +34757,14 @@ func GetOperationalInsightsWorkspaces(ctx context.Context, d *plugin.QueryData, 
 // ==========================  START: TimeSeriesInsightsEnvironments =============================
 
 type TimeSeriesInsightsEnvironments struct {
-	ResourceID      string                                          `json:"resource_id"`
-	PlatformID      string                                          `json:"platform_id"`
-	Description     azure.TimeSeriesInsightsEnvironmentsDescription `json:"description"`
-	Metadata        azure.Metadata                                  `json:"metadata"`
-	DescribedBy     string                                          `json:"described_by"`
-	ResourceType    string                                          `json:"resource_type"`
-	IntegrationType string                                          `json:"integration_type"`
-	IntegrationID   string                                          `json:"integration_id"`
+	ResourceID      string                                                       `json:"resource_id"`
+	PlatformID      string                                                       `json:"platform_id"`
+	Description     azure_subscription.TimeSeriesInsightsEnvironmentsDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                  `json:"metadata"`
+	DescribedBy     string                                                       `json:"described_by"`
+	ResourceType    string                                                       `json:"resource_type"`
+	IntegrationType string                                                       `json:"integration_type"`
+	IntegrationID   string                                                       `json:"integration_id"`
 }
 
 type TimeSeriesInsightsEnvironmentsHit struct {
@@ -34837,7 +34837,7 @@ func (p TimeSeriesInsightsEnvironmentsPaginator) NextPage(ctx context.Context) (
 var listTimeSeriesInsightsEnvironmentsFilters = map[string]string{
 	"id":                      "Description.Environments.ID",
 	"name":                    "Description.Environment.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Environment.Tags",
 	"title":                   "Description.Environment.Name",
 }
@@ -34905,7 +34905,7 @@ func ListTimeSeriesInsightsEnvironments(ctx context.Context, d *plugin.QueryData
 var getTimeSeriesInsightsEnvironmentsFilters = map[string]string{
 	"id":                      "Description.Environments.ID",
 	"name":                    "Description.Environment.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Environment.Tags",
 	"title":                   "Description.Environment.Name",
 }
@@ -34968,14 +34968,14 @@ func GetTimeSeriesInsightsEnvironments(ctx context.Context, d *plugin.QueryData,
 // ==========================  START: SynapseWorkspace =============================
 
 type SynapseWorkspace struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.SynapseWorkspaceDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.SynapseWorkspaceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type SynapseWorkspaceHit struct {
@@ -35057,7 +35057,7 @@ var listSynapseWorkspaceFilters = map[string]string{
 	"managed_virtual_network":          "Description.Workspace.Properties.ManagedVirtualNetwork",
 	"managed_virtual_network_settings": "Description.Workspace.Properties.ManagedVirtualNetworkSettings",
 	"name":                             "Description.Workspace.Name",
-	"platform_integration_id":          "metadata.IntegrationID",
+	"platform_integration_id":          "IntegrationID",
 	"provisioning_state":               "Description.Workspace.Properties.ProvisioningState",
 	"public_network_access":            "Description.Workspace.Properties.PublicNetworkAccess",
 	"purview_configuration":            "Description.Workspace.Properties.PurviewConfiguration",
@@ -35145,7 +35145,7 @@ var getSynapseWorkspaceFilters = map[string]string{
 	"managed_virtual_network":          "Description.Workspace.Properties.ManagedVirtualNetwork",
 	"managed_virtual_network_settings": "Description.Workspace.Properties.ManagedVirtualNetworkSettings",
 	"name":                             "description.Workspace.name",
-	"platform_integration_id":          "metadata.IntegrationID",
+	"platform_integration_id":          "IntegrationID",
 	"provisioning_state":               "Description.Workspace.Properties.ProvisioningState",
 	"public_network_access":            "Description.Workspace.Properties.PublicNetworkAccess",
 	"purview_configuration":            "Description.Workspace.Properties.PurviewConfiguration",
@@ -35219,14 +35219,14 @@ func GetSynapseWorkspace(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: SynapseWorkspaceBigdatapools =============================
 
 type SynapseWorkspaceBigdatapools struct {
-	ResourceID      string                                        `json:"resource_id"`
-	PlatformID      string                                        `json:"platform_id"`
-	Description     azure.SynapseWorkspaceBigdatapoolsDescription `json:"description"`
-	Metadata        azure.Metadata                                `json:"metadata"`
-	DescribedBy     string                                        `json:"described_by"`
-	ResourceType    string                                        `json:"resource_type"`
-	IntegrationType string                                        `json:"integration_type"`
-	IntegrationID   string                                        `json:"integration_id"`
+	ResourceID      string                                                     `json:"resource_id"`
+	PlatformID      string                                                     `json:"platform_id"`
+	Description     azure_subscription.SynapseWorkspaceBigdatapoolsDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                `json:"metadata"`
+	DescribedBy     string                                                     `json:"described_by"`
+	ResourceType    string                                                     `json:"resource_type"`
+	IntegrationType string                                                     `json:"integration_type"`
+	IntegrationID   string                                                     `json:"integration_id"`
 }
 
 type SynapseWorkspaceBigdatapoolsHit struct {
@@ -35299,7 +35299,7 @@ func (p SynapseWorkspaceBigdatapoolsPaginator) NextPage(ctx context.Context) ([]
 var listSynapseWorkspaceBigdatapoolsFilters = map[string]string{
 	"id":                      "Description.BigDataPool.ID",
 	"name":                    "Description.BigDataPool.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.BigDataPool.Tags",
 	"title":                   "Description.BigDataPool.Name",
 }
@@ -35367,7 +35367,7 @@ func ListSynapseWorkspaceBigdatapools(ctx context.Context, d *plugin.QueryData, 
 var getSynapseWorkspaceBigdatapoolsFilters = map[string]string{
 	"id":                      "Description.BigDataPool.ID",
 	"name":                    "Description.BigDataPool.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.BigDataPool.Tags",
 	"title":                   "Description.BigDataPool.Name",
 }
@@ -35430,14 +35430,14 @@ func GetSynapseWorkspaceBigdatapools(ctx context.Context, d *plugin.QueryData, _
 // ==========================  START: SynapseWorkspaceSqlpools =============================
 
 type SynapseWorkspaceSqlpools struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.SynapseWorkspaceSqlpoolsDescription `json:"description"`
-	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                                                 `json:"resource_id"`
+	PlatformID      string                                                 `json:"platform_id"`
+	Description     azure_subscription.SynapseWorkspaceSqlpoolsDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                            `json:"metadata"`
+	DescribedBy     string                                                 `json:"described_by"`
+	ResourceType    string                                                 `json:"resource_type"`
+	IntegrationType string                                                 `json:"integration_type"`
+	IntegrationID   string                                                 `json:"integration_id"`
 }
 
 type SynapseWorkspaceSqlpoolsHit struct {
@@ -35510,7 +35510,7 @@ func (p SynapseWorkspaceSqlpoolsPaginator) NextPage(ctx context.Context) ([]Syna
 var listSynapseWorkspaceSqlpoolsFilters = map[string]string{
 	"id":                      "Description.SqlPool.ID",
 	"name":                    "Description.SqlPool.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.SqlPool.Tags",
 	"title":                   "Description.SqlPool.Name",
 }
@@ -35578,7 +35578,7 @@ func ListSynapseWorkspaceSqlpools(ctx context.Context, d *plugin.QueryData, _ *p
 var getSynapseWorkspaceSqlpoolsFilters = map[string]string{
 	"id":                      "Description.SqlPool.ID",
 	"name":                    "Description.SqlPool.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.SqlPool.Tags",
 	"title":                   "Description.SqlPool.Name",
 }
@@ -35641,14 +35641,14 @@ func GetSynapseWorkspaceSqlpools(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: Location =============================
 
 type Location struct {
-	ResourceID      string                    `json:"resource_id"`
-	PlatformID      string                    `json:"platform_id"`
-	Description     azure.LocationDescription `json:"description"`
-	Metadata        azure.Metadata            `json:"metadata"`
-	DescribedBy     string                    `json:"described_by"`
-	ResourceType    string                    `json:"resource_type"`
-	IntegrationType string                    `json:"integration_type"`
-	IntegrationID   string                    `json:"integration_id"`
+	ResourceID      string                                 `json:"resource_id"`
+	PlatformID      string                                 `json:"platform_id"`
+	Description     azure_subscription.LocationDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata            `json:"metadata"`
+	DescribedBy     string                                 `json:"described_by"`
+	ResourceType    string                                 `json:"resource_type"`
+	IntegrationType string                                 `json:"integration_type"`
+	IntegrationID   string                                 `json:"integration_id"`
 }
 
 type LocationHit struct {
@@ -35724,7 +35724,7 @@ var listLocationFilters = map[string]string{
 	"latitude":                "Description.Location.Latitude",
 	"longitude":               "Description.Location.Longitude",
 	"name":                    "Description.Location.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"title":                   "Description.Location.Name",
 }
 
@@ -35794,7 +35794,7 @@ var getLocationFilters = map[string]string{
 	"latitude":                "Description.Location.Latitude",
 	"longitude":               "Description.Location.Longitude",
 	"name":                    "description.Location.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"title":                   "Description.Location.Name",
 }
@@ -35857,14 +35857,14 @@ func GetLocation(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 // ==========================  START: AnalysisServiceServer =============================
 
 type AnalysisServiceServer struct {
-	ResourceID      string                                 `json:"resource_id"`
-	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.AnalysisServiceServerDescription `json:"description"`
-	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     string                                 `json:"described_by"`
-	ResourceType    string                                 `json:"resource_type"`
-	IntegrationType string                                 `json:"integration_type"`
-	IntegrationID   string                                 `json:"integration_id"`
+	ResourceID      string                                              `json:"resource_id"`
+	PlatformID      string                                              `json:"platform_id"`
+	Description     azure_subscription.AnalysisServiceServerDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                         `json:"metadata"`
+	DescribedBy     string                                              `json:"described_by"`
+	ResourceType    string                                              `json:"resource_type"`
+	IntegrationType string                                              `json:"integration_type"`
+	IntegrationID   string                                              `json:"integration_id"`
 }
 
 type AnalysisServiceServerHit struct {
@@ -35937,7 +35937,7 @@ func (p AnalysisServiceServerPaginator) NextPage(ctx context.Context) ([]Analysi
 var listAnalysisServiceServerFilters = map[string]string{
 	"id":                      "Description.Servers.ID",
 	"name":                    "Description.Server.Properties.ServerFullName",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Server.Tags",
 	"title":                   "Description.Server.Properties.ServerFullName",
 }
@@ -36005,7 +36005,7 @@ func ListAnalysisServiceServer(ctx context.Context, d *plugin.QueryData, _ *plug
 var getAnalysisServiceServerFilters = map[string]string{
 	"id":                      "Description.Servers.ID",
 	"name":                    "description.Server.name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"tags":                    "Description.Server.Tags",
 	"title":                   "Description.Server.Properties.ServerFullName",
@@ -36069,14 +36069,14 @@ func GetAnalysisServiceServer(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: PostgresqlServer =============================
 
 type PostgresqlServer struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.PostgresqlServerDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.PostgresqlServerDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type PostgresqlServerHit struct {
@@ -36159,7 +36159,7 @@ var listPostgresqlServerFilters = map[string]string{
 	"master_server_id":             "Description.Server.Properties.MasterServerID",
 	"minimal_tls_version":          "Description.Server.Properties.MinimalTLSVersion",
 	"name":                         "Description.Server.Name",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"public_network_access":        "Description.Server.Properties.PublicNetworkAccess",
 	"replica_capacity":             "Description.Server.Properties.ReplicaCapacity",
 	"replication_role":             "Description.Server.Properties.ReplicationRole",
@@ -36256,7 +36256,7 @@ var getPostgresqlServerFilters = map[string]string{
 	"master_server_id":             "Description.Server.Properties.MasterServerID",
 	"minimal_tls_version":          "Description.Server.Properties.MinimalTLSVersion",
 	"name":                         "description.Server.name",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"public_network_access":        "Description.Server.Properties.PublicNetworkAccess",
 	"replica_capacity":             "Description.Server.Properties.ReplicaCapacity",
 	"replication_role":             "Description.Server.Properties.ReplicationRole",
@@ -36338,14 +36338,14 @@ func GetPostgresqlServer(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: PostgresqlFlexibleServer =============================
 
 type PostgresqlFlexibleServer struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.PostgresqlFlexibleServerDescription `json:"description"`
-	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                                                 `json:"resource_id"`
+	PlatformID      string                                                 `json:"platform_id"`
+	Description     azure_subscription.PostgresqlFlexibleServerDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                            `json:"metadata"`
+	DescribedBy     string                                                 `json:"described_by"`
+	ResourceType    string                                                 `json:"resource_type"`
+	IntegrationType string                                                 `json:"integration_type"`
+	IntegrationID   string                                                 `json:"integration_id"`
 }
 
 type PostgresqlFlexibleServerHit struct {
@@ -36420,7 +36420,7 @@ var listPostgresqlFlexibleServerFilters = map[string]string{
 	"id":                             "Description.Server.ID",
 	"location":                       "Description.Server.Location",
 	"name":                           "Description.Server.Name",
-	"platform_integration_id":        "metadata.IntegrationID",
+	"platform_integration_id":        "IntegrationID",
 	"server_properties":              "Description.Server.ServerProperties",
 	"sku":                            "Description.Server.SKU",
 	"tags":                           "Description.Server.Tags",
@@ -36493,7 +36493,7 @@ var getPostgresqlFlexibleServerFilters = map[string]string{
 	"id":                             "Description.Server.ID",
 	"location":                       "Description.Server.Location",
 	"name":                           "Description.Server.Name",
-	"platform_integration_id":        "metadata.IntegrationID",
+	"platform_integration_id":        "IntegrationID",
 	"server_properties":              "Description.Server.ServerProperties",
 	"sku":                            "Description.Server.SKU",
 	"tags":                           "Description.Server.Tags",
@@ -36559,14 +36559,14 @@ func GetPostgresqlFlexibleServer(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: StorageSync =============================
 
 type StorageSync struct {
-	ResourceID      string                       `json:"resource_id"`
-	PlatformID      string                       `json:"platform_id"`
-	Description     azure.StorageSyncDescription `json:"description"`
-	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     string                       `json:"described_by"`
-	ResourceType    string                       `json:"resource_type"`
-	IntegrationType string                       `json:"integration_type"`
-	IntegrationID   string                       `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure_subscription.StorageSyncDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata               `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type StorageSyncHit struct {
@@ -36642,7 +36642,7 @@ var listStorageSyncFilters = map[string]string{
 	"last_operation_name":         "Description.Service.Properties.LastOperationName",
 	"last_workflow_id":            "Description.Service.Properties.LastWorkflowID",
 	"name":                        "Description.Service.Name",
-	"platform_integration_id":     "metadata.IntegrationID",
+	"platform_integration_id":     "IntegrationID",
 	"provisioning_state":          "Description.Service.Properties.ProvisioningState",
 	"resource_group":              "Description.ResourceGroup",
 	"storage_sync_service_status": "Description.Service.Properties.StorageSyncServiceStatus",
@@ -36718,7 +36718,7 @@ var getStorageSyncFilters = map[string]string{
 	"last_operation_name":         "Description.Service.Properties.LastOperationName",
 	"last_workflow_id":            "Description.Service.Properties.LastWorkflowID",
 	"name":                        "description.Service.name",
-	"platform_integration_id":     "metadata.IntegrationID",
+	"platform_integration_id":     "IntegrationID",
 	"provisioning_state":          "Description.Service.Properties.ProvisioningState",
 	"resource_group":              "description.ResourceGroup",
 	"storage_sync_service_status": "Description.Service.Properties.StorageSyncServiceStatus",
@@ -36786,14 +36786,14 @@ func GetStorageSync(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: MssqlManagedInstance =============================
 
 type MssqlManagedInstance struct {
-	ResourceID      string                                `json:"resource_id"`
-	PlatformID      string                                `json:"platform_id"`
-	Description     azure.MssqlManagedInstanceDescription `json:"description"`
-	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     string                                `json:"described_by"`
-	ResourceType    string                                `json:"resource_type"`
-	IntegrationType string                                `json:"integration_type"`
-	IntegrationID   string                                `json:"integration_id"`
+	ResourceID      string                                             `json:"resource_id"`
+	PlatformID      string                                             `json:"platform_id"`
+	Description     azure_subscription.MssqlManagedInstanceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                        `json:"metadata"`
+	DescribedBy     string                                             `json:"described_by"`
+	ResourceType    string                                             `json:"resource_type"`
+	IntegrationType string                                             `json:"integration_type"`
+	IntegrationID   string                                             `json:"integration_id"`
 }
 
 type MssqlManagedInstanceHit struct {
@@ -36879,7 +36879,7 @@ var listMssqlManagedInstanceFilters = map[string]string{
 	"managed_instance_create_mode": "Description.ManagedInstance.Properties.ManagedInstanceCreateMode",
 	"minimal_tls_version":          "Description.ManagedInstance.Properties.MinimalTLSVersion",
 	"name":                         "Description.ManagedInstance.Name",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"proxy_override":               "Description.ManagedInstance.Properties.ProxyOverride",
 	"public_data_endpoint_enabled": "Description.ManagedInstance.Properties.PublicDataEndpointEnabled",
 	"resource_group":               "Description.ResourceGroup",
@@ -36973,7 +36973,7 @@ var getMssqlManagedInstanceFilters = map[string]string{
 	"managed_instance_create_mode": "Description.ManagedInstance.Properties.ManagedInstanceCreateMode",
 	"minimal_tls_version":          "Description.ManagedInstance.Properties.MinimalTLSVersion",
 	"name":                         "description.ManagedInstance.name",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"proxy_override":               "Description.ManagedInstance.Properties.ProxyOverride",
 	"public_data_endpoint_enabled": "Description.ManagedInstance.Properties.PublicDataEndpointEnabled",
 	"resource_group":               "description.ResourceGroup",
@@ -37049,14 +37049,14 @@ func GetMssqlManagedInstance(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: MssqlManagedInstanceDatabases =============================
 
 type MssqlManagedInstanceDatabases struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure.MssqlManagedInstanceDatabasesDescription `json:"description"`
-	Metadata        azure.Metadata                                 `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                                                      `json:"resource_id"`
+	PlatformID      string                                                      `json:"platform_id"`
+	Description     azure_subscription.MssqlManagedInstanceDatabasesDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                 `json:"metadata"`
+	DescribedBy     string                                                      `json:"described_by"`
+	ResourceType    string                                                      `json:"resource_type"`
+	IntegrationType string                                                      `json:"integration_type"`
+	IntegrationID   string                                                      `json:"integration_id"`
 }
 
 type MssqlManagedInstanceDatabasesHit struct {
@@ -37129,7 +37129,7 @@ func (p MssqlManagedInstanceDatabasesPaginator) NextPage(ctx context.Context) ([
 var listMssqlManagedInstanceDatabasesFilters = map[string]string{
 	"id":                      "Description.ManagedInstance.ID",
 	"name":                    "Description.ManagedInstance.SKU.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.ManagedInstance.Tags",
 	"title":                   "Description.ManagedInstance.SKU.Name",
 }
@@ -37197,7 +37197,7 @@ func ListMssqlManagedInstanceDatabases(ctx context.Context, d *plugin.QueryData,
 var getMssqlManagedInstanceDatabasesFilters = map[string]string{
 	"id":                      "Description.ManagedInstance.ID",
 	"name":                    "Description.ManagedInstance.SKU.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.ManagedInstance.Tags",
 	"title":                   "Description.ManagedInstance.SKU.Name",
 }
@@ -37260,14 +37260,14 @@ func GetMssqlManagedInstanceDatabases(ctx context.Context, d *plugin.QueryData, 
 // ==========================  START: SqlDatabase =============================
 
 type SqlDatabase struct {
-	ResourceID      string                       `json:"resource_id"`
-	PlatformID      string                       `json:"platform_id"`
-	Description     azure.SqlDatabaseDescription `json:"description"`
-	Metadata        azure.Metadata               `json:"metadata"`
-	DescribedBy     string                       `json:"described_by"`
-	ResourceType    string                       `json:"resource_type"`
-	IntegrationType string                       `json:"integration_type"`
-	IntegrationID   string                       `json:"integration_id"`
+	ResourceID      string                                    `json:"resource_id"`
+	PlatformID      string                                    `json:"platform_id"`
+	Description     azure_subscription.SqlDatabaseDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata               `json:"metadata"`
+	DescribedBy     string                                    `json:"described_by"`
+	ResourceType    string                                    `json:"resource_type"`
+	IntegrationType string                                    `json:"integration_type"`
+	IntegrationID   string                                    `json:"integration_id"`
 }
 
 type SqlDatabaseHit struct {
@@ -37352,7 +37352,7 @@ var listSqlDatabaseFilters = map[string]string{
 	"location":                     "Description.Database.Location",
 	"max_size_bytes":               "Description.Database.Properties.MaxSizeBytes",
 	"name":                         "Description.Database.Name",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"read_scale":                   "Description.Database.Properties.ReadScale",
 	"recovery_services_recovery_point_resource_id": "Description.Database.Properties.RecoveryServicesRecoveryPointID",
 	"requested_service_objective_id":               "Description.Database.Properties.RequestedServiceObjectiveName",
@@ -37451,7 +37451,7 @@ var getSqlDatabaseFilters = map[string]string{
 	"location":                     "Description.Database.Location",
 	"max_size_bytes":               "Description.Database.Properties.MaxSizeBytes",
 	"name":                         "description.Database.name",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"read_scale":                   "Description.Database.Properties.ReadScale",
 	"recovery_services_recovery_point_resource_id": "Description.Database.Properties.RecoveryServicesRecoveryPointID",
 	"requested_service_objective_id":               "Description.Database.Properties.RequestedServiceObjectiveName",
@@ -37533,14 +37533,14 @@ func GetSqlDatabase(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateD
 // ==========================  START: SqlInstancePool =============================
 
 type SqlInstancePool struct {
-	ResourceID      string                           `json:"resource_id"`
-	PlatformID      string                           `json:"platform_id"`
-	Description     azure.SqlInstancePoolDescription `json:"description"`
-	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     string                           `json:"described_by"`
-	ResourceType    string                           `json:"resource_type"`
-	IntegrationType string                           `json:"integration_type"`
-	IntegrationID   string                           `json:"integration_id"`
+	ResourceID      string                                        `json:"resource_id"`
+	PlatformID      string                                        `json:"platform_id"`
+	Description     azure_subscription.SqlInstancePoolDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                   `json:"metadata"`
+	DescribedBy     string                                        `json:"described_by"`
+	ResourceType    string                                        `json:"resource_type"`
+	IntegrationType string                                        `json:"integration_type"`
+	IntegrationID   string                                        `json:"integration_id"`
 }
 
 type SqlInstancePoolHit struct {
@@ -37742,14 +37742,14 @@ func GetSqlInstancePool(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: SqlServer =============================
 
 type SqlServer struct {
-	ResourceID      string                     `json:"resource_id"`
-	PlatformID      string                     `json:"platform_id"`
-	Description     azure.SqlServerDescription `json:"description"`
-	Metadata        azure.Metadata             `json:"metadata"`
-	DescribedBy     string                     `json:"described_by"`
-	ResourceType    string                     `json:"resource_type"`
-	IntegrationType string                     `json:"integration_type"`
-	IntegrationID   string                     `json:"integration_id"`
+	ResourceID      string                                  `json:"resource_id"`
+	PlatformID      string                                  `json:"platform_id"`
+	Description     azure_subscription.SqlServerDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata             `json:"metadata"`
+	DescribedBy     string                                  `json:"described_by"`
+	ResourceType    string                                  `json:"resource_type"`
+	IntegrationType string                                  `json:"integration_type"`
+	IntegrationID   string                                  `json:"integration_id"`
 }
 
 type SqlServerHit struct {
@@ -37832,7 +37832,7 @@ var listSqlServerFilters = map[string]string{
 	"location":                        "Description.Server.Location",
 	"minimal_tls_version":             "Description.Server.Properties.MinimalTLSVersion",
 	"name":                            "Description.Server.Name",
-	"platform_integration_id":         "metadata.IntegrationID",
+	"platform_integration_id":         "IntegrationID",
 	"private_endpoint_connections":    "Description.PrivateEndpointConnections",
 	"public_network_access":           "Description.Server.Properties.PublicNetworkAccess",
 	"resource_group":                  "Description.ResourceGroup",
@@ -37922,7 +37922,7 @@ var getSqlServerFilters = map[string]string{
 	"location":                        "Description.Server.Location",
 	"minimal_tls_version":             "Description.Server.Properties.MinimalTLSVersion",
 	"name":                            "description.Server.name",
-	"platform_integration_id":         "metadata.IntegrationID",
+	"platform_integration_id":         "IntegrationID",
 	"private_endpoint_connections":    "Description.PrivateEndpointConnections",
 	"public_network_access":           "Description.Server.Properties.PublicNetworkAccess",
 	"resource_group":                  "description.ResourceGroup",
@@ -37997,14 +37997,14 @@ func GetSqlServer(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 // ==========================  START: SqlServerJobAgent =============================
 
 type SqlServerJobAgent struct {
-	ResourceID      string                             `json:"resource_id"`
-	PlatformID      string                             `json:"platform_id"`
-	Description     azure.SqlServerJobAgentDescription `json:"description"`
-	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     string                             `json:"described_by"`
-	ResourceType    string                             `json:"resource_type"`
-	IntegrationType string                             `json:"integration_type"`
-	IntegrationID   string                             `json:"integration_id"`
+	ResourceID      string                                          `json:"resource_id"`
+	PlatformID      string                                          `json:"platform_id"`
+	Description     azure_subscription.SqlServerJobAgentDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                     `json:"metadata"`
+	DescribedBy     string                                          `json:"described_by"`
+	ResourceType    string                                          `json:"resource_type"`
+	IntegrationType string                                          `json:"integration_type"`
+	IntegrationID   string                                          `json:"integration_id"`
 }
 
 type SqlServerJobAgentHit struct {
@@ -38077,7 +38077,7 @@ func (p SqlServerJobAgentPaginator) NextPage(ctx context.Context) ([]SqlServerJo
 var listSqlServerJobAgentFilters = map[string]string{
 	"id":                      "Description.JobAgent.ID",
 	"name":                    "Description.JobAgent.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.JobAgent.Tags",
 	"title":                   "Description.JobAgent.Name",
 }
@@ -38145,7 +38145,7 @@ func ListSqlServerJobAgent(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 var getSqlServerJobAgentFilters = map[string]string{
 	"id":                      "Description.JobAgent.ID",
 	"name":                    "Description.JobAgent.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.JobAgent.Tags",
 	"title":                   "Description.JobAgent.Name",
 }
@@ -38208,14 +38208,14 @@ func GetSqlServerJobAgent(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: SqlVirtualClusters =============================
 
 type SqlVirtualClusters struct {
-	ResourceID      string                              `json:"resource_id"`
-	PlatformID      string                              `json:"platform_id"`
-	Description     azure.SqlVirtualClustersDescription `json:"description"`
-	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     string                              `json:"described_by"`
-	ResourceType    string                              `json:"resource_type"`
-	IntegrationType string                              `json:"integration_type"`
-	IntegrationID   string                              `json:"integration_id"`
+	ResourceID      string                                           `json:"resource_id"`
+	PlatformID      string                                           `json:"platform_id"`
+	Description     azure_subscription.SqlVirtualClustersDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                      `json:"metadata"`
+	DescribedBy     string                                           `json:"described_by"`
+	ResourceType    string                                           `json:"resource_type"`
+	IntegrationType string                                           `json:"integration_type"`
+	IntegrationID   string                                           `json:"integration_id"`
 }
 
 type SqlVirtualClustersHit struct {
@@ -38288,7 +38288,7 @@ func (p SqlVirtualClustersPaginator) NextPage(ctx context.Context) ([]SqlVirtual
 var listSqlVirtualClustersFilters = map[string]string{
 	"id":                      "Description.VirtualClusters.ID",
 	"name":                    "Description.VirtualClusters.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.VirtualClusters.Tags",
 	"title":                   "Description.VirtualClusters.Name",
 }
@@ -38356,7 +38356,7 @@ func ListSqlVirtualClusters(ctx context.Context, d *plugin.QueryData, _ *plugin.
 var getSqlVirtualClustersFilters = map[string]string{
 	"id":                      "Description.VirtualClusters.ID",
 	"name":                    "Description.VirtualClusters.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.VirtualClusters.Tags",
 	"title":                   "Description.VirtualClusters.Name",
 }
@@ -38419,14 +38419,14 @@ func GetSqlVirtualClusters(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: SqlServerElasticPool =============================
 
 type SqlServerElasticPool struct {
-	ResourceID      string                                `json:"resource_id"`
-	PlatformID      string                                `json:"platform_id"`
-	Description     azure.SqlServerElasticPoolDescription `json:"description"`
-	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     string                                `json:"described_by"`
-	ResourceType    string                                `json:"resource_type"`
-	IntegrationType string                                `json:"integration_type"`
-	IntegrationID   string                                `json:"integration_id"`
+	ResourceID      string                                             `json:"resource_id"`
+	PlatformID      string                                             `json:"platform_id"`
+	Description     azure_subscription.SqlServerElasticPoolDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                        `json:"metadata"`
+	DescribedBy     string                                             `json:"described_by"`
+	ResourceType    string                                             `json:"resource_type"`
+	IntegrationType string                                             `json:"integration_type"`
+	IntegrationID   string                                             `json:"integration_id"`
 }
 
 type SqlServerElasticPoolHit struct {
@@ -38505,7 +38505,7 @@ var listSqlServerElasticPoolFilters = map[string]string{
 	"id":                      "Description.Pool.ID",
 	"kind":                    "Description.Pool.Kind",
 	"name":                    "Description.Pool.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"server_name":             "Description.ServerName",
 	"state":                   "Description.Pool.Properties.State",
@@ -38585,7 +38585,7 @@ var getSqlServerElasticPoolFilters = map[string]string{
 	"id":                      "Description.Pool.ID",
 	"kind":                    "Description.Pool.Kind",
 	"name":                    "description.Pool.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"server_name":             "description.ServerName",
 	"state":                   "Description.Pool.Properties.State",
@@ -38654,14 +38654,14 @@ func GetSqlServerElasticPool(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: SqlServerVirtualMachine =============================
 
 type SqlServerVirtualMachine struct {
-	ResourceID      string                                   `json:"resource_id"`
-	PlatformID      string                                   `json:"platform_id"`
-	Description     azure.SqlServerVirtualMachineDescription `json:"description"`
-	Metadata        azure.Metadata                           `json:"metadata"`
-	DescribedBy     string                                   `json:"described_by"`
-	ResourceType    string                                   `json:"resource_type"`
-	IntegrationType string                                   `json:"integration_type"`
-	IntegrationID   string                                   `json:"integration_id"`
+	ResourceID      string                                                `json:"resource_id"`
+	PlatformID      string                                                `json:"platform_id"`
+	Description     azure_subscription.SqlServerVirtualMachineDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                           `json:"metadata"`
+	DescribedBy     string                                                `json:"described_by"`
+	ResourceType    string                                                `json:"resource_type"`
+	IntegrationType string                                                `json:"integration_type"`
+	IntegrationID   string                                                `json:"integration_id"`
 }
 
 type SqlServerVirtualMachineHit struct {
@@ -38738,7 +38738,7 @@ var listSqlServerVirtualMachineFilters = map[string]string{
 	"identity":                      "Description.VirtualMachine.Identity",
 	"key_vault_credential_settings": "Description.VirtualMachine.Properties.KeyVaultCredentialSettings",
 	"name":                          "Description.VirtualMachine.Name",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"provisioning_state":            "Description.VirtualMachine.Properties.ProvisioningState",
 	"resource_group":                "Description.ResourceGroup",
 	"server_configurations_management_settings": "Description.VirtualMachine.Properties.ServerConfigurationsManagementSettings",
@@ -38822,7 +38822,7 @@ var getSqlServerVirtualMachineFilters = map[string]string{
 	"identity":                      "Description.VirtualMachine.Identity",
 	"key_vault_credential_settings": "Description.VirtualMachine.Properties.KeyVaultCredentialSettings",
 	"name":                          "description.VirtualMachine.Name",
-	"platform_integration_id":       "metadata.IntegrationID",
+	"platform_integration_id":       "IntegrationID",
 	"provisioning_state":            "Description.VirtualMachine.Properties.ProvisioningState",
 	"resource_group":                "description.ResourceGroup",
 	"server_configurations_management_settings": "Description.VirtualMachine.Properties.ServerConfigurationsManagementSettings",
@@ -38897,14 +38897,14 @@ func GetSqlServerVirtualMachine(ctx context.Context, d *plugin.QueryData, _ *plu
 // ==========================  START: SqlServerVirtualMachineGroup =============================
 
 type SqlServerVirtualMachineGroup struct {
-	ResourceID      string                                        `json:"resource_id"`
-	PlatformID      string                                        `json:"platform_id"`
-	Description     azure.SqlServerVirtualMachineGroupDescription `json:"description"`
-	Metadata        azure.Metadata                                `json:"metadata"`
-	DescribedBy     string                                        `json:"described_by"`
-	ResourceType    string                                        `json:"resource_type"`
-	IntegrationType string                                        `json:"integration_type"`
-	IntegrationID   string                                        `json:"integration_id"`
+	ResourceID      string                                                     `json:"resource_id"`
+	PlatformID      string                                                     `json:"platform_id"`
+	Description     azure_subscription.SqlServerVirtualMachineGroupDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                `json:"metadata"`
+	DescribedBy     string                                                     `json:"described_by"`
+	ResourceType    string                                                     `json:"resource_type"`
+	IntegrationType string                                                     `json:"integration_type"`
+	IntegrationID   string                                                     `json:"integration_id"`
 }
 
 type SqlServerVirtualMachineGroupHit struct {
@@ -38977,7 +38977,7 @@ func (p SqlServerVirtualMachineGroupPaginator) NextPage(ctx context.Context) ([]
 var listSqlServerVirtualMachineGroupFilters = map[string]string{
 	"id":                      "Description.Group.ID",
 	"name":                    "Description.Group.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Group.Tags",
 	"title":                   "Description.Group.Name",
 }
@@ -39045,7 +39045,7 @@ func ListSqlServerVirtualMachineGroup(ctx context.Context, d *plugin.QueryData, 
 var getSqlServerVirtualMachineGroupFilters = map[string]string{
 	"id":                      "Description.Group.ID",
 	"name":                    "Description.Group.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tags":                    "Description.Group.Tags",
 	"title":                   "Description.Group.Name",
 }
@@ -39108,14 +39108,14 @@ func GetSqlServerVirtualMachineGroup(ctx context.Context, d *plugin.QueryData, _
 // ==========================  START: SqlServerFlexibleServer =============================
 
 type SqlServerFlexibleServer struct {
-	ResourceID      string                                   `json:"resource_id"`
-	PlatformID      string                                   `json:"platform_id"`
-	Description     azure.SqlServerFlexibleServerDescription `json:"description"`
-	Metadata        azure.Metadata                           `json:"metadata"`
-	DescribedBy     string                                   `json:"described_by"`
-	ResourceType    string                                   `json:"resource_type"`
-	IntegrationType string                                   `json:"integration_type"`
-	IntegrationID   string                                   `json:"integration_id"`
+	ResourceID      string                                                `json:"resource_id"`
+	PlatformID      string                                                `json:"platform_id"`
+	Description     azure_subscription.SqlServerFlexibleServerDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                           `json:"metadata"`
+	DescribedBy     string                                                `json:"described_by"`
+	ResourceType    string                                                `json:"resource_type"`
+	IntegrationType string                                                `json:"integration_type"`
+	IntegrationID   string                                                `json:"integration_id"`
 }
 
 type SqlServerFlexibleServerHit struct {
@@ -39199,7 +39199,7 @@ var listSqlServerFlexibleServerFilters = map[string]string{
 	"maintenance_window":             "Description.FlexibleServer.Properties.MaintenanceWindow",
 	"name":                           "Description.FlexibleServer.Name",
 	"network":                        "Description.FlexibleServer.Properties.Network",
-	"platform_integration_id":        "metadata.IntegrationID",
+	"platform_integration_id":        "IntegrationID",
 	"public_network_access":          "Description.FlexibleServer.Properties.Network.PublicNetworkAccess",
 	"replica_capacity":               "Description.FlexibleServer.Properties.ReplicaCapacity",
 	"replication_role":               "Description.FlexibleServer.Properties.ReplicationRole",
@@ -39294,7 +39294,7 @@ var getSqlServerFlexibleServerFilters = map[string]string{
 	"maintenance_window":             "Description.FlexibleServer.Properties.MaintenanceWindow",
 	"name":                           "description.FlexibleServer.Name",
 	"network":                        "Description.FlexibleServer.Properties.Network",
-	"platform_integration_id":        "metadata.IntegrationID",
+	"platform_integration_id":        "IntegrationID",
 	"public_network_access":          "Description.FlexibleServer.Properties.Network.PublicNetworkAccess",
 	"replica_capacity":               "Description.FlexibleServer.Properties.ReplicaCapacity",
 	"replication_role":               "Description.FlexibleServer.Properties.ReplicationRole",
@@ -39373,14 +39373,14 @@ func GetSqlServerFlexibleServer(ctx context.Context, d *plugin.QueryData, _ *plu
 // ==========================  START: StorageAccount =============================
 
 type StorageAccount struct {
-	ResourceID      string                          `json:"resource_id"`
-	PlatformID      string                          `json:"platform_id"`
-	Description     azure.StorageAccountDescription `json:"description"`
-	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     string                          `json:"described_by"`
-	ResourceType    string                          `json:"resource_type"`
-	IntegrationType string                          `json:"integration_type"`
-	IntegrationID   string                          `json:"integration_id"`
+	ResourceID      string                                       `json:"resource_id"`
+	PlatformID      string                                       `json:"platform_id"`
+	Description     azure_subscription.StorageAccountDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                  `json:"metadata"`
+	DescribedBy     string                                       `json:"described_by"`
+	ResourceType    string                                       `json:"resource_type"`
+	IntegrationType string                                       `json:"integration_type"`
+	IntegrationID   string                                       `json:"integration_id"`
 }
 
 type StorageAccountHit struct {
@@ -39481,7 +39481,7 @@ var listStorageAccountFilters = map[string]string{
 	"network_ip_rules":                                       "Description.Account.Properties.NetworkRuleSet.IPRules",
 	"network_rule_bypass":                                    "Description.Account.Properties.NetworkRuleSet.Bypass",
 	"network_rule_default_action":                            "Description.Account.Properties.NetworkRuleSet.DefaultAction",
-	"platform_integration_id":                                "metadata.IntegrationID",
+	"platform_integration_id":                                "IntegrationID",
 	"primary_blob_endpoint":                                  "Description.Account.Properties.PrimaryEndpoints.Blob",
 	"primary_dfs_endpoint":                                   "Description.Account.Properties.PrimaryEndpoints.Dfs",
 	"primary_file_endpoint":                                  "Description.Account.Properties.PrimaryEndpoints.File",
@@ -39608,7 +39608,7 @@ var getStorageAccountFilters = map[string]string{
 	"network_ip_rules":                                       "Description.Account.Properties.NetworkRuleSet.IPRules",
 	"network_rule_bypass":                                    "Description.Account.Properties.NetworkRuleSet.Bypass",
 	"network_rule_default_action":                            "Description.Account.Properties.NetworkRuleSet.DefaultAction",
-	"platform_integration_id":                                "metadata.IntegrationID",
+	"platform_integration_id":                                "IntegrationID",
 	"primary_blob_endpoint":                                  "Description.Account.Properties.PrimaryEndpoints.Blob",
 	"primary_dfs_endpoint":                                   "Description.Account.Properties.PrimaryEndpoints.Dfs",
 	"primary_file_endpoint":                                  "Description.Account.Properties.PrimaryEndpoints.File",
@@ -39703,14 +39703,14 @@ func GetStorageAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: RecoveryServicesVault =============================
 
 type RecoveryServicesVault struct {
-	ResourceID      string                                 `json:"resource_id"`
-	PlatformID      string                                 `json:"platform_id"`
-	Description     azure.RecoveryServicesVaultDescription `json:"description"`
-	Metadata        azure.Metadata                         `json:"metadata"`
-	DescribedBy     string                                 `json:"described_by"`
-	ResourceType    string                                 `json:"resource_type"`
-	IntegrationType string                                 `json:"integration_type"`
-	IntegrationID   string                                 `json:"integration_id"`
+	ResourceID      string                                              `json:"resource_id"`
+	PlatformID      string                                              `json:"platform_id"`
+	Description     azure_subscription.RecoveryServicesVaultDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                         `json:"metadata"`
+	DescribedBy     string                                              `json:"described_by"`
+	ResourceType    string                                              `json:"resource_type"`
+	IntegrationType string                                              `json:"integration_type"`
+	IntegrationID   string                                              `json:"integration_id"`
 }
 
 type RecoveryServicesVaultHit struct {
@@ -39786,7 +39786,7 @@ var listRecoveryServicesVaultFilters = map[string]string{
 	"id":                                "Description.Vault.ID",
 	"identity":                          "Description.Vault.Identity",
 	"name":                              "Description.Vault.Name",
-	"platform_integration_id":           "metadata.IntegrationID",
+	"platform_integration_id":           "IntegrationID",
 	"private_endpoint_connections":      "Description.Vault.Properties.PrivateEndpointConnections",
 	"private_endpoint_state_for_backup": "Description.Vault.Properties.PrivateEndpointStateForBackup",
 	"private_endpoint_state_for_site_recovery": "Description.Vault.Properties.PrivateEndpointStateForSiteRecovery",
@@ -39865,7 +39865,7 @@ var getRecoveryServicesVaultFilters = map[string]string{
 	"id":                                "Description.Vault.ID",
 	"identity":                          "Description.Vault.Identity",
 	"name":                              "description.Vault.Name",
-	"platform_integration_id":           "metadata.IntegrationID",
+	"platform_integration_id":           "IntegrationID",
 	"private_endpoint_connections":      "Description.Vault.Properties.PrivateEndpointConnections",
 	"private_endpoint_state_for_backup": "Description.Vault.Properties.PrivateEndpointStateForBackup",
 	"private_endpoint_state_for_site_recovery": "Description.Vault.Properties.PrivateEndpointStateForSiteRecovery",
@@ -39936,14 +39936,14 @@ func GetRecoveryServicesVault(ctx context.Context, d *plugin.QueryData, _ *plugi
 // ==========================  START: RecoveryServicesBackupJob =============================
 
 type RecoveryServicesBackupJob struct {
-	ResourceID      string                                     `json:"resource_id"`
-	PlatformID      string                                     `json:"platform_id"`
-	Description     azure.RecoveryServicesBackupJobDescription `json:"description"`
-	Metadata        azure.Metadata                             `json:"metadata"`
-	DescribedBy     string                                     `json:"described_by"`
-	ResourceType    string                                     `json:"resource_type"`
-	IntegrationType string                                     `json:"integration_type"`
-	IntegrationID   string                                     `json:"integration_id"`
+	ResourceID      string                                                  `json:"resource_id"`
+	PlatformID      string                                                  `json:"platform_id"`
+	Description     azure_subscription.RecoveryServicesBackupJobDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                             `json:"metadata"`
+	DescribedBy     string                                                  `json:"described_by"`
+	ResourceType    string                                                  `json:"resource_type"`
+	IntegrationType string                                                  `json:"integration_type"`
+	IntegrationID   string                                                  `json:"integration_id"`
 }
 
 type RecoveryServicesBackupJobHit struct {
@@ -40017,7 +40017,7 @@ var listRecoveryServicesBackupJobFilters = map[string]string{
 	"etag":                    "Description.Job.ETag",
 	"id":                      "Description.Job.ID",
 	"name":                    "Description.Job.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"properties":              "Description.Properties",
 	"resource_group":          "Description.ResourceGroup",
 	"tags":                    "Description.Job.Tags",
@@ -40090,7 +40090,7 @@ var getRecoveryServicesBackupJobFilters = map[string]string{
 	"etag":                    "Description.Job.ETag",
 	"id":                      "Description.Job.ID",
 	"name":                    "description.Vault.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"properties":              "Description.Properties",
 	"resource_group":          "description.ResourceGroup",
 	"tags":                    "Description.Job.Tags",
@@ -40157,14 +40157,14 @@ func GetRecoveryServicesBackupJob(ctx context.Context, d *plugin.QueryData, _ *p
 // ==========================  START: RecoveryServicesBackupPolicy =============================
 
 type RecoveryServicesBackupPolicy struct {
-	ResourceID      string                                        `json:"resource_id"`
-	PlatformID      string                                        `json:"platform_id"`
-	Description     azure.RecoveryServicesBackupPolicyDescription `json:"description"`
-	Metadata        azure.Metadata                                `json:"metadata"`
-	DescribedBy     string                                        `json:"described_by"`
-	ResourceType    string                                        `json:"resource_type"`
-	IntegrationType string                                        `json:"integration_type"`
-	IntegrationID   string                                        `json:"integration_id"`
+	ResourceID      string                                                     `json:"resource_id"`
+	PlatformID      string                                                     `json:"platform_id"`
+	Description     azure_subscription.RecoveryServicesBackupPolicyDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                `json:"metadata"`
+	DescribedBy     string                                                     `json:"described_by"`
+	ResourceType    string                                                     `json:"resource_type"`
+	IntegrationType string                                                     `json:"integration_type"`
+	IntegrationID   string                                                     `json:"integration_id"`
 }
 
 type RecoveryServicesBackupPolicyHit struct {
@@ -40237,7 +40237,7 @@ func (p RecoveryServicesBackupPolicyPaginator) NextPage(ctx context.Context) ([]
 var listRecoveryServicesBackupPolicyFilters = map[string]string{
 	"id":                      "Description.Policy.ID",
 	"name":                    "Description.Policy.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"properties":              "Description.Properties",
 	"resource_group":          "Description.ResourceGroup",
 	"title":                   "Description.Policy.Name",
@@ -40307,7 +40307,7 @@ func ListRecoveryServicesBackupPolicy(ctx context.Context, d *plugin.QueryData, 
 var getRecoveryServicesBackupPolicyFilters = map[string]string{
 	"id":                      "Description.Policy.ID",
 	"name":                    "description.Policy.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"properties":              "Description.Properties",
 	"resource_group":          "description.ResourceGroup",
 	"title":                   "Description.Policy.Name",
@@ -40372,14 +40372,14 @@ func GetRecoveryServicesBackupPolicy(ctx context.Context, d *plugin.QueryData, _
 // ==========================  START: RecoveryServicesBackupItem =============================
 
 type RecoveryServicesBackupItem struct {
-	ResourceID      string                                      `json:"resource_id"`
-	PlatformID      string                                      `json:"platform_id"`
-	Description     azure.RecoveryServicesBackupItemDescription `json:"description"`
-	Metadata        azure.Metadata                              `json:"metadata"`
-	DescribedBy     string                                      `json:"described_by"`
-	ResourceType    string                                      `json:"resource_type"`
-	IntegrationType string                                      `json:"integration_type"`
-	IntegrationID   string                                      `json:"integration_id"`
+	ResourceID      string                                                   `json:"resource_id"`
+	PlatformID      string                                                   `json:"platform_id"`
+	Description     azure_subscription.RecoveryServicesBackupItemDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                              `json:"metadata"`
+	DescribedBy     string                                                   `json:"described_by"`
+	ResourceType    string                                                   `json:"resource_type"`
+	IntegrationType string                                                   `json:"integration_type"`
+	IntegrationID   string                                                   `json:"integration_id"`
 }
 
 type RecoveryServicesBackupItemHit struct {
@@ -40452,7 +40452,7 @@ func (p RecoveryServicesBackupItemPaginator) NextPage(ctx context.Context) ([]Re
 var listRecoveryServicesBackupItemFilters = map[string]string{
 	"id":                      "Description.Item.ID",
 	"name":                    "Description.Item.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"properties":              "Description.Properties",
 	"resource_group":          "Description.ResourceGroup",
 	"title":                   "Description.Item.Name",
@@ -40522,7 +40522,7 @@ func ListRecoveryServicesBackupItem(ctx context.Context, d *plugin.QueryData, _ 
 var getRecoveryServicesBackupItemFilters = map[string]string{
 	"id":                      "Description.Item.ID",
 	"name":                    "description.Item.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"properties":              "Description.Properties",
 	"resource_group":          "description.ResourceGroup",
 	"title":                   "Description.Item.Name",
@@ -40587,14 +40587,14 @@ func GetRecoveryServicesBackupItem(ctx context.Context, d *plugin.QueryData, _ *
 // ==========================  START: HybridKubernetesConnectedCluster =============================
 
 type HybridKubernetesConnectedCluster struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure.HybridKubernetesConnectedClusterDescription `json:"description"`
-	Metadata        azure.Metadata                                    `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                                                         `json:"resource_id"`
+	PlatformID      string                                                         `json:"platform_id"`
+	Description     azure_subscription.HybridKubernetesConnectedClusterDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                    `json:"metadata"`
+	DescribedBy     string                                                         `json:"described_by"`
+	ResourceType    string                                                         `json:"resource_type"`
+	IntegrationType string                                                         `json:"integration_type"`
+	IntegrationID   string                                                         `json:"integration_id"`
 }
 
 type HybridKubernetesConnectedClusterHit struct {
@@ -40680,7 +40680,7 @@ var listHybridKubernetesConnectedClusterFilters = map[string]string{
 	"location":                     "Description.ConnectedCluster.Location",
 	"name":                         "Description.ConnectedCluster.Name",
 	"offering":                     "Description.ConnectedCluster.Properties.Offering",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"provisioning_state":           "Description.ConnectedCluster.Properties.ProvisioningState",
 	"resource_group":               "Description.ResourceGroup",
 	"tags":                         "Description.ConnectedCluster.Tags",
@@ -40766,7 +40766,7 @@ var getHybridKubernetesConnectedClusterFilters = map[string]string{
 	"location":                     "Description.ConnectedCluster.Location",
 	"name":                         "description.ConnectedCluster.Name",
 	"offering":                     "Description.ConnectedCluster.Properties.Offering",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"provisioning_state":           "Description.ConnectedCluster.Properties.ProvisioningState",
 	"resource_group":               "description.ResourceGroup",
 	"tags":                         "Description.ConnectedCluster.Tags",
@@ -40834,14 +40834,14 @@ func GetHybridKubernetesConnectedCluster(ctx context.Context, d *plugin.QueryDat
 // ==========================  START: CostManagementCostByResourceType =============================
 
 type CostManagementCostByResourceType struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure.CostManagementCostByResourceTypeDescription `json:"description"`
-	Metadata        azure.Metadata                                    `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                                                         `json:"resource_id"`
+	PlatformID      string                                                         `json:"platform_id"`
+	Description     azure_subscription.CostManagementCostByResourceTypeDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                    `json:"metadata"`
+	DescribedBy     string                                                         `json:"described_by"`
+	ResourceType    string                                                         `json:"resource_type"`
+	IntegrationType string                                                         `json:"integration_type"`
+	IntegrationID   string                                                         `json:"integration_id"`
 }
 
 type CostManagementCostByResourceTypeHit struct {
@@ -40914,7 +40914,7 @@ func (p CostManagementCostByResourceTypePaginator) NextPage(ctx context.Context)
 var listCostManagementCostByResourceTypeFilters = map[string]string{
 	"cost":                    "Description.CostManagementCostByResourceType.Cost",
 	"id":                      "ResourceID",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"publisher_type":          "Description.CostManagementCostByResourceType.PublisherType",
 	"resource_type":           "Metadata.ResourceType",
 	"service_name":            "Description.CostManagementCostByResourceType.ServiceName",
@@ -40984,7 +40984,7 @@ func ListCostManagementCostByResourceType(ctx context.Context, d *plugin.QueryDa
 var getCostManagementCostByResourceTypeFilters = map[string]string{
 	"cost":                    "Description.CostManagementCostByResourceType.Cost",
 	"id":                      "ResourceID",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"publisher_type":          "Description.CostManagementCostByResourceType.PublisherType",
 	"resource_type":           "Metadata.ResourceType",
 	"service_name":            "Description.CostManagementCostByResourceType.ServiceName",
@@ -41049,14 +41049,14 @@ func GetCostManagementCostByResourceType(ctx context.Context, d *plugin.QueryDat
 // ==========================  START: CostManagementCostBySubscription =============================
 
 type CostManagementCostBySubscription struct {
-	ResourceID      string                                            `json:"resource_id"`
-	PlatformID      string                                            `json:"platform_id"`
-	Description     azure.CostManagementCostBySubscriptionDescription `json:"description"`
-	Metadata        azure.Metadata                                    `json:"metadata"`
-	DescribedBy     string                                            `json:"described_by"`
-	ResourceType    string                                            `json:"resource_type"`
-	IntegrationType string                                            `json:"integration_type"`
-	IntegrationID   string                                            `json:"integration_id"`
+	ResourceID      string                                                         `json:"resource_id"`
+	PlatformID      string                                                         `json:"platform_id"`
+	Description     azure_subscription.CostManagementCostBySubscriptionDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                    `json:"metadata"`
+	DescribedBy     string                                                         `json:"described_by"`
+	ResourceType    string                                                         `json:"resource_type"`
+	IntegrationType string                                                         `json:"integration_type"`
+	IntegrationID   string                                                         `json:"integration_id"`
 }
 
 type CostManagementCostBySubscriptionHit struct {
@@ -41129,7 +41129,7 @@ func (p CostManagementCostBySubscriptionPaginator) NextPage(ctx context.Context)
 var listCostManagementCostBySubscriptionFilters = map[string]string{
 	"id":                      "ResourceID",
 	"name":                    "Description.CostManagementCostBySubscription",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 }
 
 func ListCostManagementCostBySubscription(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -41195,7 +41195,7 @@ func ListCostManagementCostBySubscription(ctx context.Context, d *plugin.QueryDa
 var getCostManagementCostBySubscriptionFilters = map[string]string{
 	"id":                      "ResourceID",
 	"name":                    "Description.CostManagementCostBySubscription",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 }
 
 func GetCostManagementCostBySubscription(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -41256,14 +41256,14 @@ func GetCostManagementCostBySubscription(ctx context.Context, d *plugin.QueryDat
 // ==========================  START: LoadBalancer =============================
 
 type LoadBalancer struct {
-	ResourceID      string                        `json:"resource_id"`
-	PlatformID      string                        `json:"platform_id"`
-	Description     azure.LoadBalancerDescription `json:"description"`
-	Metadata        azure.Metadata                `json:"metadata"`
-	DescribedBy     string                        `json:"described_by"`
-	ResourceType    string                        `json:"resource_type"`
-	IntegrationType string                        `json:"integration_type"`
-	IntegrationID   string                        `json:"integration_id"`
+	ResourceID      string                                     `json:"resource_id"`
+	PlatformID      string                                     `json:"platform_id"`
+	Description     azure_subscription.LoadBalancerDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                `json:"metadata"`
+	DescribedBy     string                                     `json:"described_by"`
+	ResourceType    string                                     `json:"resource_type"`
+	IntegrationType string                                     `json:"integration_type"`
+	IntegrationID   string                                     `json:"integration_id"`
 }
 
 type LoadBalancerHit struct {
@@ -41346,7 +41346,7 @@ var listLoadBalancerFilters = map[string]string{
 	"load_balancing_rules":       "Description.LoadBalancer.Properties.LoadBalancingRules",
 	"name":                       "Description.LoadBalancer.Name",
 	"outbound_rules":             "Description.LoadBalancer.Properties.OutboundRules",
-	"platform_integration_id":    "metadata.IntegrationID",
+	"platform_integration_id":    "IntegrationID",
 	"probes":                     "Description.LoadBalancer.Properties.Probes",
 	"provisioning_state":         "Description.LoadBalancer.Properties.ProvisioningState",
 	"resource_group":             "Description.ResourceGroup",
@@ -41431,7 +41431,7 @@ var getLoadBalancerFilters = map[string]string{
 	"load_balancing_rules":       "Description.LoadBalancer.Properties.LoadBalancingRules",
 	"name":                       "description.LoadBalancer.Name",
 	"outbound_rules":             "Description.LoadBalancer.Properties.OutboundRules",
-	"platform_integration_id":    "metadata.IntegrationID",
+	"platform_integration_id":    "IntegrationID",
 	"probes":                     "Description.LoadBalancer.Properties.Probes",
 	"provisioning_state":         "Description.LoadBalancer.Properties.ProvisioningState",
 	"resource_group":             "description.ResourceGroup",
@@ -41501,14 +41501,14 @@ func GetLoadBalancer(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 // ==========================  START: LoadBalancerBackendAddressPool =============================
 
 type LoadBalancerBackendAddressPool struct {
-	ResourceID      string                                          `json:"resource_id"`
-	PlatformID      string                                          `json:"platform_id"`
-	Description     azure.LoadBalancerBackendAddressPoolDescription `json:"description"`
-	Metadata        azure.Metadata                                  `json:"metadata"`
-	DescribedBy     string                                          `json:"described_by"`
-	ResourceType    string                                          `json:"resource_type"`
-	IntegrationType string                                          `json:"integration_type"`
-	IntegrationID   string                                          `json:"integration_id"`
+	ResourceID      string                                                       `json:"resource_id"`
+	PlatformID      string                                                       `json:"platform_id"`
+	Description     azure_subscription.LoadBalancerBackendAddressPoolDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                  `json:"metadata"`
+	DescribedBy     string                                                       `json:"described_by"`
+	ResourceType    string                                                       `json:"resource_type"`
+	IntegrationType string                                                       `json:"integration_type"`
+	IntegrationID   string                                                       `json:"integration_id"`
 }
 
 type LoadBalancerBackendAddressPoolHit struct {
@@ -41589,7 +41589,7 @@ var listLoadBalancerBackendAddressPoolFilters = map[string]string{
 	"name":                                   "Description.Pool.Name",
 	"outbound_rule_id":                       "Description.Pool.Properties.OutboundRule.ID",
 	"outbound_rules":                         "Description.LoadBalancer.Properties.OutboundRules",
-	"platform_integration_id":                "metadata.IntegrationID",
+	"platform_integration_id":                "IntegrationID",
 	"provisioning_state":                     "Description.LoadBalancer.Properties.ProvisioningState",
 	"resource_group":                         "Description.ResourceGroup",
 	"title":                                  "Description.Pool.Name",
@@ -41667,7 +41667,7 @@ var getLoadBalancerBackendAddressPoolFilters = map[string]string{
 	"name":                                   "description.Pool.Name",
 	"outbound_rule_id":                       "Description.Pool.Properties.OutboundRule.ID",
 	"outbound_rules":                         "Description.LoadBalancer.Properties.OutboundRules",
-	"platform_integration_id":                "metadata.IntegrationID",
+	"platform_integration_id":                "IntegrationID",
 	"provisioning_state":                     "Description.LoadBalancer.Properties.ProvisioningState",
 	"resource_group":                         "description.ResourceGroup",
 	"title":                                  "Description.Pool.Name",
@@ -41732,14 +41732,14 @@ func GetLoadBalancerBackendAddressPool(ctx context.Context, d *plugin.QueryData,
 // ==========================  START: LoadBalancerNatRule =============================
 
 type LoadBalancerNatRule struct {
-	ResourceID      string                               `json:"resource_id"`
-	PlatformID      string                               `json:"platform_id"`
-	Description     azure.LoadBalancerNatRuleDescription `json:"description"`
-	Metadata        azure.Metadata                       `json:"metadata"`
-	DescribedBy     string                               `json:"described_by"`
-	ResourceType    string                               `json:"resource_type"`
-	IntegrationType string                               `json:"integration_type"`
-	IntegrationID   string                               `json:"integration_id"`
+	ResourceID      string                                            `json:"resource_id"`
+	PlatformID      string                                            `json:"platform_id"`
+	Description     azure_subscription.LoadBalancerNatRuleDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                       `json:"metadata"`
+	DescribedBy     string                                            `json:"described_by"`
+	ResourceType    string                                            `json:"resource_type"`
+	IntegrationType string                                            `json:"integration_type"`
+	IntegrationID   string                                            `json:"integration_id"`
 }
 
 type LoadBalancerNatRuleHit struct {
@@ -41821,7 +41821,7 @@ var listLoadBalancerNatRuleFilters = map[string]string{
 	"idle_timeout_in_minutes":   "Description.Rule.Properties.IdleTimeoutInMinutes",
 	"load_balancer_name":        "Description.LoadBalancerName",
 	"name":                      "Description.Rule.Name",
-	"platform_integration_id":   "metadata.IntegrationID",
+	"platform_integration_id":   "IntegrationID",
 	"protocol":                  "Description.Rule.Properties.Protocol",
 	"provisioning_state":        "Description.Rule.Properties.ProvisioningState",
 	"resource_group":            "Description.ResourceGroup",
@@ -41901,7 +41901,7 @@ var getLoadBalancerNatRuleFilters = map[string]string{
 	"idle_timeout_in_minutes":   "Description.Rule.Properties.IdleTimeoutInMinutes",
 	"load_balancer_name":        "description.LoadBalancerName",
 	"name":                      "description.Rule.Name",
-	"platform_integration_id":   "metadata.IntegrationID",
+	"platform_integration_id":   "IntegrationID",
 	"protocol":                  "Description.Rule.Properties.Protocol",
 	"provisioning_state":        "Description.Rule.Properties.ProvisioningState",
 	"resource_group":            "description.ResourceGroup",
@@ -41967,14 +41967,14 @@ func GetLoadBalancerNatRule(ctx context.Context, d *plugin.QueryData, _ *plugin.
 // ==========================  START: LoadBalancerOutboundRule =============================
 
 type LoadBalancerOutboundRule struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.LoadBalancerOutboundRuleDescription `json:"description"`
-	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                                                 `json:"resource_id"`
+	PlatformID      string                                                 `json:"platform_id"`
+	Description     azure_subscription.LoadBalancerOutboundRuleDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                            `json:"metadata"`
+	DescribedBy     string                                                 `json:"described_by"`
+	ResourceType    string                                                 `json:"resource_type"`
+	IntegrationType string                                                 `json:"integration_type"`
+	IntegrationID   string                                                 `json:"integration_id"`
 }
 
 type LoadBalancerOutboundRuleHit struct {
@@ -42054,7 +42054,7 @@ var listLoadBalancerOutboundRuleFilters = map[string]string{
 	"idle_timeout_in_minutes":    "Description.Rule.Properties.IdleTimeoutInMinutes",
 	"load_balancer_name":         "Description.LoadBalancerName",
 	"name":                       "Description.Rule.Name",
-	"platform_integration_id":    "metadata.IntegrationID",
+	"platform_integration_id":    "IntegrationID",
 	"protocol":                   "Description.Rule.Properties.Protocol",
 	"provisioning_state":         "Description.Rule.Properties.ProvisioningState",
 	"resource_group":             "Description.ResourceGroup",
@@ -42132,7 +42132,7 @@ var getLoadBalancerOutboundRuleFilters = map[string]string{
 	"idle_timeout_in_minutes":    "Description.Rule.Properties.IdleTimeoutInMinutes",
 	"load_balancer_name":         "description.LoadBalancerName",
 	"name":                       "description.Rule.Name",
-	"platform_integration_id":    "metadata.IntegrationID",
+	"platform_integration_id":    "IntegrationID",
 	"protocol":                   "Description.Rule.Properties.Protocol",
 	"provisioning_state":         "Description.Rule.Properties.ProvisioningState",
 	"resource_group":             "description.ResourceGroup",
@@ -42198,14 +42198,14 @@ func GetLoadBalancerOutboundRule(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: LoadBalancerProbe =============================
 
 type LoadBalancerProbe struct {
-	ResourceID      string                             `json:"resource_id"`
-	PlatformID      string                             `json:"platform_id"`
-	Description     azure.LoadBalancerProbeDescription `json:"description"`
-	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     string                             `json:"described_by"`
-	ResourceType    string                             `json:"resource_type"`
-	IntegrationType string                             `json:"integration_type"`
-	IntegrationID   string                             `json:"integration_id"`
+	ResourceID      string                                          `json:"resource_id"`
+	PlatformID      string                                          `json:"platform_id"`
+	Description     azure_subscription.LoadBalancerProbeDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                     `json:"metadata"`
+	DescribedBy     string                                          `json:"described_by"`
+	ResourceType    string                                          `json:"resource_type"`
+	IntegrationType string                                          `json:"integration_type"`
+	IntegrationID   string                                          `json:"integration_id"`
 }
 
 type LoadBalancerProbeHit struct {
@@ -42283,7 +42283,7 @@ var listLoadBalancerProbeFilters = map[string]string{
 	"load_balancing_rules":    "Description.Probe.Properties.LoadBalancingRules",
 	"name":                    "Description.Probe.Name",
 	"number_of_probes":        "Description.Probe.Properties.NumberOfProbes",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"port":                    "Description.Probe.Properties.Port",
 	"protocol":                "Description.Probe.Properties.Protocol",
 	"provisioning_state":      "Description.Probe.Properties.ProvisioningState",
@@ -42361,7 +42361,7 @@ var getLoadBalancerProbeFilters = map[string]string{
 	"load_balancing_rules":    "Description.Probe.Properties.LoadBalancingRules",
 	"name":                    "description.Probe.Name",
 	"number_of_probes":        "Description.Probe.Properties.NumberOfProbes",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"port":                    "Description.Probe.Properties.Port",
 	"protocol":                "Description.Probe.Properties.Protocol",
 	"provisioning_state":      "Description.Probe.Properties.ProvisioningState",
@@ -42429,14 +42429,14 @@ func GetLoadBalancerProbe(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 // ==========================  START: LoadBalancerRule =============================
 
 type LoadBalancerRule struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.LoadBalancerRuleDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.LoadBalancerRuleDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type LoadBalancerRuleHit struct {
@@ -42521,7 +42521,7 @@ var listLoadBalancerRuleFilters = map[string]string{
 	"load_balancer_name":           "Description.LoadBalancerName",
 	"load_distribution":            "Description.Rule.Properties.LoadDistribution",
 	"name":                         "Description.Rule.Name",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"probe_id":                     "Description.Rule.Properties.Probe.ID",
 	"protocol":                     "Description.Rule.Properties.Protocol",
 	"provisioning_state":           "Description.Rule.Properties.ProvisioningState",
@@ -42605,7 +42605,7 @@ var getLoadBalancerRuleFilters = map[string]string{
 	"load_balancer_name":           "description.LoadBalancerName",
 	"load_distribution":            "Description.Rule.Properties.LoadDistribution",
 	"name":                         "description.Rule.Name",
-	"platform_integration_id":      "metadata.IntegrationID",
+	"platform_integration_id":      "IntegrationID",
 	"probe_id":                     "Description.Rule.Properties.Probe.ID",
 	"protocol":                     "Description.Rule.Properties.Protocol",
 	"provisioning_state":           "Description.Rule.Properties.ProvisioningState",
@@ -42672,14 +42672,14 @@ func GetLoadBalancerRule(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: ManagementGroup =============================
 
 type ManagementGroup struct {
-	ResourceID      string                           `json:"resource_id"`
-	PlatformID      string                           `json:"platform_id"`
-	Description     azure.ManagementGroupDescription `json:"description"`
-	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     string                           `json:"described_by"`
-	ResourceType    string                           `json:"resource_type"`
-	IntegrationType string                           `json:"integration_type"`
-	IntegrationID   string                           `json:"integration_id"`
+	ResourceID      string                                        `json:"resource_id"`
+	PlatformID      string                                        `json:"platform_id"`
+	Description     azure_subscription.ManagementGroupDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                   `json:"metadata"`
+	DescribedBy     string                                        `json:"described_by"`
+	ResourceType    string                                        `json:"resource_type"`
+	IntegrationType string                                        `json:"integration_type"`
+	IntegrationID   string                                        `json:"integration_id"`
 }
 
 type ManagementGroupHit struct {
@@ -42755,7 +42755,7 @@ var listManagementGroupFilters = map[string]string{
 	"id":                      "Description.Group.ID",
 	"name":                    "Description.Group.Name",
 	"parent":                  "Description.Group.Properties.Details.Parent",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tenant_id":               "Description.Group.Properties.TenantID",
 	"title":                   "Description.Group.Name",
 	"type":                    "Description.Group.Type",
@@ -42830,7 +42830,7 @@ var getManagementGroupFilters = map[string]string{
 	"id":                      "Description.Group.ID",
 	"name":                    "description.Group.Name",
 	"parent":                  "Description.Group.Properties.Details.Parent",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"tenant_id":               "Description.Group.Properties.TenantID",
 	"title":                   "Description.Group.Name",
 	"type":                    "Description.Group.Type",
@@ -42897,14 +42897,14 @@ func GetManagementGroup(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: ManagementLock =============================
 
 type ManagementLock struct {
-	ResourceID      string                          `json:"resource_id"`
-	PlatformID      string                          `json:"platform_id"`
-	Description     azure.ManagementLockDescription `json:"description"`
-	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     string                          `json:"described_by"`
-	ResourceType    string                          `json:"resource_type"`
-	IntegrationType string                          `json:"integration_type"`
-	IntegrationID   string                          `json:"integration_id"`
+	ResourceID      string                                       `json:"resource_id"`
+	PlatformID      string                                       `json:"platform_id"`
+	Description     azure_subscription.ManagementLockDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                  `json:"metadata"`
+	DescribedBy     string                                       `json:"described_by"`
+	ResourceType    string                                       `json:"resource_type"`
+	IntegrationType string                                       `json:"integration_type"`
+	IntegrationID   string                                       `json:"integration_id"`
 }
 
 type ManagementLockHit struct {
@@ -42980,7 +42980,7 @@ var listManagementLockFilters = map[string]string{
 	"name":                    "Description.Lock.Name",
 	"notes":                   "Description.Lock.Properties.Notes",
 	"owners":                  "Description.Lock.Properties.Owners",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"title":                   "Description.Lock.Name",
 	"type":                    "Description.Lock.Type",
 }
@@ -43051,7 +43051,7 @@ var getManagementLockFilters = map[string]string{
 	"name":                    "description.Lock.Name",
 	"notes":                   "Description.Lock.Properties.Notes",
 	"owners":                  "Description.Lock.Properties.Owners",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"title":                   "Description.Lock.Name",
 	"type":                    "Description.Lock.Type",
@@ -43115,14 +43115,14 @@ func GetManagementLock(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: ResourceProvider =============================
 
 type ResourceProvider struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.ResourceProviderDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.ResourceProviderDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type ResourceProviderHit struct {
@@ -43195,7 +43195,7 @@ func (p ResourceProviderPaginator) NextPage(ctx context.Context) ([]ResourceProv
 var listResourceProviderFilters = map[string]string{
 	"id":                      "Description.Provider.ID",
 	"namespace":               "Description.Provider.Namespace",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"registration_state":      "Description.Provider.RegistrationState",
 	"resource_types":          "Description.Provider.ResourceTypes",
 	"title":                   "Description.Provider.Namespace",
@@ -43264,7 +43264,7 @@ func ListResourceProvider(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 var getResourceProviderFilters = map[string]string{
 	"id":                      "Description.Provider.ID",
 	"namespace":               "description.Provider.Namespace",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"registration_state":      "Description.Provider.RegistrationState",
 	"resource_types":          "Description.Provider.ResourceTypes",
 	"title":                   "Description.Provider.Namespace",
@@ -43328,14 +43328,14 @@ func GetResourceProvider(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: ResourceGroup =============================
 
 type ResourceGroup struct {
-	ResourceID      string                         `json:"resource_id"`
-	PlatformID      string                         `json:"platform_id"`
-	Description     azure.ResourceGroupDescription `json:"description"`
-	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     string                         `json:"described_by"`
-	ResourceType    string                         `json:"resource_type"`
-	IntegrationType string                         `json:"integration_type"`
-	IntegrationID   string                         `json:"integration_id"`
+	ResourceID      string                                      `json:"resource_id"`
+	PlatformID      string                                      `json:"platform_id"`
+	Description     azure_subscription.ResourceGroupDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                 `json:"metadata"`
+	DescribedBy     string                                      `json:"described_by"`
+	ResourceType    string                                      `json:"resource_type"`
+	IntegrationType string                                      `json:"integration_type"`
+	IntegrationID   string                                      `json:"integration_id"`
 }
 
 type ResourceGroupHit struct {
@@ -43409,7 +43409,7 @@ var listResourceGroupFilters = map[string]string{
 	"id":                      "Description.Group.ID",
 	"managed_by":              "Description.Group.ManagedBy",
 	"name":                    "Description.Group.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.Group.Properties.ProvisioningState",
 	"tags":                    "Description.Group.Tags",
 	"title":                   "Description.Group.Name",
@@ -43480,7 +43480,7 @@ var getResourceGroupFilters = map[string]string{
 	"id":                      "Description.Group.ID",
 	"managed_by":              "Description.Group.ManagedBy",
 	"name":                    "description.Group.Name",
-	"platform_integration_id": "metadata.IntegrationID",
+	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.Group.Properties.ProvisioningState",
 	"tags":                    "Description.Group.Tags",
 	"title":                   "Description.Group.Name",
@@ -43545,14 +43545,14 @@ func GetResourceGroup(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 // ==========================  START: GenericResource =============================
 
 type GenericResource struct {
-	ResourceID      string                           `json:"resource_id"`
-	PlatformID      string                           `json:"platform_id"`
-	Description     azure.GenericResourceDescription `json:"description"`
-	Metadata        azure.Metadata                   `json:"metadata"`
-	DescribedBy     string                           `json:"described_by"`
-	ResourceType    string                           `json:"resource_type"`
-	IntegrationType string                           `json:"integration_type"`
-	IntegrationID   string                           `json:"integration_id"`
+	ResourceID      string                                        `json:"resource_id"`
+	PlatformID      string                                        `json:"platform_id"`
+	Description     azure_subscription.GenericResourceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                   `json:"metadata"`
+	DescribedBy     string                                        `json:"described_by"`
+	ResourceType    string                                        `json:"resource_type"`
+	IntegrationType string                                        `json:"integration_type"`
+	IntegrationID   string                                        `json:"integration_id"`
 }
 
 type GenericResourceHit struct {
@@ -43786,14 +43786,14 @@ func GetGenericResource(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 // ==========================  START: BotServiceBot =============================
 
 type BotServiceBot struct {
-	ResourceID      string                         `json:"resource_id"`
-	PlatformID      string                         `json:"platform_id"`
-	Description     azure.BotServiceBotDescription `json:"description"`
-	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     string                         `json:"described_by"`
-	ResourceType    string                         `json:"resource_type"`
-	IntegrationType string                         `json:"integration_type"`
-	IntegrationID   string                         `json:"integration_id"`
+	ResourceID      string                                      `json:"resource_id"`
+	PlatformID      string                                      `json:"platform_id"`
+	Description     azure_subscription.BotServiceBotDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                 `json:"metadata"`
+	DescribedBy     string                                      `json:"described_by"`
+	ResourceType    string                                      `json:"resource_type"`
+	IntegrationType string                                      `json:"integration_type"`
+	IntegrationID   string                                      `json:"integration_id"`
 }
 
 type BotServiceBotHit struct {
@@ -43995,14 +43995,14 @@ func GetBotServiceBot(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 // ==========================  START: NetAppAccount =============================
 
 type NetAppAccount struct {
-	ResourceID      string                         `json:"resource_id"`
-	PlatformID      string                         `json:"platform_id"`
-	Description     azure.NetAppAccountDescription `json:"description"`
-	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     string                         `json:"described_by"`
-	ResourceType    string                         `json:"resource_type"`
-	IntegrationType string                         `json:"integration_type"`
-	IntegrationID   string                         `json:"integration_id"`
+	ResourceID      string                                      `json:"resource_id"`
+	PlatformID      string                                      `json:"platform_id"`
+	Description     azure_subscription.NetAppAccountDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                 `json:"metadata"`
+	DescribedBy     string                                      `json:"described_by"`
+	ResourceType    string                                      `json:"resource_type"`
+	IntegrationType string                                      `json:"integration_type"`
+	IntegrationID   string                                      `json:"integration_id"`
 }
 
 type NetAppAccountHit struct {
@@ -44204,14 +44204,14 @@ func GetNetAppAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 // ==========================  START: NetAppCapacityPool =============================
 
 type NetAppCapacityPool struct {
-	ResourceID      string                              `json:"resource_id"`
-	PlatformID      string                              `json:"platform_id"`
-	Description     azure.NetAppCapacityPoolDescription `json:"description"`
-	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     string                              `json:"described_by"`
-	ResourceType    string                              `json:"resource_type"`
-	IntegrationType string                              `json:"integration_type"`
-	IntegrationID   string                              `json:"integration_id"`
+	ResourceID      string                                           `json:"resource_id"`
+	PlatformID      string                                           `json:"platform_id"`
+	Description     azure_subscription.NetAppCapacityPoolDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                      `json:"metadata"`
+	DescribedBy     string                                           `json:"described_by"`
+	ResourceType    string                                           `json:"resource_type"`
+	IntegrationType string                                           `json:"integration_type"`
+	IntegrationID   string                                           `json:"integration_id"`
 }
 
 type NetAppCapacityPoolHit struct {
@@ -44413,14 +44413,14 @@ func GetNetAppCapacityPool(ctx context.Context, d *plugin.QueryData, _ *plugin.H
 // ==========================  START: DashboardGrafana =============================
 
 type DashboardGrafana struct {
-	ResourceID      string                            `json:"resource_id"`
-	PlatformID      string                            `json:"platform_id"`
-	Description     azure.DashboardGrafanaDescription `json:"description"`
-	Metadata        azure.Metadata                    `json:"metadata"`
-	DescribedBy     string                            `json:"described_by"`
-	ResourceType    string                            `json:"resource_type"`
-	IntegrationType string                            `json:"integration_type"`
-	IntegrationID   string                            `json:"integration_id"`
+	ResourceID      string                                         `json:"resource_id"`
+	PlatformID      string                                         `json:"platform_id"`
+	Description     azure_subscription.DashboardGrafanaDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                    `json:"metadata"`
+	DescribedBy     string                                         `json:"described_by"`
+	ResourceType    string                                         `json:"resource_type"`
+	IntegrationType string                                         `json:"integration_type"`
+	IntegrationID   string                                         `json:"integration_id"`
 }
 
 type DashboardGrafanaHit struct {
@@ -44620,14 +44620,14 @@ func GetDashboardGrafana(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 // ==========================  START: DesktopVirtualizationHostPool =============================
 
 type DesktopVirtualizationHostPool struct {
-	ResourceID      string                                         `json:"resource_id"`
-	PlatformID      string                                         `json:"platform_id"`
-	Description     azure.DesktopVirtualizationHostPoolDescription `json:"description"`
-	Metadata        azure.Metadata                                 `json:"metadata"`
-	DescribedBy     string                                         `json:"described_by"`
-	ResourceType    string                                         `json:"resource_type"`
-	IntegrationType string                                         `json:"integration_type"`
-	IntegrationID   string                                         `json:"integration_id"`
+	ResourceID      string                                                      `json:"resource_id"`
+	PlatformID      string                                                      `json:"platform_id"`
+	Description     azure_subscription.DesktopVirtualizationHostPoolDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                 `json:"metadata"`
+	DescribedBy     string                                                      `json:"described_by"`
+	ResourceType    string                                                      `json:"resource_type"`
+	IntegrationType string                                                      `json:"integration_type"`
+	IntegrationID   string                                                      `json:"integration_id"`
 }
 
 type DesktopVirtualizationHostPoolHit struct {
@@ -44829,14 +44829,14 @@ func GetDesktopVirtualizationHostPool(ctx context.Context, d *plugin.QueryData, 
 // ==========================  START: DesktopVirtualizationWorkspace =============================
 
 type DesktopVirtualizationWorkspace struct {
-	ResourceID      string                                          `json:"resource_id"`
-	PlatformID      string                                          `json:"platform_id"`
-	Description     azure.DesktopVirtualizationWorkspaceDescription `json:"description"`
-	Metadata        azure.Metadata                                  `json:"metadata"`
-	DescribedBy     string                                          `json:"described_by"`
-	ResourceType    string                                          `json:"resource_type"`
-	IntegrationType string                                          `json:"integration_type"`
-	IntegrationID   string                                          `json:"integration_id"`
+	ResourceID      string                                                       `json:"resource_id"`
+	PlatformID      string                                                       `json:"platform_id"`
+	Description     azure_subscription.DesktopVirtualizationWorkspaceDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                  `json:"metadata"`
+	DescribedBy     string                                                       `json:"described_by"`
+	ResourceType    string                                                       `json:"resource_type"`
+	IntegrationType string                                                       `json:"integration_type"`
+	IntegrationID   string                                                       `json:"integration_id"`
 }
 
 type DesktopVirtualizationWorkspaceHit struct {
@@ -45038,14 +45038,14 @@ func GetDesktopVirtualizationWorkspace(ctx context.Context, d *plugin.QueryData,
 // ==========================  START: DevTestLabLab =============================
 
 type DevTestLabLab struct {
-	ResourceID      string                         `json:"resource_id"`
-	PlatformID      string                         `json:"platform_id"`
-	Description     azure.DevTestLabLabDescription `json:"description"`
-	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     string                         `json:"described_by"`
-	ResourceType    string                         `json:"resource_type"`
-	IntegrationType string                         `json:"integration_type"`
-	IntegrationID   string                         `json:"integration_id"`
+	ResourceID      string                                      `json:"resource_id"`
+	PlatformID      string                                      `json:"platform_id"`
+	Description     azure_subscription.DevTestLabLabDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                 `json:"metadata"`
+	DescribedBy     string                                      `json:"described_by"`
+	ResourceType    string                                      `json:"resource_type"`
+	IntegrationType string                                      `json:"integration_type"`
+	IntegrationID   string                                      `json:"integration_id"`
 }
 
 type DevTestLabLabHit struct {
@@ -45247,14 +45247,14 @@ func GetDevTestLabLab(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 // ==========================  START: PurviewAccount =============================
 
 type PurviewAccount struct {
-	ResourceID      string                          `json:"resource_id"`
-	PlatformID      string                          `json:"platform_id"`
-	Description     azure.PurviewAccountDescription `json:"description"`
-	Metadata        azure.Metadata                  `json:"metadata"`
-	DescribedBy     string                          `json:"described_by"`
-	ResourceType    string                          `json:"resource_type"`
-	IntegrationType string                          `json:"integration_type"`
-	IntegrationID   string                          `json:"integration_id"`
+	ResourceID      string                                       `json:"resource_id"`
+	PlatformID      string                                       `json:"platform_id"`
+	Description     azure_subscription.PurviewAccountDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                  `json:"metadata"`
+	DescribedBy     string                                       `json:"described_by"`
+	ResourceType    string                                       `json:"resource_type"`
+	IntegrationType string                                       `json:"integration_type"`
+	IntegrationID   string                                       `json:"integration_id"`
 }
 
 type PurviewAccountHit struct {
@@ -45456,14 +45456,14 @@ func GetPurviewAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 // ==========================  START: PowerBIDedicatedCapacity =============================
 
 type PowerBIDedicatedCapacity struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.PowerBIDedicatedCapacityDescription `json:"description"`
-	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                                                 `json:"resource_id"`
+	PlatformID      string                                                 `json:"platform_id"`
+	Description     azure_subscription.PowerBIDedicatedCapacityDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                            `json:"metadata"`
+	DescribedBy     string                                                 `json:"described_by"`
+	ResourceType    string                                                 `json:"resource_type"`
+	IntegrationType string                                                 `json:"integration_type"`
+	IntegrationID   string                                                 `json:"integration_id"`
 }
 
 type PowerBIDedicatedCapacityHit struct {
@@ -45665,14 +45665,14 @@ func GetPowerBIDedicatedCapacity(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: ApplicationInsightsComponent =============================
 
 type ApplicationInsightsComponent struct {
-	ResourceID      string                                        `json:"resource_id"`
-	PlatformID      string                                        `json:"platform_id"`
-	Description     azure.ApplicationInsightsComponentDescription `json:"description"`
-	Metadata        azure.Metadata                                `json:"metadata"`
-	DescribedBy     string                                        `json:"described_by"`
-	ResourceType    string                                        `json:"resource_type"`
-	IntegrationType string                                        `json:"integration_type"`
-	IntegrationID   string                                        `json:"integration_id"`
+	ResourceID      string                                                     `json:"resource_id"`
+	PlatformID      string                                                     `json:"platform_id"`
+	Description     azure_subscription.ApplicationInsightsComponentDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                                `json:"metadata"`
+	DescribedBy     string                                                     `json:"described_by"`
+	ResourceType    string                                                     `json:"resource_type"`
+	IntegrationType string                                                     `json:"integration_type"`
+	IntegrationID   string                                                     `json:"integration_id"`
 }
 
 type ApplicationInsightsComponentHit struct {
@@ -45922,14 +45922,14 @@ func GetApplicationInsightsComponent(ctx context.Context, d *plugin.QueryData, _
 // ==========================  START: LighthouseDefinition =============================
 
 type LighthouseDefinition struct {
-	ResourceID      string                                `json:"resource_id"`
-	PlatformID      string                                `json:"platform_id"`
-	Description     azure.LighthouseDefinitionDescription `json:"description"`
-	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     string                                `json:"described_by"`
-	ResourceType    string                                `json:"resource_type"`
-	IntegrationType string                                `json:"integration_type"`
-	IntegrationID   string                                `json:"integration_id"`
+	ResourceID      string                                             `json:"resource_id"`
+	PlatformID      string                                             `json:"platform_id"`
+	Description     azure_subscription.LighthouseDefinitionDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                        `json:"metadata"`
+	DescribedBy     string                                             `json:"described_by"`
+	ResourceType    string                                             `json:"resource_type"`
+	IntegrationType string                                             `json:"integration_type"`
+	IntegrationID   string                                             `json:"integration_id"`
 }
 
 type LighthouseDefinitionHit struct {
@@ -46149,14 +46149,14 @@ func GetLighthouseDefinition(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: LighthouseAssignment =============================
 
 type LighthouseAssignment struct {
-	ResourceID      string                                `json:"resource_id"`
-	PlatformID      string                                `json:"platform_id"`
-	Description     azure.LighthouseAssignmentDescription `json:"description"`
-	Metadata        azure.Metadata                        `json:"metadata"`
-	DescribedBy     string                                `json:"described_by"`
-	ResourceType    string                                `json:"resource_type"`
-	IntegrationType string                                `json:"integration_type"`
-	IntegrationID   string                                `json:"integration_id"`
+	ResourceID      string                                             `json:"resource_id"`
+	PlatformID      string                                             `json:"platform_id"`
+	Description     azure_subscription.LighthouseAssignmentDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                        `json:"metadata"`
+	DescribedBy     string                                             `json:"described_by"`
+	ResourceType    string                                             `json:"resource_type"`
+	IntegrationType string                                             `json:"integration_type"`
+	IntegrationID   string                                             `json:"integration_id"`
 }
 
 type LighthouseAssignmentHit struct {
@@ -46366,14 +46366,14 @@ func GetLighthouseAssignment(ctx context.Context, d *plugin.QueryData, _ *plugin
 // ==========================  START: MaintenanceConfiguration =============================
 
 type MaintenanceConfiguration struct {
-	ResourceID      string                                    `json:"resource_id"`
-	PlatformID      string                                    `json:"platform_id"`
-	Description     azure.MaintenanceConfigurationDescription `json:"description"`
-	Metadata        azure.Metadata                            `json:"metadata"`
-	DescribedBy     string                                    `json:"described_by"`
-	ResourceType    string                                    `json:"resource_type"`
-	IntegrationType string                                    `json:"integration_type"`
-	IntegrationID   string                                    `json:"integration_id"`
+	ResourceID      string                                                 `json:"resource_id"`
+	PlatformID      string                                                 `json:"platform_id"`
+	Description     azure_subscription.MaintenanceConfigurationDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                            `json:"metadata"`
+	DescribedBy     string                                                 `json:"described_by"`
+	ResourceType    string                                                 `json:"resource_type"`
+	IntegrationType string                                                 `json:"integration_type"`
+	IntegrationID   string                                                 `json:"integration_id"`
 }
 
 type MaintenanceConfigurationHit struct {
@@ -46599,14 +46599,14 @@ func GetMaintenanceConfiguration(ctx context.Context, d *plugin.QueryData, _ *pl
 // ==========================  START: MonitorLogProfile =============================
 
 type MonitorLogProfile struct {
-	ResourceID      string                             `json:"resource_id"`
-	PlatformID      string                             `json:"platform_id"`
-	Description     azure.MonitorLogProfileDescription `json:"description"`
-	Metadata        azure.Metadata                     `json:"metadata"`
-	DescribedBy     string                             `json:"described_by"`
-	ResourceType    string                             `json:"resource_type"`
-	IntegrationType string                             `json:"integration_type"`
-	IntegrationID   string                             `json:"integration_id"`
+	ResourceID      string                                          `json:"resource_id"`
+	PlatformID      string                                          `json:"platform_id"`
+	Description     azure_subscription.MonitorLogProfileDescription `json:"Description"`
+	Metadata        azure_subscription.Metadata                     `json:"metadata"`
+	DescribedBy     string                                          `json:"described_by"`
+	ResourceType    string                                          `json:"resource_type"`
+	IntegrationType string                                          `json:"integration_type"`
+	IntegrationID   string                                          `json:"integration_id"`
 }
 
 type MonitorLogProfileHit struct {
