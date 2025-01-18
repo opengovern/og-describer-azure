@@ -28,11 +28,6 @@ const MAX_SUBSCRIPTIONS = 500
 const READ_REQUESTS_PER_SECOND = 20
 
 // Subscription struct represents a subscription and implements the IsHealthy method.
-type Subscription struct {
-	ID    string
-	Name  string
-	State string
-}
 
 // IsHealthy checks if the service principal has any role assignments in the subscription
 func (s *Subscription) IsHealthy(ctx context.Context, cred azcore.TokenCredential, spnObjectID string) (bool, error) {

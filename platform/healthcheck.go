@@ -255,7 +255,7 @@ type Subscription struct {
 }
 
 // IsHealthy checks if the subscription is healthy based on role assignment
-func (s *Subscription) IsHealthy(ctx context.Context, roleDefinitionID string) (bool, error) {
+func (s *Subscription) IsHealthy2(ctx context.Context, roleDefinitionID string) (bool, error) {
 	return hasRole(ctx, s.authClientFactory, s.ID, s.spnObjectID, roleDefinitionID)
 }
 
@@ -398,7 +398,7 @@ func AzureIntegrationHealthcheck(config Config) (bool, error) {
 	}
 
 	// Check if the subscription is healthy
-	isHealthy, err := subscription.IsHealthy(ctx, roleDefinitionID)
+	isHealthy, err := subscription.IsHealthy2(ctx, roleDefinitionID)
 	if err != nil {
 		log.Fatalf("Failed to check subscription health: %v", err)
 	}

@@ -6,9 +6,11 @@ type Resource struct {
 	ID          string
 	Description interface{}
 
-	Name                string
-	Type                string
-	IntegrationMetadata interface{}
+	Name          string
+	Type          string
+	ResourceGroup string
+	Location      string
+	AccountInfo   interface{}
 }
 
 func (r Resource) UniqueID() string {
