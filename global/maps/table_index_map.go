@@ -1,8 +1,5 @@
 package maps
 
-import (
-	"github.com/opengovern/og-describer-github/discovery/pkg/es"
-)
 
 var ResourceTypesToTables = map[string]string{
   "Github/Actions/Artifact": "github_actions_artifact",
@@ -41,39 +38,7 @@ var ResourceTypesToTables = map[string]string{
 }
 
 var ResourceTypeToDescription = map[string]interface{}{
-  "Github/Actions/Artifact": opengovernance.Artifact{},
-  "Github/Actions/Runner": opengovernance.Runner{},
-  "Github/Actions/Secret": opengovernance.Secret{},
-  "Github/Actions/WorkflowRun": opengovernance.WorkflowRun{},
-  "Github/Branch": opengovernance.Branch{},
-  "Github/Branch/Protection": opengovernance.BranchProtection{},
-  "Github/Commit": opengovernance.Commit{},
-  "Github/Issue": opengovernance.Issue{},
-  "Github/License": opengovernance.License{},
-  "Github/Organization": opengovernance.Organization{},
-  "Github/Organization/Collaborator": opengovernance.OrgCollaborators{},
-  "Github/Organization/Dependabot/Alert": opengovernance.OrgAlertDependabot{},
-  "Github/Organization/Member": opengovernance.OrgMembers{},
-  "Github/Organization/Team": opengovernance.Team{},
-  "Github/PullRequest": opengovernance.PullRequest{},
-  "Github/Release": opengovernance.Release{},
-  "Github/Repository": opengovernance.Repository{},
-  "Github/Repository/Collaborator": opengovernance.RepoCollaborators{},
-  "Github/Repository/DependabotAlert": opengovernance.RepoAlertDependabot{},
-  "Github/Repository/Deployment": opengovernance.RepoDeployment{},
-  "Github/Repository/Environment": opengovernance.RepoEnvironment{},
-  "Github/Repository/Ruleset": opengovernance.RepoRuleSet{},
-  "Github/Repository/SBOM": opengovernance.RepoSBOM{},
-  "Github/Repository/VulnerabilityAlert": opengovernance.RepoVulnerabilityAlert{},
-  "Github/Tag": opengovernance.Tag{},
-  "Github/Team/Member": opengovernance.TeamMembers{},
-  "Github/User": opengovernance.User{},
-  "Github/Workflow": opengovernance.Workflow{},
-  "Github/Container/Package": opengovernance.ContainerPackage{},
-  "Github/Package/Maven": opengovernance.PackageDetail{},
-  "Github/NPM/Package": opengovernance.PackageDetail{},
-  "Github/Nuget/Package": opengovernance.Package{},
-  "Github/Artifact/DockerFile": opengovernance.ArtifactDockerFile{},
+ 
 }
 
 var TablesToResourceTypes = map[string]string{

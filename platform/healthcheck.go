@@ -2,339 +2,406 @@ package main
 
 import (
 	"context"
-	"encoding/json"
-	"errors"
 	"fmt"
 	"log"
-	"sync"
-	"time"
+	"os"
+	"strings"
 
-	"github.com/google/go-github/v66/github"
-	"golang.org/x/oauth2"
+	"github.com/Azure/azure-sdk-for-go/sdk/azcore"
+	"github.com/Azure/azure-sdk-for-go/sdk/azcore/policy"
+	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/authorization/armauthorization/v2"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/subscription/armsubscription"
+	"github.com/golang-jwt/jwt"
 )
 
-// Config represents the JSON input configuration
-type Config struct {
-	Token            string `json:"token"`
-	OrganizationName string `json:"organization_name"`
-}
-
-// Define required permissions as constants
 const (
-	ReadPublicKey  = "read:public_key"
-	ReadUser       = "read:user"
-	ReadProject    = "read:project"
-	RepoDeployment = "repo_deployment"
-	ReadRepoHook   = "read:repo_hook"
-	PublicRepo     = "public_repo"
-	ReadOrg        = "read:org"
-	RepoStatus     = "repo:status"
-	ReadPackages   = "read:packages"
+	// Default role definition ID for the Reader role
+	DefaultRoleDefinitionID = "/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7"
 )
 
-// HealthStatus represents the structure of the JSON output
-type HealthStatus struct {
-	Organization string  `json:"organization"`
-	Healthy      bool    `json:"healthy"`
-	Details      Details `json:"details"`
+// Credential interface defines methods for Azure credentials
+type Credential interface {
+	GetTokenCredential() azcore.TokenCredential
+	CheckCredential(ctx context.Context) bool
 }
 
-// Details contains required and missing permissions
-type Details struct {
-	RequiredPermissions []string `json:"required_permissions"`
-	MissingPermissions  []string `json:"missing_permissions"`
+// ClientSecretCredential represents credentials using a client secret
+type ClientSecretCredential struct {
+	TenantID     string
+	ClientID     string
+	ClientSecret string
+	credential   azcore.TokenCredential
 }
 
-// PermissionCheck represents a permission and its corresponding check function
-type PermissionCheck struct {
-	Name  string
-	Check func(ctx context.Context, client *github.Client, org string) error
-}
-
-// IsHealthy checks if the PAT has read access to all required artifacts in the organization
-func IsHealthy(ctx context.Context, client *github.Client, org string) error {
-	// Define all required permissions and their corresponding checks
-	permissions := []PermissionCheck{
-		{
-			Name: PublicRepo,
-			Check: func(ctx context.Context, client *github.Client, org string) error {
-				// Attempt to list public repositories
-				_, _, err := client.Repositories.ListByOrg(ctx, org, &github.RepositoryListByOrgOptions{
-					Type: "public",
-					ListOptions: github.ListOptions{
-						PerPage: 1,
-					},
-				})
-				return err
-			},
-		},
-		{
-			Name: ReadOrg,
-			Check: func(ctx context.Context, client *github.Client, org string) error {
-				// Attempt to get organization details
-				_, _, err := client.Organizations.Get(ctx, org)
-				return err
-			},
-		},
-		{
-			Name: ReadPackages,
-			Check: func(ctx context.Context, client *github.Client, org string) error {
-				// Define valid package types as per GitHub API
-				packageTypes := []string{"container", "npm", "maven", "nuget", "rubygems", "docker", "composer"}
-
-				// Iterate over each package type to check access
-				for _, pkgType := range packageTypes {
-					_, _, err := client.Organizations.ListPackages(ctx, org, &github.PackageListOptions{
-						PackageType: github.String(pkgType),
-						ListOptions: github.ListOptions{
-							PerPage: 1,
-						},
-					})
-					if err != nil {
-						// If the error is a 422 Unprocessable Entity, it might mean no packages of this type exist
-						// Skip to the next type
-						if ghErr, ok := err.(*github.ErrorResponse); ok && ghErr.Response.StatusCode == 422 {
-							continue
-						}
-						// For other errors, return immediately
-						return err
-					}
-				}
-				// If all package types resulted in 422, it implies no packages exist, but permissions might still be valid
-				return nil
-			},
-		},
-		{
-			Name: ReadProject,
-			Check: func(ctx context.Context, client *github.Client, org string) error {
-				// Attempt to list projects in the organization
-				_, _, err := client.Organizations.ListProjects(ctx, org, &github.ProjectListOptions{
-					State: "all",
-					ListOptions: github.ListOptions{
-						PerPage: 1,
-					},
-				})
-				return err
-			},
-		},
-		{
-			Name: ReadPublicKey,
-			Check: func(ctx context.Context, client *github.Client, org string) error {
-				// Public keys are associated with users, not organizations.
-				// Attempt to list public keys for the authenticated user
-				_, _, err := client.Users.ListKeys(ctx, "", &github.ListOptions{
-					PerPage: 1,
-				})
-				return err
-			},
-		},
-		{
-			Name: ReadRepoHook,
-			Check: func(ctx context.Context, client *github.Client, org string) error {
-				// Attempt to list repository hooks for a sample repository
-				repos, _, err := client.Repositories.ListByOrg(ctx, org, &github.RepositoryListByOrgOptions{
-					Type: "public",
-					ListOptions: github.ListOptions{
-						PerPage: 10,
-					},
-				})
-				if err != nil {
-					return err
-				}
-				if len(repos) == 0 {
-					return errors.New("no repositories found to check repo hooks")
-				}
-				_, _, err = client.Repositories.ListHooks(ctx, org, repos[0].GetName(), &github.ListOptions{
-					PerPage: 1,
-				})
-				return err
-			},
-		},
-		{
-			Name: ReadUser,
-			Check: func(ctx context.Context, client *github.Client, org string) error {
-				// Attempt to get the authenticated user
-				user, _, err := client.Users.Get(ctx, "")
-				if err != nil {
-					return err
-				}
-				// Verify the user belongs to the organization
-				_, _, err = client.Organizations.GetOrgMembership(ctx, user.GetLogin(), org)
-				return err
-			},
-		},
-		{
-			Name: RepoStatus,
-			Check: func(ctx context.Context, client *github.Client, org string) error {
-				// Attempt to list commit statuses for a sample commit
-				repos, _, err := client.Repositories.ListByOrg(ctx, org, &github.RepositoryListByOrgOptions{
-					Type: "public",
-					ListOptions: github.ListOptions{
-						PerPage: 10,
-					},
-				})
-				if err != nil {
-					return err
-				}
-				if len(repos) == 0 {
-					return errors.New("no repositories found to check repo status")
-				}
-				// Get a commit SHA
-				commits, _, err := client.Repositories.ListCommits(ctx, org, repos[0].GetName(), &github.CommitsListOptions{
-					ListOptions: github.ListOptions{
-						PerPage: 1,
-					},
-				})
-				if err != nil {
-					return err
-				}
-				if len(commits) == 0 {
-					return errors.New("no commits found to check repo status")
-				}
-				// Use ListStatuses instead of the undefined ListCommitStatuses
-				_, _, err = client.Repositories.ListStatuses(ctx, org, repos[0].GetName(), commits[0].GetSHA(), &github.ListOptions{
-					PerPage: 1,
-				})
-				return err
-			},
-		},
-		{
-			Name: RepoDeployment,
-			Check: func(ctx context.Context, client *github.Client, org string) error {
-				// Attempt to list deployments for a sample repository
-				repos, _, err := client.Repositories.ListByOrg(ctx, org, &github.RepositoryListByOrgOptions{
-					Type: "public",
-					ListOptions: github.ListOptions{
-						PerPage: 10,
-					},
-				})
-				if err != nil {
-					return err
-				}
-				if len(repos) == 0 {
-					return errors.New("no repositories found to check repo deployments")
-				}
-				_, _, err = client.Repositories.ListDeployments(ctx, org, repos[0].GetName(), &github.DeploymentsListOptions{
-					ListOptions: github.ListOptions{
-						PerPage: 1,
-					},
-				})
-				return err
-			},
-		},
-		// Add more permissions and their checks as needed
-		// For brevity, not all permissions from the list are implemented here
-	}
-
-	requiredPermissions := []string{}
-	missingPermissions := []string{}
-
-	var wg sync.WaitGroup
-	var mu sync.Mutex
-
-	// Channel to limit concurrency
-	concurrencyLimit := 5
-	sem := make(chan struct{}, concurrencyLimit)
-
-	for _, perm := range permissions {
-		wg.Add(1)
-		go func(p PermissionCheck) {
-			defer wg.Done()
-			sem <- struct{}{}
-			defer func() { <-sem }()
-
-			err := p.Check(ctx, client, org)
-			mu.Lock()
-			defer mu.Unlock()
-			requiredPermissions = append(requiredPermissions, p.Name)
-			if err != nil {
-				// Check if the error is due to permission issues
-				if isPermissionError(err) {
-					missingPermissions = append(missingPermissions, p.Name)
-				} else {
-					// Log other errors
-					log.Printf("Error checking permission '%s': %v", p.Name, err)
-					missingPermissions = append(missingPermissions, p.Name)
-				}
-			}
-		}(perm)
-	}
-
-	wg.Wait()
-
-	healthy := len(missingPermissions) == 0
-
-	status := HealthStatus{
-		Organization: org,
-		Healthy:      healthy,
-		Details: Details{
-			RequiredPermissions: requiredPermissions,
-			MissingPermissions:  missingPermissions,
-		},
-	}
-
-	// Marshal to JSON and print
-	output, err := json.MarshalIndent(status, "", "  ")
+// NewClientSecretCredential creates a new ClientSecretCredential
+func NewClientSecretCredential(tenantID, clientID, clientSecret string) (*ClientSecretCredential, error) {
+	cred, err := azidentity.NewClientSecretCredential(
+		tenantID,
+		clientID,
+		clientSecret,
+		nil,
+	)
 	if err != nil {
-		log.Fatalf("Failed to marshal JSON: %v", err)
+		return nil, fmt.Errorf("failed to create ClientSecretCredential: %w", err)
 	}
-
-	fmt.Println(string(output))
-
-	if !healthy {
-		return errors.New("organization is not healthy due to missing permissions")
-	}
-
-	return nil
+	return &ClientSecretCredential{
+		TenantID:     tenantID,
+		ClientID:     clientID,
+		ClientSecret: clientSecret,
+		credential:   cred,
+	}, nil
 }
 
-// isPermissionError determines if an error is due to insufficient permissions
-func isPermissionError(err error) bool {
-	if err == nil {
+// GetTokenCredential returns the azcore.TokenCredential
+func (c *ClientSecretCredential) GetTokenCredential() azcore.TokenCredential {
+	return c.credential
+}
+
+// CheckCredential checks if the credential is valid
+func (c *ClientSecretCredential) CheckCredential(ctx context.Context) bool {
+	return checkCredential(ctx, c.credential)
+}
+
+// ClientCertificateCredential represents credentials using a client certificate
+type ClientCertificateCredential struct {
+	TenantID     string
+	ClientID     string
+	CertPath     string
+	CertContent  string // New Field
+	CertPassword string
+	credential   azcore.TokenCredential
+}
+
+// NewClientCertificateCredential creates a new ClientCertificateCredential
+func NewClientCertificateCredential(tenantID, clientID, certPath, certContent, certPassword string) (*ClientCertificateCredential, error) {
+	var certData []byte
+	var err error
+
+	if certContent != "" {
+		certData = []byte(certContent)
+	} else if certPath != "" {
+		// Read the certificate file
+		certData, err = os.ReadFile(certPath)
+		if err != nil {
+			return nil, fmt.Errorf("failed to read certificate file: %w", err)
+		}
+	} else {
+		return nil, fmt.Errorf("either certPath or certContent must be provided")
+	}
+
+	var password []byte
+	if certPassword != "" {
+		password = []byte(certPassword)
+	}
+
+	// Parse the certificate using azidentity.ParseCertificates
+	certs, key, err := azidentity.ParseCertificates(certData, password)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse certificate: %w", err)
+	}
+
+	// Create the ClientCertificateCredential
+	cred, err := azidentity.NewClientCertificateCredential(
+		tenantID,
+		clientID,
+		certs,
+		key,
+		nil,
+	)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create ClientCertificateCredential: %w", err)
+	}
+	return &ClientCertificateCredential{
+		TenantID:     tenantID,
+		ClientID:     clientID,
+		CertPath:     certPath,
+		CertContent:  certContent,
+		CertPassword: certPassword,
+		credential:   cred,
+	}, nil
+}
+
+// GetTokenCredential returns the azcore.TokenCredential
+func (c *ClientCertificateCredential) GetTokenCredential() azcore.TokenCredential {
+	return c.credential
+}
+
+// CheckCredential checks if the credential is valid
+func (c *ClientCertificateCredential) CheckCredential(ctx context.Context) bool {
+	return checkCredential(ctx, c.credential)
+}
+
+// checkCredential verifies that the provided TokenCredential can authenticate
+func checkCredential(ctx context.Context, cred azcore.TokenCredential) bool {
+	// Attempt to get a token to verify credentials
+	_, err := cred.GetToken(ctx, policy.TokenRequestOptions{
+		Scopes: []string{"https://management.azure.com/.default"},
+	})
+	if err != nil {
+		log.Printf("Credential check failed: %v", err)
 		return false
 	}
-	// Check if it's a GitHub API error
-	if githubErr, ok := err.(*github.ErrorResponse); ok {
-		if githubErr.Response != nil && githubErr.Response.StatusCode == 403 {
-			return true
-		}
-	}
-	return false
+	return true
 }
 
-func GithubIntegrationHealthcheck(cfg Config) (bool, error) {
-	token := cfg.Token
-	if token == "" {
-		return false, fmt.Errorf("no token provided")
-	}
-
-	// Read organization name
-	orgName := cfg.OrganizationName
-	if orgName == "" {
-		return false, fmt.Errorf("organization name is required")
-	}
-
-	// Create a context with timeout
-	ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
-	defer cancel()
-
-	// Create an OAuth2 token source
-	ts := oauth2.StaticTokenSource(
-		&oauth2.Token{AccessToken: token},
-	)
-
-	// Create an OAuth2 client
-	tc := oauth2.NewClient(ctx, ts)
-
-	// Create a new GitHub client
-	client := github.NewClient(tc)
-
-	// Now process permissions for the specified organization
-	fmt.Printf("\nChecking Access for Organization: %s\n", orgName)
-	err := IsHealthy(ctx, client, orgName)
+// getSPNObjectID retrieves the Object ID of the SPN by parsing the JWT token
+func getSPNObjectIDHealth(ctx context.Context, cred azcore.TokenCredential) (string, error) {
+	token, err := cred.GetToken(ctx, policy.TokenRequestOptions{
+		Scopes: []string{"https://management.azure.com/.default"},
+	})
 	if err != nil {
-		return false, err
+		return "", fmt.Errorf("failed to get token: %w", err)
 	}
 
-	return true, nil
+	// Parse the token to extract the oid claim
+	parser := jwt.Parser{}
+	claims := jwt.MapClaims{}
+	_, _, err = parser.ParseUnverified(token.Token, claims)
+	if err != nil {
+		return "", fmt.Errorf("failed to parse JWT token: %w", err)
+	}
+
+	oid, ok := claims["oid"].(string)
+	if !ok {
+		return "", fmt.Errorf("failed to get oid claim from token")
+	}
+
+	return oid, nil
+}
+
+// getGUIDFromResourceID extracts the GUID from a resource ID
+func getGUIDFromResourceID(resourceID string) string {
+	parts := strings.Split(resourceID, "/")
+	if len(parts) > 0 {
+		return parts[len(parts)-1]
+	}
+	return resourceID
+}
+
+// hasRole checks if the SPN has the specified role assigned to the given subscription
+func hasRole(ctx context.Context, authClientFactory *armauthorization.ClientFactory, subscriptionID, spnObjectID, roleDefinitionID string) (bool, error) {
+	roleAssignmentsClient := authClientFactory.NewRoleAssignmentsClient()
+
+	// Use the 'assignedTo' filter
+	filter := fmt.Sprintf("assignedTo('%s')", spnObjectID)
+
+	// Prepare the scope: subscriptions/{subscriptionID}
+	scope := fmt.Sprintf("/subscriptions/%s", subscriptionID)
+
+	// Create a pager to list role assignments
+	pager := roleAssignmentsClient.NewListForScopePager(scope, &armauthorization.RoleAssignmentsClientListForScopeOptions{
+		Filter: &filter,
+	})
+
+	roleDefinitionGUID := getGUIDFromResourceID(roleDefinitionID)
+
+	for pager.More() {
+		page, err := pager.NextPage(ctx)
+		if err != nil {
+			return false, fmt.Errorf("failed to get next page of role assignments: %w", err)
+		}
+
+		for _, roleAssignment := range page.Value {
+			// Check if the role assignment matches the specified role definition ID
+			if roleAssignment.Properties != nil && roleAssignment.Properties.RoleDefinitionID != nil {
+				assignedRoleDefinitionID := *roleAssignment.Properties.RoleDefinitionID
+				assignedRoleDefinitionGUID := getGUIDFromResourceID(assignedRoleDefinitionID)
+
+				if strings.EqualFold(assignedRoleDefinitionGUID, roleDefinitionGUID) {
+					return true, nil
+				}
+			}
+		}
+	}
+
+	// If we reach here, no matching role assignment was found
+	return false, nil
+}
+
+// RoleDetail contains details about the role definition
+type RoleDetail struct {
+	Description        *string                        `json:"description,omitempty"`
+	Permissions        []*armauthorization.Permission `json:"permissions,omitempty"`
+	RoleName           *string                        `json:"roleName,omitempty"`
+	Type               *string                        `json:"type,omitempty"`
+	RoleDefinitionId   *string                        `json:"roleDefinitionId,omitempty"`
+	RoleDefinitionName *string                        `json:"roleDefinitionName,omitempty"`
+}
+
+// Output represents the final output structure
+type Output struct {
+	SubscriptionId    string       `json:"subscriptionId"`
+	SubscriptionName  string       `json:"subscriptionName"`
+	SubscriptionState string       `json:"subscriptionState"`
+	RoleId            string       `json:"roleId"`
+	Status            string       `json:"status"`
+	RoleDetails       []RoleDetail `json:"roleDetails"`
+}
+
+// HealthChecker interface defines a method to check health status
+type HealthChecker interface {
+	IsHealthy(ctx context.Context, roleDefinitionID string) (bool, error)
+}
+
+// Subscription represents an Azure subscription
+type Subscription struct {
+	ID    string
+	Name  string
+	State string
+
+	authClientFactory *armauthorization.ClientFactory
+	spnObjectID       string
+}
+
+// IsHealthy checks if the subscription is healthy based on role assignment
+func (s *Subscription) IsHealthy(ctx context.Context, roleDefinitionID string) (bool, error) {
+	return hasRole(ctx, s.authClientFactory, s.ID, s.spnObjectID, roleDefinitionID)
+}
+
+// NewSubscription creates a new Subscription instance
+func NewSubscription(ctx context.Context, subscriptionID string, credential azcore.TokenCredential, spnObjectID string) (*Subscription, error) {
+	// Create an authorization client factory
+	authClientFactory, err := armauthorization.NewClientFactory(subscriptionID, credential, nil)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create authorization client factory: %w", err)
+	}
+
+	// Create a subscriptions client
+	subscriptionsClient, err := armsubscription.NewSubscriptionsClient(credential, nil)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create subscriptions client: %w", err)
+	}
+
+	// Get subscription details
+	subscriptionResp, err := subscriptionsClient.Get(ctx, subscriptionID, nil)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get subscription details for subscription %s: %w", subscriptionID, err)
+	}
+
+	subscriptionName := ""
+	if subscriptionResp.DisplayName != nil {
+		subscriptionName = *subscriptionResp.DisplayName
+	}
+
+	subscriptionState := ""
+	if subscriptionResp.State != nil {
+		subscriptionState = string(*subscriptionResp.State)
+	}
+
+	return &Subscription{
+		ID:                subscriptionID,
+		Name:              subscriptionName,
+		State:             subscriptionState,
+		authClientFactory: authClientFactory,
+		spnObjectID:       spnObjectID,
+	}, nil
+}
+
+// authenticate handles credential creation and validation
+func authenticate(ctx context.Context, config *Config) (Credential, error) {
+	var credential Credential
+	var err error
+
+	if config.CertContent != "" || config.CertPath != "" {
+		// Use certificate-based authentication
+		credential, err = NewClientCertificateCredential(config.TenantID, config.ClientID, config.CertPath, config.CertContent, config.CertPassword)
+		if err != nil {
+			return nil, fmt.Errorf("failed to create certificate credential: %w", err)
+		}
+	} else if config.ClientSecret != "" {
+		// Use client secret authentication
+		credential, err = NewClientSecretCredential(config.TenantID, config.ClientID, config.ClientSecret)
+		if err != nil {
+			return nil, fmt.Errorf("failed to create client secret credential: %w", err)
+		}
+	} else {
+		return nil, fmt.Errorf("no valid authentication method found. Provide clientSecret or certPath/certContent in the JSON input.")
+	}
+
+	// Check if the credentials are valid
+	if !credential.CheckCredential(ctx) {
+		return nil, fmt.Errorf("credentials are invalid or cannot authenticate")
+	}
+
+	return credential, nil
+}
+
+// getRoleDefinition retrieves the role definition
+func getRoleDefinition(ctx context.Context, authClientFactory *armauthorization.ClientFactory, roleDefinitionID string) (*armauthorization.RoleDefinition, error) {
+	roleDefinitionsClient := authClientFactory.NewRoleDefinitionsClient()
+
+	roleDefinitionResp, err := roleDefinitionsClient.GetByID(ctx, roleDefinitionID, nil)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get role definition: %w", err)
+	}
+
+	return &roleDefinitionResp.RoleDefinition, nil
+}
+
+// buildOutput constructs the output data
+func buildOutput(subscription *Subscription, roleDefinitionID string, status string, roleDefinition *armauthorization.RoleDefinition) Output {
+	return Output{
+		SubscriptionId:    subscription.ID,
+		SubscriptionName:  subscription.Name,
+		SubscriptionState: subscription.State,
+		RoleId:            roleDefinitionID,
+		Status:            status,
+		RoleDetails: []RoleDetail{
+			{
+				Description:        roleDefinition.Properties.Description,
+				Permissions:        roleDefinition.Properties.Permissions,
+				RoleName:           roleDefinition.Properties.RoleName,
+				Type:               roleDefinition.Type,
+				RoleDefinitionId:   roleDefinition.ID,
+				RoleDefinitionName: roleDefinition.Name,
+			},
+		},
+	}
+}
+
+
+
+func AzureIntegrationHealthcheck(config Config) (bool, error) {
+	ctx := context.Background()
+
+	// Validate required fields
+	if config.TenantID == "" || config.ClientID == "" || config.SubscriptionID == "" {
+		return false, fmt.Errorf("tenantId, clientId, and subscriptionId are required in the configuration.")
+	}
+
+	// Authenticate and get credentials
+	credential, err := authenticate(ctx, &config)
+	if err != nil {
+		return false, fmt.Errorf("authentication failed: %v", err)
+	}
+
+	// Get the SPN's Object ID if not provided
+	spnObjectID := config.ObjectID
+	if spnObjectID == "" {
+		spnObjectID, err = getSPNObjectIDHealth(ctx, credential.GetTokenCredential())
+		if err != nil {
+			return false, fmt.Errorf("failed to get SPN Object ID: %v", err)
+		}
+	}
+
+	// Create a Subscription instance
+	subscription, err := NewSubscription(ctx, config.SubscriptionID, credential.GetTokenCredential(), spnObjectID)
+	if err != nil {
+		return false, fmt.Errorf("failed to create subscription instance: %v", err)
+	}
+
+	// Use provided RoleDefinitionID or default
+	roleDefinitionID := config.RoleDefinitionID
+	if roleDefinitionID == "" {
+		roleDefinitionID = DefaultRoleDefinitionID // Use the default role ID
+	}
+
+	// Check if the subscription is healthy
+	isHealthy, err := subscription.IsHealthy(ctx, roleDefinitionID)
+	if err != nil {
+		log.Fatalf("Failed to check subscription health: %v", err)
+	}
+
+	return isHealthy, nil
 }

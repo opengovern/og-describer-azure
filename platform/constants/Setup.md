@@ -1,68 +1,103 @@
-# Setup GitHub Integration
+# Azure Subscriptions Integration Setup Guide for opencomply
 
-Integrating opencomply with your GitHub organization using a Classic Personal Access Token (PAT) is a straightforward process. Here's a step-by-step guide to help you through it:
+This guide provides step-by-step instructions to integrate your Azure subscriptions with opencomply by creating a Service Principal with read-only access. This integration enables opencomply to provide visibility and governance capabilities over your Azure resources.
+
+## Table of Contents
+
+- [Azure Subscriptions Integration Setup Guide for opencomply](#azure-subscriptions-integration-setup-guide-for-opencomply)
+  - [Table of Contents](#table-of-contents)
+  - [Prerequisites](#prerequisites)
+  - [Steps](#steps)
+    - [1. Clone the Integration Scripts Repository](#1-clone-the-integration-scripts-repository)
+    - [2. Run the Reader Role Assignment Script](#2-run-the-reader-role-assignment-script)
+    - [3. Setup opencomply](#3-setup-opencomply)
+      - [Navigate to the opencomply Dashboard:](#navigate-to-the-opencomply-dashboard)
+      - [Access the Integrations Section:](#access-the-integrations-section)
+      - [Enter the Required Details:](#enter-the-required-details)
+      - [Complete the Integration:](#complete-the-integration)
 
 ## Prerequisites
 
-1. **opencomply Should be Installed and Running**: Ensure you have opencomply set up and ready to integrate with external services.
-2. **GitHub Organization Admin Permissions**: Make sure you have administrative access to the GitHub organization you want to integrate with.
-3. **Read Access to All Organization Repositories**: Ensure you have the necessary permissions to access the data in your GitHub organization.
+Before you begin, ensure the following prerequisites are met:
 
-<br>
+- **Azure CLI Installed and Authenticated**: The Azure CLI must be installed on your machine and authenticated with sufficient privileges.
+  - **Install Azure CLI**: Follow the [Azure CLI Installation Guide](https://learn.microsoft.com/cli/azure/install-azure-cli) to install the Azure CLI.
+  - **Authenticate**: Run the following command and follow the prompts to authenticate:
 
-## Create a Classic Personal Access Token (PAT)
+    ```bash
+    az login
+    ```
 
-1. **Access GitHub Settings**:
-    - In the upper-right corner of any GitHub page, click your profile photo.
-    - Select **Settings** from the dropdown menu.
+- **opencomply Installed and Running**: Ensure that opencomply is installed and operational. Refer to the [opencomply Installation Documentation](https://github.com/opengovern/integration-automation-scripts) if needed.
 
-2. **Go to Developer Settings**:
-    - In the left sidebar, navigate to **Developer settings**.
+## Steps
 
-3. **Generate a New Token**:
-    - Under **Personal access tokens**, select **Tokens (classic)**.
-    - Click **Generate new token**, and then **Generate new token (classic)** again.
+Follow the steps below to set up the Azure subscriptions integration with opencomply.
 
-4. **Set Token Expiration**:
-    - Choose an expiration for the token by selecting **Expiration** and picking a default option or entering a custom date.
+### 1. Clone the Integration Scripts Repository
 
-5. **Select Required Scopes**:
-    - Ensure you select the following scopes to grant opencomply the necessary access:
-        - `repo`
-        - `read:org`
-        - `read:packages`
-        - `read:project`
-        - `read:ssh_signing_key`
-        - `read:audit_log`
-        - `read:enterprise`
-        - `read:discussion`
-        - `read:user`
-        - `user:email`
-        - `notification`
-        - `read:repo_hook`
-        - `read:public_key`
+The integration scripts automate the creation of the Service Principal (SPN) and role assignment.
 
-6. **Generate the Token**:
-    - After selecting the scopes, generate the token and copy it for use in opencomply integration.
+```bash
+# Clone the repository
+git clone https://github.com/opengovern/integration-automation-scripts.git
+# Navigate to the Azure directory
+cd integration-automation-scripts/azure-subscriptions
+```
 
-## Configure Integration in opencomply
+### 2. Run the Reader Role Assignment Script
 
-1. **Open opencomply Dashboard**:
-    - Navigate to the opencomply dashboard.
+Execute the script to create a Service Principal (SPN) and assign it the Reader role across all your Azure subscriptions.
 
-2. **Go to Integrations**:
-    - Select **Integrations** and then choose **GitHub** from the options.
+- Make the Script Executable (if not already):
 
-3. **Select Classic PAT Integration**:
-    - Opt for the **Classic PAT integration** method.
+  ```bash
+  chmod +x assign_reader_role.sh
+  ```
 
-4. **Paste the PAT**:
-    - Paste the copied PAT into the appropriate field.
+- Run the Script:
 
-5. **Select GitHub Organization**:
-    - In the dropdown menu, choose the GitHub organization you want to connect.
+  ```bash
+  ./assign_reader_role.sh
+  ```
 
-6. **Finalize Integration**:
-    - Click **Save** to confirm and enable the connection.
+The script will perform the following actions:
 
-With these steps, opencomply will have read access to your GitHub repositories and related metadata, allowing it to provide governance and compliance oversight effectively.
+- Create a Service Principal with the necessary permissions.
+- Assign the Reader role to the Service Principal for each Azure subscription in your tenant.
+
+**Note**: Ensure you have the necessary permissions to create Service Principals and assign roles in your Azure tenant.
+
+### 3. Setup opencomply
+
+After running the script, it will output essential details required for configuring opencomply:
+
+- Tenant ID
+- Application (Client) ID
+- Object ID
+- Client Secret
+
+Use the credentials obtained to configure Azure integration within opencomply.
+
+#### Navigate to the opencomply Dashboard:
+
+Open your web browser and go to the opencomply portal. Log in with your administrator credentials.
+
+#### Access the Integrations Section:
+
+- In the sidebar, click on Integrations.
+- Select Azure from the list of available integrations.
+- Click on Add New Integration and choose New SPN from the options.
+
+#### Enter the Required Details:
+
+In the integration wizard, provide the following details:
+
+- **Tenant ID**: Enter the Tenant ID obtained from the script output.
+- **Application (Client) ID**: Enter the Application (Client) ID.
+- **Client Secret**: Enter the Client Secret. Ensure this is stored securely.
+- **Object ID**: Enter the Object ID associated with the Service Principal.
+
+#### Complete the Integration:
+
+Follow the on-screen instructions to complete the integration process. Once completed, your Azure subscriptions will be linked with opencomply, providing enhanced visibility and governance over your Azure resources.

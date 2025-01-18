@@ -1,1650 +1,2010 @@
-//go:generate go run ../../SDK/runnable/models/main.go --file $GOFILE --output ../../SDK/generated/resources_clients.go --type $PROVIDER
+//go:generate go run ../../pkg/sdk/runable/steampipe_es_client_generator/main.go -pluginPath ../../steampipe-plugin-azure/azure -file $GOFILE -output ../../pkg/sdk/es/resources_clients.go -resourceTypesFile ../resource_types/resource-types.json
 
 // Implement types for each resource
 
 package provider
 
 import (
-	"encoding/json"
-	"time"
-	goPipeline "github.com/buildkite/go-pipeline"
-	"github.com/google/go-github/v55/github"
-	"github.com/shurcooL/githubv4"
-	steampipemodels "github.com/turbot/steampipe-plugin-github/github/models"
+	"github.com/Azure/azure-sdk-for-go/sdk/data/aztables"
+	"github.com/Azure/azure-sdk-for-go/sdk/keyvault/azcertificates"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/alertsmanagement/armalertsmanagement"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/analysisservices/armanalysisservices"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/apimanagement/armapimanagement"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/applicationinsights/armapplicationinsights"
+	appservice "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appservice/armappservice"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/authorization/armauthorization/v2"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/automation/armautomation"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/batch/armbatch"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/blueprint/armblueprint"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/botservice/armbotservice"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/cdn/armcdn"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/cognitiveservices/armcognitiveservices"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/compute/armcompute/v4"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/containerinstance/armcontainerinstance"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/containerregistry/armcontainerregistry"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/containerservice/armcontainerservice/v4"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/cosmos/armcosmos/v2"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/dashboard/armdashboard"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/databoxedge/armdataboxedge"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/databricks/armdatabricks"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/datafactory/armdatafactory/v2"
+	analytics "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/datalake-analytics/armdatalakeanalytics"
+	store "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/datalake-store/armdatalakestore"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/datamigration/armdatamigration"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/dataprotection/armdataprotection"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/desktopvirtualization/armdesktopvirtualization"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/deviceprovisioningservices/armdeviceprovisioningservices"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/devtestlabs/armdevtestlabs"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/dns/armdns"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/dnsresolver/armdnsresolver"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/eventgrid/armeventgrid/v2"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/eventhub/armeventhub"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/frontdoor/armfrontdoor"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/guestconfiguration/armguestconfiguration"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/hdinsight/armhdinsight"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/healthcareapis/armhealthcareapis"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/hybridcompute/armhybridcompute"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/hybridkubernetes/armhybridkubernetes"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/iothub/armiothub"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/keyvault/armkeyvault"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/kubernetesconfiguration/armkubernetesconfiguration"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/kusto/armkusto"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/logic/armlogic"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/machinelearning/armmachinelearning"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/maintenance/armmaintenance"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/managedservices/armmanagedservices"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/managementgroups/armmanagementgroups"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/mariadb/armmariadb"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/mysql/armmysql"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/mysql/armmysqlflexibleservers"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/netapp/armnetapp/v2"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/network/armnetwork"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/operationalinsights/armoperationalinsights/v2"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/postgresql/armpostgresql"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/postgresql/armpostgresqlflexibleservers"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/powerbidedicated/armpowerbidedicated"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/privatedns/armprivatedns"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/purview/armpurview"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/recoveryservices/armrecoveryservices"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/redis/armredis/v2"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/redisenterprise/armredisenterprise"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armlinks"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armlocks"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armpolicy"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armresources"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/search/armsearch"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/security/armsecurity"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/servicebus/armservicebus"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/servicefabric/armservicefabric"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/signalr/armsignalr"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/springappdiscovery/armspringappdiscovery"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/sql/armsql"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/sqlvirtualmachine/armsqlvirtualmachine"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/storage/armstorage"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/storagecache/armstoragecache/v2"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/storagesync/armstoragesync"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/streamanalytics/armstreamanalytics"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/subscription/armsubscription"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/synapse/armsynapse"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/timeseriesinsights/armtimeseriesinsights"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/trafficmanager/armtrafficmanager"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/virtualmachineimagebuilder/armvirtualmachineimagebuilder"
+	"github.com/Azure/azure-sdk-for-go/services/preview/web/mgmt/2015-08-01-preview/web"
+	azblobOld "github.com/Azure/azure-storage-blob-go/azblob"
+	"github.com/tombuildsstuff/giovanni/storage/2018-11-09/queue/queues"
+	"github.com/tombuildsstuff/giovanni/storage/2019-12-12/blob/accounts"
 )
 
-type Metadata struct{}
-
-type ArtifactDescription struct {
-	ID                 int64
-	NodeID             *string
-	Name               *string
-	SizeInBytes        int64
-	ArchiveDownloadURL *string
-	Expired            bool
-	CreatedAt          *string
-	ExpiresAt          *string
-	RepoFullName       *string
+type Metadata struct {
+	ID               string
+	Name             string
+	SubscriptionID   string
+	Location         string
+	CloudEnvironment string
+	ResourceType     string
+	IntegrationID    string
 }
 
-type RunnerLabels struct {
-	ID   *int64
-	Name *string
-	Type *string
+//  ===================  APIManagement ==================
+
+//index:microsoft_apimanagement_service
+//getfilter:name=description.APIManagement.name
+//getfilter:resource_group=description.ResourceGroup
+type APIManagementDescription struct {
+	APIManagement               armapimanagement.ServiceResource
+	DiagnosticSettingsResources *[]armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
 }
 
-type RunnerDescription struct {
-	ID           *int64
-	Name         *string
-	OS           *string
-	Status       *string
-	Busy         *bool
-	Labels       []*RunnerLabels
-	RepoFullName *string
+type APIManagementBackendDescription struct {
+	APIManagementBackend armapimanagement.BackendContract
+	ServiceName          string
+	ResourceGroup        string
 }
 
-type SecretDescription struct {
-	Name                    *string
-	CreatedAt               *string
-	UpdatedAt               *string
-	Visibility              *string
-	SelectedRepositoriesURL *string
-	RepoFullName            *string
+//  ===================  Automation ==================
+
+//index:microsoft_automation_automationAccounts
+type AutomationAccountsDescription struct {
+	Automation    armautomation.Account
+	ResourceGroup string
 }
 
-type SimpleActor struct {
-	Login  *string
-	ID     int
-	NodeID *string
-	Type   *string
+//index:microsoft_automation_automationVariables
+type AutomationVariablesDescription struct {
+	Automation    armautomation.Variable
+	AccountName   string
+	ResourceGroup string
 }
 
-type SimpleRepo struct {
-	ID     int
-	NodeID *string
+//  ===================  App Configuration ==================
+
+//index:microsoft_appconfiguration_configurationstores
+//getfilter:name=description.ConfigurationStore.name
+//getfilter:resource_group=description.ResourceGroup
+type AppConfigurationDescription struct {
+	ConfigurationStore          armappconfiguration.ConfigurationStore
+	DiagnosticSettingsResources *[]armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
 }
 
-type CommitRefWorkflow struct {
-	ID *string
+//  =================== web ==================
+
+//index:microsoft_web_hostingenvironments
+//getfilter:name=description.AppServiceEnvironmentResource.name
+//getfilter:resource_group=description.ResourceGroup
+type AppServiceEnvironmentDescription struct {
+	AppServiceEnvironmentResource appservice.EnvironmentResource
+	ResourceGroup                 string
 }
 
-type WorkflowRunDescription struct {
-	ID                  int
-	Name                *string
-	HeadBranch          *string
-	HeadSHA             *string
-	Status              *string
-	Conclusion          *string
-	HTMLURL             *string
-	WorkflowID          int
-	RunNumber           int
-	Event               *string
-	CreatedAt           *string
-	UpdatedAt           *string
-	RunAttempt          int
-	RunStartedAt        *string
-	Actor               *SimpleActor
-	HeadCommit          *CommitRefWorkflow
-	Repository          *SimpleRepo
-	HeadRepository      *SimpleRepo
-	ReferencedWorkflows []interface{}
-	ArtifactCount       int
-	Artifacts           []WorkflowArtifact
+//index:microsoft_web_sites
+//getfilter:name=description.Site.name
+//getfilter:resource_group=description.ResourceGroup
+type AppServiceFunctionAppDescription struct {
+	Site               appservice.Site
+	SiteAuthSettings   appservice.SiteAuthSettings
+	SiteConfigResource appservice.SiteConfigResource
+	ResourceGroup      string
 }
 
-type WorkflowRunsResponse struct {
-	TotalCount   int                      `json:"total_count"`
-	WorkflowRuns []WorkflowRunDescription `json:"workflow_runs"`
+//index:microsoft_web_staticsites
+//getfilter:name=description.Site.name
+//getfilter:resource_group=description.ResourceGroup
+type AppServiceWebAppDescription struct {
+	Site               appservice.Site
+	SiteAuthSettings   appservice.SiteAuthSettings
+	SiteConfigResource appservice.SiteConfigResource
+	SiteLogConfig      appservice.SiteLogsConfig
+	VnetInfo           appservice.VnetInfoResource
+	StorageAccounts    map[string]*appservice.AzureStorageInfoValue
+	ResourceGroup      string
 }
 
-type WorkflowArtifactJSON struct {
-	ID                 int    `json:"id"`
-	NodeID             string `json:"node_id"`
-	Name               string `json:"name"`
-	SizeInBytes        int    `json:"size_in_bytes"`
-	URL                string `json:"url"`
-	ArchiveDownloadURL string `json:"archive_download_url"`
-	Expired            bool   `json:"expired"`
-	CreatedAt          string `json:"created_at"`
-	UpdatedAt          string `json:"updated_at"`
-	ExpiresAt          string `json:"expires_at"`
+type AppServiceWebAppSlotDescription struct {
+	Site          appservice.Site
+	AppName       string
+	ResourceGroup string
 }
 
-type WorkflowArtifact struct {
-	ID                 int
-	NodeID             *string
-	Name               *string
-	SizeInBytes        int
-	URL                *string
-	ArchiveDownloadURL *string
-	Expired            bool
-	CreatedAt          *string
-	UpdatedAt          *string
-	ExpiresAt          *string
+//index:microsoft_web_plan
+//getfilter:name=description.Site.name
+//getfilter:resource_group=description.ResourceGroup
+type AppServicePlanDescription struct {
+	Plan          appservice.Plan
+	Apps          []*appservice.Site
+	ResourceGroup string
 }
 
-type ArtifactsResponse struct {
-	TotalCount int                    `json:"total_count"`
-	Artifacts  []WorkflowArtifactJSON `json:"artifacts"`
+//index:microsoft_app_containerapp
+type ContainerAppDescription struct {
+	ResourceGroup string
+	Server        appservice.ContainerApp
 }
 
-type ActorLocation struct {
-	CountryCode *string
+//index:microsoft_app_managedenvironment
+type AppManagedEnvironmentDescription struct {
+	ResourceGroup      string
+	HostingEnvironment web.HostingEnvironment
 }
 
-type AuditEntryData struct {
-	OldName  *string
-	OldLogin *string
+//index:microsoft_web_serverfarm
+type WebServerFarmsDescription struct {
+	ResourceGroup string
+	ServerFarm    appservice.Plan
 }
 
-type AuditLogDescription struct {
-	ID            *string
-	CreatedAt     *string
-	Organization  *string
-	Phrase        *string
-	Include       *string
-	Action        *string
-	Actor         *string
-	ActorLocation *ActorLocation
-	Team          *string
-	UserLogin     *string
-	Repo          *string
-	Data          *AuditEntryData
+//  =================== blueprint ==================
+
+//index:microsoft_blueprint_blueprint
+type BlueprintDescription struct {
+	ResourceGroup string
+	Blueprint     armblueprint.Blueprint
 }
 
-//type BlobDescription struct {
-//	Content      *string
-//	Encoding     *string
-//	SHA          *string
-//	Size         *int
-//	URL          *string
-//	NodeID       *string
-//	RepoFullName string
-//}
+//  =================== compute ==================
 
-type BasicUser struct {
-	Id        int
-	NodeId    *string
-	Name      *string
-	Login     *string
-	Email     *string
-	CreatedAt *string
-	UpdatedAt *string
-	Url       *string
+//index:microsoft_compute_disks
+//getfilter:name=description.Disk.name
+//getfilter:resource_group=description.ResourceGroup
+type ComputeDiskDescription struct {
+	Disk          armcompute.Disk
+	ResourceGroup string
 }
 
-type GitActor struct {
-	AvatarUrl *string
-	Date      *string
-	Email     *string
-	Name      *string
-	User      BasicUser
+//index:microsoft_compute_disksreadops
+type ComputeDiskReadOpsDescription struct {
+	MonitoringMetric
 }
 
-type Signature struct {
-	Email             *string
-	IsValid           bool
-	State             *string
-	WasSignedByGitHub bool
-	Signer            struct {
-		Email *string
-		Login *string
+//index:microsoft_compute_disksreadopsdaily
+type ComputeDiskReadOpsDailyDescription struct {
+	MonitoringMetric
+}
+
+//index:microsoft_compute_disksreadopshourly
+type ComputeDiskReadOpsHourlyDescription struct {
+	MonitoringMetric
+}
+
+//index:microsoft_compute_diskswriteops
+type ComputeDiskWriteOpsDescription struct {
+	MonitoringMetric
+}
+
+//index:microsoft_compute_diskswriteopsdaily
+type ComputeDiskWriteOpsDailyDescription struct {
+	MonitoringMetric
+}
+
+//index:microsoft_compute_diskswriteopshourly
+type ComputeDiskWriteOpsHourlyDescription struct {
+	MonitoringMetric
+}
+
+//index:microsoft_compute_diskaccesses
+//getfilter:name=description.DiskAccess.name
+//getfilter:resource_group=description.ResourceGroup
+type ComputeDiskAccessDescription struct {
+	DiskAccess    armcompute.DiskAccess
+	ResourceGroup string
+}
+
+//index:microsoft_compute_virtualmachinescalesets
+//getfilter:name=description.VirtualMachineScaleSet.name
+//getfilter:resource_group=description.ResourceGroup
+type ComputeVirtualMachineScaleSetDescription struct {
+	VirtualMachineScaleSet           armcompute.VirtualMachineScaleSet
+	VirtualMachineScaleSetExtensions []armcompute.VirtualMachineScaleSetExtension
+	ResourceGroup                    string
+}
+
+//index:microsoft_compute_virtualmachinescalesetnetworkinterface
+type ComputeVirtualMachineScaleSetNetworkInterfaceDescription struct {
+	VirtualMachineScaleSet armcompute.VirtualMachineScaleSet
+	NetworkInterface       armnetwork.Interface
+	ResourceGroup          string
+}
+
+//index:microsoft_compute_virtualmachinescalesetvm
+//getfilter:scale_set_name=description.VirtualMachineScaleSet.name
+//getfilter:instance_id=description.ScaleSetVM.InstanceID
+//getfilter:resource_group=description.ResourceGroup
+type ComputeVirtualMachineScaleSetVmDescription struct {
+	VirtualMachineScaleSet armcompute.VirtualMachineScaleSet
+	ScaleSetVM             armcompute.VirtualMachineScaleSetVM
+	PowerState             string
+	ResourceGroup          string
+}
+
+//index:microsoft_compute_snapshots
+//getfilter:name=description.Snapshot.Name
+//getfilter:resource_group=description.ResourceGroup
+type ComputeSnapshotsDescription struct {
+	Snapshot      armcompute.Snapshot
+	ResourceGroup string
+}
+
+//index:microsoft_compute_availabilityset
+//getfilter:name=description.AvailabilitySet.Name
+//getfilter:resource_group=description.ResourceGroup
+type ComputeAvailabilitySetDescription struct {
+	AvailabilitySet armcompute.AvailabilitySet
+	ResourceGroup   string
+}
+
+//index:microsoft_compute_diskencryptionset
+//getfilter:name=description.DiskEncryptionSet.Name
+//getfilter:resource_group=description.ResourceGroup
+type ComputeDiskEncryptionSetDescription struct {
+	DiskEncryptionSet armcompute.DiskEncryptionSet
+	ResourceGroup     string
+}
+
+//index:microsoft_compute_gallery
+//getfilter:name=description.ImageGallery.Name
+//getfilter:resource_group=description.ResourceGroup
+type ComputeImageGalleryDescription struct {
+	ImageGallery  armcompute.Gallery
+	ResourceGroup string
+}
+
+//index:microsoft_compute_image
+//getfilter:name=Description.Image.Name
+//getfilter:resource_group=Description.Image.ResourceGroup
+type ComputeImageDescription struct {
+	Image         armcompute.Image
+	ResourceGroup string
+}
+
+type ComputeHostGroupDescription struct {
+	HostGroup     armcompute.DedicatedHostGroup
+	ResourceGroup string
+}
+
+type ComputeHostGroupHostDescription struct {
+	Host          armcompute.DedicatedHost
+	ResourceGroup string
+}
+
+type ComputeRestorePointCollectionDescription struct {
+	RestorePointCollection armcompute.RestorePointCollection
+	ResourceGroup          string
+}
+
+type ComputeSSHPublicKeyDescription struct {
+	SSHPublicKey  armcompute.SSHPublicKeyResource
+	ResourceGroup string
+}
+
+//  =================== databoxedge ==================
+
+//index:microsoft_databoxedge_databoxedgedevices
+//getfilter:name=description.Device.name
+//getfilter:resource_group=description.ResourceGroup
+type DataboxEdgeDeviceDescription struct {
+	Device        armdataboxedge.Device
+	ResourceGroup string
+}
+
+//  =================== healthcareapis ==================
+
+//index:microsoft_healthcareapis_services
+//getfilter:name=description.ServicesDescription.name
+//getfilter:resource_group=description.ResourceGroup
+type HealthcareServiceDescription struct {
+	ServicesDescription         armhealthcareapis.ServicesDescription
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	PrivateEndpointConnections  []*armhealthcareapis.PrivateEndpointConnectionDescription
+	ResourceGroup               string
+}
+
+//  =================== storagecache ==================
+
+//index:microsoft_storagecache_caches
+//getfilter:name=description.Cache.name
+//getfilter:resource_group=description.ResourceGroup
+type HpcCacheDescription struct {
+	Cache         armstoragecache.Cache
+	ResourceGroup string
+}
+
+//  =================== keyvault ==================
+
+//index:microsoft_keyvault_vaults_keys
+//getfilter:vault_name=description.Vault.name
+//getfilter:name=description.Key.name
+//getfilter:resource_group=description.ResourceGroup
+type KeyVaultKeyDescription struct {
+	Vault         armkeyvault.Resource
+	Key           armkeyvault.Key
+	ResourceGroup string
+}
+
+//index:microsoft_keyvault_vaults_keys_versions
+//getfilter:vault_name=description.Vault.name
+//getfilter:name=description.Version.name
+//getfilter:resource_group=description.ResourceGroup
+type KeyVaultKeyVersionDescription struct {
+	Vault         armkeyvault.Resource
+	Key           armkeyvault.Key
+	Version       armkeyvault.Key
+	ResourceGroup string
+}
+
+//  =================== containerservice ==================
+
+//index:microsoft_containerservice_managedclusters
+//getfilter:name=description.ManagedCluster.name
+//getfilter:resource_group=description.ResourceGroup
+type KubernetesClusterDescription struct {
+	ManagedCluster armcontainerservice.ManagedCluster
+	ResourceGroup  string
+}
+
+//index:microsoft_containerservice_serviceversion
+//getfilter:name=description.Orchestrator.name
+//getfilter:resource_group=description.ResourceGroup
+type KubernetesServiceVersionDescription struct {
+	Version armcontainerservice.KubernetesVersion
+}
+
+//  =================== containerinstance ==================
+
+//index:microsoft_containerinstance_containergroup
+type ContainerInstanceContainerGroupDescription struct {
+	ResourceGroup  string
+	ContainerGroup armcontainerinstance.ContainerGroup
+}
+
+//  =================== cdn ==================
+
+//index:microsoft_cdn_profile
+type CDNProfileDescription struct {
+	ResourceGroup string
+	Profile       armcdn.Profile
+}
+
+type CDNEndpointDescription struct {
+	ResourceGroup string
+	Endpoint      armcdn.Endpoint
+}
+
+//  =================== network ==================
+
+//index:microsoft_network_networkinterfaces
+//getfilter:name=description.Interface.name
+//getfilter:resource_group=description.ResourceGroup
+type NetworkInterfaceDescription struct {
+	Interface     armnetwork.Interface
+	ResourceGroup string
+}
+
+//index:microsoft_network_networkwatchers
+//getfilter:network_watcher_name=description.NetworkWatcherName
+//getfilter:name=description.ManagedCluster.name
+//getfilter:resource_group=description.ResourceGroup
+type NetworkWatcherFlowLogDescription struct {
+	NetworkWatcherName string
+	FlowLog            armnetwork.FlowLog
+	ResourceGroup      string
+}
+
+//index:microsoft_network_routetables
+//getfilter:name=description.RouteTable.Name
+//getfilter:resource_group=description.ResourceGroup
+type RouteTablesDescription struct {
+	RouteTable    armnetwork.RouteTable
+	ResourceGroup string
+}
+
+//index:microsoft_network_applicationsecuritygroups
+//getfilter:name=description.ApplicationSecurityGroup.Name
+//getfilter:resource_group=description.ResourceGroup
+type NetworkApplicationSecurityGroupsDescription struct {
+	ApplicationSecurityGroup armnetwork.ApplicationSecurityGroup
+	ResourceGroup            string
+}
+
+//index:microsoft_network_azurefirewall
+//getfilter:name=description.AzureFirewall.Name
+//getfilter:resource_group=description.ResourceGroup
+type NetworkAzureFirewallDescription struct {
+	AzureFirewall armnetwork.AzureFirewall
+	ResourceGroup string
+}
+
+//index:microsoft_network_expressroutecircuit
+//getfilter:name=description.ExpressRouteCircuit.name
+//getfilter:resource_group=description.ResourceGroup
+type ExpressRouteCircuitDescription struct {
+	ExpressRouteCircuit armnetwork.ExpressRouteCircuit
+	ResourceGroup       string
+}
+
+//index:microsoft_network_virtualnetworkgateway
+//getfilter:name=description.VirtualNetworkGateway.Name
+//getfilter:resource_group=description.ResourceGroup
+type VirtualNetworkGatewayDescription struct {
+	VirtualNetwork                  string
+	VirtualNetworkGateway           armnetwork.VirtualNetworkGateway
+	ResourceGroup                   string
+	VirtualNetworkGatewayConnection []*armnetwork.VirtualNetworkGatewayConnectionListEntity
+}
+
+//index:microsoft_network_dnszone
+//getfilter:name=description.Zone.Name
+//getfilter:resource_group=description.ResourceGroup
+type DNSZoneDescription struct { // TODO: Implement describer func
+	Zone          armdns.Zone
+	ResourceGroup string
+}
+
+//index:microsoft_network_firewallpolicy
+//getfilter:name=description.FirewallPolicy.Name
+//getfilter:resource_group=description.ResourceGroup
+type FirewallPolicyDescription struct {
+	FirewallPolicy armnetwork.FirewallPolicy
+	ResourceGroup  string
+}
+
+//index:microsoft_network_frontdoorwebapplicationfirewallpolicy
+//getfilter:name=description.WebApplicationFirewallPolicy.Name
+//getfilter:resource_group=description.ResourceGroup
+type FrontdoorWebApplicationFirewallPolicyDescription struct { // TODO: Implement describer func
+	WebApplicationFirewallPolicy armfrontdoor.WebApplicationFirewallPolicy
+	ResourceGroup                string
+}
+
+//index:microsoft_network_localnetworkgateway
+//getfilter:name=description.LocalNetworkGateway.Name
+//getfilter:resource_group=description.ResourceGroup
+type LocalNetworkGatewayDescription struct {
+	LocalNetworkGateway armnetwork.LocalNetworkGateway
+	ResourceGroup       string
+}
+
+//index:microsoft_network_natgateways
+//getfilter:name=description.NatGateway.Name
+//getfilter:resource_group=description.ResourceGroup
+type NatGatewayDescription struct {
+	NatGateway    armnetwork.NatGateway
+	ResourceGroup string
+}
+
+//index:microsoft_network_privatelinkservice
+//getfilter:name=description.PrivateLinkService.Name
+//getfilter:resource_group=description.ResourceGroup
+type PrivateLinkServiceDescription struct {
+	PrivateLinkService armnetwork.PrivateLinkService
+	ResourceGroup      string
+}
+
+//index:microsoft_network_routefilter
+//getfilter:name=description.RouteFilter.Name
+//getfilter:resource_group=description.ResourceGroup
+type RouteFilterDescription struct {
+	RouteFilter   armnetwork.RouteFilter
+	ResourceGroup string
+}
+
+//index:microsoft_network_vpngateway
+//getfilter:name=description.VpnGateway.Name
+//getfilter:resource_group=description.ResourceGroup
+type VpnGatewayDescription struct {
+	VpnGateway    armnetwork.VPNGateway
+	ResourceGroup string
+}
+
+//index:microsoft_network_vpngatewayvpnconnection
+type VpnGatewayVpnConnectionDescription struct {
+	ResourceGroup string
+	VpnConnection armnetwork.VPNConnection
+	VpnGateway    armnetwork.VPNGateway
+}
+
+//index:microsoft_network_vpnsite
+type VpnSiteDescription struct {
+	ResourceGroup string
+	VpnSite       armnetwork.VPNSite
+}
+
+//index:microsoft_network_publicipaddresses
+//getfilter:name=description.PublicIPAddress.Name
+//getfilter:resource_group=description.ResourceGroup
+type PublicIPAddressDescription struct {
+	PublicIPAddress armnetwork.PublicIPAddress
+	ResourceGroup   string
+}
+
+//index:microsoft_network_publicipprefix
+type PublicIPPrefixDescription struct {
+	ResourceGroup  string
+	PublicIPPrefix armnetwork.PublicIPPrefix
+}
+
+//index:microsoft_network_dnszones
+type DNSZonesDescription struct {
+	ResourceGroup string
+	DNSZone       armdns.Zone
+}
+
+//index:microsoft_network_bastianhosts
+type BastionHostsDescription struct {
+	ResourceGroup string
+	BastianHost   armnetwork.BastionHost
+}
+
+//index:microsoft_network_connection
+type ConnectionDescription struct {
+	ResourceGroup string
+	Connection    armnetwork.VirtualNetworkGatewayConnection
+}
+
+//index:microsoft_network_virtualhubs
+type VirtualHubsDescription struct {
+	ResourceGroup string
+	VirtualHub    armnetwork.VirtualHub
+}
+
+//index:microsoft_network_virtualwans
+type VirtualWansDescription struct {
+	ResourceGroup string
+	VirtualWan    armnetwork.VirtualWAN
+}
+
+//index:microsoft_network_dnsresolvers
+type DNSResolverDescription struct {
+	ResourceGroup string
+	DNSResolver   armdnsresolver.DNSResolver
+}
+
+type TrafficManagerProfileDescription struct {
+	ResourceGroup string
+	Profile       armtrafficmanager.Profile
+}
+
+//index:microsoft_network_privatednszones
+type PrivateDNSZonesDescription struct {
+	ResourceGroup string
+	PrivateZone   armprivatedns.PrivateZone
+}
+
+//index:microsoft_network_privateendpoint
+type PrivateEndpointDescription struct {
+	ResourceGroup   string
+	PrivateEndpoint armnetwork.PrivateEndpoint
+}
+
+type NetworkDDoSProtectionPlanDescription struct {
+	ResourceGroup      string
+	DDoSProtectionPlan armnetwork.DdosProtectionPlan
+}
+
+//  =================== policy ==================
+
+//index:microsoft_authorization_policyassignments
+//getfilter:name=description.Assignment.name
+type PolicyAssignmentDescription struct {
+	Assignment armpolicy.Assignment
+	Resource   armresources.GenericResource
+}
+
+//  =================== redis ==================
+
+//index:microsoft_cache_redis
+//getfilter:name=description.ResourceType.name
+//getfilter:resource_group=description.ResourceGroup
+type RedisCacheDescription struct {
+	ResourceInfo  armredis.ResourceInfo
+	ResourceGroup string
+}
+
+//index:microsoft_cache_redisenterprise
+type RedisEnterpriseCacheDescription struct {
+	ResourceGroup   string
+	RedisEnterprise armredisenterprise.Cluster
+}
+
+//  =================== links ==================
+
+//index:microsoft_resources_links
+//getfilter:id=description.ResourceLink.id
+type ResourceLinkDescription struct {
+	ResourceLink armlinks.ResourceLink
+}
+
+//  =================== authorization ==================
+
+//index:microsoft_authorization_elevateaccessroleassignment
+//getfilter:id=description.RoleAssignment.id
+type RoleAssignmentDescription struct {
+	RoleAssignment armauthorization.RoleAssignment
+}
+
+//index:microsoft_authorization_roledefinitions
+type RoleDefinitionDescription struct {
+	RoleDefinition armauthorization.RoleDefinition
+}
+
+//index:microsoft_authorization_policydefinition
+//getfilter:name=description.Definition.Name
+type PolicyDefinitionDescription struct {
+	Definition armpolicy.Definition
+	TurboData  map[string]interface{}
+}
+
+//index:microsoft_authorization_usereffectiveaccess
+type UserEffectiveAccessDescription struct {
+	RoleAssignment    armauthorization.RoleAssignment
+	PrincipalName     string
+	PrincipalId       string
+	PrincipalType     armauthorization.PrincipalType
+	Scope             string
+	ScopeType         string
+	AssignmentType    string
+	ParentPrincipalId *string
+}
+
+//  =================== security ==================
+
+//index:microsoft_security_autoprovisioningsettings
+//getfilter:name=description.AutoProvisioningSetting.name
+type SecurityCenterAutoProvisioningDescription struct {
+	AutoProvisioningSetting armsecurity.AutoProvisioningSetting
+}
+
+//index:microsoft_security_securitycontacts
+//getfilter:name=description.Contact.name
+type SecurityCenterContactDescription struct {
+	Contact armsecurity.Contact
+}
+
+//index:microsoft_security_locations_jitnetworkaccesspolicies
+type SecurityCenterJitNetworkAccessPolicyDescription struct {
+	JitNetworkAccessPolicy armsecurity.JitNetworkAccessPolicy
+}
+
+//index:microsoft_security_settings
+//getfilter:name=description.Setting.name
+type SecurityCenterSettingDescription struct {
+	Setting             armsecurity.Setting
+	ExportSettingStatus bool
+}
+
+//index:microsoft_security_pricings
+//getfilter:name=description.Pricing.Name
+type SecurityCenterSubscriptionPricingDescription struct {
+	Pricing armsecurity.Pricing
+}
+
+//index:microsoft_security_automations
+//getfilter:name=description.Automation.name
+//getfilter:resource_group=description.ResourceGroup
+type SecurityCenterAutomationDescription struct {
+	Automation    armsecurity.Automation
+	ResourceGroup string
+}
+
+//index:microsoft_security_subassessments
+type SecurityCenterSubAssessmentDescription struct {
+	SubAssessment armsecurity.SubAssessment
+	ResourceGroup string
+}
+
+//  =================== storage ==================
+
+//index:microsoft_storage_storageaccounts_containers
+//getfilter:name=description.ListContainerItem.name
+//getfilter:resource_group=description.ResourceGroup
+//getfilter:account_name=description.AccountName
+type StorageContainerDescription struct {
+	AccountName        string
+	ListContainerItem  armstorage.ListContainerItem
+	ImmutabilityPolicy armstorage.ImmutabilityPolicy
+	ResourceGroup      string
+}
+
+//index:microsoft_storage_blobs
+//listfilter:storage_account_name=description.AccountName
+//listfilter:resource_group=description.ResourceGroup
+type StorageBlobDescription struct {
+	Blob          azblobOld.BlobItemInternal
+	AccountName   string
+	IsSnapshot    bool
+	ContainerName string
+	ResourceGroup string
+}
+
+//index:microsoft_storage_blobservices
+//listfilter:storage_account_name=description.AccountName
+//listfilter:resource_group=description.ResourceGroup
+type StorageBlobServiceDescription struct {
+	BlobService   armstorage.BlobServiceProperties
+	AccountName   string
+	Location      string
+	ResourceGroup string
+}
+
+//index:microsoft_storage_queues
+//listfilter:name=description.Queue.Name
+//listfilter:storage_account_name=description.AccountName
+//listfilter:resource_group=description.ResourceGroup
+type StorageQueueDescription struct {
+	Queue         armstorage.ListQueue
+	AccountName   string
+	Location      string
+	ResourceGroup string
+}
+
+//index:microsoft_storage_fileshares
+//listfilter:name=description.FileShare.Name
+//listfilter:storage_account_name=description.AccountName
+//listfilter:resource_group=description.ResourceGroup
+type StorageFileShareDescription struct {
+	FileShare     armstorage.FileShareItem
+	AccountName   string
+	Location      string
+	ResourceGroup string
+}
+
+//index:microsoft_storage_tables
+//listfilter:name=description.Table.Name
+//listfilter:storage_account_name=description.AccountName
+//listfilter:resource_group=description.ResourceGroup
+type StorageTableDescription struct {
+	Table         armstorage.Table
+	AccountName   string
+	Location      string
+	ResourceGroup string
+}
+
+//index:microsoft_storage_tableservices
+//listfilter:name=description.TableService.Name
+//listfilter:storage_account_name=description.AccountName
+//listfilter:resource_group=description.ResourceGroup
+type StorageTableServiceDescription struct {
+	TableService  armstorage.TableServiceProperties
+	AccountName   string
+	Location      string
+	ResourceGroup string
+}
+
+//  =================== network ==================
+
+//index:microsoft_network_virtualnetworks_subnets
+//getfilter:name=description.Subnet.name
+//getfilter:resource_group=description.ResourceGroup
+//getfilter:virtual_network_name=description.VirtualNetworkName
+type SubnetDescription struct {
+	VirtualNetworkName string
+	Subnet             armnetwork.Subnet
+	ResourceGroup      string
+}
+
+//index:microsoft_network_virtualnetworks
+//getfilter:name=description.VirtualNetwork.name
+//getfilter:resource_group=description.ResourceGroup
+type VirtualNetworkDescription struct {
+	VirtualNetwork armnetwork.VirtualNetwork
+	ResourceGroup  string
+}
+
+//  =================== subscriptions ==================
+
+//index:microsoft_resources_tenants
+type TenantDescription struct {
+	TenantIDDescription armsubscription.TenantIDDescription
+}
+
+//index:microsoft_resources_subscriptions
+type SubscriptionDescription struct {
+	Subscription armsubscription.Subscription
+	Tags         map[string][]string
+}
+
+//  =================== network ==================
+
+//index:microsoft_network_applicationgateways
+//getfilter:name=description.ApplicationGateway.name
+//getfilter:resource_group=description.ResourceGroup
+type ApplicationGatewayDescription struct {
+	ApplicationGateway          armnetwork.ApplicationGateway
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//  =================== batch ==================
+
+//index:microsoft_batch_batchaccounts
+//getfilter:name=description.Account.name
+//getfilter:resource_group=description.ResourceGroup
+type BatchAccountDescription struct {
+	Account                     armbatch.Account
+	DiagnosticSettingsResources *[]armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//  =================== cognitiveservices ==================
+
+//index:microsoft_cognitiveservices_accounts
+//getfilter:name=description.Account.name
+//getfilter:resource_group=description.ResourceGroup
+type CognitiveAccountDescription struct {
+	Account                     armcognitiveservices.Account
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//  =================== compute ==================
+
+//index:microsoft_compute_virtualmachines
+//getfilter:name=description.VirtualMachine.name
+//getfilter:resource_group=description.ResourceGroup
+type ComputeVirtualMachineDescription struct {
+	VirtualMachine             armcompute.VirtualMachine
+	VirtualMachineInstanceView armcompute.VirtualMachineInstanceView
+	InterfaceIPConfigurations  []armnetwork.InterfaceIPConfiguration
+	PublicIPs                  []string
+	VirtualMachineExtension    []*armcompute.VirtualMachineExtension
+	ExtensionsSettings         map[string]map[string]interface{}
+	Assignments                *[]armguestconfiguration.Assignment
+	ResourceGroup              string
+}
+
+//index:microsoft_compute_resourcesku
+type ComputeResourceSKUDescription struct {
+	ResourceSKU armcompute.ResourceSKU
+}
+
+//index:microsoft_compute_virtualmachinecpuutilization
+type ComputeVirtualMachineCpuUtilizationDescription struct {
+	MonitoringMetric
+}
+
+//index:microsoft_compute_virtualmachinecpuutilizationdaily
+type ComputeVirtualMachineCpuUtilizationDailyDescription struct {
+	MonitoringMetric
+}
+
+//index:microsoft_compute_virtualmachinecpuutilizationhourly
+type ComputeVirtualMachineCpuUtilizationHourlyDescription struct {
+	MonitoringMetric
+}
+
+//index:microsoft_compute_cloudservice
+type ComputeCloudServiceDescription struct {
+	CloudService armcompute.CloudService
+}
+
+//  =================== containerregistry ==================
+
+//index:microsoft_containerregistry_registries
+//getfilter:name=description.Registry.name
+//getfilter:resource_group=description.ResourceGroup
+type ContainerRegistryDescription struct {
+	Registry                      armcontainerregistry.Registry
+	RegistryListCredentialsResult *armcontainerregistry.RegistryListCredentialsResult
+	RegistryUsages                []*armcontainerregistry.RegistryUsage
+	Webhooks                      []*armcontainerregistry.Webhook
+	ResourceGroup                 string
+}
+
+//  =================== documentdb ==================
+
+//index:microsoft_documentdb_databaseaccounts
+//getfilter:name=description.DatabaseAccountGetResults.name
+//getfilter:resource_group=description.ResourceGroup
+type CosmosdbAccountDescription struct {
+	DatabaseAccountGetResults armcosmos.DatabaseAccountGetResults
+	ResourceGroup             string
+}
+
+//index:microsoft_documentdb_restorabledatabaseaccounts
+//getfilter:name=description.Account.Name
+//getfilter:resource_group=description.ResourceGroup
+type CosmosdbRestorableDatabaseAccountDescription struct {
+	Account       armcosmos.RestorableDatabaseAccountGetResult
+	ResourceGroup string
+}
+
+//index:microsoft_documentdb_mongodatabases
+//getfilter:account_name=description.Account.name
+//getfilter:name=description.MongoDatabase.name
+//getfilter:resource_group=description.ResourceGroup
+type CosmosdbMongoDatabaseDescription struct {
+	Account       armcosmos.DatabaseAccountGetResults
+	MongoDatabase armcosmos.MongoDBDatabaseGetResults
+	ResourceGroup string
+}
+
+//index:microsoft_documentdb_mongocollections
+//getfilter:account_name=description.Account.name
+//getfilter:name=description.MongoCollection.name
+//getfilter:resource_group=description.ResourceGroup
+type CosmosdbMongoCollectionDescription struct {
+	Account         armcosmos.DatabaseAccountGetResults
+	MongoDatabase   armcosmos.MongoDBDatabaseGetResults
+	MongoCollection armcosmos.MongoDBCollectionGetResults
+	Throughput      armcosmos.ThroughputSettingsGetResults
+	ResourceGroup   string
+}
+
+//index:microsoft_documentdb_sqldatabases
+//getfilter:account_name=description.Account.name
+//getfilter:name=description.SqlDatabase.name
+//getfilter:resource_group=description.ResourceGroup
+type CosmosdbSqlDatabaseDescription struct {
+	Account       armcosmos.DatabaseAccountGetResults
+	SqlDatabase   armcosmos.SQLDatabaseGetResults
+	ResourceGroup string
+}
+
+type CosmosdbCassandraClusterDescription struct {
+	CassandraCluster armcosmos.ClusterResource
+	ResourceGroup    string
+}
+
+//  =================== databricks ==================
+
+//index:microsoft_databricks_workspace
+type DatabricksWorkspaceDescription struct {
+	Workspace     armdatabricks.Workspace
+	ResourceGroup string
+}
+
+//  =================== datamigration ==================
+
+//index:microsoft_datamigration_service
+type DataMigrationServiceDescription struct {
+	ResourceGroup string
+	Service       armdatamigration.Service
+}
+
+//  =================== dataprotection ==================
+
+//index:microsoft_dataprotection_backupvaults
+type DataProtectionBackupVaultsDescription struct {
+	ResourceGroup string
+	BackupVaults  armdataprotection.BackupVaultResource
+}
+
+//index:microsoft_dataprotection_backupvaultsbackuppolicies
+type DataProtectionBackupVaultsBackupPoliciesDescription struct {
+	ResourceGroup  string
+	BackupPolicies armdataprotection.BaseBackupPolicyResource
+}
+
+type DataProtectionJobDescription struct {
+	DataProtectionJob armdataprotection.AzureBackupJobResource
+	VaultName         string
+	ResourceGroup     string
+}
+
+//  =================== datafactory ==================
+
+//index:microsoft_datafactory_factories
+//getfilter:name=description.Factory.name
+//getfilter:resource_group=description.ResourceGroup
+type DataFactoryDescription struct {
+	Factory                    armdatafactory.Factory
+	PrivateEndPointConnections []armdatafactory.PrivateEndpointConnectionResource
+	ResourceGroup              string
+}
+
+//index:microsoft_datafactory_datafactorydatasets
+//getfilter:factory_name=description.Factory.name
+//getfilter:name=description.Dataset.name
+//getfilter:resource_group=description.ResourceGroup
+type DataFactoryDatasetDescription struct {
+	Factory       armdatafactory.Factory
+	Dataset       armdatafactory.DatasetResource
+	ResourceGroup string
+}
+
+//index:microsoft_datafactory_datafactorypipelines
+//getfilter:factory_name=description.Factory.name
+//getfilter:name=description.Pipeline.name
+//getfilter:resource_group=description.ResourceGroup
+type DataFactoryPipelineDescription struct {
+	Factory       armdatafactory.Factory
+	Pipeline      armdatafactory.PipelineResource
+	ResourceGroup string
+}
+
+//  =================== account ==================
+
+//index:microsoft_datalakeanalytics_accounts
+//getfilter:name=description.DataLakeAnalyticsAccount.name
+//getfilter:resource_group=description.ResourceGroup
+type DataLakeAnalyticsAccountDescription struct {
+	DataLakeAnalyticsAccount   analytics.Account
+	DiagnosticSettingsResource *[]armmonitor.DiagnosticSettingsResource
+	ResourceGroup              string
+}
+
+//  =================== account ==================
+
+//index:microsoft_datalakestore_accounts
+//getfilter:name=description.DataLakeStoreAccount.name
+//getfilter:resource_group=description.ResourceGroup
+type DataLakeStoreDescription struct {
+	DataLakeStoreAccount       store.Account
+	DiagnosticSettingsResource *[]armmonitor.DiagnosticSettingsResource
+	ResourceGroup              string
+}
+
+//  =================== insights ==================
+
+type MonitoringMetric struct {
+	// Resource Name
+	DimensionValue string
+	// MetadataValue represents a metric metadata value.
+	MetaData *armmonitor.MetadataValue
+	// Metric the result data of a query.
+	Metric *armmonitor.Metric
+	// The maximum metric value for the data point.
+	Maximum *float64
+	// The minimum metric value for the data point.
+	Minimum *float64
+	// The average of the metric values that correspond to the data point.
+	Average *float64
+	// The number of metric values that contributed to the aggregate value of this data point.
+	SampleCount *float64
+	// The sum of the metric values for the data point.
+	Sum *float64
+	// The time stamp used for the data point.
+	TimeStamp string
+	// The units in which the metric value is reported.
+	Unit string
+}
+
+//index:microsoft_insights_guestdiagnosticsettings
+//getfilter:name=description.DiagnosticSettingsResource.name
+//getfilter:resource_group=description.ResourceGroup
+type DiagnosticSettingDescription struct {
+	DiagnosticSettingsResource armmonitor.DiagnosticSettingsResource
+	ResourceGroup              string
+}
+
+//index:microsoft_insights_autoscalingsettings
+//getfilter:name=description.AutoscaleSettingsResource.name
+//getfilter:resource_group=description.ResourceGroup
+type AutoscaleSettingDescription struct {
+	AutoscaleSettingsResource armmonitor.AutoscaleSettingResource
+	ResourceGroup             string
+}
+
+//  =================== eventgrid ==================
+
+//index:microsoft_eventgrid_domains
+//getfilter:name=description.Domain.name
+//getfilter:resource_group=description.ResourceGroup
+type EventGridDomainDescription struct {
+	Domain                      armeventgrid.Domain
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//  =================== eventgrid ==================
+
+//index:microsoft_eventgrid_topics
+//getfilter:name=description.Topic.name
+//getfilter:resource_group=description.ResourceGroup
+type EventGridTopicDescription struct {
+	Topic                       armeventgrid.Topic
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//  =================== eventhub ==================
+
+//index:microsoft_eventhub_namespaces
+//getfilter:name=description.EHNamespace.name
+//getfilter:resource_group=description.ResourceGroup
+type EventhubNamespaceDescription struct {
+	EHNamespace                 armeventhub.EHNamespace
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	NetworkRuleSet              armeventhub.NetworkRuleSet
+	PrivateEndpointConnection   []*armeventhub.PrivateEndpointConnection
+	ResourceGroup               string
+}
+
+//index:microsoft_eventhub_namespaceseventhub
+type EventhubNamespaceEventhubDescription struct {
+	EHNamespace   armeventhub.EHNamespace
+	EventHub      armeventhub.Eventhub
+	ResourceGroup string
+}
+
+//  =================== frontdoor ==================
+
+//index:microsoft_network_frontdoors
+//getfilter:name=description.FrontDoor.name
+//getfilter:resource_group=description.ResourceGroup
+type FrontdoorDescription struct {
+	FrontDoor                   armfrontdoor.FrontDoor
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//  =================== hdinsight ==================
+
+//index:microsoft_hdinsight_clusterpools
+//getfilter:name=description.Cluster.name
+//getfilter:resource_group=description.ResourceGroup
+type HdinsightClusterDescription struct {
+	Cluster                     armhdinsight.Cluster
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//  =================== hybridcompute ==================
+
+//index:microsoft_hybridcompute_machines
+//getfilter:name=description.Machine.name
+//getfilter:resource_group=description.ResourceGroup
+type HybridComputeMachineDescription struct {
+	Machine           armhybridcompute.Machine
+	MachineExtensions []*armhybridcompute.MachineExtension
+	ResourceGroup     string
+}
+
+//  =================== devices ==================
+
+//index:microsoft_devices_iothubs
+//getfilter:name=description.IotHubDescription.name
+//getfilter:resource_group=description.ResourceGroup
+type IOTHubDescription struct {
+	IotHubDescription           armiothub.Description
+	DiagnosticSettingsResources *[]armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//index:microsoft_devices_iothubdpses
+//getfilter:name=description.IotHubDps.name
+//getfilter:resource_group=description.ResourceGroup
+type IOTHubDpsDescription struct {
+	IotHubDps                   armdeviceprovisioningservices.ProvisioningServiceDescription
+	DiagnosticSettingsResources *[]armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//  =================== keyvault ==================
+
+//index:microsoft_keyvault_vaults
+//getfilter:name=description.Resource.name
+//getfilter:resource_group=description.ResourceGroup
+type KeyVaultDescription struct {
+	Resource                    armkeyvault.Resource
+	Vault                       armkeyvault.Vault
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//index:microsoft_keyvault_vaults_certificates
+//getfilter:name=description.Resource.name
+//getfilter:resource_group=description.ResourceGroup
+type KeyVaultCertificateDescription struct {
+	Policy        azcertificates.CertificatePolicy
+	Vault         armkeyvault.Resource
+	ResourceGroup string
+}
+
+//index:microsoft_keyvault_deletedvaults
+//getfilter:name=description.Vault.name
+//getfilter:region=description.Vault.Properties.Location
+type KeyVaultDeletedVaultDescription struct {
+	Vault         armkeyvault.DeletedVault
+	ResourceGroup string
+}
+
+//  =================== keyvault ==================
+
+//index:microsoft_keyvault_managedhsms
+//getfilter:name=description.ManagedHsm.name
+//getfilter:resource_group=description.ResourceGroup
+type KeyVaultManagedHardwareSecurityModuleDescription struct {
+	ManagedHsm                  armkeyvault.ManagedHsm
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//  =================== secret ==================
+
+//index:microsoft_keyvault_vaults_secrets
+//getfilter:name=description.SecretItem.name
+//getfilter:resource_group=description.ResourceGroup
+type KeyVaultSecretDescription struct {
+	SecretItem    armkeyvault.Secret
+	Vault         armkeyvault.Vault
+	TurboData     map[string]interface{}
+	ResourceGroup string
+}
+
+//  =================== kusto ==================
+
+//index:microsoft_kusto_clusters
+//getfilter:name=description.Cluster.name
+//getfilter:resource_group=description.ResourceGroup
+type KustoClusterDescription struct {
+	Cluster       armkusto.Cluster
+	ResourceGroup string
+}
+
+//  =================== insights ==================
+
+//index:microsoft_insights_activitylogalerts
+//getfilter:name=description.ActivityLogAlertResource.name
+//getfilter:resource_group=description.ResourceGroup
+type LogAlertDescription struct {
+	ActivityLogAlertResource armmonitor.ActivityLogAlertResource
+	ResourceGroup            string
+}
+
+//  =================== insights ==================
+
+//index:microsoft_insights_logprofiles
+//getfilter:name=description.LogProfileResource.name
+//getfilter:resource_group=description.ResourceGroup
+type LogProfileDescription struct {
+	LogProfileResource armmonitor.LogProfileResource
+	ResourceGroup      string
+}
+
+//  =================== logic ==================
+
+//index:microsoft_logic_workflows
+//getfilter:name=description.Workflow.name
+//getfilter:resource_group=description.ResourceGroup
+type LogicAppWorkflowDescription struct {
+	Workflow                    armlogic.Workflow
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//index:microsoft_logic_integrationaccounts
+type LogicIntegrationAccountsDescription struct {
+	ResourceGroup string
+	Account       armlogic.IntegrationAccount
+}
+
+//  =================== machinelearningservices ==================
+
+//index:microsoft_machinelearning_workspaces
+//getfilter:name=description.Workspace.name
+//getfilter:resource_group=description.ResourceGroup
+type MachineLearningWorkspaceDescription struct {
+	Workspace                   armmachinelearning.Workspace
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//  =================== mariadb ==================
+
+//index:microsoft_dbformariadb_servers
+//getfilter:name=description.Server.name
+//getfilter:resource_group=description.ResourceGroup
+type MariadbServerDescription struct {
+	Server        armmariadb.Server
+	ResourceGroup string
+}
+
+//index:microsoft_dbformariadb_databases
+type MariadbDatabaseDescription struct {
+	Server        armmariadb.Server
+	Database      armmariadb.Database
+	ResourceGroup string
+}
+
+//  =================== mysql ==================
+
+//index:microsoft_dbformysql_servers
+//getfilter:name=description.Server.name
+//getfilter:resource_group=description.ResourceGroup
+type MysqlServerDescription struct {
+	Server                armmysql.Server
+	Configurations        []*armmysql.Configuration
+	ServerKeys            []*armmysql.ServerKey
+	SecurityAlertPolicies []*armmysql.ServerSecurityAlertPolicy
+	VnetRules             []*armmysql.VirtualNetworkRule
+	ResourceGroup         string
+}
+
+//index:microsoft_dbformysql_flexibleservers
+type MysqlFlexibleserverDescription struct {
+	Server        armmysqlflexibleservers.Server
+	ResourceGroup string
+}
+
+//  =================== network ==================
+
+//index:microsoft_network_networksecuritygroups
+//getfilter:name=description.SecurityGroup.name
+//getfilter:resource_group=description.ResourceGroup
+type NetworkSecurityGroupDescription struct {
+	SecurityGroup               armnetwork.SecurityGroup
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//index:microsoft_network_networkwatchers
+//getfilter:name=description.Watcher.name
+//getfilter:resource_group=description.ResourceGroup
+type NetworkWatcherDescription struct {
+	Watcher       armnetwork.Watcher
+	ResourceGroup string
+}
+
+//  =================== search ==================
+
+//index:microsoft_search_searchservices
+//getfilter:name=description.Service.name
+//getfilter:resource_group=description.ResourceGroup
+type SearchServiceDescription struct {
+	Service                     armsearch.Service
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//  =================== servicefabric ==================
+
+//index:microsoft_servicefabric_clusters
+//getfilter:name=description.Cluster.name
+//getfilter:resource_group=description.ResourceGroup
+type ServiceFabricClusterDescription struct {
+	Cluster       armservicefabric.Cluster
+	ResourceGroup string
+}
+
+//  =================== servicebus ==================
+
+//index:microsoft_servicebus_namespaces
+//getfilter:name=description.SBNamespace.name
+//getfilter:resource_group=description.ResourceGroup
+type ServicebusNamespaceDescription struct {
+	SBNamespace                 armservicebus.SBNamespace
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	NetworkRuleSet              []*armservicebus.NetworkRuleSet
+	PrivateEndpointConnections  []*armservicebus.PrivateEndpointConnection
+	AuthorizationRules          []*armservicebus.SBAuthorizationRule
+	ResourceGroup               string
+}
+
+//  =================== signalr ==================
+
+//index:microsoft_signalrservice_signalr
+//getfilter:name=description.ResourceType.name
+//getfilter:resource_group=description.ResourceGroup
+type SignalrServiceDescription struct {
+	ResourceInfo                armsignalr.ResourceInfo
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//  =================== appplatform ==================
+
+//index:microsoft_appplatform_spring
+//getfilter:name=description.ServiceResource.name
+//getfilter:resource_group=description.ResourceGroup
+type SpringCloudServiceDescription struct {
+	DiagnosticSettingsResource *[]armmonitor.DiagnosticSettingsResource
+	ResourceGroup              string
+	Site                       *armspringappdiscovery.SpringbootsitesModel
+	App                        armspringappdiscovery.SpringbootappsModel
+}
+
+//  =================== streamanalytics ==================
+
+//index:microsoft_streamanalytics_streamingjobs
+//getfilter:name=description.StreamingJob.name
+//getfilter:resource_group=description.ResourceGroup
+type StreamAnalyticsJobDescription struct {
+	StreamingJob                armstreamanalytics.StreamingJob
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup               string
+}
+
+//index:microsoft_streamanalytics_cluster
+type StreamAnalyticsClusterDescription struct {
+	ResourceGroup string
+	StreamingJob  armstreamanalytics.Cluster
+}
+
+//index:microsoft_virtualmachineimages_imagetemplates
+type VirtualMachineImagesImageTemplatesDescription struct {
+	ResourceGroup string
+	ImageTemplate armvirtualmachineimagebuilder.ImageTemplate
+}
+
+//  =================== operationalinsights ==================
+
+//index:microsoft_operationalinsights_workspaces
+type OperationalInsightsWorkspacesDescription struct {
+	ResourceGroup string
+	Workspace     armoperationalinsights.Workspace
+}
+
+//  =================== timeseriesinsight ==================
+
+//index:microsoft_timeseriesinsight_environments
+type TimeSeriesInsightsEnvironmentsDescription struct {
+	ResourceGroup string
+	Environment   *armtimeseriesinsights.EnvironmentResource
+}
+
+//  =================== synapse ==================
+
+//index:microsoft_synapse_workspaces
+//getfilter:name=description.Workspace.name
+//getfilter:resource_group=description.ResourceGroup
+type SynapseWorkspaceDescription struct {
+	Workspace                      armsynapse.Workspace
+	ServerVulnerabilityAssessments []*armsynapse.ServerVulnerabilityAssessment
+	DiagnosticSettingsResources    []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup                  string
+}
+
+//index:microsoft_synapse_workspacesbigdatapools
+type SynapseWorkspaceBigdatapoolsDescription struct {
+	Workspace     armsynapse.Workspace
+	BigDataPool   armsynapse.BigDataPoolResourceInfo
+	ResourceGroup string
+}
+
+//index:microsoft_synapse_workspacessqlpools
+type SynapseWorkspaceSqlpoolsDescription struct {
+	Workspace     armsynapse.Workspace
+	SqlPool       armsynapse.SQLPool
+	ResourceGroup string
+}
+
+//  =================== sub ==================
+
+//index:microsoft_resources_subscriptions_locations
+//getfilter:name=description.Location.name
+//getfilter:resource_group=description.ResourceGroup
+type LocationDescription struct {
+	Location      armsubscription.Location
+	ResourceGroup string
+}
+
+//  =================== analysis ==================
+
+//index:microsoft_analysisservice_servers
+//getfilter:name=description.Server.name
+//getfilter:resource_group=description.ResourceGroup
+type AnalysisServiceServerDescription struct {
+	ResourceGroup string
+	Server        armanalysisservices.Server
+}
+
+//  =================== postgresql ==================
+
+//index:microsoft_dbforpostgresql_servers
+//getfilter:name=description.Server.name
+//getfilter:resource_group=description.ResourceGroup
+type PostgresqlServerDescription struct {
+	Server                       armpostgresql.Server
+	ServerAdministratorResources []*armpostgresql.ServerAdministratorResource
+	Configurations               []*armpostgresql.Configuration
+	ServerKeys                   []*armpostgresql.ServerKey
+	FirewallRules                []*armpostgresql.FirewallRule
+	ServerSecurityAlertPolicies  []*armpostgresql.ServerSecurityAlertPolicy
+	ResourceGroup                string
+}
+
+//index:microsoft_dbforpostgresql_flexibleservers
+type PostgresqlFlexibleServerDescription struct {
+	ResourceGroup        string
+	Server               armpostgresqlflexibleservers.Server
+	ServerConfigurations []*armpostgresqlflexibleservers.Configuration
+}
+
+//  =================== storagesync ==================
+
+//index:microsoft_storagesync_storagesyncservices
+//getfilter:name=description.Service.name
+//getfilter:resource_group=description.ResourceGroup
+type StorageSyncDescription struct {
+	Service       armstoragesync.Service
+	ResourceGroup string
+}
+
+//  =================== sql ==================
+
+//index:microsoft_sql_managedinstances
+//getfilter:name=description.ManagedInstance.name
+//getfilter:resource_group=description.ResourceGroup
+type MssqlManagedInstanceDescription struct {
+	ManagedInstance                         armsql.ManagedInstance
+	ManagedInstanceVulnerabilityAssessments []*armsql.ManagedInstanceVulnerabilityAssessment
+	ManagedDatabaseSecurityAlertPolicies    []*armsql.ManagedServerSecurityAlertPolicy
+	ManagedInstanceEncryptionProtectors     []*armsql.ManagedInstanceEncryptionProtector
+	ResourceGroup                           string
+}
+
+//index:microsoft_sql_managedinstancesdatabases
+type MssqlManagedInstanceDatabasesDescription struct {
+	ManagedInstance armsql.ManagedInstance
+	Database        armsql.ManagedDatabase
+	ResourceGroup   string
+}
+
+//index:microsoft_sql_servers_databases
+//getfilter:name=description.Database.name
+//getfilter:resource_group=description.ResourceGroup
+type SqlDatabaseDescription struct {
+	Database                           armsql.Database
+	LongTermRetentionPolicy            armsql.LongTermRetentionPolicy
+	TransparentDataEncryption          []*armsql.LogicalDatabaseTransparentDataEncryption
+	DatabaseVulnerabilityAssessments   []*armsql.DatabaseVulnerabilityAssessment
+	VulnerabilityAssessmentScanRecords []*armsql.VulnerabilityAssessmentScanRecord
+	Advisors                           []*armsql.Advisor
+	AuditPolicies                      []*armsql.DatabaseBlobAuditingPolicy
+	ResourceGroup                      string
+}
+
+type SqlInstancePoolDescription struct {
+	InstancePool  armsql.InstancePool
+	ResourceGroup string
+}
+
+//  =================== sqlv3 ==================
+
+//index:microsoft_sql_servers
+//getfilter:name=description.Server.name
+//getfilter:resource_group=description.ResourceGroup
+type SqlServerDescription struct {
+	Server                         armsql.Server
+	ServerBlobAuditingPolicies     []*armsql.ServerBlobAuditingPolicy
+	ServerSecurityAlertPolicies    []*armsql.ServerSecurityAlertPolicy
+	ServerAzureADAdministrators    []*armsql.ServerAzureADAdministrator
+	ServerVulnerabilityAssessments []*armsql.ServerVulnerabilityAssessment
+	FirewallRules                  []*armsql.FirewallRule
+	EncryptionProtectors           []*armsql.EncryptionProtector
+	PrivateEndpointConnections     []*armsql.PrivateEndpointConnection
+	VirtualNetworkRules            []*armsql.VirtualNetworkRule
+	FailoverGroups                 []*armsql.FailoverGroup
+	AutomaticTuning                armsql.ServerAutomaticTuning
+	ResourceGroup                  string
+}
+
+//index:microsoft_sql_serversjobagent
+type SqlServerJobAgentDescription struct {
+	ResourceGroup string
+	Server        armsql.Server
+	JobAgent      armsql.JobAgent
+}
+
+//index:microsoft_sql_virtualclusters
+type SqlVirtualClustersDescription struct {
+	ResourceGroup   string
+	VirtualClusters armsql.VirtualCluster
+}
+
+//index:microsoft_sql_elasticpools
+//getfilter:name=description.Pool.Name
+//getfilter:server_name=description.ServerName
+//getfilter:resource_group=description.ResourceGroup
+type SqlServerElasticPoolDescription struct {
+	Pool          armsql.ElasticPool
+	TotalDTU      int32
+	ServerName    string
+	ResourceGroup string
+}
+
+//index:microsoft_sql_virtualmachines
+//getfilter:name=description.VirtualMachine.Name
+//getfilter:resource_group=description.ResourceGroup
+type SqlServerVirtualMachineDescription struct {
+	VirtualMachine armsqlvirtualmachine.SQLVirtualMachine
+	ResourceGroup  string
+}
+
+//index:microsoft_sql_virtualmachinegroups
+type SqlServerVirtualMachineGroupDescription struct {
+	Group         armsqlvirtualmachine.Group
+	ResourceGroup string
+}
+
+//index:microsoft_sql_flexibleservers
+//getfilter:name=description.FlexibleServer.Name
+//getfilter:resource_group=description.ResourceGroup
+type SqlServerFlexibleServerDescription struct {
+	FlexibleServer armmysqlflexibleservers.Server
+	ResourceGroup  string
+}
+
+//  =================== storage ==================
+
+//index:microsoft_classicstorage_storageaccounts
+//getfilter:name=description.Account.name
+//getfilter:resource_group=description.ResourceGroup
+type StorageAccountDescription struct {
+	Account                     armstorage.Account
+	ManagementPolicy            *armstorage.ManagementPolicy
+	BlobServiceProperties       *armstorage.BlobServiceProperties
+	Logging                     *accounts.Logging
+	StorageServiceProperties    *queues.StorageServiceProperties
+	FileServiceProperties       *armstorage.FileServiceProperties
+	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
+	EncryptionScopes            []*armstorage.EncryptionScope
+	TableProperties             aztables.ServiceProperties
+	AccessKeys                  []map[string]interface{}
+	ResourceGroup               string
+}
+
+//  =================== recoveryservice ==================
+
+//index:microsoft_recoveryservices_vault
+//getfilter:name=description.Vault.Name
+//getfilter:resource_group=description.ResourceGroup
+type RecoveryServicesVaultDescription struct {
+	Vault                      armrecoveryservices.Vault
+	DiagnosticSettingsResource []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup              string
+}
+
+//index:microsoft_recoveryservices_vault
+//getfilter:name=description.Vault.Name
+//getfilter:resource_group=description.ResourceGroup
+type RecoveryServicesBackupJobDescription struct {
+	Job struct {
+		Name     *string
+		ID       *string
+		Type     *string
+		ETag     *string
+		Tags     map[string]*string
+		Location *string
 	}
-}
-
-type CommitStatus struct {
-	State *string
-}
-
-type BaseCommit struct {
-	Sha                 *string
-	ShortSha            *string
-	AuthoredDate        *string
-	Author              GitActor
-	CommittedDate       *string
-	Committer           GitActor
-	Message             *string
-	Url                 *string
-	Additions           int
-	AuthoredByCommitter bool
-	ChangedFiles        int
-	CommittedViaWeb     bool
-	CommitUrl           *string
-	Deletions           int
-	Signature           Signature
-	TarballUrl          *string
-	TreeUrl             *string
-	CanSubscribe        bool
-	Subscription        *string
-	ZipballUrl          *string
-	MessageHeadline     *string
-	Status              CommitStatus
-	NodeId              *string
-}
-
-type Actor struct {
-	AvatarUrl *string
-	Login     *string
-	Url       *string
-}
-
-type BranchProtectionRule struct {
-	AllowsDeletions                bool
-	AllowsForcePushes              bool
-	BlocksCreations                bool
-	CreatorLogin                   *string
-	Id                             int
-	NodeId                         *string
-	DismissesStaleReviews          bool
-	IsAdminEnforced                bool
-	LockAllowsFetchAndMerge        bool
-	LockBranch                     bool
-	Pattern                        *string
-	RequireLastPushApproval        bool
-	RequiredApprovingReviewCount   int
-	RequiredDeploymentEnvironments []string
-	RequiredStatusChecks           []string
-	RequiresApprovingReviews       bool
-	RequiresConversationResolution bool
-	RequiresCodeOwnerReviews       bool
-	RequiresCommitSignatures       bool
-	RequiresDeployments            bool
-	RequiresLinearHistory          bool
-	RequiresStatusChecks           bool
-	RequiresStrictStatusChecks     bool
-	RestrictsPushes                bool
-	RestrictsReviewDismissals      bool
-	MatchingBranches               int
-}
-
-type BranchDescription struct {
-	RepoFullName         *string
-	Name                 *string
-	Commit               BaseCommit
-	BranchProtectionRule BranchProtectionRule
-	Protected            bool
-}
-
-type BranchApp struct {
-	Name *string
-	Slug *string
-}
-
-type BranchTeam struct {
-	Name *string
-	Slug *string
-}
-
-type BranchUser struct {
-	Name  *string
-	Login *string
-}
-
-type BranchProtectionDescription struct {
-	AllowsDeletions                 bool
-	AllowsForcePushes               bool
-	BlocksCreations                 bool
-	Id                              int
-	NodeId                          *string
-	DismissesStaleReviews           bool
-	IsAdminEnforced                 bool
-	LockAllowsFetchAndMerge         bool
-	LockBranch                      bool
-	Pattern                         *string
-	RequireLastPushApproval         bool
-	RequiredApprovingReviewCount    int
-	RequiredDeploymentEnvironments  []string
-	RequiredStatusChecks            []string
-	RequiresApprovingReviews        bool
-	RequiresConversationResolution  bool
-	RequiresCodeOwnerReviews        bool
-	RequiresCommitSignatures        bool
-	RequiresDeployments             bool
-	RequiresLinearHistory           bool
-	RequiresStatusChecks            bool
-	RequiresStrictStatusChecks      bool
-	RestrictsPushes                 bool
-	RestrictsReviewDismissals       bool
-	RepoFullName                    *string
-	CreatorLogin                    *string
-	MatchingBranches                int
-	PushAllowanceApps               []BranchApp
-	PushAllowanceTeams              []BranchTeam
-	PushAllowanceUsers              []BranchUser
-	BypassForcePushAllowanceApps    []BranchApp
-	BypassForcePushAllowanceTeams   []BranchTeam
-	BypassForcePushAllowanceUsers   []BranchUser
-	BypassPullRequestAllowanceApps  []BranchApp
-	BypassPullRequestAllowanceTeams []BranchTeam
-	BypassPullRequestAllowanceUsers []BranchUser
-}
-
-type TreeJSON struct {
-	SHA string `json:"sha"`
-	URL string `json:"url"`
-}
-
-type Tree struct {
-	SHA *string
-	URL *string
-}
-
-type FileJSON struct {
-	SHA         string  `json:"sha"`
-	Filename    string  `json:"filename"`
-	Status      string  `json:"status"`
-	Additions   int     `json:"additions"`
-	Deletions   int     `json:"deletions"`
-	Changes     int     `json:"changes"`
-	BlobURL     string  `json:"blob_url"`
-	RawURL      string  `json:"raw_url"`
-	ContentsURL string  `json:"contents_url"`
-	Patch       *string `json:"patch"`
-}
-
-type File struct {
-	SHA         *string
-	Filename    *string
-	Status      *string
-	Additions   int
-	Deletions   int
-	Changes     int
-	BlobURL     *string
-	RawURL      *string
-	ContentsURL *string
-	Patch       *string
-}
-
-type VerificationJSON struct {
-	Verified   bool    `json:"verified"`
-	Reason     string  `json:"reason"`
-	Signature  *string `json:"signature"`
-	Payload    *string `json:"payload"`
-	VerifiedAt *string `json:"verified_at"`
-}
-
-type Verification struct {
-	Verified   bool
-	Reason     *string
-	Signature  *string
-	Payload    *string
-	VerifiedAt *string
-}
-
-type UserJSON struct {
-	Login             string `json:"login"`
-	ID                int    `json:"id"`
-	NodeID            string `json:"node_id"`
-	AvatarURL         string `json:"avatar_url"`
-	GravatarID        string `json:"gravatar_id"`
-	URL               string `json:"url"`
-	HTMLURL           string `json:"html_url"`
-	FollowersURL      string `json:"followers_url"`
-	FollowingURL      string `json:"following_url"`
-	GistsURL          string `json:"gists_url"`
-	StarredURL        string `json:"starred_url"`
-	SubscriptionsURL  string `json:"subscriptions_url"`
-	OrganizationsURL  string `json:"organizations_url"`
-	ReposURL          string `json:"repos_url"`
-	EventsURL         string `json:"events_url"`
-	ReceivedEventsURL string `json:"received_events_url"`
-	Type              string `json:"type"`
-	UserViewType      string `json:"user_view_type"`
-	SiteAdmin         bool   `json:"site_admin"`
-}
-
-type User struct {
-	Login             *string `json:"login"`
-	ID                int     `json:"id"`
-	NodeID            *string `json:"node_id"`
-	AvatarURL         *string `json:"avatar_url"`
-	GravatarID        *string `json:"gravatar_id"`
-	URL               *string `json:"url"`
-	HTMLURL           *string `json:"html_url"`
-	FollowersURL      *string `json:"followers_url"`
-	FollowingURL      *string `json:"following_url"`
-	GistsURL          *string `json:"gists_url"`
-	StarredURL        *string `json:"starred_url"`
-	SubscriptionsURL  *string `json:"subscriptions_url"`
-	OrganizationsURL  *string `json:"organizations_url"`
-	ReposURL          *string `json:"repos_url"`
-	EventsURL         *string `json:"events_url"`
-	ReceivedEventsURL *string `json:"received_events_url"`
-	Type              *string `json:"type"`
-	UserViewType      *string `json:"user_view_type"`
-	SiteAdmin         bool    `json:"site_admin"`
-}
-
-type CommitDetailJSON struct {
-	//Author       UserMinimalInfo `json:"author"`
-	//Committer    UserMinimalInfo `json:"committer"`
-	//URL          string          `json:"url"`
-	Message      string           `json:"message"`
-	Tree         TreeJSON         `json:"tree"`
-	CommentCount int              `json:"comment_count"`
-	Verification VerificationJSON `json:"verification"`
-}
-
-type CommitDetail struct {
-	Message      *string
-	Tree         Tree
-	CommentCount int
-	Verification Verification
-}
-
-type ParentJSON struct {
-	SHA     string `json:"sha"`
-	URL     string `json:"url"`
-	HTMLURL string `json:"html_url"`
-}
-
-type Parent struct {
-	SHA     *string
-	URL     *string
-	HTMLURL *string
-}
-
-type StatsJSON struct {
-	Total     int `json:"total"`
-	Additions int `json:"additions"`
-	Deletions int `json:"deletions"`
-}
-
-type Stats struct {
-	Total     int
-	Additions int
-	Deletions int
-}
-
-type CommitResp struct {
-	SHA          string           `json:"sha"`
-	NodeID       string           `json:"node_id"`
-	CommitDetail CommitDetailJSON `json:"commit"`
-	URL          string           `json:"url"`
-	HTMLURL      string           `json:"html_url"`
-	CommentsURL  string           `json:"comments_url"`
-	Author       UserJSON         `json:"author"`
-	Committer    UserJSON         `json:"committer"`
-	Parents      []ParentJSON     `json:"parents"`
-	Stats        StatsJSON        `json:"stats"`
-	Files        []FileJSON       `json:"files"`
-}
-
-type CommitDescription struct {
-	SHA          *string
-	NodeID       *string
-	CommitDetail CommitDetail
-	URL          *string
-	HTMLURL      *string
-	CommentsURL  *string
-	Author       User
-	Committer    User
-	Parents      []Parent
-	Stats        Stats
-	Files        []File
-}
-
-type Milestone struct {
-	Closed             bool
-	ClosedAt           *string
-	CreatedAt          *string
-	Creator            Actor
-	Description        *string
-	DueOn              *string
-	Number             int
-	ProgressPercentage float32
-	State              *githubv4.MilestoneState
-	Title              *string
-	UpdatedAt          *string
-	UserCanClose       bool
-	UserCanReopen      bool
-}
-
-type Label struct {
-	NodeId      *string
-	Name        *string
-	Description *string
-	IsDefault   bool
-	Color       *string
-}
-
-type RepositoryInteractionAbility struct {
-	ExpiresAt *string
-	Limit     *string
-	Origin    *string
-}
-
-type SponsorsGoal struct {
-	Description     *string
-	PercentComplete int
-	TargetValue     int
-	Title           *string
-	Kind            *githubv4.SponsorsGoalKind
-}
-
-type StripeConnectAccount struct {
-	AccountId              *string
-	BillingCountryOrRegion *string
-	CountryOrRegion        *string
-	IsActive               bool
-	StripeDashboardUrl     *string
-}
-
-type SponsorsListing struct {
-	Id                         *string
-	ActiveGoal                 SponsorsGoal
-	ActiveStripeConnectAccount StripeConnectAccount
-	BillingCountryOrRegion     *string
-	ContactEmailAddress        *string
-	CreatedAt                  *string
-	DashboardUrl               *string
-	FullDescription            *string
-	IsPublic                   bool
-	Name                       *string
-	NextPayoutDate             *string
-	ResidenceCountryOrRegion   *string
-	ShortDescription           *string
-	Slug                       *string
-	Url                        *string
-}
-
-type BaseUser struct {
-	BasicUser
-	AnyPinnableItems                      bool
-	AvatarUrl                             *string
-	Bio                                   *string
-	Company                               *string
-	EstimatedNextSponsorsPayoutInCents    int
-	HasSponsorsListing                    bool
-	InteractionAbility                    RepositoryInteractionAbility
-	IsBountyHunter                        bool
-	IsCampusExpert                        bool
-	IsDeveloperProgramMember              bool
-	IsEmployee                            bool
-	IsFollowingYou                        bool
-	IsGitHubStar                          bool
-	IsHireable                            bool
-	IsSiteAdmin                           bool
-	IsSponsoringYou                       bool
-	IsYou                                 bool
-	Location                              *string
-	MonthlyEstimatedSponsorsIncomeInCents int
-	PinnedItemsRemaining                  int
-	ProjectsUrl                           *string
-	Pronouns                              *string
-	SponsorsListing                       SponsorsListing
-	Status                                UserStatus
-	TwitterUsername                       *string
-	CanChangedPinnedItems                 bool
-	CanCreateProjects                     bool
-	CanFollow                             bool
-	CanSponsor                            bool
-	IsFollowing                           bool
-	IsSponsoring                          bool
-	WebsiteUrl                            *string
-}
-
-type UserStatus struct {
-	CreatedAt                    *string
-	UpdatedAt                    *string
-	ExpiresAt                    *string
-	Emoji                        *string
-	Message                      *string
-	IndicatesLimitedAvailability bool
-}
-
-type IssueDescription struct {
-	RepositoryFullName      *string
-	Id                      int
-	NodeId                  *string
-	Number                  int
-	ActiveLockReason        *githubv4.LockReason
-	Author                  Actor
-	AuthorLogin             *string
-	AuthorAssociation       *githubv4.CommentAuthorAssociation
-	Body                    *string
-	BodyUrl                 *string
-	Closed                  bool
-	ClosedAt                *string
-	CreatedAt               *string
-	CreatedViaEmail         bool
-	Editor                  Actor
-	FullDatabaseId          *string
-	IncludesCreatedEdit     bool
-	IsPinned                bool
-	IsReadByUser            bool
-	LastEditedAt            *string
-	Locked                  bool
-	Milestone               Milestone
-	PublishedAt             *string
-	State                   *githubv4.IssueState
-	StateReason             *githubv4.IssueStateReason
-	Title                   *string
-	UpdatedAt               *string
-	Url                     *string
-	UserCanClose            bool
-	UserCanReact            bool
-	UserCanReopen           bool
-	UserCanSubscribe        bool
-	UserCanUpdate           bool
-	UserCannotUpdateReasons []githubv4.CommentCannotUpdateReason
-	UserDidAuthor           bool
-	UserSubscription        *githubv4.SubscriptionState
-	CommentsTotalCount      int
-	LabelsTotalCount        int
-	LabelsSrc               []Label
-	Labels                  map[string]Label
-	AssigneesTotalCount     int
-	Assignees               []BaseUser
-}
-
-//type IssueCommentDescription struct {
-//	steampipemodels.IssueComment
-//	RepoFullName string
-//	Number       int
-//	AuthorLogin  string
-//	EditorLogin  string
-//}
-
-type LicenseDescription struct {
-	Key            string
-	Name           string
-	Nickname       string
-	SpdxId         string
-	Url            string
-	Body           string
-	Conditions     []steampipemodels.LicenseRule
-	Description    string
-	Featured       bool
-	Hidden         bool
-	Implementation string
-	Limitations    []steampipemodels.LicenseRule
-	Permissions    []steampipemodels.LicenseRule
-	PseudoLicense  bool
-}
-
-type OrganizationDescription struct {
-	Id                                     int
-	NodeId                                 string
-	Name                                   string
-	Login                                  string
-	CreatedAt                              string
-	UpdatedAt                              string
-	Description                            string
-	Email                                  string
-	Url                                    string
-	Announcement                           string
-	AnnouncementExpiresAt                  string
-	AnnouncementUserDismissible            bool
-	AnyPinnableItems                       bool
-	AvatarUrl                              string
-	EstimatedNextSponsorsPayoutInCents     int
-	HasSponsorsListing                     bool
-	InteractionAbility                     steampipemodels.RepositoryInteractionAbility
-	IsSponsoringYou                        bool
-	IsVerified                             bool
-	Location                               string
-	MonthlyEstimatedSponsorsIncomeInCents  int
-	NewTeamUrl                             string
-	PinnedItemsRemaining                   int
-	ProjectsUrl                            string
-	SamlIdentityProvider                   steampipemodels.OrganizationIdentityProvider
-	SponsorsListing                        steampipemodels.SponsorsListing
-	TeamsUrl                               string
-	TotalSponsorshipAmountAsSponsorInCents int
-	TwitterUsername                        string
-	CanAdminister                          bool
-	CanChangedPinnedItems                  bool
-	CanCreateProjects                      bool
-	CanCreateRepositories                  bool
-	CanCreateTeams                         bool
-	CanSponsor                             bool
-	IsAMember                              bool
-	IsFollowing                            bool
-	IsSponsoring                           bool
-	WebsiteUrl                             string
-	Hooks                                  []*github.Hook
-	BillingEmail                           string
-	TwoFactorRequirementEnabled            bool
-	DefaultRepoPermission                  string
-	MembersAllowedRepositoryCreationType   string
-	MembersCanCreateInternalRepos          bool
-	MembersCanCreatePages                  bool
-	MembersCanCreatePrivateRepos           bool
-	MembersCanCreatePublicRepos            bool
-	MembersCanCreateRepos                  bool
-	MembersCanForkPrivateRepos             bool
-	PlanFilledSeats                        int
-	PlanName                               string
-	PlanPrivateRepos                       int
-	PlanSeats                              int
-	PlanSpace                              int
-	Followers                              int
-	Following                              int
-	Collaborators                          int
-	HasOrganizationProjects                bool
-	HasRepositoryProjects                  bool
-	WebCommitSignoffRequired               bool
-	MembersWithRoleTotalCount              int
-	PackagesTotalCount                     int
-	PinnableItemsTotalCount                int
-	PinnedItemsTotalCount                  int
-	ProjectsTotalCount                     int
-	ProjectsV2TotalCount                   int
-	SponsoringTotalCount                   int
-	SponsorsTotalCount                     int
-	TeamsTotalCount                        int
-	PrivateRepositoriesTotalCount          int
-	PublicRepositoriesTotalCount           int
-	RepositoriesTotalCount                 int
-	RepositoriesTotalDiskUsage             int
-}
-
-type OrgCollaboratorsDescription struct {
-	Organization   string
-	Affiliation    string
-	RepositoryName githubv4.String
-	Permission     githubv4.RepositoryPermission
-	UserLogin      steampipemodels.CollaboratorLogin
-}
-
-type OrgAlertDependabotDescription struct {
-	AlertNumber                 int
-	State                       string
-	DependencyPackageEcosystem  string
-	DependencyPackageName       string
-	DependencyManifestPath      string
-	DependencyScope             string
-	SecurityAdvisoryGHSAID      string
-	SecurityAdvisoryCVEID       string
-	SecurityAdvisorySummary     string
-	SecurityAdvisoryDescription string
-	SecurityAdvisorySeverity    string
-	SecurityAdvisoryCVSSScore   *float64
-	SecurityAdvisoryCVSSVector  string
-	SecurityAdvisoryCWEs        []string
-	SecurityAdvisoryPublishedAt github.Timestamp
-	SecurityAdvisoryUpdatedAt   github.Timestamp
-	SecurityAdvisoryWithdrawnAt github.Timestamp
-	URL                         string
-	HTMLURL                     string
-	CreatedAt                   github.Timestamp
-	UpdatedAt                   github.Timestamp
-	DismissedAt                 github.Timestamp
-	DismissedReason             string
-	DismissedComment            string
-	FixedAt                     github.Timestamp
-}
-
-type OrgExternalIdentityDescription struct {
-	steampipemodels.OrganizationExternalIdentity
-	Organization string
-	UserLogin    string
-	UserDetail   steampipemodels.BasicUser
-}
-
-type OrgMembersDescription struct {
-	steampipemodels.User
-	Organization        string
-	HasTwoFactorEnabled *bool
-	Role                *string
-}
-
-type PullRequestDescription struct {
-	RepoFullName             string
-	Id                       int
-	NodeId                   string
-	Number                   int
-	ActiveLockReason         githubv4.LockReason
-	Additions                int
-	Author                   steampipemodels.Actor
-	AuthorAssociation        githubv4.CommentAuthorAssociation
-	BaseRefName              string
-	Body                     string
-	ChangedFiles             int
-	ChecksUrl                string
-	Closed                   bool
-	ClosedAt                 steampipemodels.NullableTime
-	CreatedAt                steampipemodels.NullableTime
-	CreatedViaEmail          bool
-	Deletions                int
-	Editor                   steampipemodels.Actor
-	HeadRefName              string
-	HeadRefOid               string
-	IncludesCreatedEdit      bool
-	IsCrossRepository        bool
-	IsDraft                  bool
-	IsReadByUser             bool
-	LastEditedAt             steampipemodels.NullableTime
-	Locked                   bool
-	MaintainerCanModify      bool
-	Mergeable                githubv4.MergeableState
-	Merged                   bool
-	MergedAt                 steampipemodels.NullableTime
-	MergedBy                 steampipemodels.Actor
-	Milestone                steampipemodels.Milestone
-	Permalink                string
-	PublishedAt              steampipemodels.NullableTime
-	RevertUrl                string
-	ReviewDecision           githubv4.PullRequestReviewDecision
-	State                    githubv4.PullRequestState
-	Title                    string
-	TotalCommentsCount       int
-	UpdatedAt                steampipemodels.NullableTime
-	Url                      string
-	Assignees                []steampipemodels.BaseUser
-	BaseRef                  *steampipemodels.BasicRef
-	HeadRef                  *steampipemodels.BasicRef
-	MergeCommit              *steampipemodels.BasicCommit
-	SuggestedReviewers       []steampipemodels.SuggestedReviewer
-	CanApplySuggestion       bool
-	CanClose                 bool
-	CanDeleteHeadRef         bool
-	CanDisableAutoMerge      bool
-	CanEditFiles             bool
-	CanEnableAutoMerge       bool
-	CanMergeAsAdmin          bool
-	CanReact                 bool
-	CanReopen                bool
-	CanSubscribe             bool
-	CanUpdate                bool
-	CanUpdateBranch          bool
-	DidAuthor                bool
-	CannotUpdateReasons      []githubv4.CommentCannotUpdateReason
-	Subscription             githubv4.SubscriptionState
-	LabelsSrc                []steampipemodels.Label
-	Labels                   map[string]steampipemodels.Label
-	CommitsTotalCount        int
-	ReviewRequestsTotalCount int
-	ReviewsTotalCount        int
-	LabelsTotalCount         int
-	AssigneesTotalCount      int
-}
-
-type License struct {
-	Key    string `json:"key"`
-	Name   string `json:"name"`
-	SPDXID string `json:"spdx_id"`
-	URL    string `json:"url"`
-	NodeID string `json:"node_id"`
-}
-
-type Permissions struct {
-	Admin    bool `json:"admin"`
-	Maintain bool `json:"maintain"`
-	Push     bool `json:"push"`
-	Triage   bool `json:"triage"`
-	Pull     bool `json:"pull"`
-}
-
-type StatusObj struct {
-	Status string `json:"status"`
-}
-
-type RepoDetail struct {
-	ID              int     `json:"id"`
-	NodeID          string  `json:"node_id"`
-	Name            string  `json:"name"`
-	FullName        string  `json:"full_name"`
-	Private         bool    `json:"private"`
-	Owner           *Owner  `json:"owner"`
-	HTMLURL         string  `json:"html_url"`
-	Description     *string `json:"description"`
-	Fork            bool    `json:"fork"`
-	CreatedAt       string  `json:"created_at"`
-	UpdatedAt       string  `json:"updated_at"`
-	PushedAt        string  `json:"pushed_at"`
-	GitURL          string  `json:"git_url"`
-	SSHURL          string  `json:"ssh_url"`
-	CloneURL        string  `json:"clone_url"`
-	SVNURL          string  `json:"svn_url"`
-	Homepage        *string `json:"homepage"`
-	Size            int     `json:"size"`
-	StargazersCount int     `json:"stargazers_count"`
-	WatchersCount   int     `json:"watchers_count"`
-
-	// 1) The single “primary” language returned by the main /repos/:owner/:repo call
-	PrimaryLanguage *string `json:"language"`
-	// If you want to store the breakdown from /languages in the same struct, you can do:
-	LanguageBreakdown map[string]int `json:"-"`
-
-	HasIssues                 bool                   `json:"has_issues"`
-	HasProjects               bool                   `json:"has_projects"`
-	HasDownloads              bool                   `json:"has_downloads"`
-	HasWiki                   bool                   `json:"has_wiki"`
-	HasPages                  bool                   `json:"has_pages"`
-	HasDiscussions            bool                   `json:"has_discussions"`
-	ForksCount                int                    `json:"forks_count"`
-	MirrorURL                 *string                `json:"mirror_url"`
-	Archived                  bool                   `json:"archived"`
-	Disabled                  bool                   `json:"disabled"`
-	OpenIssuesCount           int                    `json:"open_issues_count"`
-	License                   *License               `json:"license"`
-	AllowForking              bool                   `json:"allow_forking"`
-	IsTemplate                bool                   `json:"is_template"`
-	WebCommitSignoffRequired  bool                   `json:"web_commit_signoff_required"`
-	Topics                    []string               `json:"topics"`
-	Visibility                string                 `json:"visibility"`
-	DefaultBranch             string                 `json:"default_branch"`
-	Permissions               *Permissions           `json:"permissions"`
-	AllowSquashMerge          bool                   `json:"allow_squash_merge"`
-	AllowMergeCommit          bool                   `json:"allow_merge_commit"`
-	AllowRebaseMerge          bool                   `json:"allow_rebase_merge"`
-	AllowAutoMerge            bool                   `json:"allow_auto_merge"`
-	DeleteBranchOnMerge       bool                   `json:"delete_branch_on_merge"`
-	AllowUpdateBranch         bool                   `json:"allow_update_branch"`
-	UseSquashPRTitleAsDefault bool                   `json:"use_squash_pr_title_as_default"`
-	SquashMergeCommitMessage  string                 `json:"squash_merge_commit_message"`
-	SquashMergeCommitTitle    string                 `json:"squash_merge_commit_title"`
-	MergeCommitMessage        string                 `json:"merge_commit_message"`
-	MergeCommitTitle          string                 `json:"merge_commit_title"`
-	CustomProperties          map[string]interface{} `json:"custom_properties"`
-	Organization              *Organization          `json:"organization"`
-	Parent                    *RepoDetail            `json:"parent"`
-	Source                    *RepoDetail            `json:"source"`
-	NetworkCount              int                    `json:"network_count"`
-	SubscribersCount          int                    `json:"subscribers_count"`
-	BlankIssuesEnabled        bool                   `json:"blank_issues_enabled"`
-	Locked                    bool                   `json:"locked"`
-
-	SecurityAndAnalysis *struct {
-		SecretScanning                    *StatusObj `json:"secret_scanning"`
-		SecretScanningPushProtection      *StatusObj `json:"secret_scanning_push_protection"`
-		DependabotSecurityUpdates         *StatusObj `json:"dependabot_security_updates"`
-		SecretScanningNonProviderPatterns *StatusObj `json:"secret_scanning_non_provider_patterns"`
-		SecretScanningValidityChecks      *StatusObj `json:"secret_scanning_validity_checks"`
-	} `json:"security_and_analysis"`
-}
-
-type RepositorySettings struct {
-	HasDiscussionsEnabled     bool                   `json:"has_discussions_enabled"`
-	HasIssuesEnabled          bool                   `json:"has_issues_enabled"`
-	HasProjectsEnabled        bool                   `json:"has_projects_enabled"`
-	HasWikiEnabled            bool                   `json:"has_wiki_enabled"`
-	MergeCommitAllowed        bool                   `json:"merge_commit_allowed"`
-	MergeCommitMessage        string                 `json:"merge_commit_message"`
-	MergeCommitTitle          string                 `json:"merge_commit_title"`
-	SquashMergeAllowed        bool                   `json:"squash_merge_allowed"`
-	SquashMergeCommitMessage  string                 `json:"squash_merge_commit_message"`
-	SquashMergeCommitTitle    string                 `json:"squash_merge_commit_title"`
-	HasDownloads              bool                   `json:"has_downloads"`
-	HasPages                  bool                   `json:"has_pages"`
-	WebCommitSignoffRequired  bool                   `json:"web_commit_signoff_required"`
-	MirrorURL                 *string                `json:"mirror_url"`
-	AllowAutoMerge            bool                   `json:"allow_auto_merge"`
-	DeleteBranchOnMerge       bool                   `json:"delete_branch_on_merge"`
-	AllowUpdateBranch         bool                   `json:"allow_update_branch"`
-	UseSquashPRTitleAsDefault bool                   `json:"use_squash_pr_title_as_default"`
-	CustomProperties          map[string]interface{} `json:"custom_properties"`
-	ForkingAllowed            bool                   `json:"forking_allowed"`
-	IsTemplate                bool                   `json:"is_template"`
-	AllowRebaseMerge          bool                   `json:"allow_rebase_merge"`
-	// Renamed fields:
-	Archived bool `json:"archived"`
-	Disabled bool `json:"disabled"`
-	Locked   bool `json:"locked"`
-}
-
-type SecuritySettings struct {
-	VulnerabilityAlertsEnabled               bool `json:"vulnerability_alerts_enabled"`
-	SecretScanningEnabled                    bool `json:"secret_scanning_enabled"`
-	SecretScanningPushProtectionEnabled      bool `json:"secret_scanning_push_protection_enabled"`
-	DependabotSecurityUpdatesEnabled         bool `json:"dependabot_security_updates_enabled"`
-	SecretScanningNonProviderPatternsEnabled bool `json:"secret_scanning_non_provider_patterns_enabled"`
-	SecretScanningValidityChecksEnabled      bool `json:"secret_scanning_validity_checks_enabled"`
-
-	// New field
-	PrivateVulnerabilityReportingEnabled bool `json:"private_vulnerability_reporting_enabled"`
-}
-
-type RepoURLs struct {
-	GitURL   string `json:"git_url"`
-	SSHURL   string `json:"ssh_url"`
-	CloneURL string `json:"clone_url"`
-	SVNURL   string `json:"svn_url"`
-	HTMLURL  string `json:"html_url"`
-}
-type Owner struct {
-	Login   string `json:"login"`
-	ID      int    `json:"id"`
-	NodeID  string `json:"node_id"`
-	HTMLURL string `json:"html_url"`
-	Type    string `json:"type"`
-}
-
-type Organization struct {
-	Login        string `json:"login"`
-	ID           int    `json:"id"`
-	NodeID       string `json:"node_id"`
-	HTMLURL      string `json:"html_url"`
-	Type         string `json:"type"`
-	UserViewType string `json:"user_view_type"`
-	SiteAdmin    bool   `json:"site_admin"`
-}
-
-type Metrics struct {
-	Stargazers   int `json:"stargazers"`
-	Forks        int `json:"forks"`
-	Subscribers  int `json:"subscribers"`
-	Size         int `json:"size"`
-	Tags         int `json:"tags"`
-	Commits      int `json:"commits"`
-	Issues       int `json:"issues"`
-	OpenIssues   int `json:"open_issues"`
-	Branches     int `json:"branches"`
-	PullRequests int `json:"pull_requests"`
-	Releases     int `json:"releases"`
-}
-
-//type RepositoryResponse struct {
-//	ID                       float64                      `json:"id"`
-//	NodeID                   string                       `json:"node_id"`
-//	Name                     string                       `json:"name"`
-//	NameWithOwner            string                       `json:"name_with_owner"`
-//	Description              *string                      `json:"description"`
-//	Private                  bool                         `json:"private"`
-//	HTMLURL                  string                       `json:"html_url"`
-//	Fork                     bool                         `json:"fork"`
-//	URL                      string                       `json:"url"`
-//	CloneURL                 string                       `json:"clone_url"`
-//	GitURL                   string                       `json:"git_url"`
-//	SSHURL                   string                       `json:"ssh_url"`
-//	Homepage                 *string                      `json:"homepage"`
-//	Language                 string                       `json:"language"`
-//	ForksCount               int                          `json:"forks_count"`
-//	StargazersCount          int                          `json:"stargazers_count"`
-//	WatchersCount            int                          `json:"watchers_count"`
-//	Size                     int                          `json:"size"`
-//	DefaultBranch            string                       `json:"default_branch"`
-//	OpenIssuesCount          int                          `json:"open_issues_count"`
-//	Topics                   []string                     `json:"topics"`
-//	HasIssues                bool                         `json:"has_issues"`
-//	HasProjects              bool                         `json:"has_projects"`
-//	HasWiki                  bool                         `json:"has_wiki"`
-//	HasPages                 bool                         `json:"has_pages"`
-//	HasDownloads             bool                         `json:"has_downloads"`
-//	HasDiscussions           bool                         `json:"has_discussions"`
-//	Archived                 bool                         `json:"archived"`
-//	Disabled                 bool                         `json:"disabled"`
-//	Visibility               string                       `json:"visibility"`
-//	PushedAt                 string                       `json:"pushed_at"`
-//	CreatedAt                string                       `json:"created_at"`
-//	UpdatedAt                string                       `json:"updated_at"`
-//	AllowForking             bool                         `json:"allow_forking"`
-//	WebCommitSignoffRequired bool                         `json:"web_commit_signoff_required"`
-//	ContentsURL              string                       `json:"contents_url"`
-//	PullsURL                 string                       `json:"pulls_url"`
-//	CommitsURL               string                       `json:"commits_url"`
-//	CompareURL               string                       `json:"compare_url"`
-//	DownloadsURL             string                       `json:"downloads_url"`
-//	ArchiveURL               string                       `json:"archive_url"`
-//	AssigneesURL             string                       `json:"assignees_url"`
-//	BlobsURL                 string                       `json:"blobs_url"`
-//	BranchesURL              string                       `json:"branches_url"`
-//	CollaboratorsURL         string                       `json:"collaborators_url"`
-//	CommentsURL              string                       `json:"comments_url"`
-//	ContributorsURL          string                       `json:"contributors_url"`
-//	DeploymentsURL           string                       `json:"deployments_url"`
-//	EventsURL                string                       `json:"events_url"`
-//	ForksURL                 string                       `json:"forks_url"`
-//	GitCommitsURL            string                       `json:"git_commits_url"`
-//	GitRefsURL               string                       `json:"git_refs_url"`
-//	GitTagsURL               string                       `json:"git_tags_url"`
-//	HooksURL                 string                       `json:"hooks_url"`
-//	IssueCommentURL          string                       `json:"issue_comment_url"`
-//	IssueEventsURL           string                       `json:"issue_events_url"`
-//	IssuesURL                string                       `json:"issues_url"`
-//	KeysURL                  string                       `json:"keys_url"`
-//	LabelsURL                string                       `json:"labels_url"`
-//	LanguagesURL             string                       `json:"languages_url"`
-//	MergesURL                string                       `json:"merges_url"`
-//	MilestonesURL            string                       `json:"milestones_url"`
-//	NotificationsURL         string                       `json:"notifications_url"`
-//	ReleasesURL              string                       `json:"releases_url"`
-//	StargazersURL            string                       `json:"stargazers_url"`
-//	StatusesURL              string                       `json:"statuses_url"`
-//	SubscribersURL           string                       `json:"subscribers_url"`
-//	SubscriptionURL          string                       `json:"subscription_url"`
-//	TagsURL                  string                       `json:"tags_url"`
-//	TeamsURL                 string                       `json:"teams_url"`
-//	TreesURL                 string                       `json:"trees_url"`
-//	Watchers                 int                          `json:"watchers"`
-//	IsTemplate               bool                         `json:"is_template"`
-//	SecurityAndAnalysis      map[string]map[string]string `json:"security_and_analysis"`
-//	Permissions              map[string]bool              `json:"permissions"`
-//	Owner                    RepoOwner                    `json:"owner"`
-//}
-//
-//type RepoOwner struct {
-//	Login             string `json:"login"`
-//	ID                int64  `json:"id"`
-//	NodeID            string `json:"node_id"`
-//	AvatarURL         string `json:"avatar_url"`
-//	GravatarID        string `json:"gravatar_id"`
-//	URL               string `json:"url"`
-//	HTMLURL           string `json:"html_url"`
-//	FollowersURL      string `json:"followers_url"`
-//	FollowingURL      string `json:"following_url"`
-//	GistsURL          string `json:"gists_url"`
-//	StarredURL        string `json:"starred_url"`
-//	SubscriptionsURL  string `json:"subscriptions_url"`
-//	OrganizationsURL  string `json:"organizations_url"`
-//	ReposURL          string `json:"repos_url"`
-//	EventsURL         string `json:"events_url"`
-//	ReceivedEventsURL string `json:"received_events_url"`
-//	Type              string `json:"type"`
-//	SiteAdmin         bool   `json:"site_admin"`
-//}
-//
-//type LicenseInfo struct {
-//	Key    string `json:"key"`
-//	Name   string `json:"name"`
-//	SPDXID string `json:"spdx_id"`
-//	URL    string `json:"url"`
-//	NodeID string `json:"node_id"`
-//}
-//
-//type DefaultBranchRef struct {
-//	Name string `json:"name"`
-//}
-
-type RepositoryDescription struct {
-	GitHubRepoID            int
-	NodeID                  *string
-	Name                    *string
-	NameWithOwner           *string
-	Description             *string
-	CreatedAt               *string
-	UpdatedAt               *string
-	PushedAt                *string
-	IsActive                bool
-	IsEmpty                 bool
-	IsFork                  bool
-	IsSecurityPolicyEnabled bool
-	Owner                   *Owner
-	HomepageURL             *string
-	LicenseInfo             json.RawMessage
-	Topics                  []string
-	Visibility              string
-	DefaultBranchRef        json.RawMessage
-	Permissions             *Permissions
-	Organization            *Organization
-	Parent                  *RepositoryDescription
-	Source                  *RepositoryDescription
-	PrimaryLanguage         *string
-	Languages               map[string]int
-	RepositorySettings      RepositorySettings
-	SecuritySettings        SecuritySettings
-	RepoURLs                RepoURLs
-	Metrics                 Metrics
-}
-
-type MinimalRepoInfo struct {
-	Name     string `json:"name"`
-	Archived bool   `json:"archived"`
-	Disabled bool   `json:"disabled"`
-	Owner    struct {
-		Login string `json:"login"`
-	} `json:"owner"`
-}
-
-type ReleaseDescription struct {
-	github.RepositoryRelease
-	RepositoryFullName string
-}
-
-type RepoCollaboratorsDescription struct {
-	Affiliation  string
-	RepoFullName string
-	Permission   githubv4.RepositoryPermission
-	UserLogin    string
-}
-
-type RepoAlertDependabotDescription struct {
-	RepoFullName                string
-	AlertNumber                 int
-	State                       string
-	DependencyPackageEcosystem  string
-	DependencyPackageName       string
-	DependencyManifestPath      string
-	DependencyScope             string
-	SecurityAdvisoryGHSAID      string
-	SecurityAdvisoryCVEID       string
-	SecurityAdvisorySummary     string
-	SecurityAdvisoryDescription string
-	SecurityAdvisorySeverity    string
-	SecurityAdvisoryCVSSScore   *float64
-	SecurityAdvisoryCVSSVector  string
-	SecurityAdvisoryCWEs        []string
-	SecurityAdvisoryPublishedAt github.Timestamp
-	SecurityAdvisoryUpdatedAt   github.Timestamp
-	SecurityAdvisoryWithdrawnAt github.Timestamp
-	URL                         string
-	HTMLURL                     string
-	CreatedAt                   github.Timestamp
-	UpdatedAt                   github.Timestamp
-	DismissedAt                 github.Timestamp
-	DismissedReason             string
-	DismissedComment            string
-	FixedAt                     github.Timestamp
-}
-
-type RepoDeploymentDescription struct {
-	steampipemodels.Deployment
-	RepoFullName string
-}
-
-type RepoEnvironmentDescription struct {
-	steampipemodels.Environment
-	RepoFullName string
-}
-
-type RepoRuleSetDescription struct {
-	steampipemodels.Ruleset
-	RepoFullName string
-}
-
-type RepoSBOMDescription struct {
-	RepositoryFullName string
-	SPDXID             string
-	SPDXVersion        string
-	CreationInfo       *github.CreationInfo
-	Name               string
-	DataLicense        string
-	DocumentDescribes  []string
-	DocumentNamespace  string
-	Packages           []*github.RepoDependencies
-}
-
-type RepoVulnerabilityAlertDescription struct {
-	RepositoryFullName         string
-	Number                     int
-	NodeID                     string
-	AutoDismissedAt            steampipemodels.NullableTime
-	CreatedAt                  steampipemodels.NullableTime
-	DependencyScope            githubv4.RepositoryVulnerabilityAlertDependencyScope
-	DismissComment             string
-	DismissReason              string
-	DismissedAt                steampipemodels.NullableTime
-	Dismisser                  steampipemodels.BasicUser
-	FixedAt                    steampipemodels.NullableTime
-	State                      githubv4.RepositoryVulnerabilityAlertState
-	SecurityAdvisory           steampipemodels.SecurityAdvisory
-	SecurityVulnerability      steampipemodels.SecurityVulnerability
-	VulnerableManifestFilename string
-	VulnerableManifestPath     string
-	VulnerableRequirements     string
-	Severity                   githubv4.SecurityAdvisorySeverity
-	CvssScore                  float64
-}
-
-type SearchCodeDescription struct {
-	*github.CodeResult
-	RepoFullName string
-	Query        string
-}
-
-type SearchCommitDescription struct {
-	*github.CommitResult
-	RepoFullName string
-	Query        string
-}
-
-type SearchIssueDescription struct {
-	IssueDescription
-	RepoFullName string
-	Query        string
-	TextMatches  []steampipemodels.TextMatch
-}
-
-type StarDescription struct {
-	RepoFullName string
-	StarredAt    steampipemodels.NullableTime
-	Url          string
-}
-
-type StargazerDescription struct {
-	RepoFullName string
-	StarredAt    steampipemodels.NullableTime
-	UserLogin    string
-	UserDetail   steampipemodels.BasicUser
-}
-
-type TagDescription struct {
-	RepositoryFullName string
-	Name               string
-	TaggerDate         time.Time
-	TaggerName         string
-	TaggerLogin        string
-	Message            string
-	Commit             steampipemodels.BaseCommit
-}
-
-type ParentTeam struct {
-	Id     int
-	NodeId string
-	Name   string
-	Slug   string
-}
-
-type TeamDescription struct {
-	Organization           string
-	Slug                   string
-	Name                   string
-	ID                     int
-	NodeID                 string
-	Description            string
-	CreatedAt              time.Time
-	UpdatedAt              time.Time
-	CombinedSlug           string
-	ParentTeam             ParentTeam
-	Privacy                string
-	AncestorsTotalCount    int
-	ChildTeamsTotalCount   int
-	DiscussionsTotalCount  int
-	InvitationsTotalCount  int
-	MembersTotalCount      int
-	ProjectsV2TotalCount   int
-	RepositoriesTotalCount int
-	URL                    string
-	AvatarURL              string
-	DiscussionsURL         string
-	EditTeamURL            string
-	MembersURL             string
-	NewTeamURL             string
-	RepositoriesURL        string
-	TeamsURL               string
-	CanAdminister          bool
-	CanSubscribe           bool
-	Subscription           string
-}
-
-type TeamMembersDescription struct {
-	steampipemodels.User
-	Organization string
-	Slug         string
-	Role         githubv4.TeamMemberRole
-}
-
-type TrafficViewDailyDescription struct {
-	*github.TrafficData
-	RepositoryFullName string
-}
-
-type TrafficViewWeeklyDescription struct {
-	*github.TrafficData
-	RepositoryFullName string
-}
-
-type TreeDescription struct {
-	TreeSHA            string
-	RepositoryFullName string
-	Recursive          bool
-	Truncated          bool
-	SHA                string
-	Path               string
-	Mode               string
-	Type               string
-	Size               int
-	URL                string
-}
-
-type UserDescription struct {
-	steampipemodels.User
-	RepositoriesTotalDiskUsage    int
-	FollowersTotalCount           int
-	FollowingTotalCount           int
-	PublicRepositoriesTotalCount  int
-	PrivateRepositoriesTotalCount int
-	PublicGistsTotalCount         int
-	IssuesTotalCount              int
-	OrganizationsTotalCount       int
-	PublicKeysTotalCount          int
-	OpenPullRequestsTotalCount    int
-	MergedPullRequestsTotalCount  int
-	ClosedPullRequestsTotalCount  int
-	PackagesTotalCount            int
-	PinnedItemsTotalCount         int
-	SponsoringTotalCount          int
-	SponsorsTotalCount            int
-	StarredRepositoriesTotalCount int
-	WatchingTotalCount            int
-}
-
-type WorkflowDescription struct {
-	ID                      *int64
-	NodeID                  *string
-	Name                    *string
-	Path                    *string
-	State                   *string
-	CreatedAt               *github.Timestamp
-	UpdatedAt               *github.Timestamp
-	URL                     *string
-	HTMLURL                 *string
-	BadgeURL                *string
-	RepositoryFullName      *string
-	WorkFlowFileContent     *string
-	WorkFlowFileContentJson *github.RepositoryContent
-	Pipeline                *goPipeline.Pipeline
-}
-
-type CodeOwnerDescription struct {
-	RepositoryFullName string
-	LineNumber         int64
-	Pattern            string
-	Users              []string
-	Teams              []string
-	PreComments        []string
-	LineComment        string
-}
-
-type OwnerLogin struct {
-	Login string `json:"login"`
-}
-
-type Package struct {
-	ID          int        `json:"id"`
-	Name        string     `json:"name"`
-	PackageType string     `json:"package_type"`
-	Visibility  string     `json:"visibility"`
-	HTMLURL     string     `json:"html_url"`
-	CreatedAt   string     `json:"created_at"`
-	UpdatedAt   string     `json:"updated_at"`
-	Owner       OwnerLogin `json:"owner"`
-}
-
-type ContainerMetadata struct {
-	Container struct {
-		Tags []string
+	VaultName     string
+	Properties    map[string]interface{}
+	ResourceGroup string
+}
+
+//index:microsoft_recoveryservices_policy
+//getfilter:name=description.Policy.Name
+//getfilter:resource_group=description.ResourceGroup
+type RecoveryServicesBackupPolicyDescription struct {
+	Policy struct {
+		Name     *string
+		ID       *string
+		Type     *string
+		ETag     *string
+		Tags     map[string]*string
+		Location *string
 	}
+	Properties    map[string]interface{}
+	VaultName     string
+	ResourceGroup string
 }
 
-type ContainerPackageDescription struct {
-	ID         int
-	Digest     string
-	CreatedAt  string
-	UpdatedAt  string
-	PackageURL string
-	Name       string
-	MediaType  string
-	TotalSize  int64
-	Metadata   ContainerMetadata
-	Manifest   interface{}
-
-	// -- Add these new fields/methods: --
-
-	// The GitHub "version.Name" or tag,
-	// if you want to store that separately from the real Docker digest.
-
-	// When deduplicating, any subsequent tags for the same (ID,digest)
-	// can be appended here.
-	AdditionalPackageURIs []string `json:"additional_package_uris,omitempty"`
+//index:microsoft_recoveryservices_item
+//getfilter:name=description.Item.Name
+//getfilter:resource_group=description.ResourceGroup
+type RecoveryServicesBackupItemDescription struct {
+	Item struct {
+		Name     *string
+		ID       *string
+		Type     *string
+		ETag     *string
+		Tags     map[string]*string
+		Location *string
+	}
+	Properties    map[string]interface{}
+	VaultName     string
+	ResourceGroup string
 }
 
-// Provide a helper so that code calling `cpd.ActualDigest()` compiles:
-func (c ContainerPackageDescription) ActualDigest() string {
-	// If you want the *Docker* digest, we simply return `c.Digest`
-	// because your code is already overwriting .Digest with the real Docker digest
-	return c.Digest
+//  =================== kubernetes ==================
+
+//index:microsoft_hybridkubernetes_connectedcluster
+//getfilter:name=description.ConnectedCluster.Name
+//getfilter:resource_group=description.ResourceGroup
+type HybridKubernetesConnectedClusterDescription struct {
+	ConnectedCluster           armhybridkubernetes.ConnectedCluster
+	ConnectedClusterExtensions []*armkubernetesconfiguration.Extension
+	ResourceGroup              string
 }
 
-type PackageVersion struct {
-	ID             int               `json:"id"`
-	Name           string            `json:"name"`
-	PackageHTMLURL string            `json:"package_html_url"`
-	CreatedAt      string            `json:"created_at"`
-	UpdatedAt      string            `json:"updated_at"`
-	HTMLURL        string            `json:"html_url"`
-	Metadata       ContainerMetadata `json:"metadata"`
+//  =================== Cost ==================
+
+type CostManagementQueryRow struct {
+	UsageDate      int     `json:"UsageDate"`
+	Cost           float64 `json:"Cost"`
+	Currency       string  `json:"Currency"`
+	ServiceName    *string `json:"ServiceName,omitempty"`
+	PublisherType  *string `json:"PublisherType,omitempty"`
+	SubscriptionID *string `json:"SubscriptionId,omitempty"`
 }
 
-type OwnerDetail struct {
-	Login        string `json:"login"`
-	ID           int    `json:"id,omitempty"`
-	NodeID       string `json:"node_id,omitempty"`
-	HTMLURL      string `json:"html_url,omitempty"`
-	Type         string `json:"type,omitempty"`
-	UserViewType string `json:"user_view_type,omitempty"`
-	SiteAdmin    bool   `json:"site_admin,omitempty"`
+//index:microsoft_costmanagement_costbyresourcetype
+type CostManagementCostByResourceTypeDescription struct {
+	CostManagementCostByResourceType CostManagementQueryRow
+	CostDateMillis                   int64
 }
 
-type RepoOwnerDetail struct {
-	Login     string `json:"login"`
-	ID        int    `json:"id,omitempty"`
-	NodeID    string `json:"node_id,omitempty"`
-	HTMLURL   string `json:"html_url,omitempty"`
-	Type      string `json:"type,omitempty"`
-	SiteAdmin bool   `json:"site_admin,omitempty"`
+//index:microsoft_costmanagement_costbysubscription
+type CostManagementCostBySubscriptionDescription struct {
+	CostManagementCostBySubscription CostManagementQueryRow
 }
 
-type Repository struct {
-	ID          int             `json:"id"`
-	NodeID      string          `json:"node_id"`
-	Name        string          `json:"name"`
-	FullName    string          `json:"full_name"`
-	Private     bool            `json:"private"`
-	Owner       RepoOwnerDetail `json:"owner"`
-	HTMLURL     string          `json:"html_url"`
-	Description string          `json:"description"`
-	Fork        bool            `json:"fork"`
-	URL         string          `json:"url"`
+// =================== LB (loadbalancer) ==================
+
+//index:microsoft_network_loadbalancers
+//getfilter:name=description.LoadBalancer.Name
+//getfilter:resource_group=description.ResourceGroup
+type LoadBalancerDescription struct {
+	LoadBalancer      armnetwork.LoadBalancer
+	DiagnosticSetting []*armmonitor.DiagnosticSettingsResource
+	ResourceGroup     string
 }
 
-type PackageListItem struct {
-	ID          int    `json:"id"`
-	Name        string `json:"name"`
-	PackageType string `json:"package_type"`
-	Visibility  string `json:"visibility"`
-	HTMLURL     string `json:"html_url"`
-	CreatedAt   string `json:"created_at"`
-	UpdatedAt   string `json:"updated_at"`
-	Owner       struct {
-		Login string `json:"login"`
-	} `json:"owner"`
-	URL string `json:"url"`
+//index:microsoft_lb_backendaddresspools
+//getfilter:load_balancer_name=description.LoadBalancer.Name
+//getfilter:name=description.Pool.Name
+//getfilter:resource_group=description.ResourceGroup
+type LoadBalancerBackendAddressPoolDescription struct {
+	LoadBalancer  armnetwork.LoadBalancer
+	Pool          armnetwork.BackendAddressPool
+	ResourceGroup string
 }
 
-type PackageDetailDescription struct {
-	ID           int         `json:"id"`
-	Name         string      `json:"name"`
-	PackageType  string      `json:"package_type"`
-	Owner        OwnerDetail `json:"owner"`
-	VersionCount int         `json:"version_count"`
-	Visibility   string      `json:"visibility"`
-	URL          string      `json:"url"`
-	CreatedAt    string      `json:"created_at"`
-	UpdatedAt    string      `json:"updated_at"`
-	Repository   Repository  `json:"repository"`
-	HTMLURL      string      `json:"html_url"`
+//index:microsoft_lb_natrules
+//getfilter:load_balancer_name=description.LoadBalancerName
+//getfilter:name=description.Rule.Name
+//getfilter:resource_group=description.ResourceGroup
+type LoadBalancerNatRuleDescription struct {
+	Rule             armnetwork.InboundNatRule
+	LoadBalancerName string
+	ResourceGroup    string
 }
 
-type PackageDescription struct {
-	ID         string
-	RegistryID string
-	Name       string
-	URL        string
-	CreatedAt  github.Timestamp
-	UpdatedAt  github.Timestamp
+//index:microsoft_lb_outboundrules
+//getfilter:load_balancer_name=description.LoadBalancerName
+//getfilter:name=description.Rule.Name
+//getfilter:resource_group=description.ResourceGroup
+type LoadBalancerOutboundRuleDescription struct {
+	Rule             armnetwork.OutboundRule
+	LoadBalancerName string
+	ResourceGroup    string
 }
 
-type PackageVersionDescription struct {
-	ID          int
-	Name        string
-	PackageName string
-	VersionURI  string
-	Digest      *string
-	CreatedAt   github.Timestamp
-	UpdatedAt   github.Timestamp
+//index:microsoft_lb_probes
+//getfilter:load_balancer_name=description.LoadBalancerName
+//getfilter:name=description.Probe.Name
+//getfilter:resource_group=description.ResourceGroup
+type LoadBalancerProbeDescription struct {
+	Probe            armnetwork.Probe
+	LoadBalancerName string
+	ResourceGroup    string
 }
 
-type CodeSearchResult struct {
-	TotalCount        int             `json:"total_count"`
-	IncompleteResults bool            `json:"incomplete_results"`
-	Items             []CodeSearchHit `json:"items"`
+//index:microsoft_lb_rules
+//getfilter:load_balancer_name=description.LoadBalancerName
+//getfilter:name=description.Rule.Name
+//getfilter:resource_group=description.ResourceGroup
+type LoadBalancerRuleDescription struct {
+	Rule             armnetwork.LoadBalancingRule
+	LoadBalancerName string
+	ResourceGroup    string
 }
 
-type CodeSearchHit struct {
-	Name       string `json:"name"`
-	Path       string `json:"path"`
-	Sha        string `json:"sha"`
-	URL        string `json:"url"`
-	GitURL     string `json:"git_url"`
-	HTMLURL    string `json:"html_url"`
-	Repository struct {
-		ID       int    `json:"id"`
-		NodeID   string `json:"node_id"`
-		Name     string `json:"name"`
-		FullName string `json:"full_name"`
-		Private  bool   `json:"private"`
-		Owner    struct {
-			Login   string `json:"login"`
-			ID      int    `json:"id"`
-			NodeID  string `json:"node_id"`
-			URL     string `json:"url"`
-			HTMLURL string `json:"html_url"`
-			Type    string `json:"type"`
-		} `json:"owner"`
-		HTMLURL     string `json:"html_url"`
-		Description string `json:"description"`
-		Fork        bool   `json:"fork"`
-	} `json:"repository"`
-	Score float64 `json:"score"`
+// =================== Management ==================
+
+//index:microsoft_management_groups
+//getfilter:name=description.Group.Name
+type ManagementGroupDescription struct {
+	Group armmanagementgroups.ManagementGroup
 }
 
-type ContentResponse struct {
-	Name     string `json:"name"`
-	Path     string `json:"path"`
-	Sha      string `json:"sha"`
-	Size     int    `json:"size"`
-	URL      string `json:"url"`
-	HTMLURL  string `json:"html_url"`
-	GitURL   string `json:"git_url"`
-	Type     string `json:"type"`
-	Content  string `json:"content"` // base64
-	Encoding string `json:"encoding"`
+//index:microsoft_management_locks
+//getfilter:name=description.Lock.Name
+//getfilter:resource_group=description.ResourceGroup
+type ManagementLockDescription struct {
+	Lock          armlocks.ManagementLockObject
+	ResourceGroup string
 }
 
-type CommitResponse struct {
-	Commit struct {
-		Author struct {
-			Date string `json:"date"`
-		} `json:"author"`
-		Committer struct {
-			Date string `json:"date"`
-		} `json:"committer"`
-	} `json:"commit"`
+// =================== Resources ==================
+
+//index:microsoft_resources_providers
+//getfilter:namespace=description.Provider.Namespace
+type ResourceProviderDescription struct {
+	Provider armresources.Provider
 }
 
-type ArtifactDockerFileDescription struct {
-	Sha  *string
-	Name *string
-	//Path                    *string
-	LastUpdatedAt *string
-	//GitURL                  *string
-	HTMLURL *string
-	//URI                     *string // Unique identifier
-	DockerfileContent       string
-	DockerfileContentBase64 *string
-	Repository              map[string]interface{}
-	Images                  []string // New field to store extracted base images
+//index:microsoft_resources_resourcegroups
+//getfilter:name=description.Group.Name
+type ResourceGroupDescription struct {
+	Group armresources.ResourceGroup
+}
+
+type GenericResourceDescription struct {
+	GenericResource armresources.GenericResourceExpanded
+	ResourceGroup   string
+}
+
+// =================== BotService ==================
+
+type BotServiceBotDescription struct {
+	Bot           armbotservice.Bot
+	ResourceGroup string
+}
+
+// =================== NetApp ==================
+
+type NetAppAccountDescription struct {
+	Account       armnetapp.Account
+	ResourceGroup string
+}
+
+type NetAppCapacityPoolDescription struct {
+	CapacityPool  armnetapp.CapacityPool
+	ResourceGroup string
+}
+
+// =================== Dashboard ==================
+
+type DashboardGrafanaDescription struct {
+	ResourceGroup string
+	Grafana       armdashboard.ManagedGrafana
+}
+
+// =================== DesktopVirtualization ==================
+
+type DesktopVirtualizationHostPoolDescription struct {
+	HostPool      armdesktopvirtualization.HostPool
+	ResourceGroup string
+}
+
+type DesktopVirtualizationWorkspaceDescription struct {
+	ResourceGroup string
+	Workspace     armdesktopvirtualization.Workspace
+}
+
+// =================== DevTestLab ==================
+
+type DevTestLabLabDescription struct {
+	Lab           armdevtestlabs.Lab
+	ResourceGroup string
+}
+
+// =================== Purview ==================
+
+type PurviewAccountDescription struct {
+	Account       armpurview.Account
+	ResourceGroup string
+}
+
+// =================== PowerBI ==================
+
+type PowerBIDedicatedCapacityDescription struct {
+	Capacity      armpowerbidedicated.DedicatedCapacity
+	ResourceGroup string
+}
+
+// =================== applicationInsights =================
+
+type ApplicationInsightsComponentDescription struct {
+	Component     armapplicationinsights.Component
+	ResourceGroup string
+}
+
+// =================== Alert Management =================
+
+type AlertManagementDescription struct {
+	Alert         armalertsmanagement.Alert
+	ResourceGroup string
+}
+
+// =================== Lighthouse =================
+
+type LighthouseDefinitionDescription struct {
+	LighthouseDefinition armmanagedservices.RegistrationDefinition
+	Scope                string
+	ResourceGroup        string
+}
+
+type LighthouseAssignmentDescription struct {
+	LighthouseAssignment armmanagedservices.RegistrationAssignment
+	Scope                string
+	ResourceGroup        string
+}
+
+// =================== Maintenance Configuration =================
+
+type MaintenanceConfigurationDescription struct {
+	MaintenanceConfiguration armmaintenance.Configuration
+	ResourceGroup            string
+}
+
+// =================== Monitor Insights =================
+
+type MonitorLogProfileDescription struct {
+	LogProfile    armmonitor.LogProfileResource
+	ResourceGroup string
 }
