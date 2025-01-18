@@ -27,7 +27,7 @@ jobs:
           cache: false  # Disable built-in caching to use custom caching
       - name: Tag Version
         id: tag_version
-        uses: mathieudutour/azure-tag-action@v6.1
+        uses: mathieudutour/github-tag-action@v6.1
         with:
           github_token: ${{ secrets.GH_ACCESS_TOKEN }}
           release_branches: main
@@ -45,17 +45,17 @@ jobs:
       - name: Configure Git for Private Repos
         run: |
           git config --global url.https://$GH_ACCESS_TOKEN@github.com/opengovern.insteadOf https://github.com/opengovern
-      - name: Build Github Plugin App
+      - name: Build azure Plugin App
         working-directory: ./cloudql
         run: make build
-      - name: Pack Github Plugin Build
+      - name: Pack azure Plugin Build
         working-directory: ./cloudql
         run: |
           tar -cvf build.tar build
-      - name: Upload Github Plugin Artifact
+      - name: Upload azure Plugin Artifact
         uses: actions/upload-artifact@v4.6.0
         with:
-          name: steampipe-plugin-github
+          name: steampipe-plugin-azure
           path: ./cloudql/build.tar
           retention-days: 1
       - name: Build Local Describer App
@@ -87,7 +87,7 @@ jobs:
         run: mkdir -p azure-plugin
       - name: Copy steampipe plugin to output directory
         working-directory: .
-        run: cp ./cloudql/build/steampipe-plugin-github.plugin ./azure-plugin/cloudql-plugin
+        run: cp ./cloudql/build/steampipe-plugin-azure.plugin ./azure-plugin/cloudql-plugin
       - name: Copy integration plugin to output directory
         working-directory: .
         run: cp ./platform/build/integration-plugin ./azure-plugin/
@@ -98,7 +98,7 @@ jobs:
         working-directory: .
         run: |
           tar -czf azure-plugin.tar azure-plugin
-      - name: Upload github outputs artifact
+      - name: Upload azure outputs artifact
         uses: actions/upload-artifact@v4.6.0
         with:
           name: azure-plugins
@@ -123,12 +123,12 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      - name: Download Github Plugin Artifact
+      - name: Download azure Plugin Artifact
         uses: actions/download-artifact@v4
         with:
-          name: steampipe-plugin-github
+          name: steampipe-plugin-azure
           path: .
-      - name: Unpack Github Plugin Artifact
+      - name: Unpack azure Plugin Artifact
         run: |
           tar -xvf build.tar
       - name: Log in to Container Registry
@@ -142,8 +142,8 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/steampipe-plugin-github:0.0.1
-            ghcr.io/${{ github.repository_owner }}/steampipe-plugin-github:${{ needs.build.outputs.latest_tag }}
+            ghcr.io/${{ github.repository_owner }}/steampipe-plugin-azure:0.0.1
+            ghcr.io/${{ github.repository_owner }}/steampipe-plugin-azure:${{ needs.build.outputs.latest_tag }}
           file: cloudql/docker/Dockerfile
           context: .
   deploy-local-describer:
