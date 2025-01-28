@@ -19,7 +19,7 @@ func (i *Integration) GetConfiguration() (interfaces.IntegrationConfiguration, e
 		NatsConsumerGroup:        global.ConsumerGroup,
 		NatsConsumerGroupManuals: global.ConsumerGroupManuals,
 
-		SteampipePluginName: "github",
+		SteampipePluginName: "azure",
 
 		UISpec:   constants.UISpec,
 		Manifest: constants.Manifest,
