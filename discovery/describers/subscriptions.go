@@ -25,7 +25,7 @@ func Tenant(ctx context.Context, cred *azidentity.ClientSecretCredential, subscr
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetTenand(ctx, v)
+			resource := GetTenand(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -38,7 +38,7 @@ func Tenant(ctx context.Context, cred *azidentity.ClientSecretCredential, subscr
 	return values, nil
 }
 
-func GetTenand(ctx context.Context, v *armsubscription.TenantIDDescription) *models.Resource {
+func GetTenand(ctx context.Context, v *armsubscription.TenantIDDescription, subscription string) *models.Resource {
 	name := ""
 
 	resource := models.Resource{
@@ -47,6 +47,7 @@ func GetTenand(ctx context.Context, v *armsubscription.TenantIDDescription) *mod
 		Location: "global",
 		Description: model.TenantDescription{
 			TenantIDDescription: *v, // TODO has much less values
+			Subscription:        subscription,
 		},
 	}
 
@@ -101,8 +102,9 @@ func Subscription(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 		Name:     *op.DisplayName,
 		Location: "global",
 		Description: model.SubscriptionDescription{
-			Subscription: op.Subscription,
-			Tags:         tags,
+			Subscription:   op.Subscription,
+			Tags:           tags,
+			SubscriptionID: subscription,
 		},
 	}
 	if stream != nil {

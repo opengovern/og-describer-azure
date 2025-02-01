@@ -21,6 +21,11 @@ func tableAzureCosmosDBRestorableDatabaseAccount(_ context.Context) *plugin.Tabl
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Account.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "The friendly name that identifies the restorable database account.",
 				Type:        proto.ColumnType_STRING,

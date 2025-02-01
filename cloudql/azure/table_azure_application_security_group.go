@@ -29,6 +29,11 @@ func tableAzureApplicationSecurityGroup(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.ApplicationSecurityGroup.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Type:        proto.ColumnType_STRING,
 				Description: "The friendly name that identifies the application security group",

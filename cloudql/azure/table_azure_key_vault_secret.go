@@ -31,6 +31,11 @@ func tableAzureKeyVaultSecret(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.SecretItem.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "The friendly name that identifies the secret.",
 				Type:        proto.ColumnType_STRING,

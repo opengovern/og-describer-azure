@@ -30,7 +30,7 @@ func NetworkInterface(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getNetworkInterface(ctx, v)
+			resource := getNetworkInterface(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -43,7 +43,7 @@ func NetworkInterface(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getNetworkInterface(ctx context.Context, v *armnetwork.Interface) *models.Resource {
+func getNetworkInterface(ctx context.Context, v *armnetwork.Interface, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -53,6 +53,7 @@ func getNetworkInterface(ctx context.Context, v *armnetwork.Interface) *models.R
 		Description: model.NetworkInterfaceDescription{
 			Interface:     *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -76,7 +77,7 @@ func NetworkWatcherFlowLog(ctx context.Context, cred *azidentity.ClientSecretCre
 			return nil, err
 		}
 		for _, watcher := range page.Value {
-			resources, err := listWatcherFlowLogs(ctx, logsClient, watcher)
+			resources, err := listWatcherFlowLogs(ctx, logsClient, watcher, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -94,7 +95,7 @@ func NetworkWatcherFlowLog(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func listWatcherFlowLogs(ctx context.Context, logsClient *armnetwork.FlowLogsClient, watcher *armnetwork.Watcher) ([]models.Resource, error) {
+func listWatcherFlowLogs(ctx context.Context, logsClient *armnetwork.FlowLogsClient, watcher *armnetwork.Watcher, subscription string) ([]models.Resource, error) {
 	resourceGroupID := strings.Split(*watcher.ID, "/")[4]
 
 	pager := logsClient.NewListPager(resourceGroupID, *watcher.Name, nil)
@@ -105,14 +106,14 @@ func listWatcherFlowLogs(ctx context.Context, logsClient *armnetwork.FlowLogsCli
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getWatcherFlowLog(ctx, watcher, v)
+			resource := getWatcherFlowLog(ctx, watcher, v, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getWatcherFlowLog(ctx context.Context, watcher *armnetwork.Watcher, v *armnetwork.FlowLog) *models.Resource {
+func getWatcherFlowLog(ctx context.Context, watcher *armnetwork.Watcher, v *armnetwork.FlowLog, subscription string) *models.Resource {
 	resourceGroupID := strings.Split(*watcher.ID, "/")[4]
 
 	resource := models.Resource{
@@ -123,6 +124,7 @@ func getWatcherFlowLog(ctx context.Context, watcher *armnetwork.Watcher, v *armn
 			NetworkWatcherName: *watcher.Name,
 			FlowLog:            *v,
 			ResourceGroup:      resourceGroupID,
+			Subscription:       subscription,
 		},
 	}
 	return &resource
@@ -146,7 +148,7 @@ func Subnet(ctx context.Context, cred *azidentity.ClientSecretCredential, subscr
 			return nil, err
 		}
 		for _, virtualnetwork := range page.Value {
-			resources, err := listVirtualNetworkSubnets(ctx, subnetsClient, virtualnetwork)
+			resources, err := listVirtualNetworkSubnets(ctx, subnetsClient, virtualnetwork, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -164,7 +166,7 @@ func Subnet(ctx context.Context, cred *azidentity.ClientSecretCredential, subscr
 	return values, nil
 }
 
-func listVirtualNetworkSubnets(ctx context.Context, subnetsClient *armnetwork.SubnetsClient, virtualnetwork *armnetwork.VirtualNetwork) ([]models.Resource, error) {
+func listVirtualNetworkSubnets(ctx context.Context, subnetsClient *armnetwork.SubnetsClient, virtualnetwork *armnetwork.VirtualNetwork, subscription string) ([]models.Resource, error) {
 	resourceGroupID := strings.Split(*virtualnetwork.ID, "/")[4]
 
 	pager := subnetsClient.NewListPager(resourceGroupID, *virtualnetwork.Name, nil)
@@ -175,14 +177,14 @@ func listVirtualNetworkSubnets(ctx context.Context, subnetsClient *armnetwork.Su
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getVirtualNetworkSubnet(ctx, virtualnetwork, v)
+			resource := getVirtualNetworkSubnet(ctx, virtualnetwork, v, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getVirtualNetworkSubnet(ctx context.Context, virtualnetwork *armnetwork.VirtualNetwork, v *armnetwork.Subnet) *models.Resource {
+func getVirtualNetworkSubnet(ctx context.Context, virtualnetwork *armnetwork.VirtualNetwork, v *armnetwork.Subnet, subscription string) *models.Resource {
 	resourceGroupID := strings.Split(*virtualnetwork.ID, "/")[4]
 
 	resource := models.Resource{
@@ -193,6 +195,7 @@ func getVirtualNetworkSubnet(ctx context.Context, virtualnetwork *armnetwork.Vir
 			VirtualNetworkName: *virtualnetwork.Name,
 			Subnet:             *v,
 			ResourceGroup:      resourceGroupID,
+			Subscription:       subscription,
 		},
 	}
 	return &resource
@@ -212,7 +215,7 @@ func VirtualNetwork(ctx context.Context, cred *azidentity.ClientSecretCredential
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getVirtualNetwork(ctx, v)
+			resource := getVirtualNetwork(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -225,7 +228,7 @@ func VirtualNetwork(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func getVirtualNetwork(ctx context.Context, v *armnetwork.VirtualNetwork) *models.Resource {
+func getVirtualNetwork(ctx context.Context, v *armnetwork.VirtualNetwork, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -235,6 +238,7 @@ func getVirtualNetwork(ctx context.Context, v *armnetwork.VirtualNetwork) *model
 		Description: model.VirtualNetworkDescription{
 			VirtualNetwork: *v,
 			ResourceGroup:  resourceGroup,
+			Subscription:   subscription,
 		},
 	}
 
@@ -261,7 +265,7 @@ func ApplicationGateway(ctx context.Context, cred *azidentity.ClientSecretCreden
 			return nil, err
 		}
 		for _, gateway := range page.Value {
-			resource, err := getApplicationGateway(ctx, diagnosticClient, gateway)
+			resource, err := getApplicationGateway(ctx, diagnosticClient, gateway, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -277,7 +281,7 @@ func ApplicationGateway(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func getApplicationGateway(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, gateway *armnetwork.ApplicationGateway) (*models.Resource, error) {
+func getApplicationGateway(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, gateway *armnetwork.ApplicationGateway, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*gateway.ID, "/")[4]
 
 	var networkListOp []*armmonitor.DiagnosticSettingsResource
@@ -298,6 +302,7 @@ func getApplicationGateway(ctx context.Context, diagnosticClient *armmonitor.Dia
 			ApplicationGateway:          *gateway,
 			DiagnosticSettingsResources: networkListOp,
 			ResourceGroup:               resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 	return &resource, nil
@@ -323,7 +328,7 @@ func NetworkSecurityGroup(ctx context.Context, cred *azidentity.ClientSecretCred
 			return nil, err
 		}
 		for _, networkSecurityGroup := range page.Value {
-			resource, err := getNetworkSecurityGroup(ctx, diagnosticClient, networkSecurityGroup)
+			resource, err := getNetworkSecurityGroup(ctx, diagnosticClient, networkSecurityGroup, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -339,7 +344,7 @@ func NetworkSecurityGroup(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func getNetworkSecurityGroup(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, networkSecurityGroup *armnetwork.SecurityGroup) (*models.Resource, error) {
+func getNetworkSecurityGroup(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, networkSecurityGroup *armnetwork.SecurityGroup, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*networkSecurityGroup.ID, "/")[4]
 
 	id := *networkSecurityGroup.ID
@@ -365,6 +370,7 @@ func getNetworkSecurityGroup(ctx context.Context, diagnosticClient *armmonitor.D
 			SecurityGroup:               *networkSecurityGroup,
 			DiagnosticSettingsResources: networkListOp,
 			ResourceGroup:               resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 
@@ -385,7 +391,7 @@ func NetworkWatcher(ctx context.Context, cred *azidentity.ClientSecretCredential
 			return nil, err
 		}
 		for _, networkWatcher := range page.Value {
-			resource := getNetworkWatcher(ctx, networkWatcher)
+			resource := getNetworkWatcher(ctx, networkWatcher, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -398,7 +404,7 @@ func NetworkWatcher(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func getNetworkWatcher(ctx context.Context, networkWatcher *armnetwork.Watcher) *models.Resource {
+func getNetworkWatcher(ctx context.Context, networkWatcher *armnetwork.Watcher, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*networkWatcher.ID, "/")[4]
 
 	resource := models.Resource{
@@ -408,6 +414,7 @@ func getNetworkWatcher(ctx context.Context, networkWatcher *armnetwork.Watcher) 
 		Description: model.NetworkWatcherDescription{
 			Watcher:       *networkWatcher,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 
@@ -428,7 +435,7 @@ func RouteTables(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 			return nil, err
 		}
 		for _, routeTable := range page.Value {
-			resource := getRouteTable(ctx, routeTable)
+			resource := getRouteTable(ctx, routeTable, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -441,7 +448,7 @@ func RouteTables(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func getRouteTable(ctx context.Context, routeTable *armnetwork.RouteTable) *models.Resource {
+func getRouteTable(ctx context.Context, routeTable *armnetwork.RouteTable, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*routeTable.ID, "/")[4]
 
 	resource := models.Resource{
@@ -451,6 +458,7 @@ func getRouteTable(ctx context.Context, routeTable *armnetwork.RouteTable) *mode
 		Description: model.RouteTablesDescription{
 			ResourceGroup: resourceGroup,
 			RouteTable:    *routeTable,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -470,7 +478,7 @@ func NetworkApplicationSecurityGroups(ctx context.Context, cred *azidentity.Clie
 			return nil, err
 		}
 		for _, applicationSecurityGroup := range page.Value {
-			resource := getApplicationSecurityGroup(ctx, applicationSecurityGroup)
+			resource := getApplicationSecurityGroup(ctx, applicationSecurityGroup, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -483,7 +491,7 @@ func NetworkApplicationSecurityGroups(ctx context.Context, cred *azidentity.Clie
 	return values, nil
 }
 
-func getApplicationSecurityGroup(ctx context.Context, applicationSecurityGroup *armnetwork.ApplicationSecurityGroup) *models.Resource {
+func getApplicationSecurityGroup(ctx context.Context, applicationSecurityGroup *armnetwork.ApplicationSecurityGroup, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*applicationSecurityGroup.ID, "/")[4]
 
 	resource := models.Resource{
@@ -493,6 +501,7 @@ func getApplicationSecurityGroup(ctx context.Context, applicationSecurityGroup *
 		Description: model.NetworkApplicationSecurityGroupsDescription{
 			ApplicationSecurityGroup: *applicationSecurityGroup,
 			ResourceGroup:            resourceGroup,
+			Subscription:             subscription,
 		},
 	}
 
@@ -513,7 +522,7 @@ func NetworkAzureFirewall(ctx context.Context, cred *azidentity.ClientSecretCred
 			return nil, err
 		}
 		for _, azureFirewall := range page.Value {
-			resource := getAzureFirewall(ctx, azureFirewall)
+			resource := getAzureFirewall(ctx, azureFirewall, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -526,7 +535,7 @@ func NetworkAzureFirewall(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func getAzureFirewall(ctx context.Context, azureFirewall *armnetwork.AzureFirewall) *models.Resource {
+func getAzureFirewall(ctx context.Context, azureFirewall *armnetwork.AzureFirewall, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*azureFirewall.ID, "/")[4]
 
 	resource := models.Resource{
@@ -536,6 +545,7 @@ func getAzureFirewall(ctx context.Context, azureFirewall *armnetwork.AzureFirewa
 		Description: model.NetworkAzureFirewallDescription{
 			AzureFirewall: *azureFirewall,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 
@@ -556,7 +566,7 @@ func ExpressRouteCircuit(ctx context.Context, cred *azidentity.ClientSecretCrede
 			return nil, err
 		}
 		for _, expressRouteCircuit := range page.Value {
-			resource := getExpressRouteCircuit(ctx, expressRouteCircuit)
+			resource := getExpressRouteCircuit(ctx, expressRouteCircuit, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -569,7 +579,7 @@ func ExpressRouteCircuit(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func getExpressRouteCircuit(ctx context.Context, expressRouteCircuit *armnetwork.ExpressRouteCircuit) *models.Resource {
+func getExpressRouteCircuit(ctx context.Context, expressRouteCircuit *armnetwork.ExpressRouteCircuit, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*expressRouteCircuit.ID, "/")[4]
 
 	resource := models.Resource{
@@ -579,6 +589,7 @@ func getExpressRouteCircuit(ctx context.Context, expressRouteCircuit *armnetwork
 		Description: model.ExpressRouteCircuitDescription{
 			ExpressRouteCircuit: *expressRouteCircuit,
 			ResourceGroup:       resourceGroup,
+			Subscription:        subscription,
 		},
 	}
 	return &resource
@@ -597,7 +608,7 @@ func VirtualNetworkGateway(ctx context.Context, cred *azidentity.ClientSecretCre
 
 	var values []models.Resource
 	for _, rg := range rgs {
-		resources, err := getResourceGroupVirtualNetworkGateway(ctx, client, rg)
+		resources, err := getResourceGroupVirtualNetworkGateway(ctx, client, rg, subscription)
 		if err != nil {
 			return nil, err
 		}
@@ -614,7 +625,7 @@ func VirtualNetworkGateway(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func getResourceGroupVirtualNetworkGateway(ctx context.Context, client *armnetwork.VirtualNetworkGatewaysClient, resourceGroup armresources.ResourceGroup) ([]models.Resource, error) {
+func getResourceGroupVirtualNetworkGateway(ctx context.Context, client *armnetwork.VirtualNetworkGatewaysClient, resourceGroup armresources.ResourceGroup, subscription string) ([]models.Resource, error) {
 	pager := client.NewListPager(*resourceGroup.Name, nil)
 	var values []models.Resource
 	for pager.More() {
@@ -623,7 +634,7 @@ func getResourceGroupVirtualNetworkGateway(ctx context.Context, client *armnetwo
 			return nil, err
 		}
 		for _, virtualNetworkGateway := range page.Value {
-			resource, err := getVirtualNetworkGateway(ctx, client, virtualNetworkGateway)
+			resource, err := getVirtualNetworkGateway(ctx, client, virtualNetworkGateway, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -633,7 +644,7 @@ func getResourceGroupVirtualNetworkGateway(ctx context.Context, client *armnetwo
 	return values, nil
 }
 
-func getVirtualNetworkGateway(ctx context.Context, client *armnetwork.VirtualNetworkGatewaysClient, virtualNetworkGateway *armnetwork.VirtualNetworkGateway) (*models.Resource, error) {
+func getVirtualNetworkGateway(ctx context.Context, client *armnetwork.VirtualNetworkGatewaysClient, virtualNetworkGateway *armnetwork.VirtualNetworkGateway, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*virtualNetworkGateway.ID, "/")[4]
 
 	var gatewayConnections []*armnetwork.VirtualNetworkGatewayConnectionListEntity
@@ -668,6 +679,7 @@ func getVirtualNetworkGateway(ctx context.Context, client *armnetwork.VirtualNet
 			VirtualNetworkGateway:           *virtualNetworkGateway,
 			VirtualNetworkGatewayConnection: gatewayConnections,
 			VirtualNetwork:                  virtualNetwork,
+			Subscription:                    subscription,
 		},
 	}
 
@@ -688,7 +700,7 @@ func FirewallPolicy(ctx context.Context, cred *azidentity.ClientSecretCredential
 			return nil, err
 		}
 		for _, firewallPolicy := range page.Value {
-			resource := getFirewallPolicy(ctx, firewallPolicy)
+			resource := getFirewallPolicy(ctx, firewallPolicy, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -701,7 +713,7 @@ func FirewallPolicy(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func getFirewallPolicy(ctx context.Context, firewallPolicy *armnetwork.FirewallPolicy) *models.Resource {
+func getFirewallPolicy(ctx context.Context, firewallPolicy *armnetwork.FirewallPolicy, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*firewallPolicy.ID, "/")[4]
 
 	resource := models.Resource{
@@ -711,6 +723,7 @@ func getFirewallPolicy(ctx context.Context, firewallPolicy *armnetwork.FirewallP
 		Description: model.FirewallPolicyDescription{
 			ResourceGroup:  resourceGroup,
 			FirewallPolicy: *firewallPolicy,
+			Subscription:   subscription,
 		},
 	}
 
@@ -730,7 +743,7 @@ func LocalNetworkGateway(ctx context.Context, cred *azidentity.ClientSecretCrede
 
 	var values []models.Resource
 	for _, rg := range rgs {
-		resources, err := ListResourceGroupLocalNetworkGateways(ctx, client, rg)
+		resources, err := ListResourceGroupLocalNetworkGateways(ctx, client, rg, subscription)
 		if err != nil {
 			return nil, err
 		}
@@ -747,7 +760,7 @@ func LocalNetworkGateway(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func ListResourceGroupLocalNetworkGateways(ctx context.Context, client *armnetwork.LocalNetworkGatewaysClient, rg armresources.ResourceGroup) ([]models.Resource, error) {
+func ListResourceGroupLocalNetworkGateways(ctx context.Context, client *armnetwork.LocalNetworkGatewaysClient, rg armresources.ResourceGroup, subscription string) ([]models.Resource, error) {
 	var values []models.Resource
 	pager := client.NewListPager(*rg.Name, nil)
 	for pager.More() {
@@ -756,14 +769,14 @@ func ListResourceGroupLocalNetworkGateways(ctx context.Context, client *armnetwo
 			return nil, err
 		}
 		for _, localNetworkGateway := range page.Value {
-			resource := getLocalNetworkGateway(ctx, localNetworkGateway)
+			resource := getLocalNetworkGateway(ctx, localNetworkGateway, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getLocalNetworkGateway(ctx context.Context, localNetworkGateway *armnetwork.LocalNetworkGateway) *models.Resource {
+func getLocalNetworkGateway(ctx context.Context, localNetworkGateway *armnetwork.LocalNetworkGateway, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*localNetworkGateway.ID, "/")[4]
 
 	resource := models.Resource{
@@ -773,6 +786,7 @@ func getLocalNetworkGateway(ctx context.Context, localNetworkGateway *armnetwork
 		Description: model.LocalNetworkGatewayDescription{
 			ResourceGroup:       resourceGroup,
 			LocalNetworkGateway: *localNetworkGateway,
+			Subscription:        subscription,
 		},
 	}
 
@@ -792,7 +806,7 @@ func NatGateway(ctx context.Context, cred *azidentity.ClientSecretCredential, su
 
 	var values []models.Resource
 	for _, rg := range rgs {
-		resources, err := ListResourceGroupNatGateways(ctx, client, rg)
+		resources, err := ListResourceGroupNatGateways(ctx, client, rg, subscription)
 		if err != nil {
 			return nil, err
 		}
@@ -809,7 +823,7 @@ func NatGateway(ctx context.Context, cred *azidentity.ClientSecretCredential, su
 	return values, nil
 }
 
-func ListResourceGroupNatGateways(ctx context.Context, client *armnetwork.NatGatewaysClient, rg armresources.ResourceGroup) ([]models.Resource, error) {
+func ListResourceGroupNatGateways(ctx context.Context, client *armnetwork.NatGatewaysClient, rg armresources.ResourceGroup, subscription string) ([]models.Resource, error) {
 	var values []models.Resource
 	pager := client.NewListPager(*rg.Name, nil)
 	for pager.More() {
@@ -818,14 +832,14 @@ func ListResourceGroupNatGateways(ctx context.Context, client *armnetwork.NatGat
 			return nil, err
 		}
 		for _, natGateway := range page.Value {
-			resource := getNatGateway(ctx, natGateway)
+			resource := getNatGateway(ctx, natGateway, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getNatGateway(ctx context.Context, natGateway *armnetwork.NatGateway) *models.Resource {
+func getNatGateway(ctx context.Context, natGateway *armnetwork.NatGateway, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*natGateway.ID, "/")[4]
 
 	resource := models.Resource{
@@ -835,6 +849,7 @@ func getNatGateway(ctx context.Context, natGateway *armnetwork.NatGateway) *mode
 		Description: model.NatGatewayDescription{
 			ResourceGroup: resourceGroup,
 			NatGateway:    *natGateway,
+			Subscription:  subscription,
 		},
 	}
 
@@ -854,7 +869,7 @@ func PrivateLinkService(ctx context.Context, cred *azidentity.ClientSecretCreden
 
 	var values []models.Resource
 	for _, rg := range rgs {
-		resources, err := ListResourceGroupPrivateLinkServices(ctx, client, rg)
+		resources, err := ListResourceGroupPrivateLinkServices(ctx, client, rg, subscription)
 		if err != nil {
 			return nil, err
 		}
@@ -871,7 +886,7 @@ func PrivateLinkService(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func ListResourceGroupPrivateLinkServices(ctx context.Context, client *armnetwork.PrivateLinkServicesClient, rg armresources.ResourceGroup) ([]models.Resource, error) {
+func ListResourceGroupPrivateLinkServices(ctx context.Context, client *armnetwork.PrivateLinkServicesClient, rg armresources.ResourceGroup, subscription string) ([]models.Resource, error) {
 	var values []models.Resource
 	pager := client.NewListPager(*rg.Name, nil)
 	for pager.More() {
@@ -880,14 +895,14 @@ func ListResourceGroupPrivateLinkServices(ctx context.Context, client *armnetwor
 			return nil, err
 		}
 		for _, privateLinkService := range page.Value {
-			resource := getPrivateLinkService(ctx, privateLinkService)
+			resource := getPrivateLinkService(ctx, privateLinkService, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getPrivateLinkService(ctx context.Context, privateLinkService *armnetwork.PrivateLinkService) *models.Resource {
+func getPrivateLinkService(ctx context.Context, privateLinkService *armnetwork.PrivateLinkService, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*privateLinkService.ID, "/")[4]
 
 	resource := models.Resource{
@@ -897,6 +912,7 @@ func getPrivateLinkService(ctx context.Context, privateLinkService *armnetwork.P
 		Description: model.PrivateLinkServiceDescription{
 			ResourceGroup:      resourceGroup,
 			PrivateLinkService: *privateLinkService,
+			Subscription:       subscription,
 		},
 	}
 
@@ -917,7 +933,7 @@ func RouteFilter(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 			return nil, err
 		}
 		for _, routeFilter := range page.Value {
-			resource := getRouteFilter(ctx, routeFilter)
+			resource := getRouteFilter(ctx, routeFilter, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -930,7 +946,7 @@ func RouteFilter(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func getRouteFilter(ctx context.Context, routeFilter *armnetwork.RouteFilter) *models.Resource {
+func getRouteFilter(ctx context.Context, routeFilter *armnetwork.RouteFilter, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*routeFilter.ID, "/")[4]
 
 	resource := models.Resource{
@@ -940,6 +956,7 @@ func getRouteFilter(ctx context.Context, routeFilter *armnetwork.RouteFilter) *m
 		Description: model.RouteFilterDescription{
 			ResourceGroup: resourceGroup,
 			RouteFilter:   *routeFilter,
+			Subscription:  subscription,
 		},
 	}
 
@@ -960,7 +977,7 @@ func VpnGateway(ctx context.Context, cred *azidentity.ClientSecretCredential, su
 			return nil, err
 		}
 		for _, vpnGateway := range page.Value {
-			resource := getVpnGateway(ctx, vpnGateway)
+			resource := getVpnGateway(ctx, vpnGateway, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -973,7 +990,7 @@ func VpnGateway(ctx context.Context, cred *azidentity.ClientSecretCredential, su
 	return values, nil
 }
 
-func getVpnGateway(ctx context.Context, vpnGateway *armnetwork.VPNGateway) *models.Resource {
+func getVpnGateway(ctx context.Context, vpnGateway *armnetwork.VPNGateway, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*vpnGateway.ID, "/")[4]
 
 	resource := models.Resource{
@@ -983,6 +1000,7 @@ func getVpnGateway(ctx context.Context, vpnGateway *armnetwork.VPNGateway) *mode
 		Description: model.VpnGatewayDescription{
 			ResourceGroup: resourceGroup,
 			VpnGateway:    *vpnGateway,
+			Subscription:  subscription,
 		},
 	}
 
@@ -1007,7 +1025,7 @@ func NetworkVpnGatewaysVpnConnections(ctx context.Context, cred *azidentity.Clie
 			return nil, err
 		}
 		for _, vpnGateway := range page.Value {
-			resources, err := ListNetworkVpnGatewayVpnConnections(ctx, connClient, vpnGateway)
+			resources, err := ListNetworkVpnGatewayVpnConnections(ctx, connClient, vpnGateway, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -1025,7 +1043,7 @@ func NetworkVpnGatewaysVpnConnections(ctx context.Context, cred *azidentity.Clie
 	return values, nil
 }
 
-func ListNetworkVpnGatewayVpnConnections(ctx context.Context, connClient *armnetwork.VPNConnectionsClient, vpnGateway *armnetwork.VPNGateway) ([]models.Resource, error) {
+func ListNetworkVpnGatewayVpnConnections(ctx context.Context, connClient *armnetwork.VPNConnectionsClient, vpnGateway *armnetwork.VPNGateway, subscription string) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*vpnGateway.ID, "/")[4]
 
 	var values []models.Resource
@@ -1036,14 +1054,14 @@ func ListNetworkVpnGatewayVpnConnections(ctx context.Context, connClient *armnet
 			return nil, err
 		}
 		for _, vpnConn := range page.Value {
-			resource := getNetworkVpnGatewaysVpnConnections(ctx, vpnGateway, vpnConn)
+			resource := getNetworkVpnGatewaysVpnConnections(ctx, vpnGateway, vpnConn, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getNetworkVpnGatewaysVpnConnections(ctx context.Context, vpnGateway *armnetwork.VPNGateway, vpnConn *armnetwork.VPNConnection) *models.Resource {
+func getNetworkVpnGatewaysVpnConnections(ctx context.Context, vpnGateway *armnetwork.VPNGateway, vpnConn *armnetwork.VPNConnection, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*vpnConn.ID, "/")[4]
 
 	resource := models.Resource{
@@ -1054,6 +1072,7 @@ func getNetworkVpnGatewaysVpnConnections(ctx context.Context, vpnGateway *armnet
 			VpnConnection: *vpnConn,
 			VpnGateway:    *vpnGateway,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 
@@ -1074,14 +1093,14 @@ func NetworkVpnGatewaysVpnSites(ctx context.Context, cred *azidentity.ClientSecr
 			return nil, err
 		}
 		for _, vpnSite := range page.Value {
-			resource := getNetworkVpnGatewaysVpnSites(ctx, vpnSite)
+			resource := getNetworkVpnGatewaysVpnSites(ctx, vpnSite, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getNetworkVpnGatewaysVpnSites(ctx context.Context, v *armnetwork.VPNSite) *models.Resource {
+func getNetworkVpnGatewaysVpnSites(ctx context.Context, v *armnetwork.VPNSite, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -1091,6 +1110,7 @@ func getNetworkVpnGatewaysVpnSites(ctx context.Context, v *armnetwork.VPNSite) *
 		Description: model.VpnSiteDescription{
 			ResourceGroup: resourceGroup,
 			VpnSite:       *v,
+			Subscription:  subscription,
 		},
 	}
 
@@ -1110,7 +1130,7 @@ func PublicIPAddress(ctx context.Context, cred *azidentity.ClientSecretCredentia
 
 	var values []models.Resource
 	for _, resourceGroup := range resourceGroups {
-		resources, err := ListResourceGroupPublicIPAddresses(ctx, client, resourceGroup)
+		resources, err := ListResourceGroupPublicIPAddresses(ctx, client, resourceGroup, subscription)
 		if err != nil {
 			return nil, err
 		}
@@ -1127,7 +1147,7 @@ func PublicIPAddress(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	return values, nil
 }
 
-func ListResourceGroupPublicIPAddresses(ctx context.Context, client *armnetwork.PublicIPAddressesClient, resourceGroup armresources.ResourceGroup) ([]models.Resource, error) {
+func ListResourceGroupPublicIPAddresses(ctx context.Context, client *armnetwork.PublicIPAddressesClient, resourceGroup armresources.ResourceGroup, subscription string) ([]models.Resource, error) {
 	pager := client.NewListPager(*resourceGroup.Name, nil)
 	var values []models.Resource
 	for pager.More() {
@@ -1136,14 +1156,14 @@ func ListResourceGroupPublicIPAddresses(ctx context.Context, client *armnetwork.
 			return nil, err
 		}
 		for _, publicIPAddress := range page.Value {
-			resource := getPublicIPAddress(ctx, resourceGroup, publicIPAddress)
+			resource := getPublicIPAddress(ctx, resourceGroup, publicIPAddress, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getPublicIPAddress(ctx context.Context, resourceGroup armresources.ResourceGroup, publicIPAddress *armnetwork.PublicIPAddress) *models.Resource {
+func getPublicIPAddress(ctx context.Context, resourceGroup armresources.ResourceGroup, publicIPAddress *armnetwork.PublicIPAddress, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *publicIPAddress.ID,
 		Name:     *publicIPAddress.Name,
@@ -1151,6 +1171,7 @@ func getPublicIPAddress(ctx context.Context, resourceGroup armresources.Resource
 		Description: model.PublicIPAddressDescription{
 			ResourceGroup:   *resourceGroup.Name,
 			PublicIPAddress: *publicIPAddress,
+			Subscription:    subscription,
 		},
 	}
 	return &resource
@@ -1169,7 +1190,7 @@ func PublicIPPrefix(ctx context.Context, cred *azidentity.ClientSecretCredential
 
 	var values []models.Resource
 	for _, resourceGroup := range resourceGroups {
-		resources, err := ListResourceGroupPublicIPPrefixes(ctx, client, resourceGroup)
+		resources, err := ListResourceGroupPublicIPPrefixes(ctx, client, resourceGroup, subscription)
 		if err != nil {
 			return nil, err
 		}
@@ -1186,7 +1207,7 @@ func PublicIPPrefix(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func ListResourceGroupPublicIPPrefixes(ctx context.Context, client *armnetwork.PublicIPPrefixesClient, resourceGroup armresources.ResourceGroup) ([]models.Resource, error) {
+func ListResourceGroupPublicIPPrefixes(ctx context.Context, client *armnetwork.PublicIPPrefixesClient, resourceGroup armresources.ResourceGroup, subscription string) ([]models.Resource, error) {
 	pager := client.NewListPager(*resourceGroup.Name, nil)
 	var values []models.Resource
 	for pager.More() {
@@ -1195,14 +1216,14 @@ func ListResourceGroupPublicIPPrefixes(ctx context.Context, client *armnetwork.P
 			return nil, err
 		}
 		for _, publicIPPrefix := range page.Value {
-			resource := getPublicIPPrefix(ctx, resourceGroup, publicIPPrefix)
+			resource := getPublicIPPrefix(ctx, resourceGroup, publicIPPrefix, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getPublicIPPrefix(ctx context.Context, resourceGroup armresources.ResourceGroup, publicIPPrefix *armnetwork.PublicIPPrefix) *models.Resource {
+func getPublicIPPrefix(ctx context.Context, resourceGroup armresources.ResourceGroup, publicIPPrefix *armnetwork.PublicIPPrefix, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *publicIPPrefix.ID,
 		Name:     *publicIPPrefix.Name,
@@ -1210,6 +1231,7 @@ func getPublicIPPrefix(ctx context.Context, resourceGroup armresources.ResourceG
 		Description: model.PublicIPPrefixDescription{
 			ResourceGroup:  *resourceGroup.Name,
 			PublicIPPrefix: *publicIPPrefix,
+			Subscription:   subscription,
 		},
 	}
 
@@ -1231,7 +1253,7 @@ func DNSZones(ctx context.Context, cred *azidentity.ClientSecretCredential, subs
 			return nil, err
 		}
 		for _, dnsZone := range page.Value {
-			resource := GetDNSZone(ctx, dnsZone)
+			resource := GetDNSZone(ctx, dnsZone, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -1244,7 +1266,7 @@ func DNSZones(ctx context.Context, cred *azidentity.ClientSecretCredential, subs
 	return values, nil
 }
 
-func GetDNSZone(ctx context.Context, dnsZone *armdns.Zone) *models.Resource {
+func GetDNSZone(ctx context.Context, dnsZone *armdns.Zone, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*dnsZone.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *dnsZone.ID,
@@ -1253,6 +1275,7 @@ func GetDNSZone(ctx context.Context, dnsZone *armdns.Zone) *models.Resource {
 		Description: model.DNSZonesDescription{
 			DNSZone:       *dnsZone,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 
@@ -1274,7 +1297,7 @@ func DNSResolvers(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 			return nil, err
 		}
 		for _, dnsResolver := range page.Value {
-			resource := GetDNSResolver(ctx, dnsResolver)
+			resource := GetDNSResolver(ctx, dnsResolver, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -1286,7 +1309,7 @@ func DNSResolvers(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	}
 	return values, nil
 }
-func GetDNSResolver(ctx context.Context, dnsResolver *armdnsresolver.DNSResolver) *models.Resource {
+func GetDNSResolver(ctx context.Context, dnsResolver *armdnsresolver.DNSResolver, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*dnsResolver.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *dnsResolver.ID,
@@ -1295,6 +1318,7 @@ func GetDNSResolver(ctx context.Context, dnsResolver *armdnsresolver.DNSResolver
 		Description: model.DNSResolverDescription{
 			DNSResolver:   *dnsResolver,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 
@@ -1316,7 +1340,7 @@ func TrafficManagerProfile(ctx context.Context, cred *azidentity.ClientSecretCre
 			return nil, err
 		}
 		for _, profile := range page.Value {
-			resource := GetTrafficManagerProfile(ctx, profile)
+			resource := GetTrafficManagerProfile(ctx, profile, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -1329,7 +1353,7 @@ func TrafficManagerProfile(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func GetTrafficManagerProfile(ctx context.Context, profile *armtrafficmanager.Profile) *models.Resource {
+func GetTrafficManagerProfile(ctx context.Context, profile *armtrafficmanager.Profile, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*profile.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *profile.ID,
@@ -1338,6 +1362,7 @@ func GetTrafficManagerProfile(ctx context.Context, profile *armtrafficmanager.Pr
 		Description: model.TrafficManagerProfileDescription{
 			Profile:       *profile,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 
@@ -1359,7 +1384,7 @@ func PrivateDnsZones(ctx context.Context, cred *azidentity.ClientSecretCredentia
 			return nil, err
 		}
 		for _, privateZone := range page.Value {
-			resource := GetPrivateDnsZone(ctx, privateZone)
+			resource := GetPrivateDnsZone(ctx, privateZone, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -1372,7 +1397,7 @@ func PrivateDnsZones(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	return values, nil
 }
 
-func GetPrivateDnsZone(ctx context.Context, privateZone *armprivatedns.PrivateZone) *models.Resource {
+func GetPrivateDnsZone(ctx context.Context, privateZone *armprivatedns.PrivateZone, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*privateZone.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *privateZone.ID,
@@ -1381,6 +1406,7 @@ func GetPrivateDnsZone(ctx context.Context, privateZone *armprivatedns.PrivateZo
 		Description: model.PrivateDNSZonesDescription{
 			PrivateZone:   *privateZone,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 
@@ -1400,7 +1426,7 @@ func PrivateEndpoints(ctx context.Context, cred *azidentity.ClientSecretCredenti
 
 	var values []models.Resource
 	for _, resourceGroup := range resourceGroups {
-		resources, err := ListResourceGroupPrivateEndpoints(ctx, client, resourceGroup)
+		resources, err := ListResourceGroupPrivateEndpoints(ctx, client, resourceGroup, subscription)
 		if err != nil {
 			return nil, err
 		}
@@ -1417,7 +1443,7 @@ func PrivateEndpoints(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func ListResourceGroupPrivateEndpoints(ctx context.Context, client *armnetwork.PrivateEndpointsClient, resourceGroup armresources.ResourceGroup) ([]models.Resource, error) {
+func ListResourceGroupPrivateEndpoints(ctx context.Context, client *armnetwork.PrivateEndpointsClient, resourceGroup armresources.ResourceGroup, subscription string) ([]models.Resource, error) {
 	pager := client.NewListPager(*resourceGroup.Name, nil)
 	var values []models.Resource
 	for pager.More() {
@@ -1426,14 +1452,14 @@ func ListResourceGroupPrivateEndpoints(ctx context.Context, client *armnetwork.P
 			return nil, err
 		}
 		for _, privateEndpoint := range page.Value {
-			resource := GetPrivateEndpoint(ctx, resourceGroup, privateEndpoint)
+			resource := GetPrivateEndpoint(ctx, resourceGroup, privateEndpoint, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func GetPrivateEndpoint(ctx context.Context, resourceGroup armresources.ResourceGroup, v *armnetwork.PrivateEndpoint) *models.Resource {
+func GetPrivateEndpoint(ctx context.Context, resourceGroup armresources.ResourceGroup, v *armnetwork.PrivateEndpoint, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
@@ -1441,6 +1467,7 @@ func GetPrivateEndpoint(ctx context.Context, resourceGroup armresources.Resource
 		Description: model.PrivateEndpointDescription{
 			PrivateEndpoint: *v,
 			ResourceGroup:   *resourceGroup.Name,
+			Subscription:    subscription,
 		},
 	}
 
@@ -1461,7 +1488,7 @@ func NetworkBastionHosts(ctx context.Context, cred *azidentity.ClientSecretCrede
 			return nil, err
 		}
 		for _, bastionHost := range page.Value {
-			resource := GetBastionHost(ctx, bastionHost)
+			resource := GetBastionHost(ctx, bastionHost, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -1474,7 +1501,7 @@ func NetworkBastionHosts(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func GetBastionHost(ctx context.Context, v *armnetwork.BastionHost) *models.Resource {
+func GetBastionHost(ctx context.Context, v *armnetwork.BastionHost, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -1483,6 +1510,7 @@ func GetBastionHost(ctx context.Context, v *armnetwork.BastionHost) *models.Reso
 		Description: model.BastionHostsDescription{
 			BastianHost:   *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 
@@ -1502,7 +1530,7 @@ func NetworkConnections(ctx context.Context, cred *azidentity.ClientSecretCreden
 
 	var values []models.Resource
 	for _, resourceGroup := range resourceGroups {
-		resources, err := ListResourceGroupNetworkCOnnections(ctx, client, resourceGroup)
+		resources, err := ListResourceGroupNetworkCOnnections(ctx, client, resourceGroup, subscription)
 		if err != nil {
 			return nil, err
 		}
@@ -1519,7 +1547,7 @@ func NetworkConnections(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func ListResourceGroupNetworkCOnnections(ctx context.Context, client *armnetwork.VirtualNetworkGatewayConnectionsClient, resourceGroup armresources.ResourceGroup) ([]models.Resource, error) {
+func ListResourceGroupNetworkCOnnections(ctx context.Context, client *armnetwork.VirtualNetworkGatewayConnectionsClient, resourceGroup armresources.ResourceGroup, subscription string) ([]models.Resource, error) {
 	pager := client.NewListPager(*resourceGroup.Name, nil)
 	var values []models.Resource
 	for pager.More() {
@@ -1528,14 +1556,14 @@ func ListResourceGroupNetworkCOnnections(ctx context.Context, client *armnetwork
 			return nil, err
 		}
 		for _, connection := range page.Value {
-			resource := GetNetworkConnection(ctx, resourceGroup, connection)
+			resource := GetNetworkConnection(ctx, resourceGroup, connection, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func GetNetworkConnection(ctx context.Context, resourceGroup armresources.ResourceGroup, v *armnetwork.VirtualNetworkGatewayConnection) *models.Resource {
+func GetNetworkConnection(ctx context.Context, resourceGroup armresources.ResourceGroup, v *armnetwork.VirtualNetworkGatewayConnection, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(*v.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -1544,6 +1572,7 @@ func GetNetworkConnection(ctx context.Context, resourceGroup armresources.Resour
 		Description: model.ConnectionDescription{
 			Connection:    *v,
 			ResourceGroup: resourceGroupName,
+			Subscription:  subscription,
 		},
 	}
 
@@ -1564,7 +1593,7 @@ func NetworkVirtualHubs(ctx context.Context, cred *azidentity.ClientSecretCreden
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetNetworkVirtualHub(ctx, v)
+			resource := GetNetworkVirtualHub(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -1577,7 +1606,7 @@ func NetworkVirtualHubs(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func GetNetworkVirtualHub(ctx context.Context, v *armnetwork.VirtualHub) *models.Resource {
+func GetNetworkVirtualHub(ctx context.Context, v *armnetwork.VirtualHub, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(*v.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -1586,6 +1615,7 @@ func GetNetworkVirtualHub(ctx context.Context, v *armnetwork.VirtualHub) *models
 		Description: model.VirtualHubsDescription{
 			VirtualHub:    *v,
 			ResourceGroup: resourceGroupName,
+			Subscription:  subscription,
 		},
 	}
 
@@ -1606,7 +1636,7 @@ func NetworkVirtualWans(ctx context.Context, cred *azidentity.ClientSecretCreden
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetNetworkVirtualWan(ctx, v)
+			resource := GetNetworkVirtualWan(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -1619,7 +1649,7 @@ func NetworkVirtualWans(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func GetNetworkVirtualWan(ctx context.Context, v *armnetwork.VirtualWAN) *models.Resource {
+func GetNetworkVirtualWan(ctx context.Context, v *armnetwork.VirtualWAN, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(*v.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -1628,6 +1658,7 @@ func GetNetworkVirtualWan(ctx context.Context, v *armnetwork.VirtualWAN) *models
 		Description: model.VirtualWansDescription{
 			VirtualWan:    *v,
 			ResourceGroup: resourceGroupName,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -1647,7 +1678,7 @@ func NetworkDDoSProtectionPlan(ctx context.Context, cred *azidentity.ClientSecre
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetNetworkDDoSProtectionPlan(ctx, v)
+			resource := GetNetworkDDoSProtectionPlan(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -1660,7 +1691,7 @@ func NetworkDDoSProtectionPlan(ctx context.Context, cred *azidentity.ClientSecre
 	return values, nil
 }
 
-func GetNetworkDDoSProtectionPlan(ctx context.Context, v *armnetwork.DdosProtectionPlan) *models.Resource {
+func GetNetworkDDoSProtectionPlan(ctx context.Context, v *armnetwork.DdosProtectionPlan, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(*v.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -1669,6 +1700,7 @@ func GetNetworkDDoSProtectionPlan(ctx context.Context, v *armnetwork.DdosProtect
 		Description: model.NetworkDDoSProtectionPlanDescription{
 			DDoSProtectionPlan: *v,
 			ResourceGroup:      resourceGroupName,
+			Subscription:       subscription,
 		},
 	}
 	return &resource

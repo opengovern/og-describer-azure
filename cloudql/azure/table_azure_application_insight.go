@@ -28,6 +28,11 @@ func tableAzureApplicationInsight(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Component.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Type:        proto.ColumnType_STRING,
 				Description: "The friendly name that identifies the application insight.",

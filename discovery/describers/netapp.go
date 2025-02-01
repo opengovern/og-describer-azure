@@ -24,7 +24,7 @@ func NetAppAccount(ctx context.Context, cred *azidentity.ClientSecretCredential,
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getNetAppAccount(ctx, v)
+			resource := getNetAppAccount(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -37,7 +37,7 @@ func NetAppAccount(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	return values, nil
 }
 
-func getNetAppAccount(ctx context.Context, v *armnetapp.Account) *models.Resource {
+func getNetAppAccount(ctx context.Context, v *armnetapp.Account, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(string(*v.ID), "/")[4]
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -46,6 +46,7 @@ func getNetAppAccount(ctx context.Context, v *armnetapp.Account) *models.Resourc
 		Description: model.NetAppAccountDescription{
 			Account:       *v,
 			ResourceGroup: resourceGroupName,
+			Subscription:  subscription,
 		},
 	}
 
@@ -71,7 +72,7 @@ func NetAppCapacityPool(ctx context.Context, cred *azidentity.ClientSecretCreden
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resources, err := listNetAppAccountPools(ctx, poolsClient, v)
+			resources, err := listNetAppAccountPools(ctx, poolsClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -89,7 +90,7 @@ func NetAppCapacityPool(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func listNetAppAccountPools(ctx context.Context, poolsClient *armnetapp.PoolsClient, v *armnetapp.Account) ([]models.Resource, error) {
+func listNetAppAccountPools(ctx context.Context, poolsClient *armnetapp.PoolsClient, v *armnetapp.Account, subscription string) ([]models.Resource, error) {
 	resourceGroupName := strings.Split(string(*v.ID), "/")[4]
 
 	pager := poolsClient.NewListPager(resourceGroupName, *v.Name, nil)
@@ -100,14 +101,14 @@ func listNetAppAccountPools(ctx context.Context, poolsClient *armnetapp.PoolsCli
 			return nil, err
 		}
 		for _, pool := range page.Value {
-			resource := getNetAppCapacityPool(ctx, v, pool)
+			resource := getNetAppCapacityPool(ctx, v, pool, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getNetAppCapacityPool(ctx context.Context, v *armnetapp.Account, pool *armnetapp.CapacityPool) *models.Resource {
+func getNetAppCapacityPool(ctx context.Context, v *armnetapp.Account, pool *armnetapp.CapacityPool, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(string(*v.ID), "/")[4]
 
 	resource := models.Resource{
@@ -117,6 +118,7 @@ func getNetAppCapacityPool(ctx context.Context, v *armnetapp.Account, pool *armn
 		Description: model.NetAppCapacityPoolDescription{
 			CapacityPool:  *pool,
 			ResourceGroup: resourceGroupName,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

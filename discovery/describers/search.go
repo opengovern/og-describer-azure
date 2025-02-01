@@ -48,7 +48,7 @@ func SearchService(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	return values, nil
 }
 
-func GetSearchService(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, v *armsearch.Service) (*models.Resource, error) {
+func GetSearchService(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, v *armsearch.Service, subscription string) (*models.Resource, error) {
 	id := v.ID
 
 	var searchListOp []*armmonitor.DiagnosticSettingsResource
@@ -70,6 +70,7 @@ func GetSearchService(ctx context.Context, diagnosticClient *armmonitor.Diagnost
 			Service:                     *v,
 			DiagnosticSettingsResources: searchListOp,
 			ResourceGroup:               resourceGroupName,
+			Subscription:                subscription,
 		},
 	}
 	return &resource, nil

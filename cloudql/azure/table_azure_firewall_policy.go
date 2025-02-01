@@ -25,6 +25,11 @@ func tableAzureFirewallPolicy(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.FirewallPolicy.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "The friendly name that identifies the firewall policy.",
 				Type:        proto.ColumnType_STRING,

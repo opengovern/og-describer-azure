@@ -24,7 +24,7 @@ func ContainerInstanceContainerGroups(ctx context.Context, cred *azidentity.Clie
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getContainerInstanceContainerGrou(ctx, v)
+			resource := getContainerInstanceContainerGrou(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -37,7 +37,7 @@ func ContainerInstanceContainerGroups(ctx context.Context, cred *azidentity.Clie
 	return values, nil
 }
 
-func getContainerInstanceContainerGrou(ctx context.Context, v *armcontainerinstance.ContainerGroup) *models.Resource {
+func getContainerInstanceContainerGrou(ctx context.Context, v *armcontainerinstance.ContainerGroup, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -47,6 +47,7 @@ func getContainerInstanceContainerGrou(ctx context.Context, v *armcontainerinsta
 		Description: model.ContainerInstanceContainerGroupDescription{
 			ContainerGroup: *v,
 			ResourceGroup:  resourceGroup,
+			Subscription:   subscription,
 		},
 	}
 

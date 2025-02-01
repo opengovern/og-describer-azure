@@ -34,7 +34,7 @@ func RecoveryServicesVault(ctx context.Context, cred *azidentity.ClientSecretCre
 			return nil, err
 		}
 		for _, vault := range page.Value {
-			resource, err := GetRecoveryServicesVault(ctx, diagnosticClient, vault)
+			resource, err := GetRecoveryServicesVault(ctx, diagnosticClient, vault, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -50,7 +50,7 @@ func RecoveryServicesVault(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func GetRecoveryServicesVault(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, vault *armrecoveryservices.Vault) (*models.Resource, error) {
+func GetRecoveryServicesVault(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, vault *armrecoveryservices.Vault, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*vault.ID, "/")[4]
 
 	var diagnostic []*armmonitor.DiagnosticSettingsResource
@@ -71,6 +71,7 @@ func GetRecoveryServicesVault(ctx context.Context, diagnosticClient *armmonitor.
 			Vault:                      *vault,
 			DiagnosticSettingsResource: diagnostic,
 			ResourceGroup:              resourceGroup,
+			Subscription:               subscription,
 		},
 	}
 	return &resource, nil
@@ -101,7 +102,7 @@ func RecoveryServicesBackupJobs(ctx context.Context, cred *azidentity.ClientSecr
 				continue
 			}
 			resourceGroup := strings.Split(*vault.ID, "/")[4]
-			vaultBackupJobs, err := ListRecoveryServicesVaultBackupJobs(ctx, client, *vault.Name, resourceGroup)
+			vaultBackupJobs, err := ListRecoveryServicesVaultBackupJobs(ctx, client, *vault.Name, resourceGroup, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -119,7 +120,7 @@ func RecoveryServicesBackupJobs(ctx context.Context, cred *azidentity.ClientSecr
 	return values, nil
 }
 
-func ListRecoveryServicesVaultBackupJobs(ctx context.Context, client *armrecoveryservicesbackup.BackupJobsClient, vaultName, resourceGroup string) ([]models.Resource, error) {
+func ListRecoveryServicesVaultBackupJobs(ctx context.Context, client *armrecoveryservicesbackup.BackupJobsClient, vaultName, resourceGroup string, subscription string) ([]models.Resource, error) {
 	pager := client.NewListPager(vaultName, resourceGroup, nil)
 	var resources []models.Resource
 	for pager.More() {
@@ -128,7 +129,7 @@ func ListRecoveryServicesVaultBackupJobs(ctx context.Context, client *armrecover
 			return nil, err
 		}
 		for _, job := range page.Value {
-			resource, err := GetRecoveryServicesBackupJob(resourceGroup, vaultName, job)
+			resource, err := GetRecoveryServicesBackupJob(resourceGroup, vaultName, job, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -138,7 +139,7 @@ func ListRecoveryServicesVaultBackupJobs(ctx context.Context, client *armrecover
 	return resources, nil
 }
 
-func GetRecoveryServicesBackupJob(resourceGroup, vaultName string, job *armrecoveryservicesbackup.JobResource) (*models.Resource, error) {
+func GetRecoveryServicesBackupJob(resourceGroup, vaultName string, job *armrecoveryservicesbackup.JobResource, subscription string) (*models.Resource, error) {
 	properties, err := backupJobProperties(job)
 	if err != nil {
 		return nil, err
@@ -163,6 +164,7 @@ func GetRecoveryServicesBackupJob(resourceGroup, vaultName string, job *armrecov
 			VaultName:     vaultName,
 			Properties:    properties,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	if job.ID != nil {
@@ -236,7 +238,7 @@ func RecoveryServicesBackupPolicies(ctx context.Context, cred *azidentity.Client
 				continue
 			}
 			resourceGroup := strings.Split(*vault.ID, "/")[4]
-			vaultBackupJobs, err := ListRecoveryServicesVaultBackupPolicies(ctx, client, *vault.Name, resourceGroup)
+			vaultBackupJobs, err := ListRecoveryServicesVaultBackupPolicies(ctx, client, *vault.Name, resourceGroup, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -254,7 +256,7 @@ func RecoveryServicesBackupPolicies(ctx context.Context, cred *azidentity.Client
 	return values, nil
 }
 
-func ListRecoveryServicesVaultBackupPolicies(ctx context.Context, client *armrecoveryservicesbackup.BackupPoliciesClient, vaultName, resourceGroup string) ([]models.Resource, error) {
+func ListRecoveryServicesVaultBackupPolicies(ctx context.Context, client *armrecoveryservicesbackup.BackupPoliciesClient, vaultName, resourceGroup string, subscription string) ([]models.Resource, error) {
 	pager := client.NewListPager(vaultName, resourceGroup, nil)
 	var resources []models.Resource
 
@@ -264,7 +266,7 @@ func ListRecoveryServicesVaultBackupPolicies(ctx context.Context, client *armrec
 			return nil, err
 		}
 		for _, policy := range page.Value {
-			resource := GetRecoveryServicesBackupPolicy(policy, vaultName, resourceGroup)
+			resource := GetRecoveryServicesBackupPolicy(policy, vaultName, resourceGroup, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -274,7 +276,7 @@ func ListRecoveryServicesVaultBackupPolicies(ctx context.Context, client *armrec
 	return resources, nil
 }
 
-func GetRecoveryServicesBackupPolicy(policy *armrecoveryservicesbackup.ProtectionPolicyResource, vaultName, resourceGroup string) models.Resource {
+func GetRecoveryServicesBackupPolicy(policy *armrecoveryservicesbackup.ProtectionPolicyResource, vaultName, resourceGroup string, subscription string) models.Resource {
 	return models.Resource{
 		Description: model.RecoveryServicesBackupPolicyDescription{
 			ResourceGroup: resourceGroup,
@@ -294,7 +296,8 @@ func GetRecoveryServicesBackupPolicy(policy *armrecoveryservicesbackup.Protectio
 				Tags:     policy.Tags,
 				ETag:     policy.ETag,
 			},
-			Properties: extractData(policy.Properties),
+			Properties:   extractData(policy.Properties),
+			Subscription: subscription,
 		},
 	}
 }
@@ -324,7 +327,7 @@ func RecoveryServicesBackupItem(ctx context.Context, cred *azidentity.ClientSecr
 				continue
 			}
 			resourceGroup := strings.Split(*vault.ID, "/")[4]
-			vaultBackupJobs, err := ListRecoveryServicesVaultBackupItems(ctx, client, *vault.Name, resourceGroup)
+			vaultBackupJobs, err := ListRecoveryServicesVaultBackupItems(ctx, client, *vault.Name, resourceGroup, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -342,7 +345,7 @@ func RecoveryServicesBackupItem(ctx context.Context, cred *azidentity.ClientSecr
 	return values, nil
 }
 
-func ListRecoveryServicesVaultBackupItems(ctx context.Context, client *armrecoveryservicesbackup.BackupProtectedItemsClient, vaultName, resourceGroup string) ([]models.Resource, error) {
+func ListRecoveryServicesVaultBackupItems(ctx context.Context, client *armrecoveryservicesbackup.BackupProtectedItemsClient, vaultName, resourceGroup string, subscription string) ([]models.Resource, error) {
 	pager := client.NewListPager(vaultName, resourceGroup, nil)
 	var resources []models.Resource
 
@@ -352,14 +355,14 @@ func ListRecoveryServicesVaultBackupItems(ctx context.Context, client *armrecove
 			return nil, err
 		}
 		for _, item := range page.Value {
-			resource := GetRecoveryServicesBackupItem(item, vaultName, resourceGroup)
+			resource := GetRecoveryServicesBackupItem(item, vaultName, resourceGroup, subscription)
 			resources = append(resources, resource)
 		}
 	}
 	return resources, nil
 }
 
-func GetRecoveryServicesBackupItem(item *armrecoveryservicesbackup.ProtectedItemResource, vaultName, resourceGroup string) models.Resource {
+func GetRecoveryServicesBackupItem(item *armrecoveryservicesbackup.ProtectedItemResource, vaultName, resourceGroup string, subscription string) models.Resource {
 	return models.Resource{
 		Description: model.RecoveryServicesBackupItemDescription{
 			ResourceGroup: resourceGroup,
@@ -379,7 +382,8 @@ func GetRecoveryServicesBackupItem(item *armrecoveryservicesbackup.ProtectedItem
 				Tags:     item.Tags,
 				ETag:     item.ETag,
 			},
-			Properties: extractData(item.Properties),
+			Properties:   extractData(item.Properties),
+			Subscription: subscription,
 		},
 	}
 }

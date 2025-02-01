@@ -50,6 +50,11 @@ func tableAzureAPIManagementBackend(_ context.Context) *plugin.Table {
 		},
 		Columns: azureColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.APIManagementBackend.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Type:        proto.ColumnType_STRING,
 				Description: "A friendly name that identifies an API management backend.",

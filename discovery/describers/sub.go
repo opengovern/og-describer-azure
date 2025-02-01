@@ -25,7 +25,7 @@ func Location(ctx context.Context, cred *azidentity.ClientSecretCredential, subs
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetLocation(ctx, v)
+			resource := GetLocation(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -38,7 +38,7 @@ func Location(ctx context.Context, cred *azidentity.ClientSecretCredential, subs
 	return values, nil
 }
 
-func GetLocation(ctx context.Context, location *armsubscription.Location) *models.Resource {
+func GetLocation(ctx context.Context, location *armsubscription.Location, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*location.ID, "/")[4]
 
 	resource := models.Resource{
@@ -48,6 +48,7 @@ func GetLocation(ctx context.Context, location *armsubscription.Location) *model
 		Description: model.LocationDescription{
 			Location:      *location,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 

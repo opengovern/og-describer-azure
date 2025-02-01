@@ -25,7 +25,7 @@ func KustoCluster(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 			return nil, err
 		}
 		for _, kusto := range page.Value {
-			resource := getKustoCluster(ctx, kusto)
+			resource := getKustoCluster(ctx, kusto, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -38,7 +38,7 @@ func KustoCluster(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	return values, nil
 }
 
-func getKustoCluster(ctx context.Context, kusto *armkusto.Cluster) *models.Resource {
+func getKustoCluster(ctx context.Context, kusto *armkusto.Cluster, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*kusto.ID, "/")[4]
 
 	resource := models.Resource{
@@ -48,6 +48,7 @@ func getKustoCluster(ctx context.Context, kusto *armkusto.Cluster) *models.Resou
 		Description: model.KustoClusterDescription{
 			Cluster:       *kusto,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

@@ -26,7 +26,7 @@ func ContainerRegistry(ctx context.Context, cred *azidentity.ClientSecretCredent
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource, err := getContainerRegistry(ctx, client, webhookClient, v)
+			resource, err := getContainerRegistry(ctx, client, subscription, webhookClient, v)
 			if err != nil {
 				return nil, err
 			}
@@ -42,7 +42,7 @@ func ContainerRegistry(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func getContainerRegistry(ctx context.Context, client *armcontainerregistry.RegistriesClient, webhookClient *armcontainerregistry.WebhooksClient, registry *armcontainerregistry.Registry) (*models.Resource, error) {
+func getContainerRegistry(ctx context.Context, client *armcontainerregistry.RegistriesClient, subscription string, webhookClient *armcontainerregistry.WebhooksClient, registry *armcontainerregistry.Registry) (*models.Resource, error) {
 	resourceGroup := strings.Split(*registry.ID, "/")[4]
 	var containerRegistryListCredentialsOp *armcontainerregistry.RegistryListCredentialsResult
 	containerRegistryListCredentialsOpTemp, err := client.ListCredentials(ctx, resourceGroup, *registry.Name, nil)
@@ -77,6 +77,7 @@ func getContainerRegistry(ctx context.Context, client *armcontainerregistry.Regi
 			RegistryUsages:                containerRegistryListUsagesOp.Value,
 			Webhooks:                      webhooks,
 			ResourceGroup:                 resourceGroup,
+			Subscription:                  subscription,
 		},
 	}
 	return &resource, nil

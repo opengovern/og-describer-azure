@@ -116,12 +116,14 @@ type APIManagementDescription struct {
 	APIManagement               armapimanagement.ServiceResource
 	DiagnosticSettingsResources *[]armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 type APIManagementBackendDescription struct {
 	APIManagementBackend armapimanagement.BackendContract
 	ServiceName          string
 	ResourceGroup        string
+	Subscription         string
 }
 
 //  ===================  Automation ==================
@@ -130,6 +132,7 @@ type APIManagementBackendDescription struct {
 type AutomationAccountsDescription struct {
 	Automation    armautomation.Account
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_automation_automationVariables
@@ -137,6 +140,7 @@ type AutomationVariablesDescription struct {
 	Automation    armautomation.Variable
 	AccountName   string
 	ResourceGroup string
+	Subscription  string
 }
 
 //  ===================  App Configuration ==================
@@ -148,6 +152,7 @@ type AppConfigurationDescription struct {
 	ConfigurationStore          armappconfiguration.ConfigurationStore
 	DiagnosticSettingsResources *[]armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //  =================== web ==================
@@ -158,6 +163,7 @@ type AppConfigurationDescription struct {
 type AppServiceEnvironmentDescription struct {
 	AppServiceEnvironmentResource appservice.EnvironmentResource
 	ResourceGroup                 string
+	Subscription                  string
 }
 
 //index:microsoft_web_sites
@@ -168,6 +174,7 @@ type AppServiceFunctionAppDescription struct {
 	SiteAuthSettings   appservice.SiteAuthSettings
 	SiteConfigResource appservice.SiteConfigResource
 	ResourceGroup      string
+	Subscription       string
 }
 
 //index:microsoft_web_staticsites
@@ -181,12 +188,14 @@ type AppServiceWebAppDescription struct {
 	VnetInfo           appservice.VnetInfoResource
 	StorageAccounts    map[string]*appservice.AzureStorageInfoValue
 	ResourceGroup      string
+	Subscription       string
 }
 
 type AppServiceWebAppSlotDescription struct {
 	Site          appservice.Site
 	AppName       string
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_web_plan
@@ -196,24 +205,28 @@ type AppServicePlanDescription struct {
 	Plan          appservice.Plan
 	Apps          []*appservice.Site
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_app_containerapp
 type ContainerAppDescription struct {
 	ResourceGroup string
 	Server        appservice.ContainerApp
+	Subscription  string
 }
 
 //index:microsoft_app_managedenvironment
 type AppManagedEnvironmentDescription struct {
 	ResourceGroup      string
 	HostingEnvironment web.HostingEnvironment
+	Subscription       string
 }
 
 //index:microsoft_web_serverfarm
 type WebServerFarmsDescription struct {
 	ResourceGroup string
 	ServerFarm    appservice.Plan
+	Subscription  string
 }
 
 //  =================== blueprint ==================
@@ -222,6 +235,7 @@ type WebServerFarmsDescription struct {
 type BlueprintDescription struct {
 	ResourceGroup string
 	Blueprint     armblueprint.Blueprint
+	Subscription  string
 }
 
 //  =================== compute ==================
@@ -232,36 +246,43 @@ type BlueprintDescription struct {
 type ComputeDiskDescription struct {
 	Disk          armcompute.Disk
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_compute_disksreadops
 type ComputeDiskReadOpsDescription struct {
 	MonitoringMetric
+	Subscription string
 }
 
 //index:microsoft_compute_disksreadopsdaily
 type ComputeDiskReadOpsDailyDescription struct {
 	MonitoringMetric
+	Subscription string
 }
 
 //index:microsoft_compute_disksreadopshourly
 type ComputeDiskReadOpsHourlyDescription struct {
 	MonitoringMetric
+	Subscription string
 }
 
 //index:microsoft_compute_diskswriteops
 type ComputeDiskWriteOpsDescription struct {
 	MonitoringMetric
+	Subscription string
 }
 
 //index:microsoft_compute_diskswriteopsdaily
 type ComputeDiskWriteOpsDailyDescription struct {
 	MonitoringMetric
+	Subscription string
 }
 
 //index:microsoft_compute_diskswriteopshourly
 type ComputeDiskWriteOpsHourlyDescription struct {
 	MonitoringMetric
+	Subscription string
 }
 
 //index:microsoft_compute_diskaccesses
@@ -270,6 +291,7 @@ type ComputeDiskWriteOpsHourlyDescription struct {
 type ComputeDiskAccessDescription struct {
 	DiskAccess    armcompute.DiskAccess
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_compute_virtualmachinescalesets
@@ -279,6 +301,7 @@ type ComputeVirtualMachineScaleSetDescription struct {
 	VirtualMachineScaleSet           armcompute.VirtualMachineScaleSet
 	VirtualMachineScaleSetExtensions []armcompute.VirtualMachineScaleSetExtension
 	ResourceGroup                    string
+	Subscription                     string
 }
 
 //index:microsoft_compute_virtualmachinescalesetnetworkinterface
@@ -286,6 +309,7 @@ type ComputeVirtualMachineScaleSetNetworkInterfaceDescription struct {
 	VirtualMachineScaleSet armcompute.VirtualMachineScaleSet
 	NetworkInterface       armnetwork.Interface
 	ResourceGroup          string
+	Subscription           string
 }
 
 //index:microsoft_compute_virtualmachinescalesetvm
@@ -297,6 +321,7 @@ type ComputeVirtualMachineScaleSetVmDescription struct {
 	ScaleSetVM             armcompute.VirtualMachineScaleSetVM
 	PowerState             string
 	ResourceGroup          string
+	Subscription           string
 }
 
 //index:microsoft_compute_snapshots
@@ -305,6 +330,7 @@ type ComputeVirtualMachineScaleSetVmDescription struct {
 type ComputeSnapshotsDescription struct {
 	Snapshot      armcompute.Snapshot
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_compute_availabilityset
@@ -313,6 +339,7 @@ type ComputeSnapshotsDescription struct {
 type ComputeAvailabilitySetDescription struct {
 	AvailabilitySet armcompute.AvailabilitySet
 	ResourceGroup   string
+	Subscription    string
 }
 
 //index:microsoft_compute_diskencryptionset
@@ -321,6 +348,7 @@ type ComputeAvailabilitySetDescription struct {
 type ComputeDiskEncryptionSetDescription struct {
 	DiskEncryptionSet armcompute.DiskEncryptionSet
 	ResourceGroup     string
+	Subscription      string
 }
 
 //index:microsoft_compute_gallery
@@ -329,6 +357,7 @@ type ComputeDiskEncryptionSetDescription struct {
 type ComputeImageGalleryDescription struct {
 	ImageGallery  armcompute.Gallery
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_compute_image
@@ -337,26 +366,31 @@ type ComputeImageGalleryDescription struct {
 type ComputeImageDescription struct {
 	Image         armcompute.Image
 	ResourceGroup string
+	Subscription  string
 }
 
 type ComputeHostGroupDescription struct {
 	HostGroup     armcompute.DedicatedHostGroup
 	ResourceGroup string
+	Subscription  string
 }
 
 type ComputeHostGroupHostDescription struct {
 	Host          armcompute.DedicatedHost
 	ResourceGroup string
+	Subscription  string
 }
 
 type ComputeRestorePointCollectionDescription struct {
 	RestorePointCollection armcompute.RestorePointCollection
 	ResourceGroup          string
+	Subscription           string
 }
 
 type ComputeSSHPublicKeyDescription struct {
 	SSHPublicKey  armcompute.SSHPublicKeyResource
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== databoxedge ==================
@@ -367,6 +401,7 @@ type ComputeSSHPublicKeyDescription struct {
 type DataboxEdgeDeviceDescription struct {
 	Device        armdataboxedge.Device
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== healthcareapis ==================
@@ -379,6 +414,7 @@ type HealthcareServiceDescription struct {
 	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
 	PrivateEndpointConnections  []*armhealthcareapis.PrivateEndpointConnectionDescription
 	ResourceGroup               string
+	Subscription                string
 }
 
 //  =================== storagecache ==================
@@ -389,6 +425,7 @@ type HealthcareServiceDescription struct {
 type HpcCacheDescription struct {
 	Cache         armstoragecache.Cache
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== keyvault ==================
@@ -401,6 +438,7 @@ type KeyVaultKeyDescription struct {
 	Vault         armkeyvault.Resource
 	Key           armkeyvault.Key
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_keyvault_vaults_keys_versions
@@ -412,6 +450,7 @@ type KeyVaultKeyVersionDescription struct {
 	Key           armkeyvault.Key
 	Version       armkeyvault.Key
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== containerservice ==================
@@ -422,13 +461,15 @@ type KeyVaultKeyVersionDescription struct {
 type KubernetesClusterDescription struct {
 	ManagedCluster armcontainerservice.ManagedCluster
 	ResourceGroup  string
+	Subscription   string
 }
 
 //index:microsoft_containerservice_serviceversion
 //getfilter:name=description.Orchestrator.name
 //getfilter:resource_group=description.ResourceGroup
 type KubernetesServiceVersionDescription struct {
-	Version armcontainerservice.KubernetesVersion
+	Version      armcontainerservice.KubernetesVersion
+	Subscription string
 }
 
 //  =================== containerinstance ==================
@@ -437,6 +478,7 @@ type KubernetesServiceVersionDescription struct {
 type ContainerInstanceContainerGroupDescription struct {
 	ResourceGroup  string
 	ContainerGroup armcontainerinstance.ContainerGroup
+	Subscription   string
 }
 
 //  =================== cdn ==================
@@ -445,11 +487,13 @@ type ContainerInstanceContainerGroupDescription struct {
 type CDNProfileDescription struct {
 	ResourceGroup string
 	Profile       armcdn.Profile
+	Subscription  string
 }
 
 type CDNEndpointDescription struct {
 	ResourceGroup string
 	Endpoint      armcdn.Endpoint
+	Subscription  string
 }
 
 //  =================== network ==================
@@ -460,6 +504,7 @@ type CDNEndpointDescription struct {
 type NetworkInterfaceDescription struct {
 	Interface     armnetwork.Interface
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_network_networkwatchers
@@ -470,6 +515,7 @@ type NetworkWatcherFlowLogDescription struct {
 	NetworkWatcherName string
 	FlowLog            armnetwork.FlowLog
 	ResourceGroup      string
+	Subscription       string
 }
 
 //index:microsoft_network_routetables
@@ -478,6 +524,7 @@ type NetworkWatcherFlowLogDescription struct {
 type RouteTablesDescription struct {
 	RouteTable    armnetwork.RouteTable
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_network_applicationsecuritygroups
@@ -486,6 +533,7 @@ type RouteTablesDescription struct {
 type NetworkApplicationSecurityGroupsDescription struct {
 	ApplicationSecurityGroup armnetwork.ApplicationSecurityGroup
 	ResourceGroup            string
+	Subscription             string
 }
 
 //index:microsoft_network_azurefirewall
@@ -494,6 +542,7 @@ type NetworkApplicationSecurityGroupsDescription struct {
 type NetworkAzureFirewallDescription struct {
 	AzureFirewall armnetwork.AzureFirewall
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_network_expressroutecircuit
@@ -502,6 +551,7 @@ type NetworkAzureFirewallDescription struct {
 type ExpressRouteCircuitDescription struct {
 	ExpressRouteCircuit armnetwork.ExpressRouteCircuit
 	ResourceGroup       string
+	Subscription        string
 }
 
 //index:microsoft_network_virtualnetworkgateway
@@ -512,6 +562,7 @@ type VirtualNetworkGatewayDescription struct {
 	VirtualNetworkGateway           armnetwork.VirtualNetworkGateway
 	ResourceGroup                   string
 	VirtualNetworkGatewayConnection []*armnetwork.VirtualNetworkGatewayConnectionListEntity
+	Subscription                    string
 }
 
 //index:microsoft_network_dnszone
@@ -520,6 +571,7 @@ type VirtualNetworkGatewayDescription struct {
 type DNSZoneDescription struct { // TODO: Implement describer func
 	Zone          armdns.Zone
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_network_firewallpolicy
@@ -528,6 +580,7 @@ type DNSZoneDescription struct { // TODO: Implement describer func
 type FirewallPolicyDescription struct {
 	FirewallPolicy armnetwork.FirewallPolicy
 	ResourceGroup  string
+	Subscription   string
 }
 
 //index:microsoft_network_frontdoorwebapplicationfirewallpolicy
@@ -536,6 +589,7 @@ type FirewallPolicyDescription struct {
 type FrontdoorWebApplicationFirewallPolicyDescription struct { // TODO: Implement describer func
 	WebApplicationFirewallPolicy armfrontdoor.WebApplicationFirewallPolicy
 	ResourceGroup                string
+	Subscription                 string
 }
 
 //index:microsoft_network_localnetworkgateway
@@ -544,6 +598,7 @@ type FrontdoorWebApplicationFirewallPolicyDescription struct { // TODO: Implemen
 type LocalNetworkGatewayDescription struct {
 	LocalNetworkGateway armnetwork.LocalNetworkGateway
 	ResourceGroup       string
+	Subscription        string
 }
 
 //index:microsoft_network_natgateways
@@ -552,6 +607,7 @@ type LocalNetworkGatewayDescription struct {
 type NatGatewayDescription struct {
 	NatGateway    armnetwork.NatGateway
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_network_privatelinkservice
@@ -560,6 +616,7 @@ type NatGatewayDescription struct {
 type PrivateLinkServiceDescription struct {
 	PrivateLinkService armnetwork.PrivateLinkService
 	ResourceGroup      string
+	Subscription       string
 }
 
 //index:microsoft_network_routefilter
@@ -568,6 +625,7 @@ type PrivateLinkServiceDescription struct {
 type RouteFilterDescription struct {
 	RouteFilter   armnetwork.RouteFilter
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_network_vpngateway
@@ -576,6 +634,7 @@ type RouteFilterDescription struct {
 type VpnGatewayDescription struct {
 	VpnGateway    armnetwork.VPNGateway
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_network_vpngatewayvpnconnection
@@ -583,12 +642,14 @@ type VpnGatewayVpnConnectionDescription struct {
 	ResourceGroup string
 	VpnConnection armnetwork.VPNConnection
 	VpnGateway    armnetwork.VPNGateway
+	Subscription  string
 }
 
 //index:microsoft_network_vpnsite
 type VpnSiteDescription struct {
 	ResourceGroup string
 	VpnSite       armnetwork.VPNSite
+	Subscription  string
 }
 
 //index:microsoft_network_publicipaddresses
@@ -597,70 +658,82 @@ type VpnSiteDescription struct {
 type PublicIPAddressDescription struct {
 	PublicIPAddress armnetwork.PublicIPAddress
 	ResourceGroup   string
+	Subscription    string
 }
 
 //index:microsoft_network_publicipprefix
 type PublicIPPrefixDescription struct {
 	ResourceGroup  string
 	PublicIPPrefix armnetwork.PublicIPPrefix
+	Subscription   string
 }
 
 //index:microsoft_network_dnszones
 type DNSZonesDescription struct {
 	ResourceGroup string
 	DNSZone       armdns.Zone
+	Subscription  string
 }
 
 //index:microsoft_network_bastianhosts
 type BastionHostsDescription struct {
 	ResourceGroup string
 	BastianHost   armnetwork.BastionHost
+	Subscription  string
 }
 
 //index:microsoft_network_connection
 type ConnectionDescription struct {
 	ResourceGroup string
 	Connection    armnetwork.VirtualNetworkGatewayConnection
+	Subscription  string
 }
 
 //index:microsoft_network_virtualhubs
 type VirtualHubsDescription struct {
 	ResourceGroup string
 	VirtualHub    armnetwork.VirtualHub
+	Subscription  string
 }
 
 //index:microsoft_network_virtualwans
 type VirtualWansDescription struct {
 	ResourceGroup string
 	VirtualWan    armnetwork.VirtualWAN
+	Subscription  string
 }
 
 //index:microsoft_network_dnsresolvers
 type DNSResolverDescription struct {
 	ResourceGroup string
 	DNSResolver   armdnsresolver.DNSResolver
+	Subscription  string
 }
 
 type TrafficManagerProfileDescription struct {
 	ResourceGroup string
 	Profile       armtrafficmanager.Profile
+	Subscription  string
 }
 
 //index:microsoft_network_privatednszones
 type PrivateDNSZonesDescription struct {
 	ResourceGroup string
 	PrivateZone   armprivatedns.PrivateZone
+	Subscription  string
 }
 
 //index:microsoft_network_privateendpoint
 type PrivateEndpointDescription struct {
 	ResourceGroup   string
 	PrivateEndpoint armnetwork.PrivateEndpoint
+	Subscription    string
 }
 
 type NetworkDDoSProtectionPlanDescription struct {
 	ResourceGroup      string
 	DDoSProtectionPlan armnetwork.DdosProtectionPlan
+	Subscription       string
 }
 
 //  =================== policy ==================
@@ -668,8 +741,9 @@ type NetworkDDoSProtectionPlanDescription struct {
 //index:microsoft_authorization_policyassignments
 //getfilter:name=description.Assignment.name
 type PolicyAssignmentDescription struct {
-	Assignment armpolicy.Assignment
-	Resource   armresources.GenericResource
+	Assignment   armpolicy.Assignment
+	Resource     armresources.GenericResource
+	Subscription string
 }
 
 //  =================== redis ==================
@@ -680,12 +754,14 @@ type PolicyAssignmentDescription struct {
 type RedisCacheDescription struct {
 	ResourceInfo  armredis.ResourceInfo
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_cache_redisenterprise
 type RedisEnterpriseCacheDescription struct {
 	ResourceGroup   string
 	RedisEnterprise armredisenterprise.Cluster
+	Subscription    string
 }
 
 //  =================== links ==================
@@ -694,6 +770,7 @@ type RedisEnterpriseCacheDescription struct {
 //getfilter:id=description.ResourceLink.id
 type ResourceLinkDescription struct {
 	ResourceLink armlinks.ResourceLink
+	Subscription string
 }
 
 //  =================== authorization ==================
@@ -702,18 +779,21 @@ type ResourceLinkDescription struct {
 //getfilter:id=description.RoleAssignment.id
 type RoleAssignmentDescription struct {
 	RoleAssignment armauthorization.RoleAssignment
+	Subscription   string
 }
 
 //index:microsoft_authorization_roledefinitions
 type RoleDefinitionDescription struct {
 	RoleDefinition armauthorization.RoleDefinition
+	Subscription   string
 }
 
 //index:microsoft_authorization_policydefinition
 //getfilter:name=description.Definition.Name
 type PolicyDefinitionDescription struct {
-	Definition armpolicy.Definition
-	TurboData  map[string]interface{}
+	Definition   armpolicy.Definition
+	TurboData    map[string]interface{}
+	Subscription string
 }
 
 //index:microsoft_authorization_usereffectiveaccess
@@ -726,6 +806,7 @@ type UserEffectiveAccessDescription struct {
 	ScopeType         string
 	AssignmentType    string
 	ParentPrincipalId *string
+	Subscription      string
 }
 
 //  =================== security ==================
@@ -734,17 +815,20 @@ type UserEffectiveAccessDescription struct {
 //getfilter:name=description.AutoProvisioningSetting.name
 type SecurityCenterAutoProvisioningDescription struct {
 	AutoProvisioningSetting armsecurity.AutoProvisioningSetting
+	Subscription            string
 }
 
 //index:microsoft_security_securitycontacts
 //getfilter:name=description.Contact.name
 type SecurityCenterContactDescription struct {
-	Contact armsecurity.Contact
+	Contact      armsecurity.Contact
+	Subscription string
 }
 
 //index:microsoft_security_locations_jitnetworkaccesspolicies
 type SecurityCenterJitNetworkAccessPolicyDescription struct {
 	JitNetworkAccessPolicy armsecurity.JitNetworkAccessPolicy
+	Subscription           string
 }
 
 //index:microsoft_security_settings
@@ -752,12 +836,14 @@ type SecurityCenterJitNetworkAccessPolicyDescription struct {
 type SecurityCenterSettingDescription struct {
 	Setting             armsecurity.Setting
 	ExportSettingStatus bool
+	Subscription        string
 }
 
 //index:microsoft_security_pricings
 //getfilter:name=description.Pricing.Name
 type SecurityCenterSubscriptionPricingDescription struct {
-	Pricing armsecurity.Pricing
+	Pricing      armsecurity.Pricing
+	Subscription string
 }
 
 //index:microsoft_security_automations
@@ -766,12 +852,14 @@ type SecurityCenterSubscriptionPricingDescription struct {
 type SecurityCenterAutomationDescription struct {
 	Automation    armsecurity.Automation
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_security_subassessments
 type SecurityCenterSubAssessmentDescription struct {
 	SubAssessment armsecurity.SubAssessment
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== storage ==================
@@ -785,6 +873,7 @@ type StorageContainerDescription struct {
 	ListContainerItem  armstorage.ListContainerItem
 	ImmutabilityPolicy armstorage.ImmutabilityPolicy
 	ResourceGroup      string
+	Subscription       string
 }
 
 //index:microsoft_storage_blobs
@@ -796,6 +885,7 @@ type StorageBlobDescription struct {
 	IsSnapshot    bool
 	ContainerName string
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_storage_blobservices
@@ -806,6 +896,7 @@ type StorageBlobServiceDescription struct {
 	AccountName   string
 	Location      string
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_storage_queues
@@ -817,6 +908,7 @@ type StorageQueueDescription struct {
 	AccountName   string
 	Location      string
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_storage_fileshares
@@ -828,6 +920,7 @@ type StorageFileShareDescription struct {
 	AccountName   string
 	Location      string
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_storage_tables
@@ -839,6 +932,7 @@ type StorageTableDescription struct {
 	AccountName   string
 	Location      string
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_storage_tableservices
@@ -850,6 +944,7 @@ type StorageTableServiceDescription struct {
 	AccountName   string
 	Location      string
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== network ==================
@@ -862,6 +957,7 @@ type SubnetDescription struct {
 	VirtualNetworkName string
 	Subnet             armnetwork.Subnet
 	ResourceGroup      string
+	Subscription       string
 }
 
 //index:microsoft_network_virtualnetworks
@@ -870,6 +966,7 @@ type SubnetDescription struct {
 type VirtualNetworkDescription struct {
 	VirtualNetwork armnetwork.VirtualNetwork
 	ResourceGroup  string
+	Subscription   string
 }
 
 //  =================== subscriptions ==================
@@ -877,12 +974,14 @@ type VirtualNetworkDescription struct {
 //index:microsoft_resources_tenants
 type TenantDescription struct {
 	TenantIDDescription armsubscription.TenantIDDescription
+	Subscription        string
 }
 
 //index:microsoft_resources_subscriptions
 type SubscriptionDescription struct {
-	Subscription armsubscription.Subscription
-	Tags         map[string][]string
+	Subscription   armsubscription.Subscription
+	Tags           map[string][]string
+	SubscriptionID string
 }
 
 //  =================== network ==================
@@ -894,6 +993,7 @@ type ApplicationGatewayDescription struct {
 	ApplicationGateway          armnetwork.ApplicationGateway
 	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //  =================== batch ==================
@@ -905,6 +1005,7 @@ type BatchAccountDescription struct {
 	Account                     armbatch.Account
 	DiagnosticSettingsResources *[]armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //  =================== cognitiveservices ==================
@@ -916,6 +1017,7 @@ type CognitiveAccountDescription struct {
 	Account                     armcognitiveservices.Account
 	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //  =================== compute ==================
@@ -932,31 +1034,37 @@ type ComputeVirtualMachineDescription struct {
 	ExtensionsSettings         map[string]map[string]interface{}
 	Assignments                *[]armguestconfiguration.Assignment
 	ResourceGroup              string
+	Subscription               string
 }
 
 //index:microsoft_compute_resourcesku
 type ComputeResourceSKUDescription struct {
-	ResourceSKU armcompute.ResourceSKU
+	ResourceSKU  armcompute.ResourceSKU
+	Subscription string
 }
 
 //index:microsoft_compute_virtualmachinecpuutilization
 type ComputeVirtualMachineCpuUtilizationDescription struct {
 	MonitoringMetric
+	Subscription string
 }
 
 //index:microsoft_compute_virtualmachinecpuutilizationdaily
 type ComputeVirtualMachineCpuUtilizationDailyDescription struct {
 	MonitoringMetric
+	Subscription string
 }
 
 //index:microsoft_compute_virtualmachinecpuutilizationhourly
 type ComputeVirtualMachineCpuUtilizationHourlyDescription struct {
 	MonitoringMetric
+	Subscription string
 }
 
 //index:microsoft_compute_cloudservice
 type ComputeCloudServiceDescription struct {
 	CloudService armcompute.CloudService
+	Subscription string
 }
 
 //  =================== containerregistry ==================
@@ -970,6 +1078,7 @@ type ContainerRegistryDescription struct {
 	RegistryUsages                []*armcontainerregistry.RegistryUsage
 	Webhooks                      []*armcontainerregistry.Webhook
 	ResourceGroup                 string
+	Subscription                  string
 }
 
 //  =================== documentdb ==================
@@ -980,6 +1089,7 @@ type ContainerRegistryDescription struct {
 type CosmosdbAccountDescription struct {
 	DatabaseAccountGetResults armcosmos.DatabaseAccountGetResults
 	ResourceGroup             string
+	Subscription              string
 }
 
 //index:microsoft_documentdb_restorabledatabaseaccounts
@@ -988,6 +1098,7 @@ type CosmosdbAccountDescription struct {
 type CosmosdbRestorableDatabaseAccountDescription struct {
 	Account       armcosmos.RestorableDatabaseAccountGetResult
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_documentdb_mongodatabases
@@ -998,6 +1109,7 @@ type CosmosdbMongoDatabaseDescription struct {
 	Account       armcosmos.DatabaseAccountGetResults
 	MongoDatabase armcosmos.MongoDBDatabaseGetResults
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_documentdb_mongocollections
@@ -1010,6 +1122,7 @@ type CosmosdbMongoCollectionDescription struct {
 	MongoCollection armcosmos.MongoDBCollectionGetResults
 	Throughput      armcosmos.ThroughputSettingsGetResults
 	ResourceGroup   string
+	Subscription    string
 }
 
 //index:microsoft_documentdb_sqldatabases
@@ -1020,11 +1133,13 @@ type CosmosdbSqlDatabaseDescription struct {
 	Account       armcosmos.DatabaseAccountGetResults
 	SqlDatabase   armcosmos.SQLDatabaseGetResults
 	ResourceGroup string
+	Subscription  string
 }
 
 type CosmosdbCassandraClusterDescription struct {
 	CassandraCluster armcosmos.ClusterResource
 	ResourceGroup    string
+	Subscription     string
 }
 
 //  =================== databricks ==================
@@ -1033,6 +1148,7 @@ type CosmosdbCassandraClusterDescription struct {
 type DatabricksWorkspaceDescription struct {
 	Workspace     armdatabricks.Workspace
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== datamigration ==================
@@ -1041,6 +1157,7 @@ type DatabricksWorkspaceDescription struct {
 type DataMigrationServiceDescription struct {
 	ResourceGroup string
 	Service       armdatamigration.Service
+	Subscription  string
 }
 
 //  =================== dataprotection ==================
@@ -1049,18 +1166,21 @@ type DataMigrationServiceDescription struct {
 type DataProtectionBackupVaultsDescription struct {
 	ResourceGroup string
 	BackupVaults  armdataprotection.BackupVaultResource
+	Subscription  string
 }
 
 //index:microsoft_dataprotection_backupvaultsbackuppolicies
 type DataProtectionBackupVaultsBackupPoliciesDescription struct {
 	ResourceGroup  string
 	BackupPolicies armdataprotection.BaseBackupPolicyResource
+	Subscription   string
 }
 
 type DataProtectionJobDescription struct {
 	DataProtectionJob armdataprotection.AzureBackupJobResource
 	VaultName         string
 	ResourceGroup     string
+	Subscription      string
 }
 
 //  =================== datafactory ==================
@@ -1072,6 +1192,7 @@ type DataFactoryDescription struct {
 	Factory                    armdatafactory.Factory
 	PrivateEndPointConnections []armdatafactory.PrivateEndpointConnectionResource
 	ResourceGroup              string
+	Subscription               string
 }
 
 //index:microsoft_datafactory_datafactorydatasets
@@ -1082,6 +1203,7 @@ type DataFactoryDatasetDescription struct {
 	Factory       armdatafactory.Factory
 	Dataset       armdatafactory.DatasetResource
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_datafactory_datafactorypipelines
@@ -1092,6 +1214,7 @@ type DataFactoryPipelineDescription struct {
 	Factory       armdatafactory.Factory
 	Pipeline      armdatafactory.PipelineResource
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== account ==================
@@ -1103,6 +1226,7 @@ type DataLakeAnalyticsAccountDescription struct {
 	DataLakeAnalyticsAccount   analytics.Account
 	DiagnosticSettingsResource *[]armmonitor.DiagnosticSettingsResource
 	ResourceGroup              string
+	Subscription               string
 }
 
 //  =================== account ==================
@@ -1114,6 +1238,7 @@ type DataLakeStoreDescription struct {
 	DataLakeStoreAccount       store.Account
 	DiagnosticSettingsResource *[]armmonitor.DiagnosticSettingsResource
 	ResourceGroup              string
+	Subscription               string
 }
 
 //  =================== insights ==================
@@ -1138,7 +1263,8 @@ type MonitoringMetric struct {
 	// The time stamp used for the data point.
 	TimeStamp string
 	// The units in which the metric value is reported.
-	Unit string
+	Unit         string
+	Subscription string
 }
 
 //index:microsoft_insights_guestdiagnosticsettings
@@ -1147,6 +1273,7 @@ type MonitoringMetric struct {
 type DiagnosticSettingDescription struct {
 	DiagnosticSettingsResource armmonitor.DiagnosticSettingsResource
 	ResourceGroup              string
+	Subscription               string
 }
 
 //index:microsoft_insights_autoscalingsettings
@@ -1155,6 +1282,7 @@ type DiagnosticSettingDescription struct {
 type AutoscaleSettingDescription struct {
 	AutoscaleSettingsResource armmonitor.AutoscaleSettingResource
 	ResourceGroup             string
+	Subscription              string
 }
 
 //  =================== eventgrid ==================
@@ -1166,6 +1294,7 @@ type EventGridDomainDescription struct {
 	Domain                      armeventgrid.Domain
 	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //  =================== eventgrid ==================
@@ -1177,6 +1306,7 @@ type EventGridTopicDescription struct {
 	Topic                       armeventgrid.Topic
 	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //  =================== eventhub ==================
@@ -1190,6 +1320,7 @@ type EventhubNamespaceDescription struct {
 	NetworkRuleSet              armeventhub.NetworkRuleSet
 	PrivateEndpointConnection   []*armeventhub.PrivateEndpointConnection
 	ResourceGroup               string
+	Subscription                string
 }
 
 //index:microsoft_eventhub_namespaceseventhub
@@ -1197,6 +1328,7 @@ type EventhubNamespaceEventhubDescription struct {
 	EHNamespace   armeventhub.EHNamespace
 	EventHub      armeventhub.Eventhub
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== frontdoor ==================
@@ -1208,6 +1340,7 @@ type FrontdoorDescription struct {
 	FrontDoor                   armfrontdoor.FrontDoor
 	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //  =================== hdinsight ==================
@@ -1219,6 +1352,7 @@ type HdinsightClusterDescription struct {
 	Cluster                     armhdinsight.Cluster
 	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //  =================== hybridcompute ==================
@@ -1230,6 +1364,7 @@ type HybridComputeMachineDescription struct {
 	Machine           armhybridcompute.Machine
 	MachineExtensions []*armhybridcompute.MachineExtension
 	ResourceGroup     string
+	Subscription      string
 }
 
 //  =================== devices ==================
@@ -1241,6 +1376,7 @@ type IOTHubDescription struct {
 	IotHubDescription           armiothub.Description
 	DiagnosticSettingsResources *[]armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //index:microsoft_devices_iothubdpses
@@ -1250,6 +1386,7 @@ type IOTHubDpsDescription struct {
 	IotHubDps                   armdeviceprovisioningservices.ProvisioningServiceDescription
 	DiagnosticSettingsResources *[]armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //  =================== keyvault ==================
@@ -1262,6 +1399,7 @@ type KeyVaultDescription struct {
 	Vault                       armkeyvault.Vault
 	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //index:microsoft_keyvault_vaults_certificates
@@ -1271,6 +1409,7 @@ type KeyVaultCertificateDescription struct {
 	Policy        azcertificates.CertificatePolicy
 	Vault         armkeyvault.Resource
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_keyvault_deletedvaults
@@ -1279,6 +1418,7 @@ type KeyVaultCertificateDescription struct {
 type KeyVaultDeletedVaultDescription struct {
 	Vault         armkeyvault.DeletedVault
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== keyvault ==================
@@ -1290,6 +1430,7 @@ type KeyVaultManagedHardwareSecurityModuleDescription struct {
 	ManagedHsm                  armkeyvault.ManagedHsm
 	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //  =================== secret ==================
@@ -1302,6 +1443,7 @@ type KeyVaultSecretDescription struct {
 	Vault         armkeyvault.Vault
 	TurboData     map[string]interface{}
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== kusto ==================
@@ -1312,6 +1454,7 @@ type KeyVaultSecretDescription struct {
 type KustoClusterDescription struct {
 	Cluster       armkusto.Cluster
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== insights ==================
@@ -1322,6 +1465,7 @@ type KustoClusterDescription struct {
 type LogAlertDescription struct {
 	ActivityLogAlertResource armmonitor.ActivityLogAlertResource
 	ResourceGroup            string
+	Subscription             string
 }
 
 //  =================== insights ==================
@@ -1332,6 +1476,7 @@ type LogAlertDescription struct {
 type LogProfileDescription struct {
 	LogProfileResource armmonitor.LogProfileResource
 	ResourceGroup      string
+	Subscription       string
 }
 
 //  =================== logic ==================
@@ -1343,12 +1488,14 @@ type LogicAppWorkflowDescription struct {
 	Workflow                    armlogic.Workflow
 	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //index:microsoft_logic_integrationaccounts
 type LogicIntegrationAccountsDescription struct {
 	ResourceGroup string
 	Account       armlogic.IntegrationAccount
+	Subscription  string
 }
 
 //  =================== machinelearningservices ==================
@@ -1360,6 +1507,7 @@ type MachineLearningWorkspaceDescription struct {
 	Workspace                   armmachinelearning.Workspace
 	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //  =================== mariadb ==================
@@ -1370,6 +1518,7 @@ type MachineLearningWorkspaceDescription struct {
 type MariadbServerDescription struct {
 	Server        armmariadb.Server
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_dbformariadb_databases
@@ -1377,6 +1526,7 @@ type MariadbDatabaseDescription struct {
 	Server        armmariadb.Server
 	Database      armmariadb.Database
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== mysql ==================
@@ -1391,12 +1541,14 @@ type MysqlServerDescription struct {
 	SecurityAlertPolicies []*armmysql.ServerSecurityAlertPolicy
 	VnetRules             []*armmysql.VirtualNetworkRule
 	ResourceGroup         string
+	Subscription          string
 }
 
 //index:microsoft_dbformysql_flexibleservers
 type MysqlFlexibleserverDescription struct {
 	Server        armmysqlflexibleservers.Server
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== network ==================
@@ -1408,6 +1560,7 @@ type NetworkSecurityGroupDescription struct {
 	SecurityGroup               armnetwork.SecurityGroup
 	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //index:microsoft_network_networkwatchers
@@ -1416,6 +1569,7 @@ type NetworkSecurityGroupDescription struct {
 type NetworkWatcherDescription struct {
 	Watcher       armnetwork.Watcher
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== search ==================
@@ -1427,6 +1581,7 @@ type SearchServiceDescription struct {
 	Service                     armsearch.Service
 	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //  =================== servicefabric ==================
@@ -1437,6 +1592,7 @@ type SearchServiceDescription struct {
 type ServiceFabricClusterDescription struct {
 	Cluster       armservicefabric.Cluster
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== servicebus ==================
@@ -1451,6 +1607,7 @@ type ServicebusNamespaceDescription struct {
 	PrivateEndpointConnections  []*armservicebus.PrivateEndpointConnection
 	AuthorizationRules          []*armservicebus.SBAuthorizationRule
 	ResourceGroup               string
+	Subscription                string
 }
 
 //  =================== signalr ==================
@@ -1462,6 +1619,7 @@ type SignalrServiceDescription struct {
 	ResourceInfo                armsignalr.ResourceInfo
 	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //  =================== appplatform ==================
@@ -1474,6 +1632,7 @@ type SpringCloudServiceDescription struct {
 	ResourceGroup              string
 	Site                       *armspringappdiscovery.SpringbootsitesModel
 	App                        armspringappdiscovery.SpringbootappsModel
+	Subscription               string
 }
 
 //  =================== streamanalytics ==================
@@ -1485,18 +1644,21 @@ type StreamAnalyticsJobDescription struct {
 	StreamingJob                armstreamanalytics.StreamingJob
 	DiagnosticSettingsResources []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup               string
+	Subscription                string
 }
 
 //index:microsoft_streamanalytics_cluster
 type StreamAnalyticsClusterDescription struct {
 	ResourceGroup string
 	StreamingJob  armstreamanalytics.Cluster
+	Subscription  string
 }
 
 //index:microsoft_virtualmachineimages_imagetemplates
 type VirtualMachineImagesImageTemplatesDescription struct {
 	ResourceGroup string
 	ImageTemplate armvirtualmachineimagebuilder.ImageTemplate
+	Subscription  string
 }
 
 //  =================== operationalinsights ==================
@@ -1505,6 +1667,7 @@ type VirtualMachineImagesImageTemplatesDescription struct {
 type OperationalInsightsWorkspacesDescription struct {
 	ResourceGroup string
 	Workspace     armoperationalinsights.Workspace
+	Subscription  string
 }
 
 //  =================== timeseriesinsight ==================
@@ -1513,6 +1676,7 @@ type OperationalInsightsWorkspacesDescription struct {
 type TimeSeriesInsightsEnvironmentsDescription struct {
 	ResourceGroup string
 	Environment   *armtimeseriesinsights.EnvironmentResource
+	Subscription  string
 }
 
 //  =================== synapse ==================
@@ -1525,6 +1689,7 @@ type SynapseWorkspaceDescription struct {
 	ServerVulnerabilityAssessments []*armsynapse.ServerVulnerabilityAssessment
 	DiagnosticSettingsResources    []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup                  string
+	Subscription                   string
 }
 
 //index:microsoft_synapse_workspacesbigdatapools
@@ -1532,6 +1697,7 @@ type SynapseWorkspaceBigdatapoolsDescription struct {
 	Workspace     armsynapse.Workspace
 	BigDataPool   armsynapse.BigDataPoolResourceInfo
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_synapse_workspacessqlpools
@@ -1539,6 +1705,7 @@ type SynapseWorkspaceSqlpoolsDescription struct {
 	Workspace     armsynapse.Workspace
 	SqlPool       armsynapse.SQLPool
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== sub ==================
@@ -1549,6 +1716,7 @@ type SynapseWorkspaceSqlpoolsDescription struct {
 type LocationDescription struct {
 	Location      armsubscription.Location
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== analysis ==================
@@ -1559,6 +1727,7 @@ type LocationDescription struct {
 type AnalysisServiceServerDescription struct {
 	ResourceGroup string
 	Server        armanalysisservices.Server
+	Subscription  string
 }
 
 //  =================== postgresql ==================
@@ -1574,6 +1743,7 @@ type PostgresqlServerDescription struct {
 	FirewallRules                []*armpostgresql.FirewallRule
 	ServerSecurityAlertPolicies  []*armpostgresql.ServerSecurityAlertPolicy
 	ResourceGroup                string
+	Subscription                 string
 }
 
 //index:microsoft_dbforpostgresql_flexibleservers
@@ -1581,6 +1751,7 @@ type PostgresqlFlexibleServerDescription struct {
 	ResourceGroup        string
 	Server               armpostgresqlflexibleservers.Server
 	ServerConfigurations []*armpostgresqlflexibleservers.Configuration
+	Subscription         string
 }
 
 //  =================== storagesync ==================
@@ -1591,6 +1762,7 @@ type PostgresqlFlexibleServerDescription struct {
 type StorageSyncDescription struct {
 	Service       armstoragesync.Service
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== sql ==================
@@ -1604,6 +1776,7 @@ type MssqlManagedInstanceDescription struct {
 	ManagedDatabaseSecurityAlertPolicies    []*armsql.ManagedServerSecurityAlertPolicy
 	ManagedInstanceEncryptionProtectors     []*armsql.ManagedInstanceEncryptionProtector
 	ResourceGroup                           string
+	Subscription                            string
 }
 
 //index:microsoft_sql_managedinstancesdatabases
@@ -1611,6 +1784,7 @@ type MssqlManagedInstanceDatabasesDescription struct {
 	ManagedInstance armsql.ManagedInstance
 	Database        armsql.ManagedDatabase
 	ResourceGroup   string
+	Subscription    string
 }
 
 //index:microsoft_sql_servers_databases
@@ -1625,11 +1799,13 @@ type SqlDatabaseDescription struct {
 	Advisors                           []*armsql.Advisor
 	AuditPolicies                      []*armsql.DatabaseBlobAuditingPolicy
 	ResourceGroup                      string
+	Subscription                       string
 }
 
 type SqlInstancePoolDescription struct {
 	InstancePool  armsql.InstancePool
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== sqlv3 ==================
@@ -1650,6 +1826,7 @@ type SqlServerDescription struct {
 	FailoverGroups                 []*armsql.FailoverGroup
 	AutomaticTuning                armsql.ServerAutomaticTuning
 	ResourceGroup                  string
+	Subscription                   string
 }
 
 //index:microsoft_sql_serversjobagent
@@ -1657,12 +1834,14 @@ type SqlServerJobAgentDescription struct {
 	ResourceGroup string
 	Server        armsql.Server
 	JobAgent      armsql.JobAgent
+	Subscription  string
 }
 
 //index:microsoft_sql_virtualclusters
 type SqlVirtualClustersDescription struct {
 	ResourceGroup   string
 	VirtualClusters armsql.VirtualCluster
+	Subscription    string
 }
 
 //index:microsoft_sql_elasticpools
@@ -1674,6 +1853,7 @@ type SqlServerElasticPoolDescription struct {
 	TotalDTU      int32
 	ServerName    string
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_sql_virtualmachines
@@ -1682,12 +1862,14 @@ type SqlServerElasticPoolDescription struct {
 type SqlServerVirtualMachineDescription struct {
 	VirtualMachine armsqlvirtualmachine.SQLVirtualMachine
 	ResourceGroup  string
+	Subscription   string
 }
 
 //index:microsoft_sql_virtualmachinegroups
 type SqlServerVirtualMachineGroupDescription struct {
 	Group         armsqlvirtualmachine.Group
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_sql_flexibleservers
@@ -1696,6 +1878,7 @@ type SqlServerVirtualMachineGroupDescription struct {
 type SqlServerFlexibleServerDescription struct {
 	FlexibleServer armmysqlflexibleservers.Server
 	ResourceGroup  string
+	Subscription   string
 }
 
 //  =================== storage ==================
@@ -1715,6 +1898,7 @@ type StorageAccountDescription struct {
 	TableProperties             aztables.ServiceProperties
 	AccessKeys                  []map[string]interface{}
 	ResourceGroup               string
+	Subscription                string
 }
 
 //  =================== recoveryservice ==================
@@ -1726,6 +1910,7 @@ type RecoveryServicesVaultDescription struct {
 	Vault                      armrecoveryservices.Vault
 	DiagnosticSettingsResource []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup              string
+	Subscription               string
 }
 
 //index:microsoft_recoveryservices_vault
@@ -1743,6 +1928,7 @@ type RecoveryServicesBackupJobDescription struct {
 	VaultName     string
 	Properties    map[string]interface{}
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_recoveryservices_policy
@@ -1760,6 +1946,7 @@ type RecoveryServicesBackupPolicyDescription struct {
 	Properties    map[string]interface{}
 	VaultName     string
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_recoveryservices_item
@@ -1777,6 +1964,7 @@ type RecoveryServicesBackupItemDescription struct {
 	Properties    map[string]interface{}
 	VaultName     string
 	ResourceGroup string
+	Subscription  string
 }
 
 //  =================== kubernetes ==================
@@ -1788,6 +1976,7 @@ type HybridKubernetesConnectedClusterDescription struct {
 	ConnectedCluster           armhybridkubernetes.ConnectedCluster
 	ConnectedClusterExtensions []*armkubernetesconfiguration.Extension
 	ResourceGroup              string
+	Subscription               string
 }
 
 //  =================== Cost ==================
@@ -1799,17 +1988,20 @@ type CostManagementQueryRow struct {
 	ServiceName    *string `json:"ServiceName,omitempty"`
 	PublisherType  *string `json:"PublisherType,omitempty"`
 	SubscriptionID *string `json:"SubscriptionId,omitempty"`
+	Subscription   string
 }
 
 //index:microsoft_costmanagement_costbyresourcetype
 type CostManagementCostByResourceTypeDescription struct {
 	CostManagementCostByResourceType CostManagementQueryRow
 	CostDateMillis                   int64
+	Subscription                     string
 }
 
 //index:microsoft_costmanagement_costbysubscription
 type CostManagementCostBySubscriptionDescription struct {
 	CostManagementCostBySubscription CostManagementQueryRow
+	Subscription                     string
 }
 
 // =================== LB (loadbalancer) ==================
@@ -1821,6 +2013,7 @@ type LoadBalancerDescription struct {
 	LoadBalancer      armnetwork.LoadBalancer
 	DiagnosticSetting []*armmonitor.DiagnosticSettingsResource
 	ResourceGroup     string
+	Subscription      string
 }
 
 //index:microsoft_lb_backendaddresspools
@@ -1831,6 +2024,7 @@ type LoadBalancerBackendAddressPoolDescription struct {
 	LoadBalancer  armnetwork.LoadBalancer
 	Pool          armnetwork.BackendAddressPool
 	ResourceGroup string
+	Subscription  string
 }
 
 //index:microsoft_lb_natrules
@@ -1841,6 +2035,7 @@ type LoadBalancerNatRuleDescription struct {
 	Rule             armnetwork.InboundNatRule
 	LoadBalancerName string
 	ResourceGroup    string
+	Subscription     string
 }
 
 //index:microsoft_lb_outboundrules
@@ -1851,6 +2046,7 @@ type LoadBalancerOutboundRuleDescription struct {
 	Rule             armnetwork.OutboundRule
 	LoadBalancerName string
 	ResourceGroup    string
+	Subscription     string
 }
 
 //index:microsoft_lb_probes
@@ -1861,6 +2057,7 @@ type LoadBalancerProbeDescription struct {
 	Probe            armnetwork.Probe
 	LoadBalancerName string
 	ResourceGroup    string
+	Subscription     string
 }
 
 //index:microsoft_lb_rules
@@ -1871,6 +2068,7 @@ type LoadBalancerRuleDescription struct {
 	Rule             armnetwork.LoadBalancingRule
 	LoadBalancerName string
 	ResourceGroup    string
+	Subscription     string
 }
 
 // =================== Management ==================
@@ -1878,7 +2076,8 @@ type LoadBalancerRuleDescription struct {
 //index:microsoft_management_groups
 //getfilter:name=description.Group.Name
 type ManagementGroupDescription struct {
-	Group armmanagementgroups.ManagementGroup
+	Group        armmanagementgroups.ManagementGroup
+	Subscription string
 }
 
 //index:microsoft_management_locks
@@ -1887,6 +2086,7 @@ type ManagementGroupDescription struct {
 type ManagementLockDescription struct {
 	Lock          armlocks.ManagementLockObject
 	ResourceGroup string
+	Subscription  string
 }
 
 // =================== Resources ==================
@@ -1894,18 +2094,21 @@ type ManagementLockDescription struct {
 //index:microsoft_resources_providers
 //getfilter:namespace=description.Provider.Namespace
 type ResourceProviderDescription struct {
-	Provider armresources.Provider
+	Provider     armresources.Provider
+	Subscription string
 }
 
 //index:microsoft_resources_resourcegroups
 //getfilter:name=description.Group.Name
 type ResourceGroupDescription struct {
-	Group armresources.ResourceGroup
+	Group        armresources.ResourceGroup
+	Subscription string
 }
 
 type GenericResourceDescription struct {
 	GenericResource armresources.GenericResourceExpanded
 	ResourceGroup   string
+	Subscription    string
 }
 
 // =================== BotService ==================
@@ -1913,6 +2116,7 @@ type GenericResourceDescription struct {
 type BotServiceBotDescription struct {
 	Bot           armbotservice.Bot
 	ResourceGroup string
+	Subscription  string
 }
 
 // =================== NetApp ==================
@@ -1920,11 +2124,13 @@ type BotServiceBotDescription struct {
 type NetAppAccountDescription struct {
 	Account       armnetapp.Account
 	ResourceGroup string
+	Subscription  string
 }
 
 type NetAppCapacityPoolDescription struct {
 	CapacityPool  armnetapp.CapacityPool
 	ResourceGroup string
+	Subscription  string
 }
 
 // =================== Dashboard ==================
@@ -1932,6 +2138,7 @@ type NetAppCapacityPoolDescription struct {
 type DashboardGrafanaDescription struct {
 	ResourceGroup string
 	Grafana       armdashboard.ManagedGrafana
+	Subscription  string
 }
 
 // =================== DesktopVirtualization ==================
@@ -1939,11 +2146,13 @@ type DashboardGrafanaDescription struct {
 type DesktopVirtualizationHostPoolDescription struct {
 	HostPool      armdesktopvirtualization.HostPool
 	ResourceGroup string
+	Subscription  string
 }
 
 type DesktopVirtualizationWorkspaceDescription struct {
 	ResourceGroup string
 	Workspace     armdesktopvirtualization.Workspace
+	Subscription  string
 }
 
 // =================== DevTestLab ==================
@@ -1951,6 +2160,7 @@ type DesktopVirtualizationWorkspaceDescription struct {
 type DevTestLabLabDescription struct {
 	Lab           armdevtestlabs.Lab
 	ResourceGroup string
+	Subscription  string
 }
 
 // =================== Purview ==================
@@ -1958,6 +2168,7 @@ type DevTestLabLabDescription struct {
 type PurviewAccountDescription struct {
 	Account       armpurview.Account
 	ResourceGroup string
+	Subscription  string
 }
 
 // =================== PowerBI ==================
@@ -1965,6 +2176,7 @@ type PurviewAccountDescription struct {
 type PowerBIDedicatedCapacityDescription struct {
 	Capacity      armpowerbidedicated.DedicatedCapacity
 	ResourceGroup string
+	Subscription  string
 }
 
 // =================== applicationInsights =================
@@ -1972,6 +2184,7 @@ type PowerBIDedicatedCapacityDescription struct {
 type ApplicationInsightsComponentDescription struct {
 	Component     armapplicationinsights.Component
 	ResourceGroup string
+	Subscription  string
 }
 
 // =================== Alert Management =================
@@ -1979,6 +2192,7 @@ type ApplicationInsightsComponentDescription struct {
 type AlertManagementDescription struct {
 	Alert         armalertsmanagement.Alert
 	ResourceGroup string
+	Subscription  string
 }
 
 // =================== Lighthouse =================
@@ -1987,12 +2201,14 @@ type LighthouseDefinitionDescription struct {
 	LighthouseDefinition armmanagedservices.RegistrationDefinition
 	Scope                string
 	ResourceGroup        string
+	Subscription         string
 }
 
 type LighthouseAssignmentDescription struct {
 	LighthouseAssignment armmanagedservices.RegistrationAssignment
 	Scope                string
 	ResourceGroup        string
+	Subscription         string
 }
 
 // =================== Maintenance Configuration =================
@@ -2000,6 +2216,7 @@ type LighthouseAssignmentDescription struct {
 type MaintenanceConfigurationDescription struct {
 	MaintenanceConfiguration armmaintenance.Configuration
 	ResourceGroup            string
+	Subscription             string
 }
 
 // =================== Monitor Insights =================
@@ -2007,4 +2224,15 @@ type MaintenanceConfigurationDescription struct {
 type MonitorLogProfileDescription struct {
 	LogProfile    armmonitor.LogProfileResource
 	ResourceGroup string
+	Subscription  string
+}
+
+type SBTopicDescription struct {
+	armservicebus.SBTopic
+	Subscription string
+}
+
+type SBQueueDescription struct {
+	armservicebus.SBQueue
+	Subscription string
 }

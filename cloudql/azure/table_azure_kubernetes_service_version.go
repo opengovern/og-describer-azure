@@ -21,6 +21,11 @@ func tableAzureAKSVersion(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Version.Properties.Subscription"),
+			},
+			{
 				Name:        "version",
 				Type:        proto.ColumnType_STRING,
 				Description: "The major.minor version of Kubernetes release.",

@@ -23,6 +23,11 @@ func tableAzureNetworkDDoSProtectionPlan(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.DDoSProtectionPlan.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the ddosprotectionplan.",
 				Type:        proto.ColumnType_STRING,

@@ -31,6 +31,11 @@ func tableAzureAppServiceFunctionApp(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Site.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "The friendly name that identifies the app service function app.",
 				Type:        proto.ColumnType_STRING,

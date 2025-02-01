@@ -25,7 +25,7 @@ func KubernetesCluster(ctx context.Context, cred *azidentity.ClientSecretCredent
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getKubernatesCluster(ctx, v)
+			resource := getKubernatesCluster(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -38,7 +38,7 @@ func KubernetesCluster(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func getKubernatesCluster(ctx context.Context, v *armcontainerservice.ManagedCluster) *models.Resource {
+func getKubernatesCluster(ctx context.Context, v *armcontainerservice.ManagedCluster, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -48,6 +48,7 @@ func getKubernatesCluster(ctx context.Context, v *armcontainerservice.ManagedClu
 		Description: model.KubernetesClusterDescription{
 			ManagedCluster: *v,
 			ResourceGroup:  resourceGroup,
+			Subscription:   subscription,
 		},
 	}
 	return &resource
@@ -72,7 +73,7 @@ func KubernetesServiceVersion(ctx context.Context, cred *azidentity.ClientSecret
 			return nil, err
 		}
 		for _, location := range page.Value {
-			services, err := listLocationKubernatesServices(ctx, client, location)
+			services, err := listLocationKubernatesServices(ctx, client, location, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -82,27 +83,28 @@ func KubernetesServiceVersion(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func listLocationKubernatesServices(ctx context.Context, client *armcontainerservice.ManagedClustersClient, location *armsubscriptions.Location) ([]models.Resource, error) {
+func listLocationKubernatesServices(ctx context.Context, client *armcontainerservice.ManagedClustersClient, location *armsubscriptions.Location, subscription string) ([]models.Resource, error) {
 	kubernetesVersions, err := client.ListKubernetesVersions(ctx, *location.ID, nil)
 	if err != nil {
 		return nil, err
 	}
 	var values []models.Resource
 	for _, v := range kubernetesVersions.Values {
-		resource := getKubernatesService(ctx, location, v)
+		resource := getKubernatesService(ctx, location, v, subscription)
 		values = append(values, *resource)
 	}
 	return values, nil
 }
 
-func getKubernatesService(ctx context.Context, location *armsubscriptions.Location, v *armcontainerservice.KubernetesVersion) *models.Resource {
+func getKubernatesService(ctx context.Context, location *armsubscriptions.Location, v *armcontainerservice.KubernetesVersion, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *v.Version,
 		Name:     *v.Version,
 		Type:     *v.Version,
 		Location: *location.ID,
 		Description: model.KubernetesServiceVersionDescription{
-			Version: *v,
+			Version:      *v,
+			Subscription: subscription,
 		},
 	}
 	return &resource

@@ -36,7 +36,7 @@ func DataLakeAnalyticsAccount(ctx context.Context, cred *azidentity.ClientSecret
 			return nil, err
 		}
 		for _, account := range page.Value {
-			resource, err := getDataLakeAnalyticsAccount(ctx, account, client, diagnosticClient)
+			resource, err := getDataLakeAnalyticsAccount(ctx, account, subscription, client, diagnosticClient)
 			if err != nil {
 				return nil, err
 			}
@@ -55,7 +55,7 @@ func DataLakeAnalyticsAccount(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func getDataLakeAnalyticsAccount(ctx context.Context, account *armdatalakeanalytics.AccountBasic, client *armdatalakeanalytics.AccountsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient) (*models.Resource, error) {
+func getDataLakeAnalyticsAccount(ctx context.Context, account *armdatalakeanalytics.AccountBasic, subscription string, client *armdatalakeanalytics.AccountsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient) (*models.Resource, error) {
 	splitID := strings.Split(*account.ID, "/")
 	name := *account.Name
 	resourceGroup := splitID[4]
@@ -87,6 +87,7 @@ func getDataLakeAnalyticsAccount(ctx context.Context, account *armdatalakeanalyt
 			DataLakeAnalyticsAccount:   accountGetOp.Account,
 			DiagnosticSettingsResource: &accountListOp,
 			ResourceGroup:              resourceGroup,
+			Subscription:               subscription,
 		},
 	}
 	return &resource, nil
@@ -113,7 +114,7 @@ func DataLakeStore(ctx context.Context, cred *azidentity.ClientSecretCredential,
 			return nil, err
 		}
 		for _, account := range page.Value {
-			resource, err := getDataLakeStore(ctx, account, diagnosticClient, client)
+			resource, err := getDataLakeStore(ctx, account, subscription, diagnosticClient, client)
 			if err != nil {
 				return nil, err
 			}
@@ -132,7 +133,7 @@ func DataLakeStore(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	return values, nil
 }
 
-func getDataLakeStore(ctx context.Context, account *armdatalakestore.AccountBasic, diagnosticClient *armmonitor.DiagnosticSettingsClient, client *armdatalakestore.AccountsClient) (*models.Resource, error) {
+func getDataLakeStore(ctx context.Context, account *armdatalakestore.AccountBasic, subscription string, diagnosticClient *armmonitor.DiagnosticSettingsClient, client *armdatalakestore.AccountsClient) (*models.Resource, error) {
 	splitId := strings.Split(*account.ID, "/")
 	name := *account.Name
 	resourceGroup := splitId[4]
@@ -164,6 +165,7 @@ func getDataLakeStore(ctx context.Context, account *armdatalakestore.AccountBasi
 			DataLakeStoreAccount:       accountGetOp.Account,
 			DiagnosticSettingsResource: &accountListOp,
 			ResourceGroup:              resourceGroup,
+			Subscription:               subscription,
 		},
 	}
 	return &resource, nil

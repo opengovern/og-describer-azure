@@ -10,7 +10,6 @@ import (
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/managedservices/armmanagedservices"
-	
 )
 
 func LighthouseDefinition(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
@@ -30,7 +29,7 @@ func LighthouseDefinition(ctx context.Context, cred *azidentity.ClientSecretCred
 			return nil, err
 		}
 		for _, definition := range page.Value {
-			resource := getLighthouseDefinition(ctx, definition, scope)
+			resource := getLighthouseDefinition(ctx, definition, scope, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -44,7 +43,7 @@ func LighthouseDefinition(ctx context.Context, cred *azidentity.ClientSecretCred
 
 }
 
-func getLighthouseDefinition(_ context.Context, lighthouseDefinition *armmanagedservices.RegistrationDefinition, scope string) *models.Resource {
+func getLighthouseDefinition(_ context.Context, lighthouseDefinition *armmanagedservices.RegistrationDefinition, scope string, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*lighthouseDefinition.ID, "/")[4]
 
 	resource := models.Resource{
@@ -55,6 +54,7 @@ func getLighthouseDefinition(_ context.Context, lighthouseDefinition *armmanaged
 			LighthouseDefinition: *lighthouseDefinition,
 			Scope:                scope,
 			ResourceGroup:        resourceGroup,
+			Subscription:         subscription,
 		},
 	}
 	return &resource
@@ -77,7 +77,7 @@ func LighthouseAssignments(ctx context.Context, cred *azidentity.ClientSecretCre
 			return nil, err
 		}
 		for _, assignment := range page.Value {
-			resource := getLighthouseAssignment(ctx, assignment, scope)
+			resource := getLighthouseAssignment(ctx, assignment, scope, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -91,7 +91,7 @@ func LighthouseAssignments(ctx context.Context, cred *azidentity.ClientSecretCre
 
 }
 
-func getLighthouseAssignment(_ context.Context, lighthouseAssignment *armmanagedservices.RegistrationAssignment, scope string) *models.Resource {
+func getLighthouseAssignment(_ context.Context, lighthouseAssignment *armmanagedservices.RegistrationAssignment, scope string, subscription string) *models.Resource {
 
 	resourceGroup := strings.Split(*lighthouseAssignment.ID, "/")[4]
 
@@ -103,6 +103,7 @@ func getLighthouseAssignment(_ context.Context, lighthouseAssignment *armmanaged
 			LighthouseAssignment: *lighthouseAssignment,
 			Scope:                scope,
 			ResourceGroup:        resourceGroup,
+			Subscription:         subscription,
 		},
 	}
 	return &resource

@@ -23,6 +23,11 @@ func tableAzureDatabricksWorkspaces(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Workspace.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the workspaces.",
 				Type:        proto.ColumnType_STRING,

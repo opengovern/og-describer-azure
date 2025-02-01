@@ -25,7 +25,7 @@ func SecurityCenterAutoProvisioning(ctx context.Context, cred *azidentity.Client
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetSecurityCenterAutoProvisioning(ctx, v)
+			resource := GetSecurityCenterAutoProvisioning(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -38,13 +38,14 @@ func SecurityCenterAutoProvisioning(ctx context.Context, cred *azidentity.Client
 	return values, nil
 }
 
-func GetSecurityCenterAutoProvisioning(ctx context.Context, v *armsecurity.AutoProvisioningSetting) *models.Resource {
+func GetSecurityCenterAutoProvisioning(ctx context.Context, v *armsecurity.AutoProvisioningSetting, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
 		Description: model.SecurityCenterAutoProvisioningDescription{
 			AutoProvisioningSetting: *v,
+			Subscription:            subscription,
 		},
 	}
 
@@ -66,7 +67,7 @@ func SecurityCenterContact(ctx context.Context, cred *azidentity.ClientSecretCre
 			return nil, err
 		}
 		for _, v := range page.ContactList.Value {
-			resource := GetSecurityCenterContact(ctx, v)
+			resource := GetSecurityCenterContact(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -79,13 +80,14 @@ func SecurityCenterContact(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func GetSecurityCenterContact(ctx context.Context, v *armsecurity.Contact) *models.Resource {
+func GetSecurityCenterContact(ctx context.Context, v *armsecurity.Contact, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
 		Description: model.SecurityCenterContactDescription{
-			Contact: *v,
+			Contact:      *v,
+			Subscription: subscription,
 		},
 	}
 	return &resource
@@ -106,7 +108,7 @@ func SecurityCenterJitNetworkAccessPolicy(ctx context.Context, cred *azidentity.
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetSecurityCenterJitNetworkAccessPolicy(ctx, v)
+			resource := GetSecurityCenterJitNetworkAccessPolicy(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -119,13 +121,14 @@ func SecurityCenterJitNetworkAccessPolicy(ctx context.Context, cred *azidentity.
 	return values, nil
 }
 
-func GetSecurityCenterJitNetworkAccessPolicy(ctx context.Context, v *armsecurity.JitNetworkAccessPolicy) *models.Resource {
+func GetSecurityCenterJitNetworkAccessPolicy(ctx context.Context, v *armsecurity.JitNetworkAccessPolicy, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
 		Description: model.SecurityCenterJitNetworkAccessPolicyDescription{
 			JitNetworkAccessPolicy: *v,
+			Subscription:           subscription,
 		},
 	}
 	return &resource
@@ -146,7 +149,7 @@ func SecurityCenterSetting(ctx context.Context, cred *azidentity.ClientSecretCre
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetSecurityCenterSetting(ctx, v)
+			resource := GetSecurityCenterSetting(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -159,7 +162,7 @@ func SecurityCenterSetting(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func GetSecurityCenterSetting(ctx context.Context, v armsecurity.SettingClassification) *models.Resource {
+func GetSecurityCenterSetting(ctx context.Context, v armsecurity.SettingClassification, subscription string) *models.Resource {
 	var settingStatus bool
 	if *v.GetSetting().Kind == armsecurity.SettingKindDataExportSettings {
 		settingStatus = true
@@ -173,6 +176,7 @@ func GetSecurityCenterSetting(ctx context.Context, v armsecurity.SettingClassifi
 		Description: model.SecurityCenterSettingDescription{
 			Setting:             *v.GetSetting(),
 			ExportSettingStatus: settingStatus,
+			Subscription:        subscription,
 		},
 	}
 	return &resource
@@ -191,7 +195,7 @@ func SecurityCenterSubscriptionPricing(ctx context.Context, cred *azidentity.Cli
 		return nil, err
 	}
 	for _, v := range list.Value {
-		resource := GetSecurityCenterSubscriptionPricing(ctx, v)
+		resource := GetSecurityCenterSubscriptionPricing(ctx, v, subscription)
 		if stream != nil {
 			if err := (*stream)(*resource); err != nil {
 				return nil, err
@@ -203,13 +207,14 @@ func SecurityCenterSubscriptionPricing(ctx context.Context, cred *azidentity.Cli
 	return values, nil
 }
 
-func GetSecurityCenterSubscriptionPricing(ctx context.Context, v *armsecurity.Pricing) *models.Resource {
+func GetSecurityCenterSubscriptionPricing(ctx context.Context, v *armsecurity.Pricing, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
 		Description: model.SecurityCenterSubscriptionPricingDescription{
-			Pricing: *v,
+			Pricing:      *v,
+			Subscription: subscription,
 		},
 	}
 	return &resource
@@ -230,7 +235,7 @@ func SecurityCenterAutomation(ctx context.Context, cred *azidentity.ClientSecret
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetSecurityCenterAutomation(ctx, v)
+			resource := GetSecurityCenterAutomation(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -243,7 +248,7 @@ func SecurityCenterAutomation(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func GetSecurityCenterAutomation(ctx context.Context, v *armsecurity.Automation) *models.Resource {
+func GetSecurityCenterAutomation(ctx context.Context, v *armsecurity.Automation, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -252,6 +257,7 @@ func GetSecurityCenterAutomation(ctx context.Context, v *armsecurity.Automation)
 		Description: model.SecurityCenterAutomationDescription{
 			Automation:    *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -272,7 +278,7 @@ func SecurityCenterSubAssessment(ctx context.Context, cred *azidentity.ClientSec
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetSecurityCenterSubAssessment(ctx, v)
+			resource := GetSecurityCenterSubAssessment(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -285,7 +291,7 @@ func SecurityCenterSubAssessment(ctx context.Context, cred *azidentity.ClientSec
 	return values, nil
 }
 
-func GetSecurityCenterSubAssessment(ctx context.Context, v *armsecurity.SubAssessment) *models.Resource {
+func GetSecurityCenterSubAssessment(ctx context.Context, v *armsecurity.SubAssessment, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -295,6 +301,7 @@ func GetSecurityCenterSubAssessment(ctx context.Context, v *armsecurity.SubAsses
 		Description: model.SecurityCenterSubAssessmentDescription{
 			SubAssessment: *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

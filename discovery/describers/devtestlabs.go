@@ -25,7 +25,7 @@ func DevTestLabLab(ctx context.Context, cred *azidentity.ClientSecretCredential,
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getDevTestLabLab(ctx, v)
+			resource := getDevTestLabLab(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -38,7 +38,7 @@ func DevTestLabLab(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	return values, nil
 }
 
-func getDevTestLabLab(ctx context.Context, v *armdevtestlabs.Lab) *models.Resource {
+func getDevTestLabLab(ctx context.Context, v *armdevtestlabs.Lab, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(string(*v.ID), "/")[4]
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -47,6 +47,7 @@ func getDevTestLabLab(ctx context.Context, v *armdevtestlabs.Lab) *models.Resour
 		Description: model.DevTestLabLabDescription{
 			Lab:           *v,
 			ResourceGroup: resourceGroupName,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

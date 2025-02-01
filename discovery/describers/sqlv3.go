@@ -37,7 +37,7 @@ func SqlServer(ctx context.Context, cred *azidentity.ClientSecretCredential, sub
 			return nil, err
 		}
 		for _, server := range page.Value {
-			resource, err := GetSqlServer(ctx, automaticTuningClient, failoverClient, virtualNetworkClient, privateEndpointClient, encryptionProtectorsClient, firewallRulesClient, serverVulnerabilityClient, serverAzureClient, serverSecurityClient, serverBlobClient, server)
+			resource, err := GetSqlServer(ctx, automaticTuningClient, failoverClient, virtualNetworkClient, privateEndpointClient, encryptionProtectorsClient, firewallRulesClient, serverVulnerabilityClient, serverAzureClient, serverSecurityClient, serverBlobClient, server, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -53,7 +53,7 @@ func SqlServer(ctx context.Context, cred *azidentity.ClientSecretCredential, sub
 	return values, err
 }
 
-func GetSqlServer(ctx context.Context, automaticTuningClient *armsql.ServerAutomaticTuningClient, failoverClient *armsql.FailoverGroupsClient, virtualNetworkClient *armsql.VirtualNetworkRulesClient, privateEndpointClient *armsql.PrivateEndpointConnectionsClient, encryptionProtectorsClient *armsql.EncryptionProtectorsClient, firewallRulesClient *armsql.FirewallRulesClient, serverVulnerabilityClient *armsql.ServerVulnerabilityAssessmentsClient, serverAzureClient *armsql.ServerAzureADAdministratorsClient, serverSecurityClient *armsql.ServerSecurityAlertPoliciesClient, serverBlobClient *armsql.ServerBlobAuditingPoliciesClient, server *armsql.Server) (*models.Resource, error) {
+func GetSqlServer(ctx context.Context, automaticTuningClient *armsql.ServerAutomaticTuningClient, failoverClient *armsql.FailoverGroupsClient, virtualNetworkClient *armsql.VirtualNetworkRulesClient, privateEndpointClient *armsql.PrivateEndpointConnectionsClient, encryptionProtectorsClient *armsql.EncryptionProtectorsClient, firewallRulesClient *armsql.FirewallRulesClient, serverVulnerabilityClient *armsql.ServerVulnerabilityAssessmentsClient, serverAzureClient *armsql.ServerAzureADAdministratorsClient, serverSecurityClient *armsql.ServerSecurityAlertPoliciesClient, serverBlobClient *armsql.ServerBlobAuditingPoliciesClient, server *armsql.Server, subscription string) (*models.Resource, error) {
 	resourceGroupName := strings.Split(string(*server.ID), "/")[4]
 
 	pager1 := serverBlobClient.NewListByServerPager(resourceGroupName, *server.Name, nil)
@@ -168,6 +168,7 @@ func GetSqlServer(ctx context.Context, automaticTuningClient *armsql.ServerAutom
 			FailoverGroups:                 fop,
 			AutomaticTuning:                automaticTuning.ServerAutomaticTuning,
 			ResourceGroup:                  resourceGroupName,
+			Subscription:                   subscription,
 		},
 	}
 	return &resource, nil
@@ -190,7 +191,7 @@ func SqlServerJobAgents(ctx context.Context, cred *azidentity.ClientSecretCreden
 			return nil, err
 		}
 		for _, server := range page.Value {
-			resources, err := ListSqlServerJobAgents(ctx, client, server)
+			resources, err := ListSqlServerJobAgents(ctx, client, server, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -208,7 +209,7 @@ func SqlServerJobAgents(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, err
 }
 
-func ListSqlServerJobAgents(ctx context.Context, client *armsql.JobAgentsClient, server *armsql.Server) ([]models.Resource, error) {
+func ListSqlServerJobAgents(ctx context.Context, client *armsql.JobAgentsClient, server *armsql.Server, subscription string) ([]models.Resource, error) {
 	resourceGroupName := strings.Split(string(*server.ID), "/")[4]
 
 	pager := client.NewListByServerPager(resourceGroupName, *server.Name, nil)
@@ -219,14 +220,14 @@ func ListSqlServerJobAgents(ctx context.Context, client *armsql.JobAgentsClient,
 			return nil, err
 		}
 		for _, job := range page.Value {
-			resource := GetSqlServerJobAgent(ctx, server, job)
+			resource := GetSqlServerJobAgent(ctx, server, job, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func GetSqlServerJobAgent(ctx context.Context, server *armsql.Server, job *armsql.JobAgent) *models.Resource {
+func GetSqlServerJobAgent(ctx context.Context, server *armsql.Server, job *armsql.JobAgent, subscription string) *models.Resource {
 	jobResourceGroupName := strings.Split(string(*job.ID), "/")[4]
 
 	resource := models.Resource{
@@ -237,6 +238,7 @@ func GetSqlServerJobAgent(ctx context.Context, server *armsql.Server, job *armsq
 			Server:        *server,
 			JobAgent:      *job,
 			ResourceGroup: jobResourceGroupName,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -258,7 +260,7 @@ func SqlVirtualClusters(ctx context.Context, cred *azidentity.ClientSecretCreden
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetSqlVirtualCluster(ctx, v)
+			resource := GetSqlVirtualCluster(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -271,7 +273,7 @@ func SqlVirtualClusters(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func GetSqlVirtualCluster(ctx context.Context, v *armsql.VirtualCluster) *models.Resource {
+func GetSqlVirtualCluster(ctx context.Context, v *armsql.VirtualCluster, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(string(*v.ID), "/")[4]
 
 	resource := models.Resource{
@@ -281,6 +283,7 @@ func GetSqlVirtualCluster(ctx context.Context, v *armsql.VirtualCluster) *models
 		Description: model.SqlVirtualClustersDescription{
 			VirtualClusters: *v,
 			ResourceGroup:   resourceGroupName,
+			Subscription:    subscription,
 		},
 	}
 
@@ -305,7 +308,7 @@ func SqlServerElasticPool(ctx context.Context, cred *azidentity.ClientSecretCred
 			return nil, err
 		}
 		for _, server := range page.Value {
-			resources, err := ListSqlServerElasticPools(ctx, elasticPoolClient, activityClient, server)
+			resources, err := ListSqlServerElasticPools(ctx, elasticPoolClient, activityClient, server, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -323,7 +326,7 @@ func SqlServerElasticPool(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func ListSqlServerElasticPools(ctx context.Context, elasticPoolClient *armsql.ElasticPoolsClient, activityClient *armsql.ElasticPoolActivitiesClient, server *armsql.Server) ([]models.Resource, error) {
+func ListSqlServerElasticPools(ctx context.Context, elasticPoolClient *armsql.ElasticPoolsClient, activityClient *armsql.ElasticPoolActivitiesClient, server *armsql.Server, subscription string) ([]models.Resource, error) {
 	if server == nil || server.ID == nil {
 		return nil, nil
 	}
@@ -341,7 +344,7 @@ func ListSqlServerElasticPools(ctx context.Context, elasticPoolClient *armsql.El
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource, err := GetSqlServerElasticPool(ctx, server, activityClient, v)
+			resource, err := GetSqlServerElasticPool(ctx, server, activityClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -354,7 +357,7 @@ func ListSqlServerElasticPools(ctx context.Context, elasticPoolClient *armsql.El
 	return values, nil
 }
 
-func GetSqlServerElasticPool(ctx context.Context, server *armsql.Server, activityClient *armsql.ElasticPoolActivitiesClient, elasticPool *armsql.ElasticPool) (*models.Resource, error) {
+func GetSqlServerElasticPool(ctx context.Context, server *armsql.Server, activityClient *armsql.ElasticPoolActivitiesClient, elasticPool *armsql.ElasticPool, subscription string) (*models.Resource, error) {
 	if elasticPool == nil || elasticPool.ID == nil {
 		return nil, nil
 	}
@@ -391,6 +394,7 @@ func GetSqlServerElasticPool(ctx context.Context, server *armsql.Server, activit
 			Pool:          *elasticPool,
 			ServerName:    name,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource, nil
@@ -411,7 +415,7 @@ func SqlServerVirtualMachine(ctx context.Context, cred *azidentity.ClientSecretC
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetSqlServerVirtualMachine(ctx, v)
+			resource := GetSqlServerVirtualMachine(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -424,7 +428,7 @@ func SqlServerVirtualMachine(ctx context.Context, cred *azidentity.ClientSecretC
 	return values, nil
 }
 
-func GetSqlServerVirtualMachine(ctx context.Context, vm *armsqlvirtualmachine.SQLVirtualMachine) *models.Resource {
+func GetSqlServerVirtualMachine(ctx context.Context, vm *armsqlvirtualmachine.SQLVirtualMachine, subscription string) *models.Resource {
 	resourceGroup := strings.Split(string(*vm.ID), "/")[4]
 	resource := models.Resource{
 		ID:       *vm.ID,
@@ -433,6 +437,7 @@ func GetSqlServerVirtualMachine(ctx context.Context, vm *armsqlvirtualmachine.SQ
 		Description: model.SqlServerVirtualMachineDescription{
 			VirtualMachine: *vm,
 			ResourceGroup:  resourceGroup,
+			Subscription:   subscription,
 		},
 	}
 	return &resource
@@ -453,7 +458,7 @@ func SqlServerVirtualMachineGroups(ctx context.Context, cred *azidentity.ClientS
 			return nil, err
 		}
 		for _, vm := range page.Value {
-			resource := GetSqlServerVirtualMachineGroups(ctx, vm)
+			resource := GetSqlServerVirtualMachineGroups(ctx, vm, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -466,7 +471,7 @@ func SqlServerVirtualMachineGroups(ctx context.Context, cred *azidentity.ClientS
 	return values, nil
 }
 
-func GetSqlServerVirtualMachineGroups(ctx context.Context, vm *armsqlvirtualmachine.Group) *models.Resource {
+func GetSqlServerVirtualMachineGroups(ctx context.Context, vm *armsqlvirtualmachine.Group, subscription string) *models.Resource {
 	resourceGroup := strings.Split(string(*vm.ID), "/")[4]
 
 	resource := models.Resource{
@@ -476,6 +481,7 @@ func GetSqlServerVirtualMachineGroups(ctx context.Context, vm *armsqlvirtualmach
 		Description: model.SqlServerVirtualMachineGroupDescription{
 			Group:         *vm,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -496,7 +502,7 @@ func SqlServerFlexibleServer(ctx context.Context, cred *azidentity.ClientSecretC
 			return nil, err
 		}
 		for _, fs := range page.Value {
-			resource := GetSqlServerFlexibleServer(ctx, fs)
+			resource := GetSqlServerFlexibleServer(ctx, fs, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -509,7 +515,7 @@ func SqlServerFlexibleServer(ctx context.Context, cred *azidentity.ClientSecretC
 	return values, nil
 }
 
-func GetSqlServerFlexibleServer(ctx context.Context, fs *armmysqlflexibleservers.Server) *models.Resource {
+func GetSqlServerFlexibleServer(ctx context.Context, fs *armmysqlflexibleservers.Server, subscription string) *models.Resource {
 	resourceGroup := strings.Split(string(*fs.ID), "/")[4]
 	resource := models.Resource{
 		ID:       *fs.ID,
@@ -518,6 +524,7 @@ func GetSqlServerFlexibleServer(ctx context.Context, fs *armmysqlflexibleservers
 		Description: model.SqlServerFlexibleServerDescription{
 			FlexibleServer: *fs,
 			ResourceGroup:  resourceGroup,
+			Subscription:   subscription,
 		},
 	}
 	return &resource

@@ -29,6 +29,11 @@ func tableAzureNetworkInterface(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Interface.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "The friendly name that identifies the network interface",
 				Type:        proto.ColumnType_STRING,

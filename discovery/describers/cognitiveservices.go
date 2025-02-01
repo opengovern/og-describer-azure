@@ -33,7 +33,7 @@ func CognitiveAccount(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, account := range page.Value {
-			resource, err := getCognitiveAccount(ctx, diagnosticsClient, account)
+			resource, err := getCognitiveAccount(ctx, diagnosticsClient, subscription, account)
 			if err != nil {
 				return nil, err
 			}
@@ -49,7 +49,7 @@ func CognitiveAccount(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getCognitiveAccount(ctx context.Context, diagnosticsClient *armmonitor.DiagnosticSettingsClient, account *armcognitiveservices.Account) (*models.Resource, error) {
+func getCognitiveAccount(ctx context.Context, diagnosticsClient *armmonitor.DiagnosticSettingsClient, subscription string, account *armcognitiveservices.Account) (*models.Resource, error) {
 	resourceGroupName := strings.Split(string(*account.ID), "/")[4]
 
 	var diagnosticSettings []*armmonitor.DiagnosticSettingsResource
@@ -67,6 +67,7 @@ func getCognitiveAccount(ctx context.Context, diagnosticsClient *armmonitor.Diag
 			Account:                     *account,
 			DiagnosticSettingsResources: diagnosticSettings,
 			ResourceGroup:               resourceGroupName,
+			Subscription:                subscription,
 		},
 	}, nil
 }

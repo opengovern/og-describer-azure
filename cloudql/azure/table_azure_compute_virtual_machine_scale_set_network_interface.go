@@ -20,6 +20,11 @@ func tableAzureComputeVirtualMachineScaleSetNetworkInterface(_ context.Context) 
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.NetworkInterface.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "Name of the scale set network interface.",
 				Type:        proto.ColumnType_STRING,

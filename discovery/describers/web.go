@@ -26,7 +26,7 @@ func AppServiceEnvironment(ctx context.Context, cred *azidentity.ClientSecretCre
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetAppServiceEnvironment(ctx, v)
+			resource := GetAppServiceEnvironment(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -39,7 +39,7 @@ func AppServiceEnvironment(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func GetAppServiceEnvironment(ctx context.Context, v *appservice.EnvironmentResource) *models.Resource {
+func GetAppServiceEnvironment(ctx context.Context, v *appservice.EnvironmentResource, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -49,6 +49,7 @@ func GetAppServiceEnvironment(ctx context.Context, v *appservice.EnvironmentReso
 		Description: model.AppServiceEnvironmentDescription{
 			AppServiceEnvironmentResource: *v,
 			ResourceGroup:                 resourceGroup,
+			Subscription:                  subscription,
 		},
 	}
 
@@ -74,7 +75,7 @@ func AppServiceFunctionApp(ctx context.Context, cred *azidentity.ClientSecretCre
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource, err := GetAppServiceFunctionApp(ctx, webClient, v)
+			resource, err := GetAppServiceFunctionApp(ctx, webClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -90,7 +91,7 @@ func AppServiceFunctionApp(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, err
 }
 
-func GetAppServiceFunctionApp(ctx context.Context, webClient *appservice.WebAppsClient, v *appservice.Site) (*models.Resource, error) {
+func GetAppServiceFunctionApp(ctx context.Context, webClient *appservice.WebAppsClient, v *appservice.Site, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	configuration, err := webClient.GetConfiguration(ctx, *v.Properties.ResourceGroup, *v.Name, nil)
@@ -110,6 +111,7 @@ func GetAppServiceFunctionApp(ctx context.Context, webClient *appservice.WebApps
 			SiteAuthSettings:   authSettings.SiteAuthSettings,
 			SiteConfigResource: configuration.SiteConfigResource,
 			ResourceGroup:      resourceGroup,
+			Subscription:       subscription,
 		},
 	}
 	return &resource, nil
@@ -133,7 +135,7 @@ func AppServiceWebApp(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource, err := GetAppServiceWebApp(ctx, webClient, v)
+			resource, err := GetAppServiceWebApp(ctx, webClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -152,7 +154,7 @@ func AppServiceWebApp(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, err
 }
 
-func GetAppServiceWebApp(ctx context.Context, webClient *appservice.WebAppsClient, v *appservice.Site) (*models.Resource, error) {
+func GetAppServiceWebApp(ctx context.Context, webClient *appservice.WebAppsClient, v *appservice.Site, subscription string) (*models.Resource, error) {
 	var err error
 
 	resourceGroup := strings.Split(*v.ID, "/")[4]
@@ -212,6 +214,7 @@ func GetAppServiceWebApp(ctx context.Context, webClient *appservice.WebAppsClien
 			VnetInfo:           vnet.VnetInfoResource,
 			StorageAccounts:    storageAccounts.Properties,
 			ResourceGroup:      resourceGroup,
+			Subscription:       subscription,
 		},
 	}
 
@@ -232,7 +235,7 @@ func AppServiceWebAppSlot(ctx context.Context, cred *azidentity.ClientSecretCred
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resources, err := ListAppServiceWebAppSlots(ctx, client, v)
+			resources, err := ListAppServiceWebAppSlots(ctx, client, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -250,7 +253,7 @@ func AppServiceWebAppSlot(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, err
 }
 
-func ListAppServiceWebAppSlots(ctx context.Context, webClient *appservice.WebAppsClient, v *appservice.Site) ([]models.Resource, error) {
+func ListAppServiceWebAppSlots(ctx context.Context, webClient *appservice.WebAppsClient, v *appservice.Site, subscription string) ([]models.Resource, error) {
 	pager := webClient.NewListSlotsPager(*v.Properties.ResourceGroup, *v.Name, nil)
 	var values []models.Resource
 	for pager.More() {
@@ -259,14 +262,14 @@ func ListAppServiceWebAppSlots(ctx context.Context, webClient *appservice.WebApp
 			return nil, err
 		}
 		for _, slot := range page.Value {
-			resource := GetAppServiceWebAppSlot(ctx, v, slot)
+			resource := GetAppServiceWebAppSlot(ctx, v, slot, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func GetAppServiceWebAppSlot(ctx context.Context, app *appservice.Site, v *appservice.Site) *models.Resource {
+func GetAppServiceWebAppSlot(ctx context.Context, app *appservice.Site, v *appservice.Site, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -277,6 +280,7 @@ func GetAppServiceWebAppSlot(ctx context.Context, app *appservice.Site, v *appse
 			Site:          *v,
 			AppName:       *app.Name,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 
@@ -297,7 +301,7 @@ func AppServicePlan(ctx context.Context, cred *azidentity.ClientSecretCredential
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource, err := GetAppServicePlan(ctx, client, v)
+			resource, err := GetAppServicePlan(ctx, client, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -313,7 +317,7 @@ func AppServicePlan(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func GetAppServicePlan(ctx context.Context, client *appservice.PlansClient, v *appservice.Plan) (*models.Resource, error) {
+func GetAppServicePlan(ctx context.Context, client *appservice.PlansClient, v *appservice.Plan, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	location := ""
@@ -340,6 +344,7 @@ func GetAppServicePlan(ctx context.Context, client *appservice.PlansClient, v *a
 			Plan:          *v,
 			Apps:          webApps,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 
@@ -360,7 +365,7 @@ func AppContainerApps(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetAppContainerApps(ctx, v)
+			resource := GetAppContainerApps(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -373,7 +378,7 @@ func AppContainerApps(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func GetAppContainerApps(ctx context.Context, server *appservice.ContainerApp) *models.Resource {
+func GetAppContainerApps(ctx context.Context, server *appservice.ContainerApp, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(string(*server.ID), "/")[4]
 
 	resource := models.Resource{
@@ -383,6 +388,7 @@ func GetAppContainerApps(ctx context.Context, server *appservice.ContainerApp) *
 		Description: model.ContainerAppDescription{
 			Server:        *server,
 			ResourceGroup: resourceGroupName,
+			Subscription:  subscription,
 		},
 	}
 
@@ -403,7 +409,7 @@ func WebServerFarms(ctx context.Context, cred *azidentity.ClientSecretCredential
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetWebServerFarm(ctx, v)
+			resource := GetWebServerFarm(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -416,7 +422,7 @@ func WebServerFarms(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func GetWebServerFarm(ctx context.Context, v *appservice.Plan) *models.Resource {
+func GetWebServerFarm(ctx context.Context, v *appservice.Plan, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(string(*v.ID), "/")[4]
 
 	resource := models.Resource{
@@ -426,6 +432,7 @@ func GetWebServerFarm(ctx context.Context, v *appservice.Plan) *models.Resource 
 		Description: model.WebServerFarmsDescription{
 			ServerFarm:    *v,
 			ResourceGroup: resourceGroupName,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

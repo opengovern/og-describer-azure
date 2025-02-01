@@ -24,7 +24,7 @@ func ResourceLink(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getResourceLink(ctx, v)
+			resource := getResourceLink(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -37,13 +37,14 @@ func ResourceLink(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	return values, nil
 }
 
-func getResourceLink(ctx context.Context, v *armlinks.ResourceLink) *models.Resource {
+func getResourceLink(ctx context.Context, v *armlinks.ResourceLink, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
 		Description: model.ResourceLinkDescription{
 			ResourceLink: *v,
+			Subscription: subscription,
 		},
 	}
 	return &resource

@@ -26,7 +26,7 @@ func HybridComputeMachine(ctx context.Context, cred *azidentity.ClientSecretCred
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource, err := getHybridComputeMachine(ctx, extentionClient, v)
+			resource, err := getHybridComputeMachine(ctx, extentionClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -42,7 +42,7 @@ func HybridComputeMachine(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func getHybridComputeMachine(ctx context.Context, extentionClient *armhybridcompute.MachineExtensionsClient, machine *armhybridcompute.Machine) (*models.Resource, error) {
+func getHybridComputeMachine(ctx context.Context, extentionClient *armhybridcompute.MachineExtensionsClient, machine *armhybridcompute.Machine, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*machine.ID, "/")[4]
 
 	var hybridComputeListResult []*armhybridcompute.MachineExtension
@@ -63,6 +63,7 @@ func getHybridComputeMachine(ctx context.Context, extentionClient *armhybridcomp
 			Machine:           *machine,
 			MachineExtensions: hybridComputeListResult,
 			ResourceGroup:     resourceGroup,
+			Subscription:      subscription,
 		},
 	}
 

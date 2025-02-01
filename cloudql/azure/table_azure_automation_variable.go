@@ -30,6 +30,11 @@ func tableAzureApAutomationVariable(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Automation.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Type:        proto.ColumnType_STRING,
 				Description: "The name of the resource.",

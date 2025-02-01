@@ -39,7 +39,7 @@ func EventGridDomainTopic(ctx context.Context, cred *azidentity.ClientSecretCred
 				}
 
 				for _, v := range page.Value {
-					resource := getEventGridDomainTopic(ctx, v)
+					resource := getEventGridDomainTopic(ctx, v, subscription)
 					if stream != nil {
 						if err := (*stream)(*resource); err != nil {
 							return nil, err
@@ -54,7 +54,7 @@ func EventGridDomainTopic(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func getEventGridDomainTopic(ctx context.Context, v *armeventgrid.DomainTopic) *models.Resource {
+func getEventGridDomainTopic(ctx context.Context, v *armeventgrid.DomainTopic, subscription string) *models.Resource {
 	return &models.Resource{
 		ID:          *v.ID,
 		Name:        *v.Name,
@@ -103,7 +103,7 @@ func EventGridDomain(ctx context.Context, cred *azidentity.ClientSecretCredentia
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource, err := getEventGridDomain(ctx, v, diagnosticClient)
+			resource, err := getEventGridDomain(ctx, v, diagnosticClient, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -119,7 +119,7 @@ func EventGridDomain(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	return values, nil
 }
 
-func getEventGridDomain(ctx context.Context, domain *armeventgrid.Domain, client *armmonitor.DiagnosticSettingsClient) (*models.Resource, error) {
+func getEventGridDomain(ctx context.Context, domain *armeventgrid.Domain, client *armmonitor.DiagnosticSettingsClient, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*domain.ID, "/")[4]
 
 	id := *domain.ID
@@ -141,6 +141,7 @@ func getEventGridDomain(ctx context.Context, domain *armeventgrid.Domain, client
 			Domain:                      *domain,
 			DiagnosticSettingsResources: eventgridListOp,
 			ResourceGroup:               resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 	return &resource, nil
@@ -167,7 +168,7 @@ func EventGridTopic(ctx context.Context, cred *azidentity.ClientSecretCredential
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource, err := getEventGridTopic(ctx, v, diagnosticClient)
+			resource, err := getEventGridTopic(ctx, v, diagnosticClient, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -183,7 +184,7 @@ func EventGridTopic(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func getEventGridTopic(ctx context.Context, v *armeventgrid.Topic, client *armmonitor.DiagnosticSettingsClient) (*models.Resource, error) {
+func getEventGridTopic(ctx context.Context, v *armeventgrid.Topic, client *armmonitor.DiagnosticSettingsClient, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	id := *v.ID
@@ -205,6 +206,7 @@ func getEventGridTopic(ctx context.Context, v *armeventgrid.Topic, client *armmo
 			Topic:                       *v,
 			DiagnosticSettingsResources: eventgridListOp,
 			ResourceGroup:               resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 	return &resource, nil

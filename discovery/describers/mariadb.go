@@ -25,7 +25,7 @@ func MariadbServer(ctx context.Context, cred *azidentity.ClientSecretCredential,
 			return nil, err
 		}
 		for _, server := range page.Value {
-			resource := getMariadbServer(ctx, server)
+			resource := getMariadbServer(ctx, server, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -38,7 +38,7 @@ func MariadbServer(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	return values, nil
 }
 
-func getMariadbServer(ctx context.Context, server *armmariadb.Server) *models.Resource {
+func getMariadbServer(ctx context.Context, server *armmariadb.Server, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*server.ID, "/")[4]
 
 	resource := models.Resource{
@@ -48,6 +48,7 @@ func getMariadbServer(ctx context.Context, server *armmariadb.Server) *models.Re
 		Description: model.MariadbServerDescription{
 			Server:        *server,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 
@@ -70,7 +71,7 @@ func MariadbDatabases(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, server := range page.Value {
-			resource, err := listMariadbServerDatabases(ctx, databaseClient, server)
+			resource, err := listMariadbServerDatabases(ctx, databaseClient, server, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -88,7 +89,7 @@ func MariadbDatabases(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func listMariadbServerDatabases(ctx context.Context, databaseClient *armmariadb.DatabasesClient, server *armmariadb.Server) ([]models.Resource, error) {
+func listMariadbServerDatabases(ctx context.Context, databaseClient *armmariadb.DatabasesClient, server *armmariadb.Server, subscription string) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*server.ID, "/")[4]
 
 	pager := databaseClient.NewListByServerPager(resourceGroup, *server.Name, nil)
@@ -99,14 +100,14 @@ func listMariadbServerDatabases(ctx context.Context, databaseClient *armmariadb.
 			return nil, err
 		}
 		for _, database := range page.Value {
-			resource := getMariadbDatabase(ctx, server, database)
+			resource := getMariadbDatabase(ctx, server, database, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getMariadbDatabase(ctx context.Context, server *armmariadb.Server, r *armmariadb.Database) *models.Resource {
+func getMariadbDatabase(ctx context.Context, server *armmariadb.Server, r *armmariadb.Database, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*server.ID, "/")[4]
 
 	resource := models.Resource{
@@ -117,6 +118,7 @@ func getMariadbDatabase(ctx context.Context, server *armmariadb.Server, r *armma
 			Database:      *r,
 			Server:        *server,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 

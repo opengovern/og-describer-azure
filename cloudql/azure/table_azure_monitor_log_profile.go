@@ -27,6 +27,11 @@ func tableAzureMonitorLogProfile(_ context.Context) *plugin.Table {
 		},
 		Columns: azureColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.LogProfile.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "Azure resource Id.",
 				Type:        proto.ColumnType_STRING,

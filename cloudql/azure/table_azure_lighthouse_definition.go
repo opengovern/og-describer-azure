@@ -41,6 +41,11 @@ func tableAzureLighthouseDefinition(_ context.Context) *plugin.Table {
 		},
 		Columns: []*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.LighthouseDefinition.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "Name of the registration definition.",
 				Type:        proto.ColumnType_STRING,

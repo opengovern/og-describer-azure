@@ -25,7 +25,7 @@ func AnalysisService(ctx context.Context, cred *azidentity.ClientSecretCredentia
 			return nil, err
 		}
 		for _, server := range page.Value {
-			resource := getAnalysisService(ctx, server)
+			resource := getAnalysisService(ctx, server, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -38,7 +38,7 @@ func AnalysisService(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	return values, nil
 }
 
-func getAnalysisService(ctx context.Context, server *armanalysisservices.Server) *models.Resource {
+func getAnalysisService(ctx context.Context, server *armanalysisservices.Server, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(*server.ID, "/")[4]
 
 	resource := models.Resource{
@@ -48,6 +48,7 @@ func getAnalysisService(ctx context.Context, server *armanalysisservices.Server)
 		Description: model.AnalysisServiceServerDescription{
 			Server:        *server,
 			ResourceGroup: resourceGroupName,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

@@ -44,7 +44,7 @@ func DocumentDBSQLDatabase(ctx context.Context, cred *azidentity.ClientSecretCre
 				}
 			}
 			for _, v := range it {
-				resource := getDocumentDBSQLDatabase(ctx, v, account, rg)
+				resource := getDocumentDBSQLDatabase(ctx, v, account, rg, subscription)
 				if stream != nil {
 					if err := (*stream)(*resource); err != nil {
 						return nil, err
@@ -59,7 +59,7 @@ func DocumentDBSQLDatabase(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func getDocumentDBSQLDatabase(ctx context.Context, v *armcosmos.SQLDatabaseGetResults, account *armcosmos.DatabaseAccountGetResults, rg armresources.ResourceGroup) *models.Resource {
+func getDocumentDBSQLDatabase(ctx context.Context, v *armcosmos.SQLDatabaseGetResults, account *armcosmos.DatabaseAccountGetResults, rg armresources.ResourceGroup, subscription string) *models.Resource {
 	location := "global"
 	if v.Location != nil {
 		location = *v.Location
@@ -73,6 +73,7 @@ func getDocumentDBSQLDatabase(ctx context.Context, v *armcosmos.SQLDatabaseGetRe
 			Account:       *account,
 			SqlDatabase:   *v,
 			ResourceGroup: *rg.Name,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -110,7 +111,7 @@ func DocumentDBMongoDatabase(ctx context.Context, cred *azidentity.ClientSecretC
 				}
 			}
 			for _, v := range it {
-				resource := getDocumentDBMongoDatabase(ctx, v, account, rg)
+				resource := getDocumentDBMongoDatabase(ctx, v, account, rg, subscription)
 				if stream != nil {
 					if err := (*stream)(*resource); err != nil {
 						return nil, err
@@ -124,7 +125,7 @@ func DocumentDBMongoDatabase(ctx context.Context, cred *azidentity.ClientSecretC
 	return values, nil
 }
 
-func getDocumentDBMongoDatabase(ctx context.Context, v *armcosmos.MongoDBDatabaseGetResults, account *armcosmos.DatabaseAccountGetResults, rg armresources.ResourceGroup) *models.Resource {
+func getDocumentDBMongoDatabase(ctx context.Context, v *armcosmos.MongoDBDatabaseGetResults, account *armcosmos.DatabaseAccountGetResults, rg armresources.ResourceGroup, subscription string) *models.Resource {
 	location := ""
 	if v.Location != nil {
 		location = *v.Location
@@ -138,6 +139,7 @@ func getDocumentDBMongoDatabase(ctx context.Context, v *armcosmos.MongoDBDatabas
 			Account:       *account,
 			MongoDatabase: *v,
 			ResourceGroup: *rg.Name,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -175,7 +177,7 @@ func DocumentDBMongoCollection(ctx context.Context, cred *azidentity.ClientSecre
 				}
 			}
 			for _, v := range it {
-				resources, err := ListDocumentDBMongoDatabaseCollections(ctx, client, rg, account, v)
+				resources, err := ListDocumentDBMongoDatabaseCollections(ctx, client, rg, account, v, subscription)
 				if err != nil {
 					return nil, err
 				}
@@ -194,7 +196,7 @@ func DocumentDBMongoCollection(ctx context.Context, cred *azidentity.ClientSecre
 	return values, nil
 }
 
-func ListDocumentDBMongoDatabaseCollections(ctx context.Context, client *armcosmos.MongoDBResourcesClient, rg armresources.ResourceGroup, account *armcosmos.DatabaseAccountGetResults, db *armcosmos.MongoDBDatabaseGetResults) ([]models.Resource, error) {
+func ListDocumentDBMongoDatabaseCollections(ctx context.Context, client *armcosmos.MongoDBResourcesClient, rg armresources.ResourceGroup, account *armcosmos.DatabaseAccountGetResults, db *armcosmos.MongoDBDatabaseGetResults, subscription string) ([]models.Resource, error) {
 	pager := client.NewListMongoDBCollectionsPager(*rg.Name, *account.Name, *db.Name, nil)
 	var values []models.Resource
 	for pager.More() {
@@ -203,7 +205,7 @@ func ListDocumentDBMongoDatabaseCollections(ctx context.Context, client *armcosm
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource, err := getDocumentDBMongoCollection(ctx, client, v, account, rg, db)
+			resource, err := getDocumentDBMongoCollection(ctx, client, v, account, rg, db, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -213,7 +215,7 @@ func ListDocumentDBMongoDatabaseCollections(ctx context.Context, client *armcosm
 	return values, nil
 }
 
-func getDocumentDBMongoCollection(ctx context.Context, client *armcosmos.MongoDBResourcesClient, v *armcosmos.MongoDBCollectionGetResults, account *armcosmos.DatabaseAccountGetResults, rg armresources.ResourceGroup, db *armcosmos.MongoDBDatabaseGetResults) (*models.Resource, error) {
+func getDocumentDBMongoCollection(ctx context.Context, client *armcosmos.MongoDBResourcesClient, v *armcosmos.MongoDBCollectionGetResults, account *armcosmos.DatabaseAccountGetResults, rg armresources.ResourceGroup, db *armcosmos.MongoDBDatabaseGetResults, subscription string) (*models.Resource, error) {
 	tp, err := client.GetMongoDBCollectionThroughput(ctx, *rg.Name, *account.Name, *db.Name, *v.Name, nil)
 	if err != nil {
 		return nil, err
@@ -233,6 +235,7 @@ func getDocumentDBMongoCollection(ctx context.Context, client *armcosmos.MongoDB
 			MongoCollection: *v,
 			Throughput:      tp.ThroughputSettingsGetResults,
 			ResourceGroup:   *rg.Name,
+			Subscription:    subscription,
 		},
 	}
 	return &resource, nil
@@ -253,7 +256,7 @@ func DocumentDBCassandraCluster(ctx context.Context, cred *azidentity.ClientSecr
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getDocumentDBCassandraCluster(ctx, v)
+			resource := getDocumentDBCassandraCluster(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -266,7 +269,7 @@ func DocumentDBCassandraCluster(ctx context.Context, cred *azidentity.ClientSecr
 	return values, nil
 }
 
-func getDocumentDBCassandraCluster(ctx context.Context, v *armcosmos.ClusterResource) *models.Resource {
+func getDocumentDBCassandraCluster(ctx context.Context, v *armcosmos.ClusterResource, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 	location := "global"
 	if v.Location != nil {
@@ -279,6 +282,7 @@ func getDocumentDBCassandraCluster(ctx context.Context, v *armcosmos.ClusterReso
 		Description: model.CosmosdbCassandraClusterDescription{
 			CassandraCluster: *v,
 			ResourceGroup:    resourceGroup,
+			Subscription:     subscription,
 		},
 	}
 	return &resource
@@ -319,7 +323,7 @@ func CosmosdbAccount(ctx context.Context, cred *azidentity.ClientSecretCredentia
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getCosmosdbAccount(ctx, v)
+			resource := getCosmosdbAccount(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -332,7 +336,7 @@ func CosmosdbAccount(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	return values, nil
 }
 
-func getCosmosdbAccount(ctx context.Context, v *armcosmos.DatabaseAccountGetResults) *models.Resource {
+func getCosmosdbAccount(ctx context.Context, v *armcosmos.DatabaseAccountGetResults, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 	location := ""
 	if v.Location != nil {
@@ -345,6 +349,7 @@ func getCosmosdbAccount(ctx context.Context, v *armcosmos.DatabaseAccountGetResu
 		Description: model.CosmosdbAccountDescription{
 			DatabaseAccountGetResults: *v,
 			ResourceGroup:             resourceGroup,
+			Subscription:              subscription,
 		},
 	}
 	return &resource
@@ -365,7 +370,7 @@ func CosmosdbRestorableDatabaseAccount(ctx context.Context, cred *azidentity.Cli
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getRestorableDatabaseAccount(ctx, v)
+			resource := getRestorableDatabaseAccount(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -378,7 +383,7 @@ func CosmosdbRestorableDatabaseAccount(ctx context.Context, cred *azidentity.Cli
 	return values, nil
 }
 
-func getRestorableDatabaseAccount(ctx context.Context, v *armcosmos.RestorableDatabaseAccountGetResult) *models.Resource {
+func getRestorableDatabaseAccount(ctx context.Context, v *armcosmos.RestorableDatabaseAccountGetResult, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 	location := ""
 	if v.Location != nil {
@@ -391,6 +396,7 @@ func getRestorableDatabaseAccount(ctx context.Context, v *armcosmos.RestorableDa
 		Description: model.CosmosdbRestorableDatabaseAccountDescription{
 			Account:       *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

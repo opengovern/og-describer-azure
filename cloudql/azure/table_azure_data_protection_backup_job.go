@@ -23,6 +23,11 @@ func tableAzureDataProtectionBackupJob(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.DataProtectionJob.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "Resource name associated with the resource.",
 				Type:        proto.ColumnType_STRING,

@@ -22,6 +22,11 @@ func tableAzureTrafficManagerProfile(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Profile.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the profile.",
 				Type:        proto.ColumnType_STRING,

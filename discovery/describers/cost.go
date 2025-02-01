@@ -7,8 +7,6 @@ import (
 	"strconv"
 	"time"
 
-	
-
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/costmanagement/armcostmanagement"
 
@@ -159,6 +157,7 @@ func DailyCostByResourceType(ctx context.Context, cred *azidentity.ClientSecretC
 			Description: model.CostManagementCostByResourceTypeDescription{
 				CostManagementCostByResourceType: row,
 				CostDateMillis:                   costDate.UnixMilli(),
+				Subscription:                     subscription,
 			},
 		}
 		if stream != nil {
@@ -196,6 +195,7 @@ func DailyCostBySubscription(ctx context.Context, cred *azidentity.ClientSecretC
 			Location: location,
 			Description: model.CostManagementCostBySubscriptionDescription{
 				CostManagementCostBySubscription: row,
+				Subscription:                     subscription,
 			},
 		}
 		if stream != nil {

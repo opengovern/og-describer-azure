@@ -32,7 +32,7 @@ func HdInsightCluster(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, cluster := range page.Value {
-			resource, err := getHdInsightCluster(ctx, diagnosticClient, cluster)
+			resource, err := getHdInsightCluster(ctx, diagnosticClient, cluster, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -48,7 +48,7 @@ func HdInsightCluster(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getHdInsightCluster(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, cluster *armhdinsight.Cluster) (*models.Resource, error) {
+func getHdInsightCluster(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, cluster *armhdinsight.Cluster, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*cluster.ID, "/")[4]
 
 	var hdinsightListOp []*armmonitor.DiagnosticSettingsResource
@@ -69,6 +69,7 @@ func getHdInsightCluster(ctx context.Context, diagnosticClient *armmonitor.Diagn
 			Cluster:                     *cluster,
 			DiagnosticSettingsResources: hdinsightListOp,
 			ResourceGroup:               resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 	return &resource, nil

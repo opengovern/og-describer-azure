@@ -27,7 +27,7 @@ func AutomationAccounts(ctx context.Context, cred *azidentity.ClientSecretCreden
 		}
 
 		for _, v := range result.Value {
-			resource := getAutomationAccount(ctx, v)
+			resource := getAutomationAccount(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -40,7 +40,7 @@ func AutomationAccounts(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func getAutomationAccount(ctx context.Context, account *armautomation.Account) *models.Resource {
+func getAutomationAccount(ctx context.Context, account *armautomation.Account, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*account.ID, "/")[4]
 
 	resource := models.Resource{
@@ -50,6 +50,7 @@ func getAutomationAccount(ctx context.Context, account *armautomation.Account) *
 		Description: model.AutomationAccountsDescription{
 			Automation:    *account,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -73,7 +74,7 @@ func AutomationVariables(ctx context.Context, cred *azidentity.ClientSecretCrede
 		}
 
 		for _, v := range result.Value {
-			resources, err := ListAutomationAccountVariables(ctx, variablesClient, v)
+			resources, err := ListAutomationAccountVariables(ctx, variablesClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -91,7 +92,7 @@ func AutomationVariables(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func ListAutomationAccountVariables(ctx context.Context, variablesClient *armautomation.VariableClient, account *armautomation.Account) ([]models.Resource, error) {
+func ListAutomationAccountVariables(ctx context.Context, variablesClient *armautomation.VariableClient, account *armautomation.Account, subscription string) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*account.ID, "/")[4]
 	pager := variablesClient.NewListByAutomationAccountPager(resourceGroup, *account.Name, nil)
 	var values []models.Resource
@@ -101,14 +102,14 @@ func ListAutomationAccountVariables(ctx context.Context, variablesClient *armaut
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetAutomationVariable(ctx, account, v)
+			resource := GetAutomationVariable(ctx, account, subscription, v)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func GetAutomationVariable(ctx context.Context, account *armautomation.Account, v *armautomation.Variable) *models.Resource {
+func GetAutomationVariable(ctx context.Context, account *armautomation.Account, subscription string, v *armautomation.Variable) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -118,6 +119,7 @@ func GetAutomationVariable(ctx context.Context, account *armautomation.Account, 
 			Automation:    *v,
 			AccountName:   *account.Name,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

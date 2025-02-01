@@ -89,6 +89,7 @@ func KeyVaultSecret(ctx context.Context, cred *azidentity.ClientSecretCredential
 								Vault:         keyVaultGetOp.Vault,
 								TurboData:     turbotData,
 								ResourceGroup: *rg.Name,
+								Subscription:  subscription,
 							},
 						}
 						if stream != nil {

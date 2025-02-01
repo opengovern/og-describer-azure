@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"strings"
 
-
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/data/aztables"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
@@ -42,7 +41,7 @@ func StorageContainer(ctx context.Context, cred *azidentity.ClientSecretCredenti
 		for _, ac := range page.Value {
 			account := ac
 			wpe.AddJob(func() (interface{}, error) {
-				results, err := ListAccountStorageContainers(ctx, client, account)
+				results, err := ListAccountStorageContainers(ctx, client, account, subscription)
 				if err != nil {
 					return nil, err
 				}
@@ -74,7 +73,7 @@ func StorageContainer(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func ListAccountStorageContainers(ctx context.Context, client *armstorage.BlobContainersClient, account *armstorage.Account) ([]models.Resource, error) {
+func ListAccountStorageContainers(ctx context.Context, client *armstorage.BlobContainersClient, account *armstorage.Account, subscription string) ([]models.Resource, error) {
 	resourceGroup := &strings.Split(string(*account.ID), "/")[4]
 	var resources []models.Resource
 	pager := client.NewListPager(*resourceGroup, *account.Name, nil)
@@ -84,7 +83,7 @@ func ListAccountStorageContainers(ctx context.Context, client *armstorage.BlobCo
 			return nil, err
 		}
 		for _, vl := range page.Value {
-			resource, err := GetAccountStorageContainter(ctx, client, vl, account)
+			resource, err := GetAccountStorageContainter(ctx, client, vl, account, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -94,7 +93,7 @@ func ListAccountStorageContainers(ctx context.Context, client *armstorage.BlobCo
 	return resources, nil
 }
 
-func GetAccountStorageContainter(ctx context.Context, client *armstorage.BlobContainersClient, v *armstorage.ListContainerItem, acc *armstorage.Account) (*models.Resource, error) {
+func GetAccountStorageContainter(ctx context.Context, client *armstorage.BlobContainersClient, v *armstorage.ListContainerItem, acc *armstorage.Account, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 	accountName := strings.Split(*v.ID, "/")[8]
 
@@ -112,6 +111,7 @@ func GetAccountStorageContainter(ctx context.Context, client *armstorage.BlobCon
 			ListContainerItem:  *v,
 			ImmutabilityPolicy: op.ImmutabilityPolicy,
 			ResourceGroup:      resourceGroup,
+			Subscription:       subscription,
 		},
 	}, nil
 }
@@ -147,7 +147,7 @@ func StorageAccount(ctx context.Context, cred *azidentity.ClientSecretCredential
 			return nil, err
 		}
 		for _, account := range page.Value {
-			resource, err := GetStorageAccount(ctx, storageClient, encryptionScopesStorageClient, diagnosticClient, fileServicesStorageClient, blobServicesStorageClient, managementPoliciesStorageClient, account)
+			resource, err := GetStorageAccount(ctx, storageClient, encryptionScopesStorageClient, diagnosticClient, fileServicesStorageClient, blobServicesStorageClient, managementPoliciesStorageClient, account, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -163,7 +163,7 @@ func StorageAccount(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func GetStorageAccount(ctx context.Context, storageClient *armstorage.AccountsClient, encryptionScopesStorageClient *armstorage.EncryptionScopesClient, diagnosticClient *armmonitor.DiagnosticSettingsClient, fileServicesStorageClient *armstorage.FileServicesClient, blobServicesStorageClient *armstorage.BlobServicesClient, managementPoliciesStorageClient *armstorage.ManagementPoliciesClient, account *armstorage.Account) (*models.Resource, error) {
+func GetStorageAccount(ctx context.Context, storageClient *armstorage.AccountsClient, encryptionScopesStorageClient *armstorage.EncryptionScopesClient, diagnosticClient *armmonitor.DiagnosticSettingsClient, fileServicesStorageClient *armstorage.FileServicesClient, blobServicesStorageClient *armstorage.BlobServicesClient, managementPoliciesStorageClient *armstorage.ManagementPoliciesClient, account *armstorage.Account, subscription string) (*models.Resource, error) {
 	resourceGroup := &strings.Split(*account.ID, "/")[4]
 
 	var managementPolicy *armstorage.ManagementPolicy
@@ -343,6 +343,7 @@ func GetStorageAccount(ctx context.Context, storageClient *armstorage.AccountsCl
 			TableProperties:             tableProperties,
 			AccessKeys:                  keysMap,
 			ResourceGroup:               *resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 	return &resource, nil
@@ -364,7 +365,7 @@ func StorageBlob(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resources, err := ListAccountStorageBlobs(ctx, containerClient, accountClient, v)
+			resources, err := ListAccountStorageBlobs(ctx, containerClient, accountClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -382,7 +383,7 @@ func StorageBlob(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func ListAccountStorageBlobs(ctx context.Context, containerClient *armstorage.BlobContainersClient, accountClient *armstorage.AccountsClient, storageAccount *armstorage.Account) ([]models.Resource, error) {
+func ListAccountStorageBlobs(ctx context.Context, containerClient *armstorage.BlobContainersClient, accountClient *armstorage.AccountsClient, storageAccount *armstorage.Account, subscription string) ([]models.Resource, error) {
 	if storageAccount == nil || storageAccount.ID == nil {
 		return nil, nil
 	}
@@ -532,6 +533,7 @@ func ListAccountStorageBlobs(ctx context.Context, containerClient *armstorage.Bl
 						desc.Blob.Properties.RehydratePriority = azblobOld.RehydratePriorityType(*blob.Properties.RehydratePriority)
 					}
 
+					desc.Subscription = subscription
 					resource := models.Resource{
 						ID:          *blob.Name,
 						Name:        *blob.Name,
@@ -584,7 +586,7 @@ func StorageBlobService(ctx context.Context, cred *azidentity.ClientSecretCreden
 				}
 
 				for _, blobService := range blobServices {
-					resource := GetStorageBlobService(ctx, account, resourceGroup, blobService)
+					resource := GetStorageBlobService(ctx, account, resourceGroup, blobService, subscription)
 					if stream != nil {
 						if err := (*stream)(*resource); err != nil {
 							return nil, err
@@ -599,7 +601,7 @@ func StorageBlobService(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func GetStorageBlobService(ctx context.Context, account *armstorage.Account, resourceGroup armresources.ResourceGroup, blobService *armstorage.BlobServiceProperties) *models.Resource {
+func GetStorageBlobService(ctx context.Context, account *armstorage.Account, resourceGroup armresources.ResourceGroup, blobService *armstorage.BlobServiceProperties, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *blobService.ID,
 		Name:     *blobService.Name,
@@ -609,6 +611,7 @@ func GetStorageBlobService(ctx context.Context, account *armstorage.Account, res
 			AccountName:   *account.Name,
 			Location:      *account.Location,
 			ResourceGroup: *resourceGroup.Name,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -636,7 +639,7 @@ func StorageQueue(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 		}
 		for _, account := range page.Value {
 			for _, resourceGroup := range resourceGroups {
-				resources, err := ListAccountStorageQueue(ctx, storageClient, account, resourceGroup)
+				resources, err := ListAccountStorageQueue(ctx, storageClient, account, resourceGroup, subscription)
 				if err != nil {
 					return nil, err
 				}
@@ -655,7 +658,7 @@ func StorageQueue(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	return values, nil
 }
 
-func ListAccountStorageQueue(ctx context.Context, storageClient *armstorage.QueueClient, account *armstorage.Account, resourceGroup armresources.ResourceGroup) ([]models.Resource, error) {
+func ListAccountStorageQueue(ctx context.Context, storageClient *armstorage.QueueClient, account *armstorage.Account, resourceGroup armresources.ResourceGroup, subscription string) ([]models.Resource, error) {
 	var values []models.Resource
 	pager := storageClient.NewListPager(*resourceGroup.Name, *account.Name, nil)
 	for pager.More() {
@@ -676,14 +679,14 @@ func ListAccountStorageQueue(ctx context.Context, storageClient *armstorage.Queu
 			}
 		}
 		for _, queue := range page.Value {
-			resource := GetStorageQueue(ctx, account, resourceGroup, queue)
+			resource := GetStorageQueue(ctx, account, resourceGroup, queue, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func GetStorageQueue(ctx context.Context, account *armstorage.Account, resourceGroup armresources.ResourceGroup, queue *armstorage.ListQueue) *models.Resource {
+func GetStorageQueue(ctx context.Context, account *armstorage.Account, resourceGroup armresources.ResourceGroup, queue *armstorage.ListQueue, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *queue.ID,
 		Name:     *queue.Name,
@@ -693,6 +696,7 @@ func GetStorageQueue(ctx context.Context, account *armstorage.Account, resourceG
 			AccountName:   *account.Name,
 			Location:      *account.Location,
 			ResourceGroup: *resourceGroup.Name,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -720,7 +724,7 @@ func StorageFileShare(ctx context.Context, cred *azidentity.ClientSecretCredenti
 		}
 		for _, account := range page.Value {
 			for _, resourceGroup := range resourceGroups {
-				resources, err := ListAccountStorageFileShares(ctx, storageClient, account, resourceGroup)
+				resources, err := ListAccountStorageFileShares(ctx, storageClient, account, resourceGroup, subscription)
 				if err != nil {
 					return nil, err
 				}
@@ -739,7 +743,7 @@ func StorageFileShare(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func ListAccountStorageFileShares(ctx context.Context, storageClient *armstorage.FileSharesClient, account *armstorage.Account, resourceGroup armresources.ResourceGroup) ([]models.Resource, error) {
+func ListAccountStorageFileShares(ctx context.Context, storageClient *armstorage.FileSharesClient, account *armstorage.Account, resourceGroup armresources.ResourceGroup, subscription string) ([]models.Resource, error) {
 	pager := storageClient.NewListPager(*resourceGroup.Name, *account.Name, nil)
 	var values []models.Resource
 	for pager.More() {
@@ -753,14 +757,14 @@ func ListAccountStorageFileShares(ctx context.Context, storageClient *armstorage
 			return nil, err
 		}
 		for _, fileShareItem := range page.Value {
-			resource := GetStorageFileShares(ctx, account, resourceGroup, fileShareItem)
+			resource := GetStorageFileShares(ctx, account, resourceGroup, fileShareItem, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func GetStorageFileShares(ctx context.Context, account *armstorage.Account, resourceGroup armresources.ResourceGroup, fileShareItem *armstorage.FileShareItem) *models.Resource {
+func GetStorageFileShares(ctx context.Context, account *armstorage.Account, resourceGroup armresources.ResourceGroup, fileShareItem *armstorage.FileShareItem, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *fileShareItem.ID,
 		Name:     *fileShareItem.Name,
@@ -770,6 +774,7 @@ func GetStorageFileShares(ctx context.Context, account *armstorage.Account, reso
 			AccountName:   *account.Name,
 			Location:      *account.Location,
 			ResourceGroup: *resourceGroup.Name,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -800,7 +805,7 @@ func StorageTable(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 				continue
 			}
 			for _, resourceGroup := range resourceGroups {
-				resources, err := ListAccountStorageTables(ctx, storageClient, account, resourceGroup)
+				resources, err := ListAccountStorageTables(ctx, storageClient, account, resourceGroup, subscription)
 				if err != nil {
 					return nil, err
 				}
@@ -819,7 +824,7 @@ func StorageTable(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	return values, nil
 }
 
-func ListAccountStorageTables(ctx context.Context, storageClient *armstorage.TableClient, account *armstorage.Account, resourceGroup armresources.ResourceGroup) ([]models.Resource, error) {
+func ListAccountStorageTables(ctx context.Context, storageClient *armstorage.TableClient, account *armstorage.Account, resourceGroup armresources.ResourceGroup, subscription string) ([]models.Resource, error) {
 	pager := storageClient.NewListPager(*resourceGroup.Name, *account.Name, nil)
 	var values []models.Resource
 	for pager.More() {
@@ -839,14 +844,14 @@ func ListAccountStorageTables(ctx context.Context, storageClient *armstorage.Tab
 			return nil, err
 		}
 		for _, table := range page.Value {
-			resource := GetStorageTable(ctx, account, resourceGroup, table)
+			resource := GetStorageTable(ctx, account, resourceGroup, table, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func GetStorageTable(ctx context.Context, account *armstorage.Account, resourceGroup armresources.ResourceGroup, table *armstorage.Table) *models.Resource {
+func GetStorageTable(ctx context.Context, account *armstorage.Account, resourceGroup armresources.ResourceGroup, table *armstorage.Table, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *table.ID,
 		Name:     *table.Name,
@@ -856,6 +861,7 @@ func GetStorageTable(ctx context.Context, account *armstorage.Account, resourceG
 			AccountName:   *account.Name,
 			Location:      *account.Location,
 			ResourceGroup: *resourceGroup.Name,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -886,7 +892,7 @@ func StorageTableService(ctx context.Context, cred *azidentity.ClientSecretCrede
 				continue
 			}
 			for _, resourceGroup := range resourceGroups {
-				resources, err := ListAccountStorageTableService(ctx, storageClient, account, resourceGroup)
+				resources, err := ListAccountStorageTableService(ctx, storageClient, account, resourceGroup, subscription)
 				if err != nil {
 					return nil, err
 				}
@@ -908,7 +914,7 @@ func StorageTableService(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func ListAccountStorageTableService(ctx context.Context, storageClient *armstorage.TableServicesClient, account *armstorage.Account, resourceGroup armresources.ResourceGroup) ([]models.Resource, error) {
+func ListAccountStorageTableService(ctx context.Context, storageClient *armstorage.TableServicesClient, account *armstorage.Account, resourceGroup armresources.ResourceGroup, subscription string) ([]models.Resource, error) {
 	tableServices, err := storageClient.List(ctx, *resourceGroup.Name, *account.Name, nil)
 	if err != nil {
 		if strings.Contains(err.Error(), "ParentResourceNotFound") ||
@@ -919,13 +925,13 @@ func ListAccountStorageTableService(ctx context.Context, storageClient *armstora
 	}
 	var values []models.Resource
 	for _, tableService := range tableServices.Value {
-		resource := GetAccountStorageTableService(ctx, resourceGroup, account, tableService)
+		resource := GetAccountStorageTableService(ctx, resourceGroup, account, tableService, subscription)
 		values = append(values, *resource)
 	}
 	return values, nil
 }
 
-func GetAccountStorageTableService(ctx context.Context, resourceGroup armresources.ResourceGroup, account *armstorage.Account, tableService *armstorage.TableServiceProperties) *models.Resource {
+func GetAccountStorageTableService(ctx context.Context, resourceGroup armresources.ResourceGroup, account *armstorage.Account, tableService *armstorage.TableServiceProperties, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *tableService.ID,
 		Name:     *tableService.Name,
@@ -935,6 +941,7 @@ func GetAccountStorageTableService(ctx context.Context, resourceGroup armresourc
 			AccountName:   *account.Name,
 			Location:      *account.Location,
 			ResourceGroup: *resourceGroup.Name,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

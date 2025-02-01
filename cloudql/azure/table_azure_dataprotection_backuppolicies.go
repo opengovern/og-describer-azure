@@ -22,6 +22,11 @@ func tableAzureDataProtectionBackupPolicies(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.BackupPolicies.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the backuppolicies.",
 				Type:        proto.ColumnType_STRING,

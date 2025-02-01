@@ -29,6 +29,11 @@ func tableAzureProvider(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Provider.Properties.Subscription"),
+			},
+			{
 				Name:        "namespace",
 				Type:        proto.ColumnType_STRING,
 				Description: "The friendly name that identifies the resource provider.",

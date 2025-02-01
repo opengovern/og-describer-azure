@@ -24,7 +24,7 @@ func OperationalInsightsWorkspaces(ctx context.Context, cred *azidentity.ClientS
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getOperationalInsightsWorkspace(ctx, v)
+			resource := getOperationalInsightsWorkspace(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -37,7 +37,7 @@ func OperationalInsightsWorkspaces(ctx context.Context, cred *azidentity.ClientS
 	return values, nil
 }
 
-func getOperationalInsightsWorkspace(ctx context.Context, v *armoperationalinsights.Workspace) *models.Resource {
+func getOperationalInsightsWorkspace(ctx context.Context, v *armoperationalinsights.Workspace, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -47,6 +47,7 @@ func getOperationalInsightsWorkspace(ctx context.Context, v *armoperationalinsig
 		Description: model.OperationalInsightsWorkspacesDescription{
 			Workspace:     *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

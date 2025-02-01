@@ -25,6 +25,11 @@ func tableAzureResourceResource(ctx context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.GenericResource.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "Resource ID.",
 				Type:        proto.ColumnType_STRING,

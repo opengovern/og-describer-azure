@@ -6,8 +6,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	
-
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/compute/armcompute/v4"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/guestconfiguration/armguestconfiguration"
@@ -33,7 +31,7 @@ func ComputeDisk(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getComputeDisk(ctx, v)
+			resource := getComputeDisk(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -46,7 +44,7 @@ func ComputeDisk(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func getComputeDisk(ctx context.Context, v *armcompute.Disk) *models.Resource {
+func getComputeDisk(ctx context.Context, v *armcompute.Disk, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	return &models.Resource{
@@ -56,6 +54,7 @@ func getComputeDisk(ctx context.Context, v *armcompute.Disk) *models.Resource {
 		Description: model.ComputeDiskDescription{
 			Disk:          *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 }
@@ -75,7 +74,7 @@ func ComputeDiskAccess(ctx context.Context, cred *azidentity.ClientSecretCredent
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getComputeDiskAccess(ctx, v)
+			resource := getComputeDiskAccess(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -88,7 +87,7 @@ func ComputeDiskAccess(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func getComputeDiskAccess(ctx context.Context, v *armcompute.DiskAccess) *models.Resource {
+func getComputeDiskAccess(ctx context.Context, v *armcompute.DiskAccess, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	return &models.Resource{
@@ -98,6 +97,7 @@ func getComputeDiskAccess(ctx context.Context, v *armcompute.DiskAccess) *models
 		Description: model.ComputeDiskAccessDescription{
 			DiskAccess:    *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 }
@@ -118,7 +118,7 @@ func ComputeVirtualMachineScaleSet(ctx context.Context, cred *azidentity.ClientS
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource, err := getComputeVirtualMachineScaleSet(ctx, clientExtension, v)
+			resource, err := getComputeVirtualMachineScaleSet(ctx, clientExtension, subscription, v)
 			if err != nil {
 				return nil, err
 			}
@@ -134,7 +134,7 @@ func ComputeVirtualMachineScaleSet(ctx context.Context, cred *azidentity.ClientS
 	return values, nil
 }
 
-func getComputeVirtualMachineScaleSet(ctx context.Context, clientExtension *armcompute.VirtualMachineScaleSetExtensionsClient, v *armcompute.VirtualMachineScaleSet) (*models.Resource, error) {
+func getComputeVirtualMachineScaleSet(ctx context.Context, clientExtension *armcompute.VirtualMachineScaleSetExtensionsClient, subscription string, v *armcompute.VirtualMachineScaleSet) (*models.Resource, error) {
 	resourceGroupName := strings.Split(*v.ID, "/")[4]
 
 	var op []armcompute.VirtualMachineScaleSetExtension
@@ -157,6 +157,7 @@ func getComputeVirtualMachineScaleSet(ctx context.Context, clientExtension *armc
 			VirtualMachineScaleSet:           *v,
 			VirtualMachineScaleSetExtensions: op,
 			ResourceGroup:                    resourceGroupName,
+			Subscription:                     subscription,
 		},
 	}
 	return &resource, nil
@@ -190,7 +191,7 @@ func ComputeVirtualMachineScaleSetNetworkInterface(ctx context.Context, cred *az
 					return nil, err
 				}
 				for _, v := range page.Value {
-					resource := getComputeVirtualMachineScaleSetNetworkInterface(ctx, vm, v)
+					resource := getComputeVirtualMachineScaleSetNetworkInterface(ctx, vm, subscription, v)
 
 					if err != nil {
 						return nil, err
@@ -210,7 +211,7 @@ func ComputeVirtualMachineScaleSetNetworkInterface(ctx context.Context, cred *az
 	return values, nil
 }
 
-func getComputeVirtualMachineScaleSetNetworkInterface(ctx context.Context, vm *armcompute.VirtualMachineScaleSet, v *armnetwork.Interface) *models.Resource {
+func getComputeVirtualMachineScaleSetNetworkInterface(ctx context.Context, vm *armcompute.VirtualMachineScaleSet, subscription string, v *armnetwork.Interface) *models.Resource {
 	resourceGroupName := strings.Split(*v.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -220,6 +221,7 @@ func getComputeVirtualMachineScaleSetNetworkInterface(ctx context.Context, vm *a
 			VirtualMachineScaleSet: *vm,
 			NetworkInterface:       *v,
 			ResourceGroup:          resourceGroupName,
+			Subscription:           subscription,
 		},
 	}
 	return &resource
@@ -249,7 +251,7 @@ func ComputeVirtualMachineScaleSetVm(ctx context.Context, cred *azidentity.Clien
 					return nil, err
 				}
 				for _, v := range page.Value {
-					resource := getComputeVirtualMachineScaleSetVm(ctx, vm, v)
+					resource := getComputeVirtualMachineScaleSetVm(ctx, vm, subscription, v)
 					if stream != nil {
 						if err := (*stream)(*resource); err != nil {
 							return nil, err
@@ -264,7 +266,7 @@ func ComputeVirtualMachineScaleSetVm(ctx context.Context, cred *azidentity.Clien
 	return values, nil
 }
 
-func getComputeVirtualMachineScaleSetVm(ctx context.Context, vm *armcompute.VirtualMachineScaleSet, v *armcompute.VirtualMachineScaleSetVM) *models.Resource {
+func getComputeVirtualMachineScaleSetVm(ctx context.Context, vm *armcompute.VirtualMachineScaleSet, subscription string, v *armcompute.VirtualMachineScaleSetVM) *models.Resource {
 	resourceGroupName := strings.Split(*v.ID, "/")[4]
 
 	powerState := getStatusFromCode(v.Properties.InstanceView.Statuses, "PowerState")
@@ -278,6 +280,7 @@ func getComputeVirtualMachineScaleSetVm(ctx context.Context, vm *armcompute.Virt
 			ScaleSetVM:             *v,
 			PowerState:             powerState,
 			ResourceGroup:          resourceGroupName,
+			Subscription:           subscription,
 		},
 	}
 	return &resource
@@ -329,7 +332,7 @@ func ComputeVirtualMachine(ctx context.Context, cred *azidentity.ClientSecretCre
 			return nil, err
 		}
 		for _, virtualMachine := range page.Value {
-			resource, err := getComputeVirtualMachine(ctx, vmClient, vmExtensionsClient, networkInterfaceClient, networkPublicIPClient, ipConfigClient, guestConfigurationClient, virtualMachine)
+			resource, err := getComputeVirtualMachine(ctx, vmClient, subscription, vmExtensionsClient, networkInterfaceClient, networkPublicIPClient, ipConfigClient, guestConfigurationClient, virtualMachine)
 			if err != nil {
 				return nil, err
 			}
@@ -345,7 +348,7 @@ func ComputeVirtualMachine(ctx context.Context, cred *azidentity.ClientSecretCre
 	return values, nil
 }
 
-func getComputeVirtualMachine(ctx context.Context, vmClient *armcompute.VirtualMachinesClient, vmExtensionsClient *armcompute.VirtualMachineExtensionsClient, networkInterfaceClient *armnetwork.InterfacesClient, networkPublicIPClient *armnetwork.PublicIPAddressesClient, ipConfigClient *armnetwork.InterfaceIPConfigurationsClient, guestConfigurationClient *armguestconfiguration.AssignmentsClient, virtualMachine *armcompute.VirtualMachine) (*models.Resource, error) {
+func getComputeVirtualMachine(ctx context.Context, vmClient *armcompute.VirtualMachinesClient, subscription string, vmExtensionsClient *armcompute.VirtualMachineExtensionsClient, networkInterfaceClient *armnetwork.InterfacesClient, networkPublicIPClient *armnetwork.PublicIPAddressesClient, ipConfigClient *armnetwork.InterfaceIPConfigurationsClient, guestConfigurationClient *armguestconfiguration.AssignmentsClient, virtualMachine *armcompute.VirtualMachine) (*models.Resource, error) {
 	resourceGroupName := strings.Split(*virtualMachine.ID, "/")[4]
 	computeInstanceViewOp, err := vmClient.InstanceView(ctx, resourceGroupName, *virtualMachine.Name, nil)
 
@@ -443,6 +446,7 @@ func getComputeVirtualMachine(ctx context.Context, vmClient *armcompute.VirtualM
 			ExtensionsSettings:         extensionsSettings,
 			Assignments:                &configurationListOp,
 			ResourceGroup:              resourceGroupName,
+			Subscription:               subscription,
 		},
 	}
 	return &resource, nil
@@ -463,7 +467,7 @@ func ComputeSnapshots(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getComputeSnapshot(ctx, v)
+			resource := getComputeSnapshot(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -476,7 +480,7 @@ func ComputeSnapshots(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getComputeSnapshot(ctx context.Context, snapshot *armcompute.Snapshot) *models.Resource {
+func getComputeSnapshot(ctx context.Context, snapshot *armcompute.Snapshot, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(*snapshot.ID, "/")[4]
 
 	resource := models.Resource{
@@ -486,6 +490,7 @@ func getComputeSnapshot(ctx context.Context, snapshot *armcompute.Snapshot) *mod
 		Description: model.ComputeSnapshotsDescription{
 			ResourceGroup: resourceGroupName,
 			Snapshot:      *snapshot,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -506,7 +511,7 @@ func ComputeAvailabilitySet(ctx context.Context, cred *azidentity.ClientSecretCr
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getComputeAvailabilitySet(ctx, v)
+			resource := getComputeAvailabilitySet(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -519,7 +524,7 @@ func ComputeAvailabilitySet(ctx context.Context, cred *azidentity.ClientSecretCr
 	return values, nil
 }
 
-func getComputeAvailabilitySet(ctx context.Context, availabilitySet *armcompute.AvailabilitySet) *models.Resource {
+func getComputeAvailabilitySet(ctx context.Context, availabilitySet *armcompute.AvailabilitySet, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(*availabilitySet.ID, "/")[4]
 
 	resource := models.Resource{
@@ -529,6 +534,7 @@ func getComputeAvailabilitySet(ctx context.Context, availabilitySet *armcompute.
 		Description: model.ComputeAvailabilitySetDescription{
 			ResourceGroup:   resourceGroupName,
 			AvailabilitySet: *availabilitySet,
+			Subscription:    subscription,
 		},
 	}
 	return &resource
@@ -549,7 +555,7 @@ func ComputeDiskEncryptionSet(ctx context.Context, cred *azidentity.ClientSecret
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getComputeDiskEncryptionSet(ctx, v)
+			resource := getComputeDiskEncryptionSet(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -562,7 +568,7 @@ func ComputeDiskEncryptionSet(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func getComputeDiskEncryptionSet(ctx context.Context, diskEncryptionSet *armcompute.DiskEncryptionSet) *models.Resource {
+func getComputeDiskEncryptionSet(ctx context.Context, diskEncryptionSet *armcompute.DiskEncryptionSet, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(*diskEncryptionSet.ID, "/")[4]
 
 	resource := models.Resource{
@@ -572,6 +578,7 @@ func getComputeDiskEncryptionSet(ctx context.Context, diskEncryptionSet *armcomp
 		Description: model.ComputeDiskEncryptionSetDescription{
 			ResourceGroup:     resourceGroupName,
 			DiskEncryptionSet: *diskEncryptionSet,
+			Subscription:      subscription,
 		},
 	}
 	return &resource
@@ -592,7 +599,7 @@ func ComputeGallery(ctx context.Context, cred *azidentity.ClientSecretCredential
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getComputeGallery(ctx, v)
+			resource := getComputeGallery(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -605,7 +612,7 @@ func ComputeGallery(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func getComputeGallery(ctx context.Context, gallery *armcompute.Gallery) *models.Resource {
+func getComputeGallery(ctx context.Context, gallery *armcompute.Gallery, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(*gallery.ID, "/")[4]
 
 	resource := models.Resource{
@@ -615,6 +622,7 @@ func getComputeGallery(ctx context.Context, gallery *armcompute.Gallery) *models
 		Description: model.ComputeImageGalleryDescription{
 			ResourceGroup: resourceGroupName,
 			ImageGallery:  *gallery,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -635,7 +643,7 @@ func ComputeImage(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getComputeImage(ctx, v)
+			resource := getComputeImage(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -648,7 +656,7 @@ func ComputeImage(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	return values, nil
 }
 
-func getComputeImage(ctx context.Context, v *armcompute.Image) *models.Resource {
+func getComputeImage(ctx context.Context, v *armcompute.Image, subscription string) *models.Resource {
 	resourceGroup := strings.ToLower(strings.Split(*v.ID, "/")[4])
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -657,6 +665,7 @@ func getComputeImage(ctx context.Context, v *armcompute.Image) *models.Resource 
 		Description: model.ComputeImageDescription{
 			Image:         *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -677,7 +686,7 @@ func ComputeHostGroup(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getComputeHostGroup(ctx, v)
+			resource := getComputeHostGroup(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -690,7 +699,7 @@ func ComputeHostGroup(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getComputeHostGroup(ctx context.Context, v *armcompute.DedicatedHostGroup) *models.Resource {
+func getComputeHostGroup(ctx context.Context, v *armcompute.DedicatedHostGroup, subscription string) *models.Resource {
 	resourceGroup := strings.ToLower(strings.Split(*v.ID, "/")[4])
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -699,6 +708,7 @@ func getComputeHostGroup(ctx context.Context, v *armcompute.DedicatedHostGroup) 
 		Description: model.ComputeHostGroupDescription{
 			HostGroup:     *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -720,7 +730,7 @@ func ComputeHost(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resources, err := getComputeHostsByGroup(ctx, hostClient, v)
+			resources, err := getComputeHostsByGroup(ctx, hostClient, subscription, v)
 			if err != nil {
 				return nil, err
 			}
@@ -738,7 +748,7 @@ func ComputeHost(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func getComputeHostsByGroup(ctx context.Context, hostClient *armcompute.DedicatedHostsClient, v *armcompute.DedicatedHostGroup) ([]models.Resource, error) {
+func getComputeHostsByGroup(ctx context.Context, hostClient *armcompute.DedicatedHostsClient, subscription string, v *armcompute.DedicatedHostGroup) ([]models.Resource, error) {
 	resourceGroup := strings.ToLower(strings.Split(*v.ID, "/")[4])
 
 	pager := hostClient.NewListByHostGroupPager(resourceGroup, *v.Name, nil)
@@ -756,6 +766,7 @@ func getComputeHostsByGroup(ctx context.Context, hostClient *armcompute.Dedicate
 				Description: model.ComputeHostGroupHostDescription{
 					Host:          *host,
 					ResourceGroup: resourceGroup,
+					Subscription:  subscription,
 				},
 			}
 			resources = append(resources, resource)
@@ -779,7 +790,7 @@ func ComputeRestorePointCollection(ctx context.Context, cred *azidentity.ClientS
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getComputeResourcePointCollection(ctx, v)
+			resource := getComputeResourcePointCollection(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -792,7 +803,7 @@ func ComputeRestorePointCollection(ctx context.Context, cred *azidentity.ClientS
 	return values, nil
 }
 
-func getComputeResourcePointCollection(ctx context.Context, v *armcompute.RestorePointCollection) *models.Resource {
+func getComputeResourcePointCollection(ctx context.Context, v *armcompute.RestorePointCollection, subscription string) *models.Resource {
 	resourceGroup := strings.ToLower(strings.Split(*v.ID, "/")[4])
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -801,6 +812,7 @@ func getComputeResourcePointCollection(ctx context.Context, v *armcompute.Restor
 		Description: model.ComputeRestorePointCollectionDescription{
 			RestorePointCollection: *v,
 			ResourceGroup:          resourceGroup,
+			Subscription:           subscription,
 		},
 	}
 	return &resource
@@ -821,7 +833,7 @@ func ComputeSSHPublicKey(ctx context.Context, cred *azidentity.ClientSecretCrede
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getComputeSSHPublicKey(ctx, v)
+			resource := getComputeSSHPublicKey(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -834,7 +846,7 @@ func ComputeSSHPublicKey(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func getComputeSSHPublicKey(ctx context.Context, v *armcompute.SSHPublicKeyResource) *models.Resource {
+func getComputeSSHPublicKey(ctx context.Context, v *armcompute.SSHPublicKeyResource, subscription string) *models.Resource {
 	resourceGroup := strings.ToLower(strings.Split(*v.ID, "/")[4])
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -843,6 +855,7 @@ func getComputeSSHPublicKey(ctx context.Context, v *armcompute.SSHPublicKeyResou
 		Description: model.ComputeSSHPublicKeyDescription{
 			SSHPublicKey:  *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -901,6 +914,7 @@ func getComputeDiskReadOps(ctx context.Context, cred *azidentity.ClientSecretCre
 			Location: *disk.Location,
 			Description: model.ComputeDiskReadOpsDescription{
 				MonitoringMetric: metric,
+				Subscription:     subscription,
 			},
 		}
 		values = append(values, resource)
@@ -961,6 +975,7 @@ func getComputeDiskReadOpsDaily(ctx context.Context, cred *azidentity.ClientSecr
 			Location: *disk.Location,
 			Description: model.ComputeDiskReadOpsDailyDescription{
 				MonitoringMetric: metric,
+				Subscription:     subscription,
 			},
 		}
 		values = append(values, resource)
@@ -1020,6 +1035,7 @@ func getComputeDiskReadOpsHourly(ctx context.Context, cred *azidentity.ClientSec
 			Location: *disk.Location,
 			Description: model.ComputeDiskReadOpsHourlyDescription{
 				MonitoringMetric: metric,
+				Subscription:     subscription,
 			},
 		}
 		values = append(values, resource)
@@ -1080,6 +1096,7 @@ func getComputeDiskWriteOps(ctx context.Context, cred *azidentity.ClientSecretCr
 			Location: *disk.Location,
 			Description: model.ComputeDiskReadOpsDescription{
 				MonitoringMetric: metric,
+				Subscription:     subscription,
 			},
 		}
 		values = append(values, resource)
@@ -1140,6 +1157,7 @@ func getComputeDiskWriteOpsDaily(ctx context.Context, cred *azidentity.ClientSec
 			Location: *disk.Location,
 			Description: model.ComputeDiskReadOpsDailyDescription{
 				MonitoringMetric: metric,
+				Subscription:     subscription,
 			},
 		}
 		values = append(values, resource)
@@ -1199,6 +1217,7 @@ func getComputeDiskWriteOpsHourly(ctx context.Context, cred *azidentity.ClientSe
 			Location: *disk.Location,
 			Description: model.ComputeDiskReadOpsHourlyDescription{
 				MonitoringMetric: metric,
+				Subscription:     subscription,
 			},
 		}
 		values = append(values, resource)
@@ -1305,6 +1324,7 @@ func getComputeVirtualMachineCpuUtilization(ctx context.Context, cred *azidentit
 			Location: *virtualMachine.Location,
 			Description: model.ComputeVirtualMachineCpuUtilizationDescription{
 				MonitoringMetric: metric,
+				Subscription:     subscription,
 			},
 		}
 		values = append(values, resource)
@@ -1365,6 +1385,7 @@ func getComputeVirtualMachineCpuUtilizationDaily(ctx context.Context, cred *azid
 			Location: *virtualMachine.Location,
 			Description: model.ComputeVirtualMachineCpuUtilizationDescription{
 				MonitoringMetric: metric,
+				Subscription:     subscription,
 			},
 		}
 		values = append(values, resource)
@@ -1425,6 +1446,7 @@ func getComputeVirtualMachineCpuUtilizationHourly(ctx context.Context, cred *azi
 			Location: *virtualMachine.Location,
 			Description: model.ComputeVirtualMachineCpuUtilizationDescription{
 				MonitoringMetric: metric,
+				Subscription:     subscription,
 			},
 		}
 		values = append(values, resource)
@@ -1447,7 +1469,7 @@ func ComputeCloudServices(ctx context.Context, cred *azidentity.ClientSecretCred
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getComputeCloudServices(ctx, v)
+			resource := getComputeCloudServices(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -1460,13 +1482,14 @@ func ComputeCloudServices(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func getComputeCloudServices(ctx context.Context, v *armcompute.CloudService) *models.Resource {
+func getComputeCloudServices(ctx context.Context, v *armcompute.CloudService, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: *v.Location,
 		Description: model.ComputeCloudServiceDescription{
 			CloudService: *v,
+			Subscription: subscription,
 		},
 	}
 	return &resource

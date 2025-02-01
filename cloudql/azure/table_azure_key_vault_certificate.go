@@ -28,6 +28,11 @@ func tableAzureKeyVaultCertificate(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Policy.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "Contains ID to identify a key uniquely.",
 				Type:        proto.ColumnType_STRING,

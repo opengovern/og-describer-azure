@@ -33,7 +33,7 @@ func EventhubNamespace(ctx context.Context, cred *azidentity.ClientSecretCredent
 			return nil, err
 		}
 		for _, namespace := range page.Value {
-			resource, err := getEventHubNamespace(ctx, diagnosticClient, client, eventhubClient, namespace)
+			resource, err := getEventHubNamespace(ctx, diagnosticClient, client, eventhubClient, namespace, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -50,7 +50,7 @@ func EventhubNamespace(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func getEventHubNamespace(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, client *armeventhub.NamespacesClient, eventhubClient *armeventhub.PrivateEndpointConnectionsClient, namespace *armeventhub.EHNamespace) (*models.Resource, error) {
+func getEventHubNamespace(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, client *armeventhub.NamespacesClient, eventhubClient *armeventhub.PrivateEndpointConnectionsClient, namespace *armeventhub.EHNamespace, subscription string) (*models.Resource, error) {
 	resourceGroupName := strings.Split(string(*namespace.ID), "/")[4]
 	var insightsListOp []*armmonitor.DiagnosticSettingsResource
 	pager := diagnosticClient.NewListPager(*namespace.ID, nil)
@@ -90,6 +90,7 @@ func getEventHubNamespace(ctx context.Context, diagnosticClient *armmonitor.Diag
 			NetworkRuleSet:              eventhubGetNetworkRuleSetOp.NetworkRuleSet,
 			PrivateEndpointConnection:   eventhubListOp,
 			ResourceGroup:               resourceGroupName,
+			Subscription:                subscription,
 		},
 	}
 	return &resource, nil
@@ -120,7 +121,7 @@ func EventhubNamespaceEventhub(ctx context.Context, cred *azidentity.ClientSecre
 					return nil, err
 				}
 				for _, eh := range page.Value {
-					resource := getEventhubNamespaceEventhub(ctx, namespace, eh)
+					resource := getEventhubNamespaceEventhub(ctx, namespace, eh, subscription)
 					if stream != nil {
 						if err := (*stream)(*resource); err != nil {
 							return nil, err
@@ -135,7 +136,7 @@ func EventhubNamespaceEventhub(ctx context.Context, cred *azidentity.ClientSecre
 	return values, nil
 }
 
-func getEventhubNamespaceEventhub(ctx context.Context, namespace *armeventhub.EHNamespace, eh *armeventhub.Eventhub) *models.Resource {
+func getEventhubNamespaceEventhub(ctx context.Context, namespace *armeventhub.EHNamespace, eh *armeventhub.Eventhub, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(string(*namespace.ID), "/")[4]
 	return &models.Resource{
 		ID:       *namespace.ID,
@@ -145,6 +146,7 @@ func getEventhubNamespaceEventhub(ctx context.Context, namespace *armeventhub.EH
 			EHNamespace:   *namespace,
 			EventHub:      *eh,
 			ResourceGroup: resourceGroupName,
+			Subscription:  subscription,
 		},
 	}
 }

@@ -31,7 +31,7 @@ func PostgresqlServer(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, server := range page.Value {
-			resource, err := GetPostgresqlServer(ctx, firewallClient, keysClient, confClient, adminClient, alertPolicyClient, server)
+			resource, err := GetPostgresqlServer(ctx, firewallClient, keysClient, confClient, adminClient, alertPolicyClient, server, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -47,7 +47,7 @@ func PostgresqlServer(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func GetPostgresqlServer(ctx context.Context, firewallClient *armpostgresql.FirewallRulesClient, keysClient *armpostgresql.ServerKeysClient, confClient *armpostgresql.ConfigurationsClient, adminClient *armpostgresql.ServerAdministratorsClient, alertPolicyClient *armpostgresql.ServerSecurityAlertPoliciesClient, server *armpostgresql.Server) (*models.Resource, error) {
+func GetPostgresqlServer(ctx context.Context, firewallClient *armpostgresql.FirewallRulesClient, keysClient *armpostgresql.ServerKeysClient, confClient *armpostgresql.ConfigurationsClient, adminClient *armpostgresql.ServerAdministratorsClient, alertPolicyClient *armpostgresql.ServerSecurityAlertPoliciesClient, server *armpostgresql.Server, subscription string) (*models.Resource, error) {
 	resourceGroupName := strings.Split(string(*server.ID), "/")[4]
 
 	pager := adminClient.NewListPager(resourceGroupName, *server.Name, nil)
@@ -112,6 +112,7 @@ func GetPostgresqlServer(ctx context.Context, firewallClient *armpostgresql.Fire
 			FirewallRules:                firewallListByServerOp,
 			ServerSecurityAlertPolicies:  serverSecurityAlertPolicies,
 			ResourceGroup:                resourceGroupName,
+			Subscription:                 subscription,
 		},
 	}
 
@@ -135,7 +136,7 @@ func PostgresqlFlexibleservers(ctx context.Context, cred *azidentity.ClientSecre
 			return nil, err
 		}
 		for _, server := range page.Value {
-			resource := GetPostgresqlFlexibleserver(ctx, configurationsClient, server)
+			resource := GetPostgresqlFlexibleserver(ctx, configurationsClient, server, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -151,7 +152,7 @@ func PostgresqlFlexibleservers(ctx context.Context, cred *azidentity.ClientSecre
 	return values, nil
 }
 
-func GetPostgresqlFlexibleserver(ctx context.Context, configurationsClient *armpostgresqlflexibleservers.ConfigurationsClient, server *armpostgresqlflexibleservers.Server) *models.Resource {
+func GetPostgresqlFlexibleserver(ctx context.Context, configurationsClient *armpostgresqlflexibleservers.ConfigurationsClient, server *armpostgresqlflexibleservers.Server, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(string(*server.ID), "/")[4]
 
 	pager := configurationsClient.NewListByServerPager(resourceGroupName, *server.Name, nil)
@@ -172,6 +173,7 @@ func GetPostgresqlFlexibleserver(ctx context.Context, configurationsClient *armp
 			Server:               *server,
 			ServerConfigurations: serverConfigurations,
 			ResourceGroup:        resourceGroupName,
+			Subscription:         subscription,
 		},
 	}
 	return &resource

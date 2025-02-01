@@ -31,7 +31,7 @@ func MachineLearningWorkspace(ctx context.Context, cred *azidentity.ClientSecret
 			return nil, err
 		}
 		for _, workspace := range page.Value {
-			resource, err := getMachineLearningWorkspace(ctx, diagnosticClient, workspace)
+			resource, err := getMachineLearningWorkspace(ctx, diagnosticClient, workspace, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -47,7 +47,7 @@ func MachineLearningWorkspace(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func getMachineLearningWorkspace(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, workspace *armmachinelearning.Workspace) (*models.Resource, error) {
+func getMachineLearningWorkspace(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, workspace *armmachinelearning.Workspace, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*workspace.ID, "/")[4]
 
 	var machineLearningServicesListOp []*armmonitor.DiagnosticSettingsResource
@@ -68,6 +68,7 @@ func getMachineLearningWorkspace(ctx context.Context, diagnosticClient *armmonit
 			Workspace:                   *workspace,
 			DiagnosticSettingsResources: machineLearningServicesListOp,
 			ResourceGroup:               resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 

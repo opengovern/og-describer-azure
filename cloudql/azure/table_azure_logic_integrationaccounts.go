@@ -22,6 +22,11 @@ func tableAzureLogicIntegrationAccounts(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.IntegrationAccounts.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the integrationaccounts.",
 				Type:        proto.ColumnType_STRING,

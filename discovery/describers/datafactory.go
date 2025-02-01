@@ -27,7 +27,7 @@ func DataFactory(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource, err := getDataFactory(ctx, connClient, v)
+			resource, err := getDataFactory(ctx, connClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -43,7 +43,7 @@ func DataFactory(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func getDataFactory(ctx context.Context, connClient *armdatafactory.PrivateEndPointConnectionsClient, factory *armdatafactory.Factory) (*models.Resource, error) {
+func getDataFactory(ctx context.Context, connClient *armdatafactory.PrivateEndPointConnectionsClient, factory *armdatafactory.Factory, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*factory.ID, "/")[4]
 
 	pager := connClient.NewListByFactoryPager(resourceGroup, *factory.Name, nil)
@@ -66,6 +66,7 @@ func getDataFactory(ctx context.Context, connClient *armdatafactory.PrivateEndPo
 			Factory:                    *factory,
 			PrivateEndPointConnections: datafactoryListByFactoryOp,
 			ResourceGroup:              resourceGroup,
+			Subscription:               subscription,
 		},
 	}
 	return &resource, nil
@@ -89,7 +90,7 @@ func DataFactoryDataset(ctx context.Context, cred *azidentity.ClientSecretCreden
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resources, err := getDataFactoryDataset(ctx, datasetsClient, v)
+			resources, err := getDataFactoryDataset(ctx, datasetsClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -107,7 +108,7 @@ func DataFactoryDataset(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func getDataFactoryDataset(ctx context.Context, client *armdatafactory.DatasetsClient, factory *armdatafactory.Factory) ([]models.Resource, error) {
+func getDataFactoryDataset(ctx context.Context, client *armdatafactory.DatasetsClient, factory *armdatafactory.Factory, subscription string) ([]models.Resource, error) {
 	factoryName := *factory.Name
 	factoryResourceGroup := strings.Split(*factory.ID, "/")[4]
 
@@ -128,6 +129,7 @@ func getDataFactoryDataset(ctx context.Context, client *armdatafactory.DatasetsC
 					Factory:       *factory,
 					Dataset:       *dataset,
 					ResourceGroup: factoryResourceGroup,
+					Subscription:  subscription,
 				},
 			}
 			values = append(values, resource)
@@ -155,7 +157,7 @@ func DataFactoryPipeline(ctx context.Context, cred *azidentity.ClientSecretCrede
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resources, err := getDataFactoryPipeline(ctx, pipelineClient, v)
+			resources, err := getDataFactoryPipeline(ctx, pipelineClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -173,7 +175,7 @@ func DataFactoryPipeline(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func getDataFactoryPipeline(ctx context.Context, client *armdatafactory.PipelinesClient, factory *armdatafactory.Factory) ([]models.Resource, error) {
+func getDataFactoryPipeline(ctx context.Context, client *armdatafactory.PipelinesClient, factory *armdatafactory.Factory, subscription string) ([]models.Resource, error) {
 	factoryName := *factory.Name
 	factoryResourceGroup := strings.Split(*factory.ID, "/")[4]
 
@@ -194,6 +196,7 @@ func getDataFactoryPipeline(ctx context.Context, client *armdatafactory.Pipeline
 					Factory:       *factory,
 					Pipeline:      *pipeline,
 					ResourceGroup: factoryResourceGroup,
+					Subscription:  subscription,
 				},
 			}
 			values = append(values, resource)

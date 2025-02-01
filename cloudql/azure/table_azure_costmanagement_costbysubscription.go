@@ -23,6 +23,11 @@ func tableAzureCostManagementCostBySubscription(_ context.Context) *plugin.Table
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.CostManagementCostBySubscription.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the costbysubscription.",
 				Type:        proto.ColumnType_STRING,

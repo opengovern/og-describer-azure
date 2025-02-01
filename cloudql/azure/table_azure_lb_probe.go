@@ -29,6 +29,11 @@ func tableAzureLoadBalancerProbe(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Probe.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "The name of the resource that is unique within the set of probes used by the load balancer. This name can be used to access the resource.",
 				Type:        proto.ColumnType_STRING,

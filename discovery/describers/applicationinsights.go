@@ -25,7 +25,7 @@ func ApplicationInsights(ctx context.Context, cred *azidentity.ClientSecretCrede
 			return nil, err
 		}
 		for _, component := range page.Value {
-			resource := GetApplicationInsights(ctx, component)
+			resource := GetApplicationInsights(ctx, component, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -38,7 +38,7 @@ func ApplicationInsights(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func GetApplicationInsights(ctx context.Context, component *armapplicationinsights.Component) *models.Resource {
+func GetApplicationInsights(ctx context.Context, component *armapplicationinsights.Component, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*component.ID, "/")[4]
 
 	resource := models.Resource{
@@ -48,6 +48,7 @@ func GetApplicationInsights(ctx context.Context, component *armapplicationinsigh
 		Description: model.ApplicationInsightsComponentDescription{
 			Component:     *component,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

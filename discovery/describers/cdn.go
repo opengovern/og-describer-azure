@@ -25,7 +25,7 @@ func CdnProfiles(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getCdnProfiles(ctx, v)
+			resource := getCdnProfiles(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -38,7 +38,7 @@ func CdnProfiles(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func getCdnProfiles(ctx context.Context, v *armcdn.Profile) *models.Resource {
+func getCdnProfiles(ctx context.Context, v *armcdn.Profile, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -48,6 +48,7 @@ func getCdnProfiles(ctx context.Context, v *armcdn.Profile) *models.Resource {
 		Description: model.CDNProfileDescription{
 			Profile:       *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -70,7 +71,7 @@ func CdnEndpoint(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resources, err := getCdnProfilesEndpoints(ctx, endpointsClient, v)
+			resources, err := getCdnProfilesEndpoints(ctx, endpointsClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -88,7 +89,7 @@ func CdnEndpoint(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func getCdnProfilesEndpoints(ctx context.Context, endpointsClient *armcdn.EndpointsClient, v *armcdn.Profile) ([]models.Resource, error) {
+func getCdnProfilesEndpoints(ctx context.Context, endpointsClient *armcdn.EndpointsClient, v *armcdn.Profile, subscription string) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	pager := endpointsClient.NewListByProfilePager(resourceGroup, *v.Name, nil)
@@ -100,14 +101,14 @@ func getCdnProfilesEndpoints(ctx context.Context, endpointsClient *armcdn.Endpoi
 			return nil, err
 		}
 		for _, endpoint := range page.Value {
-			resource := getCdnEndpoint(ctx, v, endpoint, resourceGroup)
+			resource := getCdnEndpoint(ctx, v, subscription, endpoint, resourceGroup)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getCdnEndpoint(ctx context.Context, v *armcdn.Profile, endpoint *armcdn.Endpoint, resourceGroup string) *models.Resource {
+func getCdnEndpoint(ctx context.Context, v *armcdn.Profile, subscription string, endpoint *armcdn.Endpoint, resourceGroup string) *models.Resource {
 	return &models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
@@ -115,6 +116,7 @@ func getCdnEndpoint(ctx context.Context, v *armcdn.Profile, endpoint *armcdn.End
 		Description: model.CDNEndpointDescription{
 			Endpoint:      *endpoint,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 }

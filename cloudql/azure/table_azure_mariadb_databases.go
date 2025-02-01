@@ -22,6 +22,11 @@ func tableAzureMariaDBDatabases(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Databases.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the databases.",
 				Type:        proto.ColumnType_STRING,

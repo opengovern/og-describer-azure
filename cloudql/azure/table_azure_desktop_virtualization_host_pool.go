@@ -23,6 +23,11 @@ func tableAzureDesktopVirtualizationHostPool(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.HostPool.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the hostpool.",
 				Type:        proto.ColumnType_STRING,

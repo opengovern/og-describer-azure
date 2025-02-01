@@ -33,7 +33,7 @@ func HealthcareService(ctx context.Context, cred *azidentity.ClientSecretCredent
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource, err := getHealthcareService(ctx, privateEndpointClient, diagnosticClient, v)
+			resource, err := getHealthcareService(ctx, privateEndpointClient, diagnosticClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -49,7 +49,7 @@ func HealthcareService(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func getHealthcareService(ctx context.Context, privateEndpointClient *armhealthcareapis.PrivateEndpointConnectionsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient, v *armhealthcareapis.ServicesDescription) (*models.Resource, error) {
+func getHealthcareService(ctx context.Context, privateEndpointClient *armhealthcareapis.PrivateEndpointConnectionsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient, v *armhealthcareapis.ServicesDescription, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	var opValue []*armmonitor.DiagnosticSettingsResource
@@ -93,6 +93,7 @@ func getHealthcareService(ctx context.Context, privateEndpointClient *armhealthc
 			DiagnosticSettingsResources: opValue,
 			PrivateEndpointConnections:  opService,
 			ResourceGroup:               resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 
