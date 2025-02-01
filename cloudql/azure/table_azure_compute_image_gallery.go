@@ -23,6 +23,11 @@ func tableAzureComputeImageGallery(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.ImageGallery.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the imagegallery.",
 				Type:        proto.ColumnType_STRING,

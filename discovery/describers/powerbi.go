@@ -25,7 +25,7 @@ func PowerBIDedicatedCapacity(ctx context.Context, cred *azidentity.ClientSecret
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetPowerBIDedicatedCapacity(ctx, v)
+			resource := GetPowerBIDedicatedCapacity(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -38,7 +38,7 @@ func PowerBIDedicatedCapacity(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func GetPowerBIDedicatedCapacity(ctx context.Context, v *armpowerbidedicated.DedicatedCapacity) *models.Resource {
+func GetPowerBIDedicatedCapacity(ctx context.Context, v *armpowerbidedicated.DedicatedCapacity, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(string(*v.ID), "/")[4]
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -47,6 +47,7 @@ func GetPowerBIDedicatedCapacity(ctx context.Context, v *armpowerbidedicated.Ded
 		Description: model.PowerBIDedicatedCapacityDescription{
 			Capacity:      *v,
 			ResourceGroup: resourceGroupName,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

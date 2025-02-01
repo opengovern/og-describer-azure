@@ -32,7 +32,7 @@ func StreamAnalyticsJob(ctx context.Context, cred *azidentity.ClientSecretCreden
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource, err := GetStreamAnalyticsJob(ctx, diagnosticClient, v)
+			resource, err := GetStreamAnalyticsJob(ctx, diagnosticClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -48,7 +48,7 @@ func StreamAnalyticsJob(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func GetStreamAnalyticsJob(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, streamingJob *armstreamanalytics.StreamingJob) (*models.Resource, error) {
+func GetStreamAnalyticsJob(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, streamingJob *armstreamanalytics.StreamingJob, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*streamingJob.ID, "/")[4]
 
 	pager := diagnosticClient.NewListPager(*streamingJob.ID, nil)
@@ -69,6 +69,7 @@ func GetStreamAnalyticsJob(ctx context.Context, diagnosticClient *armmonitor.Dia
 			StreamingJob:                *streamingJob,
 			DiagnosticSettingsResources: streamanalyticsListOp,
 			ResourceGroup:               resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 	return &resource, nil
@@ -89,7 +90,7 @@ func StreamAnalyticsCluster(ctx context.Context, cred *azidentity.ClientSecretCr
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetStreamAnalyticsCluster(ctx, v)
+			resource := GetStreamAnalyticsCluster(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -102,7 +103,7 @@ func StreamAnalyticsCluster(ctx context.Context, cred *azidentity.ClientSecretCr
 	return values, nil
 }
 
-func GetStreamAnalyticsCluster(ctx context.Context, streamingJob *armstreamanalytics.Cluster) *models.Resource {
+func GetStreamAnalyticsCluster(ctx context.Context, streamingJob *armstreamanalytics.Cluster, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*streamingJob.ID, "/")[4]
 
 	resource := models.Resource{
@@ -112,6 +113,7 @@ func GetStreamAnalyticsCluster(ctx context.Context, streamingJob *armstreamanaly
 		Description: model.StreamAnalyticsClusterDescription{
 			StreamingJob:  *streamingJob,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

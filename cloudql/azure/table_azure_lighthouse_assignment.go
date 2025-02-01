@@ -41,6 +41,11 @@ func tableAzureLighthouseAssignment(_ context.Context) *plugin.Table {
 		},
 		Columns: []*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.LighthouseAssignment.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "Name of the registration assignment.",
 				Type:        proto.ColumnType_STRING,

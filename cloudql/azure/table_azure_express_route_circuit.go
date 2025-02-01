@@ -28,6 +28,11 @@ func tableAzureExpressRouteCircuit(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.ExpressRouteCircuit.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "The friendly name that identifies the circuit.",
 				Type:        proto.ColumnType_STRING,

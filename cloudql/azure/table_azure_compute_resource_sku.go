@@ -24,6 +24,11 @@ func tableAzureResourceSku(_ context.Context) *plugin.Table {
 
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.ResourceSKU.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "The name of SKU",
 				Type:        proto.ColumnType_STRING,

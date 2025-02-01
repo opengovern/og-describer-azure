@@ -23,7 +23,7 @@ func ServiceFabricCluster(ctx context.Context, cred *azidentity.ClientSecretCred
 		return nil, err
 	}
 	for _, cluster := range list.Value {
-		resource := GetServiceFabricCluster(ctx, cluster)
+		resource := GetServiceFabricCluster(ctx, cluster, subscription)
 		if stream != nil {
 			if err := (*stream)(*resource); err != nil {
 				return nil, err
@@ -35,14 +35,14 @@ func ServiceFabricCluster(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func GetServiceFabricCluster(ctx context.Context, cluster *armservicefabric.Cluster) *models.Resource {
+func GetServiceFabricCluster(ctx context.Context, cluster *armservicefabric.Cluster, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*cluster.ID, "/")[4]
 
 	resource := models.Resource{
 		ID:          *cluster.ID,
 		Name:        *cluster.Name,
 		Location:    *cluster.Location,
-		Description: model.ServiceFabricClusterDescription{Cluster: *cluster, ResourceGroup: resourceGroup},
+		Description: model.ServiceFabricClusterDescription{Cluster: *cluster, ResourceGroup: resourceGroup, Subscription: subscription},
 	}
 	return &resource
 }

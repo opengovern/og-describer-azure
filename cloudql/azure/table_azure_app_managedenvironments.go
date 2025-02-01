@@ -21,6 +21,11 @@ func tableAzureAppManagedEnvironments(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.HostingEnvironment.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the managedenvironments.",
 				Type:        proto.ColumnType_STRING,

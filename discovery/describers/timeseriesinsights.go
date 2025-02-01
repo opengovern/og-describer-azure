@@ -24,7 +24,7 @@ func TimeSeriesInsightsEnvironments(ctx context.Context, cred *azidentity.Client
 
 	var values []models.Resource
 	for _, record := range list.Value {
-		resource := GetTimeSeriesInsightsEnvironments(ctx, record)
+		resource := GetTimeSeriesInsightsEnvironments(ctx, record, subscription)
 		if stream != nil {
 			if err := (*stream)(*resource); err != nil {
 				return nil, err
@@ -36,7 +36,7 @@ func TimeSeriesInsightsEnvironments(ctx context.Context, cred *azidentity.Client
 	return values, nil
 }
 
-func GetTimeSeriesInsightsEnvironments(ctx context.Context, record armtimeseriesinsights.EnvironmentResourceClassification) *models.Resource {
+func GetTimeSeriesInsightsEnvironments(ctx context.Context, record armtimeseriesinsights.EnvironmentResourceClassification, subscription string) *models.Resource {
 	v := record.GetEnvironmentResource()
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
@@ -47,6 +47,7 @@ func GetTimeSeriesInsightsEnvironments(ctx context.Context, record armtimeseries
 		Description: model.TimeSeriesInsightsEnvironmentsDescription{
 			Environment:   v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

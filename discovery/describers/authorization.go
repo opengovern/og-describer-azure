@@ -29,7 +29,7 @@ func RoleAssignment(ctx context.Context, cred *azidentity.ClientSecretCredential
 			return nil, err
 		}
 		for _, roleAssignment := range page.Value {
-			resource := getRoleAssignment(ctx, roleAssignment)
+			resource := getRoleAssignment(ctx, roleAssignment, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -42,13 +42,14 @@ func RoleAssignment(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func getRoleAssignment(ctx context.Context, v *armauthorization.RoleAssignment) *models.Resource {
+func getRoleAssignment(ctx context.Context, v *armauthorization.RoleAssignment, subscription string) *models.Resource {
 	return &models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
 		Description: model.RoleAssignmentDescription{
 			RoleAssignment: *v,
+			Subscription:   subscription,
 		},
 	}
 }
@@ -67,7 +68,7 @@ func RoleDefinition(ctx context.Context, cred *azidentity.ClientSecretCredential
 			return nil, err
 		}
 		for _, roleDefinition := range page.Value {
-			resource := getRoleDefinition(ctx, roleDefinition)
+			resource := getRoleDefinition(ctx, roleDefinition, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -80,13 +81,14 @@ func RoleDefinition(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func getRoleDefinition(ctx context.Context, v *armauthorization.RoleDefinition) *models.Resource {
+func getRoleDefinition(ctx context.Context, v *armauthorization.RoleDefinition, subscription string) *models.Resource {
 	return &models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
 		Description: model.RoleDefinitionDescription{
 			RoleDefinition: *v,
+			Subscription:   subscription,
 		},
 	}
 }
@@ -130,8 +132,9 @@ func getPolicyDefinition(ctx context.Context, subscription string, definition *a
 		Name:     *definition.Name,
 		Location: "global",
 		Description: model.PolicyDefinitionDescription{
-			Definition: *definition,
-			TurboData:  turbotData,
+			Definition:   *definition,
+			TurboData:    turbotData,
+			Subscription: subscription,
 		},
 	}
 }
@@ -178,6 +181,7 @@ func UserEffectiveAccess(ctx context.Context, cred *azidentity.ClientSecretCrede
 							ScopeType:         getScopeType(*roleAssignment.Properties.Scope),
 							AssignmentType:    "GroupAssignment",
 							ParentPrincipalId: roleAssignment.Properties.PrincipalID,
+							Subscription:      subscription,
 						},
 					}
 					if stream != nil {
@@ -210,6 +214,7 @@ func UserEffectiveAccess(ctx context.Context, cred *azidentity.ClientSecretCrede
 						ScopeType:         getScopeType(*roleAssignment.Properties.Scope),
 						AssignmentType:    "Explicit",
 						ParentPrincipalId: nil,
+						Subscription:      subscription,
 					},
 				}
 				if stream != nil {
@@ -241,6 +246,7 @@ func UserEffectiveAccess(ctx context.Context, cred *azidentity.ClientSecretCrede
 						ScopeType:         getScopeType(*roleAssignment.Properties.Scope),
 						AssignmentType:    "Explicit",
 						ParentPrincipalId: nil,
+						Subscription:      subscription,
 					},
 				}
 				if stream != nil {

@@ -25,7 +25,7 @@ func PurviewAccount(ctx context.Context, cred *azidentity.ClientSecretCredential
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetPurviewAccount(ctx, v)
+			resource := GetPurviewAccount(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -38,7 +38,7 @@ func PurviewAccount(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func GetPurviewAccount(ctx context.Context, v *armpurview.Account) *models.Resource {
+func GetPurviewAccount(ctx context.Context, v *armpurview.Account, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(string(*v.ID), "/")[4]
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -47,6 +47,7 @@ func GetPurviewAccount(ctx context.Context, v *armpurview.Account) *models.Resou
 		Description: model.PurviewAccountDescription{
 			Account:       *v,
 			ResourceGroup: resourceGroupName,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

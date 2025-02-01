@@ -20,6 +20,11 @@ func tableAzureStorageBlob(_ context.Context) *plugin.Table {
 			Hydrate: opengovernance.ListStorageBlob,
 		},
 		Columns: azureOGColumns([]*plugin.Column{
+			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Blob.Properties.Subscription"),
+			},
 			// Basic info
 			{
 				Name:        "name",

@@ -22,6 +22,11 @@ func tableAzureVirtualMachineImagesImageTemplates(_ context.Context) *plugin.Tab
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:      "subscription",
+				Type:      proto.ColumnType_STRING,
+				Transform: transform.FromField("Description.ImageTemplates.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the imagetemplates.",
 				Type:        proto.ColumnType_STRING,

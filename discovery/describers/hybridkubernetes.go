@@ -33,7 +33,7 @@ func HybridKubernetesConnectedCluster(ctx context.Context, cred *azidentity.Clie
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource, err := getHybridKubernetesConnectedCluster(ctx, extClient, v)
+			resource, err := getHybridKubernetesConnectedCluster(ctx, extClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -49,7 +49,7 @@ func HybridKubernetesConnectedCluster(ctx context.Context, cred *azidentity.Clie
 	return values, nil
 }
 
-func getHybridKubernetesConnectedCluster(ctx context.Context, extClient *armkubernetesconfiguration.ExtensionsClient, connectedCluster *armhybridkubernetes.ConnectedCluster) (*models.Resource, error) {
+func getHybridKubernetesConnectedCluster(ctx context.Context, extClient *armkubernetesconfiguration.ExtensionsClient, connectedCluster *armhybridkubernetes.ConnectedCluster, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*connectedCluster.ID, "/")[4]
 
 	pager := extClient.NewListPager(resourceGroup, "Microsoft.Kubernetes", "connectedClusters", *connectedCluster.Name, nil)
@@ -69,6 +69,7 @@ func getHybridKubernetesConnectedCluster(ctx context.Context, extClient *armkube
 			ConnectedCluster:           *connectedCluster,
 			ConnectedClusterExtensions: extensions,
 			ResourceGroup:              resourceGroup,
+			Subscription:               subscription,
 		},
 	}
 	return &resource, nil

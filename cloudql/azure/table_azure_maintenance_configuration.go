@@ -28,6 +28,11 @@ func tableAzureMaintenanceConfiguration(_ context.Context) *plugin.Table {
 		},
 		Columns: azureColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.MaintenanceConfiguration.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Type:        proto.ColumnType_STRING,
 				Description: "Fully qualified identifier of the resource.",

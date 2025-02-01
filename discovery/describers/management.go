@@ -26,7 +26,7 @@ func ManagementGroup(ctx context.Context, cred *azidentity.ClientSecretCredentia
 			return nil, err
 		}
 		for _, group := range page.Value {
-			resource, err := getManagementGroup(ctx, client, group)
+			resource, err := getManagementGroup(ctx, client, group, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -42,7 +42,7 @@ func ManagementGroup(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	return values, nil
 }
 
-func getManagementGroup(ctx context.Context, client *armmanagementgroups.Client, group *armmanagementgroups.ManagementGroupInfo) (*models.Resource, error) {
+func getManagementGroup(ctx context.Context, client *armmanagementgroups.Client, group *armmanagementgroups.ManagementGroupInfo, subscription string) (*models.Resource, error) {
 	info, err := client.Get(ctx, *group.Name, nil)
 	if err != nil {
 		return nil, err
@@ -52,7 +52,8 @@ func getManagementGroup(ctx context.Context, client *armmanagementgroups.Client,
 		ID:   *info.ID,
 		Name: *info.Name,
 		Description: model.ManagementGroupDescription{
-			Group: info.ManagementGroup,
+			Group:        info.ManagementGroup,
+			Subscription: subscription,
 		},
 	}
 	return resource, nil
@@ -73,7 +74,7 @@ func ManagementLock(ctx context.Context, cred *azidentity.ClientSecretCredential
 			return nil, err
 		}
 		for _, lockObject := range pagem.Value {
-			resource := getManagementLock(ctx, lockObject)
+			resource := getManagementLock(ctx, lockObject, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -86,7 +87,7 @@ func ManagementLock(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func getManagementLock(ctx context.Context, lockObject *armlocks.ManagementLockObject) *models.Resource {
+func getManagementLock(ctx context.Context, lockObject *armlocks.ManagementLockObject, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*lockObject.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *lockObject.ID,
@@ -95,6 +96,7 @@ func getManagementLock(ctx context.Context, lockObject *armlocks.ManagementLockO
 		Description: model.ManagementLockDescription{
 			Lock:          *lockObject,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

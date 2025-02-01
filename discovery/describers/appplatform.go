@@ -35,7 +35,7 @@ func SpringCloudService(ctx context.Context, cred *azidentity.ClientSecretCreden
 				}
 
 				for _, app := range apps.Value {
-					resource, err := getSpringCloudService(ctx, app, site)
+					resource, err := getSpringCloudService(ctx, app, subscription, site)
 					if err != nil {
 						return nil, err
 					}
@@ -57,7 +57,7 @@ func SpringCloudService(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func getSpringCloudService(ctx context.Context, service *armspringappdiscovery.SpringbootappsModel, site *armspringappdiscovery.SpringbootsitesModel) (*models.Resource, error) {
+func getSpringCloudService(ctx context.Context, service *armspringappdiscovery.SpringbootappsModel, subscription string, site *armspringappdiscovery.SpringbootsitesModel) (*models.Resource, error) {
 	if service.Name == nil {
 		return nil, nil
 	}
@@ -74,6 +74,7 @@ func getSpringCloudService(ctx context.Context, service *armspringappdiscovery.S
 			Site:                       site,
 			DiagnosticSettingsResource: nil, // TODO: Arta fix this =)))
 			ResourceGroup:              resourceGroup,
+			Subscription:               subscription,
 		},
 	}
 	return &resource, nil

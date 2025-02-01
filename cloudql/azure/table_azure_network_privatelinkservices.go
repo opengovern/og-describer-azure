@@ -22,6 +22,11 @@ func tableAzureNetworkPrivateLinkServices(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.PrivateLinkServices.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the privatelinkservices.",
 				Type:        proto.ColumnType_STRING,

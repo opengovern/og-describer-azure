@@ -32,7 +32,7 @@ func BatchAccount(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 			return nil, err
 		}
 		for _, account := range page.Value {
-			resource, err := getBatchAccount(ctx, account, diagnosticClient)
+			resource, err := getBatchAccount(ctx, account, subscription, diagnosticClient)
 			if err != nil {
 				return nil, err
 			}
@@ -51,7 +51,7 @@ func BatchAccount(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	return values, nil
 }
 
-func getBatchAccount(ctx context.Context, account *armbatch.Account, diagnosticClient *armmonitor.DiagnosticSettingsClient) (*models.Resource, error) {
+func getBatchAccount(ctx context.Context, account *armbatch.Account, subscription string, diagnosticClient *armmonitor.DiagnosticSettingsClient) (*models.Resource, error) {
 	id := *account.ID
 	var batchListOp []armmonitor.DiagnosticSettingsResource
 	pager := diagnosticClient.NewListPager(id, nil)
@@ -75,6 +75,7 @@ func getBatchAccount(ctx context.Context, account *armbatch.Account, diagnosticC
 			Account:                     *account,
 			DiagnosticSettingsResources: &batchListOp,
 			ResourceGroup:               resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 	return &resource, nil

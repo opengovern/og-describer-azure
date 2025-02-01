@@ -25,7 +25,7 @@ func StorageSync(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetStorageSync(ctx, v)
+			resource := GetStorageSync(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -38,7 +38,7 @@ func StorageSync(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func GetStorageSync(ctx context.Context, storage *armstoragesync.Service) *models.Resource {
+func GetStorageSync(ctx context.Context, storage *armstoragesync.Service, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*storage.ID, "/")[4]
 
 	resource := models.Resource{
@@ -48,6 +48,7 @@ func GetStorageSync(ctx context.Context, storage *armstoragesync.Service) *model
 		Description: model.StorageSyncDescription{
 			Service:       *storage,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		}}
 	return &resource
 }

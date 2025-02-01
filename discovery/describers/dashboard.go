@@ -25,7 +25,7 @@ func DashboardGrafana(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getDashboardGrafana(ctx, v)
+			resource := getDashboardGrafana(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -38,7 +38,7 @@ func DashboardGrafana(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getDashboardGrafana(ctx context.Context, v *armdashboard.ManagedGrafana) *models.Resource {
+func getDashboardGrafana(ctx context.Context, v *armdashboard.ManagedGrafana, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -48,6 +48,7 @@ func getDashboardGrafana(ctx context.Context, v *armdashboard.ManagedGrafana) *m
 		Description: model.DashboardGrafanaDescription{
 			Grafana:       *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

@@ -8,11 +8,9 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/keyvault/azcertificates"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/keyvault/armkeyvault"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
-	
 
 	"github.com/opengovern/og-util/pkg/concurrency"
 
-	
 	"github.com/opengovern/og-describer-azure/discovery/pkg/models"
 	model "github.com/opengovern/og-describer-azure/discovery/provider"
 )
@@ -78,6 +76,7 @@ func KeyVaultKey(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 								Vault:         *vaultCopy,
 								Key:           *vCopy,
 								ResourceGroup: resourceGroupCopy,
+								Subscription:  subscription,
 							},
 						}, nil
 					})
@@ -121,7 +120,7 @@ func KeyVaultKey(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func getKeyVaultKey(ctx context.Context, keysClient *armkeyvault.KeysClient, vCopy *armkeyvault.Key, resourceGroupCopy string, vaultCopy *armkeyvault.Resource) (*models.Resource, error) {
+func getKeyVaultKey(ctx context.Context, keysClient *armkeyvault.KeysClient, vCopy *armkeyvault.Key, resourceGroupCopy string, vaultCopy *armkeyvault.Resource, subscription string) (*models.Resource, error) {
 	op, err := keysClient.Get(ctx, resourceGroupCopy, *vaultCopy.Name, *vCopy.Name, nil)
 	if err != nil {
 		return nil, err
@@ -141,6 +140,7 @@ func getKeyVaultKey(ctx context.Context, keysClient *armkeyvault.KeysClient, vCo
 			Vault:         *vaultCopy,
 			Key:           *vCopy,
 			ResourceGroup: resourceGroupCopy,
+			Subscription:  subscription,
 		},
 	}, nil
 }
@@ -170,7 +170,7 @@ func KeyVault(ctx context.Context, cred *azidentity.ClientSecretCredential, subs
 			return nil, err
 		}
 		for _, vault := range page.Value {
-			resource, err := getKeyVault(ctx, vault, vaultsClient, diagnosticClient)
+			resource, err := getKeyVault(ctx, vault, vaultsClient, diagnosticClient, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -186,7 +186,7 @@ func KeyVault(ctx context.Context, cred *azidentity.ClientSecretCredential, subs
 	return values, nil
 }
 
-func getKeyVault(ctx context.Context, vault *armkeyvault.Resource, vaultsClient *armkeyvault.VaultsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient) (*models.Resource, error) {
+func getKeyVault(ctx context.Context, vault *armkeyvault.Resource, vaultsClient *armkeyvault.VaultsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient, subscription string) (*models.Resource, error) {
 	name := *vault.Name
 	resourceGroup := strings.Split(*vault.ID, "/")[4]
 
@@ -217,6 +217,7 @@ func getKeyVault(ctx context.Context, vault *armkeyvault.Resource, vaultsClient 
 			Vault:                       keyVaultGetOp.Vault,
 			DiagnosticSettingsResources: insightsListOp,
 			ResourceGroup:               resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 	return &resource, nil
@@ -237,7 +238,7 @@ func DeletedVault(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 			return nil, err
 		}
 		for _, vault := range page.Value {
-			resource := getDeletedVault(ctx, vault)
+			resource := getDeletedVault(ctx, vault, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -250,7 +251,7 @@ func DeletedVault(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	return values, nil
 }
 
-func getDeletedVault(ctx context.Context, vault *armkeyvault.DeletedVault) *models.Resource {
+func getDeletedVault(ctx context.Context, vault *armkeyvault.DeletedVault, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*vault.ID, "/")[4]
 
 	resource := models.Resource{
@@ -260,6 +261,7 @@ func getDeletedVault(ctx context.Context, vault *armkeyvault.DeletedVault) *mode
 		Description: model.KeyVaultDeletedVaultDescription{
 			Vault:         *vault,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -292,7 +294,7 @@ func KeyVaultManagedHardwareSecurityModule(ctx context.Context, cred *azidentity
 			return nil, err
 		}
 		for _, vault := range page.Value {
-			resource, err := getKeyVaultManagedHardwareSecurityModule(ctx, diagnosticClient, vault)
+			resource, err := getKeyVaultManagedHardwareSecurityModule(ctx, diagnosticClient, vault, subscription)
 			for err != nil {
 				return nil, err
 			}
@@ -308,7 +310,7 @@ func KeyVaultManagedHardwareSecurityModule(ctx context.Context, cred *azidentity
 	return values, nil
 }
 
-func getKeyVaultManagedHardwareSecurityModule(ctx context.Context, client *armmonitor.DiagnosticSettingsClient, vault *armkeyvault.ManagedHsm) (*models.Resource, error) {
+func getKeyVaultManagedHardwareSecurityModule(ctx context.Context, client *armmonitor.DiagnosticSettingsClient, vault *armkeyvault.ManagedHsm, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*vault.ID, "/")[4]
 
 	var keyvaultListOp []*armmonitor.DiagnosticSettingsResource
@@ -329,6 +331,7 @@ func getKeyVaultManagedHardwareSecurityModule(ctx context.Context, client *armmo
 			ManagedHsm:                  *vault,
 			DiagnosticSettingsResources: keyvaultListOp,
 			ResourceGroup:               resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 	return &resource, nil
@@ -376,7 +379,7 @@ func KeyVaultKeyVersion(ctx context.Context, cred *azidentity.ClientSecretCreden
 					vaultCopy := vault
 					vCopy := r
 					wp.AddJob(func() (interface{}, error) {
-						resources, err := ListKeyVaultKeyVersion(ctx, keysClient, vCopy, resourceGroupCopy, vaultCopy)
+						resources, err := ListKeyVaultKeyVersion(ctx, keysClient, vCopy, resourceGroupCopy, vaultCopy, subscription)
 						if err != nil {
 							return nil, err
 						}
@@ -422,7 +425,7 @@ func KeyVaultKeyVersion(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func ListKeyVaultKeyVersion(ctx context.Context, keysClient *armkeyvault.KeysClient, vCopy *armkeyvault.Key, resourceGroupCopy string, vaultCopy *armkeyvault.Resource) ([]models.Resource, error) {
+func ListKeyVaultKeyVersion(ctx context.Context, keysClient *armkeyvault.KeysClient, vCopy *armkeyvault.Key, resourceGroupCopy string, vaultCopy *armkeyvault.Resource, subscription string) ([]models.Resource, error) {
 	op, err := keysClient.Get(ctx, resourceGroupCopy, *vaultCopy.Name, *vCopy.Name, nil)
 	if err != nil {
 		return nil, err
@@ -436,7 +439,7 @@ func ListKeyVaultKeyVersion(ctx context.Context, keysClient *armkeyvault.KeysCli
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetKeyVaultKeyVersion(ctx, resourceGroupCopy, vaultCopy, vCopy, v)
+			resource := GetKeyVaultKeyVersion(ctx, resourceGroupCopy, vaultCopy, vCopy, v, subscription)
 			values = append(values, *resource)
 		}
 	}
@@ -449,7 +452,7 @@ func ListKeyVaultKeyVersion(ctx context.Context, keysClient *armkeyvault.KeysCli
 	return values, nil
 }
 
-func GetKeyVaultKeyVersion(ctx context.Context, resourceGroup string, vault *armkeyvault.Resource, key *armkeyvault.Key, version *armkeyvault.Key) *models.Resource {
+func GetKeyVaultKeyVersion(ctx context.Context, resourceGroup string, vault *armkeyvault.Resource, key *armkeyvault.Key, version *armkeyvault.Key, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *version.ID,
 		Name:     *version.Name,
@@ -459,6 +462,7 @@ func GetKeyVaultKeyVersion(ctx context.Context, resourceGroup string, vault *arm
 			Key:           *key,
 			Version:       *version,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -483,7 +487,7 @@ func KeyVaultCertificate(ctx context.Context, cred *azidentity.ClientSecretCrede
 			return nil, err
 		}
 		for _, vault := range page.Value {
-			resource, err := getKeyVaultCertificates(ctx, cred, vault, vaultsClient)
+			resource, err := getKeyVaultCertificates(ctx, cred, vault, vaultsClient, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -501,7 +505,7 @@ func KeyVaultCertificate(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func getKeyVaultCertificates(ctx context.Context, cred *azidentity.ClientSecretCredential, vault *armkeyvault.Resource, vaultsClient *armkeyvault.VaultsClient) ([]models.Resource, error) {
+func getKeyVaultCertificates(ctx context.Context, cred *azidentity.ClientSecretCredential, vault *armkeyvault.Resource, vaultsClient *armkeyvault.VaultsClient, subscription string) ([]models.Resource, error) {
 	name := *vault.Name
 	resourceGroup := strings.Split(*vault.ID, "/")[4]
 
@@ -534,6 +538,7 @@ func getKeyVaultCertificates(ctx context.Context, cred *azidentity.ClientSecretC
 					Policy:        policy.CertificatePolicy,
 					Vault:         *vault,
 					ResourceGroup: resourceGroup,
+					Subscription:  subscription,
 				},
 			}
 			resources = append(resources, resource)

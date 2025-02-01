@@ -22,6 +22,11 @@ func tableAzureNetworkVirtualWans(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.VirtualWans.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the virtualwans.",
 				Type:        proto.ColumnType_STRING,

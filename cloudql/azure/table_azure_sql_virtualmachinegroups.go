@@ -23,6 +23,11 @@ func tableAzureSqlVirtualMachineGroups(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Group.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the virtualmachinegroups.",
 				Type:        proto.ColumnType_STRING,

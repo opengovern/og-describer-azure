@@ -25,7 +25,7 @@ func VirtualMachineImagesImageTemplates(ctx context.Context, cred *azidentity.Cl
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetVirtualMachineImagesImageTemplates(ctx, v)
+			resource := GetVirtualMachineImagesImageTemplates(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -38,7 +38,7 @@ func VirtualMachineImagesImageTemplates(ctx context.Context, cred *azidentity.Cl
 	return values, err
 }
 
-func GetVirtualMachineImagesImageTemplates(ctx context.Context, v *armvirtualmachineimagebuilder.ImageTemplate) *models.Resource {
+func GetVirtualMachineImagesImageTemplates(ctx context.Context, v *armvirtualmachineimagebuilder.ImageTemplate, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -48,6 +48,7 @@ func GetVirtualMachineImagesImageTemplates(ctx context.Context, v *armvirtualmac
 		Description: model.VirtualMachineImagesImageTemplatesDescription{
 			ImageTemplate: *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

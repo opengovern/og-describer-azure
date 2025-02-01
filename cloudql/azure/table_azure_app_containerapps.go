@@ -22,6 +22,11 @@ func tableAzureAppContainerApps(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Server.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the containerapps.",
 				Type:        proto.ColumnType_STRING,

@@ -23,6 +23,11 @@ func tableAzureDevTestLabLab(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Lab.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the lab.",
 				Type:        proto.ColumnType_STRING,

@@ -27,7 +27,7 @@ func MonitorLogProfiles(ctx context.Context, cred *azidentity.ClientSecretCreden
 			return nil, err
 		}
 		for _, logProfile := range page.Value {
-			resource, err := getMonitorLogProfile(ctx, logProfile)
+			resource, err := getMonitorLogProfile(ctx, logProfile, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -43,7 +43,7 @@ func MonitorLogProfiles(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func getMonitorLogProfile(ctx context.Context, logProfile *armmonitor.LogProfileResource) (*models.Resource, error) {
+func getMonitorLogProfile(ctx context.Context, logProfile *armmonitor.LogProfileResource, subscription string) (*models.Resource, error) {
 
 	resourceGroup := strings.Split(*logProfile.ID, "/")[4]
 
@@ -54,6 +54,7 @@ func getMonitorLogProfile(ctx context.Context, logProfile *armmonitor.LogProfile
 		Description: model.MonitorLogProfileDescription{
 			LogProfile:    *logProfile,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource, nil

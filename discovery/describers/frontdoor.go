@@ -32,7 +32,7 @@ func FrontDoor(ctx context.Context, cred *azidentity.ClientSecretCredential, sub
 			return nil, err
 		}
 		for _, door := range page.Value {
-			resource, err := getFrontDoor(ctx, diagnosticClient, door)
+			resource, err := getFrontDoor(ctx, diagnosticClient, door, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -48,7 +48,7 @@ func FrontDoor(ctx context.Context, cred *azidentity.ClientSecretCredential, sub
 	return values, nil
 }
 
-func getFrontDoor(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, door *armfrontdoor.FrontDoor) (*models.Resource, error) {
+func getFrontDoor(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, door *armfrontdoor.FrontDoor, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*door.ID, "/")[4]
 
 	pager := diagnosticClient.NewListPager(*door.ID, nil)
@@ -69,6 +69,7 @@ func getFrontDoor(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSe
 			FrontDoor:                   *door,
 			DiagnosticSettingsResources: frontDoorListOp,
 			ResourceGroup:               resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 	return &resource, nil

@@ -4,8 +4,6 @@ import (
 	"context"
 	"strings"
 
-	
-
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armresources"
 
@@ -48,7 +46,7 @@ func ResourceProvider(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, provider := range page.Value {
-			resource := GetResourceProvider(ctx, provider)
+			resource := GetResourceProvider(ctx, provider, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -61,12 +59,13 @@ func ResourceProvider(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func GetResourceProvider(ctx context.Context, provider *armresources.Provider) *models.Resource {
+func GetResourceProvider(ctx context.Context, provider *armresources.Provider, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *provider.ID,
 		Location: "global",
 		Description: model.ResourceProviderDescription{
-			Provider: *provider,
+			Provider:     *provider,
+			Subscription: subscription,
 		},
 	}
 
@@ -88,7 +87,7 @@ func ResourceGroup(ctx context.Context, cred *azidentity.ClientSecretCredential,
 			return nil, err
 		}
 		for _, group := range page.Value {
-			resource := GetResourceGroup(ctx, group)
+			resource := GetResourceGroup(ctx, group, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -101,13 +100,14 @@ func ResourceGroup(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	return values, nil
 }
 
-func GetResourceGroup(ctx context.Context, group *armresources.ResourceGroup) *models.Resource {
+func GetResourceGroup(ctx context.Context, group *armresources.ResourceGroup, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *group.ID,
 		Name:     *group.Name,
 		Location: *group.Location,
 		Description: model.ResourceGroupDescription{
-			Group: *group,
+			Group:        *group,
+			Subscription: subscription,
 		},
 	}
 
@@ -130,7 +130,7 @@ func Resources(ctx context.Context, cred *azidentity.ClientSecretCredential, sub
 			return nil, err
 		}
 		for _, genericResource := range page.Value {
-			resource := GetResource(ctx, genericResource)
+			resource := GetResource(ctx, genericResource, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -144,7 +144,7 @@ func Resources(ctx context.Context, cred *azidentity.ClientSecretCredential, sub
 
 }
 
-func GetResource(ctx context.Context, genericResource *armresources.GenericResourceExpanded) *models.Resource {
+func GetResource(ctx context.Context, genericResource *armresources.GenericResourceExpanded, subscription string) *models.Resource {
 
 	resourceGroupName := strings.Split(string(*genericResource.ID), "/")[4]
 
@@ -155,6 +155,7 @@ func GetResource(ctx context.Context, genericResource *armresources.GenericResou
 		Description: model.GenericResourceDescription{
 			GenericResource: *genericResource,
 			ResourceGroup:   resourceGroupName,
+			Subscription:    subscription,
 		},
 	}
 	return &resource

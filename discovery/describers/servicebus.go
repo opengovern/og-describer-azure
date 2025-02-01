@@ -4,15 +4,12 @@ import (
 	"context"
 	"strings"
 
-	
-
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armresources"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/servicebus/armservicebus"
-"github.com/opengovern/og-describer-azure/discovery/pkg/models"
+	"github.com/opengovern/og-describer-azure/discovery/pkg/models"
 	model "github.com/opengovern/og-describer-azure/discovery/provider"
-	
 )
 
 func ServiceBusQueue(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
@@ -54,7 +51,7 @@ func ListResourceGroupServiceBusQueue(ctx context.Context, cred *azidentity.Clie
 
 	var values []models.Resource
 	for _, n := range ns {
-		resources, err := ListNamespaceServiceBusQueues(ctx, client, rg, n)
+		resources, err := ListNamespaceServiceBusQueues(ctx, client, rg, n, subscription)
 		if err != nil {
 			return nil, err
 		}
@@ -63,7 +60,7 @@ func ListResourceGroupServiceBusQueue(ctx context.Context, cred *azidentity.Clie
 	return values, nil
 }
 
-func ListNamespaceServiceBusQueues(ctx context.Context, client *armservicebus.QueuesClient, rg armresources.ResourceGroup, n *armservicebus.SBNamespace) ([]models.Resource, error) {
+func ListNamespaceServiceBusQueues(ctx context.Context, client *armservicebus.QueuesClient, rg armresources.ResourceGroup, n *armservicebus.SBNamespace, subscription string) ([]models.Resource, error) {
 	pager := client.NewListByNamespacePager(*rg.Name, *n.Name, nil)
 	var values []models.Resource
 	for pager.More() {
@@ -72,19 +69,22 @@ func ListNamespaceServiceBusQueues(ctx context.Context, client *armservicebus.Qu
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetServiceBusQueue(ctx, v)
+			resource := GetServiceBusQueue(ctx, v, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func GetServiceBusQueue(ctx context.Context, v *armservicebus.SBQueue) *models.Resource {
+func GetServiceBusQueue(ctx context.Context, v *armservicebus.SBQueue, subscription string) *models.Resource {
 	resource := models.Resource{
-		ID:          *v.ID,
-		Name:        *v.Name,
-		Location:    "global",
-		Description: v,
+		ID:       *v.ID,
+		Name:     *v.Name,
+		Location: "global",
+		Description: model.SBQueueDescription{
+			SBQueue:      *v,
+			Subscription: subscription,
+		},
 	}
 	return &resource
 }
@@ -128,7 +128,7 @@ func ListResourceGroupServiceBusTopic(ctx context.Context, cred *azidentity.Clie
 
 	var values []models.Resource
 	for _, n := range ns {
-		resources, err := ListNamespaceServiceBusTopics(ctx, client, rg, n)
+		resources, err := ListNamespaceServiceBusTopics(ctx, client, rg, n, subscription)
 		if err != nil {
 			return nil, err
 		}
@@ -137,7 +137,7 @@ func ListResourceGroupServiceBusTopic(ctx context.Context, cred *azidentity.Clie
 	return values, nil
 }
 
-func ListNamespaceServiceBusTopics(ctx context.Context, client *armservicebus.TopicsClient, rg armresources.ResourceGroup, n *armservicebus.SBNamespace) ([]models.Resource, error) {
+func ListNamespaceServiceBusTopics(ctx context.Context, client *armservicebus.TopicsClient, rg armresources.ResourceGroup, n *armservicebus.SBNamespace, subscription string) ([]models.Resource, error) {
 	pager := client.NewListByNamespacePager(*rg.Name, *n.Name, nil)
 	var values []models.Resource
 	for pager.More() {
@@ -146,19 +146,22 @@ func ListNamespaceServiceBusTopics(ctx context.Context, client *armservicebus.To
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetServiceBusTopic(ctx, v)
+			resource := GetServiceBusTopic(ctx, v, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func GetServiceBusTopic(ctx context.Context, v *armservicebus.SBTopic) *models.Resource {
+func GetServiceBusTopic(ctx context.Context, v *armservicebus.SBTopic, subscription string) *models.Resource {
 	resource := models.Resource{
-		ID:          *v.ID,
-		Name:        *v.Name,
-		Location:    "global",
-		Description: v,
+		ID:       *v.ID,
+		Name:     *v.Name,
+		Location: "global",
+		Description: model.SBTopicDescription{
+			SBTopic:      *v,
+			Subscription: subscription,
+		},
 	}
 	return &resource
 }
@@ -205,7 +208,7 @@ func ServicebusNamespace(ctx context.Context, cred *azidentity.ClientSecretCrede
 			return nil, err
 		}
 		for _, namespace := range page.Value {
-			resource, err := GetServicebusNamespace(ctx, namespaceClient, servicebusClient, diagnosticClient, namespace)
+			resource, err := GetServicebusNamespace(ctx, namespaceClient, servicebusClient, diagnosticClient, namespace, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -221,7 +224,7 @@ func ServicebusNamespace(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func GetServicebusNamespace(ctx context.Context, namespaceClient *armservicebus.NamespacesClient, servicebusClient *armservicebus.PrivateEndpointConnectionsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient, namespace *armservicebus.SBNamespace) (*models.Resource, error) {
+func GetServicebusNamespace(ctx context.Context, namespaceClient *armservicebus.NamespacesClient, servicebusClient *armservicebus.PrivateEndpointConnectionsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient, namespace *armservicebus.SBNamespace, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*namespace.ID, "/")[4]
 
 	var insightsListOp []*armmonitor.DiagnosticSettingsResource
@@ -275,6 +278,7 @@ func GetServicebusNamespace(ctx context.Context, namespaceClient *armservicebus.
 			PrivateEndpointConnections:  servicebusListOp,
 			AuthorizationRules:          servicebusAuthorizationRules,
 			ResourceGroup:               resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 	return &resource, nil

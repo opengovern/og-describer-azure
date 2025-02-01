@@ -31,6 +31,7 @@ func DesktopVirtualizationWorkspaces(ctx context.Context, cred *azidentity.Clien
 				Description: model.DesktopVirtualizationWorkspaceDescription{
 					Workspace:     *v,
 					ResourceGroup: resourceGroupName,
+					Subscription:  subscription,
 				},
 			}
 			if stream != nil {
@@ -58,7 +59,7 @@ func DesktopVirtualizationHostPool(ctx context.Context, cred *azidentity.ClientS
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getDesktopVirtualizationHostPool(ctx, v)
+			resource := getDesktopVirtualizationHostPool(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -71,7 +72,7 @@ func DesktopVirtualizationHostPool(ctx context.Context, cred *azidentity.ClientS
 	return values, nil
 }
 
-func getDesktopVirtualizationHostPool(ctx context.Context, v *armdesktopvirtualization.HostPool) *models.Resource {
+func getDesktopVirtualizationHostPool(ctx context.Context, v *armdesktopvirtualization.HostPool, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(string(*v.ID), "/")[4]
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -80,6 +81,7 @@ func getDesktopVirtualizationHostPool(ctx context.Context, v *armdesktopvirtuali
 		Description: model.DesktopVirtualizationHostPoolDescription{
 			HostPool:      *v,
 			ResourceGroup: resourceGroupName,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

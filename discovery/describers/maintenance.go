@@ -9,7 +9,6 @@ import (
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/maintenance/armmaintenance"
-	
 )
 
 func MaintenanceConfiguration(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
@@ -29,7 +28,7 @@ func MaintenanceConfiguration(ctx context.Context, cred *azidentity.ClientSecret
 			return nil, err
 		}
 		for _, configuration := range page.Value {
-			resource, err := getMaintenanceConfiguration(ctx, configuration)
+			resource, err := getMaintenanceConfiguration(ctx, configuration, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -47,7 +46,7 @@ func MaintenanceConfiguration(ctx context.Context, cred *azidentity.ClientSecret
 
 }
 
-func getMaintenanceConfiguration(ctx context.Context, configuration *armmaintenance.Configuration) (*models.Resource, error) {
+func getMaintenanceConfiguration(ctx context.Context, configuration *armmaintenance.Configuration, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*configuration.ID, "/")[4]
 
 	resource := models.Resource{
@@ -56,6 +55,7 @@ func getMaintenanceConfiguration(ctx context.Context, configuration *armmaintena
 		Description: model.MaintenanceConfigurationDescription{
 			MaintenanceConfiguration: *configuration,
 			ResourceGroup:            resourceGroup,
+			Subscription:             subscription,
 		},
 	}
 	return &resource, nil

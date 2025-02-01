@@ -24,7 +24,7 @@ func DataboxEdgeDevice(ctx context.Context, cred *azidentity.ClientSecretCredent
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getDataboxEdgeDevice(ctx, v)
+			resource := getDataboxEdgeDevice(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -37,7 +37,7 @@ func DataboxEdgeDevice(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func getDataboxEdgeDevice(ctx context.Context, v *armdataboxedge.Device) *models.Resource {
+func getDataboxEdgeDevice(ctx context.Context, v *armdataboxedge.Device, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -47,6 +47,7 @@ func getDataboxEdgeDevice(ctx context.Context, v *armdataboxedge.Device) *models
 		Description: model.DataboxEdgeDeviceDescription{
 			Device:        *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

@@ -41,7 +41,7 @@ func BlueprintArtifact(ctx context.Context, cred *azidentity.ClientSecretCredent
 				it = append(it, page2.Value...)
 			}
 			for _, v := range it {
-				resource := getBluePrintArtifact(ctx, v)
+				resource := getBluePrintArtifact(ctx, v, subscription)
 				if stream != nil {
 					if err := (*stream)(*resource); err != nil {
 						return nil, err
@@ -55,7 +55,7 @@ func BlueprintArtifact(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func getBluePrintArtifact(ctx context.Context, v armblueprint.ArtifactClassification) *models.Resource {
+func getBluePrintArtifact(ctx context.Context, v armblueprint.ArtifactClassification, subscription string) *models.Resource {
 	return &models.Resource{
 		ID:          *v.GetArtifact().ID,
 		Description: v.GetArtifact(),
@@ -77,7 +77,7 @@ func BlueprintBlueprint(ctx context.Context, cred *azidentity.ClientSecretCreden
 			return nil, err
 		}
 		for _, b := range page.Value {
-			resource := getBlueprintBlueprint(ctx, b)
+			resource := getBlueprintBlueprint(ctx, b, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -91,13 +91,14 @@ func BlueprintBlueprint(ctx context.Context, cred *azidentity.ClientSecretCreden
 	return values, nil
 }
 
-func getBlueprintBlueprint(ctx context.Context, blueprint *armblueprint.Blueprint) *models.Resource {
+func getBlueprintBlueprint(ctx context.Context, blueprint *armblueprint.Blueprint, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(*blueprint.ID, "/")[4]
 	return &models.Resource{
 		ID: *blueprint.ID,
 		Description: model.BlueprintDescription{
 			Blueprint:     *blueprint,
 			ResourceGroup: resourceGroupName,
+			Subscription:  subscription,
 		},
 	}
 }

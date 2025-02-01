@@ -32,7 +32,7 @@ func AppConfiguration(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, config := range page.Value {
-			resource, err := getAppConfiguration(ctx, diagnosticClient, config)
+			resource, err := getAppConfiguration(ctx, diagnosticClient, subscription, config)
 			if err != nil {
 				return nil, err
 			}
@@ -48,7 +48,7 @@ func AppConfiguration(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getAppConfiguration(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, config *armappconfiguration.ConfigurationStore) (*models.Resource, error) {
+func getAppConfiguration(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, subscription string, config *armappconfiguration.ConfigurationStore) (*models.Resource, error) {
 	resourceGroup := strings.Split(*config.ID, "/")[4]
 
 	var op []armmonitor.DiagnosticSettingsResource
@@ -70,6 +70,7 @@ func getAppConfiguration(ctx context.Context, diagnosticClient *armmonitor.Diagn
 			ConfigurationStore:          *config,
 			DiagnosticSettingsResources: &op,
 			ResourceGroup:               resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 	return &resource, nil

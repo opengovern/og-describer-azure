@@ -25,7 +25,7 @@ func DatabricksWorkspaces(ctx context.Context, cred *azidentity.ClientSecretCred
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getDatabricksWorkspace(ctx, v)
+			resource := getDatabricksWorkspace(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -38,7 +38,7 @@ func DatabricksWorkspaces(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func getDatabricksWorkspace(ctx context.Context, v *armdatabricks.Workspace) *models.Resource {
+func getDatabricksWorkspace(ctx context.Context, v *armdatabricks.Workspace, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -48,6 +48,7 @@ func getDatabricksWorkspace(ctx context.Context, v *armdatabricks.Workspace) *mo
 		Description: model.DatabricksWorkspaceDescription{
 			Workspace:     *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

@@ -10,7 +10,6 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/mysql/armmysql"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/mysql/armmysqlflexibleservers"
-
 )
 
 func MysqlServer(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
@@ -32,7 +31,7 @@ func MysqlServer(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 			return nil, err
 		}
 		for _, r := range page.Value {
-			resource, err := getMysqlServer(ctx, keysClient, configClient, securityAlertPolicyClient, vnetRulesClient, r)
+			resource, err := getMysqlServer(ctx, keysClient, configClient, securityAlertPolicyClient, vnetRulesClient, r, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -48,7 +47,7 @@ func MysqlServer(ctx context.Context, cred *azidentity.ClientSecretCredential, s
 	return values, nil
 }
 
-func getMysqlServer(ctx context.Context, keysClient *armmysql.ServerKeysClient, configClient *armmysql.ConfigurationsClient, securityAlertPolicyClient *armmysql.ServerSecurityAlertPoliciesClient, vnetRulesClient *armmysql.VirtualNetworkRulesClient, server *armmysql.Server) (*models.Resource, error) {
+func getMysqlServer(ctx context.Context, keysClient *armmysql.ServerKeysClient, configClient *armmysql.ConfigurationsClient, securityAlertPolicyClient *armmysql.ServerSecurityAlertPoliciesClient, vnetRulesClient *armmysql.VirtualNetworkRulesClient, server *armmysql.Server, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(string(*server.ID), "/")[4]
 	serverName := *server.Name
 
@@ -103,6 +102,7 @@ func getMysqlServer(ctx context.Context, keysClient *armmysql.ServerKeysClient, 
 			SecurityAlertPolicies: alertPolicies,
 			VnetRules:             vnetRules,
 			ResourceGroup:         resourceGroup,
+			Subscription:          subscription,
 		},
 	}
 	return &resource, nil
@@ -123,7 +123,7 @@ func MysqlFlexibleservers(ctx context.Context, cred *azidentity.ClientSecretCred
 			return nil, err
 		}
 		for _, server := range page.Value {
-			resource := getMysqlFlexibleservers(ctx, server)
+			resource := getMysqlFlexibleservers(ctx, server, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -136,7 +136,7 @@ func MysqlFlexibleservers(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func getMysqlFlexibleservers(ctx context.Context, server *armmysqlflexibleservers.Server) *models.Resource {
+func getMysqlFlexibleservers(ctx context.Context, server *armmysqlflexibleservers.Server, subscription string) *models.Resource {
 	resourceGroup := strings.Split(string(*server.ID), "/")[4]
 
 	resource := models.Resource{
@@ -146,6 +146,7 @@ func getMysqlFlexibleservers(ctx context.Context, server *armmysqlflexibleserver
 		Description: model.MysqlFlexibleserverDescription{
 			Server:        *server,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

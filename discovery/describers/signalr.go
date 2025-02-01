@@ -32,7 +32,7 @@ func SignalrService(ctx context.Context, cred *azidentity.ClientSecretCredential
 			return nil, err
 		}
 		for _, service := range page.Value {
-			resource, err := GetSignalrService(ctx, diagnosticClient, service)
+			resource, err := GetSignalrService(ctx, diagnosticClient, service, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -48,7 +48,7 @@ func SignalrService(ctx context.Context, cred *azidentity.ClientSecretCredential
 	return values, nil
 }
 
-func GetSignalrService(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, service *armsignalr.ResourceInfo) (*models.Resource, error) {
+func GetSignalrService(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, service *armsignalr.ResourceInfo, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*service.ID, "/")[4]
 
 	var signalrListOp []*armmonitor.DiagnosticSettingsResource
@@ -69,6 +69,7 @@ func GetSignalrService(ctx context.Context, diagnosticClient *armmonitor.Diagnos
 			ResourceInfo:                *service,
 			DiagnosticSettingsResources: signalrListOp,
 			ResourceGroup:               resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 	return &resource, nil

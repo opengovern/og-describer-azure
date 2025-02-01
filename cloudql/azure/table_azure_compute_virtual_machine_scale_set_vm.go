@@ -28,6 +28,11 @@ func tableAzureComputeVirtualMachineScaleSetVm(_ context.Context) *plugin.Table 
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.ScaleSetVM.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "Name of the scale set VM.",
 				Type:        proto.ColumnType_STRING,

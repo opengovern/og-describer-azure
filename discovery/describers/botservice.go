@@ -26,7 +26,7 @@ func BotServiceBot(ctx context.Context, cred *azidentity.ClientSecretCredential,
 			return nil, err
 		}
 		for _, b := range page.Value {
-			resource := getBotServiceBot(ctx, b)
+			resource := getBotServiceBot(ctx, b, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -39,13 +39,14 @@ func BotServiceBot(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	return values, nil
 }
 
-func getBotServiceBot(ctx context.Context, bot *armbotservice.Bot) *models.Resource {
+func getBotServiceBot(ctx context.Context, bot *armbotservice.Bot, subscription string) *models.Resource {
 	resourceGroupName := strings.Split(string(*bot.ID), "/")[4]
 	return &models.Resource{
 		ID: *bot.ID,
 		Description: model.BotServiceBotDescription{
 			Bot:           *bot,
 			ResourceGroup: resourceGroupName,
+			Subscription:  subscription,
 		},
 	}
 }

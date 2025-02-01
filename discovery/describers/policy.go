@@ -27,7 +27,7 @@ func PolicyAssignment(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetPolicyAssignment(ctx, resourceClient, v)
+			resource := GetPolicyAssignment(ctx, resourceClient, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -40,7 +40,7 @@ func PolicyAssignment(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func GetPolicyAssignment(ctx context.Context, resourceClient *armresources.Client, v *armpolicy.Assignment) *models.Resource {
+func GetPolicyAssignment(ctx context.Context, resourceClient *armresources.Client, v *armpolicy.Assignment, subscription string) *models.Resource {
 	location := "global"
 	if v.Location != nil {
 		location = *v.Location
@@ -57,8 +57,9 @@ func GetPolicyAssignment(ctx context.Context, resourceClient *armresources.Clien
 		Name:     *v.Name,
 		Location: location,
 		Description: model.PolicyAssignmentDescription{
-			Assignment: *v,
-			Resource:   res.GenericResource,
+			Assignment:   *v,
+			Resource:     res.GenericResource,
+			Subscription: subscription,
 		},
 	}
 

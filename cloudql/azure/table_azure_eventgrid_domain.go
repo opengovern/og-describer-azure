@@ -28,6 +28,11 @@ func tableAzureEventGridDomain(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Domain.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "The name of the resource.",
 				Type:        proto.ColumnType_STRING,

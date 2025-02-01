@@ -26,7 +26,7 @@ func RedisCache(ctx context.Context, cred *azidentity.ClientSecretCredential, su
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetRedisCache(ctx, v)
+			resource := GetRedisCache(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -39,7 +39,7 @@ func RedisCache(ctx context.Context, cred *azidentity.ClientSecretCredential, su
 	return values, nil
 }
 
-func GetRedisCache(ctx context.Context, v *armredis.ResourceInfo) *models.Resource {
+func GetRedisCache(ctx context.Context, v *armredis.ResourceInfo, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -48,6 +48,7 @@ func GetRedisCache(ctx context.Context, v *armredis.ResourceInfo) *models.Resour
 		Description: model.RedisCacheDescription{
 			ResourceInfo:  *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -68,7 +69,7 @@ func CacheRedisEnterprise(ctx context.Context, cred *azidentity.ClientSecretCred
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetCacheRedisEnterprise(ctx, v)
+			resource := GetCacheRedisEnterprise(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -81,7 +82,7 @@ func CacheRedisEnterprise(ctx context.Context, cred *azidentity.ClientSecretCred
 	return values, nil
 }
 
-func GetCacheRedisEnterprise(ctx context.Context, v *armredisenterprise.Cluster) *models.Resource {
+func GetCacheRedisEnterprise(ctx context.Context, v *armredisenterprise.Cluster, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *v.ID,
@@ -90,6 +91,7 @@ func GetCacheRedisEnterprise(ctx context.Context, v *armredisenterprise.Cluster)
 		Description: model.RedisEnterpriseCacheDescription{
 			RedisEnterprise: *v,
 			ResourceGroup:   resourceGroup,
+			Subscription:    subscription,
 		},
 	}
 	return &resource

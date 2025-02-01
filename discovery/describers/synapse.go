@@ -33,7 +33,7 @@ func SynapseWorkspace(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource, err := GetSynapseWorkspace(ctx, synapseClient, diagnosticClient, v)
+			resource, err := GetSynapseWorkspace(ctx, synapseClient, diagnosticClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -49,7 +49,7 @@ func SynapseWorkspace(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func GetSynapseWorkspace(ctx context.Context, synapseClient *armsynapse.WorkspaceManagedSQLServerVulnerabilityAssessmentsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient, config *armsynapse.Workspace) (*models.Resource, error) {
+func GetSynapseWorkspace(ctx context.Context, synapseClient *armsynapse.WorkspaceManagedSQLServerVulnerabilityAssessmentsClient, diagnosticClient *armmonitor.DiagnosticSettingsClient, config *armsynapse.Workspace, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*config.ID, "/")[4]
 
 	ignoreAssesment := false
@@ -91,6 +91,7 @@ func GetSynapseWorkspace(ctx context.Context, synapseClient *armsynapse.Workspac
 			ServerVulnerabilityAssessments: serverVulnerabilityAssessments,
 			DiagnosticSettingsResources:    synapseListOp,
 			ResourceGroup:                  resourceGroup,
+			Subscription:                   subscription,
 		},
 	}
 	return &resource, nil
@@ -112,7 +113,7 @@ func SynapseWorkspaceBigdataPools(ctx context.Context, cred *azidentity.ClientSe
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resources, err := ListSynapseWorkspaceBigdataPools(ctx, bigDataPoolsClient, v)
+			resources, err := ListSynapseWorkspaceBigdataPools(ctx, bigDataPoolsClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -122,7 +123,7 @@ func SynapseWorkspaceBigdataPools(ctx context.Context, cred *azidentity.ClientSe
 	return values, err
 }
 
-func ListSynapseWorkspaceBigdataPools(ctx context.Context, bigDataPoolsClient *armsynapse.BigDataPoolsClient, v *armsynapse.Workspace) ([]models.Resource, error) {
+func ListSynapseWorkspaceBigdataPools(ctx context.Context, bigDataPoolsClient *armsynapse.BigDataPoolsClient, v *armsynapse.Workspace, subscription string) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	var values []models.Resource
@@ -133,14 +134,14 @@ func ListSynapseWorkspaceBigdataPools(ctx context.Context, bigDataPoolsClient *a
 			return nil, err
 		}
 		for _, bp := range page.Value {
-			resource := GetSynapseWorkspaceBigdataPools(ctx, resourceGroup, bp, v)
+			resource := GetSynapseWorkspaceBigdataPools(ctx, resourceGroup, bp, v, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func GetSynapseWorkspaceBigdataPools(ctx context.Context, resourceGroup string, bp *armsynapse.BigDataPoolResourceInfo, v *armsynapse.Workspace) *models.Resource {
+func GetSynapseWorkspaceBigdataPools(ctx context.Context, resourceGroup string, bp *armsynapse.BigDataPoolResourceInfo, v *armsynapse.Workspace, subscription string) *models.Resource {
 	resource := models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
@@ -149,6 +150,7 @@ func GetSynapseWorkspaceBigdataPools(ctx context.Context, resourceGroup string, 
 			Workspace:     *v,
 			BigDataPool:   *bp,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -170,7 +172,7 @@ func SynapseWorkspaceSqlpools(ctx context.Context, cred *azidentity.ClientSecret
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resources, err := ListSynapseWorkspaceSqlpools(ctx, bpClient, v)
+			resources, err := ListSynapseWorkspaceSqlpools(ctx, bpClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -188,7 +190,7 @@ func SynapseWorkspaceSqlpools(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func ListSynapseWorkspaceSqlpools(ctx context.Context, bpClient *armsynapse.SQLPoolsClient, v *armsynapse.Workspace) ([]models.Resource, error) {
+func ListSynapseWorkspaceSqlpools(ctx context.Context, bpClient *armsynapse.SQLPoolsClient, v *armsynapse.Workspace, subscription string) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	var values []models.Resource
@@ -202,14 +204,14 @@ func ListSynapseWorkspaceSqlpools(ctx context.Context, bpClient *armsynapse.SQLP
 			return nil, err
 		}
 		for _, bp := range page.Value {
-			resource := GetSynapseWorkspaceSqlpools(ctx, v, bp)
+			resource := GetSynapseWorkspaceSqlpools(ctx, v, bp, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func GetSynapseWorkspaceSqlpools(ctx context.Context, v *armsynapse.Workspace, bp *armsynapse.SQLPool) *models.Resource {
+func GetSynapseWorkspaceSqlpools(ctx context.Context, v *armsynapse.Workspace, bp *armsynapse.SQLPool, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -220,6 +222,7 @@ func GetSynapseWorkspaceSqlpools(ctx context.Context, v *armsynapse.Workspace, b
 			Workspace:     *v,
 			SqlPool:       *bp,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

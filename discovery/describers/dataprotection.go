@@ -23,7 +23,7 @@ func DataProtectionBackupVaults(ctx context.Context, cred *azidentity.ClientSecr
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getDataProtectionBackupVaults(ctx, v)
+			resource := getDataProtectionBackupVaults(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -36,7 +36,7 @@ func DataProtectionBackupVaults(ctx context.Context, cred *azidentity.ClientSecr
 	return values, nil
 }
 
-func getDataProtectionBackupVaults(ctx context.Context, v *armdataprotection.BackupVaultResource) *models.Resource {
+func getDataProtectionBackupVaults(ctx context.Context, v *armdataprotection.BackupVaultResource, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -46,6 +46,7 @@ func getDataProtectionBackupVaults(ctx context.Context, v *armdataprotection.Bac
 		Description: model.DataProtectionBackupVaultsDescription{
 			BackupVaults:  *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource
@@ -68,7 +69,7 @@ func DataProtectionBackupVaultsBackupPolicies(ctx context.Context, cred *azident
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resources, err := getDataProtectionBackupVaultsBackupPolicies(ctx, policiesClient, v)
+			resources, err := getDataProtectionBackupVaultsBackupPolicies(ctx, policiesClient, v, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -86,7 +87,7 @@ func DataProtectionBackupVaultsBackupPolicies(ctx context.Context, cred *azident
 	return values, nil
 }
 
-func getDataProtectionBackupVaultsBackupPolicies(ctx context.Context, client *armdataprotection.BackupPoliciesClient, v *armdataprotection.BackupVaultResource) ([]models.Resource, error) {
+func getDataProtectionBackupVaultsBackupPolicies(ctx context.Context, client *armdataprotection.BackupPoliciesClient, v *armdataprotection.BackupVaultResource, subscription string) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	pager := client.NewListPager(resourceGroup, *v.Name, nil)
@@ -106,6 +107,7 @@ func getDataProtectionBackupVaultsBackupPolicies(ctx context.Context, client *ar
 				Description: model.DataProtectionBackupVaultsBackupPoliciesDescription{
 					BackupPolicies: *p,
 					ResourceGroup:  resourceGroup,
+					Subscription:   subscription,
 				},
 			}
 			values = append(values, resource)
@@ -134,7 +136,7 @@ func DataProtectionBackupJobs(ctx context.Context, cred *azidentity.ClientSecret
 			return nil, err
 		}
 		for _, vault := range page.Value {
-			jobs, err := listDataProtectionBackupJobs(ctx, jobsClient, vault)
+			jobs, err := listDataProtectionBackupJobs(ctx, jobsClient, vault, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -152,7 +154,7 @@ func DataProtectionBackupJobs(ctx context.Context, cred *azidentity.ClientSecret
 	return resources, nil
 }
 
-func listDataProtectionBackupJobs(ctx context.Context, jobsClient *armdataprotection.JobsClient, vault *armdataprotection.BackupVaultResource) ([]models.Resource, error) {
+func listDataProtectionBackupJobs(ctx context.Context, jobsClient *armdataprotection.JobsClient, vault *armdataprotection.BackupVaultResource, subscription string) ([]models.Resource, error) {
 
 	resourceGroup := strings.Split(*vault.ID, "/")[4]
 
@@ -165,14 +167,14 @@ func listDataProtectionBackupJobs(ctx context.Context, jobsClient *armdataprotec
 			return nil, err
 		}
 		for _, job := range page.Value {
-			resource := GetDataPotectionJob(ctx, vault, job)
+			resource := GetDataPotectionJob(ctx, vault, job, subscription)
 			resources = append(resources, *resource)
 		}
 	}
 	return resources, nil
 }
 
-func GetDataPotectionJob(ctx context.Context, vault *armdataprotection.BackupVaultResource, job *armdataprotection.AzureBackupJobResource) *models.Resource {
+func GetDataPotectionJob(ctx context.Context, vault *armdataprotection.BackupVaultResource, job *armdataprotection.AzureBackupJobResource, subscription string) *models.Resource {
 
 	resourceGroup := strings.Split(*job.ID, "/")[4]
 
@@ -183,6 +185,7 @@ func GetDataPotectionJob(ctx context.Context, vault *armdataprotection.BackupVau
 			DataProtectionJob: *job,
 			VaultName:         *vault.Name,
 			ResourceGroup:     resourceGroup,
+			Subscription:      subscription,
 		},
 	}
 	return &resource

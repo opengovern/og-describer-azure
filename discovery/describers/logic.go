@@ -32,7 +32,7 @@ func LogicAppWorkflow(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, workflow := range page.Value {
-			resource, err := getLogicAppWorkflow(ctx, diagnosticClient, workflow)
+			resource, err := getLogicAppWorkflow(ctx, diagnosticClient, workflow, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -48,7 +48,7 @@ func LogicAppWorkflow(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getLogicAppWorkflow(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, workflow *armlogic.Workflow) (*models.Resource, error) {
+func getLogicAppWorkflow(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, workflow *armlogic.Workflow, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*workflow.ID, "/")[4]
 
 	var logicListOp []*armmonitor.DiagnosticSettingsResource
@@ -69,6 +69,7 @@ func getLogicAppWorkflow(ctx context.Context, diagnosticClient *armmonitor.Diagn
 			Workflow:                    *workflow,
 			DiagnosticSettingsResources: logicListOp,
 			ResourceGroup:               resourceGroup,
+			Subscription:                subscription,
 		},
 	}
 	return &resource, nil
@@ -89,7 +90,7 @@ func LogicIntegrationAccounts(ctx context.Context, cred *azidentity.ClientSecret
 			return nil, err
 		}
 		for _, account := range page.Value {
-			resource := getLogicIntegrationAccounts(ctx, account)
+			resource := getLogicIntegrationAccounts(ctx, account, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -102,7 +103,7 @@ func LogicIntegrationAccounts(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func getLogicIntegrationAccounts(ctx context.Context, account *armlogic.IntegrationAccount) *models.Resource {
+func getLogicIntegrationAccounts(ctx context.Context, account *armlogic.IntegrationAccount, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*account.ID, "/")[4]
 
 	resource := models.Resource{
@@ -112,6 +113,7 @@ func getLogicIntegrationAccounts(ctx context.Context, account *armlogic.Integrat
 		Description: model.LogicIntegrationAccountsDescription{
 			Account:       *account,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 	return &resource

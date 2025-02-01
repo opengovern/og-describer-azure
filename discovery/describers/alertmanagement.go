@@ -4,8 +4,6 @@ import (
 	"context"
 	"strings"
 
-	
-
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/alertsmanagement/armalertsmanagement"
 	"github.com/opengovern/og-describer-azure/discovery/pkg/models"
@@ -29,7 +27,7 @@ func AlertManagement(ctx context.Context, cred *azidentity.ClientSecretCredentia
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getAlertManagement(ctx, v)
+			resource := getAlertManagement(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -42,7 +40,7 @@ func AlertManagement(ctx context.Context, cred *azidentity.ClientSecretCredentia
 	return resources, nil
 }
 
-func getAlertManagement(_ context.Context, alert *armalertsmanagement.Alert) *models.Resource {
+func getAlertManagement(_ context.Context, alert *armalertsmanagement.Alert, subscription string) *models.Resource {
 
 	resourceGroup := strings.Split(*alert.ID, "/")[4]
 	return &models.Resource{
@@ -51,6 +49,7 @@ func getAlertManagement(_ context.Context, alert *armalertsmanagement.Alert) *mo
 		Description: model.AlertManagementDescription{
 			Alert:         *alert,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 }

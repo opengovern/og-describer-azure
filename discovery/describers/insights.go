@@ -27,7 +27,7 @@ func DiagnosticSetting(ctx context.Context, cred *azidentity.ClientSecretCredent
 			return nil, err
 		}
 		for _, diagnosticSetting := range page.Value {
-			resource := getDiagnosticSetting(ctx, diagnosticSetting)
+			resource := getDiagnosticSetting(ctx, diagnosticSetting, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -40,7 +40,7 @@ func DiagnosticSetting(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func getDiagnosticSetting(ctx context.Context, diagnosticSetting *armmonitor.DiagnosticSettingsResource) *models.Resource {
+func getDiagnosticSetting(ctx context.Context, diagnosticSetting *armmonitor.DiagnosticSettingsResource, subscription string) *models.Resource {
 	var resourceGroup string
 	if diagnosticSetting.Properties.StorageAccountID != nil {
 		resourceGroup = strings.Split(*diagnosticSetting.Properties.StorageAccountID, "/")[4]
@@ -56,6 +56,7 @@ func getDiagnosticSetting(ctx context.Context, diagnosticSetting *armmonitor.Dia
 		Description: model.DiagnosticSettingDescription{
 			DiagnosticSettingsResource: *diagnosticSetting,
 			ResourceGroup:              resourceGroup,
+			Subscription:               subscription,
 		},
 	}
 	return &resource
@@ -77,7 +78,7 @@ func LogAlert(ctx context.Context, cred *azidentity.ClientSecretCredential, subs
 			return nil, err
 		}
 		for _, logAlert := range page.Value {
-			resource := getLogAlert(ctx, logAlert)
+			resource := getLogAlert(ctx, logAlert, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -90,7 +91,7 @@ func LogAlert(ctx context.Context, cred *azidentity.ClientSecretCredential, subs
 	return values, nil
 }
 
-func getLogAlert(ctx context.Context, logAlert *armmonitor.ActivityLogAlertResource) *models.Resource {
+func getLogAlert(ctx context.Context, logAlert *armmonitor.ActivityLogAlertResource, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*logAlert.ID, "/")[4]
 
 	resource := models.Resource{
@@ -100,6 +101,7 @@ func getLogAlert(ctx context.Context, logAlert *armmonitor.ActivityLogAlertResou
 		Description: model.LogAlertDescription{
 			ActivityLogAlertResource: *logAlert,
 			ResourceGroup:            resourceGroup,
+			Subscription:             subscription,
 		},
 	}
 
@@ -121,7 +123,7 @@ func LogProfile(ctx context.Context, cred *azidentity.ClientSecretCredential, su
 			return nil, err
 		}
 		for _, r := range page.Value {
-			resource := getLogProfile(ctx, r)
+			resource := getLogProfile(ctx, r, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -134,7 +136,7 @@ func LogProfile(ctx context.Context, cred *azidentity.ClientSecretCredential, su
 	return values, nil
 }
 
-func getLogProfile(ctx context.Context, logProfile *armmonitor.LogProfileResource) *models.Resource {
+func getLogProfile(ctx context.Context, logProfile *armmonitor.LogProfileResource, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*logProfile.ID, "/")[4]
 	location := "global"
 	if logProfile.Location != nil {
@@ -147,6 +149,7 @@ func getLogProfile(ctx context.Context, logProfile *armmonitor.LogProfileResourc
 		Description: model.LogProfileDescription{
 			LogProfileResource: *logProfile,
 			ResourceGroup:      resourceGroup,
+			Subscription:       subscription,
 		},
 	}
 
@@ -246,7 +249,7 @@ func AutoscaleSetting(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := getAutoscaleSetting(v)
+			resource := getAutoscaleSetting(v, subscription)
 			if stream != nil {
 				if err := (*stream)(resource); err != nil {
 					return nil, err
@@ -259,7 +262,7 @@ func AutoscaleSetting(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func getAutoscaleSetting(v *armmonitor.AutoscaleSettingResource) models.Resource {
+func getAutoscaleSetting(v *armmonitor.AutoscaleSettingResource, subscription string) models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 	return models.Resource{
 		ID:       *v.ID,
@@ -268,6 +271,7 @@ func getAutoscaleSetting(v *armmonitor.AutoscaleSettingResource) models.Resource
 		Description: model.AutoscaleSettingDescription{
 			AutoscaleSettingsResource: *v,
 			ResourceGroup:             resourceGroup,
+			Subscription:              subscription,
 		},
 	}
 }

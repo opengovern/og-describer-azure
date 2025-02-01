@@ -29,6 +29,11 @@ func tableAzureServiceFabricCluster(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Cluster.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "Azure resource name.",
 				Type:        proto.ColumnType_STRING,

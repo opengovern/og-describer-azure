@@ -31,7 +31,7 @@ func LoadBalancer(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 			return nil, err
 		}
 		for _, loadBalancer := range page.Value {
-			resource, err := getLoadBalancer(ctx, diagnosticClient, loadBalancer)
+			resource, err := getLoadBalancer(ctx, diagnosticClient, loadBalancer, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -47,7 +47,7 @@ func LoadBalancer(ctx context.Context, cred *azidentity.ClientSecretCredential, 
 	return values, nil
 }
 
-func getLoadBalancer(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, loadBalancer *armnetwork.LoadBalancer) (*models.Resource, error) {
+func getLoadBalancer(ctx context.Context, diagnosticClient *armmonitor.DiagnosticSettingsClient, loadBalancer *armnetwork.LoadBalancer, subscription string) (*models.Resource, error) {
 	resourceGroup := strings.Split(*loadBalancer.ID, "/")[4]
 
 	// Get diagnostic settings
@@ -69,6 +69,7 @@ func getLoadBalancer(ctx context.Context, diagnosticClient *armmonitor.Diagnosti
 			ResourceGroup:     resourceGroup,
 			DiagnosticSetting: diagnosticSettings,
 			LoadBalancer:      *loadBalancer,
+			Subscription:      subscription,
 		},
 	}
 	return &resource, nil
@@ -93,7 +94,7 @@ func LoadBalancerBackendAddressPool(ctx context.Context, cred *azidentity.Client
 			return nil, err
 		}
 		for _, loadBalancer := range page.Value {
-			resources, err := listLoadBalancerBackendAddressPools(ctx, addressClient, loadBalancer)
+			resources, err := listLoadBalancerBackendAddressPools(ctx, addressClient, loadBalancer, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -111,7 +112,7 @@ func LoadBalancerBackendAddressPool(ctx context.Context, cred *azidentity.Client
 	return values, nil
 }
 
-func listLoadBalancerBackendAddressPools(ctx context.Context, addressClient *armnetwork.LoadBalancerBackendAddressPoolsClient, loadBalancer *armnetwork.LoadBalancer) ([]models.Resource, error) {
+func listLoadBalancerBackendAddressPools(ctx context.Context, addressClient *armnetwork.LoadBalancerBackendAddressPoolsClient, loadBalancer *armnetwork.LoadBalancer, subscription string) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*loadBalancer.ID, "/")[4]
 
 	pager := addressClient.NewListPager(resourceGroup, *loadBalancer.Name, nil)
@@ -122,14 +123,14 @@ func listLoadBalancerBackendAddressPools(ctx context.Context, addressClient *arm
 			return nil, err
 		}
 		for _, pool := range page.Value {
-			resource := getLoadBalancerBackendAddressPools(ctx, loadBalancer, pool)
+			resource := getLoadBalancerBackendAddressPools(ctx, loadBalancer, pool, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getLoadBalancerBackendAddressPools(ctx context.Context, loadBalancer *armnetwork.LoadBalancer, pool *armnetwork.BackendAddressPool) *models.Resource {
+func getLoadBalancerBackendAddressPools(ctx context.Context, loadBalancer *armnetwork.LoadBalancer, pool *armnetwork.BackendAddressPool, subscription string) *models.Resource {
 	location := "global"
 	if pool.Properties.Location != nil {
 		location = *pool.Properties.Location
@@ -142,6 +143,7 @@ func getLoadBalancerBackendAddressPools(ctx context.Context, loadBalancer *armne
 			ResourceGroup: resourceGroup,
 			LoadBalancer:  *loadBalancer,
 			Pool:          *pool,
+			Subscription:  subscription,
 		},
 	}
 
@@ -166,7 +168,7 @@ func LoadBalancerNatRule(ctx context.Context, cred *azidentity.ClientSecretCrede
 			return nil, err
 		}
 		for _, loadBalancer := range page.Value {
-			resources, err := listLoadBalancerNatRules(ctx, natRulesClient, loadBalancer)
+			resources, err := listLoadBalancerNatRules(ctx, natRulesClient, loadBalancer, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -184,7 +186,7 @@ func LoadBalancerNatRule(ctx context.Context, cred *azidentity.ClientSecretCrede
 	return values, nil
 }
 
-func listLoadBalancerNatRules(ctx context.Context, natRulesClient *armnetwork.InboundNatRulesClient, loadBalancer *armnetwork.LoadBalancer) ([]models.Resource, error) {
+func listLoadBalancerNatRules(ctx context.Context, natRulesClient *armnetwork.InboundNatRulesClient, loadBalancer *armnetwork.LoadBalancer, subscription string) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*loadBalancer.ID, "/")[4]
 
 	pager := natRulesClient.NewListPager(resourceGroup, *loadBalancer.Name, nil)
@@ -195,14 +197,14 @@ func listLoadBalancerNatRules(ctx context.Context, natRulesClient *armnetwork.In
 			return nil, err
 		}
 		for _, natRule := range page.Value {
-			resource := getLoadBalancerNatRule(ctx, loadBalancer, natRule)
+			resource := getLoadBalancerNatRule(ctx, loadBalancer, natRule, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getLoadBalancerNatRule(ctx context.Context, loadBalancer *armnetwork.LoadBalancer, natRule *armnetwork.InboundNatRule) *models.Resource {
+func getLoadBalancerNatRule(ctx context.Context, loadBalancer *armnetwork.LoadBalancer, natRule *armnetwork.InboundNatRule, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*natRule.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *natRule.ID,
@@ -212,6 +214,7 @@ func getLoadBalancerNatRule(ctx context.Context, loadBalancer *armnetwork.LoadBa
 			ResourceGroup:    resourceGroup,
 			LoadBalancerName: *loadBalancer.Name,
 			Rule:             *natRule,
+			Subscription:     subscription,
 		},
 	}
 
@@ -236,7 +239,7 @@ func LoadBalancerOutboundRule(ctx context.Context, cred *azidentity.ClientSecret
 			return nil, err
 		}
 		for _, loadBalancer := range page.Value {
-			resources, err := listLoadBalancerOutboundRules(ctx, outboundRulesClient, loadBalancer)
+			resources, err := listLoadBalancerOutboundRules(ctx, outboundRulesClient, loadBalancer, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -254,7 +257,7 @@ func LoadBalancerOutboundRule(ctx context.Context, cred *azidentity.ClientSecret
 	return values, nil
 }
 
-func listLoadBalancerOutboundRules(ctx context.Context, outboundRulesClient *armnetwork.LoadBalancerOutboundRulesClient, loadBalancer *armnetwork.LoadBalancer) ([]models.Resource, error) {
+func listLoadBalancerOutboundRules(ctx context.Context, outboundRulesClient *armnetwork.LoadBalancerOutboundRulesClient, loadBalancer *armnetwork.LoadBalancer, subscription string) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*loadBalancer.ID, "/")[4]
 
 	pager := outboundRulesClient.NewListPager(resourceGroup, *loadBalancer.Name, nil)
@@ -265,14 +268,14 @@ func listLoadBalancerOutboundRules(ctx context.Context, outboundRulesClient *arm
 			return nil, err
 		}
 		for _, outboundRule := range page.Value {
-			resource := getLoadBalancerOutboundRule(ctx, loadBalancer, outboundRule)
+			resource := getLoadBalancerOutboundRule(ctx, loadBalancer, outboundRule, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getLoadBalancerOutboundRule(ctx context.Context, loadBalancer *armnetwork.LoadBalancer, outboundRule *armnetwork.OutboundRule) *models.Resource {
+func getLoadBalancerOutboundRule(ctx context.Context, loadBalancer *armnetwork.LoadBalancer, outboundRule *armnetwork.OutboundRule, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*outboundRule.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *outboundRule.ID,
@@ -282,6 +285,7 @@ func getLoadBalancerOutboundRule(ctx context.Context, loadBalancer *armnetwork.L
 			ResourceGroup:    resourceGroup,
 			LoadBalancerName: *loadBalancer.Name,
 			Rule:             *outboundRule,
+			Subscription:     subscription,
 		},
 	}
 
@@ -306,7 +310,7 @@ func LoadBalancerProbe(ctx context.Context, cred *azidentity.ClientSecretCredent
 			return nil, err
 		}
 		for _, loadBalancer := range page.Value {
-			resources, err := listLoadBalancerProbes(ctx, probesClient, loadBalancer)
+			resources, err := listLoadBalancerProbes(ctx, probesClient, loadBalancer, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -324,7 +328,7 @@ func LoadBalancerProbe(ctx context.Context, cred *azidentity.ClientSecretCredent
 	return values, nil
 }
 
-func listLoadBalancerProbes(ctx context.Context, probesClient *armnetwork.LoadBalancerProbesClient, loadBalancer *armnetwork.LoadBalancer) ([]models.Resource, error) {
+func listLoadBalancerProbes(ctx context.Context, probesClient *armnetwork.LoadBalancerProbesClient, loadBalancer *armnetwork.LoadBalancer, subscription string) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*loadBalancer.ID, "/")[4]
 
 	pager := probesClient.NewListPager(resourceGroup, *loadBalancer.Name, nil)
@@ -335,14 +339,14 @@ func listLoadBalancerProbes(ctx context.Context, probesClient *armnetwork.LoadBa
 			return nil, err
 		}
 		for _, probe := range page.Value {
-			resource := getLoadBalancerProbe(ctx, loadBalancer, probe)
+			resource := getLoadBalancerProbe(ctx, loadBalancer, probe, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getLoadBalancerProbe(ctx context.Context, loadBalancer *armnetwork.LoadBalancer, probe *armnetwork.Probe) *models.Resource {
+func getLoadBalancerProbe(ctx context.Context, loadBalancer *armnetwork.LoadBalancer, probe *armnetwork.Probe, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*probe.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *probe.ID,
@@ -352,6 +356,7 @@ func getLoadBalancerProbe(ctx context.Context, loadBalancer *armnetwork.LoadBala
 			ResourceGroup:    resourceGroup,
 			LoadBalancerName: *loadBalancer.Name,
 			Probe:            *probe,
+			Subscription:     subscription,
 		},
 	}
 
@@ -376,7 +381,7 @@ func LoadBalancerRule(ctx context.Context, cred *azidentity.ClientSecretCredenti
 			return nil, err
 		}
 		for _, loadBalancer := range page.Value {
-			resources, err := listLoadBalancerRules(ctx, rulesClient, loadBalancer)
+			resources, err := listLoadBalancerRules(ctx, rulesClient, loadBalancer, subscription)
 			if err != nil {
 				return nil, err
 			}
@@ -394,7 +399,7 @@ func LoadBalancerRule(ctx context.Context, cred *azidentity.ClientSecretCredenti
 	return values, nil
 }
 
-func listLoadBalancerRules(ctx context.Context, rulesClient *armnetwork.LoadBalancerLoadBalancingRulesClient, loadBalancer *armnetwork.LoadBalancer) ([]models.Resource, error) {
+func listLoadBalancerRules(ctx context.Context, rulesClient *armnetwork.LoadBalancerLoadBalancingRulesClient, loadBalancer *armnetwork.LoadBalancer, subscription string) ([]models.Resource, error) {
 	resourceGroup := strings.Split(*loadBalancer.ID, "/")[4]
 
 	pager := rulesClient.NewListPager(resourceGroup, *loadBalancer.Name, nil)
@@ -405,14 +410,14 @@ func listLoadBalancerRules(ctx context.Context, rulesClient *armnetwork.LoadBala
 			return nil, err
 		}
 		for _, rule := range page.Value {
-			resource := getLoadBalancerRule(ctx, loadBalancer, rule)
+			resource := getLoadBalancerRule(ctx, loadBalancer, rule, subscription)
 			values = append(values, *resource)
 		}
 	}
 	return values, nil
 }
 
-func getLoadBalancerRule(ctx context.Context, loadBalancer *armnetwork.LoadBalancer, rule *armnetwork.LoadBalancingRule) *models.Resource {
+func getLoadBalancerRule(ctx context.Context, loadBalancer *armnetwork.LoadBalancer, rule *armnetwork.LoadBalancingRule, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*rule.ID, "/")[4]
 	resource := models.Resource{
 		ID:       *rule.ID,
@@ -422,6 +427,7 @@ func getLoadBalancerRule(ctx context.Context, loadBalancer *armnetwork.LoadBalan
 			ResourceGroup:    resourceGroup,
 			LoadBalancerName: *loadBalancer.Name,
 			Rule:             *rule,
+			Subscription:     subscription,
 		},
 	}
 

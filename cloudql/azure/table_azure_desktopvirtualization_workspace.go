@@ -22,6 +22,11 @@ func tableAzureDesktopVirtualizationWorkspace(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Workspace.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the workspace.",
 				Type:        proto.ColumnType_STRING,

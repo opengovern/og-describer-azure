@@ -24,7 +24,7 @@ func HpcCache(ctx context.Context, cred *azidentity.ClientSecretCredential, subs
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource := GetHpcCache(ctx, v)
+			resource := GetHpcCache(ctx, v, subscription)
 			if stream != nil {
 				if err := (*stream)(*resource); err != nil {
 					return nil, err
@@ -37,7 +37,7 @@ func HpcCache(ctx context.Context, cred *azidentity.ClientSecretCredential, subs
 	return values, err
 }
 
-func GetHpcCache(ctx context.Context, v *armstoragecache.Cache) *models.Resource {
+func GetHpcCache(ctx context.Context, v *armstoragecache.Cache, subscription string) *models.Resource {
 	resourceGroup := strings.Split(*v.ID, "/")[4]
 
 	resource := models.Resource{
@@ -47,6 +47,7 @@ func GetHpcCache(ctx context.Context, v *armstoragecache.Cache) *models.Resource
 		Description: model.HpcCacheDescription{
 			Cache:         *v,
 			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
 		},
 	}
 

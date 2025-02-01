@@ -25,6 +25,11 @@ func tableAzureComputeSshKey(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.SSHPublicKey.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The unique ID identifying the resource in subscription.",
 				Type:        proto.ColumnType_STRING,

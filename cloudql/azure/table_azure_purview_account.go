@@ -23,6 +23,11 @@ func tableAzurePurviewAccount(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Account.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the account.",
 				Type:        proto.ColumnType_STRING,

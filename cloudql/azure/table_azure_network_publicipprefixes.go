@@ -22,6 +22,11 @@ func tableAzureNetworkPublicIPPrefixes(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.PublicIPPrefixes.Properties.Subscription"),
+			},
+			{
 				Name:        "id",
 				Description: "The id of the publicipprefixes.",
 				Type:        proto.ColumnType_STRING,

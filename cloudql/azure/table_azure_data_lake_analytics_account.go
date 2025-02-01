@@ -28,6 +28,11 @@ func tableAzureDataLakeAnalyticsAccount(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.DataLakeAnalyticsAccount.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "The resource name.",
 				Type:        proto.ColumnType_STRING,

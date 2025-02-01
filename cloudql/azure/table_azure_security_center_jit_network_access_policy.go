@@ -22,6 +22,11 @@ func tableAzureSecurityCenterJITNetworkAccessPolicy(_ context.Context) *plugin.T
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
+				Name:        "subscription",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.JitNetworkAccessPolicy.Properties.Subscription"),
+			},
+			{
 				Name:        "name",
 				Description: "The resource name.",
 				Type:        proto.ColumnType_STRING,
