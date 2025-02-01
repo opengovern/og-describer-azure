@@ -127,6 +127,7 @@ var listAPIManagementFilters = map[string]string{
 	"scm_url":                           "Description.APIManagement.Properties.ScmURL",
 	"sku_capacity":                      "Description.APIManagement.SKU.Capacity",
 	"sku_name":                          "Description.APIManagement.SKU.Name",
+	"subscription":                      "Description.APIManagement.Properties.Subscription",
 	"tags":                              "Description.APIManagement.Tags",
 	"target_provisioning_state":         "Description.APIManagement.Properties.TargetProvisioningState",
 	"title":                             "Description.APIManagement.Name",
@@ -231,6 +232,7 @@ var getAPIManagementFilters = map[string]string{
 	"scm_url":                           "Description.APIManagement.Properties.ScmURL",
 	"sku_capacity":                      "Description.APIManagement.SKU.Capacity",
 	"sku_name":                          "Description.APIManagement.SKU.Name",
+	"subscription":                      "Description.APIManagement.Properties.Subscription",
 	"tags":                              "Description.APIManagement.Tags",
 	"target_provisioning_state":         "Description.APIManagement.Properties.TargetProvisioningState",
 	"title":                             "Description.APIManagement.Name",
@@ -388,6 +390,7 @@ var listAPIManagementBackendFilters = map[string]string{
 	"resource_group": "Description.APIManagementBackend.ResourceGroup",
 	"resource_id":    "Description.APIManagementBackend.Properties.ResourceID",
 	"service_name":   "Description.ServiceName",
+	"subscription":   "Description.APIManagementBackend.Properties.Subscription",
 	"title":          "Description.APIManagementBackend.Properties.Title",
 	"tls":            "Description.APIManagementBackend.Properties.TLS",
 	"type":           "Description.APIManagementBackend.Type",
@@ -465,6 +468,7 @@ var getAPIManagementBackendFilters = map[string]string{
 	"resource_group": "Description.APIManagementBackend.ResourceGroup",
 	"resource_id":    "Description.APIManagementBackend.Properties.ResourceID",
 	"service_name":   "Description.ServiceName",
+	"subscription":   "Description.APIManagementBackend.Properties.Subscription",
 	"title":          "Description.APIManagementBackend.Properties.Title",
 	"tls":            "Description.APIManagementBackend.Properties.TLS",
 	"type":           "Description.APIManagementBackend.Type",
@@ -619,6 +623,7 @@ var listAutomationAccountsFilters = map[string]string{
 	"sku_family":              "Description.Automation.Properties.SKU.Family",
 	"sku_name":                "Description.Automation.Properties.SKU.Name",
 	"state":                   "Description.Automation.Properties.State",
+	"subscription":            "Description.Automation.Properties.Subscription",
 	"tags":                    "Description.Automation.Tags",
 	"title":                   "Description.Automation.Name",
 	"type":                    "Description.Automation.Type",
@@ -697,6 +702,7 @@ var getAutomationAccountsFilters = map[string]string{
 	"sku_family":              "Description.Automation.Properties.SKU.Family",
 	"sku_name":                "Description.Automation.Properties.SKU.Name",
 	"state":                   "Description.Automation.Properties.State",
+	"subscription":            "Description.Automation.Properties.Subscription",
 	"tags":                    "Description.Automation.Tags",
 	"title":                   "Description.Automation.Name",
 	"type":                    "Description.Automation.Type",
@@ -847,6 +853,7 @@ var listAutomationVariablesFilters = map[string]string{
 	"name":                    "Description.Automation.Name",
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
+	"subscription":            "Description.Automation.Properties.Subscription",
 	"title":                   "Description.Automation.Name",
 	"type":                    "Description.Automation.Type",
 	"value":                   "Description.Automation.Properties.Value",
@@ -922,6 +929,7 @@ var getAutomationVariablesFilters = map[string]string{
 	"name":                    "Description.Automation.Name",
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
+	"subscription":            "Description.Automation.Properties.Subscription",
 	"title":                   "Description.Automation.Name",
 	"type":                    "Description.Automation.Type",
 	"value":                   "Description.Automation.Properties.Value",
@@ -1073,6 +1081,7 @@ var listAppConfigurationFilters = map[string]string{
 	"provisioning_state":      "Description.ConfigurationStore.Properties.ProvisioningState",
 	"resource_group":          "Description.ResourceGroup",
 	"sku_name":                "Description.ConfigurationStore.SKU.Name",
+	"subscription":            "Description.ConfigurationStore.Properties.Subscription",
 	"tags":                    "Description.ConfigurationStore.Tags",
 	"title":                   "Description.ConfigurationStore.Name",
 	"type":                    "Description.ConfigurationStore.Type",
@@ -1149,6 +1158,7 @@ var getAppConfigurationFilters = map[string]string{
 	"provisioning_state":      "Description.ConfigurationStore.Properties.ProvisioningState",
 	"resource_group":          "description.ResourceGroup",
 	"sku_name":                "Description.ConfigurationStore.SKU.Name",
+	"subscription":            "Description.ConfigurationStore.Properties.Subscription",
 	"tags":                    "Description.ConfigurationStore.Tags",
 	"title":                   "Description.ConfigurationStore.Name",
 	"type":                    "Description.ConfigurationStore.Type",
@@ -1303,6 +1313,7 @@ var listAppServiceEnvironmentFilters = map[string]string{
 	"platform_integration_id":        "IntegrationID",
 	"provisioning_state":             "Description.AppServiceEnvironmentResource.Properties.ProvisioningState",
 	"status":                         "Description.AppServiceEnvironmentResource.Properties.Status",
+	"subscription":                   "Description.AppServiceEnvironmentResource.Properties.Subscription",
 	"suspended":                      "Description.AppServiceEnvironmentResource.Properties.Suspended",
 	"tags":                           "Description.AppServiceEnvironmentResource.Tags",
 	"title":                          "Description.AppServiceEnvironmentResource.Name",
@@ -1384,6 +1395,7 @@ var getAppServiceEnvironmentFilters = map[string]string{
 	"provisioning_state":             "Description.AppServiceEnvironmentResource.Properties.ProvisioningState",
 	"resource_group":                 "description.ResourceGroup",
 	"status":                         "Description.AppServiceEnvironmentResource.Properties.Status",
+	"subscription":                   "Description.AppServiceEnvironmentResource.Properties.Subscription",
 	"suspended":                      "Description.AppServiceEnvironmentResource.Properties.Suspended",
 	"tags":                           "Description.AppServiceEnvironmentResource.Tags",
 	"title":                          "Description.AppServiceEnvironmentResource.Name",
@@ -1544,6 +1556,7 @@ var listAppServiceFunctionAppFilters = map[string]string{
 	"reserved":                       "Description.Site.Properties.Reserved",
 	"site_config":                    "Description.Site.Properties.SiteConfig",
 	"state":                          "Description.Site.Properties.State",
+	"subscription":                   "Description.Site.Properties.Subscription",
 	"tags":                           "Description.Site.Tags",
 	"title":                          "Description.Site.Name",
 	"type":                           "Description.Site.Properties.Type",
@@ -1629,6 +1642,7 @@ var getAppServiceFunctionAppFilters = map[string]string{
 	"resource_group":                 "description.ResourceGroup",
 	"site_config":                    "Description.Site.Properties.SiteConfig",
 	"state":                          "Description.Site.Properties.State",
+	"subscription":                   "Description.Site.Properties.Subscription",
 	"tags":                           "Description.Site.Tags",
 	"title":                          "Description.Site.Name",
 	"type":                           "Description.Site.Properties.Type",
@@ -1789,6 +1803,7 @@ var listAppServiceWebAppFilters = map[string]string{
 	"reserved":                       "Description.Site.Properties.Reserved",
 	"site_config":                    "Description.Site.Properties.SiteConfig",
 	"state":                          "Description.Site.Properties.State",
+	"subscription":                   "Description.Site.Properties.Subscription",
 	"tags":                           "Description.Site.Tags",
 	"title":                          "Description.Site.Name",
 	"type":                           "Description.Site.Type",
@@ -1876,6 +1891,7 @@ var getAppServiceWebAppFilters = map[string]string{
 	"resource_group":                 "description.ResourceGroup",
 	"site_config":                    "Description.Site.Properties.SiteConfig",
 	"state":                          "Description.Site.Properties.State",
+	"subscription":                   "Description.Site.Properties.Subscription",
 	"tags":                           "Description.Site.Tags",
 	"title":                          "Description.Site.Name",
 	"type":                           "Description.Site.Type",
@@ -2052,6 +2068,7 @@ var listAppServiceWebAppSlotFilters = map[string]string{
 	"site_config_resource":           "Description.Site.Properties.SiteConfig",
 	"slot_swap_status":               "Description.Site.Properties.SlotSwapStatus",
 	"state":                          "Description.Site.Properties.State",
+	"subscription":                   "Description.Site.Properties.Subscription",
 	"suspended_till":                 "Description.Site.Properties.SuspendedTill",
 	"tags":                           "Description.Site.Tags",
 	"target_swap_slot":               "Description.Site.Properties.TargetSwapSlot",
@@ -2156,6 +2173,7 @@ var getAppServiceWebAppSlotFilters = map[string]string{
 	"site_config_resource":           "Description.Site.Properties.SiteConfig",
 	"slot_swap_status":               "Description.Site.Properties.SlotSwapStatus",
 	"state":                          "Description.Site.Properties.State",
+	"subscription":                   "Description.Site.Properties.Subscription",
 	"suspended_till":                 "Description.Site.Properties.SuspendedTill",
 	"tags":                           "Description.Site.Tags",
 	"target_swap_slot":               "Description.Site.Properties.TargetSwapSlot",
@@ -2320,6 +2338,7 @@ var listAppServicePlanFilters = map[string]string{
 	"sku_size":                     "Description.Plan.SKU.Size",
 	"sku_tier":                     "Description.Plan.SKU.Tier",
 	"status":                       "Description.Plan.Properties.Status",
+	"subscription":                 "Description.Plan.Properties.Subscription",
 	"tags":                         "Description.Plan.Tags",
 	"title":                        "Description.Plan.Name",
 	"type":                         "Description.Plan.Type",
@@ -2406,6 +2425,7 @@ var getAppServicePlanFilters = map[string]string{
 	"sku_size":                     "Description.Plan.SKU.Size",
 	"sku_tier":                     "Description.Plan.SKU.Tier",
 	"status":                       "Description.Plan.Properties.Status",
+	"subscription":                 "Description.Plan.Properties.Subscription",
 	"tags":                         "Description.Plan.Tags",
 	"title":                        "Description.Plan.Name",
 	"type":                         "Description.Plan.Type",
@@ -2550,6 +2570,7 @@ var listContainerAppFilters = map[string]string{
 	"id":                      "Description.Server.ID",
 	"name":                    "Description.Server.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Server.Properties.Subscription",
 	"tags":                    "Description.Server.Tags",
 	"title":                   "Description.Server.Name",
 }
@@ -2618,6 +2639,7 @@ var getContainerAppFilters = map[string]string{
 	"id":                      "Description.Server.ID",
 	"name":                    "Description.Server.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Server.Properties.Subscription",
 	"tags":                    "Description.Server.Tags",
 	"title":                   "Description.Server.Name",
 }
@@ -2761,6 +2783,7 @@ var listWebServerFarmsFilters = map[string]string{
 	"id":                      "Description.ServerFarm.ID",
 	"name":                    "Description.ServerFarm.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.ServerFarm.Subscription",
 	"tags":                    "Description.ServerFarm.Tags",
 	"title":                   "Description.ServerFarm.Name",
 }
@@ -2829,6 +2852,7 @@ var getWebServerFarmsFilters = map[string]string{
 	"id":                      "Description.ServerFarm.ID",
 	"name":                    "Description.ServerFarm.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.ServerFarm.Subscription",
 	"tags":                    "Description.ServerFarm.Tags",
 	"title":                   "Description.ServerFarm.Name",
 }
@@ -2972,6 +2996,7 @@ var listBlueprintFilters = map[string]string{
 	"id":                      "Description.Blueprints.ID",
 	"name":                    "Description.Blueprint.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Blueprints.Properties.Subscription",
 	"title":                   "Description.Blueprint.Name",
 }
 
@@ -3039,6 +3064,7 @@ var getBlueprintFilters = map[string]string{
 	"id":                      "Description.Blueprints.ID",
 	"name":                    "Description.Blueprint.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Blueprints.Properties.Subscription",
 	"title":                   "Description.Blueprint.Name",
 }
 
@@ -3215,6 +3241,7 @@ var listComputeDiskFilters = map[string]string{
 	"share_info":                                "Description.Disk.Properties.ShareInfo",
 	"sku_name":                                  "Description.Disk.SKU.Name",
 	"sku_tier":                                  "Description.Disk.SKU.Tier",
+	"subscription":                              "Description.Disk.Properties.Subscription",
 	"tags":                                      "Description.Disk.Tags",
 	"title":                                     "Description.Disk.Name",
 	"type":                                      "Description.Disk.Type",
@@ -3320,6 +3347,7 @@ var getComputeDiskFilters = map[string]string{
 	"share_info":                                "Description.Disk.Properties.ShareInfo",
 	"sku_name":                                  "Description.Disk.SKU.Name",
 	"sku_tier":                                  "Description.Disk.SKU.Tier",
+	"subscription":                              "Description.Disk.Properties.Subscription",
 	"tags":                                      "Description.Disk.Tags",
 	"title":                                     "Description.Disk.Name",
 	"type":                                      "Description.Disk.Type",
@@ -3468,6 +3496,7 @@ var listComputeDiskAccessFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.DiskAccess.Properties.ProvisioningState",
 	"resource_group":          "Description.ResourceGroup",
+	"subscription":            "Description.DiskAccess.Properties.Subscription",
 	"tags":                    "Description.DiskAccess.Tags",
 	"title":                   "Description.DiskAccess.Name",
 	"type":                    "Description.DiskAccess.Type",
@@ -3539,6 +3568,7 @@ var getComputeDiskAccessFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.DiskAccess.Properties.ProvisioningState",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.DiskAccess.Properties.Subscription",
 	"tags":                    "Description.DiskAccess.Tags",
 	"title":                   "Description.DiskAccess.Name",
 	"type":                    "Description.DiskAccess.Type",
@@ -3697,6 +3727,7 @@ var listComputeVirtualMachineScaleSetFilters = map[string]string{
 	"sku_capacity":                        "Description.VirtualMachineScaleSet.SKU.Capacity",
 	"sku_name":                            "Description.VirtualMachineScaleSet.SKU.Name",
 	"sku_tier":                            "Description.VirtualMachineScaleSet.SKU.Tier",
+	"subscription":                        "Description.VirtualMachineScaleSet.Properties.Subscription",
 	"tags":                                "Description.VirtualMachineScaleSet.Tags",
 	"tags_src":                            "Description.VirtualMachineScaleSet.Tags",
 	"title":                               "Description.VirtualMachineScaleSet.Name",
@@ -3790,6 +3821,7 @@ var getComputeVirtualMachineScaleSetFilters = map[string]string{
 	"sku_capacity":                        "Description.VirtualMachineScaleSet.SKU.Capacity",
 	"sku_name":                            "Description.VirtualMachineScaleSet.SKU.Name",
 	"sku_tier":                            "Description.VirtualMachineScaleSet.SKU.Tier",
+	"subscription":                        "Description.VirtualMachineScaleSet.Properties.Subscription",
 	"tags":                                "Description.VirtualMachineScaleSet.Tags",
 	"tags_src":                            "Description.VirtualMachineScaleSet.Tags",
 	"title":                               "Description.VirtualMachineScaleSet.Name",
@@ -3947,6 +3979,7 @@ var listComputeVirtualMachineScaleSetNetworkInterfaceFilters = map[string]string
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"scale_set_name":          "Description.VirtualMachineScaleSet.Name",
+	"subscription":            "Description.NetworkInterface.Properties.Subscription",
 	"tags":                    "Description.NetworkInterface.Tags",
 	"title":                   "Description.NetworkInterface.Name",
 	"type":                    "Description.NetworkInterface.Type",
@@ -4019,6 +4052,7 @@ var getComputeVirtualMachineScaleSetNetworkInterfaceFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"scale_set_name":          "Description.VirtualMachineScaleSet.Name",
+	"subscription":            "Description.NetworkInterface.Properties.Subscription",
 	"tags":                    "Description.NetworkInterface.Tags",
 	"title":                   "Description.NetworkInterface.Name",
 	"type":                    "Description.NetworkInterface.Type",
@@ -4180,6 +4214,7 @@ var listComputeVirtualMachineScaleSetVmFilters = map[string]string{
 	"sku_capacity":                        "Description.ScaleSetVM.SKU.Capacity",
 	"sku_name":                            "Description.ScaleSetVM.SKU.Name",
 	"sku_tier":                            "Description.ScaleSetVM.SKU.Tier",
+	"subscription":                        "Description.ScaleSetVM.Properties.Subscription",
 	"tags":                                "Description.ScaleSetVM.Tags",
 	"tags_src":                            "Description.ScaleSetVM.Tags",
 	"title":                               "Description.ScaleSetVM.Name",
@@ -4277,6 +4312,7 @@ var getComputeVirtualMachineScaleSetVmFilters = map[string]string{
 	"sku_capacity":                        "Description.ScaleSetVM.SKU.Capacity",
 	"sku_name":                            "Description.ScaleSetVM.SKU.Name",
 	"sku_tier":                            "Description.ScaleSetVM.SKU.Tier",
+	"subscription":                        "Description.ScaleSetVM.Properties.Subscription",
 	"tags":                                "Description.ScaleSetVM.Tags",
 	"tags_src":                            "Description.ScaleSetVM.Tags",
 	"title":                               "Description.ScaleSetVM.Name",
@@ -4457,6 +4493,7 @@ var listComputeSnapshotsFilters = map[string]string{
 	"source_unique_id":                      "Description.Snapshot.Properties.CreationData.SourceUniqueID",
 	"source_uri":                            "Description.Snapshot.Properties.CreationData.SourceURI",
 	"storage_account_id":                    "Description.Snapshot.Properties.CreationData.StorageAccountID",
+	"subscription":                          "Description.Snapshot.Properties.Subscription",
 	"tags":                                  "Description.Snapshot.Tags",
 	"title":                                 "Description.Snapshot.Name",
 	"type":                                  "Description.Snapshot.Type",
@@ -4553,6 +4590,7 @@ var getComputeSnapshotsFilters = map[string]string{
 	"source_unique_id":                      "Description.Snapshot.Properties.CreationData.SourceUniqueID",
 	"source_uri":                            "Description.Snapshot.Properties.CreationData.SourceURI",
 	"storage_account_id":                    "Description.Snapshot.Properties.CreationData.StorageAccountID",
+	"subscription":                          "Description.Snapshot.Properties.Subscription",
 	"tags":                                  "Description.Snapshot.Tags",
 	"title":                                 "Description.Snapshot.Name",
 	"type":                                  "Description.Snapshot.Type",
@@ -4707,6 +4745,7 @@ var listComputeAvailabilitySetFilters = map[string]string{
 	"sku_name":                     "Description.AvailabilitySet.SKU.Name",
 	"sku_tier":                     "Description.AvailabilitySet.SKU.Tier",
 	"status":                       "Description.AvailabilitySet.Properties.Statuses",
+	"subscription":                 "Description.AvailabilitySet.Properties.Subscription",
 	"tags":                         "Description.AvailabilitySet.Tags",
 	"title":                        "Description.AvailabilitySet.Name",
 	"type":                         "Description.AvailabilitySet.Type",
@@ -4785,6 +4824,7 @@ var getComputeAvailabilitySetFilters = map[string]string{
 	"sku_name":                     "Description.AvailabilitySet.SKU.Name",
 	"sku_tier":                     "Description.AvailabilitySet.SKU.Tier",
 	"status":                       "Description.AvailabilitySet.Properties.Statuses",
+	"subscription":                 "Description.AvailabilitySet.Properties.Subscription",
 	"tags":                         "Description.AvailabilitySet.Tags",
 	"title":                        "Description.AvailabilitySet.Name",
 	"type":                         "Description.AvailabilitySet.Type",
@@ -4939,6 +4979,7 @@ var listComputeDiskEncryptionSetFilters = map[string]string{
 	"previous_keys":              "Description.DiskEncryptionSet.Properties.PreviousKeys",
 	"provisioning_state":         "Description.DiskEncryptionSet.Properties.ProvisioningState",
 	"resource_group":             "Description.ResourceGroup",
+	"subscription":               "Description.DiskEncryptionSet.Properties.Subscription",
 	"tags":                       "Description.DiskEncryptionSet.Tags",
 	"title":                      "Description.DiskEncryptionSet.Name",
 	"type":                       "Description.DiskEncryptionSet.Type",
@@ -5017,6 +5058,7 @@ var getComputeDiskEncryptionSetFilters = map[string]string{
 	"previous_keys":              "Description.DiskEncryptionSet.Properties.PreviousKeys",
 	"provisioning_state":         "Description.DiskEncryptionSet.Properties.ProvisioningState",
 	"resource_group":             "description.ResourceGroup",
+	"subscription":               "Description.DiskEncryptionSet.Properties.Subscription",
 	"tags":                       "Description.DiskEncryptionSet.Tags",
 	"title":                      "Description.DiskEncryptionSet.Name",
 	"type":                       "Description.DiskEncryptionSet.Type",
@@ -5161,6 +5203,7 @@ var listComputeImageGalleryFilters = map[string]string{
 	"id":                      "Description.ImageGallery.ID",
 	"name":                    "Description.ImageGallery.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.ImageGallery.Properties.Subscription",
 	"tags":                    "Description.ImageGallery.Tags",
 	"title":                   "Description.ImageGallery.Name",
 }
@@ -5230,6 +5273,7 @@ var getComputeImageGalleryFilters = map[string]string{
 	"name":                    "description.ImageGallery.Name",
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.ImageGallery.Properties.Subscription",
 	"tags":                    "Description.ImageGallery.Tags",
 	"title":                   "Description.ImageGallery.Name",
 }
@@ -5388,6 +5432,7 @@ var listComputeImageFilters = map[string]string{
 	"storage_profile_os_disk_storage_account_type": "Description.Image.Properties.StorageProfile.OSDisk.StorageAccountType",
 	"storage_profile_os_disk_type":                 "Description.Image.Properties.StorageProfile.OSDisk.OSType",
 	"storage_profile_zone_resilient":               "Description.Image.Properties.StorageProfile.ZoneResilient",
+	"subscription":                                 "Description.Image.Properties.Subscription",
 	"tags":                                         "Description.Image.Tags",
 	"title":                                        "Description.Image.Name",
 	"type":                                         "Description.Image.Type",
@@ -5472,6 +5517,7 @@ var getComputeImageFilters = map[string]string{
 	"storage_profile_os_disk_storage_account_type": "Description.Image.Properties.StorageProfile.OSDisk.StorageAccountType",
 	"storage_profile_os_disk_type":                 "Description.Image.Properties.StorageProfile.OSDisk.OSType",
 	"storage_profile_zone_resilient":               "Description.Image.Properties.StorageProfile.ZoneResilient",
+	"subscription":                                 "Description.Image.Properties.Subscription",
 	"tags":                                         "Description.Image.Tags",
 	"title":                                        "Description.Image.Name",
 	"type":                                         "Description.Image.Type",
@@ -5613,10 +5659,11 @@ func (p ComputeHostGroupPaginator) NextPage(ctx context.Context) ([]ComputeHostG
 }
 
 var listComputeHostGroupFilters = map[string]string{
-	"id":    "Description.HostGroup.ID",
-	"name":  "Description.HostGroup.Name",
-	"tags":  "Description.HostGroup.Tags",
-	"title": "Description.HostGroup.Name",
+	"id":           "Description.HostGroup.ID",
+	"name":         "Description.HostGroup.Name",
+	"subscription": "Description.HostGroup.Properties.Subscription",
+	"tags":         "Description.HostGroup.Tags",
+	"title":        "Description.HostGroup.Name",
 }
 
 func ListComputeHostGroup(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -5680,10 +5727,11 @@ func ListComputeHostGroup(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 }
 
 var getComputeHostGroupFilters = map[string]string{
-	"id":    "Description.HostGroup.ID",
-	"name":  "Description.HostGroup.Name",
-	"tags":  "Description.HostGroup.Tags",
-	"title": "Description.HostGroup.Name",
+	"id":           "Description.HostGroup.ID",
+	"name":         "Description.HostGroup.Name",
+	"subscription": "Description.HostGroup.Properties.Subscription",
+	"tags":         "Description.HostGroup.Tags",
+	"title":        "Description.HostGroup.Name",
 }
 
 func GetComputeHostGroup(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -5822,10 +5870,11 @@ func (p ComputeHostGroupHostPaginator) NextPage(ctx context.Context) ([]ComputeH
 }
 
 var listComputeHostGroupHostFilters = map[string]string{
-	"id":    "Description.Host.ID",
-	"name":  "Description.Host.Name",
-	"tags":  "Description.Host.Tags",
-	"title": "Description.Host.Name",
+	"id":           "Description.Host.ID",
+	"name":         "Description.Host.Name",
+	"subscription": "Description.Host.Properties.Subscription",
+	"tags":         "Description.Host.Tags",
+	"title":        "Description.Host.Name",
 }
 
 func ListComputeHostGroupHost(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -5889,10 +5938,11 @@ func ListComputeHostGroupHost(ctx context.Context, d *plugin.QueryData, _ *plugi
 }
 
 var getComputeHostGroupHostFilters = map[string]string{
-	"id":    "Description.Host.ID",
-	"name":  "Description.Host.Name",
-	"tags":  "Description.Host.Tags",
-	"title": "Description.Host.Name",
+	"id":           "Description.Host.ID",
+	"name":         "Description.Host.Name",
+	"subscription": "Description.Host.Properties.Subscription",
+	"tags":         "Description.Host.Tags",
+	"title":        "Description.Host.Name",
 }
 
 func GetComputeHostGroupHost(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -6031,10 +6081,11 @@ func (p ComputeRestorePointCollectionPaginator) NextPage(ctx context.Context) ([
 }
 
 var listComputeRestorePointCollectionFilters = map[string]string{
-	"id":    "Description.RestorePointCollection.ID",
-	"name":  "Description.RestorePointCollection.Name",
-	"tags":  "Description.RestorePointCollection.Tags",
-	"title": "Description.RestorePointCollection.Name",
+	"id":           "Description.RestorePointCollection.ID",
+	"name":         "Description.RestorePointCollection.Name",
+	"subscription": "Description.RestorePointCollection.Properties.Subscription",
+	"tags":         "Description.RestorePointCollection.Tags",
+	"title":        "Description.RestorePointCollection.Name",
 }
 
 func ListComputeRestorePointCollection(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -6098,10 +6149,11 @@ func ListComputeRestorePointCollection(ctx context.Context, d *plugin.QueryData,
 }
 
 var getComputeRestorePointCollectionFilters = map[string]string{
-	"id":    "Description.RestorePointCollection.ID",
-	"name":  "Description.RestorePointCollection.Name",
-	"tags":  "Description.RestorePointCollection.Tags",
-	"title": "Description.RestorePointCollection.Name",
+	"id":           "Description.RestorePointCollection.ID",
+	"name":         "Description.RestorePointCollection.Name",
+	"subscription": "Description.RestorePointCollection.Properties.Subscription",
+	"tags":         "Description.RestorePointCollection.Tags",
+	"title":        "Description.RestorePointCollection.Name",
 }
 
 func GetComputeRestorePointCollection(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -6244,6 +6296,7 @@ var listComputeSSHPublicKeyFilters = map[string]string{
 	"name":           "Description.SSHPublicKey.Name",
 	"public_key":     "Description.SSHPublicKey.Properties.PublicKey",
 	"resource_group": "Description.ResourceGroup",
+	"subscription":   "Description.SSHPublicKey.Properties.Subscription",
 	"tags":           "Description.SSHPublicKey.Tags",
 	"title":          "Description.SSHPublicKey.Name",
 	"type":           "Description.SSHPublicKey.Type",
@@ -6314,6 +6367,7 @@ var getComputeSSHPublicKeyFilters = map[string]string{
 	"name":           "Description.SSHPublicKey.Name",
 	"public_key":     "Description.SSHPublicKey.Properties.PublicKey",
 	"resource_group": "Description.ResourceGroup",
+	"subscription":   "Description.SSHPublicKey.Properties.Subscription",
 	"tags":           "Description.SSHPublicKey.Tags",
 	"title":          "Description.SSHPublicKey.Name",
 	"type":           "Description.SSHPublicKey.Type",
@@ -6476,6 +6530,7 @@ var listDataboxEdgeDeviceFilters = map[string]string{
 	"serial_number":               "Description.Device.Properties.SerialNumber",
 	"sku_name":                    "Description.Device.SKU.Name",
 	"sku_tier":                    "Description.Device.SKU.Tier",
+	"subscription":                "Description.Device.Properties.Subscription",
 	"tags":                        "Description.Device.Tags",
 	"time_zone":                   "Description.Device.Properties.TimeZone",
 	"title":                       "Description.Device.Name",
@@ -6564,6 +6619,7 @@ var getDataboxEdgeDeviceFilters = map[string]string{
 	"serial_number":               "Description.Device.Properties.SerialNumber",
 	"sku_name":                    "Description.Device.SKU.Name",
 	"sku_tier":                    "Description.Device.SKU.Tier",
+	"subscription":                "Description.Device.Properties.Subscription",
 	"tags":                        "Description.Device.Tags",
 	"time_zone":                   "Description.Device.Properties.TimeZone",
 	"title":                       "Description.Device.Name",
@@ -6726,6 +6782,7 @@ var listHealthcareServiceFilters = map[string]string{
 	"provisioning_state":           "Description.ServicesDescription.Properties.ProvisioningState",
 	"resource_group":               "Description.ResourceGroup",
 	"smart_proxy_enabled":          "Description.ServicesDescription.Properties.AuthenticationConfiguration.SmartProxyEnabled",
+	"subscription":                 "Description.ServicesDescription.Properties.Subscription",
 	"tags":                         "Description.ServicesDescription.Tags",
 	"title":                        "Description.ServicesDescription.Name",
 	"type":                         "Description.ServicesDescription.Type",
@@ -6812,6 +6869,7 @@ var getHealthcareServiceFilters = map[string]string{
 	"provisioning_state":           "Description.ServicesDescription.Properties.ProvisioningState",
 	"resource_group":               "description.ResourceGroup",
 	"smart_proxy_enabled":          "Description.ServicesDescription.Properties.AuthenticationConfiguration.SmartProxyEnabled",
+	"subscription":                 "Description.ServicesDescription.Properties.Subscription",
 	"tags":                         "Description.ServicesDescription.Tags",
 	"title":                        "Description.ServicesDescription.Name",
 	"type":                         "Description.ServicesDescription.Type",
@@ -6967,6 +7025,7 @@ var listHpcCacheFilters = map[string]string{
 	"security_settings":           "Description.Cache.Properties.SecuritySettings",
 	"sku_name":                    "Description.Cache.SKU.Name",
 	"subnet":                      "Description.Cache.Properties.Subnet",
+	"subscription":                "Description.Cache.Properties.Subscription",
 	"system_data":                 "Description.Cache.SystemData",
 	"tags":                        "Description.Cache.Tags",
 	"title":                       "Description.Cache.Name",
@@ -7048,6 +7107,7 @@ var getHpcCacheFilters = map[string]string{
 	"security_settings":           "Description.Cache.Properties.SecuritySettings",
 	"sku_name":                    "Description.Cache.SKU.Name",
 	"subnet":                      "Description.Cache.Properties.Subnet",
+	"subscription":                "Description.Cache.Properties.Subscription",
 	"system_data":                 "Description.Cache.SystemData",
 	"tags":                        "Description.Cache.Tags",
 	"title":                       "Description.Cache.Name",
@@ -7203,6 +7263,7 @@ var listKeyVaultKeyFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"recovery_level":          "Description.Key.Properties.Attributes.RecoveryLevel",
 	"resource_group":          "Description.ResourceGroup",
+	"subscription":            "Description.Key.Properties.Subscription",
 	"tags":                    "Description.Key.Tags",
 	"title":                   "Description.Key.Name",
 	"type":                    "Description.Key.Type",
@@ -7282,6 +7343,7 @@ var getKeyVaultKeyFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"recovery_level":          "Description.Key.Properties.Attributes.RecoveryLevel",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.Key.Properties.Subscription",
 	"tags":                    "Description.Key.Tags",
 	"title":                   "Description.Key.Name",
 	"type":                    "Description.Key.Type",
@@ -7439,6 +7501,7 @@ var listKeyVaultKeyVersionFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"recovery_level":          "Description.Version.Properties.Attributes.RecoveryLevel",
 	"resource_group":          "Description.ResourceGroup",
+	"subscription":            "Description.Version.Properties.Subscription",
 	"tags":                    "Description.Version.Tags",
 	"title":                   "Description.Version.Name",
 	"type":                    "Description.Version.Type",
@@ -7521,6 +7584,7 @@ var getKeyVaultKeyVersionFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"recovery_level":          "Description.Version.Properties.Attributes.RecoveryLevel",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.Version.Properties.Subscription",
 	"tags":                    "Description.Version.Tags",
 	"title":                   "Description.Version.Name",
 	"type":                    "Description.Version.Type",
@@ -7694,6 +7758,7 @@ var listKubernetesClusterFilters = map[string]string{
 	"resource_group":             "Description.ResourceGroup",
 	"service_principal_profile":  "Description.ManagedCluster.Properties.ServicePrincipalProfile",
 	"sku":                        "Description.ManagedCluster.SKU",
+	"subscription":               "Description.ManagedCluster.Properties.Subscription",
 	"tags":                       "Description.ManagedCluster.Tags",
 	"title":                      "Description.ManagedCluster.Name",
 	"type":                       "Description.ManagedCluster.Type",
@@ -7792,6 +7857,7 @@ var getKubernetesClusterFilters = map[string]string{
 	"resource_group":             "description.ResourceGroup",
 	"service_principal_profile":  "Description.ManagedCluster.Properties.ServicePrincipalProfile",
 	"sku":                        "Description.ManagedCluster.SKU",
+	"subscription":               "Description.ManagedCluster.Properties.Subscription",
 	"tags":                       "Description.ManagedCluster.Tags",
 	"title":                      "Description.ManagedCluster.Name",
 	"type":                       "Description.ManagedCluster.Type",
@@ -7938,6 +8004,7 @@ var listKubernetesServiceVersionFilters = map[string]string{
 	"is_preview":              "Description.Version.IsPreview",
 	"patch_versions":          "Description.Version.PatchVersions",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Version.Properties.Subscription",
 	"title":                   "Description.Version.Version",
 	"version":                 "Description.Version.Version",
 }
@@ -8009,6 +8076,7 @@ var getKubernetesServiceVersionFilters = map[string]string{
 	"patch_versions":          "Description.Version.PatchVersions",
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.Version.Properties.Subscription",
 	"title":                   "Description.Version.Version",
 	"version":                 "Description.Version.Version",
 }
@@ -8167,6 +8235,7 @@ var listContainerInstanceContainerGroupFilters = map[string]string{
 	"restart_policy":             "Description.ContainerGroup.Properties.RestartPolicy",
 	"sku":                        "Description.ContainerGroup.Properties.SKU",
 	"subnet_ids":                 "Description.ContainerGroup.Properties.SubnetIDs",
+	"subscription":               "Description.ContainerGroup.Properties.Subscription",
 	"tags":                       "Description.ContainerGroup.Tags",
 	"title":                      "Description.ContainerGroup.Name",
 	"type":                       "Description.ContainerGroup.Type",
@@ -8252,6 +8321,7 @@ var getContainerInstanceContainerGroupFilters = map[string]string{
 	"restart_policy":             "Description.ContainerGroup.Properties.RestartPolicy",
 	"sku":                        "Description.ContainerGroup.Properties.SKU",
 	"subnet_ids":                 "Description.ContainerGroup.Properties.SubnetIDs",
+	"subscription":               "Description.ContainerGroup.Properties.Subscription",
 	"tags":                       "Description.ContainerGroup.Tags",
 	"title":                      "Description.ContainerGroup.Name",
 	"type":                       "Description.ContainerGroup.Type",
@@ -8403,6 +8473,7 @@ var listCDNProfileFilters = map[string]string{
 	"provisioning_state":              "Description.Profile.Properties.ProvisioningState",
 	"resource_group":                  "Description.ResourceGroup",
 	"sku_name":                        "Description.Profile.SKU.Name",
+	"subscription":                    "Description.Profiles.Properties.Subscription",
 	"tags":                            "Description.Profile.Tags",
 	"title":                           "Description.Profile.Name",
 	"type":                            "Description.Profile.Type",
@@ -8478,6 +8549,7 @@ var getCDNProfileFilters = map[string]string{
 	"provisioning_state":              "Description.Profile.Properties.ProvisioningState",
 	"resource_group":                  "Description.ResourceGroup",
 	"sku_name":                        "Description.Profile.SKU.Name",
+	"subscription":                    "Description.Profiles.Properties.Subscription",
 	"tags":                            "Description.Profile.Tags",
 	"title":                           "Description.Profile.Name",
 	"type":                            "Description.Profile.Type",
@@ -8619,10 +8691,11 @@ func (p CDNEndpointPaginator) NextPage(ctx context.Context) ([]CDNEndpoint, erro
 }
 
 var listCDNEndpointFilters = map[string]string{
-	"id":    "Description.Endpoint.ID",
-	"name":  "Description.Endpoint.Name",
-	"tags":  "Description.Endpoint.Tags",
-	"title": "Description.Endpoint.Name",
+	"id":           "Description.Endpoint.ID",
+	"name":         "Description.Endpoint.Name",
+	"subscription": "Description.Endpoint.Properties.Subscription",
+	"tags":         "Description.Endpoint.Tags",
+	"title":        "Description.Endpoint.Name",
 }
 
 func ListCDNEndpoint(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -8686,10 +8759,11 @@ func ListCDNEndpoint(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 }
 
 var getCDNEndpointFilters = map[string]string{
-	"id":    "Description.Endpoint.ID",
-	"name":  "Description.Endpoint.Name",
-	"tags":  "Description.Endpoint.Tags",
-	"title": "Description.Endpoint.Name",
+	"id":           "Description.Endpoint.ID",
+	"name":         "Description.Endpoint.Name",
+	"subscription": "Description.Endpoint.Properties.Subscription",
+	"tags":         "Description.Endpoint.Tags",
+	"title":        "Description.Endpoint.Name",
 }
 
 func GetCDNEndpoint(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -8853,6 +8927,7 @@ var listNetworkInterfaceFilters = map[string]string{
 	"provisioning_state":            "Description.Interface.Properties.ProvisioningState",
 	"resource_group":                "Description.ResourceGroup",
 	"resource_guid":                 "Description.Interface.Properties.ResourceGUID",
+	"subscription":                  "Description.Interface.Properties.Subscription",
 	"tags":                          "Description.Interface.Tags",
 	"tap_configurations":            "Description.Interface.Properties.TapConfigurations",
 	"title":                         "Description.Interface.Name",
@@ -8948,6 +9023,7 @@ var getNetworkInterfaceFilters = map[string]string{
 	"provisioning_state":            "Description.Interface.Properties.ProvisioningState",
 	"resource_group":                "description.ResourceGroup",
 	"resource_guid":                 "Description.Interface.Properties.ResourceGUID",
+	"subscription":                  "Description.Interface.Properties.Subscription",
 	"tags":                          "Description.Interface.Tags",
 	"tap_configurations":            "Description.Interface.Properties.TapConfigurations",
 	"title":                         "Description.Interface.Name",
@@ -9105,6 +9181,7 @@ var listNetworkWatcherFlowLogFilters = map[string]string{
 	"retention_policy_days":    "Description.FlowLog.Properties.RetentionPolicy.Days",
 	"retention_policy_enabled": "Description.FlowLog.Properties.RetentionPolicy.Enabled",
 	"storage_id":               "Description.FlowLog.Properties.StorageID",
+	"subscription":             "Description.FlowLog.Properties.Subscription",
 	"tags":                     "Description.FlowLog.Tags",
 	"target_resource_guid":     "Description.FlowLog.Properties.TargetResourceGUID",
 	"target_resource_id":       "Description.FlowLog.Properties.TargetResourceID",
@@ -9187,6 +9264,7 @@ var getNetworkWatcherFlowLogFilters = map[string]string{
 	"retention_policy_days":    "Description.FlowLog.Properties.RetentionPolicy.Days",
 	"retention_policy_enabled": "Description.FlowLog.Properties.RetentionPolicy.Enabled",
 	"storage_id":               "Description.FlowLog.Properties.StorageID",
+	"subscription":             "Description.FlowLog.Properties.Subscription",
 	"tags":                     "Description.FlowLog.Tags",
 	"target_resource_guid":     "Description.FlowLog.Properties.TargetResourceGUID",
 	"target_resource_id":       "Description.FlowLog.Properties.TargetResourceID",
@@ -9339,6 +9417,7 @@ var listRouteTablesFilters = map[string]string{
 	"provisioning_state":            "Description.RouteTable.Properties.ProvisioningState",
 	"routes":                        "Description.RouteTable.Properties.Routes",
 	"subnets":                       "Description.RouteTable.Properties.Subnets",
+	"subscription":                  "Description.RouteTable.Properties.Subscription",
 	"tags":                          "Description.RouteTable.Tags",
 	"title":                         "Description.RouteTable.Name",
 	"type":                          "Description.RouteTable.Type",
@@ -9413,6 +9492,7 @@ var getRouteTablesFilters = map[string]string{
 	"resource_group":                "description.ResourceGroup",
 	"routes":                        "Description.RouteTable.Properties.Routes",
 	"subnets":                       "Description.RouteTable.Properties.Subnets",
+	"subscription":                  "Description.RouteTable.Properties.Subscription",
 	"tags":                          "Description.RouteTable.Tags",
 	"title":                         "Description.RouteTable.Name",
 	"type":                          "Description.RouteTable.Type",
@@ -9560,6 +9640,7 @@ var listNetworkApplicationSecurityGroupsFilters = map[string]string{
 	"provisioning_state":      "Description.ApplicationSecurityGroup.Properties.ProvisioningState",
 	"resource_group":          "Description.ResourceGroup",
 	"resource_guid":           "Description.ApplicationSecurityGroup.Properties.ResourceGUID",
+	"subscription":            "Description.ApplicationSecurityGroup.Properties.Subscription",
 	"tags":                    "Description.ApplicationSecurityGroup.Tags",
 	"title":                   "Description.ApplicationSecurityGroup.Name",
 	"type":                    "Description.ApplicationSecurityGroup.Type",
@@ -9632,6 +9713,7 @@ var getNetworkApplicationSecurityGroupsFilters = map[string]string{
 	"provisioning_state":      "Description.ApplicationSecurityGroup.Properties.ProvisioningState",
 	"resource_group":          "description.ResourceGroup",
 	"resource_guid":           "Description.ApplicationSecurityGroup.Properties.ResourceGUID",
+	"subscription":            "Description.ApplicationSecurityGroup.Properties.Subscription",
 	"tags":                    "Description.ApplicationSecurityGroup.Tags",
 	"title":                   "Description.ApplicationSecurityGroup.Name",
 	"type":                    "Description.ApplicationSecurityGroup.Type",
@@ -9791,6 +9873,7 @@ var listNetworkAzureFirewallFilters = map[string]string{
 	"resource_group":               "Description.ResourceGroup",
 	"sku_name":                     "Description.AzureFirewall.Properties.SKU.Name",
 	"sku_tier":                     "Description.AzureFirewall.Properties.SKU.Tier",
+	"subscription":                 "Description.AzureFirewall.Properties.Subscription",
 	"tags":                         "Description.AzureFirewall.Tags",
 	"threat_intel_mode":            "Description.AzureFirewall.Properties.ThreatIntelMode",
 	"title":                        "Description.AzureFirewall.Name",
@@ -9877,6 +9960,7 @@ var getNetworkAzureFirewallFilters = map[string]string{
 	"resource_group":               "description.ResourceGroup",
 	"sku_name":                     "Description.AzureFirewall.Properties.SKU.Name",
 	"sku_tier":                     "Description.AzureFirewall.Properties.SKU.Tier",
+	"subscription":                 "Description.AzureFirewall.Properties.Subscription",
 	"tags":                         "Description.AzureFirewall.Tags",
 	"threat_intel_mode":            "Description.AzureFirewall.Properties.ThreatIntelMode",
 	"title":                        "Description.AzureFirewall.Name",
@@ -10040,6 +10124,7 @@ var listExpressRouteCircuitFilters = map[string]string{
 	"sku_family":                          "Description.ExpressRouteCircuit.SKU.Family",
 	"sku_name":                            "Description.ExpressRouteCircuit.SKU.Name",
 	"sku_tier":                            "Description.ExpressRouteCircuit.SKU.Tier",
+	"subscription":                        "Description.ExpressRouteCircuit.Properties.Subscription",
 	"tags":                                "Description.ExpressRouteCircuit.Tags",
 	"title":                               "Description.ExpressRouteCircuit.Name",
 }
@@ -10125,6 +10210,7 @@ var getExpressRouteCircuitFilters = map[string]string{
 	"sku_family":                          "Description.ExpressRouteCircuit.SKU.Family",
 	"sku_name":                            "Description.ExpressRouteCircuit.SKU.Name",
 	"sku_tier":                            "Description.ExpressRouteCircuit.SKU.Tier",
+	"subscription":                        "Description.ExpressRouteCircuit.Properties.Subscription",
 	"tags":                                "Description.ExpressRouteCircuit.Tags",
 	"title":                               "Description.ExpressRouteCircuit.Name",
 }
@@ -10286,6 +10372,7 @@ var listVirtualNetworkGatewayFilters = map[string]string{
 	"sku_capacity":                    "Description.VirtualNetworkGateway.Properties.SKU.Capacity",
 	"sku_name":                        "Description.VirtualNetworkGateway.Properties.SKU.Name",
 	"sku_tier":                        "Description.VirtualNetworkGateway.Properties.SKU.Tier",
+	"subscription":                    "Description.VirtualNetworkGateway.Properties.Subscription",
 	"tags":                            "Description.VirtualNetworkGateway.Tags",
 	"title":                           "Description.VirtualNetworkGateway.Name",
 	"type":                            "Description.VirtualNetworkGateway.Type",
@@ -10376,6 +10463,7 @@ var getVirtualNetworkGatewayFilters = map[string]string{
 	"sku_capacity":                    "Description.VirtualNetworkGateway.Properties.SKU.Capacity",
 	"sku_name":                        "Description.VirtualNetworkGateway.Properties.SKU.Name",
 	"sku_tier":                        "Description.VirtualNetworkGateway.Properties.SKU.Tier",
+	"subscription":                    "Description.VirtualNetworkGateway.Properties.Subscription",
 	"tags":                            "Description.VirtualNetworkGateway.Tags",
 	"title":                           "Description.VirtualNetworkGateway.Name",
 	"type":                            "Description.VirtualNetworkGateway.Type",
@@ -10535,6 +10623,7 @@ var listFirewallPolicyFilters = map[string]string{
 	"resource_group":                      "Description.ResourceGroup",
 	"rule_collection_groups":              "Description.FirewallPolicy.Properties.RuleCollectionGroups",
 	"sku_tier":                            "Description.FirewallPolicy.Properties.SKU.Tier",
+	"subscription":                        "Description.FirewallPolicy.Properties.Subscription",
 	"tags":                                "Description.FirewallPolicy.Tags",
 	"threat_intel_mode":                   "Description.FirewallPolicy.Properties.ThreatIntelMode",
 	"threat_intel_whitelist_fqdns":        "Description.FirewallPolicy.Properties.ThreatIntelWhitelist.Fqdns",
@@ -10620,6 +10709,7 @@ var getFirewallPolicyFilters = map[string]string{
 	"resource_group":                      "description.ResourceGroup",
 	"rule_collection_groups":              "Description.FirewallPolicy.Properties.RuleCollectionGroups",
 	"sku_tier":                            "Description.FirewallPolicy.Properties.SKU.Tier",
+	"subscription":                        "Description.FirewallPolicy.Properties.Subscription",
 	"tags":                                "Description.FirewallPolicy.Tags",
 	"threat_intel_mode":                   "Description.FirewallPolicy.Properties.ThreatIntelMode",
 	"threat_intel_whitelist_fqdns":        "Description.FirewallPolicy.Properties.ThreatIntelWhitelist.Fqdns",
@@ -10768,6 +10858,7 @@ var listLocalNetworkGatewayFilters = map[string]string{
 	"id":                      "Description.LocalNetworkGateways.ID",
 	"name":                    "Description.LocalNetworkGateway.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.LocalNetworkGateways.Properties.Subscription",
 	"tags":                    "Description.LocalNetworkGateway.Tags",
 	"title":                   "Description.LocalNetworkGateway.Name",
 }
@@ -10837,6 +10928,7 @@ var getLocalNetworkGatewayFilters = map[string]string{
 	"name":                    "description.LocalNetworkGateway.Name",
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.LocalNetworkGateways.Properties.Subscription",
 	"tags":                    "Description.LocalNetworkGateway.Tags",
 	"title":                   "Description.LocalNetworkGateway.Name",
 }
@@ -10983,6 +11075,7 @@ var listNatGatewayFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"sku_name":                "Description.NatGateway.SKU.Name",
+	"subscription":            "Description.NatGateway.Properties.Subscription",
 	"tags":                    "Description.NatGateway.Tags",
 	"title":                   "Description.NatGateway.Name",
 	"type":                    "Description.NatGateway.Type",
@@ -11056,6 +11149,7 @@ var getNatGatewayFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"sku_name":                "Description.NatGateway.SKU.Name",
+	"subscription":            "Description.NatGateway.Properties.Subscription",
 	"tags":                    "Description.NatGateway.Tags",
 	"title":                   "Description.NatGateway.Name",
 	"type":                    "Description.NatGateway.Type",
@@ -11201,6 +11295,7 @@ var listPrivateLinkServiceFilters = map[string]string{
 	"id":                      "Description.PrivateLinkServices.ID",
 	"name":                    "Description.PrivateLinkService.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.PrivateLinkServices.Properties.Subscription",
 	"tags":                    "Description.PrivateLinkService.Tags",
 	"title":                   "Description.PrivateLinkService.Name",
 }
@@ -11270,6 +11365,7 @@ var getPrivateLinkServiceFilters = map[string]string{
 	"name":                    "description.PrivateLinkService.Name",
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.PrivateLinkServices.Properties.Subscription",
 	"tags":                    "Description.PrivateLinkService.Tags",
 	"title":                   "Description.PrivateLinkService.Name",
 }
@@ -11413,6 +11509,7 @@ var listVpnGatewayFilters = map[string]string{
 	"id":                      "Description.VPNGateways.ID",
 	"name":                    "Description.VpnGateway.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.VPNGateways.Properties.Subscription",
 	"tags":                    "Description.VpnGateway.Tags",
 	"title":                   "Description.VpnGateway.Name",
 }
@@ -11482,6 +11579,7 @@ var getVpnGatewayFilters = map[string]string{
 	"name":                    "description.VpnGateway.Name",
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.VPNGateways.Properties.Subscription",
 	"tags":                    "Description.VpnGateway.Tags",
 	"title":                   "Description.VpnGateway.Name",
 }
@@ -11625,6 +11723,7 @@ var listVpnGatewayVpnConnectionFilters = map[string]string{
 	"id":                      "Description.VPNConnections.ID",
 	"name":                    "Description.VpnConnection.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.VPNConnections.Properties.Subscription",
 	"tags":                    "Description.VpnConnection.Etag",
 	"title":                   "Description.VpnConnection.Name",
 }
@@ -11693,6 +11792,7 @@ var getVpnGatewayVpnConnectionFilters = map[string]string{
 	"id":                      "Description.VPNConnections.ID",
 	"name":                    "Description.VpnConnection.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.VPNConnections.Properties.Subscription",
 	"tags":                    "Description.VpnConnection.Etag",
 	"title":                   "Description.VpnConnection.Name",
 }
@@ -11836,6 +11936,7 @@ var listVpnSiteFilters = map[string]string{
 	"id":                      "Description.VPNSites.ID",
 	"name":                    "Description.VpnSite.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.VPNSites.Properties.Subscription",
 	"tags":                    "Description.VpnSite.Tags",
 	"title":                   "Description.VpnSite.Name",
 }
@@ -11904,6 +12005,7 @@ var getVpnSiteFilters = map[string]string{
 	"id":                      "Description.VPNSites.ID",
 	"name":                    "Description.VpnSite.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.VPNSites.Properties.Subscription",
 	"tags":                    "Description.VpnSite.Tags",
 	"title":                   "Description.VpnSite.Name",
 }
@@ -12065,6 +12167,7 @@ var listPublicIPAddressFilters = map[string]string{
 	"resource_group":                    "Description.ResourceGroup",
 	"resource_guid":                     "Description.PublicIPAddress.Properties.ResourceGUID",
 	"sku_name":                          "Description.PublicIPAddress.SKU.Name",
+	"subscription":                      "Description.PublicIPAddress.Properties.Subscription",
 	"tags":                              "Description.PublicIPAddress.Tags",
 	"title":                             "Description.PublicIPAddress.Name",
 	"type":                              "Description.PublicIPAddress.Type",
@@ -12153,6 +12256,7 @@ var getPublicIPAddressFilters = map[string]string{
 	"resource_group":                    "description.ResourceGroup",
 	"resource_guid":                     "Description.PublicIPAddress.Properties.ResourceGUID",
 	"sku_name":                          "Description.PublicIPAddress.SKU.Name",
+	"subscription":                      "Description.PublicIPAddress.Properties.Subscription",
 	"tags":                              "Description.PublicIPAddress.Tags",
 	"title":                             "Description.PublicIPAddress.Name",
 	"type":                              "Description.PublicIPAddress.Type",
@@ -12298,6 +12402,7 @@ var listPublicIPPrefixFilters = map[string]string{
 	"id":                      "Description.PublicIPPrefixes.ID",
 	"name":                    "Description.PublicIPPrefix.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.PublicIPPrefixes.Properties.Subscription",
 	"tags":                    "Description.PublicIPPrefix.Tags",
 	"title":                   "Description.PublicIPPrefix.Name",
 }
@@ -12366,6 +12471,7 @@ var getPublicIPPrefixFilters = map[string]string{
 	"id":                      "Description.PublicIPPrefixes.ID",
 	"name":                    "Description.PublicIPPrefix.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.PublicIPPrefixes.Properties.Subscription",
 	"tags":                    "Description.PublicIPPrefix.Tags",
 	"title":                   "Description.PublicIPPrefix.Name",
 }
@@ -12517,6 +12623,7 @@ var listDNSZonesFilters = map[string]string{
 	"registration_virtual_networks":        "Description.Zone.Properties.RegistrationVirtualNetworks",
 	"resolution_virtual_networks":          "Description.Zone.Properties.ResolutionVirtualNetworks",
 	"resource_group":                       "Description.ResourceGroup",
+	"subscription":                         "Description.Zone.Properties.Subscription",
 	"tags":                                 "Description.Zone.Tags",
 	"title":                                "Description.Zone.Name",
 	"type":                                 "Description.Zone.Type",
@@ -12595,6 +12702,7 @@ var getDNSZonesFilters = map[string]string{
 	"registration_virtual_networks":        "Description.Zone.Properties.RegistrationVirtualNetworks",
 	"resolution_virtual_networks":          "Description.Zone.Properties.ResolutionVirtualNetworks",
 	"resource_group":                       "Description.ResourceGroup",
+	"subscription":                         "Description.Zone.Properties.Subscription",
 	"tags":                                 "Description.Zone.Tags",
 	"title":                                "Description.Zone.Name",
 	"type":                                 "Description.Zone.Type",
@@ -12746,6 +12854,7 @@ var listBastionHostsFilters = map[string]string{
 	"provisioning_state":      "Description.BastianHost.Properties.ProvisioningState",
 	"region":                  "Description.BastianHost.Location",
 	"resource_group":          "Description.ResourceGroup",
+	"subscription":            "Description.BastianHost.Properties.Subscription",
 	"tags":                    "Description.BastianHost.Tags",
 	"title":                   "Description.BastianHost.Name",
 	"type":                    "Description.BastianHost.Type",
@@ -12821,6 +12930,7 @@ var getBastionHostsFilters = map[string]string{
 	"provisioning_state":      "Description.BastianHost.Properties.ProvisioningState",
 	"region":                  "Description.BastianHost.Location",
 	"resource_group":          "Description.ResourceGroup",
+	"subscription":            "Description.BastianHost.Properties.Subscription",
 	"tags":                    "Description.BastianHost.Tags",
 	"title":                   "Description.BastianHost.Name",
 	"type":                    "Description.BastianHost.Type",
@@ -12965,6 +13075,7 @@ var listConnectionFilters = map[string]string{
 	"id":                      "Description.Connection.ID",
 	"name":                    "Description.Connection.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Connection.Properties.Subscription",
 	"tags":                    "Description.Connection.Tags",
 	"title":                   "Description.Connection.Name",
 }
@@ -13033,6 +13144,7 @@ var getConnectionFilters = map[string]string{
 	"id":                      "Description.Connection.ID",
 	"name":                    "Description.Connection.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Connection.Properties.Subscription",
 	"tags":                    "Description.Connection.Tags",
 	"title":                   "Description.Connection.Name",
 }
@@ -13176,6 +13288,7 @@ var listVirtualHubsFilters = map[string]string{
 	"id":                      "Description.VirtualHubs.ID",
 	"name":                    "Description.VirtualHub.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.VirtualHubs.Properties.Subscription",
 	"tags":                    "Description.VirtualHub.Tags",
 	"title":                   "Description.VirtualHub.Name",
 }
@@ -13244,6 +13357,7 @@ var getVirtualHubsFilters = map[string]string{
 	"id":                      "Description.VirtualHubs.ID",
 	"name":                    "Description.VirtualHub.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.VirtualHubs.Properties.Subscription",
 	"tags":                    "Description.VirtualHub.Tags",
 	"title":                   "Description.VirtualHub.Name",
 }
@@ -13387,6 +13501,7 @@ var listVirtualWansFilters = map[string]string{
 	"id":                      "Description.VirtualWans.ID",
 	"name":                    "Description.VirtualWan.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.VirtualWans.Properties.Subscription",
 	"tags":                    "Description.VirtualWan.Tags",
 	"title":                   "Description.VirtualWan.Name",
 }
@@ -13455,6 +13570,7 @@ var getVirtualWansFilters = map[string]string{
 	"id":                      "Description.VirtualWans.ID",
 	"name":                    "Description.VirtualWan.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.VirtualWans.Properties.Subscription",
 	"tags":                    "Description.VirtualWan.Tags",
 	"title":                   "Description.VirtualWan.Name",
 }
@@ -13598,6 +13714,7 @@ var listDNSResolverFilters = map[string]string{
 	"id":                      "Description.DNSResolver.ID",
 	"name":                    "Description.DNSResolver.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.DNSResolver.Properties.Subscription",
 	"tags":                    "Description.DNSResolver.Tags",
 	"title":                   "Description.DNSResolver.Name",
 }
@@ -13666,6 +13783,7 @@ var getDNSResolverFilters = map[string]string{
 	"id":                      "Description.DNSResolver.ID",
 	"name":                    "Description.DNSResolver.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.DNSResolver.Properties.Subscription",
 	"tags":                    "Description.DNSResolver.Tags",
 	"title":                   "Description.DNSResolver.Name",
 }
@@ -13806,10 +13924,11 @@ func (p TrafficManagerProfilePaginator) NextPage(ctx context.Context) ([]Traffic
 }
 
 var listTrafficManagerProfileFilters = map[string]string{
-	"id":    "Description.Profile.ID",
-	"name":  "Description.Profile.Name",
-	"tags":  "Description.Profile.Tags",
-	"title": "Description.Profile.Name",
+	"id":           "Description.Profile.ID",
+	"name":         "Description.Profile.Name",
+	"subscription": "Description.Profile.Properties.Subscription",
+	"tags":         "Description.Profile.Tags",
+	"title":        "Description.Profile.Name",
 }
 
 func ListTrafficManagerProfile(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -13873,10 +13992,11 @@ func ListTrafficManagerProfile(ctx context.Context, d *plugin.QueryData, _ *plug
 }
 
 var getTrafficManagerProfileFilters = map[string]string{
-	"id":    "Description.Profile.ID",
-	"name":  "Description.Profile.Name",
-	"tags":  "Description.Profile.Tags",
-	"title": "Description.Profile.Name",
+	"id":           "Description.Profile.ID",
+	"name":         "Description.Profile.Name",
+	"subscription": "Description.Profile.Properties.Subscription",
+	"tags":         "Description.Profile.Tags",
+	"title":        "Description.Profile.Name",
 }
 
 func GetTrafficManagerProfile(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -14027,6 +14147,7 @@ var listPrivateDNSZonesFilters = map[string]string{
 	"platform_integration_id":                           "IntegrationID",
 	"provisioning_state":                                "Description.PrivateZone.Properties.ProvisioningState",
 	"resource_group":                                    "Description.ResourceGroup",
+	"subscription":                                      "Description.PrivateZone.Properties.Subscription",
 	"tags":                                              "Description.PrivateZone.Tags",
 	"title":                                             "Description.PrivateZone.Name",
 	"type":                                              "Description.PrivateZone.Type",
@@ -14105,6 +14226,7 @@ var getPrivateDNSZonesFilters = map[string]string{
 	"platform_integration_id":                           "IntegrationID",
 	"provisioning_state":                                "Description.PrivateZone.Properties.ProvisioningState",
 	"resource_group":                                    "Description.ResourceGroup",
+	"subscription":                                      "Description.PrivateZone.Properties.Subscription",
 	"tags":                                              "Description.PrivateZone.Tags",
 	"title":                                             "Description.PrivateZone.Name",
 	"type":                                              "Description.PrivateZone.Type",
@@ -14249,6 +14371,7 @@ var listPrivateEndpointFilters = map[string]string{
 	"id":                      "Description.PrivateEndpoints.ID",
 	"name":                    "Description.PrivateEndpoint.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.PrivateEndpoints.Properties.Subscription",
 	"tags":                    "Description.PrivateEndpoint.Tags",
 	"title":                   "Description.PrivateEndpoint.Name",
 }
@@ -14317,6 +14440,7 @@ var getPrivateEndpointFilters = map[string]string{
 	"id":                      "Description.PrivateEndpoints.ID",
 	"name":                    "Description.PrivateEndpoint.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.PrivateEndpoints.Properties.Subscription",
 	"tags":                    "Description.PrivateEndpoint.Tags",
 	"title":                   "Description.PrivateEndpoint.Name",
 }
@@ -14457,10 +14581,11 @@ func (p NetworkDDoSProtectionPlanPaginator) NextPage(ctx context.Context) ([]Net
 }
 
 var listNetworkDDoSProtectionPlanFilters = map[string]string{
-	"id":    "Description.DDoSProtectionPlan.ID",
-	"name":  "Description.DDoSProtectionPlan.Name",
-	"tags":  "Description.DDoSProtectionPlan.Tags",
-	"title": "Description.DDoSProtectionPlan.Name",
+	"id":           "Description.DDoSProtectionPlan.ID",
+	"name":         "Description.DDoSProtectionPlan.Name",
+	"subscription": "Description.DDoSProtectionPlan.Properties.Subscription",
+	"tags":         "Description.DDoSProtectionPlan.Tags",
+	"title":        "Description.DDoSProtectionPlan.Name",
 }
 
 func ListNetworkDDoSProtectionPlan(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -14524,10 +14649,11 @@ func ListNetworkDDoSProtectionPlan(ctx context.Context, d *plugin.QueryData, _ *
 }
 
 var getNetworkDDoSProtectionPlanFilters = map[string]string{
-	"id":    "Description.DDoSProtectionPlan.ID",
-	"name":  "Description.DDoSProtectionPlan.Name",
-	"tags":  "Description.DDoSProtectionPlan.Tags",
-	"title": "Description.DDoSProtectionPlan.Name",
+	"id":           "Description.DDoSProtectionPlan.ID",
+	"name":         "Description.DDoSProtectionPlan.Name",
+	"subscription": "Description.DDoSProtectionPlan.Properties.Subscription",
+	"tags":         "Description.DDoSProtectionPlan.Tags",
+	"title":        "Description.DDoSProtectionPlan.Name",
 }
 
 func GetNetworkDDoSProtectionPlan(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -14680,6 +14806,7 @@ var listPolicyAssignmentFilters = map[string]string{
 	"scope":                   "Description.Assignment.Properties.Scope",
 	"sku_name":                "Description.Resource.SKU.Name",
 	"sku_tier":                "Description.Resource.SKU.Tier",
+	"subscription":            "Description.Assignment.Properties.Subscription",
 	"title":                   "Description.Assignment.Name",
 	"type":                    "Description.Assignment.Type",
 }
@@ -14759,6 +14886,7 @@ var getPolicyAssignmentFilters = map[string]string{
 	"scope":                   "Description.Assignment.Properties.Scope",
 	"sku_name":                "Description.Resource.SKU.Name",
 	"sku_tier":                "Description.Resource.SKU.Tier",
+	"subscription":            "Description.Assignment.Properties.Subscription",
 	"title":                   "Description.Assignment.Name",
 	"type":                    "Description.Assignment.Type",
 }
@@ -14922,6 +15050,7 @@ var listRedisCacheFilters = map[string]string{
 	"ssl_port":                     "Description.ResourceInfo.Properties.SSLPort",
 	"static_ip":                    "Description.ResourceInfo.Properties.StaticIP",
 	"subnet_id":                    "Description.ResourceInfo.Properties.SubnetID",
+	"subscription":                 "Description.ResourceInfo.Properties.Subscription",
 	"tags":                         "Description.ResourceInfo.Tags",
 	"tenant_settings":              "Description.ResourceInfo.Properties.TenantSettings",
 	"title":                        "Description.ResourceInfo.Name",
@@ -15013,6 +15142,7 @@ var getRedisCacheFilters = map[string]string{
 	"ssl_port":                     "Description.ResourceInfo.Properties.SSLPort",
 	"static_ip":                    "Description.ResourceInfo.Properties.StaticIP",
 	"subnet_id":                    "Description.ResourceInfo.Properties.SubnetID",
+	"subscription":                 "Description.ResourceInfo.Properties.Subscription",
 	"tags":                         "Description.ResourceInfo.Tags",
 	"tenant_settings":              "Description.ResourceInfo.Properties.TenantSettings",
 	"title":                        "Description.ResourceInfo.Name",
@@ -15159,6 +15289,7 @@ var listRedisEnterpriseCacheFilters = map[string]string{
 	"id":                      "Description.RedisEnterprise.ID",
 	"name":                    "Description.RedisEnterprise.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.RedisEnterprise.Properties.Subscription",
 	"tags":                    "Description.RedisEnterprise.Tags",
 	"title":                   "Description.RedisEnterprise.Name",
 }
@@ -15227,6 +15358,7 @@ var getRedisEnterpriseCacheFilters = map[string]string{
 	"id":                      "Description.RedisEnterprise.ID",
 	"name":                    "Description.RedisEnterprise.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.RedisEnterprise.Properties.Subscription",
 	"tags":                    "Description.RedisEnterprise.Tags",
 	"title":                   "Description.RedisEnterprise.Name",
 }
@@ -15373,6 +15505,7 @@ var listResourceLinkFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceLink.Properties.SourceID",
 	"source_id":               "Description.ResourceLink.Properties.SourceID",
+	"subscription":            "Description.ResourceLink.Properties.Subscription",
 	"target_id":               "Description.ResourceLink.Properties.TargetID",
 	"title":                   "Description.ResourceLink.Name",
 	"type":                    "Description.ResourceLink.Type",
@@ -15445,6 +15578,7 @@ var getResourceLinkFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceLink.Properties.SourceID",
 	"source_id":               "Description.ResourceLink.Properties.SourceID",
+	"subscription":            "Description.ResourceLink.Properties.Subscription",
 	"target_id":               "Description.ResourceLink.Properties.TargetID",
 	"title":                   "Description.ResourceLink.Name",
 	"type":                    "Description.ResourceLink.Type",
@@ -15594,6 +15728,7 @@ var listRoleAssignmentFilters = map[string]string{
 	"principal_type":          "Description.RoleAssignment.Properties.PrincipalType",
 	"role_definition_id":      "Description.RoleAssignment.Properties.RoleDefinitionID",
 	"scope":                   "Description.RoleAssignment.Properties.Scope",
+	"subscription":            "Description.RoleAssignment.Properties.Subscription",
 	"title":                   "Description.RoleAssignment.Name",
 	"type":                    "Description.RoleAssignment.Type",
 	"updated_on":              "Description.RoleAssignment.Properties.UpdatedOn",
@@ -15668,6 +15803,7 @@ var getRoleAssignmentFilters = map[string]string{
 	"principal_type":          "Description.RoleAssignment.Properties.PrincipalType",
 	"role_definition_id":      "Description.RoleAssignment.Properties.RoleDefinitionID",
 	"scope":                   "Description.RoleAssignment.Properties.Scope",
+	"subscription":            "Description.RoleAssignment.Properties.Subscription",
 	"title":                   "Description.RoleAssignment.Name",
 	"type":                    "Description.RoleAssignment.Type",
 	"updated_on":              "Description.RoleAssignment.Properties.UpdatedOn",
@@ -15817,6 +15953,7 @@ var listRoleDefinitionFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"role_name":               "Description.RoleDefinition.Properties.RoleName",
 	"role_type":               "Description.RoleDefinition.Properties.RoleType",
+	"subscription":            "Description.RoleDefinition.Properties.Subscription",
 	"type":                    "Description.RoleDefinition.Type",
 }
 
@@ -15889,6 +16026,7 @@ var getRoleDefinitionFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"role_name":               "Description.RoleDefinition.Properties.RoleName",
 	"role_type":               "Description.RoleDefinition.Properties.RoleType",
+	"subscription":            "Description.RoleDefinition.Properties.Subscription",
 	"type":                    "Description.RoleDefinition.Type",
 }
 
@@ -16039,6 +16177,7 @@ var listPolicyDefinitionFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"policy_rule":             "Description.Definition.Properties.PolicyRule",
 	"policy_type":             "Description.Definition.Properties.PolicyType",
+	"subscription":            "Description.Definition.Properties.Subscription",
 	"title":                   "Description.Definition.Properties.DisplayName",
 	"type":                    "Description.Definition.Type",
 }
@@ -16115,6 +16254,7 @@ var getPolicyDefinitionFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"policy_rule":             "Description.Definition.Properties.PolicyRule",
 	"policy_type":             "Description.Definition.Properties.PolicyType",
+	"subscription":            "Description.Definition.Properties.Subscription",
 	"title":                   "Description.Definition.Properties.DisplayName",
 	"type":                    "Description.Definition.Type",
 }
@@ -16265,6 +16405,7 @@ var listUserEffectiveAccessFilters = map[string]string{
 	"role_definition_id":      "Description.RoleAssignment.Properties.RoleDefinitionID",
 	"scope":                   "Description.Scope",
 	"scope_type":              "Description.ScopeType",
+	"subscription":            "Description.Subscription",
 }
 
 func ListUserEffectiveAccess(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -16338,6 +16479,7 @@ var getUserEffectiveAccessFilters = map[string]string{
 	"role_definition_id":      "Description.RoleAssignment.Properties.RoleDefinitionID",
 	"scope":                   "Description.Scope",
 	"scope_type":              "Description.ScopeType",
+	"subscription":            "Description.Subscription",
 }
 
 func GetUserEffectiveAccess(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -16480,6 +16622,7 @@ var listSecurityCenterAutoProvisioningFilters = map[string]string{
 	"id":                      "Description.AutoProvisioningSetting.ID",
 	"name":                    "Description.AutoProvisioningSetting.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.AutoProvisioningSetting.Properties.Subscription",
 	"title":                   "Description.AutoProvisioningSetting.Name",
 	"type":                    "Description.AutoProvisioningSetting.Type",
 }
@@ -16549,6 +16692,7 @@ var getSecurityCenterAutoProvisioningFilters = map[string]string{
 	"id":                      "Description.AutoProvisioningSetting.ID",
 	"name":                    "description.AutoProvisioningSetting.name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.AutoProvisioningSetting.Properties.Subscription",
 	"title":                   "Description.AutoProvisioningSetting.Name",
 	"type":                    "Description.AutoProvisioningSetting.Type",
 }
@@ -16696,6 +16840,7 @@ var listSecurityCenterContactFilters = map[string]string{
 	"name":                    "Description.Contact.Name",
 	"phone":                   "Description.Contact.Properties.Phone",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Contact.Properties.Subscription",
 	"title":                   "Description.Contact.Name",
 	"type":                    "Description.Contact.Type",
 }
@@ -16768,6 +16913,7 @@ var getSecurityCenterContactFilters = map[string]string{
 	"name":                    "description.Contact.name",
 	"phone":                   "Description.Contact.Properties.Phone",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Contact.Properties.Subscription",
 	"title":                   "Description.Contact.Name",
 	"type":                    "Description.Contact.Type",
 }
@@ -16913,6 +17059,7 @@ var listSecurityCenterJitNetworkAccessPolicyFilters = map[string]string{
 	"name":                    "Description.JitNetworkAccessPolicy.Name",
 	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.JitNetworkAccessPolicy.Properties.ProvisioningState",
+	"subscription":            "Description.JitNetworkAccessPolicy.Properties.Subscription",
 	"title":                   "Description.JitNetworkAccessPolicy.Name",
 	"type":                    "Description.JitNetworkAccessPolicy.Type",
 	"virtual_machines":        "Description.JitNetworkAccessPolicy.Properties.VirtualMachines",
@@ -16984,6 +17131,7 @@ var getSecurityCenterJitNetworkAccessPolicyFilters = map[string]string{
 	"name":                    "Description.JitNetworkAccessPolicy.Name",
 	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.JitNetworkAccessPolicy.Properties.ProvisioningState",
+	"subscription":            "Description.JitNetworkAccessPolicy.Properties.Subscription",
 	"title":                   "Description.JitNetworkAccessPolicy.Name",
 	"type":                    "Description.JitNetworkAccessPolicy.Type",
 	"virtual_machines":        "Description.JitNetworkAccessPolicy.Properties.VirtualMachines",
@@ -17130,6 +17278,7 @@ var listSecurityCenterSettingFilters = map[string]string{
 	"kind":                    "Description.Setting.Kind",
 	"name":                    "Description.Setting.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Setting.Properties.Subscription",
 	"title":                   "Description.Setting.Name",
 	"type":                    "Description.Setting.Type",
 }
@@ -17200,6 +17349,7 @@ var getSecurityCenterSettingFilters = map[string]string{
 	"kind":                    "Description.Setting.Kind",
 	"name":                    "description.Setting.name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Setting.Properties.Subscription",
 	"title":                   "Description.Setting.Name",
 	"type":                    "Description.Setting.Type",
 }
@@ -17345,6 +17495,7 @@ var listSecurityCenterSubscriptionPricingFilters = map[string]string{
 	"name":                      "Description.Pricing.Name",
 	"platform_integration_id":   "IntegrationID",
 	"pricing_tier":              "Description.Pricing.Properties.PricingTier",
+	"subscription":              "Description.Pricing.Properties.Subscription",
 	"title":                     "Description.Pricing.Name",
 	"type":                      "Description.Pricing.Type",
 }
@@ -17415,6 +17566,7 @@ var getSecurityCenterSubscriptionPricingFilters = map[string]string{
 	"name":                      "description.Pricing.Name",
 	"platform_integration_id":   "IntegrationID",
 	"pricing_tier":              "Description.Pricing.Properties.PricingTier",
+	"subscription":              "Description.Pricing.Properties.Subscription",
 	"title":                     "Description.Pricing.Name",
 	"type":                      "Description.Pricing.Type",
 }
@@ -17566,6 +17718,7 @@ var listSecurityCenterAutomationFilters = map[string]string{
 	"resource_group":          "Description.ResourceGroup",
 	"scopes":                  "Description.Automation.Properties.Scopes",
 	"sources":                 "Description.Automation.Properties.Sources",
+	"subscription":            "Description.Automation.Properties.Subscription",
 	"tags":                    "Description.Automation.Tags",
 	"title":                   "Description.Automation.Name",
 	"type":                    "Description.Automation.Type",
@@ -17643,6 +17796,7 @@ var getSecurityCenterAutomationFilters = map[string]string{
 	"resource_group":          "description.ResourceGroup",
 	"scopes":                  "Description.Automation.Properties.Scopes",
 	"sources":                 "Description.Automation.Properties.Sources",
+	"subscription":            "Description.Automation.Properties.Subscription",
 	"tags":                    "Description.Automation.Tags",
 	"title":                   "Description.Automation.Name",
 	"type":                    "Description.Automation.Type",
@@ -17793,6 +17947,7 @@ var listSecurityCenterSubAssessmentFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"remediation":             "Description.SubAssessment.Properties.Remediation",
 	"resource_group":          "Description.ResourceGroup",
+	"subscription":            "Description.SubAssessment.Properties.Subscription",
 	"time_generated":          "Description.SubAssessment.Properties.TimeGenerated",
 	"title":                   "Description.SubAssessment.Name",
 	"type":                    "Description.SubAssessment.Type",
@@ -17868,6 +18023,7 @@ var getSecurityCenterSubAssessmentFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"remediation":             "Description.SubAssessment.Properties.Remediation",
 	"resource_group":          "Description.ResourceGroup",
+	"subscription":            "Description.SubAssessment.Properties.Subscription",
 	"time_generated":          "Description.SubAssessment.Properties.TimeGenerated",
 	"title":                   "Description.SubAssessment.Name",
 	"type":                    "Description.SubAssessment.Type",
@@ -18027,6 +18183,7 @@ var listStorageContainerFilters = map[string]string{
 	"public_access":                  "Description.ListContainerItem.Properties.PublicAccess",
 	"remaining_retention_days":       "Description.ListContainerItem.Properties.RemainingRetentionDays",
 	"resource_group":                 "Description.ResourceGroup",
+	"subscription":                   "Description.ListContainerItem.Properties.Subscription",
 	"title":                          "Description.ListContainerItem.Name",
 	"type":                           "Description.ListContainerItem.Type",
 	"version":                        "Description.ListContainerItem.Properties.Version",
@@ -18111,6 +18268,7 @@ var getStorageContainerFilters = map[string]string{
 	"public_access":                  "Description.ListContainerItem.Properties.PublicAccess",
 	"remaining_retention_days":       "Description.ListContainerItem.Properties.RemainingRetentionDays",
 	"resource_group":                 "description.ResourceGroup",
+	"subscription":                   "Description.ListContainerItem.Properties.Subscription",
 	"title":                          "Description.ListContainerItem.Name",
 	"type":                           "Description.ListContainerItem.Type",
 	"version":                        "Description.ListContainerItem.Properties.Version",
@@ -18295,6 +18453,7 @@ var listStorageBlobFilters = map[string]string{
 	"server_encrypted":         "Description.Blob.Properties.ServerEncrypted",
 	"snapshot":                 "Description.Blob.Snapshot",
 	"storage_account_name":     "description.AccountName",
+	"subscription":             "Description.Blob.Properties.Subscription",
 	"title":                    "Description.Blob.Name",
 	"type":                     "Description.Blob.Properties.BlobType",
 	"version_id":               "Description.Blob.VersionID",
@@ -18403,6 +18562,7 @@ var getStorageBlobFilters = map[string]string{
 	"server_encrypted":         "Description.Blob.Properties.ServerEncrypted",
 	"snapshot":                 "Description.Blob.Snapshot",
 	"storage_account_name":     "Description.AccountName",
+	"subscription":             "Description.Blob.Properties.Subscription",
 	"title":                    "Description.Blob.Name",
 	"type":                     "Description.Blob.Properties.BlobType",
 	"version_id":               "Description.Blob.VersionID",
@@ -18559,6 +18719,7 @@ var listStorageBlobServiceFilters = map[string]string{
 	"sku_name":                          "Description.BlobService.SKU.Name",
 	"sku_tier":                          "Description.BlobService.SKU.Tier",
 	"storage_account_name":              "description.AccountName",
+	"subscription":                      "Description.BlobService.Properties.Subscription",
 	"title":                             "Description.BlobService.Name",
 	"type":                              "Description.BlobService.Type",
 }
@@ -18639,6 +18800,7 @@ var getStorageBlobServiceFilters = map[string]string{
 	"sku_name":                          "Description.BlobService.SKU.Name",
 	"sku_tier":                          "Description.BlobService.SKU.Tier",
 	"storage_account_name":              "Description.AccountName",
+	"subscription":                      "Description.BlobService.Properties.Subscription",
 	"title":                             "Description.BlobService.Name",
 	"type":                              "Description.BlobService.Type",
 }
@@ -18785,6 +18947,7 @@ var listStorageQueueFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"storage_account_name":    "description.AccountName",
+	"subscription":            "Description.Queue.Properties.Subscription",
 	"title":                   "Description.Queue.Name",
 	"type":                    "Description.Queue.Type",
 }
@@ -18856,6 +19019,7 @@ var getStorageQueueFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"storage_account_name":    "Description.AccountName",
+	"subscription":            "Description.Queue.Properties.Subscription",
 	"title":                   "Description.Queue.Name",
 	"type":                    "Description.Queue.Type",
 }
@@ -19010,6 +19174,7 @@ var listStorageFileShareFilters = map[string]string{
 	"share_quota":              "Description.FileShare.Properties.ShareQuota",
 	"share_usage_bytes":        "Description.FileShare.Properties.ShareUsageBytes",
 	"storage_account_name":     "description.AccountName",
+	"subscription":             "Description.FileShare.Properties.Subscription",
 	"title":                    "Description.FileShare.Name",
 	"type":                     "Description.FileShare.Type",
 	"version":                  "Description.FileShare.Properties.Version",
@@ -19089,6 +19254,7 @@ var getStorageFileShareFilters = map[string]string{
 	"share_quota":              "Description.FileShare.Properties.ShareQuota",
 	"share_usage_bytes":        "Description.FileShare.Properties.ShareUsageBytes",
 	"storage_account_name":     "Description.AccountName",
+	"subscription":             "Description.FileShare.Properties.Subscription",
 	"title":                    "Description.FileShare.Name",
 	"type":                     "Description.FileShare.Type",
 	"version":                  "Description.FileShare.Properties.Version",
@@ -19235,6 +19401,7 @@ var listStorageTableFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"storage_account_name":    "description.AccountName",
+	"subscription":            "Description.Table.Properties.Subscription",
 	"title":                   "Description.Table.Name",
 	"type":                    "Description.Table.Type",
 }
@@ -19304,6 +19471,7 @@ var getStorageTableFilters = map[string]string{
 	"name":                    "Description.Table.Name",
 	"platform_integration_id": "IntegrationID",
 	"storage_account_name":    "Description.AccountName",
+	"subscription":            "Description.Table.Properties.Subscription",
 	"title":                   "Description.Table.Name",
 	"type":                    "Description.Table.Type",
 }
@@ -19450,6 +19618,7 @@ var listStorageTableServiceFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"storage_account_name":    "description.AccountName",
+	"subscription":            "Description.TableService.Properties.Subscription",
 	"title":                   "Description.TableService.Name",
 	"type":                    "Description.TableService.Type",
 }
@@ -19520,6 +19689,7 @@ var getStorageTableServiceFilters = map[string]string{
 	"name":                    "Description.TableService.Name",
 	"platform_integration_id": "IntegrationID",
 	"storage_account_name":    "Description.AccountName",
+	"subscription":            "Description.TableService.Properties.Subscription",
 	"title":                   "Description.TableService.Name",
 	"type":                    "Description.TableService.Type",
 }
@@ -19675,6 +19845,7 @@ var listSubnetFilters = map[string]string{
 	"route_table_id":                        "Description.Subnet.Properties.RouteTable.ID",
 	"service_endpoint_policies":             "Description.Subnet.Properties.ServiceEndpointPolicies",
 	"service_endpoints":                     "Description.Subnet.Properties.ServiceEndpoints",
+	"subscription":                          "Description.Subnet.Properties.Subscription",
 	"title":                                 "Description.Subnet.Name",
 	"type":                                  "Description.Subnet.Properties.RouteTable.Type",
 	"virtual_network_name":                  "Description.VirtualNetworkName",
@@ -19757,6 +19928,7 @@ var getSubnetFilters = map[string]string{
 	"route_table_id":                        "Description.Subnet.Properties.RouteTable.ID",
 	"service_endpoint_policies":             "Description.Subnet.Properties.ServiceEndpointPolicies",
 	"service_endpoints":                     "Description.Subnet.Properties.ServiceEndpoints",
+	"subscription":                          "Description.Subnet.Properties.Subscription",
 	"title":                                 "Description.Subnet.Name",
 	"type":                                  "Description.Subnet.Properties.RouteTable.Type",
 	"virtual_network_name":                  "description.VirtualNetworkName",
@@ -19910,6 +20082,7 @@ var listVirtualNetworkFilters = map[string]string{
 	"resource_group":          "Description.ResourceGroup",
 	"resource_guid":           "Description.VirtualNetwork.Properties.ResourceGUID",
 	"subnets":                 "Description.VirtualNetwork.Properties.Subnets",
+	"subscription":            "Description.VirtualNetwork.Properties.Subscription",
 	"tags":                    "Description.VirtualNetwork.Tags",
 	"title":                   "Description.VirtualNetwork.Name",
 	"type":                    "Description.VirtualNetwork.Type",
@@ -19988,6 +20161,7 @@ var getVirtualNetworkFilters = map[string]string{
 	"resource_group":          "description.ResourceGroup",
 	"resource_guid":           "Description.VirtualNetwork.Properties.ResourceGUID",
 	"subnets":                 "Description.VirtualNetwork.Properties.Subnets",
+	"subscription":            "Description.VirtualNetwork.Properties.Subscription",
 	"tags":                    "Description.VirtualNetwork.Tags",
 	"title":                   "Description.VirtualNetwork.Name",
 	"type":                    "Description.VirtualNetwork.Type",
@@ -20133,6 +20307,7 @@ var listTenantFilters = map[string]string{
 	"id":                      "Description.TenantIDDescription.ID",
 	"name":                    "Description.TenantIDDescription.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.TenantIDDescription.Properties.Subscription",
 	"tenant_category":         "TenantCategory",
 	"tenant_id":               "Description.TenantIDDescription.TenantID",
 	"title":                   "Description.TenantIDDescription.Name",
@@ -20203,6 +20378,7 @@ var getTenantFilters = map[string]string{
 	"id":                      "Description.TenantIDDescription.ID",
 	"name":                    "Description.TenantIDDescription.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.TenantIDDescription.Properties.Subscription",
 	"tenant_category":         "TenantCategory",
 	"tenant_id":               "Description.TenantIDDescription.TenantID",
 	"title":                   "Description.TenantIDDescription.Name",
@@ -20349,6 +20525,7 @@ var listSubscriptionFilters = map[string]string{
 	"id":                      "Description.Subscription.ID",
 	"platform_integration_id": "IntegrationID",
 	"state":                   "Description.Subscription.State",
+	"subscription":            "Description.Subscription.Properties.Subscription",
 	"subscription_id":         "Description.Subscription.SubscriptionID",
 	"subscription_policies":   "Description.Subscription.SubscriptionPolicies",
 	"tags":                    "Description.Tags",
@@ -20422,6 +20599,7 @@ var getSubscriptionFilters = map[string]string{
 	"id":                      "Description.Subscription.ID",
 	"platform_integration_id": "IntegrationID",
 	"state":                   "Description.Subscription.State",
+	"subscription":            "Description.Subscription.Properties.Subscription",
 	"subscription_id":         "Description.Subscription.SubscriptionID",
 	"subscription_policies":   "Description.Subscription.SubscriptionPolicies",
 	"tags":                    "Description.Tags",
@@ -20584,6 +20762,7 @@ var listApplicationGatewayFilters = map[string]string{
 	"resource_guid":                          "Description.ApplicationGateway.Properties.ResourceGUID",
 	"sku":                                    "Description.ApplicationGateway.Properties.SKU",
 	"ssl_policy":                             "Description.ApplicationGateway.Properties.SSLPolicy",
+	"subscription":                           "Description.ApplicationGateway.Properties.Subscription",
 	"tags":                                   "Description.ApplicationGateway.Tags",
 	"title":                                  "Description.ApplicationGateway.Name",
 	"type":                                   "Description.ApplicationGateway.Type",
@@ -20671,6 +20850,7 @@ var getApplicationGatewayFilters = map[string]string{
 	"resource_guid":                          "Description.ApplicationGateway.Properties.ResourceGUID",
 	"sku":                                    "Description.ApplicationGateway.Properties.SKU",
 	"ssl_policy":                             "Description.ApplicationGateway.Properties.SSLPolicy",
+	"subscription":                           "Description.ApplicationGateway.Properties.Subscription",
 	"tags":                                   "Description.ApplicationGateway.Tags",
 	"title":                                  "Description.ApplicationGateway.Name",
 	"type":                                   "Description.ApplicationGateway.Type",
@@ -20834,6 +21014,7 @@ var listBatchAccountFilters = map[string]string{
 	"provisioning_state":                          "Description.Account.Properties.ProvisioningState",
 	"public_network_access":                       "Description.Account.Properties.PublicNetworkAccess",
 	"resource_group":                              "Description.ResourceGroup",
+	"subscription":                                "Description.Account.Properties.Subscription",
 	"tags":                                        "Description.Account.Tags",
 	"title":                                       "Description.Account.Name",
 	"type":                                        "Description.Account.Type",
@@ -20920,6 +21101,7 @@ var getBatchAccountFilters = map[string]string{
 	"provisioning_state":                          "Description.Account.Properties.ProvisioningState",
 	"public_network_access":                       "Description.Account.Properties.PublicNetworkAccess",
 	"resource_group":                              "description.ResourceGroup",
+	"subscription":                                "Description.Account.Properties.Subscription",
 	"tags":                                        "Description.Account.Tags",
 	"title":                                       "Description.Account.Name",
 	"type":                                        "Description.Account.Type",
@@ -21089,6 +21271,7 @@ var listCognitiveAccountFilters = map[string]string{
 	"restrict_outbound_network_access": "Description.Account.Properties.RestrictOutboundNetworkAccess",
 	"sku":                              "Description.Account.SKU",
 	"sku_change_info":                  "Description.Account.Properties.SKUChangeInfo",
+	"subscription":                     "Description.Account.Properties.Subscription",
 	"system_data":                      "Description.Account.SystemData",
 	"tags":                             "Description.Account.Tags",
 	"title":                            "Description.Account.Name",
@@ -21185,6 +21368,7 @@ var getCognitiveAccountFilters = map[string]string{
 	"restrict_outbound_network_access": "Description.Account.Properties.RestrictOutboundNetworkAccess",
 	"sku":                              "Description.Account.SKU",
 	"sku_change_info":                  "Description.Account.Properties.SKUChangeInfo",
+	"subscription":                     "Description.Account.Properties.Subscription",
 	"system_data":                      "Description.Account.SystemData",
 	"tags":                             "Description.Account.Tags",
 	"title":                            "Description.Account.Name",
@@ -21375,6 +21559,7 @@ var listComputeVirtualMachineFilters = map[string]string{
 	"security_profile":                    "Description.VirtualMachine.Properties.SecurityProfile",
 	"size":                                "Description.VirtualMachine.Properties.HardwareProfile.VMSize",
 	"statuses":                            "Description.VirtualMachineInstanceView.Statuses",
+	"subscription":                        "Description.VirtualMachine.Properties.Subscription",
 	"tags":                                "Description.VirtualMachine.Tags",
 	"time_zone":                           "Description.VirtualMachine.Properties.OSProfile.WindowsConfiguration.TimeZone",
 	"title":                               "Description.VirtualMachine.Name",
@@ -21493,6 +21678,7 @@ var getComputeVirtualMachineFilters = map[string]string{
 	"security_profile":                    "Description.VirtualMachine.Properties.SecurityProfile",
 	"size":                                "Description.VirtualMachine.Properties.HardwareProfile.VMSize",
 	"statuses":                            "Description.VirtualMachineInstanceView.Statuses",
+	"subscription":                        "Description.VirtualMachine.Properties.Subscription",
 	"tags":                                "Description.VirtualMachine.Tags",
 	"time_zone":                           "Description.VirtualMachine.Properties.OSProfile.WindowsConfiguration.TimeZone",
 	"title":                               "Description.VirtualMachine.Name",
@@ -21651,6 +21837,7 @@ var listComputeResourceSKUFilters = map[string]string{
 	"resource_type":           "Description.ResourceSKU.ResourceType",
 	"scale_type":              "Description.ResourceSKU.Capacity.ScaleType",
 	"size":                    "Description.ResourceSKU.Size",
+	"subscription":            "Description.ResourceSKU.Properties.Subscription",
 	"tier":                    "Description.ResourceSKU.Tier",
 	"title":                   "Description.ResourceSKU.Name",
 }
@@ -21728,6 +21915,7 @@ var getComputeResourceSKUFilters = map[string]string{
 	"resource_type":           "Description.ResourceSKU.ResourceType",
 	"scale_type":              "Description.ResourceSKU.Capacity.ScaleType",
 	"size":                    "Description.ResourceSKU.Size",
+	"subscription":            "Description.ResourceSKU.Properties.Subscription",
 	"tier":                    "Description.ResourceSKU.Tier",
 	"title":                   "Description.ResourceSKU.Name",
 }
@@ -21871,6 +22059,7 @@ var listComputeCloudServiceFilters = map[string]string{
 	"id":                      "Description.CloudServices.ID",
 	"name":                    "Description.CloudService.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.CloudServices.Properties.Subscription",
 	"tags":                    "Description.CloudService.Tags",
 	"title":                   "Description.CloudService.Name",
 }
@@ -21939,6 +22128,7 @@ var getComputeCloudServiceFilters = map[string]string{
 	"id":                      "Description.CloudServices.ID",
 	"name":                    "Description.CloudService.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.CloudServices.Properties.Subscription",
 	"tags":                    "Description.CloudService.Tags",
 	"title":                   "Description.CloudService.Name",
 }
@@ -22101,6 +22291,7 @@ var listContainerRegistryFilters = map[string]string{
 	"status":                       "Description.Registry.Properties.Status.DisplayStatus",
 	"status_message":               "Description.Registry.Properties.Status.Message",
 	"storage_account_id":           "RegistryProperties.StorageAccount.ID",
+	"subscription":                 "Description.Registry.Properties.Subscription",
 	"system_data":                  "Description.Registry.SystemData",
 	"tags":                         "Description.Registry.Tags",
 	"title":                        "Description.Registry.Name",
@@ -22193,6 +22384,7 @@ var getContainerRegistryFilters = map[string]string{
 	"status":                       "Description.Registry.Properties.Status.DisplayStatus",
 	"status_message":               "Description.Registry.Properties.Status.Message",
 	"storage_account_id":           "RegistryProperties.StorageAccount.ID",
+	"subscription":                 "Description.Registry.Properties.Subscription",
 	"system_data":                  "Description.Registry.SystemData",
 	"tags":                         "Description.Registry.Tags",
 	"title":                        "Description.Registry.Name",
@@ -22369,6 +22561,7 @@ var listCosmosdbAccountFilters = map[string]string{
 	"read_locations":                          "Description.DatabaseAccountGetResults.Properties.ReadLocations",
 	"restore_parameters":                      "Description.DatabaseAccountGetResults.Properties.RestoreParameters",
 	"server_version":                          "Description.DatabaseAccountGetResults.Properties.APIProperties.ServerVersion",
+	"subscription":                            "Description.DatabaseAccountGetResults.Properties.Subscription",
 	"tags":                                    "Description.DatabaseAccountGetResults.Tags",
 	"title":                                   "Description.DatabaseAccountGetResults.Name",
 	"type":                                    "Description.DatabaseAccountGetResults.Type",
@@ -22469,6 +22662,7 @@ var getCosmosdbAccountFilters = map[string]string{
 	"resource_group":                          "description.ResourceGroup",
 	"restore_parameters":                      "Description.DatabaseAccountGetResults.Properties.RestoreParameters",
 	"server_version":                          "Description.DatabaseAccountGetResults.Properties.APIProperties.ServerVersion",
+	"subscription":                            "Description.DatabaseAccountGetResults.Properties.Subscription",
 	"tags":                                    "Description.DatabaseAccountGetResults.Tags",
 	"title":                                   "Description.DatabaseAccountGetResults.Name",
 	"type":                                    "Description.DatabaseAccountGetResults.Type",
@@ -22621,6 +22815,7 @@ var listCosmosdbRestorableDatabaseAccountFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"restorable_locations":    "Description.Account.Properties.RestorableLocations",
+	"subscription":            "Description.Account.Properties.Subscription",
 	"title":                   "Description.Account.Name",
 	"type":                    "Description.Account.Type",
 }
@@ -22695,6 +22890,7 @@ var getCosmosdbRestorableDatabaseAccountFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"restorable_locations":    "Description.Account.Properties.RestorableLocations",
+	"subscription":            "Description.Account.Properties.Subscription",
 	"title":                   "Description.Account.Name",
 	"type":                    "Description.Account.Type",
 }
@@ -22843,6 +23039,7 @@ var listCosmosdbMongoDatabaseFilters = map[string]string{
 	"id":                                "Description.MongoDatabase.ID",
 	"name":                              "Description.MongoDatabase.Name",
 	"platform_integration_id":           "IntegrationID",
+	"subscription":                      "Description.MongoDatabase.Properties.Subscription",
 	"tags":                              "Description.MongoDatabase.Tags",
 	"throughput":                        "Description.MongoDatabase.Properties.Options.Throughput",
 	"throughput_settings":               "Description.MongoDatabase.Properties.Options.Throughput.ThroughputSettingsGetResults.Properties.Resource",
@@ -22920,6 +23117,7 @@ var getCosmosdbMongoDatabaseFilters = map[string]string{
 	"name":                              "description.MongoDatabase.name",
 	"platform_integration_id":           "IntegrationID",
 	"resource_group":                    "description.ResourceGroup",
+	"subscription":                      "Description.MongoDatabase.Properties.Subscription",
 	"tags":                              "Description.MongoDatabase.Tags",
 	"throughput":                        "Description.MongoDatabase.Properties.Options.Throughput",
 	"throughput_settings":               "Description.MongoDatabase.Properties.Options.Throughput.ThroughputSettingsGetResults.Properties.Resource",
@@ -23076,6 +23274,7 @@ var listCosmosdbMongoCollectionFilters = map[string]string{
 	"platform_integration_id":           "IntegrationID",
 	"resource_group":                    "Description.ResourceGroup",
 	"shard_key":                         "Description.MongoCollection.Properties.Resource.ShardKey",
+	"subscription":                      "Description.MongoCollection.Properties.Subscription",
 	"tags":                              "Description.MongoCollection.Tags",
 	"throughput":                        "Description.MongoCollection.Properties.Options.Throughput",
 	"throughput_settings":               "Description.Throughput",
@@ -23157,6 +23356,7 @@ var getCosmosdbMongoCollectionFilters = map[string]string{
 	"platform_integration_id":           "IntegrationID",
 	"resource_group":                    "description.ResourceGroup",
 	"shard_key":                         "Description.MongoCollection.Properties.Resource.ShardKey",
+	"subscription":                      "Description.MongoCollection.Properties.Subscription",
 	"tags":                              "Description.MongoCollection.Tags",
 	"throughput":                        "Description.MongoCollection.Properties.Options.Throughput",
 	"throughput_settings":               "Description.Throughput",
@@ -23310,6 +23510,7 @@ var listCosmosdbSqlDatabaseFilters = map[string]string{
 	"id":                                "Description.SqlDatabase.ID",
 	"name":                              "Description.SqlDatabase.Name",
 	"platform_integration_id":           "IntegrationID",
+	"subscription":                      "Description.SqlDatabase.Properties.Subscription",
 	"tags":                              "Description.SqlDatabase.Tags",
 	"throughput":                        "Description.SqlDatabase.Properties.Options.Throughput",
 	"title":                             "Description.SqlDatabase.Name",
@@ -23388,6 +23589,7 @@ var getCosmosdbSqlDatabaseFilters = map[string]string{
 	"name":                              "description.SqlDatabase.name",
 	"platform_integration_id":           "IntegrationID",
 	"resource_group":                    "description.ResourceGroup",
+	"subscription":                      "Description.SqlDatabase.Properties.Subscription",
 	"tags":                              "Description.SqlDatabase.Tags",
 	"throughput":                        "Description.SqlDatabase.Properties.Options.Throughput",
 	"title":                             "Description.SqlDatabase.Name",
@@ -23530,10 +23732,11 @@ func (p CosmosdbCassandraClusterPaginator) NextPage(ctx context.Context) ([]Cosm
 }
 
 var listCosmosdbCassandraClusterFilters = map[string]string{
-	"id":    "Description.CassandraCluster.ID",
-	"name":  "Description.CassandraCluster.Name",
-	"tags":  "Description.CassandraCluster.Tags",
-	"title": "Description.CassandraCluster.Name",
+	"id":           "Description.CassandraCluster.ID",
+	"name":         "Description.CassandraCluster.Name",
+	"subscription": "Description.CassandraCluster.Properties.Subscription",
+	"tags":         "Description.CassandraCluster.Tags",
+	"title":        "Description.CassandraCluster.Name",
 }
 
 func ListCosmosdbCassandraCluster(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -23597,10 +23800,11 @@ func ListCosmosdbCassandraCluster(ctx context.Context, d *plugin.QueryData, _ *p
 }
 
 var getCosmosdbCassandraClusterFilters = map[string]string{
-	"id":    "Description.CassandraCluster.ID",
-	"name":  "Description.CassandraCluster.Name",
-	"tags":  "Description.CassandraCluster.Tags",
-	"title": "Description.CassandraCluster.Name",
+	"id":           "Description.CassandraCluster.ID",
+	"name":         "Description.CassandraCluster.Name",
+	"subscription": "Description.CassandraCluster.Properties.Subscription",
+	"tags":         "Description.CassandraCluster.Tags",
+	"title":        "Description.CassandraCluster.Name",
 }
 
 func GetCosmosdbCassandraCluster(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -23751,6 +23955,7 @@ var listDatabricksWorkspaceFilters = map[string]string{
 	"resource_group":            "Description.ResourceGroup",
 	"sku":                       "Description.Workspace.SKU",
 	"storage_account_identity":  "Description.Workspace.Properties.StorageAccountIdentity",
+	"subscription":              "Description.Workspace.Properties.Subscription",
 	"tags":                      "Description.Workspace.Tags",
 	"title":                     "Description.Workspace.Name",
 	"type":                      "Description.Workspace.Type",
@@ -23833,6 +24038,7 @@ var getDatabricksWorkspaceFilters = map[string]string{
 	"resource_group":            "Description.ResourceGroup",
 	"sku":                       "Description.Workspace.SKU",
 	"storage_account_identity":  "Description.Workspace.Properties.StorageAccountIdentity",
+	"subscription":              "Description.Workspace.Properties.Subscription",
 	"tags":                      "Description.Workspace.Tags",
 	"title":                     "Description.Workspace.Name",
 	"type":                      "Description.Workspace.Type",
@@ -23981,6 +24187,7 @@ var listDataMigrationServiceFilters = map[string]string{
 	"id":                      "Description.Service.ID",
 	"name":                    "Description.Service.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Service.Properties.Subscription",
 	"tags":                    "Description.Service.Tags",
 	"title":                   "Description.Service.Name",
 }
@@ -24049,6 +24256,7 @@ var getDataMigrationServiceFilters = map[string]string{
 	"id":                      "Description.Service.ID",
 	"name":                    "Description.Service.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Service.Properties.Subscription",
 	"tags":                    "Description.Service.Tags",
 	"title":                   "Description.Service.Name",
 }
@@ -24197,6 +24405,7 @@ var listDataProtectionBackupVaultsFilters = map[string]string{
 	"provisioning_state":      "Description.BackupVaults.Properties.ProvisioningState",
 	"resource_move_state":     "Description.BackupVaults.Properties.ResourceMoveState",
 	"storage_settings":        "Description.BackupVaults.Properties.StorageSettings",
+	"subscription":            "Description.BackupVaults.Properties.Subscription",
 	"system_data":             "Description.BackupVaults.SystemData",
 	"tags":                    "Description.BackupVaults.Tags",
 	"title":                   "Description.BackupVaults.Name",
@@ -24272,6 +24481,7 @@ var getDataProtectionBackupVaultsFilters = map[string]string{
 	"provisioning_state":      "Description.BackupVaults.Properties.ProvisioningState",
 	"resource_move_state":     "Description.BackupVaults.Properties.ResourceMoveState",
 	"storage_settings":        "Description.BackupVaults.Properties.StorageSettings",
+	"subscription":            "Description.BackupVaults.Properties.Subscription",
 	"system_data":             "Description.BackupVaults.SystemData",
 	"tags":                    "Description.BackupVaults.Tags",
 	"title":                   "Description.BackupVaults.Name",
@@ -24417,6 +24627,7 @@ var listDataProtectionBackupVaultsBackupPoliciesFilters = map[string]string{
 	"id":                      "Description.BackupPolicies.ID",
 	"name":                    "Description.BackupPolicies.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.BackupPolicies.Properties.Subscription",
 	"title":                   "Description.BackupPolicies.Name",
 }
 
@@ -24484,6 +24695,7 @@ var getDataProtectionBackupVaultsBackupPoliciesFilters = map[string]string{
 	"id":                      "Description.BackupPolicies.ID",
 	"name":                    "Description.BackupPolicies.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.BackupPolicies.Properties.Subscription",
 	"title":                   "Description.BackupPolicies.Name",
 }
 
@@ -24652,6 +24864,7 @@ var listDataProtectionJobFilters = map[string]string{
 	"source_subscription_id":        "Description.DataProtectionJob.Properties.SourceSubscriptionID",
 	"start_time":                    "Description.DataProtectionJob.Properties.StartTime",
 	"status":                        "Description.DataProtectionJob.Properties.Status",
+	"subscription":                  "Description.DataProtectionJob.Properties.Subscription",
 	"supported_actions":             "Description.DataProtectionJob.Properties.SupportedActions",
 	"title":                         "Description.DataProtectionJob.Name",
 	"type":                          "Description.DataProtectionJob.Type",
@@ -24748,6 +24961,7 @@ var getDataProtectionJobFilters = map[string]string{
 	"source_subscription_id":        "Description.DataProtectionJob.Properties.SourceSubscriptionID",
 	"start_time":                    "Description.DataProtectionJob.Properties.StartTime",
 	"status":                        "Description.DataProtectionJob.Properties.Status",
+	"subscription":                  "Description.DataProtectionJob.Properties.Subscription",
 	"supported_actions":             "Description.DataProtectionJob.Properties.SupportedActions",
 	"title":                         "Description.DataProtectionJob.Name",
 	"type":                          "Description.DataProtectionJob.Type",
@@ -24903,6 +25117,7 @@ var listDataFactoryFilters = map[string]string{
 	"public_network_access":        "Description.Factory.Properties.PublicNetworkAccess",
 	"repo_configuration":           "Description.Factory.Properties.RepoConfiguration",
 	"resource_group":               "Description.ResourceGroup",
+	"subscription":                 "Description.Factory.Properties.Subscription",
 	"tags":                         "Description.Factory.Tags",
 	"title":                        "Description.Factory.Name",
 	"type":                         "Description.Factory.Type",
@@ -24983,6 +25198,7 @@ var getDataFactoryFilters = map[string]string{
 	"public_network_access":        "Description.Factory.Properties.PublicNetworkAccess",
 	"repo_configuration":           "Description.Factory.Properties.RepoConfiguration",
 	"resource_group":               "description.ResourceGroup",
+	"subscription":                 "Description.Factory.Properties.Subscription",
 	"tags":                         "Description.Factory.Tags",
 	"title":                        "Description.Factory.Name",
 	"type":                         "Description.Factory.Type",
@@ -25132,6 +25348,7 @@ var listDataFactoryDatasetFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"properties":              "Description.Dataset.Properties",
 	"resource_group":          "Description.ResourceGroup",
+	"subscription":            "Description.Dataset.Properties.Subscription",
 	"title":                   "Description.Dataset.Name",
 	"type":                    "Description.Dataset.Type",
 }
@@ -25204,6 +25421,7 @@ var getDataFactoryDatasetFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"properties":              "Description.Dataset.Properties",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.Dataset.Properties.Subscription",
 	"title":                   "Description.Dataset.Name",
 	"type":                    "Description.Dataset.Type",
 }
@@ -25358,6 +25576,7 @@ var listDataFactoryPipelineFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"run_dimensions":          "Description.Pipeline.Properties.RunDimensions",
+	"subscription":            "Description.Pipeline.Properties.Subscription",
 	"title":                   "Description.Pipeline.Name",
 	"type":                    "Description.Pipeline.Type",
 	"variables":               "Description.Pipeline.Properties.Variables",
@@ -25438,6 +25657,7 @@ var getDataFactoryPipelineFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"run_dimensions":          "Description.Pipeline.Properties.RunDimensions",
+	"subscription":            "Description.Pipeline.Properties.Subscription",
 	"title":                   "Description.Pipeline.Name",
 	"type":                    "Description.Pipeline.Type",
 	"variables":               "Description.Pipeline.Properties.Variables",
@@ -25602,6 +25822,7 @@ var listDataLakeAnalyticsAccountFilters = map[string]string{
 	"resource_group":                    "Description.ResourceGroup",
 	"state":                             "Description.DataLakeAnalyticsAccount.Properties.State",
 	"storage_accounts":                  "Description.DataLakeAnalyticsAccount.Properties.StorageAccounts",
+	"subscription":                      "Description.DataLakeAnalyticsAccount.Properties.Subscription",
 	"system_max_degree_of_parallelism":  "Description.DataLakeAnalyticsAccount.Properties.SystemMaxDegreeOfParallelism",
 	"system_max_job_count":              "Description.DataLakeAnalyticsAccount.Properties.SystemMaxJobCount",
 	"tags":                              "Description.DataLakeAnalyticsAccount.Tags",
@@ -25693,6 +25914,7 @@ var getDataLakeAnalyticsAccountFilters = map[string]string{
 	"resource_group":                    "description.ResourceGroup",
 	"state":                             "Description.DataLakeAnalyticsAccount.Properties.State",
 	"storage_accounts":                  "Description.DataLakeAnalyticsAccount.Properties.StorageAccounts",
+	"subscription":                      "Description.DataLakeAnalyticsAccount.Properties.Subscription",
 	"system_max_degree_of_parallelism":  "Description.DataLakeAnalyticsAccount.Properties.SystemMaxDegreeOfParallelism",
 	"system_max_job_count":              "Description.DataLakeAnalyticsAccount.Properties.SystemMaxJobCount",
 	"tags":                              "Description.DataLakeAnalyticsAccount.Tags",
@@ -25855,6 +26077,7 @@ var listDataLakeStoreFilters = map[string]string{
 	"provisioning_state":            "Description.DataLakeStoreAccount.Properties.ProvisioningState",
 	"resource_group":                "Description.ResourceGroup",
 	"state":                         "Description.DataLakeStoreAccount.Properties.State",
+	"subscription":                  "Description.DataLakeStoreAccount.Properties.Subscription",
 	"tags":                          "Description.DataLakeStoreAccount.Tags",
 	"title":                         "Description.DataLakeStoreAccount.Name",
 	"trusted_id_provider_state":     "Description.DataLakeStoreAccount.Properties.TrustedIDProviderState",
@@ -25943,6 +26166,7 @@ var getDataLakeStoreFilters = map[string]string{
 	"provisioning_state":            "Description.DataLakeStoreAccount.Properties.ProvisioningState",
 	"resource_group":                "description.ResourceGroup",
 	"state":                         "Description.DataLakeStoreAccount.Properties.State",
+	"subscription":                  "Description.DataLakeStoreAccount.Properties.Subscription",
 	"tags":                          "Description.DataLakeStoreAccount.Tags",
 	"title":                         "Description.DataLakeStoreAccount.Name",
 	"trusted_id_provider_state":     "Description.DataLakeStoreAccount.Properties.TrustedIDProviderState",
@@ -26098,6 +26322,7 @@ var listDiagnosticSettingFilters = map[string]string{
 	"resource_group":                  "Description.ResourceGroup",
 	"service_bus_rule_id":             "Description.DiagnosticSettingsResource.Properties.ServiceBusRuleID",
 	"storage_account_id":              "Description.DiagnosticSettingsResource.Properties.StorageAccountID",
+	"subscription":                    "Description.DiagnosticSettingsResource.Properties.Subscription",
 	"title":                           "Description.DiagnosticSettingsResource.Name",
 	"type":                            "Description.DiagnosticSettingsResource.Type",
 	"workspace_id":                    "Description.DiagnosticSettingsResource.Properties.WorkspaceID",
@@ -26175,6 +26400,7 @@ var getDiagnosticSettingFilters = map[string]string{
 	"resource_group":                  "description.ResourceGroup",
 	"service_bus_rule_id":             "Description.DiagnosticSettingsResource.Properties.ServiceBusRuleID",
 	"storage_account_id":              "Description.DiagnosticSettingsResource.Properties.StorageAccountID",
+	"subscription":                    "Description.DiagnosticSettingsResource.Properties.Subscription",
 	"title":                           "Description.DiagnosticSettingsResource.Name",
 	"type":                            "Description.DiagnosticSettingsResource.Type",
 	"workspace_id":                    "Description.DiagnosticSettingsResource.Properties.WorkspaceID",
@@ -26323,6 +26549,7 @@ var listAutoscaleSettingFilters = map[string]string{
 	"platform_integration_id":  "IntegrationID",
 	"profiles":                 "Description.AutoscaleSettingsResource.Properties.Profiles",
 	"resource_group":           "Description.ResourceGroup",
+	"subscription":             "Description.AutoscaleSettingsResource.Properties.Subscription",
 	"target_resource_location": "Description.AutoscaleSettingsResource.Properties.TargetResourceLocation",
 	"target_resource_uri":      "Description.AutoscaleSettingsResource.Properties.TargetResourceURI",
 	"title":                    "Description.AutoscaleSettingsResource.Name",
@@ -26397,6 +26624,7 @@ var getAutoscaleSettingFilters = map[string]string{
 	"platform_integration_id":  "IntegrationID",
 	"profiles":                 "Description.AutoscaleSettingsResource.Properties.Profiles",
 	"resource_group":           "description.ResourceGroup",
+	"subscription":             "Description.AutoscaleSettingsResource.Properties.Subscription",
 	"target_resource_location": "Description.AutoscaleSettingsResource.Properties.TargetResourceLocation",
 	"target_resource_uri":      "Description.AutoscaleSettingsResource.Properties.TargetResourceURI",
 	"title":                    "Description.AutoscaleSettingsResource.Name",
@@ -26561,6 +26789,7 @@ var listEventGridDomainFilters = map[string]string{
 	"public_network_access":    "Description.Domain.Properties.PublicNetworkAccess",
 	"resource_group":           "Description.ResourceGroup",
 	"sku_name":                 "Description.Domain.Name",
+	"subscription":             "Description.Domain.Properties.Subscription",
 	"tags":                     "Description.Domain.Tags",
 	"title":                    "Description.Domain.Name",
 	"type":                     "Description.Domain.Type",
@@ -26650,6 +26879,7 @@ var getEventGridDomainFilters = map[string]string{
 	"public_network_access":    "Description.Domain.Properties.PublicNetworkAccess",
 	"resource_group":           "description.ResourceGroup",
 	"sku_name":                 "Description.Domain.Name",
+	"subscription":             "Description.Domain.Properties.Subscription",
 	"tags":                     "Description.Domain.Tags",
 	"title":                    "Description.Domain.Name",
 	"type":                     "Description.Domain.Type",
@@ -26813,6 +27043,7 @@ var listEventGridTopicFilters = map[string]string{
 	"public_network_access":   "Description.Topic.Properties.PublicNetworkAccess",
 	"resource_group":          "Description.ResourceGroup",
 	"sku_name":                "Description.Topic.Name",
+	"subscription":            "Description.Topic.Properties.Subscription",
 	"tags":                    "Description.Topic.Tags",
 	"title":                   "Description.Topic.Name",
 	"type":                    "Description.Topic.Type",
@@ -26900,6 +27131,7 @@ var getEventGridTopicFilters = map[string]string{
 	"public_network_access":   "Description.Topic.Properties.PublicNetworkAccess",
 	"resource_group":          "description.ResourceGroup",
 	"sku_name":                "Description.Topic.Name",
+	"subscription":            "Description.Topic.Properties.Subscription",
 	"tags":                    "Description.Topic.Tags",
 	"title":                   "Description.Topic.Name",
 	"type":                    "Description.Topic.Type",
@@ -27060,6 +27292,7 @@ var listEventhubNamespaceFilters = map[string]string{
 	"sku_capacity":                 "Description.EHNamespace.SKU.Capacity",
 	"sku_name":                     "Description.EHNamespace.SKU.Name",
 	"sku_tier":                     "Description.EHNamespace.SKU.Tier",
+	"subscription":                 "Description.EHNamespace.Properties.Subscription",
 	"tags":                         "Description.EHNamespace.Tags",
 	"title":                        "Description.EHNamespace.Name",
 	"type":                         "Description.EHNamespace.Type",
@@ -27146,6 +27379,7 @@ var getEventhubNamespaceFilters = map[string]string{
 	"sku_capacity":                 "Description.EHNamespace.SKU.Capacity",
 	"sku_name":                     "Description.EHNamespace.SKU.Name",
 	"sku_tier":                     "Description.EHNamespace.SKU.Tier",
+	"subscription":                 "Description.EHNamespace.Properties.Subscription",
 	"tags":                         "Description.EHNamespace.Tags",
 	"title":                        "Description.EHNamespace.Name",
 	"type":                         "Description.EHNamespace.Type",
@@ -27291,6 +27525,7 @@ var listEventhubNamespaceEventhubFilters = map[string]string{
 	"id":                      "Description.EventHub.ID",
 	"name":                    "Description.EHNamespace.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.EventHub.Properties.Subscription",
 	"tags":                    "Description.EHNamespace.Tags",
 	"title":                   "Description.EHNamespace.Identity.Type",
 }
@@ -27359,6 +27594,7 @@ var getEventhubNamespaceEventhubFilters = map[string]string{
 	"id":                      "Description.EventHub.ID",
 	"name":                    "Description.EHNamespace.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.EventHub.Properties.Subscription",
 	"tags":                    "Description.EHNamespace.Tags",
 	"title":                   "Description.EHNamespace.Identity.Type",
 }
@@ -27516,6 +27752,7 @@ var listFrontdoorFilters = map[string]string{
 	"resource_state":          "Description.FrontDoor.Properties.ResourceState",
 	"routing_rules":           "Description.FrontDoor.Properties.RoutingRules",
 	"rules_engines":           "Description.FrontDoor.Properties.RulesEngines",
+	"subscription":            "Description.FrontDoor.Properties.Subscription",
 	"tags":                    "Description.FrontDoor.Tags",
 	"title":                   "Description.FrontDoor.Name",
 	"type":                    "Description.FrontDoor.Type",
@@ -27599,6 +27836,7 @@ var getFrontdoorFilters = map[string]string{
 	"resource_state":          "Description.FrontDoor.Properties.ResourceState",
 	"routing_rules":           "Description.FrontDoor.Properties.RoutingRules",
 	"rules_engines":           "Description.FrontDoor.Properties.RulesEngines",
+	"subscription":            "Description.FrontDoor.Properties.Subscription",
 	"tags":                    "Description.FrontDoor.Tags",
 	"title":                   "Description.FrontDoor.Name",
 	"type":                    "Description.FrontDoor.Type",
@@ -27768,6 +28006,7 @@ var listHdinsightClusterFilters = map[string]string{
 	"resource_group":                   "Description.ResourceGroup",
 	"security_profile":                 "Description.Cluster.Properties.SecurityProfile",
 	"storage_profile":                  "Description.Cluster.Properties.StorageProfile",
+	"subscription":                     "Description.Cluster.Properties.Subscription",
 	"tags":                             "Description.Cluster.Tags",
 	"tier":                             "Description.Cluster.Properties.Tier",
 	"title":                            "Description.Cluster.Name",
@@ -27863,6 +28102,7 @@ var getHdinsightClusterFilters = map[string]string{
 	"resource_group":                   "description.ResourceGroup",
 	"security_profile":                 "Description.Cluster.Properties.SecurityProfile",
 	"storage_profile":                  "Description.Cluster.Properties.StorageProfile",
+	"subscription":                     "Description.Cluster.Properties.Subscription",
 	"tags":                             "Description.Cluster.Tags",
 	"tier":                             "Description.Cluster.Properties.Tier",
 	"title":                            "Description.Cluster.Name",
@@ -28027,6 +28267,7 @@ var listHybridComputeMachineFilters = map[string]string{
 	"provisioning_state":            "Description.Machine.Properties.ProvisioningState",
 	"resource_group":                "Description.ResourceGroup",
 	"status":                        "Description.Machine.Properties.Status",
+	"subscription":                  "Description.Machine.Properties.Subscription",
 	"tags":                          "Description.Machine.Tags",
 	"title":                         "Description.Machine.Name",
 	"type":                          "Description.Machine.Type",
@@ -28117,6 +28358,7 @@ var getHybridComputeMachineFilters = map[string]string{
 	"provisioning_state":            "Description.Machine.Properties.ProvisioningState",
 	"resource_group":                "description.ResourceGroup",
 	"status":                        "Description.Machine.Properties.Status",
+	"subscription":                  "Description.Machine.Properties.Subscription",
 	"tags":                          "Description.Machine.Tags",
 	"title":                         "Description.Machine.Name",
 	"type":                          "Description.Machine.Type",
@@ -28286,6 +28528,7 @@ var listIOTHubFilters = map[string]string{
 	"sku_tier":                         "Description.IotHubDescription.SKU.Tier",
 	"state":                            "Description.IotHubDescription.Properties.State",
 	"storage_endpoints":                "Description.IotHubDescription.Properties.StorageEndpoints",
+	"subscription":                     "Description.IotHubDescription.Properties.Subscription",
 	"tags":                             "Description.IotHubDescription.Tags",
 	"title":                            "Description.IotHubDescription.Name",
 	"type":                             "Description.IotHubDescription.Type",
@@ -28378,6 +28621,7 @@ var getIOTHubFilters = map[string]string{
 	"sku_tier":                         "Description.IotHubDescription.SKU.Tier",
 	"state":                            "Description.IotHubDescription.Properties.State",
 	"storage_endpoints":                "Description.IotHubDescription.Properties.StorageEndpoints",
+	"subscription":                     "Description.IotHubDescription.Properties.Subscription",
 	"tags":                             "Description.IotHubDescription.Tags",
 	"title":                            "Description.IotHubDescription.Name",
 	"type":                             "Description.IotHubDescription.Type",
@@ -28536,6 +28780,7 @@ var listIOTHubDpsFilters = map[string]string{
 	"sku_name":                      "Description.IotHubDps.SKU.Name",
 	"sku_tier":                      "Description.IotHubDps.SKU.Tier",
 	"state":                         "Description.IotHubDps.Properties.State",
+	"subscription":                  "Description.IotHubDps.Properties.Subscription",
 	"tags":                          "Description.IotHubDps.Tags",
 	"title":                         "Description.IotHubDps.Name",
 	"type":                          "Description.IotHubDps.Type",
@@ -28619,6 +28864,7 @@ var getIOTHubDpsFilters = map[string]string{
 	"sku_name":                      "Description.IotHubDps.SKU.Name",
 	"sku_tier":                      "Description.IotHubDps.SKU.Tier",
 	"state":                         "Description.IotHubDps.Properties.State",
+	"subscription":                  "Description.IotHubDps.Properties.Subscription",
 	"tags":                          "Description.IotHubDps.Tags",
 	"title":                         "Description.IotHubDps.Name",
 	"type":                          "Description.IotHubDps.Type",
@@ -28776,6 +29022,7 @@ var listKeyVaultFilters = map[string]string{
 	"sku_name":                        "Description.Vault.Properties.SKU.Name",
 	"soft_delete_enabled":             "Description.Vault.Properties.EnableSoftDelete",
 	"soft_delete_retention_in_days":   "Description.Vault.Properties.SoftDeleteRetentionInDays",
+	"subscription":                    "Description.Vault.Properties.Subscription",
 	"tags":                            "Description.Vault.Tags",
 	"tenant_id":                       "Description.Vault.Properties.TenantID",
 	"title":                           "Description.Vault.Name",
@@ -28860,6 +29107,7 @@ var getKeyVaultFilters = map[string]string{
 	"sku_name":                        "Description.Vault.Properties.SKU.Name",
 	"soft_delete_enabled":             "Description.Vault.Properties.EnableSoftDelete",
 	"soft_delete_retention_in_days":   "Description.Vault.Properties.SoftDeleteRetentionInDays",
+	"subscription":                    "Description.Vault.Properties.Subscription",
 	"tags":                            "Description.Vault.Tags",
 	"tenant_id":                       "Description.Vault.Properties.TenantID",
 	"title":                           "Description.Vault.Name",
@@ -29011,6 +29259,7 @@ var listKeyVaultCertificateFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"secret_properties":       "Description.Policy.SecretProperties",
+	"subscription":            "Description.Policy.Properties.Subscription",
 	"tags":                    "Description.Policy.Tags",
 	"vault_name":              "Description.Vault.Name",
 }
@@ -29085,6 +29334,7 @@ var getKeyVaultCertificateFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"secret_properties":       "Description.Policy.SecretProperties",
+	"subscription":            "Description.Policy.Properties.Subscription",
 	"tags":                    "Description.Policy.Tags",
 	"vault_name":              "Description.Vault.Name",
 }
@@ -29228,6 +29478,7 @@ var listKeyVaultDeletedVaultFilters = map[string]string{
 	"id":                      "Description.Vault.ID",
 	"name":                    "Description.Vault.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Vault.Properties.Subscription",
 	"tags":                    "Description.Vault.Properties.Tags",
 	"title":                   "Description.Vault.Name",
 	"type":                    "Description.Vault.Type",
@@ -29299,6 +29550,7 @@ var getKeyVaultDeletedVaultFilters = map[string]string{
 	"name":                    "description.Vault.name",
 	"platform_integration_id": "IntegrationID",
 	"region":                  "description.Vault.Properties.Location",
+	"subscription":            "Description.Vault.Properties.Subscription",
 	"tags":                    "Description.Vault.Properties.Tags",
 	"title":                   "Description.Vault.Name",
 	"type":                    "Description.Vault.Type",
@@ -29455,6 +29707,7 @@ var listKeyVaultManagedHardwareSecurityModuleFilters = map[string]string{
 	"sku_name":                      "Description.ManagedHsm.SKU.Name",
 	"soft_delete_retention_in_days": "Description.ManagedHsm.Properties.SoftDeleteRetentionInDays",
 	"status_message":                "Description.ManagedHsm.Properties.StatusMessage",
+	"subscription":                  "Description.ManagedHsm.Properties.Subscription",
 	"tags":                          "Description.ManagedHsm.Tags",
 	"tenant_id":                     "Description.ManagedHsm.Properties.TenantID",
 	"title":                         "Description.ManagedHsm.Name",
@@ -29536,6 +29789,7 @@ var getKeyVaultManagedHardwareSecurityModuleFilters = map[string]string{
 	"sku_name":                      "Description.ManagedHsm.SKU.Name",
 	"soft_delete_retention_in_days": "Description.ManagedHsm.Properties.SoftDeleteRetentionInDays",
 	"status_message":                "Description.ManagedHsm.Properties.StatusMessage",
+	"subscription":                  "Description.ManagedHsm.Properties.Subscription",
 	"tags":                          "Description.ManagedHsm.Tags",
 	"tenant_id":                     "Description.ManagedHsm.Properties.TenantID",
 	"title":                         "Description.ManagedHsm.Name",
@@ -29687,6 +29941,7 @@ var listKeyVaultSecretFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"recoverable_days":        "Description.Vault.Properties.SoftDeleteRetentionInDays",
 	"resource_group":          "Description.TurboData.ResourceGroup",
+	"subscription":            "Description.SecretItem.Properties.Subscription",
 	"tags":                    "Description.SecretItem.Tags",
 	"value":                   "Description.SecretItem.Properties.Value",
 }
@@ -29761,6 +30016,7 @@ var getKeyVaultSecretFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"recoverable_days":        "Description.Vault.Properties.SoftDeleteRetentionInDays",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.SecretItem.Properties.Subscription",
 	"tags":                    "Description.SecretItem.Tags",
 	"value":                   "Description.SecretItem.Properties.Value",
 }
@@ -29923,6 +30179,7 @@ var listKustoClusterFilters = map[string]string{
 	"sku_tier":                      "Description.Cluster.SKU.Tier",
 	"state":                         "Description.Cluster.Properties.State",
 	"state_reason":                  "Description.Cluster.Properties.StateReason",
+	"subscription":                  "Description.Cluster.Properties.Subscription",
 	"tags":                          "Description.Cluster.Tags",
 	"title":                         "Description.Cluster.Name",
 	"trusted_external_tenants":      "Description.Cluster.Properties.TrustedExternalTenants",
@@ -30014,6 +30271,7 @@ var getKustoClusterFilters = map[string]string{
 	"sku_tier":                      "Description.Cluster.SKU.Tier",
 	"state":                         "Description.Cluster.Properties.State",
 	"state_reason":                  "Description.Cluster.Properties.StateReason",
+	"subscription":                  "Description.Cluster.Properties.Subscription",
 	"tags":                          "Description.Cluster.Tags",
 	"title":                         "Description.Cluster.Name",
 	"trusted_external_tenants":      "Description.Cluster.Properties.TrustedExternalTenants",
@@ -30168,6 +30426,7 @@ var listLogAlertFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "Description.ResourceGroup",
 	"scopes":                  "Description.ActivityLogAlertResource.Properties.Scopes",
+	"subscription":            "Description.ActivityLogAlertResource.Properties.Subscription",
 	"tags":                    "Description.ActivityLogAlertResource.Tags",
 	"title":                   "Description.ActivityLogAlertResource.Name",
 	"type":                    "Description.ActivityLogAlertResource.Type",
@@ -30244,6 +30503,7 @@ var getLogAlertFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
 	"scopes":                  "Description.ActivityLogAlertResource.Properties.Scopes",
+	"subscription":            "Description.ActivityLogAlertResource.Properties.Subscription",
 	"tags":                    "Description.ActivityLogAlertResource.Tags",
 	"title":                   "Description.ActivityLogAlertResource.Name",
 	"type":                    "Description.ActivityLogAlertResource.Type",
@@ -30395,6 +30655,7 @@ var listLogProfileFilters = map[string]string{
 	"retention_policy":        "Description.LogProfileResource.Properties.RetentionPolicy",
 	"service_bus_rule_id":     "Description.LogProfileResource.Properties.ServiceBusRuleID",
 	"storage_account_id":      "Description.LogProfileResource.Properties.StorageAccountID",
+	"subscription":            "Description.LogProfileResource.Properties.Subscription",
 	"tags":                    "Description.LogProfileResource.Tags",
 	"title":                   "Description.LogProfileResource.Name",
 	"type":                    "Description.LogProfileResource.Type",
@@ -30471,6 +30732,7 @@ var getLogProfileFilters = map[string]string{
 	"retention_policy":        "Description.LogProfileResource.Properties.RetentionPolicy",
 	"service_bus_rule_id":     "Description.LogProfileResource.Properties.ServiceBusRuleID",
 	"storage_account_id":      "Description.LogProfileResource.Properties.StorageAccountID",
+	"subscription":            "Description.LogProfileResource.Properties.Subscription",
 	"tags":                    "Description.LogProfileResource.Tags",
 	"title":                   "Description.LogProfileResource.Name",
 	"type":                    "Description.LogProfileResource.Type",
@@ -30628,6 +30890,7 @@ var listLogicAppWorkflowFilters = map[string]string{
 	"sku_name":                        "Description.Workflow.Properties.SKU.Name",
 	"sku_plan":                        "Description.Workflow.Properties.SKU.Plan",
 	"state":                           "Description.Workflow.Properties.State",
+	"subscription":                    "Description.Workflow.Properties.Subscription",
 	"tags":                            "Description.Workflow.Tags",
 	"title":                           "Description.Workflow.Name",
 	"type":                            "Description.Workflow.Type",
@@ -30711,6 +30974,7 @@ var getLogicAppWorkflowFilters = map[string]string{
 	"sku_name":                        "Description.Workflow.Properties.SKU.Name",
 	"sku_plan":                        "Description.Workflow.Properties.SKU.Plan",
 	"state":                           "Description.Workflow.Properties.State",
+	"subscription":                    "Description.Workflow.Properties.Subscription",
 	"tags":                            "Description.Workflow.Tags",
 	"title":                           "Description.Workflow.Name",
 	"type":                            "Description.Workflow.Type",
@@ -30856,6 +31120,7 @@ var listLogicIntegrationAccountsFilters = map[string]string{
 	"id":                      "Description.IntegrationAccounts.ID",
 	"name":                    "Description.Account.Properties.IntegrationServiceEnvironment.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.IntegrationAccounts.Properties.Subscription",
 	"tags":                    "Description.Account.Properties.IntegrationServiceEnvironment.Name",
 	"title":                   "Description.Account.Properties.IntegrationServiceEnvironment.Name",
 }
@@ -30924,6 +31189,7 @@ var getLogicIntegrationAccountsFilters = map[string]string{
 	"id":                      "Description.IntegrationAccounts.ID",
 	"name":                    "Description.Account.Properties.IntegrationServiceEnvironment.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.IntegrationAccounts.Properties.Subscription",
 	"tags":                    "Description.Account.Properties.IntegrationServiceEnvironment.Name",
 	"title":                   "Description.Account.Properties.IntegrationServiceEnvironment.Name",
 }
@@ -31084,6 +31350,7 @@ var listMachineLearningWorkspaceFilters = map[string]string{
 	"sku_name":                           "Description.Workspace.SKU.Name",
 	"sku_tier":                           "Description.Workspace.SKU.Tier",
 	"storage_account":                    "Description.Workspace.Properties.StorageAccount",
+	"subscription":                       "Description.Workspace.Properties.Subscription",
 	"tags":                               "Description.Workspace.Tags",
 	"title":                              "Description.Workspace.Name",
 	"type":                               "Description.Workspace.Type",
@@ -31171,6 +31438,7 @@ var getMachineLearningWorkspaceFilters = map[string]string{
 	"sku_name":                           "Description.Workspace.SKU.Name",
 	"sku_tier":                           "Description.Workspace.SKU.Tier",
 	"storage_account":                    "Description.Workspace.Properties.StorageAccount",
+	"subscription":                       "Description.Workspace.Properties.Subscription",
 	"tags":                               "Description.Workspace.Tags",
 	"title":                              "Description.Workspace.Name",
 	"type":                               "Description.Workspace.Type",
@@ -31334,6 +31602,7 @@ var listMariadbServerFilters = map[string]string{
 	"sku_tier":                     "Description.Server.SKU.Tier",
 	"ssl_enforcement":              "Description.Server.Properties.SSLEnforcement",
 	"storage_mb":                   "Description.Server.Properties.StorageProfile.StorageMB",
+	"subscription":                 "Description.Server.Properties.Subscription",
 	"tags":                         "Description.Server.Tags",
 	"title":                        "Description.Server.Name",
 	"type":                         "Description.Server.Type",
@@ -31423,6 +31692,7 @@ var getMariadbServerFilters = map[string]string{
 	"sku_tier":                     "Description.Server.SKU.Tier",
 	"ssl_enforcement":              "Description.Server.Properties.SSLEnforcement",
 	"storage_mb":                   "Description.Server.Properties.StorageProfile.StorageMB",
+	"subscription":                 "Description.Server.Properties.Subscription",
 	"tags":                         "Description.Server.Tags",
 	"title":                        "Description.Server.Name",
 	"type":                         "Description.Server.Type",
@@ -31569,6 +31839,7 @@ var listMariadbDatabaseFilters = map[string]string{
 	"id":                      "Description.Databases.ID",
 	"name":                    "Description.Database.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Databases.Properties.Subscription",
 	"tags":                    "Description.Database.Name",
 	"title":                   "Description.Database.Name",
 }
@@ -31637,6 +31908,7 @@ var getMariadbDatabaseFilters = map[string]string{
 	"id":                      "Description.Databases.ID",
 	"name":                    "Description.Database.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Databases.Properties.Subscription",
 	"tags":                    "Description.Database.Name",
 	"title":                   "Description.Database.Name",
 }
@@ -31805,6 +32077,7 @@ var listMysqlServerFilters = map[string]string{
 	"state":                        "Description.Server.Properties.UserVisibleState",
 	"storage_auto_grow":            "Description.Server.Properties.StorageProfile.StorageAutogrow",
 	"storage_mb":                   "Description.Server.Properties.StorageProfile.StorageMB",
+	"subscription":                 "Description.Server.Properties.Subscription",
 	"tags":                         "Description.Server.Tags",
 	"title":                        "Description.Server.Name",
 	"type":                         "Description.Server.Type",
@@ -31902,6 +32175,7 @@ var getMysqlServerFilters = map[string]string{
 	"state":                        "Description.Server.Properties.UserVisibleState",
 	"storage_auto_grow":            "Description.Server.Properties.StorageProfile.StorageAutogrow",
 	"storage_mb":                   "Description.Server.Properties.StorageProfile.StorageMB",
+	"subscription":                 "Description.Server.Properties.Subscription",
 	"tags":                         "Description.Server.Tags",
 	"title":                        "Description.Server.Name",
 	"type":                         "Description.Server.Type",
@@ -32049,6 +32323,7 @@ var listMysqlFlexibleserverFilters = map[string]string{
 	"id":                      "Description.Server.ID",
 	"name":                    "Description.Server.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Server.Properties.Subscription",
 	"tags":                    "Description.Server.Tags",
 	"title":                   "Description.Server.Name",
 }
@@ -32117,6 +32392,7 @@ var getMysqlFlexibleserverFilters = map[string]string{
 	"id":                      "Description.Server.ID",
 	"name":                    "Description.Server.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Server.Properties.Subscription",
 	"tags":                    "Description.Server.Tags",
 	"title":                   "Description.Server.Name",
 }
@@ -32270,6 +32546,7 @@ var listNetworkSecurityGroupFilters = map[string]string{
 	"resource_guid":           "Description.SecurityGroup.Properties.ResourceGUID",
 	"security_rules":          "Description.SecurityGroup.Properties.SecurityRules",
 	"subnets":                 "Description.SecurityGroup.Properties.Subnets",
+	"subscription":            "Description.SecurityGroup.Properties.Subscription",
 	"tags":                    "Description.SecurityGroup.Tags",
 	"title":                   "Description.SecurityGroup.Name",
 	"type":                    "Description.SecurityGroup.Type",
@@ -32349,6 +32626,7 @@ var getNetworkSecurityGroupFilters = map[string]string{
 	"resource_guid":           "Description.SecurityGroup.Properties.ResourceGUID",
 	"security_rules":          "Description.SecurityGroup.Properties.SecurityRules",
 	"subnets":                 "Description.SecurityGroup.Properties.Subnets",
+	"subscription":            "Description.SecurityGroup.Properties.Subscription",
 	"tags":                    "Description.SecurityGroup.Tags",
 	"title":                   "Description.SecurityGroup.Name",
 	"type":                    "Description.SecurityGroup.Type",
@@ -32496,6 +32774,7 @@ var listNetworkWatcherFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.Watcher.Properties.ProvisioningState",
 	"resource_group":          "Description.ResourceGroup",
+	"subscription":            "Description.Watcher.Properties.Subscription",
 	"tags":                    "Description.Watcher.Tags",
 	"title":                   "Description.Watcher.Name",
 	"type":                    "Description.Watcher.Type",
@@ -32568,6 +32847,7 @@ var getNetworkWatcherFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.Watcher.Properties.ProvisioningState",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.Watcher.Properties.Subscription",
 	"tags":                    "Description.Watcher.Tags",
 	"title":                   "Description.Watcher.Name",
 	"type":                    "Description.Watcher.Type",
@@ -32725,6 +33005,7 @@ var listSearchServiceFilters = map[string]string{
 	"sku_name":                      "Description.Service.SKU.Name",
 	"status":                        "Description.Service.Properties.Status",
 	"status_details":                "Description.Service.Properties.StatusDetails",
+	"subscription":                  "Description.Service.Properties.Subscription",
 	"tags":                          "Description.Service.Tags",
 	"title":                         "Description.Service.Name",
 	"type":                          "Description.Service.Type",
@@ -32808,6 +33089,7 @@ var getSearchServiceFilters = map[string]string{
 	"sku_name":                      "Description.Service.SKU.Name",
 	"status":                        "Description.Service.Properties.Status",
 	"status_details":                "Description.Service.Properties.StatusDetails",
+	"subscription":                  "Description.Service.Properties.Subscription",
 	"tags":                          "Description.Service.Tags",
 	"title":                         "Description.Service.Name",
 	"type":                          "Description.Service.Type",
@@ -32974,6 +33256,7 @@ var listServiceFabricClusterFilters = map[string]string{
 	"resource_group":                         "Description.ResourceGroup",
 	"reverse_proxy_certificate":              "Description.Cluster.Properties.ReverseProxyCertificate",
 	"reverse_proxy_certificate_common_names": "Description.Cluster.Properties.ReverseProxyCertificateCommonNames",
+	"subscription":                           "Description.Cluster.Properties.Subscription",
 	"tags":                                   "Description.Cluster.Tags",
 	"title":                                  "Description.Cluster.Name",
 	"type":                                   "Description.Cluster.Type",
@@ -33068,6 +33351,7 @@ var getServiceFabricClusterFilters = map[string]string{
 	"resource_group":                         "description.ResourceGroup",
 	"reverse_proxy_certificate":              "Description.Cluster.Properties.ReverseProxyCertificate",
 	"reverse_proxy_certificate_common_names": "Description.Cluster.Properties.ReverseProxyCertificateCommonNames",
+	"subscription":                           "Description.Cluster.Properties.Subscription",
 	"tags":                                   "Description.Cluster.Tags",
 	"title":                                  "Description.Cluster.Name",
 	"type":                                   "Description.Cluster.Type",
@@ -33229,6 +33513,7 @@ var listServicebusNamespaceFilters = map[string]string{
 	"sku_name":                     "Description.SBNamespace.SKU.Name",
 	"sku_tier":                     "Description.SBNamespace.SKU.Tier",
 	"status":                       "Description.SBNamespace.Properties.Status",
+	"subscription":                 "Description.SBNamespace.Properties.Subscription",
 	"tags":                         "Description.SBNamespace.Tags",
 	"title":                        "Description.SBNamespace.Name",
 	"type":                         "Description.SBNamespace.Type",
@@ -33313,6 +33598,7 @@ var getServicebusNamespaceFilters = map[string]string{
 	"sku_name":                     "Description.SBNamespace.SKU.Name",
 	"sku_tier":                     "Description.SBNamespace.SKU.Tier",
 	"status":                       "Description.SBNamespace.Properties.Status",
+	"subscription":                 "Description.SBNamespace.Properties.Subscription",
 	"tags":                         "Description.SBNamespace.Tags",
 	"title":                        "Description.SBNamespace.Name",
 	"type":                         "Description.SBNamespace.Type",
@@ -33471,6 +33757,7 @@ var listSignalrServiceFilters = map[string]string{
 	"resource_group":          "Description.ResourceGroup",
 	"server_port":             "Description.ResourceInfo.Properties.ServerPort",
 	"sku":                     "Description.ResourceInfo.SKU",
+	"subscription":            "Description.ResourceInfo.Properties.Subscription",
 	"tags":                    "Description.ResourceInfo.Tags",
 	"title":                   "Description.ResourceInfo.Name",
 	"type":                    "Description.ResourceInfo.Type",
@@ -33555,6 +33842,7 @@ var getSignalrServiceFilters = map[string]string{
 	"resource_group":          "description.ResourceGroup",
 	"server_port":             "Description.ResourceInfo.Properties.ServerPort",
 	"sku":                     "Description.ResourceInfo.SKU",
+	"subscription":            "Description.ResourceInfo.Properties.Subscription",
 	"tags":                    "Description.ResourceInfo.Tags",
 	"title":                   "Description.ResourceInfo.Name",
 	"type":                    "Description.ResourceInfo.Type",
@@ -33704,6 +33992,7 @@ var listSpringCloudServiceFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.App.Properties.ProvisioningState",
 	"resource_group":          "Description.ResourceGroup",
+	"subscription":            "Description.App.Properties.Subscription",
 	"tags":                    "Description.App.Tags",
 	"title":                   "Description.App.Name",
 	"type":                    "Description.App.Properties.AppType",
@@ -33777,6 +34066,7 @@ var getSpringCloudServiceFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.App.Properties.ProvisioningState",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.App.Properties.Subscription",
 	"tags":                    "Description.App.Tags",
 	"title":                   "Description.App.Name",
 	"type":                    "Description.App.Properties.AppType",
@@ -33939,6 +34229,7 @@ var listStreamAnalyticsJobFilters = map[string]string{
 	"provisioning_state":                       "Description.StreamingJob.Properties.ProvisioningState",
 	"resource_group":                           "Description.ResourceGroup",
 	"sku_name":                                 "Description.StreamingJob.Properties.SKU.Name",
+	"subscription":                             "Description.StreamingJob.Properties.Subscription",
 	"tags":                                     "Description.StreamingJob.Tags",
 	"title":                                    "Description.StreamingJob.Name",
 	"transformation":                           "Description.StreamingJob.Properties.Transformation",
@@ -34026,6 +34317,7 @@ var getStreamAnalyticsJobFilters = map[string]string{
 	"provisioning_state":                       "Description.StreamingJob.Properties.ProvisioningState",
 	"resource_group":                           "description.ResourceGroup",
 	"sku_name":                                 "Description.StreamingJob.Properties.SKU.Name",
+	"subscription":                             "Description.StreamingJob.Properties.Subscription",
 	"tags":                                     "Description.StreamingJob.Tags",
 	"title":                                    "Description.StreamingJob.Name",
 	"transformation":                           "Description.StreamingJob.Properties.Transformation",
@@ -34171,6 +34463,7 @@ var listStreamAnalyticsClusterFilters = map[string]string{
 	"id":                      "Description.Cluster.ID",
 	"name":                    "Description.StreamingJob.SKU.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Cluster.Properties.Subscription",
 	"tags":                    "Description.StreamingJob.Tags",
 	"title":                   "Description.StreamingJob.SKU.Name",
 }
@@ -34239,6 +34532,7 @@ var getStreamAnalyticsClusterFilters = map[string]string{
 	"id":                      "Description.Cluster.ID",
 	"name":                    "Description.StreamingJob.SKU.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Cluster.Properties.Subscription",
 	"tags":                    "Description.StreamingJob.Tags",
 	"title":                   "Description.StreamingJob.SKU.Name",
 }
@@ -34382,6 +34676,7 @@ var listVirtualMachineImagesImageTemplatesFilters = map[string]string{
 	"id":                      "Description.ImageTemplates.ID",
 	"name":                    "Description.ImageTemplate.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.ImageTemplates.Subscription",
 	"tags":                    "Description.ImageTemplate.Tags",
 	"title":                   "Description.ImageTemplate.Name",
 }
@@ -34450,6 +34745,7 @@ var getVirtualMachineImagesImageTemplatesFilters = map[string]string{
 	"id":                      "Description.ImageTemplates.ID",
 	"name":                    "Description.ImageTemplate.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.ImageTemplates.Subscription",
 	"tags":                    "Description.ImageTemplate.Tags",
 	"title":                   "Description.ImageTemplate.Name",
 }
@@ -34608,6 +34904,7 @@ var listOperationalInsightsWorkspacesFilters = map[string]string{
 	"resource_group":                                    "Description.ResourceGroup",
 	"retention_in_days":                                 "Description.Workspace.Properties.RetentionInDays",
 	"sku":                                               "Description.Workspace.Properties.SKU",
+	"subscription":                                      "Description.Workspaces.Properties.Subscription",
 	"tags":                                              "Description.Workspace.Tags",
 	"title":                                             "Description.Workspace.Name",
 	"type":                                              "Description.Workspace.Type",
@@ -34693,6 +34990,7 @@ var getOperationalInsightsWorkspacesFilters = map[string]string{
 	"resource_group":                                    "Description.ResourceGroup",
 	"retention_in_days":                                 "Description.Workspace.Properties.RetentionInDays",
 	"sku":                                               "Description.Workspace.Properties.SKU",
+	"subscription":                                      "Description.Workspaces.Properties.Subscription",
 	"tags":                                              "Description.Workspace.Tags",
 	"title":                                             "Description.Workspace.Name",
 	"type":                                              "Description.Workspace.Type",
@@ -34838,6 +35136,7 @@ var listTimeSeriesInsightsEnvironmentsFilters = map[string]string{
 	"id":                      "Description.Environments.ID",
 	"name":                    "Description.Environment.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Environments.Properties.Subscription",
 	"tags":                    "Description.Environment.Tags",
 	"title":                   "Description.Environment.Name",
 }
@@ -34906,6 +35205,7 @@ var getTimeSeriesInsightsEnvironmentsFilters = map[string]string{
 	"id":                      "Description.Environments.ID",
 	"name":                    "Description.Environment.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Environments.Properties.Subscription",
 	"tags":                    "Description.Environment.Tags",
 	"title":                   "Description.Environment.Name",
 }
@@ -35064,6 +35364,7 @@ var listSynapseWorkspaceFilters = map[string]string{
 	"resource_group":                   "Description.ResourceGroup",
 	"sql_administrator_login":          "Description.Workspace.Properties.SQLAdministratorLogin",
 	"sql_administrator_login_password": "Description.Workspace.Properties.SQLAdministratorLoginPassword",
+	"subscription":                     "Description.Workspace.Properties.Subscription",
 	"tags":                             "Description.Workspace.Tags",
 	"title":                            "Description.Workspace.Name",
 	"type":                             "Description.Workspace.Type",
@@ -35152,6 +35453,7 @@ var getSynapseWorkspaceFilters = map[string]string{
 	"resource_group":                   "description.ResourceGroup",
 	"sql_administrator_login":          "Description.Workspace.Properties.SQLAdministratorLogin",
 	"sql_administrator_login_password": "Description.Workspace.Properties.SQLAdministratorLoginPassword",
+	"subscription":                     "Description.Workspace.Properties.Subscription",
 	"tags":                             "Description.Workspace.Tags",
 	"title":                            "Description.Workspace.Name",
 	"type":                             "Description.Workspace.Type",
@@ -35300,6 +35602,7 @@ var listSynapseWorkspaceBigdatapoolsFilters = map[string]string{
 	"id":                      "Description.BigDataPool.ID",
 	"name":                    "Description.BigDataPool.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.BigDataPool.Properties.Subscription",
 	"tags":                    "Description.BigDataPool.Tags",
 	"title":                   "Description.BigDataPool.Name",
 }
@@ -35368,6 +35671,7 @@ var getSynapseWorkspaceBigdatapoolsFilters = map[string]string{
 	"id":                      "Description.BigDataPool.ID",
 	"name":                    "Description.BigDataPool.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.BigDataPool.Properties.Subscription",
 	"tags":                    "Description.BigDataPool.Tags",
 	"title":                   "Description.BigDataPool.Name",
 }
@@ -35511,6 +35815,7 @@ var listSynapseWorkspaceSqlpoolsFilters = map[string]string{
 	"id":                      "Description.SqlPool.ID",
 	"name":                    "Description.SqlPool.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.SqlPool.Properties.Subscription",
 	"tags":                    "Description.SqlPool.Tags",
 	"title":                   "Description.SqlPool.Name",
 }
@@ -35579,6 +35884,7 @@ var getSynapseWorkspaceSqlpoolsFilters = map[string]string{
 	"id":                      "Description.SqlPool.ID",
 	"name":                    "Description.SqlPool.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.SqlPool.Properties.Subscription",
 	"tags":                    "Description.SqlPool.Tags",
 	"title":                   "Description.SqlPool.Name",
 }
@@ -35725,6 +36031,7 @@ var listLocationFilters = map[string]string{
 	"longitude":               "Description.Location.Longitude",
 	"name":                    "Description.Location.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Location.Properties.Subscription",
 	"title":                   "Description.Location.Name",
 }
 
@@ -35796,6 +36103,7 @@ var getLocationFilters = map[string]string{
 	"name":                    "description.Location.name",
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.Location.Properties.Subscription",
 	"title":                   "Description.Location.Name",
 }
 
@@ -35938,6 +36246,7 @@ var listAnalysisServiceServerFilters = map[string]string{
 	"id":                      "Description.Servers.ID",
 	"name":                    "Description.Server.Properties.ServerFullName",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Servers.Properties.Subscription",
 	"tags":                    "Description.Server.Tags",
 	"title":                   "Description.Server.Properties.ServerFullName",
 }
@@ -36007,6 +36316,7 @@ var getAnalysisServiceServerFilters = map[string]string{
 	"name":                    "description.Server.name",
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.Servers.Properties.Subscription",
 	"tags":                    "Description.Server.Tags",
 	"title":                   "Description.Server.Properties.ServerFullName",
 }
@@ -36176,6 +36486,7 @@ var listPostgresqlServerFilters = map[string]string{
 	"ssl_enforcement":              "Description.Server.Properties.SSLEnforcement",
 	"storage_auto_grow":            "Description.Server.Properties.StorageProfile.StorageAutogrow",
 	"storage_mb":                   "Description.Server.Properties.StorageProfile.StorageMB",
+	"subscription":                 "Description.Server.Properties.Subscription",
 	"tags":                         "Description.Server.Tags",
 	"title":                        "Description.Server.Name",
 	"type":                         "Description.Server.Type",
@@ -36273,6 +36584,7 @@ var getPostgresqlServerFilters = map[string]string{
 	"ssl_enforcement":              "Description.Server.Properties.SSLEnforcement",
 	"storage_auto_grow":            "Description.Server.Properties.StorageProfile.StorageAutogrow",
 	"storage_mb":                   "Description.Server.Properties.StorageProfile.StorageMB",
+	"subscription":                 "Description.Server.Properties.Subscription",
 	"tags":                         "Description.Server.Tags",
 	"title":                        "Description.Server.Name",
 	"type":                         "Description.Server.Type",
@@ -36423,6 +36735,7 @@ var listPostgresqlFlexibleServerFilters = map[string]string{
 	"platform_integration_id":        "IntegrationID",
 	"server_properties":              "Description.Server.ServerProperties",
 	"sku":                            "Description.Server.SKU",
+	"subscription":                   "Description.Server.Properties.Subscription",
 	"tags":                           "Description.Server.Tags",
 	"title":                          "Description.Server.Name",
 	"type":                           "Description.Server.Type",
@@ -36496,6 +36809,7 @@ var getPostgresqlFlexibleServerFilters = map[string]string{
 	"platform_integration_id":        "IntegrationID",
 	"server_properties":              "Description.Server.ServerProperties",
 	"sku":                            "Description.Server.SKU",
+	"subscription":                   "Description.Server.Properties.Subscription",
 	"tags":                           "Description.Server.Tags",
 	"title":                          "Description.Server.Name",
 	"type":                           "Description.Server.Type",
@@ -36647,6 +36961,7 @@ var listStorageSyncFilters = map[string]string{
 	"resource_group":              "Description.ResourceGroup",
 	"storage_sync_service_status": "Description.Service.Properties.StorageSyncServiceStatus",
 	"storage_sync_service_uid":    "Description.Service.Properties.StorageSyncServiceUID",
+	"subscription":                "Description.Service.Properties.Subscription",
 	"tags":                        "Description.Service.Tags",
 	"title":                       "Description.Service.Name",
 	"type":                        "Description.Service.Type",
@@ -36723,6 +37038,7 @@ var getStorageSyncFilters = map[string]string{
 	"resource_group":              "description.ResourceGroup",
 	"storage_sync_service_status": "Description.Service.Properties.StorageSyncServiceStatus",
 	"storage_sync_service_uid":    "Description.Service.Properties.StorageSyncServiceUID",
+	"subscription":                "Description.Service.Properties.Subscription",
 	"tags":                        "Description.Service.Tags",
 	"title":                       "Description.Service.Name",
 	"type":                        "Description.Service.Type",
@@ -36889,6 +37205,7 @@ var listMssqlManagedInstanceFilters = map[string]string{
 	"state":                        "Description.ManagedInstance.Properties.State",
 	"storage_size_in_gb":           "Description.ManagedInstance.Properties.StorageSizeInGB",
 	"subnet_id":                    "Description.ManagedInstance.Properties.SubnetID",
+	"subscription":                 "Description.ManagedInstance.Properties.Subscription",
 	"tags":                         "Description.ManagedInstance.Tags",
 	"timezone_id":                  "Description.ManagedInstance.Properties.TimezoneID",
 	"title":                        "Description.ManagedInstance.Name",
@@ -36983,6 +37300,7 @@ var getMssqlManagedInstanceFilters = map[string]string{
 	"state":                        "Description.ManagedInstance.Properties.State",
 	"storage_size_in_gb":           "Description.ManagedInstance.Properties.StorageSizeInGB",
 	"subnet_id":                    "Description.ManagedInstance.Properties.SubnetID",
+	"subscription":                 "Description.ManagedInstance.Properties.Subscription",
 	"tags":                         "Description.ManagedInstance.Tags",
 	"timezone_id":                  "Description.ManagedInstance.Properties.TimezoneID",
 	"title":                        "Description.ManagedInstance.Name",
@@ -37130,6 +37448,7 @@ var listMssqlManagedInstanceDatabasesFilters = map[string]string{
 	"id":                      "Description.ManagedInstance.ID",
 	"name":                    "Description.ManagedInstance.SKU.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.ManagedInstance.Properties.Subscription",
 	"tags":                    "Description.ManagedInstance.Tags",
 	"title":                   "Description.ManagedInstance.SKU.Name",
 }
@@ -37198,6 +37517,7 @@ var getMssqlManagedInstanceDatabasesFilters = map[string]string{
 	"id":                      "Description.ManagedInstance.ID",
 	"name":                    "Description.ManagedInstance.SKU.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.ManagedInstance.Properties.Subscription",
 	"tags":                    "Description.ManagedInstance.Tags",
 	"title":                   "Description.ManagedInstance.SKU.Name",
 }
@@ -37367,6 +37687,7 @@ var listSqlDatabaseFilters = map[string]string{
 	"service_tier_advisors":                        "Description.Advisors",
 	"source_database_id":                           "Description.Database.Properties.SourceDatabaseID",
 	"status":                                       "Description.Database.Properties.Status",
+	"subscription":                                 "Description.Database.Properties.Subscription",
 	"tags":                                         "Description.Database.Tags",
 	"title":                                        "Description.Database.Name",
 	"transparent_data_encryption":                  "Description.TransparentDataEncryption",
@@ -37466,6 +37787,7 @@ var getSqlDatabaseFilters = map[string]string{
 	"service_tier_advisors":                        "Description.Advisors",
 	"source_database_id":                           "Description.Database.Properties.SourceDatabaseID",
 	"status":                                       "Description.Database.Properties.Status",
+	"subscription":                                 "Description.Database.Properties.Subscription",
 	"tags":                                         "Description.Database.Tags",
 	"title":                                        "Description.Database.Name",
 	"transparent_data_encryption":                  "Description.TransparentDataEncryption",
@@ -37611,10 +37933,11 @@ func (p SqlInstancePoolPaginator) NextPage(ctx context.Context) ([]SqlInstancePo
 }
 
 var listSqlInstancePoolFilters = map[string]string{
-	"id":    "Description.InstancePool.ID",
-	"name":  "Description.InstancePool.Name",
-	"tags":  "Description.InstancePool.Tags",
-	"title": "Description.InstancePool.Name",
+	"id":           "Description.InstancePool.ID",
+	"name":         "Description.InstancePool.Name",
+	"subscription": "Description.InstancePool.Properties.Subscription",
+	"tags":         "Description.InstancePool.Tags",
+	"title":        "Description.InstancePool.Name",
 }
 
 func ListSqlInstancePool(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -37678,10 +38001,11 @@ func ListSqlInstancePool(ctx context.Context, d *plugin.QueryData, _ *plugin.Hyd
 }
 
 var getSqlInstancePoolFilters = map[string]string{
-	"id":    "Description.InstancePool.ID",
-	"name":  "Description.InstancePool.Name",
-	"tags":  "Description.InstancePool.Tags",
-	"title": "Description.InstancePool.Name",
+	"id":           "Description.InstancePool.ID",
+	"name":         "Description.InstancePool.Name",
+	"subscription": "Description.InstancePool.Properties.Subscription",
+	"tags":         "Description.InstancePool.Tags",
+	"title":        "Description.InstancePool.Name",
 }
 
 func GetSqlInstancePool(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -37841,6 +38165,7 @@ var listSqlServerFilters = map[string]string{
 	"server_security_alert_policy":    "Description.ServerSecurityAlertPolicies",
 	"server_vulnerability_assessment": "Description.ServerVulnerabilityAssessments",
 	"state":                           "Description.Server.Properties.State",
+	"subscription":                    "Description.Server.Properties.Subscription",
 	"tags":                            "Description.Server.Tags",
 	"tags_src":                        "Description.Server.Tags",
 	"title":                           "Description.Server.Name",
@@ -37931,6 +38256,7 @@ var getSqlServerFilters = map[string]string{
 	"server_security_alert_policy":    "Description.ServerSecurityAlertPolicies",
 	"server_vulnerability_assessment": "Description.ServerVulnerabilityAssessments",
 	"state":                           "Description.Server.Properties.State",
+	"subscription":                    "Description.Server.Properties.Subscription",
 	"tags":                            "Description.Server.Tags",
 	"tags_src":                        "Description.Server.Tags",
 	"title":                           "Description.Server.Name",
@@ -38078,6 +38404,7 @@ var listSqlServerJobAgentFilters = map[string]string{
 	"id":                      "Description.JobAgent.ID",
 	"name":                    "Description.JobAgent.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.JobAgent.Properties.Subscription",
 	"tags":                    "Description.JobAgent.Tags",
 	"title":                   "Description.JobAgent.Name",
 }
@@ -38146,6 +38473,7 @@ var getSqlServerJobAgentFilters = map[string]string{
 	"id":                      "Description.JobAgent.ID",
 	"name":                    "Description.JobAgent.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.JobAgent.Properties.Subscription",
 	"tags":                    "Description.JobAgent.Tags",
 	"title":                   "Description.JobAgent.Name",
 }
@@ -38289,6 +38617,7 @@ var listSqlVirtualClustersFilters = map[string]string{
 	"id":                      "Description.VirtualClusters.ID",
 	"name":                    "Description.VirtualClusters.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.VirtualClusters.Properties.Subscription",
 	"tags":                    "Description.VirtualClusters.Tags",
 	"title":                   "Description.VirtualClusters.Name",
 }
@@ -38357,6 +38686,7 @@ var getSqlVirtualClustersFilters = map[string]string{
 	"id":                      "Description.VirtualClusters.ID",
 	"name":                    "Description.VirtualClusters.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.VirtualClusters.Properties.Subscription",
 	"tags":                    "Description.VirtualClusters.Tags",
 	"title":                   "Description.VirtualClusters.Name",
 }
@@ -38510,6 +38840,7 @@ var listSqlServerElasticPoolFilters = map[string]string{
 	"server_name":             "Description.ServerName",
 	"state":                   "Description.Pool.Properties.State",
 	"storage_mb":              "Description.Pool.Properties.MaxSizeBytes",
+	"subscription":            "Description.Pool.Properties.Subscription",
 	"tags":                    "Description.Pool.Tags",
 	"title":                   "Description.Pool.Name",
 	"type":                    "Description.Pool.Type",
@@ -38590,6 +38921,7 @@ var getSqlServerElasticPoolFilters = map[string]string{
 	"server_name":             "description.ServerName",
 	"state":                   "Description.Pool.Properties.State",
 	"storage_mb":              "Description.Pool.Properties.MaxSizeBytes",
+	"subscription":            "Description.Pool.Properties.Subscription",
 	"tags":                    "Description.Pool.Tags",
 	"title":                   "Description.Pool.Name",
 	"type":                    "Description.Pool.Type",
@@ -38748,6 +39080,7 @@ var listSqlServerVirtualMachineFilters = map[string]string{
 	"sql_server_license_type":               "Description.VirtualMachine.Properties.SQLServerLicenseType",
 	"sql_virtual_machine_group_resource_id": "Description.VirtualMachine.Properties.SQLVirtualMachineGroupResourceID",
 	"storage_configuration_settings":        "Description.VirtualMachine.Properties.StorageConfigurationSettings",
+	"subscription":                          "Description.VirtualMachine.Properties.Subscription",
 	"tags":                                  "Description.VirtualMachine.Tags",
 	"title":                                 "Description.VirtualMachine.Name",
 	"type":                                  "Description.VirtualMachine.Type",
@@ -38832,6 +39165,7 @@ var getSqlServerVirtualMachineFilters = map[string]string{
 	"sql_server_license_type":               "Description.VirtualMachine.Properties.SQLServerLicenseType",
 	"sql_virtual_machine_group_resource_id": "Description.VirtualMachine.Properties.SQLVirtualMachineGroupResourceID",
 	"storage_configuration_settings":        "Description.VirtualMachine.Properties.StorageConfigurationSettings",
+	"subscription":                          "Description.VirtualMachine.Properties.Subscription",
 	"tags":                                  "Description.VirtualMachine.Tags",
 	"title":                                 "Description.VirtualMachine.Name",
 	"type":                                  "Description.VirtualMachine.Type",
@@ -38978,6 +39312,7 @@ var listSqlServerVirtualMachineGroupFilters = map[string]string{
 	"id":                      "Description.Group.ID",
 	"name":                    "Description.Group.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Group.Properties.Subscription",
 	"tags":                    "Description.Group.Tags",
 	"title":                   "Description.Group.Name",
 }
@@ -39046,6 +39381,7 @@ var getSqlServerVirtualMachineGroupFilters = map[string]string{
 	"id":                      "Description.Group.ID",
 	"name":                    "Description.Group.Name",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Group.Properties.Subscription",
 	"tags":                    "Description.Group.Tags",
 	"title":                   "Description.Group.Name",
 }
@@ -39213,6 +39549,7 @@ var listSqlServerFlexibleServerFilters = map[string]string{
 	"storage_iops":                   "Description.FlexibleServer.Properties.Storage.Iops",
 	"storage_size_gb":                "Description.FlexibleServer.Properties.Storage.StorageSizeGB",
 	"storage_sku":                    "Description.FlexibleServer.Properties.Storage.StorageSKU",
+	"subscription":                   "Description.FlexibleServer.Properties.Subscription",
 	"system_data":                    "Description.FlexibleServer.SystemData",
 	"tags":                           "Description.FlexibleServer.Tags",
 	"title":                          "Description.FlexibleServer.Name",
@@ -39308,6 +39645,7 @@ var getSqlServerFlexibleServerFilters = map[string]string{
 	"storage_iops":                   "Description.FlexibleServer.Properties.Storage.Iops",
 	"storage_size_gb":                "Description.FlexibleServer.Properties.Storage.StorageSizeGB",
 	"storage_sku":                    "Description.FlexibleServer.Properties.Storage.StorageSKU",
+	"subscription":                   "Description.FlexibleServer.Properties.Subscription",
 	"system_data":                    "Description.FlexibleServer.SystemData",
 	"tags":                           "Description.FlexibleServer.Tags",
 	"title":                          "Description.FlexibleServer.Name",
@@ -39505,6 +39843,7 @@ var listStorageAccountFilters = map[string]string{
 	"sku_tier":                                               "Description.Account.SKU.Tier",
 	"status_of_primary":                                      "Description.Account.Properties.StatusOfPrimary",
 	"status_of_secondary":                                    "Description.Account.Properties.StatusOfSecondary",
+	"subscription":                                           "Description.Account.Properties.Subscription",
 	"table_logging_delete":                                   "Description.StorageServiceProperties.Logging.Delete",
 	"table_logging_read":                                     "Description.StorageServiceProperties.Logging.Read",
 	"table_logging_retention_policy":                         "Description.StorageServiceProperties.Logging.RetentionPolicy",
@@ -39633,6 +39972,7 @@ var getStorageAccountFilters = map[string]string{
 	"sku_tier":                                               "Description.Account.SKU.Tier",
 	"status_of_primary":                                      "Description.Account.Properties.StatusOfPrimary",
 	"status_of_secondary":                                    "Description.Account.Properties.StatusOfSecondary",
+	"subscription":                                           "Description.Account.Properties.Subscription",
 	"table_logging_delete":                                   "Description.StorageServiceProperties.Logging.Delete",
 	"table_logging_read":                                     "Description.StorageServiceProperties.Logging.Read",
 	"table_logging_retention_policy":                         "Description.StorageServiceProperties.Logging.RetentionPolicy",
@@ -39793,6 +40133,7 @@ var listRecoveryServicesVaultFilters = map[string]string{
 	"provisioning_state":                       "Description.Vault.Properties.ProvisioningState",
 	"resource_group":                           "Description.ResourceGroup",
 	"sku_name":                                 "Description.Vault.SKU.Name",
+	"subscription":                             "Description.Vault.Properties.Subscription",
 	"tags":                                     "Description.Vault.Tags",
 	"title":                                    "Description.Vault.Name",
 	"type":                                     "Description.Vault.Type",
@@ -39872,6 +40213,7 @@ var getRecoveryServicesVaultFilters = map[string]string{
 	"provisioning_state":                       "Description.Vault.Properties.ProvisioningState",
 	"resource_group":                           "description.ResourceGroup",
 	"sku_name":                                 "Description.Vault.SKU.Name",
+	"subscription":                             "Description.Vault.Properties.Subscription",
 	"tags":                                     "Description.Vault.Tags",
 	"title":                                    "Description.Vault.Name",
 	"type":                                     "Description.Vault.Type",
@@ -40020,6 +40362,7 @@ var listRecoveryServicesBackupJobFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"properties":              "Description.Properties",
 	"resource_group":          "Description.ResourceGroup",
+	"subscription":            "Description.Job.Properties.Subscription",
 	"tags":                    "Description.Job.Tags",
 	"title":                   "Description.Job.Name",
 	"type":                    "Description.Job.Type",
@@ -40093,6 +40436,7 @@ var getRecoveryServicesBackupJobFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"properties":              "Description.Properties",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.Job.Properties.Subscription",
 	"tags":                    "Description.Job.Tags",
 	"title":                   "Description.Job.Name",
 	"type":                    "Description.Job.Type",
@@ -40240,6 +40584,7 @@ var listRecoveryServicesBackupPolicyFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"properties":              "Description.Properties",
 	"resource_group":          "Description.ResourceGroup",
+	"subscription":            "Description.Policy.Properties.Subscription",
 	"title":                   "Description.Policy.Name",
 	"vault_name":              "Description.VaultName",
 }
@@ -40310,6 +40655,7 @@ var getRecoveryServicesBackupPolicyFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"properties":              "Description.Properties",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.Policy.Properties.Subscription",
 	"title":                   "Description.Policy.Name",
 	"vault_name":              "Description.VaultName",
 }
@@ -40455,6 +40801,7 @@ var listRecoveryServicesBackupItemFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"properties":              "Description.Properties",
 	"resource_group":          "Description.ResourceGroup",
+	"subscription":            "Description.Item.Properties.Subscription",
 	"title":                   "Description.Item.Name",
 	"vault_name":              "Description.VaultName",
 }
@@ -40525,6 +40872,7 @@ var getRecoveryServicesBackupItemFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"properties":              "Description.Properties",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.Item.Properties.Subscription",
 	"title":                   "Description.Item.Name",
 	"vault_name":              "Description.VaultName",
 }
@@ -40683,6 +41031,7 @@ var listHybridKubernetesConnectedClusterFilters = map[string]string{
 	"platform_integration_id":      "IntegrationID",
 	"provisioning_state":           "Description.ConnectedCluster.Properties.ProvisioningState",
 	"resource_group":               "Description.ResourceGroup",
+	"subscription":                 "Description.ConnectedCluster.Properties.Subscription",
 	"tags":                         "Description.ConnectedCluster.Tags",
 	"title":                        "Description.ConnectedCluster.Name",
 	"total_core_count":             "Description.ConnectedCluster.Properties.TotalCoreCount",
@@ -40769,6 +41118,7 @@ var getHybridKubernetesConnectedClusterFilters = map[string]string{
 	"platform_integration_id":      "IntegrationID",
 	"provisioning_state":           "Description.ConnectedCluster.Properties.ProvisioningState",
 	"resource_group":               "description.ResourceGroup",
+	"subscription":                 "Description.ConnectedCluster.Properties.Subscription",
 	"tags":                         "Description.ConnectedCluster.Tags",
 	"title":                        "Description.ConnectedCluster.Name",
 	"total_core_count":             "Description.ConnectedCluster.Properties.TotalCoreCount",
@@ -40918,6 +41268,7 @@ var listCostManagementCostByResourceTypeFilters = map[string]string{
 	"publisher_type":          "Description.CostManagementCostByResourceType.PublisherType",
 	"resource_type":           "Metadata.ResourceType",
 	"service_name":            "Description.CostManagementCostByResourceType.ServiceName",
+	"subscription":            "Description.CostManagementCostByResourceType.Subscription",
 	"usage_date":              "Description.CostManagementCostByResourceType.UsageDate",
 }
 
@@ -40988,6 +41339,7 @@ var getCostManagementCostByResourceTypeFilters = map[string]string{
 	"publisher_type":          "Description.CostManagementCostByResourceType.PublisherType",
 	"resource_type":           "Metadata.ResourceType",
 	"service_name":            "Description.CostManagementCostByResourceType.ServiceName",
+	"subscription":            "Description.CostManagementCostByResourceType.Subscription",
 	"usage_date":              "Description.CostManagementCostByResourceType.UsageDate",
 }
 
@@ -41130,6 +41482,7 @@ var listCostManagementCostBySubscriptionFilters = map[string]string{
 	"id":                      "ResourceID",
 	"name":                    "Description.CostManagementCostBySubscription",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.CostManagementCostBySubscription.Subscription",
 }
 
 func ListCostManagementCostBySubscription(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -41196,6 +41549,7 @@ var getCostManagementCostBySubscriptionFilters = map[string]string{
 	"id":                      "ResourceID",
 	"name":                    "Description.CostManagementCostBySubscription",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.CostManagementCostBySubscription.Subscription",
 }
 
 func GetCostManagementCostBySubscription(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -41353,6 +41707,7 @@ var listLoadBalancerFilters = map[string]string{
 	"resource_guid":              "Description.LoadBalancer.Properties.ResourceGUID",
 	"sku_name":                   "Description.LoadBalancer.SKU.Name",
 	"sku_tier":                   "Description.LoadBalancer.SKU.Tier",
+	"subscription":               "Description.LoadBalancer.Properties.Subscription",
 	"tags":                       "Description.LoadBalancer.Tags",
 	"title":                      "Description.LoadBalancer.Name",
 	"type":                       "Description.LoadBalancer.Type",
@@ -41438,6 +41793,7 @@ var getLoadBalancerFilters = map[string]string{
 	"resource_guid":              "Description.LoadBalancer.Properties.ResourceGUID",
 	"sku_name":                   "Description.LoadBalancer.SKU.Name",
 	"sku_tier":                   "Description.LoadBalancer.SKU.Tier",
+	"subscription":               "Description.LoadBalancer.Properties.Subscription",
 	"tags":                       "Description.LoadBalancer.Tags",
 	"title":                      "Description.LoadBalancer.Name",
 	"type":                       "Description.LoadBalancer.Type",
@@ -41592,6 +41948,7 @@ var listLoadBalancerBackendAddressPoolFilters = map[string]string{
 	"platform_integration_id":                "IntegrationID",
 	"provisioning_state":                     "Description.LoadBalancer.Properties.ProvisioningState",
 	"resource_group":                         "Description.ResourceGroup",
+	"subscription":                           "Description.Pool.Properties.Subscription",
 	"title":                                  "Description.Pool.Name",
 	"type":                                   "Description.Pool.Type",
 }
@@ -41670,6 +42027,7 @@ var getLoadBalancerBackendAddressPoolFilters = map[string]string{
 	"platform_integration_id":                "IntegrationID",
 	"provisioning_state":                     "Description.LoadBalancer.Properties.ProvisioningState",
 	"resource_group":                         "description.ResourceGroup",
+	"subscription":                           "Description.Pool.Properties.Subscription",
 	"title":                                  "Description.Pool.Name",
 	"type":                                   "Description.Pool.Type",
 }
@@ -41825,6 +42183,7 @@ var listLoadBalancerNatRuleFilters = map[string]string{
 	"protocol":                  "Description.Rule.Properties.Protocol",
 	"provisioning_state":        "Description.Rule.Properties.ProvisioningState",
 	"resource_group":            "Description.ResourceGroup",
+	"subscription":              "Description.Rule.Properties.Subscription",
 	"title":                     "Description.Rule.Name",
 	"type":                      "Description.Rule.Type",
 }
@@ -41905,6 +42264,7 @@ var getLoadBalancerNatRuleFilters = map[string]string{
 	"protocol":                  "Description.Rule.Properties.Protocol",
 	"provisioning_state":        "Description.Rule.Properties.ProvisioningState",
 	"resource_group":            "description.ResourceGroup",
+	"subscription":              "Description.Rule.Properties.Subscription",
 	"title":                     "Description.Rule.Name",
 	"type":                      "Description.Rule.Type",
 }
@@ -42058,6 +42418,7 @@ var listLoadBalancerOutboundRuleFilters = map[string]string{
 	"protocol":                   "Description.Rule.Properties.Protocol",
 	"provisioning_state":         "Description.Rule.Properties.ProvisioningState",
 	"resource_group":             "Description.ResourceGroup",
+	"subscription":               "Description.Rule.Properties.Subscription",
 	"title":                      "Description.Rule.Name",
 	"type":                       "Description.Rule.Type",
 }
@@ -42136,6 +42497,7 @@ var getLoadBalancerOutboundRuleFilters = map[string]string{
 	"protocol":                   "Description.Rule.Properties.Protocol",
 	"provisioning_state":         "Description.Rule.Properties.ProvisioningState",
 	"resource_group":             "description.ResourceGroup",
+	"subscription":               "Description.Rule.Properties.Subscription",
 	"title":                      "Description.Rule.Name",
 	"type":                       "Description.Rule.Type",
 }
@@ -42289,6 +42651,7 @@ var listLoadBalancerProbeFilters = map[string]string{
 	"provisioning_state":      "Description.Probe.Properties.ProvisioningState",
 	"request_path":            "Description.Probe.Properties.RequestPath",
 	"resource_group":          "Description.ResourceGroup",
+	"subscription":            "Description.Probe.Properties.Subscription",
 	"title":                   "Description.Probe.Name",
 	"type":                    "Description.Probe.Type",
 }
@@ -42367,6 +42730,7 @@ var getLoadBalancerProbeFilters = map[string]string{
 	"provisioning_state":      "Description.Probe.Properties.ProvisioningState",
 	"request_path":            "Description.Probe.Properties.RequestPath",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.Probe.Properties.Subscription",
 	"title":                   "Description.Probe.Name",
 	"type":                    "Description.Probe.Type",
 }
@@ -42526,6 +42890,7 @@ var listLoadBalancerRuleFilters = map[string]string{
 	"protocol":                     "Description.Rule.Properties.Protocol",
 	"provisioning_state":           "Description.Rule.Properties.ProvisioningState",
 	"resource_group":               "Description.ResourceGroup",
+	"subscription":                 "Description.Rule.Properties.Subscription",
 	"title":                        "Description.Rule.Name",
 	"type":                         "Description.Rule.Type",
 }
@@ -42610,6 +42975,7 @@ var getLoadBalancerRuleFilters = map[string]string{
 	"protocol":                     "Description.Rule.Properties.Protocol",
 	"provisioning_state":           "Description.Rule.Properties.ProvisioningState",
 	"resource_group":               "description.ResourceGroup",
+	"subscription":                 "Description.Rule.Properties.Subscription",
 	"title":                        "Description.Rule.Name",
 	"type":                         "Description.Rule.Type",
 }
@@ -42756,6 +43122,7 @@ var listManagementGroupFilters = map[string]string{
 	"name":                    "Description.Group.Name",
 	"parent":                  "Description.Group.Properties.Details.Parent",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Group.Properties.Subscription",
 	"tenant_id":               "Description.Group.Properties.TenantID",
 	"title":                   "Description.Group.Name",
 	"type":                    "Description.Group.Type",
@@ -42831,6 +43198,7 @@ var getManagementGroupFilters = map[string]string{
 	"name":                    "description.Group.Name",
 	"parent":                  "Description.Group.Properties.Details.Parent",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Group.Properties.Subscription",
 	"tenant_id":               "Description.Group.Properties.TenantID",
 	"title":                   "Description.Group.Name",
 	"type":                    "Description.Group.Type",
@@ -42981,6 +43349,7 @@ var listManagementLockFilters = map[string]string{
 	"notes":                   "Description.Lock.Properties.Notes",
 	"owners":                  "Description.Lock.Properties.Owners",
 	"platform_integration_id": "IntegrationID",
+	"subscription":            "Description.Lock.Properties.Subscription",
 	"title":                   "Description.Lock.Name",
 	"type":                    "Description.Lock.Type",
 }
@@ -43053,6 +43422,7 @@ var getManagementLockFilters = map[string]string{
 	"owners":                  "Description.Lock.Properties.Owners",
 	"platform_integration_id": "IntegrationID",
 	"resource_group":          "description.ResourceGroup",
+	"subscription":            "Description.Lock.Properties.Subscription",
 	"title":                   "Description.Lock.Name",
 	"type":                    "Description.Lock.Type",
 }
@@ -43198,6 +43568,7 @@ var listResourceProviderFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"registration_state":      "Description.Provider.RegistrationState",
 	"resource_types":          "Description.Provider.ResourceTypes",
+	"subscription":            "Description.Provider.Properties.Subscription",
 	"title":                   "Description.Provider.Namespace",
 }
 
@@ -43267,6 +43638,7 @@ var getResourceProviderFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"registration_state":      "Description.Provider.RegistrationState",
 	"resource_types":          "Description.Provider.ResourceTypes",
+	"subscription":            "Description.Provider.Properties.Subscription",
 	"title":                   "Description.Provider.Namespace",
 }
 
@@ -43411,6 +43783,7 @@ var listResourceGroupFilters = map[string]string{
 	"name":                    "Description.Group.Name",
 	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.Group.Properties.ProvisioningState",
+	"subscription":            "Description.Group.Properties.Subscription",
 	"tags":                    "Description.Group.Tags",
 	"title":                   "Description.Group.Name",
 	"type":                    "Description.Group.Type",
@@ -43482,6 +43855,7 @@ var getResourceGroupFilters = map[string]string{
 	"name":                    "description.Group.Name",
 	"platform_integration_id": "IntegrationID",
 	"provisioning_state":      "Description.Group.Properties.ProvisioningState",
+	"subscription":            "Description.Group.Properties.Subscription",
 	"tags":                    "Description.Group.Tags",
 	"title":                   "Description.Group.Name",
 	"type":                    "Description.Group.Type",
@@ -43640,6 +44014,7 @@ var listGenericResourceFilters = map[string]string{
 	"properties":            "Description.GenericResource.Properties",
 	"provisioning_state":    "Description.GenericResource.Identity.ProvisioningState",
 	"sku":                   "Description.GenericResource.SKU",
+	"subscription":          "Description.GenericResource.Properties.Subscription",
 	"tags":                  "Description.GenericResource.Tags",
 	"title":                 "Description.GenericResource.Name",
 	"type":                  "Description.GenericResource.Type",
@@ -43723,6 +44098,7 @@ var getGenericResourceFilters = map[string]string{
 	"properties":            "Description.GenericResource.Properties",
 	"provisioning_state":    "Description.GenericResource.Identity.ProvisioningState",
 	"sku":                   "Description.GenericResource.SKU",
+	"subscription":          "Description.GenericResource.Properties.Subscription",
 	"tags":                  "Description.GenericResource.Tags",
 	"title":                 "Description.GenericResource.Name",
 	"type":                  "Description.GenericResource.Type",
@@ -43864,10 +44240,11 @@ func (p BotServiceBotPaginator) NextPage(ctx context.Context) ([]BotServiceBot, 
 }
 
 var listBotServiceBotFilters = map[string]string{
-	"id":    "Description.Bot.ID",
-	"name":  "Description.Bot.Name",
-	"tags":  "Description.Bot.Tags",
-	"title": "Description.Bot.Properties.DisplayName",
+	"id":           "Description.Bot.ID",
+	"name":         "Description.Bot.Name",
+	"subscription": "Description.Bot.Properties.Subscription",
+	"tags":         "Description.Bot.Tags",
+	"title":        "Description.Bot.Properties.DisplayName",
 }
 
 func ListBotServiceBot(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -43931,10 +44308,11 @@ func ListBotServiceBot(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 }
 
 var getBotServiceBotFilters = map[string]string{
-	"id":    "Description.Bot.ID",
-	"name":  "Description.Bot.Name",
-	"tags":  "Description.Bot.Tags",
-	"title": "Description.Bot.Properties.DisplayName",
+	"id":           "Description.Bot.ID",
+	"name":         "Description.Bot.Name",
+	"subscription": "Description.Bot.Properties.Subscription",
+	"tags":         "Description.Bot.Tags",
+	"title":        "Description.Bot.Properties.DisplayName",
 }
 
 func GetBotServiceBot(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -44073,10 +44451,11 @@ func (p NetAppAccountPaginator) NextPage(ctx context.Context) ([]NetAppAccount, 
 }
 
 var listNetAppAccountFilters = map[string]string{
-	"id":    "Description.Account.ID",
-	"name":  "Description.Account.Name",
-	"tags":  "Description.Account.Tags",
-	"title": "Description.Account.Name",
+	"id":           "Description.Account.ID",
+	"name":         "Description.Account.Name",
+	"subscription": "Description.Account.Properties.Subscription",
+	"tags":         "Description.Account.Tags",
+	"title":        "Description.Account.Name",
 }
 
 func ListNetAppAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -44140,10 +44519,11 @@ func ListNetAppAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 }
 
 var getNetAppAccountFilters = map[string]string{
-	"id":    "Description.Account.ID",
-	"name":  "Description.Account.Name",
-	"tags":  "Description.Account.Tags",
-	"title": "Description.Account.Name",
+	"id":           "Description.Account.ID",
+	"name":         "Description.Account.Name",
+	"subscription": "Description.Account.Properties.Subscription",
+	"tags":         "Description.Account.Tags",
+	"title":        "Description.Account.Name",
 }
 
 func GetNetAppAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -44282,10 +44662,11 @@ func (p NetAppCapacityPoolPaginator) NextPage(ctx context.Context) ([]NetAppCapa
 }
 
 var listNetAppCapacityPoolFilters = map[string]string{
-	"id":    "Description.CapacityPool.ID",
-	"name":  "Description.CapacityPool.Name",
-	"tags":  "Description.CapacityPool.Tags",
-	"title": "Description.CapacityPool.Name",
+	"id":           "Description.CapacityPool.ID",
+	"name":         "Description.CapacityPool.Name",
+	"subscription": "Description.CapacityPool.Properties.Subscription",
+	"tags":         "Description.CapacityPool.Tags",
+	"title":        "Description.CapacityPool.Name",
 }
 
 func ListNetAppCapacityPool(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -44349,10 +44730,11 @@ func ListNetAppCapacityPool(ctx context.Context, d *plugin.QueryData, _ *plugin.
 }
 
 var getNetAppCapacityPoolFilters = map[string]string{
-	"id":    "Description.CapacityPool.ID",
-	"name":  "Description.CapacityPool.Name",
-	"tags":  "Description.CapacityPool.Tags",
-	"title": "Description.CapacityPool.Name",
+	"id":           "Description.CapacityPool.ID",
+	"name":         "Description.CapacityPool.Name",
+	"subscription": "Description.CapacityPool.Properties.Subscription",
+	"tags":         "Description.CapacityPool.Tags",
+	"title":        "Description.CapacityPool.Name",
 }
 
 func GetNetAppCapacityPool(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -44491,9 +44873,10 @@ func (p DashboardGrafanaPaginator) NextPage(ctx context.Context) ([]DashboardGra
 }
 
 var listDashboardGrafanaFilters = map[string]string{
-	"id":    "Description.Grafana.ID",
-	"name":  "Description.Grafana.Name",
-	"title": "Description.Grafana.Name",
+	"id":           "Description.Grafana.ID",
+	"name":         "Description.Grafana.Name",
+	"subscription": "Description.Grafana.Subscription",
+	"title":        "Description.Grafana.Name",
 }
 
 func ListDashboardGrafana(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -44557,9 +44940,10 @@ func ListDashboardGrafana(ctx context.Context, d *plugin.QueryData, _ *plugin.Hy
 }
 
 var getDashboardGrafanaFilters = map[string]string{
-	"id":    "Description.Grafana.ID",
-	"name":  "Description.Grafana.Name",
-	"title": "Description.Grafana.Name",
+	"id":           "Description.Grafana.ID",
+	"name":         "Description.Grafana.Name",
+	"subscription": "Description.Grafana.Subscription",
+	"title":        "Description.Grafana.Name",
 }
 
 func GetDashboardGrafana(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -44698,10 +45082,11 @@ func (p DesktopVirtualizationHostPoolPaginator) NextPage(ctx context.Context) ([
 }
 
 var listDesktopVirtualizationHostPoolFilters = map[string]string{
-	"id":    "Description.HostPool.ID",
-	"name":  "Description.HostPool.Name",
-	"tags":  "Description.HostPool.Tags",
-	"title": "Description.HostPool.Name",
+	"id":           "Description.HostPool.ID",
+	"name":         "Description.HostPool.Name",
+	"subscription": "Description.HostPool.Properties.Subscription",
+	"tags":         "Description.HostPool.Tags",
+	"title":        "Description.HostPool.Name",
 }
 
 func ListDesktopVirtualizationHostPool(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -44765,10 +45150,11 @@ func ListDesktopVirtualizationHostPool(ctx context.Context, d *plugin.QueryData,
 }
 
 var getDesktopVirtualizationHostPoolFilters = map[string]string{
-	"id":    "Description.HostPool.ID",
-	"name":  "Description.HostPool.Name",
-	"tags":  "Description.HostPool.Tags",
-	"title": "Description.HostPool.Name",
+	"id":           "Description.HostPool.ID",
+	"name":         "Description.HostPool.Name",
+	"subscription": "Description.HostPool.Properties.Subscription",
+	"tags":         "Description.HostPool.Tags",
+	"title":        "Description.HostPool.Name",
 }
 
 func GetDesktopVirtualizationHostPool(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -44907,10 +45293,11 @@ func (p DesktopVirtualizationWorkspacePaginator) NextPage(ctx context.Context) (
 }
 
 var listDesktopVirtualizationWorkspaceFilters = map[string]string{
-	"id":    "Description.Workspace.ID",
-	"name":  "Description.Workspace.Name",
-	"tags":  "Description.Workspace.Tags",
-	"title": "Description.Workspace.Name",
+	"id":           "Description.Workspace.ID",
+	"name":         "Description.Workspace.Name",
+	"subscription": "Description.Workspace.Properties.Subscription",
+	"tags":         "Description.Workspace.Tags",
+	"title":        "Description.Workspace.Name",
 }
 
 func ListDesktopVirtualizationWorkspace(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -44974,10 +45361,11 @@ func ListDesktopVirtualizationWorkspace(ctx context.Context, d *plugin.QueryData
 }
 
 var getDesktopVirtualizationWorkspaceFilters = map[string]string{
-	"id":    "Description.Workspace.ID",
-	"name":  "Description.Workspace.Name",
-	"tags":  "Description.Workspace.Tags",
-	"title": "Description.Workspace.Name",
+	"id":           "Description.Workspace.ID",
+	"name":         "Description.Workspace.Name",
+	"subscription": "Description.Workspace.Properties.Subscription",
+	"tags":         "Description.Workspace.Tags",
+	"title":        "Description.Workspace.Name",
 }
 
 func GetDesktopVirtualizationWorkspace(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -45116,10 +45504,11 @@ func (p DevTestLabLabPaginator) NextPage(ctx context.Context) ([]DevTestLabLab, 
 }
 
 var listDevTestLabLabFilters = map[string]string{
-	"id":    "Description.Lab.ID",
-	"name":  "Description.Lab.Properties.VaultName",
-	"tags":  "Description.Lab.Properties.LabStorageType",
-	"title": "Description.Lab.Properties.VaultName",
+	"id":           "Description.Lab.ID",
+	"name":         "Description.Lab.Properties.VaultName",
+	"subscription": "Description.Lab.Properties.Subscription",
+	"tags":         "Description.Lab.Properties.LabStorageType",
+	"title":        "Description.Lab.Properties.VaultName",
 }
 
 func ListDevTestLabLab(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -45183,10 +45572,11 @@ func ListDevTestLabLab(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 }
 
 var getDevTestLabLabFilters = map[string]string{
-	"id":    "Description.Lab.ID",
-	"name":  "Description.Lab.Properties.VaultName",
-	"tags":  "Description.Lab.Properties.LabStorageType",
-	"title": "Description.Lab.Properties.VaultName",
+	"id":           "Description.Lab.ID",
+	"name":         "Description.Lab.Properties.VaultName",
+	"subscription": "Description.Lab.Properties.Subscription",
+	"tags":         "Description.Lab.Properties.LabStorageType",
+	"title":        "Description.Lab.Properties.VaultName",
 }
 
 func GetDevTestLabLab(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -45325,10 +45715,11 @@ func (p PurviewAccountPaginator) NextPage(ctx context.Context) ([]PurviewAccount
 }
 
 var listPurviewAccountFilters = map[string]string{
-	"id":    "Description.Account.ID",
-	"name":  "Description.Account.Name",
-	"tags":  "Description.Account.Tags",
-	"title": "Description.Account.Name",
+	"id":           "Description.Account.ID",
+	"name":         "Description.Account.Name",
+	"subscription": "Description.Account.Properties.Subscription",
+	"tags":         "Description.Account.Tags",
+	"title":        "Description.Account.Name",
 }
 
 func ListPurviewAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -45392,10 +45783,11 @@ func ListPurviewAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 }
 
 var getPurviewAccountFilters = map[string]string{
-	"id":    "Description.Account.ID",
-	"name":  "Description.Account.Name",
-	"tags":  "Description.Account.Tags",
-	"title": "Description.Account.Name",
+	"id":           "Description.Account.ID",
+	"name":         "Description.Account.Name",
+	"subscription": "Description.Account.Properties.Subscription",
+	"tags":         "Description.Account.Tags",
+	"title":        "Description.Account.Name",
 }
 
 func GetPurviewAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -45534,10 +45926,11 @@ func (p PowerBIDedicatedCapacityPaginator) NextPage(ctx context.Context) ([]Powe
 }
 
 var listPowerBIDedicatedCapacityFilters = map[string]string{
-	"id":    "Description.Capacity.ID",
-	"name":  "Description.Capacity.Name",
-	"tags":  "Description.Capacity.Tags",
-	"title": "Description.Capacity.Name",
+	"id":           "Description.Capacity.ID",
+	"name":         "Description.Capacity.Name",
+	"subscription": "Description.Capacity.Properties.Subscription",
+	"tags":         "Description.Capacity.Tags",
+	"title":        "Description.Capacity.Name",
 }
 
 func ListPowerBIDedicatedCapacity(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -45601,10 +45994,11 @@ func ListPowerBIDedicatedCapacity(ctx context.Context, d *plugin.QueryData, _ *p
 }
 
 var getPowerBIDedicatedCapacityFilters = map[string]string{
-	"id":    "Description.Capacity.ID",
-	"name":  "Description.Capacity.Name",
-	"tags":  "Description.Capacity.Tags",
-	"title": "Description.Capacity.Name",
+	"id":           "Description.Capacity.ID",
+	"name":         "Description.Capacity.Name",
+	"subscription": "Description.Capacity.Properties.Subscription",
+	"tags":         "Description.Capacity.Tags",
+	"title":        "Description.Capacity.Name",
 }
 
 func GetPowerBIDedicatedCapacity(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -45766,6 +46160,7 @@ var listApplicationInsightsComponentFilters = map[string]string{
 	"resource_group":                      "Description.ResourceGroup",
 	"retention_in_days":                   "Description.Component.Properties.RetentionInDays",
 	"sampling_percentage":                 "Description.Component.Properties.SamplingPercentage",
+	"subscription":                        "Description.Component.Properties.Subscription",
 	"tags":                                "Description.Component.Tags",
 	"tenant_id":                           "Description.Component.Properties.TenantID",
 	"title":                               "Description.Component.Name",
@@ -45857,6 +46252,7 @@ var getApplicationInsightsComponentFilters = map[string]string{
 	"resource_group":                      "Description.ResourceGroup",
 	"retention_in_days":                   "Description.Component.Properties.RetentionInDays",
 	"sampling_percentage":                 "Description.Component.Properties.SamplingPercentage",
+	"subscription":                        "Description.Component.Properties.Subscription",
 	"tags":                                "Description.Component.Tags",
 	"tenant_id":                           "Description.Component.Properties.TenantID",
 	"title":                               "Description.Component.Name",
@@ -46011,6 +46407,7 @@ var listLighthouseDefinitionFilters = map[string]string{
 	"registration_definition_name": "Description.LighthouseDefinition.Properties.RegistrationDefinitionName",
 	"resource_group":               "Description.ResourceGroup",
 	"scope":                        "Description.Scope",
+	"subscription":                 "Description.LighthouseDefinition.Properties.Subscription",
 	"title":                        "Description.LighthouseDefinition.Name",
 	"type":                         "Description.LighthouseDefinition.Type",
 }
@@ -46087,6 +46484,7 @@ var getLighthouseDefinitionFilters = map[string]string{
 	"registration_definition_name": "Description.LighthouseDefinition.Properties.RegistrationDefinitionName",
 	"resource_group":               "Description.ResourceGroup",
 	"scope":                        "Description.Scope",
+	"subscription":                 "Description.LighthouseDefinition.Properties.Subscription",
 	"title":                        "Description.LighthouseDefinition.Name",
 	"type":                         "Description.LighthouseDefinition.Type",
 }
@@ -46233,6 +46631,7 @@ var listLighthouseAssignmentFilters = map[string]string{
 	"registration_definition_id": "Description.LighthouseAssignment.Properties.RegistrationDefinitionID",
 	"resource_group":             "Description.ResourceGroup",
 	"scope":                      "Description.Scope",
+	"subscription":               "Description.LighthouseAssignment.Properties.Subscription",
 	"title":                      "Description.LighthouseAssignment.Name",
 	"type":                       "Description.LighthouseAssignment.Type",
 }
@@ -46304,6 +46703,7 @@ var getLighthouseAssignmentFilters = map[string]string{
 	"registration_definition_id": "Description.LighthouseAssignment.Properties.RegistrationDefinitionID",
 	"resource_group":             "Description.ResourceGroup",
 	"scope":                      "Description.Scope",
+	"subscription":               "Description.LighthouseAssignment.Properties.Subscription",
 	"title":                      "Description.LighthouseAssignment.Name",
 	"type":                       "Description.LighthouseAssignment.Type",
 }
@@ -46454,6 +46854,7 @@ var listMaintenanceConfigurationFilters = map[string]string{
 	"name":                  "Description.MaintenanceConfiguration.Name",
 	"namespace":             "Description.MaintenanceConfiguration.Properties.Namespace",
 	"resource_group":        "Description.ResourceGroup",
+	"subscription":          "Description.MaintenanceConfiguration.Properties.Subscription",
 	"system_data":           "Description.MaintenanceConfiguration.SystemData",
 	"tags":                  "Description.MaintenanceConfiguration.Tags",
 	"title":                 "Description.MaintenanceConfiguration.Name",
@@ -46533,6 +46934,7 @@ var getMaintenanceConfigurationFilters = map[string]string{
 	"name":                  "Description.MaintenanceConfiguration.Name",
 	"namespace":             "Description.MaintenanceConfiguration.Properties.Namespace",
 	"resource_group":        "Description.ResourceGroup",
+	"subscription":          "Description.MaintenanceConfiguration.Properties.Subscription",
 	"system_data":           "Description.MaintenanceConfiguration.SystemData",
 	"tags":                  "Description.MaintenanceConfiguration.Tags",
 	"title":                 "Description.MaintenanceConfiguration.Name",
@@ -46685,6 +47087,7 @@ var listMonitorLogProfileFilters = map[string]string{
 	"retention_policy":    "Description.LogProfile.Properties.RetentionPolicy",
 	"service_bus_rule_id": "Description.LogProfile.Properties.ServiceBusRuleID",
 	"storage_account_id":  "Description.LogProfile.Properties.StorageAccountID",
+	"subscription":        "Description.LogProfile.Properties.Subscription",
 	"tags":                "Description.LogProfile.Tags",
 	"title":               "Description.LogProfile.Name",
 	"type":                "Description.LogProfile.Type",
@@ -46759,6 +47162,7 @@ var getMonitorLogProfileFilters = map[string]string{
 	"retention_policy":    "Description.LogProfile.Properties.RetentionPolicy",
 	"service_bus_rule_id": "Description.LogProfile.Properties.ServiceBusRuleID",
 	"storage_account_id":  "Description.LogProfile.Properties.StorageAccountID",
+	"subscription":        "Description.LogProfile.Properties.Subscription",
 	"tags":                "Description.LogProfile.Tags",
 	"title":               "Description.LogProfile.Name",
 	"type":                "Description.LogProfile.Type",

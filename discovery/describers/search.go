@@ -32,7 +32,7 @@ func SearchService(ctx context.Context, cred *azidentity.ClientSecretCredential,
 			return nil, err
 		}
 		for _, v := range page.Value {
-			resource, err := GetSearchService(ctx, diagnosticClient, v)
+			resource, err := GetSearchService(ctx, diagnosticClient, v,subscription)
 			if err != nil {
 				return nil, err
 			}
