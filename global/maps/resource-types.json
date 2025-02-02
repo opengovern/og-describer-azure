@@ -321,20 +321,6 @@
     "Model": "StreamAnalyticsCluster"
   },
   {
-    "ResourceName": "Microsoft.TimeSeriesInsights/environments",
-
-    "Tags": {
-      "logo_uri": [
-        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Time%20Series%20Insights%20Environment.svg"
-      ]
-    },
-
-    "ListDescriber": "DescribeBySubscription(describers.TimeSeriesInsightsEnvironments)",
-    "GetDescriber": "",
-    "SteampipeTable": "azure_timeseriesinsights_environments",
-    "Model": "TimeSeriesInsightsEnvironments"
-  },
-  {
     "ResourceName": "Microsoft.VirtualMachineImages/imageTemplates",
 
     "Tags": {
@@ -679,16 +665,6 @@
     "Model": "AnalysisServiceServer"
   },
   {
-    "ResourceName": "Microsoft.Security/pricings",
-
-    "Tags": null,
-
-    "ListDescriber": "DescribeBySubscription(describers.SecurityCenterSubscriptionPricing)",
-    "GetDescriber": "",
-    "SteampipeTable": "azure_security_center_subscription_pricing",
-    "Model": "SecurityCenterSubscriptionPricing"
-  },
-  {
     "ResourceName": "Microsoft.Insights/guestDiagnosticSettings",
 
     "Tags": {
@@ -772,16 +748,6 @@
     "GetDescriber": "",
     "SteampipeTable": "azure_data_factory_pipeline",
     "Model": "DataFactoryPipeline"
-  },
-  {
-    "ResourceName": "Microsoft.Compute/resourceSku",
-
-    "Tags": null,
-
-    "ListDescriber": "DescribeBySubscription(describers.ComputeResourceSKU)",
-    "GetDescriber": "",
-    "SteampipeTable": "azure_compute_resource_sku",
-    "Model": "ComputeResourceSKU"
   },
   {
     "ResourceName": "Microsoft.Network/expressRouteCircuits",
@@ -1625,21 +1591,6 @@
     "GetDescriber": "",
     "SteampipeTable": "azure_lb_rule",
     "Model": "LoadBalancerRule"
-  },
-  {
-    "ResourceName": "Microsoft.DataLakeStore/accounts",
-
-    "Tags": {
-      "category": ["Data and Analytics"],
-      "logo_uri": [
-        "https://raw.githubusercontent.com/opengovernance-io/Azure-Design/master/SVG_Azure_All/Data%20Lake.svg"
-      ]
-    },
-
-    "ListDescriber": "DescribeBySubscription(describers.DataLakeStore)",
-    "GetDescriber": "",
-    "SteampipeTable": "azure_data_lake_store",
-    "Model": "DataLakeStore"
   },
   {
     "ResourceName": "Microsoft.StorageCache/caches",

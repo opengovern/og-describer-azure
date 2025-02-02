@@ -17411,218 +17411,218 @@ func GetSecurityCenterSetting(ctx context.Context, d *plugin.QueryData, _ *plugi
 
 // ==========================  START: SecurityCenterSubscriptionPricing =============================
 
-type SecurityCenterSubscriptionPricing struct {
-	ResourceID      string                                             `json:"resource_id"`
-	PlatformID      string                                             `json:"platform_id"`
-	Description     azure.SecurityCenterSubscriptionPricingDescription `json:"Description"`
-	Metadata        azure.Metadata                                     `json:"metadata"`
-	DescribedBy     string                                             `json:"described_by"`
-	ResourceType    string                                             `json:"resource_type"`
-	IntegrationType string                                             `json:"integration_type"`
-	IntegrationID   string                                             `json:"integration_id"`
-}
-
-type SecurityCenterSubscriptionPricingHit struct {
-	ID      string                            `json:"_id"`
-	Score   float64                           `json:"_score"`
-	Index   string                            `json:"_index"`
-	Type    string                            `json:"_type"`
-	Version int64                             `json:"_version,omitempty"`
-	Source  SecurityCenterSubscriptionPricing `json:"_source"`
-	Sort    []interface{}                     `json:"sort"`
-}
-
-type SecurityCenterSubscriptionPricingHits struct {
-	Total essdk.SearchTotal                      `json:"total"`
-	Hits  []SecurityCenterSubscriptionPricingHit `json:"hits"`
-}
-
-type SecurityCenterSubscriptionPricingSearchResponse struct {
-	PitID string                                `json:"pit_id"`
-	Hits  SecurityCenterSubscriptionPricingHits `json:"hits"`
-}
-
-type SecurityCenterSubscriptionPricingPaginator struct {
-	paginator *essdk.BaseESPaginator
-}
-
-func (k Client) NewSecurityCenterSubscriptionPricingPaginator(filters []essdk.BoolFilter, limit *int64) (SecurityCenterSubscriptionPricingPaginator, error) {
-	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_security_pricings", filters, limit)
-	if err != nil {
-		return SecurityCenterSubscriptionPricingPaginator{}, err
-	}
-
-	p := SecurityCenterSubscriptionPricingPaginator{
-		paginator: paginator,
-	}
-
-	return p, nil
-}
-
-func (p SecurityCenterSubscriptionPricingPaginator) HasNext() bool {
-	return !p.paginator.Done()
-}
-
-func (p SecurityCenterSubscriptionPricingPaginator) Close(ctx context.Context) error {
-	return p.paginator.Deallocate(ctx)
-}
-
-func (p SecurityCenterSubscriptionPricingPaginator) NextPage(ctx context.Context) ([]SecurityCenterSubscriptionPricing, error) {
-	var response SecurityCenterSubscriptionPricingSearchResponse
-	err := p.paginator.Search(ctx, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	var values []SecurityCenterSubscriptionPricing
-	for _, hit := range response.Hits.Hits {
-		values = append(values, hit.Source)
-	}
-
-	hits := int64(len(response.Hits.Hits))
-	if hits > 0 {
-		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
-	} else {
-		p.paginator.UpdateState(hits, nil, "")
-	}
-
-	return values, nil
-}
-
-var listSecurityCenterSubscriptionPricingFilters = map[string]string{
-	"free_trial_remaining_time": "Description.Pricing.Properties.FreeTrialRemainingTime",
-	"id":                        "Description.Pricing.ID",
-	"name":                      "Description.Pricing.Name",
-	"platform_integration_id":   "IntegrationID",
-	"pricing_tier":              "Description.Pricing.Properties.PricingTier",
-	"subscription":              "Description.Pricing.Properties.Subscription",
-	"title":                     "Description.Pricing.Name",
-	"type":                      "Description.Pricing.Type",
-}
-
-func ListSecurityCenterSubscriptionPricing(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("ListSecurityCenterSubscriptionPricing")
-	runtime.GC()
-
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListSecurityCenterSubscriptionPricing NewClientCached", "error", err)
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListSecurityCenterSubscriptionPricing NewSelfClientCached", "error", err)
-		return nil, err
-	}
-	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListSecurityCenterSubscriptionPricing GetConfigTableValueOrNil for OpenGovernanceConfigKeyIntegrationID", "error", err)
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListSecurityCenterSubscriptionPricing GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListSecurityCenterSubscriptionPricing GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
-		return nil, err
-	}
-
-	paginator, err := k.NewSecurityCenterSubscriptionPricingPaginator(essdk.BuildFilter(ctx, d.QueryContext, listSecurityCenterSubscriptionPricingFilters, integrationId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListSecurityCenterSubscriptionPricing NewSecurityCenterSubscriptionPricingPaginator", "error", err)
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			plugin.Logger(ctx).Error("ListSecurityCenterSubscriptionPricing paginator.NextPage", "error", err)
-			return nil, err
-		}
-
-		for _, v := range page {
-			d.StreamListItem(ctx, v)
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-var getSecurityCenterSubscriptionPricingFilters = map[string]string{
-	"free_trial_remaining_time": "Description.Pricing.Properties.FreeTrialRemainingTime",
-	"id":                        "Description.Pricing.ID",
-	"name":                      "description.Pricing.Name",
-	"platform_integration_id":   "IntegrationID",
-	"pricing_tier":              "Description.Pricing.Properties.PricingTier",
-	"subscription":              "Description.Pricing.Properties.Subscription",
-	"title":                     "Description.Pricing.Name",
-	"type":                      "Description.Pricing.Type",
-}
-
-func GetSecurityCenterSubscriptionPricing(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("GetSecurityCenterSubscriptionPricing")
-	runtime.GC()
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		return nil, err
-	}
-	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
-	if err != nil {
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		return nil, err
-	}
-
-	limit := int64(1)
-	paginator, err := k.NewSecurityCenterSubscriptionPricingPaginator(essdk.BuildFilter(ctx, d.QueryContext, getSecurityCenterSubscriptionPricingFilters, integrationId, encodedResourceCollectionFilters, clientType), &limit)
-	if err != nil {
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			return nil, err
-		}
-
-		for _, v := range page {
-			return v, nil
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
+//type SecurityCenterSubscriptionPricing struct {
+//	ResourceID      string                                             `json:"resource_id"`
+//	PlatformID      string                                             `json:"platform_id"`
+//	Description     azure.SecurityCenterSubscriptionPricingDescription `json:"Description"`
+//	Metadata        azure.Metadata                                     `json:"metadata"`
+//	DescribedBy     string                                             `json:"described_by"`
+//	ResourceType    string                                             `json:"resource_type"`
+//	IntegrationType string                                             `json:"integration_type"`
+//	IntegrationID   string                                             `json:"integration_id"`
+//}
+//
+//type SecurityCenterSubscriptionPricingHit struct {
+//	ID      string                            `json:"_id"`
+//	Score   float64                           `json:"_score"`
+//	Index   string                            `json:"_index"`
+//	Type    string                            `json:"_type"`
+//	Version int64                             `json:"_version,omitempty"`
+//	Source  SecurityCenterSubscriptionPricing `json:"_source"`
+//	Sort    []interface{}                     `json:"sort"`
+//}
+//
+//type SecurityCenterSubscriptionPricingHits struct {
+//	Total essdk.SearchTotal                      `json:"total"`
+//	Hits  []SecurityCenterSubscriptionPricingHit `json:"hits"`
+//}
+//
+//type SecurityCenterSubscriptionPricingSearchResponse struct {
+//	PitID string                                `json:"pit_id"`
+//	Hits  SecurityCenterSubscriptionPricingHits `json:"hits"`
+//}
+//
+//type SecurityCenterSubscriptionPricingPaginator struct {
+//	paginator *essdk.BaseESPaginator
+//}
+//
+//func (k Client) NewSecurityCenterSubscriptionPricingPaginator(filters []essdk.BoolFilter, limit *int64) (SecurityCenterSubscriptionPricingPaginator, error) {
+//	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_security_pricings", filters, limit)
+//	if err != nil {
+//		return SecurityCenterSubscriptionPricingPaginator{}, err
+//	}
+//
+//	p := SecurityCenterSubscriptionPricingPaginator{
+//		paginator: paginator,
+//	}
+//
+//	return p, nil
+//}
+//
+//func (p SecurityCenterSubscriptionPricingPaginator) HasNext() bool {
+//	return !p.paginator.Done()
+//}
+//
+//func (p SecurityCenterSubscriptionPricingPaginator) Close(ctx context.Context) error {
+//	return p.paginator.Deallocate(ctx)
+//}
+//
+//func (p SecurityCenterSubscriptionPricingPaginator) NextPage(ctx context.Context) ([]SecurityCenterSubscriptionPricing, error) {
+//	var response SecurityCenterSubscriptionPricingSearchResponse
+//	err := p.paginator.Search(ctx, &response)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	var values []SecurityCenterSubscriptionPricing
+//	for _, hit := range response.Hits.Hits {
+//		values = append(values, hit.Source)
+//	}
+//
+//	hits := int64(len(response.Hits.Hits))
+//	if hits > 0 {
+//		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
+//	} else {
+//		p.paginator.UpdateState(hits, nil, "")
+//	}
+//
+//	return values, nil
+//}
+//
+//var listSecurityCenterSubscriptionPricingFilters = map[string]string{
+//	"free_trial_remaining_time": "Description.Pricing.Properties.FreeTrialRemainingTime",
+//	"id":                        "Description.Pricing.ID",
+//	"name":                      "Description.Pricing.Name",
+//	"platform_integration_id":   "IntegrationID",
+//	"pricing_tier":              "Description.Pricing.Properties.PricingTier",
+//	"subscription":              "Description.Pricing.Properties.Subscription",
+//	"title":                     "Description.Pricing.Name",
+//	"type":                      "Description.Pricing.Type",
+//}
+//
+//func ListSecurityCenterSubscriptionPricing(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
+//	plugin.Logger(ctx).Trace("ListSecurityCenterSubscriptionPricing")
+//	runtime.GC()
+//
+//	// create service
+//	cfg := essdk.GetConfig(d.Connection)
+//	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListSecurityCenterSubscriptionPricing NewClientCached", "error", err)
+//		return nil, err
+//	}
+//	k := Client{Client: ke}
+//
+//	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListSecurityCenterSubscriptionPricing NewSelfClientCached", "error", err)
+//		return nil, err
+//	}
+//	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListSecurityCenterSubscriptionPricing GetConfigTableValueOrNil for OpenGovernanceConfigKeyIntegrationID", "error", err)
+//		return nil, err
+//	}
+//	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListSecurityCenterSubscriptionPricing GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
+//		return nil, err
+//	}
+//	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListSecurityCenterSubscriptionPricing GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
+//		return nil, err
+//	}
+//
+//	paginator, err := k.NewSecurityCenterSubscriptionPricingPaginator(essdk.BuildFilter(ctx, d.QueryContext, listSecurityCenterSubscriptionPricingFilters, integrationId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListSecurityCenterSubscriptionPricing NewSecurityCenterSubscriptionPricingPaginator", "error", err)
+//		return nil, err
+//	}
+//
+//	for paginator.HasNext() {
+//		page, err := paginator.NextPage(ctx)
+//		if err != nil {
+//			plugin.Logger(ctx).Error("ListSecurityCenterSubscriptionPricing paginator.NextPage", "error", err)
+//			return nil, err
+//		}
+//
+//		for _, v := range page {
+//			d.StreamListItem(ctx, v)
+//		}
+//	}
+//
+//	err = paginator.Close(ctx)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	return nil, nil
+//}
+//
+//var getSecurityCenterSubscriptionPricingFilters = map[string]string{
+//	"free_trial_remaining_time": "Description.Pricing.Properties.FreeTrialRemainingTime",
+//	"id":                        "Description.Pricing.ID",
+//	"name":                      "description.Pricing.Name",
+//	"platform_integration_id":   "IntegrationID",
+//	"pricing_tier":              "Description.Pricing.Properties.PricingTier",
+//	"subscription":              "Description.Pricing.Properties.Subscription",
+//	"title":                     "Description.Pricing.Name",
+//	"type":                      "Description.Pricing.Type",
+//}
+//
+//func GetSecurityCenterSubscriptionPricing(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
+//	plugin.Logger(ctx).Trace("GetSecurityCenterSubscriptionPricing")
+//	runtime.GC()
+//	// create service
+//	cfg := essdk.GetConfig(d.Connection)
+//	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
+//	if err != nil {
+//		return nil, err
+//	}
+//	k := Client{Client: ke}
+//
+//	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
+//	if err != nil {
+//		return nil, err
+//	}
+//	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
+//	if err != nil {
+//		return nil, err
+//	}
+//	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
+//	if err != nil {
+//		return nil, err
+//	}
+//	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	limit := int64(1)
+//	paginator, err := k.NewSecurityCenterSubscriptionPricingPaginator(essdk.BuildFilter(ctx, d.QueryContext, getSecurityCenterSubscriptionPricingFilters, integrationId, encodedResourceCollectionFilters, clientType), &limit)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	for paginator.HasNext() {
+//		page, err := paginator.NextPage(ctx)
+//		if err != nil {
+//			return nil, err
+//		}
+//
+//		for _, v := range page {
+//			return v, nil
+//		}
+//	}
+//
+//	err = paginator.Close(ctx)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	return nil, nil
+//}
 
 // ==========================  END: SecurityCenterSubscriptionPricing =============================
 
@@ -21746,232 +21746,232 @@ func GetComputeVirtualMachine(ctx context.Context, d *plugin.QueryData, _ *plugi
 
 // ==========================  START: ComputeResourceSKU =============================
 
-type ComputeResourceSKU struct {
-	ResourceID      string                              `json:"resource_id"`
-	PlatformID      string                              `json:"platform_id"`
-	Description     azure.ComputeResourceSKUDescription `json:"Description"`
-	Metadata        azure.Metadata                      `json:"metadata"`
-	DescribedBy     string                              `json:"described_by"`
-	ResourceType    string                              `json:"resource_type"`
-	IntegrationType string                              `json:"integration_type"`
-	IntegrationID   string                              `json:"integration_id"`
-}
-
-type ComputeResourceSKUHit struct {
-	ID      string             `json:"_id"`
-	Score   float64            `json:"_score"`
-	Index   string             `json:"_index"`
-	Type    string             `json:"_type"`
-	Version int64              `json:"_version,omitempty"`
-	Source  ComputeResourceSKU `json:"_source"`
-	Sort    []interface{}      `json:"sort"`
-}
-
-type ComputeResourceSKUHits struct {
-	Total essdk.SearchTotal       `json:"total"`
-	Hits  []ComputeResourceSKUHit `json:"hits"`
-}
-
-type ComputeResourceSKUSearchResponse struct {
-	PitID string                 `json:"pit_id"`
-	Hits  ComputeResourceSKUHits `json:"hits"`
-}
-
-type ComputeResourceSKUPaginator struct {
-	paginator *essdk.BaseESPaginator
-}
-
-func (k Client) NewComputeResourceSKUPaginator(filters []essdk.BoolFilter, limit *int64) (ComputeResourceSKUPaginator, error) {
-	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_compute_resourcesku", filters, limit)
-	if err != nil {
-		return ComputeResourceSKUPaginator{}, err
-	}
-
-	p := ComputeResourceSKUPaginator{
-		paginator: paginator,
-	}
-
-	return p, nil
-}
-
-func (p ComputeResourceSKUPaginator) HasNext() bool {
-	return !p.paginator.Done()
-}
-
-func (p ComputeResourceSKUPaginator) Close(ctx context.Context) error {
-	return p.paginator.Deallocate(ctx)
-}
-
-func (p ComputeResourceSKUPaginator) NextPage(ctx context.Context) ([]ComputeResourceSKU, error) {
-	var response ComputeResourceSKUSearchResponse
-	err := p.paginator.Search(ctx, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	var values []ComputeResourceSKU
-	for _, hit := range response.Hits.Hits {
-		values = append(values, hit.Source)
-	}
-
-	hits := int64(len(response.Hits.Hits))
-	if hits > 0 {
-		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
-	} else {
-		p.paginator.UpdateState(hits, nil, "")
-	}
-
-	return values, nil
-}
-
-var listComputeResourceSKUFilters = map[string]string{
-	"api_versions":            "Description.ResourceSKU.APIVersions",
-	"default_capacity":        "Description.ResourceSKU.Capacity.Default",
-	"family":                  "Description.ResourceSKU.Family",
-	"kind":                    "Description.ResourceSKU.Kind",
-	"locations":               "Description.ResourceSKU.Locations",
-	"maximum_capacity":        "Description.ResourceSKU.Capacity.Maximum",
-	"minimum_capacity":        "Description.ResourceSKU.Capacity.Minimum",
-	"name":                    "Description.ResourceSKU.Name",
-	"platform_integration_id": "IntegrationID",
-	"resource_type":           "Description.ResourceSKU.ResourceType",
-	"scale_type":              "Description.ResourceSKU.Capacity.ScaleType",
-	"size":                    "Description.ResourceSKU.Size",
-	"subscription":            "Description.ResourceSKU.Properties.Subscription",
-	"tier":                    "Description.ResourceSKU.Tier",
-	"title":                   "Description.ResourceSKU.Name",
-}
-
-func ListComputeResourceSKU(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("ListComputeResourceSKU")
-	runtime.GC()
-
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeResourceSKU NewClientCached", "error", err)
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeResourceSKU NewSelfClientCached", "error", err)
-		return nil, err
-	}
-	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeResourceSKU GetConfigTableValueOrNil for OpenGovernanceConfigKeyIntegrationID", "error", err)
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeResourceSKU GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeResourceSKU GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
-		return nil, err
-	}
-
-	paginator, err := k.NewComputeResourceSKUPaginator(essdk.BuildFilter(ctx, d.QueryContext, listComputeResourceSKUFilters, integrationId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListComputeResourceSKU NewComputeResourceSKUPaginator", "error", err)
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			plugin.Logger(ctx).Error("ListComputeResourceSKU paginator.NextPage", "error", err)
-			return nil, err
-		}
-
-		for _, v := range page {
-			d.StreamListItem(ctx, v)
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-var getComputeResourceSKUFilters = map[string]string{
-	"api_versions":            "Description.ResourceSKU.APIVersions",
-	"default_capacity":        "Description.ResourceSKU.Capacity.Default",
-	"family":                  "Description.ResourceSKU.Family",
-	"kind":                    "Description.ResourceSKU.Kind",
-	"locations":               "Description.ResourceSKU.Locations",
-	"maximum_capacity":        "Description.ResourceSKU.Capacity.Maximum",
-	"minimum_capacity":        "Description.ResourceSKU.Capacity.Minimum",
-	"name":                    "Description.ResourceSKU.Name",
-	"platform_integration_id": "IntegrationID",
-	"resource_type":           "Description.ResourceSKU.ResourceType",
-	"scale_type":              "Description.ResourceSKU.Capacity.ScaleType",
-	"size":                    "Description.ResourceSKU.Size",
-	"subscription":            "Description.ResourceSKU.Properties.Subscription",
-	"tier":                    "Description.ResourceSKU.Tier",
-	"title":                   "Description.ResourceSKU.Name",
-}
-
-func GetComputeResourceSKU(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("GetComputeResourceSKU")
-	runtime.GC()
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		return nil, err
-	}
-	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
-	if err != nil {
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		return nil, err
-	}
-
-	limit := int64(1)
-	paginator, err := k.NewComputeResourceSKUPaginator(essdk.BuildFilter(ctx, d.QueryContext, getComputeResourceSKUFilters, integrationId, encodedResourceCollectionFilters, clientType), &limit)
-	if err != nil {
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			return nil, err
-		}
-
-		for _, v := range page {
-			return v, nil
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
+//type ComputeResourceSKU struct {
+//	ResourceID      string                              `json:"resource_id"`
+//	PlatformID      string                              `json:"platform_id"`
+//	Description     azure.ComputeResourceSKUDescription `json:"Description"`
+//	Metadata        azure.Metadata                      `json:"metadata"`
+//	DescribedBy     string                              `json:"described_by"`
+//	ResourceType    string                              `json:"resource_type"`
+//	IntegrationType string                              `json:"integration_type"`
+//	IntegrationID   string                              `json:"integration_id"`
+//}
+//
+//type ComputeResourceSKUHit struct {
+//	ID      string             `json:"_id"`
+//	Score   float64            `json:"_score"`
+//	Index   string             `json:"_index"`
+//	Type    string             `json:"_type"`
+//	Version int64              `json:"_version,omitempty"`
+//	Source  ComputeResourceSKU `json:"_source"`
+//	Sort    []interface{}      `json:"sort"`
+//}
+//
+//type ComputeResourceSKUHits struct {
+//	Total essdk.SearchTotal       `json:"total"`
+//	Hits  []ComputeResourceSKUHit `json:"hits"`
+//}
+//
+//type ComputeResourceSKUSearchResponse struct {
+//	PitID string                 `json:"pit_id"`
+//	Hits  ComputeResourceSKUHits `json:"hits"`
+//}
+//
+//type ComputeResourceSKUPaginator struct {
+//	paginator *essdk.BaseESPaginator
+//}
+//
+//func (k Client) NewComputeResourceSKUPaginator(filters []essdk.BoolFilter, limit *int64) (ComputeResourceSKUPaginator, error) {
+//	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_compute_resourcesku", filters, limit)
+//	if err != nil {
+//		return ComputeResourceSKUPaginator{}, err
+//	}
+//
+//	p := ComputeResourceSKUPaginator{
+//		paginator: paginator,
+//	}
+//
+//	return p, nil
+//}
+//
+//func (p ComputeResourceSKUPaginator) HasNext() bool {
+//	return !p.paginator.Done()
+//}
+//
+//func (p ComputeResourceSKUPaginator) Close(ctx context.Context) error {
+//	return p.paginator.Deallocate(ctx)
+//}
+//
+//func (p ComputeResourceSKUPaginator) NextPage(ctx context.Context) ([]ComputeResourceSKU, error) {
+//	var response ComputeResourceSKUSearchResponse
+//	err := p.paginator.Search(ctx, &response)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	var values []ComputeResourceSKU
+//	for _, hit := range response.Hits.Hits {
+//		values = append(values, hit.Source)
+//	}
+//
+//	hits := int64(len(response.Hits.Hits))
+//	if hits > 0 {
+//		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
+//	} else {
+//		p.paginator.UpdateState(hits, nil, "")
+//	}
+//
+//	return values, nil
+//}
+//
+//var listComputeResourceSKUFilters = map[string]string{
+//	"api_versions":            "Description.ResourceSKU.APIVersions",
+//	"default_capacity":        "Description.ResourceSKU.Capacity.Default",
+//	"family":                  "Description.ResourceSKU.Family",
+//	"kind":                    "Description.ResourceSKU.Kind",
+//	"locations":               "Description.ResourceSKU.Locations",
+//	"maximum_capacity":        "Description.ResourceSKU.Capacity.Maximum",
+//	"minimum_capacity":        "Description.ResourceSKU.Capacity.Minimum",
+//	"name":                    "Description.ResourceSKU.Name",
+//	"platform_integration_id": "IntegrationID",
+//	"resource_type":           "Description.ResourceSKU.ResourceType",
+//	"scale_type":              "Description.ResourceSKU.Capacity.ScaleType",
+//	"size":                    "Description.ResourceSKU.Size",
+//	"subscription":            "Description.ResourceSKU.Properties.Subscription",
+//	"tier":                    "Description.ResourceSKU.Tier",
+//	"title":                   "Description.ResourceSKU.Name",
+//}
+//
+//func ListComputeResourceSKU(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
+//	plugin.Logger(ctx).Trace("ListComputeResourceSKU")
+//	runtime.GC()
+//
+//	// create service
+//	cfg := essdk.GetConfig(d.Connection)
+//	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListComputeResourceSKU NewClientCached", "error", err)
+//		return nil, err
+//	}
+//	k := Client{Client: ke}
+//
+//	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListComputeResourceSKU NewSelfClientCached", "error", err)
+//		return nil, err
+//	}
+//	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListComputeResourceSKU GetConfigTableValueOrNil for OpenGovernanceConfigKeyIntegrationID", "error", err)
+//		return nil, err
+//	}
+//	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListComputeResourceSKU GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
+//		return nil, err
+//	}
+//	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListComputeResourceSKU GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
+//		return nil, err
+//	}
+//
+//	paginator, err := k.NewComputeResourceSKUPaginator(essdk.BuildFilter(ctx, d.QueryContext, listComputeResourceSKUFilters, integrationId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListComputeResourceSKU NewComputeResourceSKUPaginator", "error", err)
+//		return nil, err
+//	}
+//
+//	for paginator.HasNext() {
+//		page, err := paginator.NextPage(ctx)
+//		if err != nil {
+//			plugin.Logger(ctx).Error("ListComputeResourceSKU paginator.NextPage", "error", err)
+//			return nil, err
+//		}
+//
+//		for _, v := range page {
+//			d.StreamListItem(ctx, v)
+//		}
+//	}
+//
+//	err = paginator.Close(ctx)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	return nil, nil
+//}
+//
+//var getComputeResourceSKUFilters = map[string]string{
+//	"api_versions":            "Description.ResourceSKU.APIVersions",
+//	"default_capacity":        "Description.ResourceSKU.Capacity.Default",
+//	"family":                  "Description.ResourceSKU.Family",
+//	"kind":                    "Description.ResourceSKU.Kind",
+//	"locations":               "Description.ResourceSKU.Locations",
+//	"maximum_capacity":        "Description.ResourceSKU.Capacity.Maximum",
+//	"minimum_capacity":        "Description.ResourceSKU.Capacity.Minimum",
+//	"name":                    "Description.ResourceSKU.Name",
+//	"platform_integration_id": "IntegrationID",
+//	"resource_type":           "Description.ResourceSKU.ResourceType",
+//	"scale_type":              "Description.ResourceSKU.Capacity.ScaleType",
+//	"size":                    "Description.ResourceSKU.Size",
+//	"subscription":            "Description.ResourceSKU.Properties.Subscription",
+//	"tier":                    "Description.ResourceSKU.Tier",
+//	"title":                   "Description.ResourceSKU.Name",
+//}
+//
+//func GetComputeResourceSKU(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
+//	plugin.Logger(ctx).Trace("GetComputeResourceSKU")
+//	runtime.GC()
+//	// create service
+//	cfg := essdk.GetConfig(d.Connection)
+//	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
+//	if err != nil {
+//		return nil, err
+//	}
+//	k := Client{Client: ke}
+//
+//	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
+//	if err != nil {
+//		return nil, err
+//	}
+//	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
+//	if err != nil {
+//		return nil, err
+//	}
+//	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
+//	if err != nil {
+//		return nil, err
+//	}
+//	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	limit := int64(1)
+//	paginator, err := k.NewComputeResourceSKUPaginator(essdk.BuildFilter(ctx, d.QueryContext, getComputeResourceSKUFilters, integrationId, encodedResourceCollectionFilters, clientType), &limit)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	for paginator.HasNext() {
+//		page, err := paginator.NextPage(ctx)
+//		if err != nil {
+//			return nil, err
+//		}
+//
+//		for _, v := range page {
+//			return v, nil
+//		}
+//	}
+//
+//	err = paginator.Close(ctx)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	return nil, nil
+//}
 
 // ==========================  END: ComputeResourceSKU =============================
 
@@ -25979,254 +25979,254 @@ func GetDataLakeAnalyticsAccount(ctx context.Context, d *plugin.QueryData, _ *pl
 
 // ==========================  START: DataLakeStore =============================
 
-type DataLakeStore struct {
-	ResourceID      string                         `json:"resource_id"`
-	PlatformID      string                         `json:"platform_id"`
-	Description     azure.DataLakeStoreDescription `json:"Description"`
-	Metadata        azure.Metadata                 `json:"metadata"`
-	DescribedBy     string                         `json:"described_by"`
-	ResourceType    string                         `json:"resource_type"`
-	IntegrationType string                         `json:"integration_type"`
-	IntegrationID   string                         `json:"integration_id"`
-}
-
-type DataLakeStoreHit struct {
-	ID      string        `json:"_id"`
-	Score   float64       `json:"_score"`
-	Index   string        `json:"_index"`
-	Type    string        `json:"_type"`
-	Version int64         `json:"_version,omitempty"`
-	Source  DataLakeStore `json:"_source"`
-	Sort    []interface{} `json:"sort"`
-}
-
-type DataLakeStoreHits struct {
-	Total essdk.SearchTotal  `json:"total"`
-	Hits  []DataLakeStoreHit `json:"hits"`
-}
-
-type DataLakeStoreSearchResponse struct {
-	PitID string            `json:"pit_id"`
-	Hits  DataLakeStoreHits `json:"hits"`
-}
-
-type DataLakeStorePaginator struct {
-	paginator *essdk.BaseESPaginator
-}
-
-func (k Client) NewDataLakeStorePaginator(filters []essdk.BoolFilter, limit *int64) (DataLakeStorePaginator, error) {
-	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_datalakestore_accounts", filters, limit)
-	if err != nil {
-		return DataLakeStorePaginator{}, err
-	}
-
-	p := DataLakeStorePaginator{
-		paginator: paginator,
-	}
-
-	return p, nil
-}
-
-func (p DataLakeStorePaginator) HasNext() bool {
-	return !p.paginator.Done()
-}
-
-func (p DataLakeStorePaginator) Close(ctx context.Context) error {
-	return p.paginator.Deallocate(ctx)
-}
-
-func (p DataLakeStorePaginator) NextPage(ctx context.Context) ([]DataLakeStore, error) {
-	var response DataLakeStoreSearchResponse
-	err := p.paginator.Search(ctx, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	var values []DataLakeStore
-	for _, hit := range response.Hits.Hits {
-		values = append(values, hit.Source)
-	}
-
-	hits := int64(len(response.Hits.Hits))
-	if hits > 0 {
-		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
-	} else {
-		p.paginator.UpdateState(hits, nil, "")
-	}
-
-	return values, nil
-}
-
-var listDataLakeStoreFilters = map[string]string{
-	"account_id":                    "Description.DataLakeStoreAccount.Properties.AccountID",
-	"current_tier":                  "Description.DataLakeStoreAccount.Properties.CurrentTier",
-	"default_group":                 "Description.DataLakeStoreAccount.Properties.DefaultGroup",
-	"diagnostic_settings":           "Description.DiagnosticSettingsResource",
-	"encryption_config":             "Description.DataLakeStoreAccount.Properties.EncryptionConfig",
-	"encryption_provisioning_state": "Description.DataLakeStoreAccount.Properties.EncryptionProvisioningState",
-	"encryption_state":              "Description.DataLakeStoreAccount.Properties.EncryptionState",
-	"endpoint":                      "Description.DataLakeStoreAccount.Properties.Endpoint",
-	"firewall_allow_azure_ips":      "Description.DataLakeStoreAccount.Properties.FirewallAllowAzureIPs",
-	"firewall_rules":                "Description.DataLakeStoreAccount.Properties.FirewallRules",
-	"firewall_state":                "Description.DataLakeStoreAccount.Properties.FirewallState",
-	"id":                            "Description.DataLakeStoreAccount.ID",
-	"identity":                      "Description.DataLakeStoreAccount.Identity",
-	"name":                          "Description.DataLakeStoreAccount.Name",
-	"new_tier":                      "Description.DataLakeStoreAccount.Properties.NewTier",
-	"platform_integration_id":       "IntegrationID",
-	"provisioning_state":            "Description.DataLakeStoreAccount.Properties.ProvisioningState",
-	"resource_group":                "Description.ResourceGroup",
-	"state":                         "Description.DataLakeStoreAccount.Properties.State",
-	"subscription":                  "Description.DataLakeStoreAccount.Properties.Subscription",
-	"tags":                          "Description.DataLakeStoreAccount.Tags",
-	"title":                         "Description.DataLakeStoreAccount.Name",
-	"trusted_id_provider_state":     "Description.DataLakeStoreAccount.Properties.TrustedIDProviderState",
-	"trusted_id_providers":          "Description.DataLakeStoreAccount.Properties.TrustedIDProviders",
-	"type":                          "Description.DataLakeStoreAccount.Type",
-	"virtual_network_rules":         "Description.DataLakeStoreAccount.Properties.VirtualNetworkRules",
-}
-
-func ListDataLakeStore(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("ListDataLakeStore")
-	runtime.GC()
-
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListDataLakeStore NewClientCached", "error", err)
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListDataLakeStore NewSelfClientCached", "error", err)
-		return nil, err
-	}
-	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListDataLakeStore GetConfigTableValueOrNil for OpenGovernanceConfigKeyIntegrationID", "error", err)
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListDataLakeStore GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListDataLakeStore GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
-		return nil, err
-	}
-
-	paginator, err := k.NewDataLakeStorePaginator(essdk.BuildFilter(ctx, d.QueryContext, listDataLakeStoreFilters, integrationId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListDataLakeStore NewDataLakeStorePaginator", "error", err)
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			plugin.Logger(ctx).Error("ListDataLakeStore paginator.NextPage", "error", err)
-			return nil, err
-		}
-
-		for _, v := range page {
-			d.StreamListItem(ctx, v)
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-var getDataLakeStoreFilters = map[string]string{
-	"account_id":                    "Description.DataLakeStoreAccount.Properties.AccountID",
-	"current_tier":                  "Description.DataLakeStoreAccount.Properties.CurrentTier",
-	"default_group":                 "Description.DataLakeStoreAccount.Properties.DefaultGroup",
-	"diagnostic_settings":           "Description.DiagnosticSettingsResource",
-	"encryption_config":             "Description.DataLakeStoreAccount.Properties.EncryptionConfig",
-	"encryption_provisioning_state": "Description.DataLakeStoreAccount.Properties.EncryptionProvisioningState",
-	"encryption_state":              "Description.DataLakeStoreAccount.Properties.EncryptionState",
-	"endpoint":                      "Description.DataLakeStoreAccount.Properties.Endpoint",
-	"firewall_allow_azure_ips":      "Description.DataLakeStoreAccount.Properties.FirewallAllowAzureIPs",
-	"firewall_rules":                "Description.DataLakeStoreAccount.Properties.FirewallRules",
-	"firewall_state":                "Description.DataLakeStoreAccount.Properties.FirewallState",
-	"id":                            "Description.DataLakeStoreAccount.ID",
-	"identity":                      "Description.DataLakeStoreAccount.Identity",
-	"name":                          "description.DataLakeStoreAccount.name",
-	"new_tier":                      "Description.DataLakeStoreAccount.Properties.NewTier",
-	"platform_integration_id":       "IntegrationID",
-	"provisioning_state":            "Description.DataLakeStoreAccount.Properties.ProvisioningState",
-	"resource_group":                "description.ResourceGroup",
-	"state":                         "Description.DataLakeStoreAccount.Properties.State",
-	"subscription":                  "Description.DataLakeStoreAccount.Properties.Subscription",
-	"tags":                          "Description.DataLakeStoreAccount.Tags",
-	"title":                         "Description.DataLakeStoreAccount.Name",
-	"trusted_id_provider_state":     "Description.DataLakeStoreAccount.Properties.TrustedIDProviderState",
-	"trusted_id_providers":          "Description.DataLakeStoreAccount.Properties.TrustedIDProviders",
-	"type":                          "Description.DataLakeStoreAccount.Type",
-	"virtual_network_rules":         "Description.DataLakeStoreAccount.Properties.VirtualNetworkRules",
-}
-
-func GetDataLakeStore(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("GetDataLakeStore")
-	runtime.GC()
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		return nil, err
-	}
-	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
-	if err != nil {
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		return nil, err
-	}
-
-	limit := int64(1)
-	paginator, err := k.NewDataLakeStorePaginator(essdk.BuildFilter(ctx, d.QueryContext, getDataLakeStoreFilters, integrationId, encodedResourceCollectionFilters, clientType), &limit)
-	if err != nil {
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			return nil, err
-		}
-
-		for _, v := range page {
-			return v, nil
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
+//type DataLakeStore struct {
+//	ResourceID      string                         `json:"resource_id"`
+//	PlatformID      string                         `json:"platform_id"`
+//	Description     azure.DataLakeStoreDescription `json:"Description"`
+//	Metadata        azure.Metadata                 `json:"metadata"`
+//	DescribedBy     string                         `json:"described_by"`
+//	ResourceType    string                         `json:"resource_type"`
+//	IntegrationType string                         `json:"integration_type"`
+//	IntegrationID   string                         `json:"integration_id"`
+//}
+//
+//type DataLakeStoreHit struct {
+//	ID      string        `json:"_id"`
+//	Score   float64       `json:"_score"`
+//	Index   string        `json:"_index"`
+//	Type    string        `json:"_type"`
+//	Version int64         `json:"_version,omitempty"`
+//	Source  DataLakeStore `json:"_source"`
+//	Sort    []interface{} `json:"sort"`
+//}
+//
+//type DataLakeStoreHits struct {
+//	Total essdk.SearchTotal  `json:"total"`
+//	Hits  []DataLakeStoreHit `json:"hits"`
+//}
+//
+//type DataLakeStoreSearchResponse struct {
+//	PitID string            `json:"pit_id"`
+//	Hits  DataLakeStoreHits `json:"hits"`
+//}
+//
+//type DataLakeStorePaginator struct {
+//	paginator *essdk.BaseESPaginator
+//}
+//
+//func (k Client) NewDataLakeStorePaginator(filters []essdk.BoolFilter, limit *int64) (DataLakeStorePaginator, error) {
+//	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_datalakestore_accounts", filters, limit)
+//	if err != nil {
+//		return DataLakeStorePaginator{}, err
+//	}
+//
+//	p := DataLakeStorePaginator{
+//		paginator: paginator,
+//	}
+//
+//	return p, nil
+//}
+//
+//func (p DataLakeStorePaginator) HasNext() bool {
+//	return !p.paginator.Done()
+//}
+//
+//func (p DataLakeStorePaginator) Close(ctx context.Context) error {
+//	return p.paginator.Deallocate(ctx)
+//}
+//
+//func (p DataLakeStorePaginator) NextPage(ctx context.Context) ([]DataLakeStore, error) {
+//	var response DataLakeStoreSearchResponse
+//	err := p.paginator.Search(ctx, &response)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	var values []DataLakeStore
+//	for _, hit := range response.Hits.Hits {
+//		values = append(values, hit.Source)
+//	}
+//
+//	hits := int64(len(response.Hits.Hits))
+//	if hits > 0 {
+//		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
+//	} else {
+//		p.paginator.UpdateState(hits, nil, "")
+//	}
+//
+//	return values, nil
+//}
+//
+//var listDataLakeStoreFilters = map[string]string{
+//	"account_id":                    "Description.DataLakeStoreAccount.Properties.AccountID",
+//	"current_tier":                  "Description.DataLakeStoreAccount.Properties.CurrentTier",
+//	"default_group":                 "Description.DataLakeStoreAccount.Properties.DefaultGroup",
+//	"diagnostic_settings":           "Description.DiagnosticSettingsResource",
+//	"encryption_config":             "Description.DataLakeStoreAccount.Properties.EncryptionConfig",
+//	"encryption_provisioning_state": "Description.DataLakeStoreAccount.Properties.EncryptionProvisioningState",
+//	"encryption_state":              "Description.DataLakeStoreAccount.Properties.EncryptionState",
+//	"endpoint":                      "Description.DataLakeStoreAccount.Properties.Endpoint",
+//	"firewall_allow_azure_ips":      "Description.DataLakeStoreAccount.Properties.FirewallAllowAzureIPs",
+//	"firewall_rules":                "Description.DataLakeStoreAccount.Properties.FirewallRules",
+//	"firewall_state":                "Description.DataLakeStoreAccount.Properties.FirewallState",
+//	"id":                            "Description.DataLakeStoreAccount.ID",
+//	"identity":                      "Description.DataLakeStoreAccount.Identity",
+//	"name":                          "Description.DataLakeStoreAccount.Name",
+//	"new_tier":                      "Description.DataLakeStoreAccount.Properties.NewTier",
+//	"platform_integration_id":       "IntegrationID",
+//	"provisioning_state":            "Description.DataLakeStoreAccount.Properties.ProvisioningState",
+//	"resource_group":                "Description.ResourceGroup",
+//	"state":                         "Description.DataLakeStoreAccount.Properties.State",
+//	"subscription":                  "Description.DataLakeStoreAccount.Properties.Subscription",
+//	"tags":                          "Description.DataLakeStoreAccount.Tags",
+//	"title":                         "Description.DataLakeStoreAccount.Name",
+//	"trusted_id_provider_state":     "Description.DataLakeStoreAccount.Properties.TrustedIDProviderState",
+//	"trusted_id_providers":          "Description.DataLakeStoreAccount.Properties.TrustedIDProviders",
+//	"type":                          "Description.DataLakeStoreAccount.Type",
+//	"virtual_network_rules":         "Description.DataLakeStoreAccount.Properties.VirtualNetworkRules",
+//}
+//
+//func ListDataLakeStore(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
+//	plugin.Logger(ctx).Trace("ListDataLakeStore")
+//	runtime.GC()
+//
+//	// create service
+//	cfg := essdk.GetConfig(d.Connection)
+//	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListDataLakeStore NewClientCached", "error", err)
+//		return nil, err
+//	}
+//	k := Client{Client: ke}
+//
+//	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListDataLakeStore NewSelfClientCached", "error", err)
+//		return nil, err
+//	}
+//	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListDataLakeStore GetConfigTableValueOrNil for OpenGovernanceConfigKeyIntegrationID", "error", err)
+//		return nil, err
+//	}
+//	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListDataLakeStore GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
+//		return nil, err
+//	}
+//	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListDataLakeStore GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
+//		return nil, err
+//	}
+//
+//	paginator, err := k.NewDataLakeStorePaginator(essdk.BuildFilter(ctx, d.QueryContext, listDataLakeStoreFilters, integrationId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListDataLakeStore NewDataLakeStorePaginator", "error", err)
+//		return nil, err
+//	}
+//
+//	for paginator.HasNext() {
+//		page, err := paginator.NextPage(ctx)
+//		if err != nil {
+//			plugin.Logger(ctx).Error("ListDataLakeStore paginator.NextPage", "error", err)
+//			return nil, err
+//		}
+//
+//		for _, v := range page {
+//			d.StreamListItem(ctx, v)
+//		}
+//	}
+//
+//	err = paginator.Close(ctx)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	return nil, nil
+//}
+//
+//var getDataLakeStoreFilters = map[string]string{
+//	"account_id":                    "Description.DataLakeStoreAccount.Properties.AccountID",
+//	"current_tier":                  "Description.DataLakeStoreAccount.Properties.CurrentTier",
+//	"default_group":                 "Description.DataLakeStoreAccount.Properties.DefaultGroup",
+//	"diagnostic_settings":           "Description.DiagnosticSettingsResource",
+//	"encryption_config":             "Description.DataLakeStoreAccount.Properties.EncryptionConfig",
+//	"encryption_provisioning_state": "Description.DataLakeStoreAccount.Properties.EncryptionProvisioningState",
+//	"encryption_state":              "Description.DataLakeStoreAccount.Properties.EncryptionState",
+//	"endpoint":                      "Description.DataLakeStoreAccount.Properties.Endpoint",
+//	"firewall_allow_azure_ips":      "Description.DataLakeStoreAccount.Properties.FirewallAllowAzureIPs",
+//	"firewall_rules":                "Description.DataLakeStoreAccount.Properties.FirewallRules",
+//	"firewall_state":                "Description.DataLakeStoreAccount.Properties.FirewallState",
+//	"id":                            "Description.DataLakeStoreAccount.ID",
+//	"identity":                      "Description.DataLakeStoreAccount.Identity",
+//	"name":                          "description.DataLakeStoreAccount.name",
+//	"new_tier":                      "Description.DataLakeStoreAccount.Properties.NewTier",
+//	"platform_integration_id":       "IntegrationID",
+//	"provisioning_state":            "Description.DataLakeStoreAccount.Properties.ProvisioningState",
+//	"resource_group":                "description.ResourceGroup",
+//	"state":                         "Description.DataLakeStoreAccount.Properties.State",
+//	"subscription":                  "Description.DataLakeStoreAccount.Properties.Subscription",
+//	"tags":                          "Description.DataLakeStoreAccount.Tags",
+//	"title":                         "Description.DataLakeStoreAccount.Name",
+//	"trusted_id_provider_state":     "Description.DataLakeStoreAccount.Properties.TrustedIDProviderState",
+//	"trusted_id_providers":          "Description.DataLakeStoreAccount.Properties.TrustedIDProviders",
+//	"type":                          "Description.DataLakeStoreAccount.Type",
+//	"virtual_network_rules":         "Description.DataLakeStoreAccount.Properties.VirtualNetworkRules",
+//}
+//
+//func GetDataLakeStore(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
+//	plugin.Logger(ctx).Trace("GetDataLakeStore")
+//	runtime.GC()
+//	// create service
+//	cfg := essdk.GetConfig(d.Connection)
+//	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
+//	if err != nil {
+//		return nil, err
+//	}
+//	k := Client{Client: ke}
+//
+//	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
+//	if err != nil {
+//		return nil, err
+//	}
+//	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
+//	if err != nil {
+//		return nil, err
+//	}
+//	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
+//	if err != nil {
+//		return nil, err
+//	}
+//	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	limit := int64(1)
+//	paginator, err := k.NewDataLakeStorePaginator(essdk.BuildFilter(ctx, d.QueryContext, getDataLakeStoreFilters, integrationId, encodedResourceCollectionFilters, clientType), &limit)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	for paginator.HasNext() {
+//		page, err := paginator.NextPage(ctx)
+//		if err != nil {
+//			return nil, err
+//		}
+//
+//		for _, v := range page {
+//			return v, nil
+//		}
+//	}
+//
+//	err = paginator.Close(ctx)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	return nil, nil
+//}
 
 // ==========================  END: DataLakeStore =============================
 
@@ -35054,214 +35054,214 @@ func GetOperationalInsightsWorkspaces(ctx context.Context, d *plugin.QueryData, 
 
 // ==========================  START: TimeSeriesInsightsEnvironments =============================
 
-type TimeSeriesInsightsEnvironments struct {
-	ResourceID      string                                          `json:"resource_id"`
-	PlatformID      string                                          `json:"platform_id"`
-	Description     azure.TimeSeriesInsightsEnvironmentsDescription `json:"Description"`
-	Metadata        azure.Metadata                                  `json:"metadata"`
-	DescribedBy     string                                          `json:"described_by"`
-	ResourceType    string                                          `json:"resource_type"`
-	IntegrationType string                                          `json:"integration_type"`
-	IntegrationID   string                                          `json:"integration_id"`
-}
-
-type TimeSeriesInsightsEnvironmentsHit struct {
-	ID      string                         `json:"_id"`
-	Score   float64                        `json:"_score"`
-	Index   string                         `json:"_index"`
-	Type    string                         `json:"_type"`
-	Version int64                          `json:"_version,omitempty"`
-	Source  TimeSeriesInsightsEnvironments `json:"_source"`
-	Sort    []interface{}                  `json:"sort"`
-}
-
-type TimeSeriesInsightsEnvironmentsHits struct {
-	Total essdk.SearchTotal                   `json:"total"`
-	Hits  []TimeSeriesInsightsEnvironmentsHit `json:"hits"`
-}
-
-type TimeSeriesInsightsEnvironmentsSearchResponse struct {
-	PitID string                             `json:"pit_id"`
-	Hits  TimeSeriesInsightsEnvironmentsHits `json:"hits"`
-}
-
-type TimeSeriesInsightsEnvironmentsPaginator struct {
-	paginator *essdk.BaseESPaginator
-}
-
-func (k Client) NewTimeSeriesInsightsEnvironmentsPaginator(filters []essdk.BoolFilter, limit *int64) (TimeSeriesInsightsEnvironmentsPaginator, error) {
-	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_timeseriesinsights_environments", filters, limit)
-	if err != nil {
-		return TimeSeriesInsightsEnvironmentsPaginator{}, err
-	}
-
-	p := TimeSeriesInsightsEnvironmentsPaginator{
-		paginator: paginator,
-	}
-
-	return p, nil
-}
-
-func (p TimeSeriesInsightsEnvironmentsPaginator) HasNext() bool {
-	return !p.paginator.Done()
-}
-
-func (p TimeSeriesInsightsEnvironmentsPaginator) Close(ctx context.Context) error {
-	return p.paginator.Deallocate(ctx)
-}
-
-func (p TimeSeriesInsightsEnvironmentsPaginator) NextPage(ctx context.Context) ([]TimeSeriesInsightsEnvironments, error) {
-	var response TimeSeriesInsightsEnvironmentsSearchResponse
-	err := p.paginator.Search(ctx, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	var values []TimeSeriesInsightsEnvironments
-	for _, hit := range response.Hits.Hits {
-		values = append(values, hit.Source)
-	}
-
-	hits := int64(len(response.Hits.Hits))
-	if hits > 0 {
-		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
-	} else {
-		p.paginator.UpdateState(hits, nil, "")
-	}
-
-	return values, nil
-}
-
-var listTimeSeriesInsightsEnvironmentsFilters = map[string]string{
-	"id":                      "Description.Environments.ID",
-	"name":                    "Description.Environment.Name",
-	"platform_integration_id": "IntegrationID",
-	"subscription":            "Description.Environments.Properties.Subscription",
-	"tags":                    "Description.Environment.Tags",
-	"title":                   "Description.Environment.Name",
-}
-
-func ListTimeSeriesInsightsEnvironments(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("ListTimeSeriesInsightsEnvironments")
-	runtime.GC()
-
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListTimeSeriesInsightsEnvironments NewClientCached", "error", err)
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListTimeSeriesInsightsEnvironments NewSelfClientCached", "error", err)
-		return nil, err
-	}
-	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListTimeSeriesInsightsEnvironments GetConfigTableValueOrNil for OpenGovernanceConfigKeyIntegrationID", "error", err)
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListTimeSeriesInsightsEnvironments GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListTimeSeriesInsightsEnvironments GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
-		return nil, err
-	}
-
-	paginator, err := k.NewTimeSeriesInsightsEnvironmentsPaginator(essdk.BuildFilter(ctx, d.QueryContext, listTimeSeriesInsightsEnvironmentsFilters, integrationId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
-	if err != nil {
-		plugin.Logger(ctx).Error("ListTimeSeriesInsightsEnvironments NewTimeSeriesInsightsEnvironmentsPaginator", "error", err)
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			plugin.Logger(ctx).Error("ListTimeSeriesInsightsEnvironments paginator.NextPage", "error", err)
-			return nil, err
-		}
-
-		for _, v := range page {
-			d.StreamListItem(ctx, v)
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
-
-var getTimeSeriesInsightsEnvironmentsFilters = map[string]string{
-	"id":                      "Description.Environments.ID",
-	"name":                    "Description.Environment.Name",
-	"platform_integration_id": "IntegrationID",
-	"subscription":            "Description.Environments.Properties.Subscription",
-	"tags":                    "Description.Environment.Tags",
-	"title":                   "Description.Environment.Name",
-}
-
-func GetTimeSeriesInsightsEnvironments(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	plugin.Logger(ctx).Trace("GetTimeSeriesInsightsEnvironments")
-	runtime.GC()
-	// create service
-	cfg := essdk.GetConfig(d.Connection)
-	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
-	if err != nil {
-		return nil, err
-	}
-	k := Client{Client: ke}
-
-	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
-	if err != nil {
-		return nil, err
-	}
-	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
-	if err != nil {
-		return nil, err
-	}
-	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
-	if err != nil {
-		return nil, err
-	}
-	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
-	if err != nil {
-		return nil, err
-	}
-
-	limit := int64(1)
-	paginator, err := k.NewTimeSeriesInsightsEnvironmentsPaginator(essdk.BuildFilter(ctx, d.QueryContext, getTimeSeriesInsightsEnvironmentsFilters, integrationId, encodedResourceCollectionFilters, clientType), &limit)
-	if err != nil {
-		return nil, err
-	}
-
-	for paginator.HasNext() {
-		page, err := paginator.NextPage(ctx)
-		if err != nil {
-			return nil, err
-		}
-
-		for _, v := range page {
-			return v, nil
-		}
-	}
-
-	err = paginator.Close(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return nil, nil
-}
+//type TimeSeriesInsightsEnvironments struct {
+//	ResourceID      string                                          `json:"resource_id"`
+//	PlatformID      string                                          `json:"platform_id"`
+//	Description     azure.TimeSeriesInsightsEnvironmentsDescription `json:"Description"`
+//	Metadata        azure.Metadata                                  `json:"metadata"`
+//	DescribedBy     string                                          `json:"described_by"`
+//	ResourceType    string                                          `json:"resource_type"`
+//	IntegrationType string                                          `json:"integration_type"`
+//	IntegrationID   string                                          `json:"integration_id"`
+//}
+//
+//type TimeSeriesInsightsEnvironmentsHit struct {
+//	ID      string                         `json:"_id"`
+//	Score   float64                        `json:"_score"`
+//	Index   string                         `json:"_index"`
+//	Type    string                         `json:"_type"`
+//	Version int64                          `json:"_version,omitempty"`
+//	Source  TimeSeriesInsightsEnvironments `json:"_source"`
+//	Sort    []interface{}                  `json:"sort"`
+//}
+//
+//type TimeSeriesInsightsEnvironmentsHits struct {
+//	Total essdk.SearchTotal                   `json:"total"`
+//	Hits  []TimeSeriesInsightsEnvironmentsHit `json:"hits"`
+//}
+//
+//type TimeSeriesInsightsEnvironmentsSearchResponse struct {
+//	PitID string                             `json:"pit_id"`
+//	Hits  TimeSeriesInsightsEnvironmentsHits `json:"hits"`
+//}
+//
+//type TimeSeriesInsightsEnvironmentsPaginator struct {
+//	paginator *essdk.BaseESPaginator
+//}
+//
+//func (k Client) NewTimeSeriesInsightsEnvironmentsPaginator(filters []essdk.BoolFilter, limit *int64) (TimeSeriesInsightsEnvironmentsPaginator, error) {
+//	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_timeseriesinsights_environments", filters, limit)
+//	if err != nil {
+//		return TimeSeriesInsightsEnvironmentsPaginator{}, err
+//	}
+//
+//	p := TimeSeriesInsightsEnvironmentsPaginator{
+//		paginator: paginator,
+//	}
+//
+//	return p, nil
+//}
+//
+//func (p TimeSeriesInsightsEnvironmentsPaginator) HasNext() bool {
+//	return !p.paginator.Done()
+//}
+//
+//func (p TimeSeriesInsightsEnvironmentsPaginator) Close(ctx context.Context) error {
+//	return p.paginator.Deallocate(ctx)
+//}
+//
+//func (p TimeSeriesInsightsEnvironmentsPaginator) NextPage(ctx context.Context) ([]TimeSeriesInsightsEnvironments, error) {
+//	var response TimeSeriesInsightsEnvironmentsSearchResponse
+//	err := p.paginator.Search(ctx, &response)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	var values []TimeSeriesInsightsEnvironments
+//	for _, hit := range response.Hits.Hits {
+//		values = append(values, hit.Source)
+//	}
+//
+//	hits := int64(len(response.Hits.Hits))
+//	if hits > 0 {
+//		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
+//	} else {
+//		p.paginator.UpdateState(hits, nil, "")
+//	}
+//
+//	return values, nil
+//}
+//
+//var listTimeSeriesInsightsEnvironmentsFilters = map[string]string{
+//	"id":                      "Description.Environments.ID",
+//	"name":                    "Description.Environment.Name",
+//	"platform_integration_id": "IntegrationID",
+//	"subscription":            "Description.Environments.Properties.Subscription",
+//	"tags":                    "Description.Environment.Tags",
+//	"title":                   "Description.Environment.Name",
+//}
+//
+//func ListTimeSeriesInsightsEnvironments(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
+//	plugin.Logger(ctx).Trace("ListTimeSeriesInsightsEnvironments")
+//	runtime.GC()
+//
+//	// create service
+//	cfg := essdk.GetConfig(d.Connection)
+//	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListTimeSeriesInsightsEnvironments NewClientCached", "error", err)
+//		return nil, err
+//	}
+//	k := Client{Client: ke}
+//
+//	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListTimeSeriesInsightsEnvironments NewSelfClientCached", "error", err)
+//		return nil, err
+//	}
+//	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListTimeSeriesInsightsEnvironments GetConfigTableValueOrNil for OpenGovernanceConfigKeyIntegrationID", "error", err)
+//		return nil, err
+//	}
+//	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListTimeSeriesInsightsEnvironments GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
+//		return nil, err
+//	}
+//	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListTimeSeriesInsightsEnvironments GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
+//		return nil, err
+//	}
+//
+//	paginator, err := k.NewTimeSeriesInsightsEnvironmentsPaginator(essdk.BuildFilter(ctx, d.QueryContext, listTimeSeriesInsightsEnvironmentsFilters, integrationId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
+//	if err != nil {
+//		plugin.Logger(ctx).Error("ListTimeSeriesInsightsEnvironments NewTimeSeriesInsightsEnvironmentsPaginator", "error", err)
+//		return nil, err
+//	}
+//
+//	for paginator.HasNext() {
+//		page, err := paginator.NextPage(ctx)
+//		if err != nil {
+//			plugin.Logger(ctx).Error("ListTimeSeriesInsightsEnvironments paginator.NextPage", "error", err)
+//			return nil, err
+//		}
+//
+//		for _, v := range page {
+//			d.StreamListItem(ctx, v)
+//		}
+//	}
+//
+//	err = paginator.Close(ctx)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	return nil, nil
+//}
+//
+//var getTimeSeriesInsightsEnvironmentsFilters = map[string]string{
+//	"id":                      "Description.Environments.ID",
+//	"name":                    "Description.Environment.Name",
+//	"platform_integration_id": "IntegrationID",
+//	"subscription":            "Description.Environments.Properties.Subscription",
+//	"tags":                    "Description.Environment.Tags",
+//	"title":                   "Description.Environment.Name",
+//}
+//
+//func GetTimeSeriesInsightsEnvironments(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
+//	plugin.Logger(ctx).Trace("GetTimeSeriesInsightsEnvironments")
+//	runtime.GC()
+//	// create service
+//	cfg := essdk.GetConfig(d.Connection)
+//	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
+//	if err != nil {
+//		return nil, err
+//	}
+//	k := Client{Client: ke}
+//
+//	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
+//	if err != nil {
+//		return nil, err
+//	}
+//	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
+//	if err != nil {
+//		return nil, err
+//	}
+//	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
+//	if err != nil {
+//		return nil, err
+//	}
+//	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	limit := int64(1)
+//	paginator, err := k.NewTimeSeriesInsightsEnvironmentsPaginator(essdk.BuildFilter(ctx, d.QueryContext, getTimeSeriesInsightsEnvironmentsFilters, integrationId, encodedResourceCollectionFilters, clientType), &limit)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	for paginator.HasNext() {
+//		page, err := paginator.NextPage(ctx)
+//		if err != nil {
+//			return nil, err
+//		}
+//
+//		for _, v := range page {
+//			return v, nil
+//		}
+//	}
+//
+//	err = paginator.Close(ctx)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	return nil, nil
+//}
 
 // ==========================  END: TimeSeriesInsightsEnvironments =============================
 
