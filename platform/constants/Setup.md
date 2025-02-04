@@ -2,6 +2,9 @@
 
 This guide provides step-by-step instructions to integrate your Azure subscriptions with opencomply by creating a Service Principal with read-only access. This integration enables opencomply to provide visibility and governance capabilities over your Azure resources.
 
+
+### Note: Simply create a SPN, with Reader Access to Azure Subscriptions you wish to onboard.
+
 ## Table of Contents
 
 - [Azure Subscriptions Integration Setup Guide for opencomply](#azure-subscriptions-integration-setup-guide-for-opencomply)
