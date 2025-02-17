@@ -22,9 +22,9 @@ func tableAzureIamRoleAssignment(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
-				Name:        "subscription",
-				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Description.RoleAssignment.Properties.Subscription"),
+				Name:      "subscription",
+				Type:      proto.ColumnType_STRING,
+				Transform: transform.FromField("Description.Subscription"),
 			},
 			{
 				Name:        "name",
