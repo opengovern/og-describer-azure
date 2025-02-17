@@ -253,7 +253,7 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 
 		opengovernanceTable := false
 		for _, col := range table.Columns {
-			if col != nil && col.Name == "platform_account_id" {
+			if col != nil && col.Name == "platform_integration_id" {
 				opengovernanceTable = true
 			}
 		}
