@@ -5,12 +5,12 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"github.com/opengovern/og-describer-azure/global/constants"
 	"os"
 	"sort"
 	"strings"
 	"text/template"
 
-	"github.com/opengovern/og-describer-azure/global"
 	"github.com/opengovern/og-util/pkg/integration/interfaces"
 )
 
@@ -88,7 +88,7 @@ func main() {
 
 	// Set default output paths if not provided
 	if output == nil || len(*output) == 0 {
-		v := "global/maps/provider_resource_types.go"
+		v := "global/maps/provider_resource_types.gen.go"
 		output = &v
 	}
 
@@ -100,10 +100,10 @@ import (
 	"%[1]s/discovery/provider"
 	"%[1]s/platform/constants"
 	"github.com/opengovern/og-util/pkg/integration/interfaces"
-	model "%[1]s/discovery/pkg/models"
+	model "github.com/opengovern/og-describer-%[2]s/discovery/pkg/models"
 )
 var ResourceTypes = map[string]model.ResourceType{
-`, global.OGPluginRepoURL))
+`, constants.OGPluginRepoURL, constants.IntegrationTypeLower))
 
 	// Iterate over each resource type to build its string representations
 	for _, resourceType := range resourceTypes {
