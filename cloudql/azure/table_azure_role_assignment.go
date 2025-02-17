@@ -17,6 +17,9 @@ func tableAzureIamRoleAssignment(_ context.Context) *plugin.Table {
 	return &plugin.Table{
 		Name:        "azure_role_assignment",
 		Description: "Azure Role Assignment",
+		Get: &plugin.GetConfig{
+			Hydrate: opengovernance.GetRoleAssignment,
+		},
 		List: &plugin.ListConfig{
 			Hydrate: opengovernance.ListRoleAssignment,
 		},
