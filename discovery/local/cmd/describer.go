@@ -6,14 +6,15 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/opengovern/og-describer-azure/global"
+	"github.com/opengovern/og-describer-azure/global/constants"
 	"os"
 	"strconv"
 	"strings"
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/opengovern/og-describer-azure/discovery/pkg/orchestrator"
 	model "github.com/opengovern/og-describer-azure/discovery/pkg/models"
+	"github.com/opengovern/og-describer-azure/discovery/pkg/orchestrator"
 	"github.com/opengovern/og-describer-azure/discovery/provider"
 	"github.com/opengovern/og-util/pkg/describe"
 	"github.com/opengovern/og-util/pkg/es"
@@ -56,7 +57,7 @@ var describerCmd = &cobra.Command{
 			IntegrationID:   "",
 			ProviderID:      "",
 			DescribedAt:     time.Now().UnixMilli(),
-			IntegrationType: global.IntegrationTypeLower,
+			IntegrationType: constants.IntegrationTypeLower,
 			CipherText:      "",
 			IntegrationLabels: map[string]string{
 				"OrganizationName": OrganizationName,
@@ -127,7 +128,7 @@ var describerCmd = &cobra.Command{
 				ResourceID:      resource.UniqueID(),
 				ResourceName:    resource.Name,
 				Description:     description,
-				IntegrationType: global.IntegrationName,
+				IntegrationType: constants.IntegrationName,
 				ResourceType:    strings.ToLower(job.ResourceType),
 				IntegrationID:   job.IntegrationID,
 				Metadata:        metadata,

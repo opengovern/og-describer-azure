@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/opengovern/og-describer-azure/global"
+	"github.com/opengovern/og-describer-azure/global/constants"
 	"os"
 	"strings"
 )
@@ -41,7 +41,7 @@ func main() {
 	}
 
 	if indexMap == nil || len(*indexMap) == 0 {
-		v := "global/maps/table_index_map.go"
+		v := "global/maps/table_index_map.gen.go"
 		indexMap = &v
 	}
 
@@ -63,7 +63,7 @@ import (
 )
 
 var ResourceTypesToTables = map[string]string{
-`, global.OGPluginRepoURL))
+`, constants.OGPluginRepoURL))
 	for _, resourceType := range resourceTypes {
 		b.WriteString(fmt.Sprintf("  \"%s\": \"%s\",\n", resourceType.ResourceName, resourceType.SteampipeTable))
 	}
