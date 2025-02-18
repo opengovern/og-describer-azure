@@ -801,7 +801,31 @@ type RoleAssignmentDescription struct {
 	Subscription   string
 }
 
+// populate(objectMap, "id", r.ID)
+//
+//	populate(objectMap, "name", r.Name)
+//	populate(objectMap, "properties", r.Properties)
+//	populate(objectMap, "type", r.Type)
+//
 //index:microsoft_authorization_roledefinitions
+//getfilter:name=Description.RoleDefinition.name
+//listfilter:name=Description.RoleDefinition.name
+//getfilter:title=Description.RoleDefinition.name
+//listfilter:title=Description.RoleDefinition.name
+//getfilter:id=Description.RoleDefinition.id
+//listfilter:id=Description.RoleDefinition.id
+//getfilter:type=Description.RoleDefinition.type
+//listfilter:type=Description.RoleDefinition.type
+//getfilter:role_name=Description.RoleDefinition.properties.roleName
+//listfilter:role_name=Description.RoleDefinition.properties.roleName
+//getfilter:role_type=Description.RoleDefinition.properties.type
+//listfilter:role_type=Description.RoleDefinition.properties.type
+//getfilter:description=Description.RoleDefinition.properties.description
+//listfilter:description=Description.RoleDefinition.properties.description
+//getfilter:assignable_scopes=Description.RoleDefinition.properties.assignableScopes
+//listfilter:assignable_scopes=Description.RoleDefinition.properties.assignableScopes
+//getfilter:permissions=Description.RoleDefinition.properties.permissions
+//listfilter:permissions=Description.RoleDefinition.properties.permissions
 type RoleDefinitionDescription struct {
 	RoleDefinition armauthorization.RoleDefinition
 	Subscription   string
@@ -997,6 +1021,20 @@ type TenantDescription struct {
 }
 
 //index:microsoft_resources_subscriptions
+//getfilter:id=Description.Subscription.id
+//listfilter:id=Description.Subscription.id
+//getfilter:subscription_id=Description.Subscription.subscriptionId
+//listfilter:subscription_id=Description.Subscription.subscriptionId
+//getfilter:display_name=Description.Subscription.displayName
+//listfilter:display_name=Description.Subscription.displayName
+//getfilter:state=Description.Subscription.state
+//listfilter:state=Description.Subscription.state
+//getfilter:authorization_source=Description.Subscription.authorizationSource
+//listfilter:authorization_source=Description.Subscription.authorizationSource
+//getfilter:subscription_policies=Description.Subscription.subscriptionPolicies
+//listfilter:subscription_policies=Description.Subscription.subscriptionPolicies
+//getfilter:title=Description.Subscription.displayName
+//listfilter:title=Description.Subscription.displayName
 type SubscriptionDescription struct {
 	Subscription   armsubscription.Subscription
 	Tags           map[string][]string

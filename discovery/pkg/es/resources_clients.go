@@ -15699,7 +15699,7 @@ func (p RoleAssignmentPaginator) Close(ctx context.Context) error {
 
 func (p RoleAssignmentPaginator) NextPage(ctx context.Context) ([]RoleAssignment, error) {
 	var response RoleAssignmentSearchResponse
-	err := p.paginator.SearchWithLog(ctx, &response, true)
+	err := p.paginator.Search(ctx, &response)
 	if err != nil {
 		return nil, err
 	}
@@ -15945,16 +15945,16 @@ func (p RoleDefinitionPaginator) NextPage(ctx context.Context) ([]RoleDefinition
 }
 
 var listRoleDefinitionFilters = map[string]string{
-	"assignable_scopes":       "Description.RoleDefinition.Properties.AssignableScopes",
-	"description":             "Description.RoleDefinition.Properties.Description",
-	"id":                      "Description.RoleDefinition.ID",
-	"name":                    "Description.RoleDefinition.Name",
-	"permissions":             "Description.RoleDefinition.Properties.Permissions",
+	"assignable_scopes":       "Description.RoleDefinition.properties.assignableScopes",
+	"description":             "Description.RoleDefinition.properties.description",
+	"id":                      "Description.RoleDefinition.id",
+	"name":                    "Description.RoleDefinition.name",
+	"permissions":             "Description.RoleDefinition.properties.permissions",
 	"platform_integration_id": "IntegrationID",
-	"role_name":               "Description.RoleDefinition.Properties.RoleName",
-	"role_type":               "Description.RoleDefinition.Properties.RoleType",
-	"subscription":            "Description.RoleDefinition.Properties.Subscription",
-	"type":                    "Description.RoleDefinition.Type",
+	"role_name":               "Description.RoleDefinition.properties.roleName",
+	"role_type":               "Description.RoleDefinition.properties.type",
+	"title":                   "Description.RoleDefinition.name",
+	"type":                    "Description.RoleDefinition.type",
 }
 
 func ListRoleDefinition(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -16018,16 +16018,16 @@ func ListRoleDefinition(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 }
 
 var getRoleDefinitionFilters = map[string]string{
-	"assignable_scopes":       "Description.RoleDefinition.Properties.AssignableScopes",
-	"description":             "Description.RoleDefinition.Properties.Description",
-	"id":                      "Description.RoleDefinition.ID",
-	"name":                    "Description.RoleDefinition.Name",
-	"permissions":             "Description.RoleDefinition.Properties.Permissions",
+	"assignable_scopes":       "Description.RoleDefinition.properties.assignableScopes",
+	"description":             "Description.RoleDefinition.properties.description",
+	"id":                      "Description.RoleDefinition.id",
+	"name":                    "Description.RoleDefinition.name",
+	"permissions":             "Description.RoleDefinition.properties.permissions",
 	"platform_integration_id": "IntegrationID",
-	"role_name":               "Description.RoleDefinition.Properties.RoleName",
-	"role_type":               "Description.RoleDefinition.Properties.RoleType",
-	"subscription":            "Description.RoleDefinition.Properties.Subscription",
-	"type":                    "Description.RoleDefinition.Type",
+	"role_name":               "Description.RoleDefinition.properties.roleName",
+	"role_type":               "Description.RoleDefinition.properties.type",
+	"title":                   "Description.RoleDefinition.name",
+	"type":                    "Description.RoleDefinition.type",
 }
 
 func GetRoleDefinition(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -20303,17 +20303,16 @@ func (p SubscriptionPaginator) NextPage(ctx context.Context) ([]Subscription, er
 }
 
 var listSubscriptionFilters = map[string]string{
-	"authorization_source":    "Description.Subscription.AuthorizationSource",
-	"display_name":            "Description.Subscription.DisplayName",
-	"id":                      "Description.Subscription.ID",
+	"authorization_source":    "Description.Subscription.authorizationSource",
+	"display_name":            "Description.Subscription.displayName",
+	"id":                      "Description.Subscription.id",
 	"platform_integration_id": "IntegrationID",
-	"state":                   "Description.Subscription.State",
-	"subscription":            "Description.Subscription.Properties.Subscription",
-	"subscription_id":         "Description.Subscription.SubscriptionID",
-	"subscription_policies":   "Description.Subscription.SubscriptionPolicies",
+	"state":                   "Description.Subscription.state",
+	"subscription_id":         "Description.Subscription.subscriptionId",
+	"subscription_policies":   "Description.Subscription.subscriptionPolicies",
 	"tags":                    "Description.Tags",
 	"tenant_id":               "TenantID",
-	"title":                   "Description.Subscription.DisplayName",
+	"title":                   "Description.Subscription.displayName",
 }
 
 func ListSubscription(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -20377,17 +20376,16 @@ func ListSubscription(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 }
 
 var getSubscriptionFilters = map[string]string{
-	"authorization_source":    "Description.Subscription.AuthorizationSource",
-	"display_name":            "Description.Subscription.DisplayName",
-	"id":                      "Description.Subscription.ID",
+	"authorization_source":    "Description.Subscription.authorizationSource",
+	"display_name":            "Description.Subscription.displayName",
+	"id":                      "Description.Subscription.id",
 	"platform_integration_id": "IntegrationID",
-	"state":                   "Description.Subscription.State",
-	"subscription":            "Description.Subscription.Properties.Subscription",
-	"subscription_id":         "Description.Subscription.SubscriptionID",
-	"subscription_policies":   "Description.Subscription.SubscriptionPolicies",
+	"state":                   "Description.Subscription.state",
+	"subscription_id":         "Description.Subscription.subscriptionId",
+	"subscription_policies":   "Description.Subscription.subscriptionPolicies",
 	"tags":                    "Description.Tags",
 	"tenant_id":               "TenantID",
-	"title":                   "Description.Subscription.DisplayName",
+	"title":                   "Description.Subscription.displayName",
 }
 
 func GetSubscription(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {

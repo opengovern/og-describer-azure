@@ -29,11 +29,6 @@ func tableAzureIamRoleDefinition(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
-				Name:        "subscription",
-				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Description.RoleDefinition.Properties.Subscription"),
-			},
-			{
 				Name:        "name",
 				Type:        proto.ColumnType_STRING,
 				Description: "The friendly name that identifies the role definition.",
