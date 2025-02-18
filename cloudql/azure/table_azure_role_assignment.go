@@ -33,68 +33,61 @@ func tableAzureIamRoleAssignment(_ context.Context) *plugin.Table {
 				Name:        "name",
 				Type:        proto.ColumnType_STRING,
 				Description: "The friendly name that identifies the role assignment.",
-				Transform:   transform.FromField("Description.RoleAssignment.Name")},
+				Transform:   transform.FromField("Description.RoleAssignment.name")},
 			{
 				Name:        "id",
 				Description: "Contains ID to identify a role assignment uniquely.",
 				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Description.RoleAssignment.ID")},
+				Transform:   transform.FromField("Description.RoleAssignment.id")},
 			{
 				Name:        "scope",
 				Description: "Current state of the role assignment.",
 				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Description.RoleAssignment.Properties.Scope")},
+				Transform:   transform.FromField("Description.RoleAssignment.properties.scope")},
 			{
 				Name:        "type",
 				Description: "Contains the resource type.",
 				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Description.RoleAssignment.Type")},
+				Transform:   transform.FromField("Description.RoleAssignment.type")},
 			{
 				Name:        "principal_id",
 				Description: "Contains the principal id.",
 				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Description.RoleAssignment.Properties.PrincipalID")},
+				Transform:   transform.FromField("Description.RoleAssignment.properties.principalId")},
 			{
 				Name:        "principal_type",
 				Description: "Principal type of the assigned principal ID.",
 				Type:        proto.ColumnType_STRING,
 
-				Transform: transform.FromField("Description.RoleAssignment.Properties.PrincipalType"),
+				Transform: transform.FromField("Description.RoleAssignment.properties.principalType"),
 			},
 			{
 				Name:        "created_on",
 				Description: "Time it was created.",
 				Type:        proto.ColumnType_TIMESTAMP,
-				Transform:   transform.FromField("Description.RoleAssignment.Properties.CreatedOn"),
+				Transform:   transform.FromField("Description.RoleAssignment.properties.createdOn"),
 			},
 			{
 				Name:        "updated_on",
 				Description: "Time it was updated.",
 				Type:        proto.ColumnType_TIMESTAMP,
-				Transform:   transform.FromField("Description.RoleAssignment.Properties.UpdatedOn"),
+				Transform:   transform.FromField("Description.RoleAssignment.properties.updatedOn"),
 			},
 			{
 				Name:        "role_definition_id",
 				Description: "Name of the assigned role definition.",
 				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Description.RoleAssignment.Properties.RoleDefinitionID")},
+				Transform:   transform.FromField("Description.RoleAssignment.properties.roleDefinitionID")},
 			{
 				Name:        "title",
 				Description: ColumnDescriptionTitle,
 				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Description.RoleAssignment.Name")},
+				Transform:   transform.FromField("Description.RoleAssignment.name")},
 			{
 				Name:        "akas",
 				Description: ColumnDescriptionAkas,
 				Type:        proto.ColumnType_JSON,
-
-				//// LIST FUNCTION
-
-				Transform: transform.
-
-					// Check if context has been cancelled or if the limit has been hit (if specified)
-					// if there is a limit, it will return the number of rows required to reach this limit
-					FromField("Description.RoleAssignment.ID").Transform(idToAkas),
+				Transform:   transform.FromField("Description.RoleAssignment.id").Transform(idToAkas),
 			},
 		}),
 	}

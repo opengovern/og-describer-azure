@@ -15720,18 +15720,18 @@ func (p RoleAssignmentPaginator) NextPage(ctx context.Context) ([]RoleAssignment
 }
 
 var listRoleAssignmentFilters = map[string]string{
-	"created_on":              "Description.RoleAssignment.Properties.CreatedOn",
-	"id":                      "Description.RoleAssignment.ID",
-	"name":                    "Description.RoleAssignment.Name",
+	"created_on":              "Description.RoleAssignment.properties.createdOn",
+	"id":                      "Description.RoleAssignment.id",
+	"name":                    "Description.RoleAssignment.name",
 	"platform_integration_id": "IntegrationID",
-	"principal_id":            "Description.RoleAssignment.Properties.PrincipalID",
-	"principal_type":          "Description.RoleAssignment.Properties.PrincipalType",
-	"role_definition_id":      "Description.RoleAssignment.Properties.RoleDefinitionID",
-	"scope":                   "Description.RoleAssignment.Properties.Scope",
+	"principal_id":            "Description.RoleAssignment.properties.principalId",
+	"principal_type":          "Description.RoleAssignment.properties.principalType",
+	"role_definition_id":      "Description.RoleAssignment.properties.roleDefinitionID",
+	"scope":                   "Description.RoleAssignment.properties.scope",
 	"subscription":            "Description.Subscription",
-	"title":                   "Description.RoleAssignment.Name",
-	"type":                    "Description.RoleAssignment.Type",
-	"updated_on":              "Description.RoleAssignment.Properties.UpdatedOn",
+	"title":                   "Description.RoleAssignment.name",
+	"type":                    "Description.RoleAssignment.type",
+	"updated_on":              "Description.RoleAssignment.properties.updatedOn",
 }
 
 func ListRoleAssignment(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -15795,18 +15795,18 @@ func ListRoleAssignment(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 }
 
 var getRoleAssignmentFilters = map[string]string{
-	"created_on":              "Description.RoleAssignment.Properties.CreatedOn",
+	"created_on":              "Description.RoleAssignment.properties.createdOn",
 	"id":                      "description.RoleAssignment.id",
-	"name":                    "Description.RoleAssignment.Name",
+	"name":                    "Description.RoleAssignment.name",
 	"platform_integration_id": "IntegrationID",
-	"principal_id":            "Description.RoleAssignment.Properties.PrincipalID",
-	"principal_type":          "Description.RoleAssignment.Properties.PrincipalType",
-	"role_definition_id":      "Description.RoleAssignment.Properties.RoleDefinitionID",
-	"scope":                   "Description.RoleAssignment.Properties.Scope",
+	"principal_id":            "Description.RoleAssignment.properties.principalId",
+	"principal_type":          "Description.RoleAssignment.properties.principalType",
+	"role_definition_id":      "Description.RoleAssignment.properties.roleDefinitionID",
+	"scope":                   "Description.RoleAssignment.properties.scope",
 	"subscription":            "Description.Subscription",
-	"title":                   "Description.RoleAssignment.Name",
-	"type":                    "Description.RoleAssignment.Type",
-	"updated_on":              "Description.RoleAssignment.Properties.UpdatedOn",
+	"title":                   "Description.RoleAssignment.name",
+	"type":                    "Description.RoleAssignment.type",
+	"updated_on":              "Description.RoleAssignment.properties.updatedOn",
 }
 
 func GetRoleAssignment(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {

@@ -47,11 +47,9 @@ func getRoleAssignment(ctx context.Context, v *armauthorization.RoleAssignment, 
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
-		Description: JSONAllFieldsMarshaller{
-			Value: model.RoleAssignmentDescription{
-				RoleAssignment: *v,
-				Subscription:   subscription,
-			},
+		Description: model.RoleAssignmentDescription{
+			RoleAssignment: *v,
+			Subscription:   subscription,
 		},
 	}
 }
