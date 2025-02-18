@@ -262,10 +262,6 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 			if table.Get != nil {
 				table.Get.KeyColumns = append(table.Get.KeyColumns, plugin.OptionalColumns([]string{"platform_resource_id"})...)
 			}
-
-			if table.List != nil {
-				table.List.KeyColumns = append(table.List.KeyColumns, plugin.OptionalColumns([]string{"platform_resource_id"})...)
-			}
 		}
 	}
 
