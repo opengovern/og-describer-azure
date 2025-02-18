@@ -1,4 +1,4 @@
-package utils
+package describers
 
 import (
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/automation/armautomation"
