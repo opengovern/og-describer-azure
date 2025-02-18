@@ -17,10 +17,18 @@ func tableAzureIamRoleAssignment(_ context.Context) *plugin.Table {
 	return &plugin.Table{
 		Name:        "azure_role_assignment",
 		Description: "Azure Role Assignment",
+		Get: &plugin.GetConfig{
+			Hydrate: opengovernance.GetRoleAssignment,
+		},
 		List: &plugin.ListConfig{
 			Hydrate: opengovernance.ListRoleAssignment,
 		},
 		Columns: azureOGColumns([]*plugin.Column{
+			{
+				Name:      "subscription",
+				Type:      proto.ColumnType_STRING,
+				Transform: transform.FromField("Description.Subscription"),
+			},
 			{
 				Name:        "name",
 				Type:        proto.ColumnType_STRING,
