@@ -15796,12 +15796,12 @@ func ListRoleAssignment(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 
 var getRoleAssignmentFilters = map[string]string{
 	"created_on":              "Description.RoleAssignment.properties.createdOn",
-	"id":                      "description.RoleAssignment.id",
+	"id":                      "Description.RoleAssignment.id",
 	"name":                    "Description.RoleAssignment.name",
 	"platform_integration_id": "IntegrationID",
 	"principal_id":            "Description.RoleAssignment.properties.principalId",
 	"principal_type":          "Description.RoleAssignment.properties.principalType",
-	"role_definition_id":      "Description.RoleAssignment.properties.roleDefinitionID",
+	"role_definition_id":      "Description.RoleAssignment.properties.roleDefinitionId",
 	"scope":                   "Description.RoleAssignment.properties.scope",
 	"subscription":            "Description.Subscription",
 	"title":                   "Description.RoleAssignment.name",

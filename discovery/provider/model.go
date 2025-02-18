@@ -776,7 +776,26 @@ type ResourceLinkDescription struct {
 //  =================== authorization ==================
 
 //index:microsoft_authorization_elevateaccessroleassignment
-//getfilter:id=description.RoleAssignment.id
+//getfilter:created_on=Description.RoleAssignment.properties.createdOn
+//listfilter:created_on=Description.RoleAssignment.properties.createdOn
+//getfilter:id=Description.RoleAssignment.id
+//listfilter:id=Description.RoleAssignment.id
+//getfilter:name=Description.RoleAssignment.name
+//listfilter:name=Description.RoleAssignment.name
+//getfilter:principal_id=Description.RoleAssignment.properties.principalId
+//listfilter:principal_id=Description.RoleAssignment.properties.principalId
+//getfilter:principal_type=Description.RoleAssignment.properties.principalType
+//listfilter:principal_type=Description.RoleAssignment.properties.principalType
+//getfilter:role_definition_id=Description.RoleAssignment.properties.roleDefinitionId
+//listfilter:role_definition_id=Description.RoleAssignment.properties.roleDefinitionId
+//getfilter:scope=Description.RoleAssignment.properties.scope
+//listfilter:scope=Description.RoleAssignment.properties.scope
+//getfilter:title=Description.RoleAssignment.name
+//listfilter:title=Description.RoleAssignment.name
+//getfilter:type=Description.RoleAssignment.type
+//listfilter:type=Description.RoleAssignment.type
+//getfilter:updated_on=Description.RoleAssignment.properties.updatedOn
+//listfilter:updated_on=Description.RoleAssignment.properties.updatedOn
 type RoleAssignmentDescription struct {
 	RoleAssignment armauthorization.RoleAssignment
 	Subscription   string
