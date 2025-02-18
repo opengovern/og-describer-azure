@@ -15726,7 +15726,7 @@ var listRoleAssignmentFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"principal_id":            "Description.RoleAssignment.properties.principalId",
 	"principal_type":          "Description.RoleAssignment.properties.principalType",
-	"role_definition_id":      "Description.RoleAssignment.properties.roleDefinitionID",
+	"role_definition_id":      "Description.RoleAssignment.properties.roleDefinitionId",
 	"scope":                   "Description.RoleAssignment.properties.scope",
 	"subscription":            "Description.Subscription",
 	"title":                   "Description.RoleAssignment.name",
