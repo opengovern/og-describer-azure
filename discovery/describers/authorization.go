@@ -3,7 +3,6 @@ package describers
 import (
 	"context"
 	"fmt"
-	"github.com/opengovern/og-describer-azure/discovery/utils"
 	"regexp"
 	"strings"
 
@@ -48,7 +47,7 @@ func getRoleAssignment(ctx context.Context, v *armauthorization.RoleAssignment, 
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
-		Description: utils.JSONAllFieldsMarshaller{
+		Description: JSONAllFieldsMarshaller{
 			Value: model.RoleAssignmentDescription{
 				RoleAssignment: *v,
 				Subscription:   subscription,
