@@ -15699,7 +15699,7 @@ func (p RoleAssignmentPaginator) Close(ctx context.Context) error {
 
 func (p RoleAssignmentPaginator) NextPage(ctx context.Context) ([]RoleAssignment, error) {
 	var response RoleAssignmentSearchResponse
-	err := p.paginator.SearchWithLog(ctx, &response, true)
+	err := p.paginator.Search(ctx, &response)
 	if err != nil {
 		return nil, err
 	}
