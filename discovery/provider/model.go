@@ -801,12 +801,6 @@ type RoleAssignmentDescription struct {
 	Subscription   string
 }
 
-// populate(objectMap, "id", r.ID)
-//
-//	populate(objectMap, "name", r.Name)
-//	populate(objectMap, "properties", r.Properties)
-//	populate(objectMap, "type", r.Type)
-//
 //index:microsoft_authorization_roledefinitions
 //getfilter:name=Description.RoleDefinition.name
 //listfilter:name=Description.RoleDefinition.name
