@@ -49,7 +49,7 @@ func tableAzureIamRoleDefinition(_ context.Context) *plugin.Table {
 				Type:        proto.ColumnType_STRING,
 				Transform:   transform.FromField("Description.RoleDefinition.Properties.RoleName")},
 			{
-				Name:        "type",
+				Name:        "definition_type",
 				Description: "type of the role definition.",
 				Type:        proto.ColumnType_STRING,
 				Transform:   transform.FromField("Description.RoleDefinition.Properties.RoleType")},
