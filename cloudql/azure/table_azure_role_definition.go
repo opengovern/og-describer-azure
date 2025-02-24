@@ -29,12 +29,12 @@ func tableAzureIamRoleDefinition(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
-				Name:        "id",
+				Name:        "short_id",
 				Type:        proto.ColumnType_STRING,
-				Description: "The friendly name that identifies the role definition.",
+				Description: "The friendly ID/name that identifies the role definition.",
 				Transform:   transform.FromField("Description.RoleDefinition.Name")},
 			{
-				Name:        "guid",
+				Name:        "id",
 				Description: "Contains GUID to identify a role definition uniquely.",
 				Type:        proto.ColumnType_STRING,
 				Transform:   transform.FromField("Description.RoleDefinition.ID")},
@@ -50,7 +50,7 @@ func tableAzureIamRoleDefinition(_ context.Context) *plugin.Table {
 				Transform:   transform.FromField("Description.RoleDefinition.Properties.RoleName")},
 			{
 				Name:        "type",
-				Description: "Name of the role definition.",
+				Description: "type of the role definition.",
 				Type:        proto.ColumnType_STRING,
 				Transform:   transform.FromField("Description.RoleDefinition.Properties.RoleType")},
 			{
