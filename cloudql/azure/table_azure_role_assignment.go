@@ -42,7 +42,7 @@ func tableAzureIamRoleAssignment(_ context.Context) *plugin.Table {
 				Type:        proto.ColumnType_STRING,
 				Transform:   transform.FromField("Description.RoleAssignment.Properties.Scope")},
 			{
-				Name:        "type",
+				Name:        "resource_type",
 				Description: "Contains the resource type.",
 				Type:        proto.ColumnType_STRING,
 				Transform:   transform.FromField("Description.RoleAssignment.Type")},
