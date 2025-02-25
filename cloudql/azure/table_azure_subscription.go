@@ -23,12 +23,12 @@ func tableAzureSubscription(_ context.Context) *plugin.Table {
 
 		Columns: azureOGColumns([]*plugin.Column{
 			{
-				Name:        "id",
+				Name:        "qualified_subscription_id",
 				Type:        proto.ColumnType_STRING,
 				Description: "The fully qualified ID for the subscription. For example, /subscriptions/00000000-0000-0000-0000-000000000000.",
 				Transform:   transform.FromField("Description.Subscription.ID")},
 			{
-				Name:        "subscription_id",
+				Name:        "id",
 				Description: "The subscription ID.",
 				Type:        proto.ColumnType_STRING,
 				Transform:   transform.FromField("Description.Subscription.SubscriptionID")},
