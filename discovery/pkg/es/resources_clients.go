@@ -15724,6 +15724,7 @@ var listRoleAssignmentFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"principal_id":            "Description.RoleAssignment.properties.principalId",
 	"principal_type":          "Description.RoleAssignment.properties.principalType",
+	"resource_type":           "Description.RoleAssignment.type",
 	"role_definition_id":      "Description.RoleAssignment.properties.roleDefinitionId",
 	"scope":                   "Description.RoleAssignment.properties.scope",
 	"subscription":            "Description.Subscription",
@@ -15799,6 +15800,7 @@ var getRoleAssignmentFilters = map[string]string{
 	"platform_integration_id": "IntegrationID",
 	"principal_id":            "Description.RoleAssignment.properties.principalId",
 	"principal_type":          "Description.RoleAssignment.properties.principalType",
+	"resource_type":           "Description.RoleAssignment.type",
 	"role_definition_id":      "Description.RoleAssignment.properties.roleDefinitionId",
 	"scope":                   "Description.RoleAssignment.properties.scope",
 	"subscription":            "Description.Subscription",
@@ -15949,8 +15951,10 @@ var listRoleDefinitionFilters = map[string]string{
 	"name":                    "Description.RoleDefinition.name",
 	"permissions":             "Description.RoleDefinition.properties.permissions",
 	"platform_integration_id": "IntegrationID",
+	"resource_type":           "Description.RoleDefinition.type",
 	"role_name":               "Description.RoleDefinition.properties.roleName",
 	"role_type":               "Description.RoleDefinition.properties.type",
+	"short_id":                "Description.RoleDefinition.name",
 	"title":                   "Description.RoleDefinition.name",
 	"type":                    "Description.RoleDefinition.type",
 }
@@ -16022,8 +16026,10 @@ var getRoleDefinitionFilters = map[string]string{
 	"name":                    "Description.RoleDefinition.name",
 	"permissions":             "Description.RoleDefinition.properties.permissions",
 	"platform_integration_id": "IntegrationID",
+	"resource_type":           "Description.RoleDefinition.type",
 	"role_name":               "Description.RoleDefinition.properties.roleName",
 	"role_type":               "Description.RoleDefinition.properties.type",
+	"short_id":                "Description.RoleDefinition.name",
 	"title":                   "Description.RoleDefinition.name",
 	"type":                    "Description.RoleDefinition.type",
 }
@@ -20301,16 +20307,17 @@ func (p SubscriptionPaginator) NextPage(ctx context.Context) ([]Subscription, er
 }
 
 var listSubscriptionFilters = map[string]string{
-	"authorization_source":    "Description.Subscription.authorizationSource",
-	"display_name":            "Description.Subscription.displayName",
-	"id":                      "Description.Subscription.id",
-	"platform_integration_id": "IntegrationID",
-	"state":                   "Description.Subscription.state",
-	"subscription_id":         "Description.Subscription.subscriptionId",
-	"subscription_policies":   "Description.Subscription.subscriptionPolicies",
-	"tags":                    "Description.Tags",
-	"tenant_id":               "TenantID",
-	"title":                   "Description.Subscription.displayName",
+	"authorization_source":      "Description.Subscription.authorizationSource",
+	"display_name":              "Description.Subscription.displayName",
+	"id":                        "Description.Subscription.id",
+	"platform_integration_id":   "IntegrationID",
+	"qualified_subscription_id": "Description.Subscription.id",
+	"state":                     "Description.Subscription.state",
+	"subscription_id":           "Description.Subscription.subscriptionId",
+	"subscription_policies":     "Description.Subscription.subscriptionPolicies",
+	"tags":                      "Description.Tags",
+	"tenant_id":                 "TenantID",
+	"title":                     "Description.Subscription.displayName",
 }
 
 func ListSubscription(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -20374,16 +20381,17 @@ func ListSubscription(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 }
 
 var getSubscriptionFilters = map[string]string{
-	"authorization_source":    "Description.Subscription.authorizationSource",
-	"display_name":            "Description.Subscription.displayName",
-	"id":                      "Description.Subscription.id",
-	"platform_integration_id": "IntegrationID",
-	"state":                   "Description.Subscription.state",
-	"subscription_id":         "Description.Subscription.subscriptionId",
-	"subscription_policies":   "Description.Subscription.subscriptionPolicies",
-	"tags":                    "Description.Tags",
-	"tenant_id":               "TenantID",
-	"title":                   "Description.Subscription.displayName",
+	"authorization_source":      "Description.Subscription.authorizationSource",
+	"display_name":              "Description.Subscription.displayName",
+	"id":                        "Description.Subscription.id",
+	"platform_integration_id":   "IntegrationID",
+	"qualified_subscription_id": "Description.Subscription.id",
+	"state":                     "Description.Subscription.state",
+	"subscription_id":           "Description.Subscription.subscriptionId",
+	"subscription_policies":     "Description.Subscription.subscriptionPolicies",
+	"tags":                      "Description.Tags",
+	"tenant_id":                 "TenantID",
+	"title":                     "Description.Subscription.displayName",
 }
 
 func GetSubscription(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
