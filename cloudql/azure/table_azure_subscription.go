@@ -31,7 +31,7 @@ func tableAzureSubscription(_ context.Context) *plugin.Table {
 				Name:        "id",
 				Description: "The subscription ID.",
 				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Description.Subscription.SubscriptionID")},
+				Transform:   transform.FromField("Description.Subscription.subscriptionID")},
 			{
 				Name:        "display_name",
 				Description: "A friendly name that identifies a subscription.",
