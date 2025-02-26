@@ -20306,19 +20306,7 @@ func (p SubscriptionPaginator) NextPage(ctx context.Context) ([]Subscription, er
 	return values, nil
 }
 
-var listSubscriptionFilters = map[string]string{
-	"authorization_source":      "Description.Subscription.authorizationSource",
-	"display_name":              "Description.Subscription.displayName",
-	"id":                        "Description.Subscription.id",
-	"platform_integration_id":   "IntegrationID",
-	"qualified_subscription_id": "Description.Subscription.id",
-	"state":                     "Description.Subscription.state",
-	"subscription_id":           "Description.Subscription.subscriptionId",
-	"subscription_policies":     "Description.Subscription.subscriptionPolicies",
-	"tags":                      "Description.Tags",
-	"tenant_id":                 "TenantID",
-	"title":                     "Description.Subscription.displayName",
-}
+var listSubscriptionFilters = map[string]string{}
 
 func ListSubscription(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
 	plugin.Logger(ctx).Trace("ListSubscription")
