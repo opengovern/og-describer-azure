@@ -1015,20 +1015,8 @@ type TenantDescription struct {
 }
 
 //index:microsoft_resources_subscriptions
-//getfilter:id=Description.Subscription.id
-//listfilter:id=Description.Subscription.id
-//getfilter:subscription_id=Description.Subscription.subscriptionId
-//listfilter:subscription_id=Description.Subscription.subscriptionId
-//getfilter:display_name=Description.Subscription.displayName
-//listfilter:display_name=Description.Subscription.displayName
-//getfilter:state=Description.Subscription.state
-//listfilter:state=Description.Subscription.state
-//getfilter:authorization_source=Description.Subscription.authorizationSource
-//listfilter:authorization_source=Description.Subscription.authorizationSource
 //getfilter:subscription_policies=Description.Subscription.subscriptionPolicies
 //listfilter:subscription_policies=Description.Subscription.subscriptionPolicies
-//getfilter:title=Description.Subscription.displayName
-//listfilter:title=Description.Subscription.displayName
 type SubscriptionDescription struct {
 	Subscription   armsubscription.Subscription
 	Tags           map[string][]string
