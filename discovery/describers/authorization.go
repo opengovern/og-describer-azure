@@ -43,13 +43,19 @@ func RoleAssignment(ctx context.Context, cred *azidentity.ClientSecretCredential
 }
 
 func getRoleAssignment(ctx context.Context, v *armauthorization.RoleAssignment, subscription string) *models.Resource {
+	var roleDefinitionShortId string
+	if v != nil && v.Properties != nil && v.Properties.RoleDefinitionID != nil {
+		parts := strings.Split(*v.Properties.RoleDefinitionID, "/")
+		roleDefinitionShortId = parts[len(parts)-1]
+	}
 	return &models.Resource{
 		ID:       *v.ID,
 		Name:     *v.Name,
 		Location: "global",
 		Description: model.RoleAssignmentDescription{
-			RoleAssignment: *v,
-			Subscription:   subscription,
+			RoleAssignment:        *v,
+			Subscription:          subscription,
+			RoleDefinitionShortId: roleDefinitionShortId,
 		},
 	}
 }

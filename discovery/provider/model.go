@@ -797,8 +797,9 @@ type ResourceLinkDescription struct {
 //getfilter:updated_on=Description.RoleAssignment.properties.updatedOn
 //listfilter:updated_on=Description.RoleAssignment.properties.updatedOn
 type RoleAssignmentDescription struct {
-	RoleAssignment armauthorization.RoleAssignment
-	Subscription   string
+	RoleAssignment        armauthorization.RoleAssignment
+	RoleDefinitionShortId string
+	Subscription          string
 }
 
 //index:microsoft_authorization_roledefinitions

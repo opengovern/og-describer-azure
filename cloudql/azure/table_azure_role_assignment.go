@@ -76,6 +76,11 @@ func tableAzureIamRoleAssignment(_ context.Context) *plugin.Table {
 				Type:        proto.ColumnType_STRING,
 				Transform:   transform.FromField("Description.RoleAssignment.Properties.RoleDefinitionID")},
 			{
+				Name:        "role_definition_short_id",
+				Description: "Name of the assigned role definition.",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.RoleDefinitionShortId")},
+			{
 				Name:        "title",
 				Description: ColumnDescriptionTitle,
 				Type:        proto.ColumnType_STRING,
