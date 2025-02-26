@@ -20309,10 +20309,11 @@ func (p SubscriptionPaginator) NextPage(ctx context.Context) ([]Subscription, er
 var listSubscriptionFilters = map[string]string{
 	"authorization_source":      "Description.Subscription.authorizationSource",
 	"display_name":              "Description.Subscription.displayName",
-	"id":                        "Description.SubscriptionID",
+	"id":                        "Description.Subscription.id",
 	"platform_integration_id":   "IntegrationID",
 	"qualified_subscription_id": "Description.Subscription.id",
 	"state":                     "Description.Subscription.state",
+	"subscription_id":           "Description.Subscription.subscriptionId",
 	"subscription_policies":     "Description.Subscription.subscriptionPolicies",
 	"tags":                      "Description.Tags",
 	"tenant_id":                 "TenantID",
