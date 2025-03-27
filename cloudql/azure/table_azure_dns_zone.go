@@ -25,83 +25,83 @@ func tableAzureDNSZone(_ context.Context) *plugin.Table {
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
-				Name:        "subscription",
-				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Description.Zone.Properties.Subscription"),
+				Name:      "subscription",
+				Type:      proto.ColumnType_STRING,
+				Transform: transform.FromField("Description.DNSZone.Properties.Subscription"),
 			},
 			{
 				Name:        "name",
 				Type:        proto.ColumnType_STRING,
 				Description: "The friendly name that identifies the DNS zone.",
-				Transform:   transform.FromField("Description.Zone.Name")},
+				Transform:   transform.FromField("Description.DNSZone.Name")},
 			{
 				Name:        "id",
 				Description: "Contains ID to identify a DNS zone uniquely.",
 				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Description.Zone.ID")},
+				Transform:   transform.FromField("Description.DNSZone.ID")},
 			{
 				Name:        "etag",
 				Description: "An unique read-only string that changes whenever the resource is updated.",
 				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Description.Zone.Etag")},
+				Transform:   transform.FromField("Description.DNSZone.Etag")},
 			{
 				Name:        "type",
 				Description: "The resource type of the DNS zone.",
 				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Description.Zone.Type")},
+				Transform:   transform.FromField("Description.DNSZone.Type")},
 			{
 				Name:        "max_number_of_record_sets",
 				Description: "The maximum number of record sets that can be created in this DNS zone.",
 				Type:        proto.ColumnType_INT,
-				Transform:   transform.FromField("Description.Zone.Properties.MaxNumberOfRecordSets")},
+				Transform:   transform.FromField("Description.DNSZone.Properties.MaxNumberOfRecordSets")},
 			{
 				Name:        "max_number_of_records_per_record_set",
 				Description: "The maximum number of records per record set that can be created in this DNS zone.",
 				Type:        proto.ColumnType_INT,
-				Transform:   transform.FromField("Description.Zone.Properties.MaxNumberOfRecordsPerRecordSet")},
+				Transform:   transform.FromField("Description.DNSZone.Properties.MaxNumberOfRecordsPerRecordSet")},
 			{
 				Name:        "number_of_record_sets",
 				Description: "The current number of record sets in this DNS zone.",
 				Type:        proto.ColumnType_INT,
-				Transform:   transform.FromField("Description.Zone.Properties.NumberOfRecordSets"),
+				Transform:   transform.FromField("Description.DNSZone.Properties.NumberOfRecordSets"),
 			},
 			{
 				Name:        "name_servers",
 				Description: "The name servers for this DNS zone.",
 				Type:        proto.ColumnType_JSON,
-				Transform:   transform.FromField("Description.Zone.Properties.NameServers")},
+				Transform:   transform.FromField("Description.DNSZone.Properties.NameServers")},
 			{
 				Name:        "zone_type",
 				Description: "The type of this DNS zone (always `Public`, see `azure_private_dns_zone` table for private DNS zones).",
 				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Description.Zone.Properties.ZoneType")},
+				Transform:   transform.FromField("Description.DNSZone.Properties.ZoneType")},
 			{
 				Name:        "registration_virtual_networks",
 				Description: "A list of references to virtual networks that register hostnames in this DNS zone.",
 				Type:        proto.ColumnType_JSON,
-				Transform:   transform.FromField("Description.Zone.Properties.RegistrationVirtualNetworks")},
+				Transform:   transform.FromField("Description.DNSZone.Properties.RegistrationVirtualNetworks")},
 			{
 				Name:        "resolution_virtual_networks",
 				Description: "A list of references to virtual networks that resolve records in this DNS zone.",
 				Type:        proto.ColumnType_JSON,
-				Transform:   transform.FromField("Description.Zone.Properties.ResolutionVirtualNetworks")},
+				Transform:   transform.FromField("Description.DNSZone.Properties.ResolutionVirtualNetworks")},
 
 			// Steampipe standard columns
 			{
 				Name:        "title",
 				Description: ColumnDescriptionTitle,
 				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Description.Zone.Name")},
+				Transform:   transform.FromField("Description.DNSZone.Name")},
 			{
 				Name:        "tags",
 				Description: ColumnDescriptionTags,
 				Type:        proto.ColumnType_JSON,
-				Transform:   transform.FromField("Description.Zone.Tags")},
+				Transform:   transform.FromField("Description.DNSZone.Tags")},
 			{
 				Name:        "akas",
 				Description: ColumnDescriptionAkas,
 				Type:        proto.ColumnType_JSON,
-				Transform:   transform.FromField("Description.Zone.ID").Transform(idToAkas),
+				Transform:   transform.FromField("Description.DNSZone.ID").Transform(idToAkas),
 			},
 
 			// Azure standard columns
@@ -109,7 +109,7 @@ func tableAzureDNSZone(_ context.Context) *plugin.Table {
 				Name:        "region",
 				Description: ColumnDescriptionRegion,
 				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromField("Description.Zone.Location").Transform(toLower),
+				Transform:   transform.FromField("Description.DNSZone.Location").Transform(toLower),
 			},
 			{
 				Name:        "resource_group",

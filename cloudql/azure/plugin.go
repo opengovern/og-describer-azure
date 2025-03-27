@@ -109,6 +109,7 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 			"azure_diagnostic_setting":                         tableAzureDiagnosticSetting(ctx),
 			"azure_autoscale_setting":                          tableAzureAutoscaleSetting(ctx),
 			"azure_dns_zone":                                   tableAzureDNSZone(ctx),
+			"azure_dns_record_set":                             tableAzureDNSRecordSet(ctx),
 			"azure_eventgrid_domain":                           tableAzureEventGridDomain(ctx),
 			"azure_eventgrid_topic":                            tableAzureEventGridTopic(ctx),
 			"azure_eventhub_namespace":                         tableAzureEventHubNamespace(ctx),

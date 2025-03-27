@@ -18,10 +18,10 @@ func tableAzureDNSRecordSet(_ context.Context) *plugin.Table {
 		Description: "Azure DNS Record Sets",
 		Get: &plugin.GetConfig{
 			KeyColumns: plugin.SingleColumn("id"), //TODO: change this to the primary key columns in model.go
-			Hydrate:    opengovernance.GetDNSZones,
+			Hydrate:    opengovernance.GetDNSRecordSet,
 		},
 		List: &plugin.ListConfig{
-			Hydrate: opengovernance.ListDNSZones,
+			Hydrate: opengovernance.ListDNSRecordSet,
 		},
 		Columns: azureOGColumns([]*plugin.Column{
 			{
