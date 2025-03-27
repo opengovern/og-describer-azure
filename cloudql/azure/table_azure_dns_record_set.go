@@ -122,7 +122,7 @@ func tableAzureDNSRecordSet(_ context.Context) *plugin.Table {
 			{
 				Name:        "provisioning_state",
 				Description: "provisioning State of the record set.",
-				Type:        proto.ColumnType_JSON,
+				Type:        proto.ColumnType_STRING,
 				Transform:   transform.FromField("Description.DNSRecordSet.Properties.ProvisioningState")},
 			{
 				Name:        "metadata",
