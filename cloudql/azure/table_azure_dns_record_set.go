@@ -58,7 +58,17 @@ func tableAzureDNSRecordSet(_ context.Context) *plugin.Table {
 				Name:        "type",
 				Description: "The resource type of the DNS Record Set.",
 				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.RecordType")},
+			{
+				Name:        "resource_type",
+				Description: "The resource type of the DNS Record Set.",
+				Type:        proto.ColumnType_STRING,
 				Transform:   transform.FromField("Description.DNSRecordSet.Type")},
+			{
+				Name:        "content",
+				Description: "The resource type of the DNS Record Set.",
+				Type:        proto.ColumnType_STRING,
+				Transform:   transform.FromField("Description.Content")},
 			{
 				Name:        "a_records",
 				Description: "The list of A records in the record set.",
@@ -90,8 +100,8 @@ func tableAzureDNSRecordSet(_ context.Context) *plugin.Table {
 				Type:        proto.ColumnType_JSON,
 				Transform:   transform.FromField("Description.DNSRecordSet.Properties.NsRecords")},
 			{
-				Name:        "soa_records",
-				Description: "The list of SOA records in the record set.",
+				Name:        "soa_record",
+				Description: "The list of SOA record in the record set.",
 				Type:        proto.ColumnType_JSON,
 				Transform:   transform.FromField("Description.DNSRecordSet.Properties.SoaRecord")},
 			{

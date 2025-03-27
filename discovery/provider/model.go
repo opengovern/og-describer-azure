@@ -678,6 +678,8 @@ type DNSZonesDescription struct {
 type DNSRecordSetDescription struct {
 	ResourceGroup string
 	DNSZoneID     string
+	RecordType    string
+	Content       string
 	DNSZoneName   string
 	Subscription  string
 	DNSRecordSet  armdns.RecordSet

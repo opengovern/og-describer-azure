@@ -2,6 +2,7 @@ package describers
 
 import (
 	"context"
+	"fmt"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
@@ -1319,12 +1320,56 @@ func DNSRecordSets(ctx context.Context, cred *azidentity.ClientSecretCredential,
 }
 
 func GetDNSRecordSet(resourceGroup, location, dnsZoneID, dnsZoneName string, dnsRecordSet *armdns.RecordSet, subscription string) *models.Resource {
+	var content string
+	if dnsRecordSet != nil {
+		if dnsRecordSet.Properties.ARecords != nil && len(dnsRecordSet.Properties.ARecords) > 0 {
+			for _, record := range dnsRecordSet.Properties.ARecords {
+				content += fmt.Sprintf("%v, ", *record)
+			}
+		} else if dnsRecordSet.Properties.AaaaRecords != nil && len(dnsRecordSet.Properties.AaaaRecords) > 0 {
+			for _, record := range dnsRecordSet.Properties.AaaaRecords {
+				content += fmt.Sprintf("%v, ", *record)
+			}
+		} else if dnsRecordSet.Properties.CaaRecords != nil && len(dnsRecordSet.Properties.CaaRecords) > 0 {
+			for _, record := range dnsRecordSet.Properties.CaaRecords {
+				content += fmt.Sprintf("%v, ", *record)
+			}
+		} else if dnsRecordSet.Properties.CnameRecord != nil && dnsRecordSet.Properties.CnameRecord.Cname != nil {
+			content = *dnsRecordSet.Properties.CnameRecord.Cname
+		} else if dnsRecordSet.Properties.MxRecords != nil && len(dnsRecordSet.Properties.MxRecords) > 0 {
+			for _, record := range dnsRecordSet.Properties.MxRecords {
+				content += fmt.Sprintf("%v, ", *record)
+			}
+		} else if dnsRecordSet.Properties.NsRecords != nil && len(dnsRecordSet.Properties.NsRecords) > 0 {
+			for _, record := range dnsRecordSet.Properties.NsRecords {
+				content += fmt.Sprintf("%v, ", *record)
+			}
+		} else if dnsRecordSet.Properties.SoaRecord != nil {
+			content = fmt.Sprintf("%v", *dnsRecordSet.Properties.SoaRecord)
+		} else if dnsRecordSet.Properties.SrvRecords != nil && len(dnsRecordSet.Properties.SrvRecords) > 0 {
+			for _, record := range dnsRecordSet.Properties.SrvRecords {
+				content += fmt.Sprintf("%v, ", *record)
+			}
+		} else if dnsRecordSet.Properties.TxtRecords != nil && len(dnsRecordSet.Properties.TxtRecords) > 0 {
+			for _, record := range dnsRecordSet.Properties.TxtRecords {
+				content += fmt.Sprintf("%v, ", *record)
+			}
+		}
+	} else {
+		return nil
+	}
+
+	var recordType string
+	typeSplited := strings.Split(*dnsRecordSet.Type, "/")
+	recordType = typeSplited[len(typeSplited)-1]
 	resource := models.Resource{
 		ID:       *dnsRecordSet.ID,
 		Name:     *dnsRecordSet.Name,
 		Location: location,
 		Description: model.DNSRecordSetDescription{
 			DNSZoneID:     dnsZoneID,
+			RecordType:    recordType,
+			Content:       content,
 			DNSZoneName:   dnsZoneName,
 			DNSRecordSet:  *dnsRecordSet,
 			ResourceGroup: resourceGroup,
