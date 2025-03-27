@@ -1295,15 +1295,16 @@ func DNSRecordSets(ctx context.Context, cred *azidentity.ClientSecretCredential,
 		return nil, err
 	}
 
-	for _, zone := range zones {
-		pager := client.NewListAllByDNSZonePager(zone.ResourceGroup, zone.Name, nil)
+	for _, zoneItem := range zones {
+		zone := zoneItem.Description.(model.DNSZonesDescription)
+		pager := client.NewListAllByDNSZonePager(zone.ResourceGroup, *zone.DNSZone.Name, nil)
 		for pager.More() {
 			page, err := pager.NextPage(ctx)
 			if err != nil {
 				return nil, err
 			}
 			for _, dnsRecordSet := range page.Value {
-				resource := GetDNSRecordSet(zone.ResourceGroup, zone.Location, zone.ID, zone.Name, dnsRecordSet, subscription)
+				resource := GetDNSRecordSet(zone.ResourceGroup, *zone.DNSZone.Location, *zone.DNSZone.ID, *zone.DNSZone.Name, dnsRecordSet, subscription)
 				if stream != nil {
 					if err := (*stream)(*resource); err != nil {
 						return nil, err
