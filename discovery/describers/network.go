@@ -1324,35 +1324,37 @@ func GetDNSRecordSet(resourceGroup, location, dnsZoneID, dnsZoneName string, dns
 	if dnsRecordSet != nil {
 		if dnsRecordSet.Properties.ARecords != nil && len(dnsRecordSet.Properties.ARecords) > 0 {
 			for _, record := range dnsRecordSet.Properties.ARecords {
-				content += fmt.Sprintf("%v, ", *record)
+				content += fmt.Sprintf("%s, ", *record.IPv4Address)
 			}
 		} else if dnsRecordSet.Properties.AaaaRecords != nil && len(dnsRecordSet.Properties.AaaaRecords) > 0 {
 			for _, record := range dnsRecordSet.Properties.AaaaRecords {
-				content += fmt.Sprintf("%v, ", *record)
+				content += fmt.Sprintf("%s, ", *record.IPv6Address)
 			}
 		} else if dnsRecordSet.Properties.CaaRecords != nil && len(dnsRecordSet.Properties.CaaRecords) > 0 {
 			for _, record := range dnsRecordSet.Properties.CaaRecords {
-				content += fmt.Sprintf("%v, ", *record)
+				content += fmt.Sprintf("{Flags: %d, Tag: %s, Value: %s}, ", *record.Flags, *record.Tag, *record.Value)
 			}
 		} else if dnsRecordSet.Properties.CnameRecord != nil && dnsRecordSet.Properties.CnameRecord.Cname != nil {
 			content = *dnsRecordSet.Properties.CnameRecord.Cname
 		} else if dnsRecordSet.Properties.MxRecords != nil && len(dnsRecordSet.Properties.MxRecords) > 0 {
 			for _, record := range dnsRecordSet.Properties.MxRecords {
-				content += fmt.Sprintf("%v, ", *record)
+				content += fmt.Sprintf("{Exchange: %s, Preference: %d}, ", *record.Exchange, *record.Preference)
 			}
 		} else if dnsRecordSet.Properties.NsRecords != nil && len(dnsRecordSet.Properties.NsRecords) > 0 {
 			for _, record := range dnsRecordSet.Properties.NsRecords {
-				content += fmt.Sprintf("%v, ", *record)
+				content += fmt.Sprintf("%s, ", *record.Nsdname)
 			}
 		} else if dnsRecordSet.Properties.SoaRecord != nil {
 			content = fmt.Sprintf("%v", *dnsRecordSet.Properties.SoaRecord)
 		} else if dnsRecordSet.Properties.SrvRecords != nil && len(dnsRecordSet.Properties.SrvRecords) > 0 {
 			for _, record := range dnsRecordSet.Properties.SrvRecords {
-				content += fmt.Sprintf("%v, ", *record)
+				content += fmt.Sprintf("{Target: %s, Port: %d, Priority: %d, Weight: %d}, ", *record.Target, *record.Port, *record.Priority, *record.Weight)
 			}
 		} else if dnsRecordSet.Properties.TxtRecords != nil && len(dnsRecordSet.Properties.TxtRecords) > 0 {
 			for _, record := range dnsRecordSet.Properties.TxtRecords {
-				content += fmt.Sprintf("%v, ", *record)
+				for _, v := range record.Value {
+					content += fmt.Sprintf("%s, ", *v)
+				}
 			}
 		}
 	} else {
