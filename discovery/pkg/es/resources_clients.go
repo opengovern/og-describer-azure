@@ -12762,6 +12762,251 @@ func GetDNSZones(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 
 // ==========================  END: DNSZones =============================
 
+// ==========================  START: DNSRecordSet =============================
+
+type DNSRecordSet struct {
+	ResourceID      string                        `json:"resource_id"`
+	PlatformID      string                        `json:"platform_id"`
+	Description     azure.DNSRecordSetDescription `json:"Description"`
+	Metadata        azure.Metadata                `json:"metadata"`
+	DescribedBy     string                        `json:"described_by"`
+	ResourceType    string                        `json:"resource_type"`
+	IntegrationType string                        `json:"integration_type"`
+	IntegrationID   string                        `json:"integration_id"`
+}
+
+type DNSRecordSetHit struct {
+	ID      string        `json:"_id"`
+	Score   float64       `json:"_score"`
+	Index   string        `json:"_index"`
+	Type    string        `json:"_type"`
+	Version int64         `json:"_version,omitempty"`
+	Source  DNSRecordSet  `json:"_source"`
+	Sort    []interface{} `json:"sort"`
+}
+
+type DNSRecordSetHits struct {
+	Total essdk.SearchTotal `json:"total"`
+	Hits  []DNSRecordSetHit `json:"hits"`
+}
+
+type DNSRecordSetSearchResponse struct {
+	PitID string           `json:"pit_id"`
+	Hits  DNSRecordSetHits `json:"hits"`
+}
+
+type DNSRecordSetPaginator struct {
+	paginator *essdk.BaseESPaginator
+}
+
+func (k Client) NewDNSRecordSetPaginator(filters []essdk.BoolFilter, limit *int64) (DNSRecordSetPaginator, error) {
+	paginator, err := essdk.NewPaginator(k.ES(), "microsoft_network_dnsrecordsets", filters, limit)
+	if err != nil {
+		return DNSRecordSetPaginator{}, err
+	}
+
+	p := DNSRecordSetPaginator{
+		paginator: paginator,
+	}
+
+	return p, nil
+}
+
+func (p DNSRecordSetPaginator) HasNext() bool {
+	return !p.paginator.Done()
+}
+
+func (p DNSRecordSetPaginator) Close(ctx context.Context) error {
+	return p.paginator.Deallocate(ctx)
+}
+
+func (p DNSRecordSetPaginator) NextPage(ctx context.Context) ([]DNSRecordSet, error) {
+	var response DNSRecordSetSearchResponse
+	err := p.paginator.Search(ctx, &response)
+	if err != nil {
+		return nil, err
+	}
+
+	var values []DNSRecordSet
+	for _, hit := range response.Hits.Hits {
+		values = append(values, hit.Source)
+	}
+
+	hits := int64(len(response.Hits.Hits))
+	if hits > 0 {
+		p.paginator.UpdateState(hits, response.Hits.Hits[hits-1].Sort, response.PitID)
+	} else {
+		p.paginator.UpdateState(hits, nil, "")
+	}
+
+	return values, nil
+}
+
+var listDNSRecordSetFilters = map[string]string{
+	"a_records":          "Description.DNSRecordSet.Properties.ARecords",
+	"aaaa_records":       "Description.DNSRecordSet.Properties.AaaaRecords",
+	"caa_records":        "Description.DNSRecordSet.Properties.CaaRecords",
+	"cname_record":       "Description.DNSRecordSet.Properties.CnameRecord",
+	"etag":               "Description.DNSRecordSet.Etag",
+	"fqdn":               "Description.DNSRecordSet.Properties.Fqdn",
+	"id":                 "Description.DNSRecordSet.ID",
+	"metadata":           "Description.DNSRecordSet.Properties.Metadata",
+	"mx_records":         "Description.DNSRecordSet.Properties.MxRecords",
+	"name":               "Description.DNSRecordSet.Name",
+	"ns_records":         "Description.DNSRecordSet.Properties.NsRecords",
+	"provisioning_state": "Description.DNSRecordSet.Properties.ProvisioningState",
+	"resource_group":     "Description.ResourceGroup",
+	"soa_records":        "Description.DNSRecordSet.Properties.SoaRecord",
+	"srv_records":        "Description.DNSRecordSet.Properties.SrvRecords",
+	"subscription":       "Description.Subscription",
+	"target_resource":    "Description.DNSRecordSet.Properties.TargetResource",
+	"ttl":                "Description.DNSRecordSet.Properties.TTL",
+	"txt_records":        "Description.DNSRecordSet.Properties.TxtRecords",
+	"type":               "Description.DNSRecordSet.Type",
+	"zone_id":            "Description.DNSZoneID",
+	"zone_name":          "Description.DNSZoneName",
+}
+
+func ListDNSRecordSet(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
+	plugin.Logger(ctx).Trace("ListDNSRecordSet")
+	runtime.GC()
+
+	// create service
+	cfg := essdk.GetConfig(d.Connection)
+	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
+	if err != nil {
+		plugin.Logger(ctx).Error("ListDNSRecordSet NewClientCached", "error", err)
+		return nil, err
+	}
+	k := Client{Client: ke}
+
+	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
+	if err != nil {
+		plugin.Logger(ctx).Error("ListDNSRecordSet NewSelfClientCached", "error", err)
+		return nil, err
+	}
+	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
+	if err != nil {
+		plugin.Logger(ctx).Error("ListDNSRecordSet GetConfigTableValueOrNil for OpenGovernanceConfigKeyIntegrationID", "error", err)
+		return nil, err
+	}
+	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
+	if err != nil {
+		plugin.Logger(ctx).Error("ListDNSRecordSet GetConfigTableValueOrNil for OpenGovernanceConfigKeyResourceCollectionFilters", "error", err)
+		return nil, err
+	}
+	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
+	if err != nil {
+		plugin.Logger(ctx).Error("ListDNSRecordSet GetConfigTableValueOrNil for OpenGovernanceConfigKeyClientType", "error", err)
+		return nil, err
+	}
+
+	paginator, err := k.NewDNSRecordSetPaginator(essdk.BuildFilter(ctx, d.QueryContext, listDNSRecordSetFilters, integrationId, encodedResourceCollectionFilters, clientType), d.QueryContext.Limit)
+	if err != nil {
+		plugin.Logger(ctx).Error("ListDNSRecordSet NewDNSRecordSetPaginator", "error", err)
+		return nil, err
+	}
+
+	for paginator.HasNext() {
+		page, err := paginator.NextPage(ctx)
+		if err != nil {
+			plugin.Logger(ctx).Error("ListDNSRecordSet paginator.NextPage", "error", err)
+			return nil, err
+		}
+
+		for _, v := range page {
+			d.StreamListItem(ctx, v)
+		}
+	}
+
+	err = paginator.Close(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	return nil, nil
+}
+
+var getDNSRecordSetFilters = map[string]string{
+	"a_records":          "Description.DNSRecordSet.Properties.ARecords",
+	"aaaa_records":       "Description.DNSRecordSet.Properties.AaaaRecords",
+	"caa_records":        "Description.DNSRecordSet.Properties.CaaRecords",
+	"cname_record":       "Description.DNSRecordSet.Properties.CnameRecord",
+	"etag":               "Description.DNSRecordSet.Etag",
+	"fqdn":               "Description.DNSRecordSet.Properties.Fqdn",
+	"id":                 "Description.DNSRecordSet.ID",
+	"metadata":           "Description.DNSRecordSet.Properties.Metadata",
+	"mx_records":         "Description.DNSRecordSet.Properties.MxRecords",
+	"name":               "Description.DNSRecordSet.Name",
+	"ns_records":         "Description.DNSRecordSet.Properties.NsRecords",
+	"provisioning_state": "Description.DNSRecordSet.Properties.ProvisioningState",
+	"resource_group":     "Description.ResourceGroup",
+	"soa_records":        "Description.DNSRecordSet.Properties.SoaRecord",
+	"srv_records":        "Description.DNSRecordSet.Properties.SrvRecords",
+	"subscription":       "Description.Subscription",
+	"target_resource":    "Description.DNSRecordSet.Properties.TargetResource",
+	"ttl":                "Description.DNSRecordSet.Properties.TTL",
+	"txt_records":        "Description.DNSRecordSet.Properties.TxtRecords",
+	"type":               "Description.DNSRecordSet.Type",
+	"zone_id":            "Description.DNSZoneID",
+	"zone_name":          "Description.DNSZoneName",
+}
+
+func GetDNSRecordSet(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
+	plugin.Logger(ctx).Trace("GetDNSRecordSet")
+	runtime.GC()
+	// create service
+	cfg := essdk.GetConfig(d.Connection)
+	ke, err := essdk.NewClientCached(cfg, d.ConnectionCache, ctx)
+	if err != nil {
+		return nil, err
+	}
+	k := Client{Client: ke}
+
+	sc, err := steampipesdk.NewSelfClientCached(ctx, d.ConnectionCache)
+	if err != nil {
+		return nil, err
+	}
+	integrationId, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyIntegrationID)
+	if err != nil {
+		return nil, err
+	}
+	encodedResourceCollectionFilters, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyResourceCollectionFilters)
+	if err != nil {
+		return nil, err
+	}
+	clientType, err := sc.GetConfigTableValueOrNil(ctx, steampipesdk.OpenGovernanceConfigKeyClientType)
+	if err != nil {
+		return nil, err
+	}
+
+	limit := int64(1)
+	paginator, err := k.NewDNSRecordSetPaginator(essdk.BuildFilter(ctx, d.QueryContext, getDNSRecordSetFilters, integrationId, encodedResourceCollectionFilters, clientType), &limit)
+	if err != nil {
+		return nil, err
+	}
+
+	for paginator.HasNext() {
+		page, err := paginator.NextPage(ctx)
+		if err != nil {
+			return nil, err
+		}
+
+		for _, v := range page {
+			return v, nil
+		}
+	}
+
+	err = paginator.Close(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	return nil, nil
+}
+
+// ==========================  END: DNSRecordSet =============================
+
 // ==========================  START: BastionHosts =============================
 
 type BastionHosts struct {
@@ -15718,19 +15963,20 @@ func (p RoleAssignmentPaginator) NextPage(ctx context.Context) ([]RoleAssignment
 }
 
 var listRoleAssignmentFilters = map[string]string{
-	"created_on":              "Description.RoleAssignment.properties.createdOn",
-	"id":                      "Description.RoleAssignment.id",
-	"name":                    "Description.RoleAssignment.name",
-	"platform_integration_id": "integration_id",
-	"principal_id":            "Description.RoleAssignment.properties.principalId",
-	"principal_type":          "Description.RoleAssignment.properties.principalType",
-	"resource_type":           "Description.RoleAssignment.type",
-	"role_definition_id":      "Description.RoleAssignment.properties.roleDefinitionId",
-	"scope":                   "Description.RoleAssignment.properties.scope",
-	"subscription":            "Description.Subscription",
-	"title":                   "Description.RoleAssignment.name",
-	"type":                    "Description.RoleAssignment.type",
-	"updated_on":              "Description.RoleAssignment.properties.updatedOn",
+	"created_on":               "Description.RoleAssignment.properties.createdOn",
+	"id":                       "Description.RoleAssignment.id",
+	"name":                     "Description.RoleAssignment.name",
+	"platform_integration_id":  "integration_id",
+	"principal_id":             "Description.RoleAssignment.properties.principalId",
+	"principal_type":           "Description.RoleAssignment.properties.principalType",
+	"resource_type":            "Description.RoleAssignment.type",
+	"role_definition_id":       "Description.RoleAssignment.properties.roleDefinitionId",
+	"role_definition_short_id": "Description.RoleDefinitionShortId",
+	"scope":                    "Description.RoleAssignment.properties.scope",
+	"subscription":             "Description.Subscription",
+	"title":                    "Description.RoleAssignment.name",
+	"type":                     "Description.RoleAssignment.type",
+	"updated_on":               "Description.RoleAssignment.properties.updatedOn",
 }
 
 func ListRoleAssignment(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -15794,19 +16040,20 @@ func ListRoleAssignment(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydr
 }
 
 var getRoleAssignmentFilters = map[string]string{
-	"created_on":              "Description.RoleAssignment.properties.createdOn",
-	"id":                      "Description.RoleAssignment.id",
-	"name":                    "Description.RoleAssignment.name",
-	"platform_integration_id": "integration_id",
-	"principal_id":            "Description.RoleAssignment.properties.principalId",
-	"principal_type":          "Description.RoleAssignment.properties.principalType",
-	"resource_type":           "Description.RoleAssignment.type",
-	"role_definition_id":      "Description.RoleAssignment.properties.roleDefinitionId",
-	"scope":                   "Description.RoleAssignment.properties.scope",
-	"subscription":            "Description.Subscription",
-	"title":                   "Description.RoleAssignment.name",
-	"type":                    "Description.RoleAssignment.type",
-	"updated_on":              "Description.RoleAssignment.properties.updatedOn",
+	"created_on":               "Description.RoleAssignment.properties.createdOn",
+	"id":                       "Description.RoleAssignment.id",
+	"name":                     "Description.RoleAssignment.name",
+	"platform_integration_id":  "integration_id",
+	"principal_id":             "Description.RoleAssignment.properties.principalId",
+	"principal_type":           "Description.RoleAssignment.properties.principalType",
+	"resource_type":            "Description.RoleAssignment.type",
+	"role_definition_id":       "Description.RoleAssignment.properties.roleDefinitionId",
+	"role_definition_short_id": "Description.RoleDefinitionShortId",
+	"scope":                    "Description.RoleAssignment.properties.scope",
+	"subscription":             "Description.Subscription",
+	"title":                    "Description.RoleAssignment.name",
+	"type":                     "Description.RoleAssignment.type",
+	"updated_on":               "Description.RoleAssignment.properties.updatedOn",
 }
 
 func GetRoleAssignment(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -38885,7 +39132,7 @@ var listStorageAccountFilters = map[string]string{
 	"blob_container_soft_delete_retention_days":              "Description.BlobServiceProperties.properties.containerDeleteRetentionPolicy.days",
 	"blob_restore_policy_days":                               "Description.BlobServiceProperties.properties.restorePolicy.days",
 	"blob_restore_policy_enabled":                            "Description.BlobServiceProperties.properties.restorePolicy.enabled",
-	"blob_service_logging":                                   "Description.Logging.Delete",
+	"blob_service_logging":                                   "Description.Logging.Read",
 	"blob_soft_delete_enabled":                               "Description.BlobServiceProperties.properties.containerDeleteRetentionPolicy.enabled",
 	"blob_soft_delete_retention_days":                        "Description.BlobServiceProperties.properties.containerDeleteRetentionPolicy.days",
 	"blob_versioning_enabled":                                "Description.BlobServiceProperties.properties.isVersioningEnabled",
@@ -39013,7 +39260,7 @@ var getStorageAccountFilters = map[string]string{
 	"blob_container_soft_delete_retention_days":              "Description.BlobServiceProperties.properties.containerDeleteRetentionPolicy.days",
 	"blob_restore_policy_days":                               "Description.BlobServiceProperties.properties.restorePolicy.days",
 	"blob_restore_policy_enabled":                            "Description.BlobServiceProperties.properties.restorePolicy.enabled",
-	"blob_service_logging":                                   "Description.Logging.Delete",
+	"blob_service_logging":                                   "Description.Logging.Read",
 	"blob_soft_delete_enabled":                               "Description.BlobServiceProperties.properties.containerDeleteRetentionPolicy.enabled",
 	"blob_soft_delete_retention_days":                        "Description.BlobServiceProperties.properties.containerDeleteRetentionPolicy.days",
 	"blob_versioning_enabled":                                "Description.BlobServiceProperties.properties.isVersioningEnabled",
@@ -40568,7 +40815,7 @@ func (p CostManagementCostBySubscriptionPaginator) NextPage(ctx context.Context)
 
 var listCostManagementCostBySubscriptionFilters = map[string]string{
 	"id":                      "ResourceID",
-	"name":                    "Description.CostManagementCostBySubscription.Currency",
+	"name":                    "Description.CostManagementCostBySubscription.UsageDate",
 	"platform_integration_id": "integration_id",
 	"subscription":            "Description.CostManagementCostBySubscription.Subscription",
 }
@@ -40635,7 +40882,7 @@ func ListCostManagementCostBySubscription(ctx context.Context, d *plugin.QueryDa
 
 var getCostManagementCostBySubscriptionFilters = map[string]string{
 	"id":                      "ResourceID",
-	"name":                    "Description.CostManagementCostBySubscription.Currency",
+	"name":                    "Description.CostManagementCostBySubscription.UsageDate",
 	"platform_integration_id": "integration_id",
 	"subscription":            "Description.CostManagementCostBySubscription.Subscription",
 }
