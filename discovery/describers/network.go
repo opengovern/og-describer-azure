@@ -1290,7 +1290,10 @@ func DNSRecordSets(ctx context.Context, cred *azidentity.ClientSecretCredential,
 	client := clientFactory.NewRecordSetsClient()
 	var values []models.Resource
 
-	zones, err := DNSZones(ctx, cred, subscription, stream)
+	zones, err := DNSZones(ctx, cred, subscription, nil)
+	if err != nil {
+		return nil, err
+	}
 
 	for _, zone := range zones {
 		pager := client.NewListAllByDNSZonePager(zone.ResourceGroup, zone.Name, nil)
