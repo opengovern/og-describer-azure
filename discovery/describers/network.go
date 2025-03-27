@@ -1282,6 +1282,55 @@ func GetDNSZone(ctx context.Context, dnsZone *armdns.Zone, subscription string) 
 	return &resource
 }
 
+func DNSRecordSets(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
+	clientFactory, err := armdns.NewClientFactory(subscription, cred, nil)
+	if err != nil {
+		return nil, err
+	}
+	client := clientFactory.NewRecordSetsClient()
+	var values []models.Resource
+
+	zones, err := DNSZones(ctx, cred, subscription, stream)
+
+	for _, zone := range zones {
+		pager := client.NewListAllByDNSZonePager(zone.ResourceGroup, zone.Name, nil)
+		for pager.More() {
+			page, err := pager.NextPage(ctx)
+			if err != nil {
+				return nil, err
+			}
+			for _, dnsRecordSet := range page.Value {
+				resource := GetDNSRecordSet(zone.ResourceGroup, zone.Location, zone.ID, zone.Name, dnsRecordSet, subscription)
+				if stream != nil {
+					if err := (*stream)(*resource); err != nil {
+						return nil, err
+					}
+				} else {
+					values = append(values, *resource)
+				}
+			}
+		}
+	}
+	return values, nil
+}
+
+func GetDNSRecordSet(resourceGroup, location, dnsZoneID, dnsZoneName string, dnsRecordSet *armdns.RecordSet, subscription string) *models.Resource {
+	resource := models.Resource{
+		ID:       *dnsRecordSet.ID,
+		Name:     *dnsRecordSet.Name,
+		Location: location,
+		Description: model.DNSRecordSetDescription{
+			DNSZoneID:     dnsZoneID,
+			DNSZoneName:   dnsZoneName,
+			DNSRecordSet:  *dnsRecordSet,
+			ResourceGroup: resourceGroup,
+			Subscription:  subscription,
+		},
+	}
+
+	return &resource
+}
+
 func DNSResolvers(ctx context.Context, cred *azidentity.ClientSecretCredential, subscription string, stream *models.StreamSender) ([]models.Resource, error) {
 	clientFactory, err := armdnsresolver.NewClientFactory(subscription, cred, nil)
 	if err != nil {

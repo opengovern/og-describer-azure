@@ -430,6 +430,21 @@ var ResourceTypes = map[string]model.ResourceType{
 		GetDescriber:         nil,
 	},
 
+	"Microsoft.Network/dnsRecordSets": {
+		IntegrationType:      constants.IntegrationName,
+		ResourceName:         "Microsoft.Network/dnsRecordSets",
+		Tags:                 map[string][]string{
+            "category": {"Networking"},
+            "logo_uri": {},
+        },
+		Labels:               map[string]string{
+        },
+		Annotations:          map[string]string{
+        },
+		ListDescriber:        provider.DescribeBySubscription(describers.DNSRecordSets),
+		GetDescriber:         nil,
+	},
+
 	"Microsoft.Databricks/workspaces": {
 		IntegrationType:      constants.IntegrationName,
 		ResourceName:         "Microsoft.Databricks/workspaces",
@@ -3117,6 +3132,13 @@ var ResourceTypeConfigs = map[string]*interfaces.ResourceTypeConfiguration{
 		
 	},
 
+	"Microsoft.Network/dnsRecordSets": {
+		Name:         "Microsoft.Network/dnsRecordSets",
+		IntegrationType:      constants.IntegrationName,
+		Description:                 "",
+		
+	},
+
 	"Microsoft.Databricks/workspaces": {
 		Name:         "Microsoft.Databricks/workspaces",
 		IntegrationType:      constants.IntegrationName,
@@ -4332,6 +4354,7 @@ var ResourceTypesList = []string{
   "Microsoft.Automation/automationAccounts",
   "Microsoft.Automation/automationAccounts/variables",
   "Microsoft.Network/dnsZones",
+  "Microsoft.Network/dnsRecordSets",
   "Microsoft.Databricks/workspaces",
   "Microsoft.Network/privateDnsZones",
   "Microsoft.Network/privateEndpoints",

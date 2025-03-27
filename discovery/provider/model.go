@@ -675,6 +675,14 @@ type DNSZonesDescription struct {
 	Subscription  string
 }
 
+type DNSRecordSetDescription struct {
+	ResourceGroup string
+	DNSZoneID     string
+	DNSZoneName   string
+	Subscription  string
+	DNSRecordSet  armdns.RecordSet
+}
+
 //index:microsoft_network_bastianhosts
 type BastionHostsDescription struct {
 	ResourceGroup string

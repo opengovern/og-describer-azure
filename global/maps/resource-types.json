@@ -417,6 +417,19 @@
     "Model": "DNSZones"
   },
   {
+    "ResourceName": "Microsoft.Network/dnsRecordSets",
+
+    "Tags": {
+      "category": ["Networking"],
+      "logo_uri": []
+    },
+
+    "ListDescriber": "DescribeBySubscription(describers.DNSRecordSets)",
+    "GetDescriber": "",
+    "SteampipeTable": "azure_dns_record_set",
+    "Model": "DNSRecordSet"
+  },
+  {
     "ResourceName": "Microsoft.Databricks/workspaces",
 
     "Tags": {
